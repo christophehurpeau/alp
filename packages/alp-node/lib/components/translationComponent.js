@@ -66,7 +66,6 @@ function extendsHttpContextPrototype(HttpContextPrototype) {
     (0, _objectProperties.defineProperty)(HttpContextPrototype, 't', /** @function 
                                                                      * @param string 
                                                                      * @param {...*} args */function (string) {
-        console.log(this.request.language);
         string = this.app.translations.get(this.request.language).get(string) || string;
 
         for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {

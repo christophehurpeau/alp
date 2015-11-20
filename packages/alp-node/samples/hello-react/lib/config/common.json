@@ -1,0 +1,13 @@
+{
+    "applicationName": "Hello React",
+    "availableLanguages": [
+        "en",
+        "fr"
+    ],
+    "routeTranslations": {
+        "turaco": {
+            "fr": "turaco",
+            "en": "turaco"
+        }
+    }
+}

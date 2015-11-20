@@ -28,6 +28,7 @@ export function createServer(app) {
         if (socketPath) {
             chmodSync(socketPath, '777');
         }
+
         app.logger.info(
             'Server listening',
             socketPath ? { socketPath: socketPath } : { port: port },

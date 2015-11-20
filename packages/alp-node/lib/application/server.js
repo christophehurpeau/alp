@@ -34,6 +34,7 @@ function createServer(app) {
         if (socketPath) {
             (0, _fs.chmodSync)(socketPath, '777');
         }
+
         app.logger.info('Server listening', socketPath ? { socketPath: socketPath } : { port: port }, { [socketPath ? 'socketPath' : 'port']: ['yellow'] });
     });
 }

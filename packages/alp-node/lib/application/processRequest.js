@@ -1,7 +1,5 @@
 'use strict';
 
-var _Promise = require('babel-runtime/core-js/promise').default;
-
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default').default;
 
 Object.defineProperty(exports, '__esModule', {
@@ -43,27 +41,27 @@ function createRequestProcessor(app) {
         const parsedUrl = (0, _url.parse)(request.url);
         const pathname = parsedUrl.pathname;
 
-        if (pathname === '/favicon.ico') {
-            app.debug(null, { method: request.method, pathname }, { method: ['gray'], pathname: ['gray'] });
+        request.app = app;
+        request.response = response;
+        response.request = request;
 
-            return (0, _fs.createReadStream)(publicDir + 'favicon.ico').on('error', error.bind(null, request, response, 404)).pipe(response);
+        if (pathname === '/favicon.ico') {
+            app.logger.debug(null, { method: request.method, pathname }, { method: ['gray'], pathname: ['gray'] });
+
+            return (0, _fs.createReadStream)(app.paths.public + 'favicon.ico').on('error', error.bind(null, request, response, 404)).pipe(response);
         }
 
         if (pathname.startsWith('/web/')) {
-            app.debug(null, { method: request.method, pathname }, { method: ['gray'], pathname: ['gray'] });
+            app.logger.debug(null, { method: request.method, pathname }, { method: ['gray'], pathname: ['gray'] });
 
             if (pathname.includes('/../')) {
                 return error(request, response, 400, pathname + 'contains /../');
             }
 
-            return (0, _fs.createReadStream)(publicDir + pathname.substr(5)).on('error', error.bind(null, request, response, 404)).pipe(response);
+            return (0, _fs.createReadStream)(app.paths.public + pathname.substr(5)).on('error', error.bind(null, request, response, 404)).pipe(response);
         }
 
         const started = Date.now();
-
-        request.app = app;
-        request.response = response;
-        response.request = request;
 
         if (parsedUrl.query) {
             request.query = (0, _qs.parse)(parsedUrl.query);
@@ -90,10 +88,12 @@ function createRequestProcessor(app) {
 
         const context = new _httpRequestContext2.default(request, response);
 
-        _Promise.resolve(context.callAction(route.controller, route.action)).catch(function (err) {
+        context.callAction(route.controller, route.action).catch(function (err) {
             return error(request, response, 500, err);
+        }).catch(function (err) {
+            return console.log(err.stack || err.message || err);
         }).then(function () {
-            var timeMs = Date.now() - started + 'ms';
+            var timeMs = Date.now() - started;
             var statusCode = response.statusCode;
 
             var stylesStatusCode;
@@ -112,7 +112,7 @@ function createRequestProcessor(app) {
             app.logger.info('Request handled', { method: request.method, statusCode, pathname, timeMs }, {
                 statusCode: stylesStatusCode,
                 pathname: ['magenta'],
-                time: ['blue']
+                timeMs: ['blue']
             });
         });
     };

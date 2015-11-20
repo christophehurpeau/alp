@@ -32,7 +32,6 @@ export function initialize(app) {
 
 export function extendsHttpContextPrototype(HttpContextPrototype) {
     defineProperty(HttpContextPrototype, 't', function(string, ...args) {
-        console.log(this.request.language);
         string = this.app.translations.get(this.request.language).get(string) || string;
         return args ? vformat(string, args) : string;
     });

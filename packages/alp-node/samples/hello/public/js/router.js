@@ -7,7 +7,7 @@ exports.default = buildRouter;
 /** @function 
 * @param builder */
 function buildRouter(builder) {
-    builder.add('/', '/', 'site.index');
+    builder.add('default', '/${action}?', 'site.index', { extension: 'html' });
 }
 
 module.exports = exports.default;

@@ -115,8 +115,8 @@ var _alouetteLibHtmlRenderer2 = _interopRequireDefault(_alouetteLibHtmlRenderer)
         const isProduction = this.request.app.production;
 
         if (!(_httpError instanceof _HttpError2.default)) {
-            this.request.app.logger.warning('httpError is not an instance of HttpError');
-            _httpError = S.HttpError.internalServerError(undefined, undefined, error);
+            this.request.app.logger.warn('httpError is not an instance of HttpError');
+            _httpError = _HttpError2.default.internalServerError(undefined, undefined, _httpError);
         }
 
         let error = _httpError;

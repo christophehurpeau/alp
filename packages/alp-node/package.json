@@ -1,10 +1,11 @@
 {
-  "name": "alp",
+  "name": "auk",
   "version": "1.0.0",
   "description": "framework for nodejs 4",
   "main": "./lib/index.js",
   "dependencies": {
     "alouette": "^3.0.3",
+    "alp": "^1.0.0",
     "babel-runtime": "^5.8.25",
     "body-parser": "^1.14.1",
     "browser-sync": "^2.8.2",
@@ -18,11 +19,12 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylus": "^2.0.6",
     "gulp-util": "^3.0.6",
+    "html-document": "^0.8.1",
     "js-yaml": "^3.4.3",
     "limosa": "^1.0.1",
     "minimist": "^1.2.0",
     "negotiator": "^0.6.0",
-    "nightingale": "^1.1.0",
+    "nightingale": "^1.2.0",
     "object-properties": "^1.2.0",
     "parse-json-object-as-map": "^1.0.1",
     "portscanner": "^1.0.0",
@@ -31,7 +33,7 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "springbokjs-library": "^11.2.0"
+    "springbokjs-library": "^11.3.1"
   },
   "scripts": {
     "test": "make tests",
@@ -52,7 +54,7 @@
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alpjs/alp/issues"
+    "url": "https://github.com/alpjs/auk/issues"
   },
-  "homepage": "https://github.com/alpjs/alp#readme"
+  "homepage": "https://github.com/alpjs/auk#readme"
 }

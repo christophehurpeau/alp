@@ -29,6 +29,10 @@ export default class RequestContext {
                          route.controller + '.' + route.action);
         }
 
-        return controller[actionName].call(this, this.request, this.response);
+        try {
+            return Promise.resolve(controller[actionName].call(this, this.request, this.response));
+        } catch (err) {
+            return Promise.reject(err);
+        }
     }
 }

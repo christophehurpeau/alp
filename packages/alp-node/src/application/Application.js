@@ -35,14 +35,16 @@ export default class Application {
 
         this.router = createRouter(this);
 
+        this.loadComponent(translationComponent);
+        this.loadComponent(validatorComponent);
+
+        this.require('prepareApplication')(this);
+
         this.controllers = new Map();
         const controllers = this.require('controllers');
         Object.keys(controllers).forEach(key => {
             this.controllers.set(key, controllers[key]);
         });
-
-        this.loadComponent(translationComponent);
-        this.loadComponent(validatorComponent);
 
         Object.freeze(this);
     }

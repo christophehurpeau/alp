@@ -93,8 +93,8 @@ defineProperties(ServerResponse.prototype, {
         const isProduction = this.request.app.production;
 
         if (!(httpError instanceof HttpError)) {
-            this.request.app.logger.warning('httpError is not an instance of HttpError');
-            httpError = S.HttpError.internalServerError(undefined, undefined, error);
+            this.request.app.logger.warn('httpError is not an instance of HttpError');
+            httpError = HttpError.internalServerError(undefined, undefined, httpError);
         }
 
         let error = httpError;

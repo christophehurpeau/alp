@@ -5,7 +5,6 @@ var _interopRequireDefault = require('babel-runtime/helpers/interop-require-defa
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
-exports.newController = newController;
 exports.start = start;
 
 require('./http/HttpServerRequest');
@@ -17,19 +16,6 @@ var _applicationApplication = require('./application/Application');
 var _applicationApplication2 = _interopRequireDefault(_applicationApplication);
 
 var _applicationServer = require('./application/server');
-
-Error.stackTraceLimit = Infinity; //TODO move somewhere else
-
-/** @function 
-* @param actions */
-function newController(actions) {
-    return actions;
-}
-
-newController.action = /** @function 
-                       * @param action */function (action) {
-    return action;
-};
 
 /** @function 
 * @param dirname */

@@ -23,20 +23,24 @@ export function createRequestProcessor(app) {
         const parsedUrl = parseUrl(request.url);
         const pathname = parsedUrl.pathname;
 
+        request.app = app;
+        request.response = response;
+        response.request = request;
+
         if (pathname === '/favicon.ico') {
-            app.debug(
+            app.logger.debug(
                 null,
                 { method: request.method, pathname },
                 { method: ['gray'], pathname: ['gray'] }
             );
 
-            return createReadStream(publicDir + 'favicon.ico')
+            return createReadStream(app.paths.public + 'favicon.ico')
                 .on('error', error.bind(null, request, response, 404))
                 .pipe(response);
         }
 
         if (pathname.startsWith('/web/')) {
-            app.debug(
+            app.logger.debug(
                 null,
                 { method: request.method, pathname },
                 { method: ['gray'], pathname: ['gray'] }
@@ -46,16 +50,12 @@ export function createRequestProcessor(app) {
                 return error(request, response, 400, pathname + 'contains /../');
             }
 
-            return createReadStream(publicDir + pathname.substr(5))
+            return createReadStream(app.paths.public + pathname.substr(5))
                 .on('error', error.bind(null, request, response, 404))
                 .pipe(response);
         }
 
         const started = Date.now();
-
-        request.app = app;
-        request.response = response;
-        response.request = request;
 
         if (parsedUrl.query) {
             request.query = parseQueryString(parsedUrl.query);
@@ -82,35 +82,35 @@ export function createRequestProcessor(app) {
 
         const context = new RequestContext(request, response);
 
-        Promise.resolve(
-            context.callAction(route.controller, route.action)
-        ).catch(err => error(request, response, 500, err))
-        .then(() => {
-            var timeMs = (Date.now() - started) + 'ms';
-            var statusCode = response.statusCode;
+        context.callAction(route.controller, route.action)
+            .catch(err => error(request, response, 500, err))
+            .catch(err => console.log(err.stack || err.message || err))
+            .then(() => {
+                var timeMs = Date.now() - started;
+                var statusCode = response.statusCode;
 
-            var stylesStatusCode;
-            if (statusCode < 200) {
-                stylesStatusCode = [];
-            } else if (statusCode < 300) {
-                stylesStatusCode = ['green', 'bold'];
-            } else if (statusCode < 400) {
-                stylesStatusCode = ['blue', 'bold'];
-            } else if (statusCode < 500) {
-                stylesStatusCode = ['bgMagenta', 'white'];
-            } else if (statusCode < 600) {
-                stylesStatusCode = ['bgRed', 'white'];
-            }
-
-            app.logger.info(
-                'Request handled',
-                { method: request.method, statusCode, pathname, timeMs },
-                {
-                    statusCode: stylesStatusCode,
-                    pathname: ['magenta'],
-                    time: ['blue'],
+                var stylesStatusCode;
+                if (statusCode < 200) {
+                    stylesStatusCode = [];
+                } else if (statusCode < 300) {
+                    stylesStatusCode = ['green', 'bold'];
+                } else if (statusCode < 400) {
+                    stylesStatusCode = ['blue', 'bold'];
+                } else if (statusCode < 500) {
+                    stylesStatusCode = ['bgMagenta', 'white'];
+                } else if (statusCode < 600) {
+                    stylesStatusCode = ['bgRed', 'white'];
                 }
-            );
-        });
+
+                app.logger.info(
+                    'Request handled',
+                    { method: request.method, statusCode, pathname, timeMs },
+                    {
+                        statusCode: stylesStatusCode,
+                        pathname: ['magenta'],
+                        timeMs: ['blue'],
+                    }
+                );
+            });
     };
 }

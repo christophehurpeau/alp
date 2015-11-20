@@ -77,14 +77,16 @@ let Application = (function () {
 
         this.router = (0, _router.createRouter)(this);
 
+        this.loadComponent(translationComponent);
+        this.loadComponent(validatorComponent);
+
+        this.require('prepareApplication')(this);
+
         this.controllers = new _Map();
         const controllers = this.require('controllers');
         _Object$keys(controllers).forEach(function (key) {
             _this.controllers.set(key, controllers[key]);
         });
-
-        this.loadComponent(translationComponent);
-        this.loadComponent(validatorComponent);
 
         _Object$freeze(this);
     }

@@ -47,14 +47,14 @@ gulp.task('define-browser-sync-port', function(done) {
 
 /* CONFIG */
 function buildConfigServer() {
-    return gulp.src('src/config/**/*.yml', { since: gulp.lastRun(buildConfigServer) })
+    return gulp.src('src/config/**/*.yml')
         .pipe(ymlConfig({ dest: 'server' }))
         .pipe(gulp.dest('lib/config'));
 };
 gulp.task(buildConfigServer);
 
 function buildConfigBrowser() {
-    return gulp.src('src/config/**/*.yml', { since: gulp.lastRun(buildConfigBrowser) })
+    return gulp.src('src/config/**/*.yml')
         .pipe(ymlConfig({ dest: 'browser' }))
         .pipe(gulp.dest('public/js/config'));
 }
@@ -162,6 +162,7 @@ function watchThenBuild() {
     gulp.watch('styles/**/*.styl', buildStylus);
     gulp.watch('src/**/*.{js,jsx}', gulp.parallel(buildJsServer, buildJsBrowser));
 }
+
 gulp.task(watchThenBuild);
 
 var daemon;

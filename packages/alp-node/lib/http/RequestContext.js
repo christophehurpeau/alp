@@ -4,6 +4,8 @@ var _createClass = require('babel-runtime/helpers/create-class').default;
 
 var _classCallCheck = require('babel-runtime/helpers/class-call-check').default;
 
+var _Promise = require('babel-runtime/core-js/promise').default;
+
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
@@ -50,7 +52,11 @@ let RequestContext = (function () {
                     return this.response.notFound(undefined, 'Action not found: ' + route.controller + '.' + route.action);
                 }
 
-            return controller[actionName].call(this, this.request, this.response);
+            try {
+                return _Promise.resolve(controller[actionName].call(this, this.request, this.response));
+            } catch (err) {
+                return _Promise.reject(err);
+            }
         }
     }]);
 
