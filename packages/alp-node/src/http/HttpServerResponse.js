@@ -16,7 +16,7 @@ defineProperties(ServerResponse.prototype, {
         this.writeHead(200, {
             'Content-Type': 'text/plain',
             'Accept-Ranges': 'none',
-            'Content-Length': content.length,
+            'Content-Length': Buffer.byteLength(content),
             'Content-Disposition': 'attachment; filename=' + filename,
         });
 
@@ -37,7 +37,7 @@ defineProperties(ServerResponse.prototype, {
      */
     text(string) {
         this.setHeader('Content-Type', 'text/plain');
-        this.setHeader('Content-Length', string.length);
+        this.setHeader('Content-Length', Buffer.byteLength(string));
         this.end(string);
     },
 
@@ -46,7 +46,7 @@ defineProperties(ServerResponse.prototype, {
      */
     json(string) {
         this.setHeader('Content-Type', 'application/json');
-        this.setHeader('Content-Length', string.length);
+        this.setHeader('Content-Length', Buffer.byteLength(string));
         this.end(string);
     },
 
@@ -62,7 +62,7 @@ defineProperties(ServerResponse.prototype, {
      */
     html(string) {
         this.setHeader('Content-Type', 'text/html');
-        this.setHeader('Content-Length', string.length);
+        this.setHeader('Content-Length', Buffer.byteLength(string));
         this.end(string);
     },
 
