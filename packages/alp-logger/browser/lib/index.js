@@ -8,7 +8,7 @@ exports.default = aukLogger;
 var _nightingale = require('nightingale');
 
 function aukLogger(app) {
-    const logConfig = app.config.get('log');
+    var logConfig = app.config.get('log');
     app.logger = new _nightingale.ConsoleLogger('app', logConfig && logConfig.level || _nightingale.LogLevel.ALL);
 }
 //# sourceMappingURL=index.js.map
