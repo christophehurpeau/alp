@@ -4,7 +4,7 @@
   "description": "logger",
   "main": "lib/index.js",
   "jspm": {
-    "main": "browser/lib/browser.js",
+    "main": "browser/lib/index.js",
     "lib": "browser/"
   },
   "scripts": {
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/alpjs/alp-logger#readme",
   "devDependencies": {
-    "springbokjs-library": "^12.1.0"
+    "springbokjs-library": "^12.2.1"
   },
   "dependencies": {
     "nightingale": "^1.2.0"
