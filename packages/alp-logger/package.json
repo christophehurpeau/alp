@@ -1,0 +1,36 @@
+{
+  "name": "alp-logger",
+  "version": "1.0.0",
+  "description": "logger",
+  "main": "lib/index.js",
+  "jspm": {
+    "main": "browser/lib/browser.js",
+    "lib": "browser/"
+  },
+  "scripts": {
+    "test": "make test",
+    "lint": "make lint",
+    "build": "make build",
+    "postpublish": "make post-publish",
+    "preversion": "make pre-version",
+    "version": "make version",
+    "watch": "make watch"
+  },
+  "repository": "alpjs/alp-logger",
+  "keywords": [
+    "alp",
+    "alp"
+  ],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alpjs/alp-logger/issues"
+  },
+  "homepage": "https://github.com/alpjs/alp-logger#readme",
+  "devDependencies": {
+    "springbokjs-library": "^12.1.0"
+  },
+  "dependencies": {
+    "nightingale": "^1.2.0"
+  }
+}
