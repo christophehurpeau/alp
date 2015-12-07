@@ -1,0 +1,28 @@
+{
+  "name": "ibex",
+  "version": "1.0.0",
+  "description": "Framework for browser, with the same API than koa 2",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "make test",
+    "lint": "make lint",
+    "build": "make build",
+    "postpublish": "make post-publish",
+    "preversion": "make pre-version",
+    "version": "make version",
+    "watch": "make watch"
+  },
+  "repository": "alpjs/ibex",
+  "keywords": [
+    "alp", "auk"
+  ],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alpjs/ibex/issues"
+  },
+  "homepage": "https://github.com/alpjs/ibex#readme",
+  "devDependencies": {
+    "springbokjs-library": "^12.2.1"
+  }
+}
