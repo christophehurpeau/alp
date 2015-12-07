@@ -13,12 +13,10 @@ var _viewsIndexView = require('../views/IndexView');
 var _viewsIndexView2 = _interopRequireDefault(_viewsIndexView);
 
 exports.default = (0, _alp.newController)({
-    index: _alp.newController.action( /** @function 
-                                      * @param request 
-                                      * @param response */function (request, response) {
-        const name = request.params.string('name').notEmpty().value;
-        return this.render(_viewsIndexView2.default, { name });
-    })
+    index(ctx) {
+        const name = ctx.params.string('name').notEmpty().value;
+        return ctx.render(_viewsIndexView2.default, { name });
+    }
 });
 module.exports = exports.default;
-//# sourceMappingURL=SiteController.js.map
+//# sourceMappingURL=siteController.js.map

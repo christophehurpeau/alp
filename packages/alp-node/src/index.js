@@ -1,20 +1,41 @@
-import './http/HttpServerRequest';
-import './http/HttpServerResponse';
-import Application from './application/Application';
-import { createServer } from './application/server';
+throw new Error('Use index.js');
 
-export function start(dirname) {
-    dirname = dirname.replace(/\/+$/, '') + '/';
+import { chmodSync, unlinkSync } from 'fs';
+import Koa from 'koa';
 
-    const env = process.env.NODE_ENV || 'dev';
-
-    if (!/^[a-z]+$/.test(env)) {
-        throw new Error('Unacceptable env name: ' + env);
+export default class Application extends Koa {
+    init(fn) {
+        return fn(this);
     }
 
-    const app = new Application(dirname, env);
+    listen() {
+        const socketPath = this.config.get('socketPath');
+        const port = this.config.get('port');
+        const hostname = this.config.get('hostname');
 
-    createServer(app);
+        this.logger.info(
+            'Creating server',
+            socketPath ? { socketPath: socketPath } : { port: port },
+            { [socketPath ? 'socketPath' : 'port']: ['yellow'] }
+        );
 
-    return app;
+        if (socketPath) {
+            try {
+                unlinkSync(socketPath);
+            } catch (err) {
+            }
+        }
+
+        this.listen(socketPath || port, hostname, function() {
+            if (socketPath) {
+                chmodSync(socketPath, '777');
+            }
+
+            this.logger.info(
+                'Server listening',
+                socketPath ? { socketPath: socketPath } : { port: port },
+                { [socketPath ? 'socketPath' : 'port']: ['yellow'] }
+            );
+        });
+    }
 }

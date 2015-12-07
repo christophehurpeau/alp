@@ -1,14 +1,13 @@
-import View from 'turaco/lib/View';
+import { View } from 'turaco';
 import Layout from './layouts/Layout';
+import HelloComponent from './components/HelloComponent';
 
 export default class TuracoView extends View {
-    constructor() {
-        super();
-        this.title = 'Turaco View';
-        this.parent = Layout;
-    }
+    parent = Layout;
 
     render({ name }) {
-        return (<div>{this.t('Hello %s!', name || 'World')}</div>);
+        this.title = 'Turaco View';
+        this.$container
+            .append(this.component(HelloComponent)(null, { name }));
     }
 }

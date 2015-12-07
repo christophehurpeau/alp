@@ -1,12 +1,19 @@
 'use strict';
 
-var _interopRequire = require('babel-runtime/helpers/interop-require').default;
+var _Map = require('babel-runtime/core-js/map')['default'];
+
+var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
 
 Object.defineProperty(exports, '__esModule', {
-  value: true
+    value: true
 });
 
-var _SiteController = require('./SiteController');
+var _siteController = require('./siteController');
 
-exports.site = _interopRequire(_SiteController);
+var _siteController2 = _interopRequireDefault(_siteController);
+
+var controllers = new _Map([['site', _siteController2['default']]]);
+
+exports['default'] = controllers;
+module.exports = exports['default'];
 //# sourceMappingURL=index.js.map

@@ -14,44 +14,39 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 
-var _turacoLibView = require('turaco/lib/View');
-
-var _turacoLibView2 = _interopRequireDefault(_turacoLibView);
+var _turaco = require('turaco');
 
 var _layoutsLayout = require('./layouts/Layout');
 
 var _layoutsLayout2 = _interopRequireDefault(_layoutsLayout);
 
-/** @class TuracoView */
+var _componentsHelloComponent = require('./components/HelloComponent');
+
+var _componentsHelloComponent2 = _interopRequireDefault(_componentsHelloComponent);
+
 let TuracoView = (function (_View) {
     _inherits(TuracoView, _View);
 
     function TuracoView() {
         _classCallCheck(this, TuracoView);
 
-        _get(Object.getPrototypeOf(TuracoView.prototype), 'constructor', this).call(this);
-        this.title = 'Turaco View';
+        _get(Object.getPrototypeOf(TuracoView.prototype), 'constructor', this).apply(this, arguments);
+
         this.parent = _layoutsLayout2.default;
     }
 
     _createClass(TuracoView, [{
         key: 'render',
-        /** @memberof TuracoView 
-        * @instance 
-        * @method render 
-        * @param */value: function render(_ref) {
+        value: function render(_ref) {
             let name = _ref.name;
 
-            return React.createElement(
-                'div',
-                null,
-                this.t('Hello %s!', name || 'World')
-            );
+            this.title = 'Turaco View';
+            this.$container.append(this.component(_componentsHelloComponent2.default)(null, { name }));
         }
     }]);
 
     return TuracoView;
-})(_turacoLibView2.default);
+})(_turaco.View);
 
 exports.default = TuracoView;
 module.exports = exports.default;

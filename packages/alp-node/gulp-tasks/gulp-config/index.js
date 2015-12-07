@@ -29,7 +29,6 @@ function loadConfigFile(content, opts, dirname) {
             .map(includePath => readFileSync(includePath))
             .map((content, index) => loadConfigFile(content, opts, pathDirname(includePaths[index])))
             .forEach(includeConfig => {
-                console.log(includeConfig);
                 Object.keys(includeConfig).forEach(key => {
                     if (!(key in config)) {
                         config[key] = includeConfig[key];

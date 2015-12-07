@@ -14,7 +14,6 @@ export default class IndexView extends Component {
         const title = 'React Index View';
         this.context.setTitle(title);
         const name = this.props.name;
-        console.log(this.context);
         return (<div>{this.context.t('Hello %s!', name || 'World')}</div>);
     }
 }

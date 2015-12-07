@@ -3,12 +3,13 @@
 /coverage
 /build
 node_modules
+jspm_packages
 
 /.settings
-.project
-/.idea
+/.project
 *.sublime-project
 *.sublime-workspace
+/.idea
 
 #*
 *$

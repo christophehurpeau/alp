@@ -3,6 +3,7 @@
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
 var clip = require('gulp-clip-empty-files');
+var jspm = require('gulp-jspm');
 var rename = require('gulp-rename');
 var stylus = require('gulp-stylus');
 var grep = require('gulp-grep');
@@ -70,7 +71,7 @@ function buildStylus() {
     var stream = gulp.src('styles/*.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus({
-            paths: [__dirname + '/node_modules'],
+            paths: ['node_modules'],
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('public/'))
@@ -100,12 +101,32 @@ function buildJsServer() {
         .pipe(sourcemaps.init())
         .pipe(clip())
         .pipe(babel({
+            breakConfig: true,
+            stage: 1,
             blacklist: [
                 'regenerator',
-                'es6.forOf',
-                // 'es6.arrowFunctions',
-                'es6.constants',
+                'es3.memberExpressionLiterals',
+                'es3.propertyLiterals',
+                'es5.properties.mutators',
                 'es6.blockScoping',
+                'es6.constants',
+                'es6.arrowFunctions',
+                'es6.properties.computed',
+                'es6.properties.shorthand',
+                'es6.forOf',
+            ],
+            optional: [
+                'runtime',
+                'es7.classProperties',
+                'es7.decorators',
+                'es7.exportExtensions',
+                'asyncToGenerator',
+                'optimisation.flow.forOf',
+            ],
+            loose: [
+                'es6.spread',
+                'es6.destructuring',
+                'es6.forOf',
             ],
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
@@ -118,6 +139,7 @@ function buildJsServer() {
     return stream;
 }
 gulp.task(buildJsServer);
+
 
 function buildJsBrowser() {
     if (bs) {
@@ -135,6 +157,14 @@ function buildJsBrowser() {
         }))
         .pipe(sourcemaps.init())
         .pipe(babel({
+            breakConfig: true,
+            optional: [
+                'runtime',
+                'es7.classProperties',
+                'es7.decorators',
+                'es7.exportExtensions',
+                'optimisation.flow.forOf',
+            ],
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('public/js/'));
@@ -146,6 +176,23 @@ function buildJsBrowser() {
 }
 gulp.task(buildConfigBrowser);
 
+function buildJsBundle() {
+    var stream = gulp.src('public/js/index.js')
+        .pipe(sourcemaps.init())
+        .pipe(jspm({ selfExecutingBundle: false }))
+        // .pipe(rename('index.js'))
+        .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
+        .pipe(gulp.dest('public'));
+
+    if (bs) {
+        stream.pipe(bs.stream());
+    }
+
+    return stream;
+}
+gulp.task(buildJsBundle);
+
+
 gulp.task(
     'build',
     gulp.parallel(
@@ -153,14 +200,14 @@ gulp.task(
         buildConfigServer,
         buildConfigBrowser,
         buildJsServer,
-        buildJsBrowser
+        gulp.series(buildJsBrowser, buildJsBundle)
     )
 );
 
 function watchThenBuild() {
     gulp.watch('src/config/*.yml', gulp.parallel(buildConfigServer, buildConfigBrowser));
     gulp.watch('styles/**/*.styl', buildStylus);
-    gulp.watch('src/**/*.{js,jsx}', gulp.parallel(buildJsServer, buildJsBrowser));
+    gulp.watch('src/**/*.{js,jsx}', gulp.parallel(buildJsServer, gulp.series(buildJsBrowser, buildJsBundle)));
 }
 
 gulp.task(watchThenBuild);

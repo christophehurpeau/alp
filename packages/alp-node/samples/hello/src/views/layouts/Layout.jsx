@@ -8,10 +8,15 @@ export default class Layout extends TopLayout {
 
     <!--Import style -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link type="text/css" rel="stylesheet" href="/simple-blue.css"/>
+    <link type="text/css" rel="stylesheet" href="/index.css"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <script src="/jspm_packages/system.js"></script>
+    <script src="/config.js"></script>
+    <script src="/index.bundle.js"></script>
+    <script>System.import('js/index')</script>
         `;
     }
 

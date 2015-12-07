@@ -1,0 +1,6 @@
+public/js
+public/**/*.map
+public/**/*.css
+public/**/*.js
+!public/config.js
+jspm_packages

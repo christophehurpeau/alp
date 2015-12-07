@@ -19,7 +19,6 @@ var _turacoLibTopLayout = require('turaco/lib/TopLayout');
 
 var _turacoLibTopLayout2 = _interopRequireDefault(_turacoLibTopLayout);
 
-/** @class Layout */
 let Layout = (function (_TopLayout) {
     _inherits(Layout, _TopLayout);
 
@@ -31,18 +30,12 @@ let Layout = (function (_TopLayout) {
 
     _createClass(Layout, [{
         key: 'head',
-        /** @memberof Layout 
-        * @instance 
-        * @method head */value: function head() {
-            return '\n    <script src="//cdn.polyfill.io/v1/polyfill.min.js?features=all"></script>\n\n    <!--Import style -->\n    <link href=\'http://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic\' rel=\'stylesheet\' type=\'text/css\'>\n    <link type="text/css" rel="stylesheet" href="/simple-blue.css"/>\n\n    <!--Let browser know website is optimized for mobile-->\n    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>\n        ';
+        value: function head() {
+            return '\n    <script src="//cdn.polyfill.io/v1/polyfill.min.js?features=all"></script>\n\n    <!--Import style -->\n    <link href=\'http://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic\' rel=\'stylesheet\' type=\'text/css\'>\n    <link type="text/css" rel="stylesheet" href="/index.css"/>\n\n    <!--Let browser know website is optimized for mobile-->\n    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>\n\n    <script src="/jspm_packages/system.js"></script>\n    <script src="/config.js"></script>\n    <script src="/index.bundle.js"></script>\n    <script>System.import(\'js/index\')</script>\n        ';
         }
     }, {
         key: 'body',
-        /** @memberof Layout 
-        * @instance 
-        * @method body 
-        * @param $body 
-        * @param data */value: function body($body, data) {
+        value: function body($body, data) {
             const $container = $.create('div').setAttribute('class', 'container-page').appendTo($body);
             this.$content = $container;
         }

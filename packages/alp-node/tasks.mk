@@ -11,7 +11,7 @@ check:
 	mkdir -p lib/config public/js/config || echo
 
 clean:
-	rm -Rf lib tests/lib public/*.css public/js
+	rm -Rf lib tests/lib public/*.css public/js public/*bundle.js
 
 default: check
 	@node_modules/.bin/gulp

@@ -36,7 +36,6 @@ let IndexView = (function (_Component) {
             const title = 'React Index View';
             this.context.setTitle(title);
             const name = this.props.name;
-            console.log(this.context);
             return _react2.default.createElement(
                 'div',
                 null,
