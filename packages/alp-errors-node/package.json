@@ -1,0 +1,35 @@
+{
+  "name": "auk-errors",
+  "version": "1.0.1",
+  "description": "handle errors in auk server",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "make test",
+    "lint": "make lint",
+    "build": "make build",
+    "postpublish": "make post-publish",
+    "preversion": "make pre-version",
+    "version": "make version",
+    "watch": "make watch"
+  },
+  "repository": "alpjs/auk-errors",
+  "keywords": [
+    "alp",
+    "auk"
+  ],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alpjs/auk-errors/issues"
+  },
+  "homepage": "https://github.com/alpjs/auk-errors#readme",
+  "devDependencies": {
+    "springbokjs-library": "^12.2.1"
+  },
+  "dependencies": {
+    "alouette": "^3.3.0"
+  },
+  "peerDependencies": {
+    "auk-logger": "^1.0.0"
+  }
+}
