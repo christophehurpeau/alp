@@ -9,20 +9,22 @@
   "dependencies": {
     "auk": "../../",
     "auk-config": "^1.0.0",
-    "auk-language": "^1.0.0",
-    "auk-limosa": "^1.0.0",
-    "auk-logger": "^1.0.0",
+    "auk-language": "^1.0.2",
+    "auk-limosa": "^1.0.2",
+    "auk-logger": "^1.0.1",
     "auk-params": "^1.0.0",
-    "auk-translate": "^1.0.0",
-    "auk-react": "^1.0.0",
+    "auk-translate": "^1.0.1",
+    "auk-react": "^1.0.2",
     "koa-convert": "^1.2.0",
     "koa-static": "^1.5.2"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
-    "mocha": "^2.3.3",
+    "babel": "^6.3.13",
+    "gulp": "gulpjs/gulp#3311fcab7fe6de65a7a981d2433205c91d151c0a",
+    "mocha": "^2.3.4",
     "node-fetch": "^1.3.3",
-    "springbokjs-daemon": "^0.2.0"
+    "springbokjs-daemon": "^0.2.0",
+    "stylus": "^0.52.4"
   },
   "jspm": {
     "directories": {

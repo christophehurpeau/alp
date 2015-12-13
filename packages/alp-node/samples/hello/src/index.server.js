@@ -14,13 +14,13 @@ import turaco from 'auk-turaco';
 import controllers from './controllers/index';
 
 const app = new Auk();
-app.init(config(__dirname + '/config'));
-app.init(params);
-app.init(language);
-app.init(logger);
-app.init(translate('locales'));
-app.init(turaco(__dirname + '/views'));
-const handler = app.init(router(routerBuilder, controllers));
+config(__dirname + '/config')(app);
+params(app);
+language(app);
+logger(app);
+translate('locales')(app);
+turaco(__dirname + '/views')(app);
+const handler = router(routerBuilder, controllers)(app);
 
 app.use(errors);
 app.use(convert(serve(__dirname + '/../public/'))); // static files

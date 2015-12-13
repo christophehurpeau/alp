@@ -51,15 +51,13 @@ function buildConfigServer() {
     return gulp.src('src/config/**/*.yml')
         .pipe(ymlConfig({ dest: 'server' }))
         .pipe(gulp.dest('lib/config'));
-};
-gulp.task(buildConfigServer);
+}
 
 function buildConfigBrowser() {
     return gulp.src('src/config/**/*.yml')
         .pipe(ymlConfig({ dest: 'browser' }))
         .pipe(gulp.dest('public/js/config'));
 }
-gulp.task(buildConfigBrowser);
 
 /* FRONT */
 
@@ -82,7 +80,6 @@ function buildStylus() {
 
     return stream;
 }
-gulp.task(buildStylus);
 
 function buildJsServer() {
     if (bs) {
@@ -101,33 +98,8 @@ function buildJsServer() {
         .pipe(sourcemaps.init())
         .pipe(clip())
         .pipe(babel({
-            breakConfig: true,
-            stage: 1,
-            blacklist: [
-                'regenerator',
-                'es3.memberExpressionLiterals',
-                'es3.propertyLiterals',
-                'es5.properties.mutators',
-                'es6.blockScoping',
-                'es6.constants',
-                'es6.arrowFunctions',
-                'es6.properties.computed',
-                'es6.properties.shorthand',
-                'es6.forOf',
-            ],
-            optional: [
-                'runtime',
-                'es7.classProperties',
-                'es7.decorators',
-                'es7.exportExtensions',
-                'asyncToGenerator',
-                'optimisation.flow.forOf',
-            ],
-            loose: [
-                'es6.spread',
-                'es6.destructuring',
-                'es6.forOf',
-            ],
+            presets: ['es2015-node5', 'react', 'stage-0'],
+            plugins: ['transform-decorators-legacy'],
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('lib'));
@@ -138,8 +110,6 @@ function buildJsServer() {
 
     return stream;
 }
-gulp.task(buildJsServer);
-
 
 function buildJsBrowser() {
     if (bs) {
@@ -157,14 +127,8 @@ function buildJsBrowser() {
         }))
         .pipe(sourcemaps.init())
         .pipe(babel({
-            breakConfig: true,
-            optional: [
-                'runtime',
-                'es7.classProperties',
-                'es7.decorators',
-                'es7.exportExtensions',
-                'optimisation.flow.forOf',
-            ],
+            presets: ['es2015', 'react', 'stage-0'],
+            plugins: ['transform-decorators-legacy'],
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('public/js/'));
@@ -174,7 +138,6 @@ function buildJsBrowser() {
 
     return stream;
 }
-gulp.task(buildConfigBrowser);
 
 function buildJsBundle() {
     var stream = gulp.src('public/js/index.js')
@@ -190,8 +153,6 @@ function buildJsBundle() {
 
     return stream;
 }
-gulp.task(buildJsBundle);
-
 
 gulp.task(
     'build',

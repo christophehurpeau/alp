@@ -16,7 +16,9 @@ System.config({
     "events": "github:jspm/nodelibs-events@0.1.1",
     "ibex": "npm:ibex@1.0.0",
     "ibex-config": "npm:ibex-config@1.0.0",
+    "ibex-language": "npm:ibex-language@1.0.0",
     "ibex-logger": "npm:ibex-logger@1.0.0",
+    "ibex-translate": "npm:ibex-translate@1.0.0",
     "ibex-turaco": "npm:ibex-turaco@1.0.0",
     "nightingale": "npm:nightingale@1.2.0",
     "parse-json-object-as-map": "npm:parse-json-object-as-map@1.0.1",
@@ -24,12 +26,12 @@ System.config({
     "text": "github:systemjs/plugin-text@0.0.4",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
-    "turaco": "npm:turaco@1.1.3",
+    "turaco": "npm:turaco@1.2.1",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
-      "buffer": "npm:buffer@3.5.2"
+      "buffer": "npm:buffer@3.5.4"
     },
     "github:jspm/nodelibs-events@0.1.1": {
       "events": "npm:events@1.0.2"
@@ -73,12 +75,12 @@ System.config({
     "npm:babel-runtime@5.8.34": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:buffer@3.5.2": {
+    "npm:buffer@3.5.4": {
       "base64-js": "npm:base64-js@0.0.8",
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "ieee754": "npm:ieee754@1.1.6",
-      "is-array": "npm:is-array@1.0.1",
+      "isarray": "npm:isarray@0.0.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:core-js@1.2.6": {
@@ -95,14 +97,11 @@ System.config({
       "entities": "npm:entities@1.1.1"
     },
     "npm:domhandler@2.3.0": {
-      "domelementtype": "npm:domelementtype@1.1.3"
+      "domelementtype": "npm:domelementtype@1.3.0"
     },
     "npm:domutils@1.5.1": {
       "dom-serializer": "npm:dom-serializer@0.1.0",
-      "domelementtype": "npm:domelementtype@1.1.3"
-    },
-    "npm:entities@1.0.0": {
-      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
+      "domelementtype": "npm:domelementtype@1.3.0"
     },
     "npm:entities@1.1.1": {
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
@@ -118,14 +117,14 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:html-document@0.8.1": {
-      "htmlparser2": "npm:htmlparser2@3.8.3",
+      "htmlparser2": "npm:htmlparser2@3.9.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:htmlparser2@3.8.3": {
-      "domelementtype": "npm:domelementtype@1.1.3",
+    "npm:htmlparser2@3.9.0": {
+      "domelementtype": "npm:domelementtype@1.3.0",
       "domhandler": "npm:domhandler@2.3.0",
       "domutils": "npm:domutils@1.5.1",
-      "entities": "npm:entities@1.0.0",
+      "entities": "npm:entities@1.1.1",
       "events": "github:jspm/nodelibs-events@0.1.1",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "stream": "github:jspm/nodelibs-stream@0.1.0",
@@ -140,10 +139,10 @@ System.config({
       "ibex-config": "npm:ibex-config@1.0.0"
     },
     "npm:ibex-turaco@1.0.0": {
-      "babel-runtime": "npm:babel-runtime@5.8.34",
       "html-document": "npm:html-document@0.8.1",
+      "nightingale": "npm:nightingale@1.2.0",
       "springbokjs-dom": "npm:springbokjs-dom@0.11.0",
-      "turaco": "npm:turaco@1.1.3"
+      "turaco": "npm:turaco@1.2.1"
     },
     "npm:ibex@1.0.0": {
       "events": "github:jspm/nodelibs-events@0.1.1"
@@ -157,6 +156,7 @@ System.config({
     },
     "npm:nightingale@1.2.0": {
       "ansi-styles": "npm:ansi-styles@2.1.0",
+      "babel-runtime": "npm:babel-runtime@5.8.34",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "util": "github:jspm/nodelibs-util@0.1.0"
@@ -195,7 +195,7 @@ System.config({
     "npm:string_decoder@0.10.31": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
-    "npm:turaco@1.1.3": {
+    "npm:turaco@1.2.1": {
       "esnext-class": "npm:esnext-class@1.0.0",
       "events": "github:jspm/nodelibs-events@0.1.1",
       "html-document": "npm:html-document@0.8.1",

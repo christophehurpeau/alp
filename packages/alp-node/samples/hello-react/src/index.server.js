@@ -9,17 +9,18 @@ import translate from 'auk-translate';
 import router from 'auk-limosa';
 import routerBuilder from './routerBuilder';
 import react from 'auk-react';
+import Html from './views/layouts/Html';
 
 import controllers from './controllers';
 
 const app = new Auk();
-app.init(config(__dirname + '/config'));
-app.init(params);
-app.init(language);
-app.init(logger);
-app.init(translate('locales'));
-app.init(react);
-const handler = app.init(router(routerBuilder, controllers));
+config(__dirname + '/config')(app);
+params(app);
+language(app);
+logger(app);
+translate('locales')(app);
+react(Html)(app);
+const handler = router(routerBuilder, controllers)(app);
 
 app.use(convert(serve(__dirname + '../public/'))); // static files
 app.use(handler);

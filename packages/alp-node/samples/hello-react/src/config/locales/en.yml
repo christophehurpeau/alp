@@ -1,2 +1,2 @@
 common:
-    'Hello %s!': "Hello %s!"
+    'Hello {0}!': "Hello {0}!"

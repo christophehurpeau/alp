@@ -1,3 +1,3 @@
 {
-    "Hello %s!": "Bonjour %s !"
+    "Hello {0}!": "Bonjour {0} !"
 }

@@ -15,7 +15,7 @@ export default class InputNameComponent extends Component {
 
     ready() {
         this.$input.on('keyup', e => {
-            const newName = e.$element. getValue();
+            const newName = e.$element.getValue();
             if (this.name != newName) {
                 this.name = newName;
                 this.emit('nameChanged', newName);

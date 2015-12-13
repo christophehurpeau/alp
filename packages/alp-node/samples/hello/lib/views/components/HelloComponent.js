@@ -38,17 +38,12 @@ let HelloComponent = (function (_Component) {
             let name = _ref.name;
 
             const InputName = this.component(_InputNameComponent2.default);
-            const hello = this.t('Hello %s!', name || 'World');
-            this.$container.append(this.$span = React.createElement(
-                'span',
-                null,
-                hello
-            )).append(this.input = React.createElement(InputName, { name: name }));
+            this.$container.append(this.$span = React.createElement('span', null)).append(this.input = React.createElement(InputName, { name: name }));
+            this.setName(name);
         }
     }, {
         key: 'ready',
         value: function ready() {
-            console.log('hello ready');
             this.input.on('nameChanged', newName => {
                 this.setName(newName);
             });
@@ -56,7 +51,8 @@ let HelloComponent = (function (_Component) {
     }, {
         key: 'setName',
         value: function setName(name) {
-            this.$span.text(name);
+            const hello = this.context.t('Hello {0}!', name || 'World');
+            this.$span.text(hello);
         }
     }]);
 

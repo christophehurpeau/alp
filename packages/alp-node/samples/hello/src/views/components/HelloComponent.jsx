@@ -12,20 +12,20 @@ export default class HelloComponent extends Component {
 
     render({ name }) {
         const InputName = this.component(InputNameComponent);
-        const hello = this.t('Hello %s!', name || 'World');
         this.$container
-            .append(this.$span =  <span>{hello}</span>)
+            .append(this.$span = <span></span>)
             .append(this.input = <InputName name={name} />);
+        this.setName(name);
     }
 
     ready() {
-        console.log('hello ready');
         this.input.on('nameChanged', (newName) => {
             this.setName(newName);
         });
     }
 
     setName(name) {
-        this.$span.text(name);
+        const hello = this.context.t('Hello {0}!', name || 'World');
+        this.$span.text(hello);
     }
 }

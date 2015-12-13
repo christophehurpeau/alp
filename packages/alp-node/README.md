@@ -17,10 +17,10 @@ import routerBuilder from './routerBuilder';
 import controllers from './controllers';
 
 const app = new Auk();
-app.init(config(__dirname + '/config'));
-app.init(language);
-app.init(logger);
-const handler = app.init(router(routerBuilder, controllers));
+config(__dirname + '/config')(app);
+language(app);
+logger(app);
+const handler = router(routerBuilder, controllers)(app);
 
 app.use(convert(serve(__dirname + '../public/'))); // static files
 app.use(handler);

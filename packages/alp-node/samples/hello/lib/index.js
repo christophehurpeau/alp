@@ -55,13 +55,13 @@ var _controllersIndex = require('./controllers/index');
 var _controllersIndex2 = _interopRequireDefault(_controllersIndex);
 
 const app = new _auk2.default();
-app.init((0, _aukConfig2.default)(__dirname + '/config'));
-app.init(_aukParams2.default);
-app.init(_aukLanguage2.default);
-app.init(_aukLogger2.default);
-app.init((0, _aukTranslate2.default)('locales'));
-app.init((0, _aukTuraco2.default)(__dirname + '/views'));
-const handler = app.init((0, _aukLimosa2.default)(_routerBuilder2.default, _controllersIndex2.default));
+(0, _aukConfig2.default)(__dirname + '/config')(app);
+(0, _aukParams2.default)(app);
+(0, _aukLanguage2.default)(app);
+(0, _aukLogger2.default)(app);
+(0, _aukTranslate2.default)('locales')(app);
+(0, _aukTuraco2.default)(__dirname + '/views')(app);
+const handler = (0, _aukLimosa2.default)(_routerBuilder2.default, _controllersIndex2.default)(app);
 
 app.use(_aukErrors2.default);
 app.use((0, _koaConvert2.default)((0, _koaStatic2.default)(__dirname + '/../public/'))); // static files

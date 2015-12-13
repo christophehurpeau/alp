@@ -15,7 +15,7 @@ var _viewsTuracoView2 = _interopRequireDefault(_viewsTuracoView);
 exports.default = (0, _alp.newController)({
     index(ctx) {
         const name = ctx.params.string('name').notEmpty().value;
-        ctx.body = ctx.t('Hello %s!', ctx.params.isValid() ? name : 'World');
+        ctx.body = ctx.t('Hello {0}!', ctx.params.isValid() ? name : 'World');
     },
 
     turaco(ctx) {
