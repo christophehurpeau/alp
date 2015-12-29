@@ -8,7 +8,7 @@ import logger from 'auk-logger';
 import translate from 'auk-translate';
 import router from 'auk-limosa';
 import routerBuilder from './routerBuilder';
-import react from 'auk-react';
+import reactredux from 'auk-react-redux';
 import Html from './views/layouts/Html';
 
 import controllers from './controllers';
@@ -19,10 +19,10 @@ params(app);
 language(app);
 logger(app);
 translate('locales')(app);
-react(Html)(app);
+reactredux(Html)(app);
 const handler = router(routerBuilder, controllers)(app);
 
-app.use(convert(serve(__dirname + '../public/'))); // static files
+app.use(convert(serve(__dirname + '/../public/'))); // static files
 app.use(handler);
 
 app.listen();

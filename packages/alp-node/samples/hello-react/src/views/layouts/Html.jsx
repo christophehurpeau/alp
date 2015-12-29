@@ -8,6 +8,7 @@ export default class Html extends Component {
         description: PropTypes.string,
         css: PropTypes.string,
         body: PropTypes.string.isRequired,
+        initialData: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -28,12 +29,14 @@ export default class Html extends Component {
                 <link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" href="/index.css" />
                 <style id="css" dangerouslySetInnerHTML={{ __html: this.props.css }} />
+                <script dangerouslySetInnerHTML={{ __html: 'window.initialData = ' + JSON.stringify(this.props.initialData) }}></script>
             </head>
             <body>
             <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} />
             <div dangerouslySetInnerHTML={{ __html: production ? '<script defer src="/main-sfx.js"></script>' :
                 `<script src="/jspm_packages/system.js"></script>
                 <script src="/config.js"></script>
+                <script src="/index.bundle.js"></script>
                 <script>System.import('js/index.js')</script>` }}></div>
             </body>
             </html>

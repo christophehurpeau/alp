@@ -14,7 +14,7 @@
     "auk-logger": "^1.0.1",
     "auk-params": "^1.0.0",
     "auk-translate": "^1.0.1",
-    "auk-react": "^1.0.2",
+    "auk-react-redux": "^1.0.0",
     "koa-convert": "^1.2.0",
     "koa-static": "^1.5.2"
   },
@@ -30,6 +30,24 @@
     "directories": {
       "baseURL": "public"
     },
-    "dependencies": {}
+    "dependencies": {
+      "babel-regenerator-runtime": "npm:babel-regenerator-runtime@^6.3.13",
+      "babel-runtime": "npm:babel-runtime@^6.3.13",
+      "events": "github:jspm/nodelibs-events@^0.1.1",
+      "fody": "npm:fody@^1.0.1",
+      "fody-redux": "npm:fody-redux@^1.0.1",
+      "ibex": "npm:ibex@^1.0.0",
+      "ibex-config": "npm:ibex-config@^1.0.1",
+      "ibex-language": "npm:ibex-language@^1.0.0",
+      "ibex-logger": "npm:ibex-logger@^1.0.1",
+      "ibex-translate": "npm:ibex-translate@^1.0.0",
+      "react": "npm:react@^0.14.3",
+      "react-dom": "npm:react-dom@^0.14.3",
+      "react-pure-render": "npm:react-pure-render@^1.0.2",
+      "react-redux": "npm:react-redux@^4.0.6",
+      "redux": "npm:redux@^3.0.5",
+      "text": "github:systemjs/plugin-text@^0.0.4"
+    },
+    "devDependencies": {}
   }
 }

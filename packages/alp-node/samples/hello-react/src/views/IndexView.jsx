@@ -1,9 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import Hello from './components/HelloComponent';
+import { setName } from '../actions/name'
 
-export default class IndexView extends Component {
+class IndexView extends Component {
     static contextTypes = {
         setTitle: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired,
+        context: PropTypes.object.isRequired,
     };
 
     static propTypes = {
@@ -11,9 +14,14 @@ export default class IndexView extends Component {
     };
 
     render() {
-        const title = 'React Index View';
+        const { name } = this.props;
+        const dispatch = this.context.context.store.dispatch;
+        const title = 'Hello ' + name;
         this.context.setTitle(title);
-        const name = this.props.name;
-        return (<div>{this.context.t('Hello %s!', name || 'World')}</div>);
+        return (<Hello name={name} setName={name => dispatch(setName(name))}></Hello>);
     }
 }
+
+export default connect((state) => ({
+    name: state.name,
+}))(IndexView);
