@@ -7,7 +7,6 @@ exports.setName = setName;
 const SET_NAME = exports.SET_NAME = 'SET_NAME';
 
 function setName(name) {
-    console.log(name);
     return {
         type: SET_NAME,
         name: name

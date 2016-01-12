@@ -28,7 +28,7 @@ let HelloComponent = (_temp = _class = class HelloComponent extends _react.Compo
             'div',
             null,
             _react2.default.createElement(
-                'span',
+                'div',
                 null,
                 this.context.context.t('Hello {0}!', name || 'World')
             ),

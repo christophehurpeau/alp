@@ -19,12 +19,12 @@ System.config({
     "ibex-config": "npm:ibex-config@1.0.1",
     "ibex-language": "npm:ibex-language@1.0.0",
     "ibex-logger": "npm:ibex-logger@1.1.0",
-    "ibex-react-redux": "npm:ibex-react-redux@1.0.0",
+    "ibex-react-redux": "npm:ibex-react-redux@1.1.0",
     "ibex-translate": "npm:ibex-translate@1.0.0",
     "nightingale": "npm:nightingale@2.1.2",
-    "react": "npm:react@0.14.3",
+    "react": "npm:react@0.14.6",
     "react-countdown-timer": "npm:react-countdown-timer@1.0.2",
-    "react-dom": "npm:react-dom@0.14.3",
+    "react-dom": "npm:react-dom@0.14.6",
     "react-pure-render": "npm:react-pure-render@1.0.2",
     "react-redux": "npm:react-redux@4.0.6",
     "redux": "npm:redux@3.0.5",
@@ -136,7 +136,7 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:fbjs@0.3.2": {
+    "npm:fbjs@0.6.1": {
       "core-js": "npm:core-js@1.2.6",
       "loose-envify": "npm:loose-envify@1.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
@@ -146,13 +146,13 @@ System.config({
     },
     "npm:fody-redux@1.0.1": {
       "fody": "npm:fody@1.0.1",
-      "react": "npm:react@0.14.3",
+      "react": "npm:react@0.14.6",
       "react-redux": "npm:react-redux@4.0.6",
       "redux": "npm:redux@3.0.5"
     },
     "npm:fody@1.0.1": {
-      "react": "npm:react@0.14.3",
-      "react-dom": "npm:react-dom@0.14.3"
+      "react": "npm:react@0.14.6",
+      "react-dom": "npm:react-dom@0.14.6"
     },
     "npm:ibex-config@1.0.1": {
       "parse-json-object-as-map": "npm:parse-json-object-as-map@1.0.1"
@@ -160,6 +160,12 @@ System.config({
     "npm:ibex-logger@1.1.0": {
       "alp-logger": "npm:alp-logger@1.1.0",
       "ibex-config": "npm:ibex-config@1.0.1"
+    },
+    "npm:ibex-react-redux@1.1.0": {
+      "fody": "npm:fody@1.0.1",
+      "fody-redux": "npm:fody-redux@1.0.1",
+      "nightingale": "npm:nightingale@2.1.2",
+      "redux": "npm:redux@3.0.5"
     },
     "npm:ibex@1.0.0": {
       "events": "github:jspm/nodelibs-events@0.1.1"
@@ -209,19 +215,19 @@ System.config({
       "asap": "npm:asap@2.0.3",
       "fs": "github:jspm/nodelibs-fs@0.1.2"
     },
-    "npm:react-dom@0.14.3": {
-      "react": "npm:react@0.14.3"
+    "npm:react-dom@0.14.6": {
+      "react": "npm:react@0.14.6"
     },
     "npm:react-redux@4.0.6": {
       "hoist-non-react-statics": "npm:hoist-non-react-statics@1.0.3",
       "invariant": "npm:invariant@2.2.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@0.14.3",
+      "react": "npm:react@0.14.6",
       "redux": "npm:redux@3.0.5"
     },
-    "npm:react@0.14.3": {
+    "npm:react@0.14.6": {
       "envify": "npm:envify@3.4.0",
-      "fbjs": "npm:fbjs@0.3.2",
+      "fbjs": "npm:fbjs@0.6.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:readable-stream@1.1.13": {

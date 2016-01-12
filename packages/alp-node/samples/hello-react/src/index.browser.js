@@ -16,12 +16,33 @@ import IndexView from './views/IndexView';
     logger(app);
     language(app);
     await translate('locales')(app);
-    await reactredux({
+    const context = await reactredux({
         View: IndexView,
         reducers: helloApp,
         initialData: window.initialData,
         element: document.getElementById('app'),
     })(app);
+
+    context.store.subscribe(() => {
+        const state = context.store.getState();
+
+        const queryParams = new URLSearchParams(!location.search.length ? location.search : location.search.substr(1));
+        if (!state.name) {
+            queryParams.delete('name');
+        } else {
+            queryParams.set('name', state.name);
+        }
+
+        const queryString = queryParams.toString();
+        if (queryString !== location.query) {
+            history.replaceState(
+                { name: state.name },
+                document.title,
+                location.pathname.slice(0, -(location.search.length - 1))
+                    + (queryString && '?' + queryString)
+            );
+        }
+    });
 
     await app.run();
 })().catch(console.log.bind(console));
