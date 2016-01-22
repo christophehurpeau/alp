@@ -19,11 +19,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function aukReactRedux(Html) {
     return app => {
-        app.context.render = function (Component, reducers, data) {
+        app.context.render = function (View, reducers, data) {
             this.store = (0, _redux.createStore)(reducers, data);
             this.body = (0, _fody2.default)({
                 context: this,
-                Component,
+                View,
                 initialData: () => this.store.getState(),
                 Html,
                 App: _fodyRedux2.default

@@ -27,7 +27,7 @@
     "springbokjs-library": "^12.3.0"
   },
   "dependencies": {
-    "fody": "^1.0.1",
+    "fody": "^1.1.2",
     "fody-redux": "^1.0.1",
     "redux": "^3.0.5"
   }
