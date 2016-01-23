@@ -26,10 +26,10 @@ let HelloComponent = (_temp = _class = class HelloComponent extends _react.Compo
 
         return _react2.default.createElement(
             'div',
-            null,
+            { className: 'hello-component' },
             _react2.default.createElement(
                 'div',
-                null,
+                { className: 'hello-name' },
                 this.context.context.t('Hello {0}!', name || 'World')
             ),
             _react2.default.createElement(_InputNameComponent2.default, { name: name, setName: setName })

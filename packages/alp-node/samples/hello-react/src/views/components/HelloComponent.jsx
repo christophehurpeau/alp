@@ -13,8 +13,8 @@ export default class HelloComponent extends Component {
 
     render() {
         const { name, setName } = this.props;
-        return <div>
-            <div>{ this.context.context.t('Hello {0}!', name || 'World') }</div>
+        return <div className="hello-component">
+            <div className="hello-name">{ this.context.context.t('Hello {0}!', name || 'World') }</div>
             <InputName name={name} setName={setName} />
         </div>;
     }

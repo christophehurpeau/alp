@@ -15,10 +15,45 @@ class IndexView extends Component {
 
     render() {
         const { name } = this.props;
-        const dispatch = this.context.context.store.dispatch;
         const title = 'Hello ' + name;
         this.context.setTitle(title);
-        return (<Hello name={name} setName={name => dispatch(setName(name))}></Hello>);
+        return (<Hello name={name} setName={name => this.setName(name)}></Hello>);
+    }
+
+    setName(name) {
+        const dispatch = this.context.context.store.dispatch;
+        dispatch(setName(name));
+    }
+
+    componentDidMount() {
+        const store = this.context.context.store;
+        store.subscribe(this._storeListener = () => {
+            const state = store.getState();
+
+            const queryParams = new URLSearchParams(!location.search.length ? location.search : location.search.substr(1));
+            if (!state.name) {
+                queryParams.delete('name');
+            } else {
+                queryParams.set('name', state.name);
+            }
+
+            const queryString = queryParams.toString();
+            if (queryString !== location.query) {
+                history.replaceState(
+                    { name: state.name },
+                    document.title,
+                    (location.pathname.slice(0, -(location.search.length - 1)) || '/')
+                        + (queryString && '?' + queryString)
+                );
+            }
+        });
+    }
+
+    componentWillUnmount() {
+        const store = this.context.context.store;
+        if (this._storeListener) {
+            store.unsubscribe(this._storeListener);
+        }
     }
 }
 
