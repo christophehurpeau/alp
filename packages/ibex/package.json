@@ -1,6 +1,6 @@
 {
   "name": "ibex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Framework for browser, with the same API than koa 2",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +14,8 @@
   },
   "repository": "alpjs/ibex",
   "keywords": [
-    "alp", "auk"
+    "alp",
+    "auk"
   ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
