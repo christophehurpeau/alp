@@ -25,7 +25,7 @@ export default class Application extends EventEmitter {
     }
 
     onerror(e) {
-        console.log(e.stack || e.message || e);
+        console.log(e.stack || e.message || e); // eslint-disable-line no-console
     }
 
     run() {
@@ -45,10 +45,10 @@ export default class Application extends EventEmitter {
             url = window.location.pathname + url;
         }
 
-        const ctx = null;
-        this.callback.call(ctx)
-            .then(() => respond.call(ctx))
-            .catch(ctx.onerror);
+        this.context.path = url;
+        this.callback.call(this.context)
+            .then(() => respond.call(this.context))
+            .catch((err) => this.emit('error', err));
     }
 }
 

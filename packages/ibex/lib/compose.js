@@ -5,18 +5,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = compose;
 // create lib
-function noop() {}
+/**
+ * @function
+*/function noop() {}
 
-function compose(middleware) {
-    return function (next) {
-        next = next || noop;
-        var i = middleware.length;
-        while (i--) {
-            next = wrap(middleware[i], this, next);
+/**
+ * @function
+ * @param middleware
+*/function compose(middleware) {
+    return (/**
+            * @function
+            * @param next
+           */function (next) {
+            next = next || noop;
+            var i = middleware.length;
+            while (i--) {
+                next = wrap(middleware[i], this, next);
+            }
+
+            return next;
         }
-
-        return next;
-    };
+    );
 }
 
 /**
@@ -26,6 +35,7 @@ function compose(middleware) {
 * @param {Function} fn
 * @param {Object} ctx
 * @param {Wrap} next
+ * @function
 */
 
 function wrap(fn, ctx, next) {

@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/alpjs/ibex#readme",
   "devDependencies": {
-    "springbokjs-library": "^12.2.1"
+    "springbokjs-library": "^13.5.0"
   }
 }
