@@ -15,15 +15,29 @@ var _fodyRedux2 = _interopRequireDefault(_fodyRedux);
 
 var _redux = require('redux');
 
+/**
+ * @function
+ * @param obj
+*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function aukReactRedux(Html) {
+/**
+ * @function
+ * @param Html
+*/function aukReactRedux(Html) {
     return app => {
-        app.context.render = function (View, reducers, data) {
-            this.store = (0, _redux.createStore)(reducers, data);
+        app.context.render = /**
+                              * @function
+                              * @param appDescriptor
+                              * @param data
+                             */function (appDescriptor, data) {
+            this.store = (0, _redux.createStore)(appDescriptor.app, data);
             this.body = (0, _fody2.default)({
+                htmlData: {
+                    appDescriptor
+                },
                 context: this,
-                View,
+                View: appDescriptor.View,
                 initialData: () => this.store.getState(),
                 Html,
                 App: _fodyRedux2.default

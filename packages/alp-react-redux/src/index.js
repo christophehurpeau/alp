@@ -4,11 +4,14 @@ import { createStore } from 'redux';
 
 export default function aukReactRedux(Html) {
     return (app) => {
-        app.context.render = function (View, reducers, data) {
-            this.store = createStore(reducers, data);
+        app.context.render = function (appDescriptor, data) {
+            this.store = createStore(appDescriptor.app, data);
             this.body = render({
+                htmlData: {
+                    appDescriptor,
+                },
                 context: this,
-                View,
+                View: appDescriptor.View,
                 initialData: () => this.store.getState(),
                 Html,
                 App,
