@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/alpjs/alp-logger#readme",
   "devDependencies": {
-    "springbokjs-library": "^12.3.0"
+    "springbokjs-library": "^13.5.0"
   },
   "dependencies": {
-    "nightingale": "^2.1.0"
+    "nightingale": "^2.2.0"
   }
 }
