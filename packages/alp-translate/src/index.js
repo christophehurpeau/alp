@@ -1,16 +1,5 @@
 /**
- * Format a string using %s
- *
- * @param {string} string
- * @param {...string} args
- * @return {string}
- */
-function format(string, ...args) {
-    return vformat(string, args);
-}
-
-/**
- * Format a string using {\d}
+ * Format a string using {\d} (like {0} or {1})
  *
  * @param {string} string
  * @param {string[]} args

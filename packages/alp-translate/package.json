@@ -24,10 +24,10 @@
   },
   "homepage": "https://github.com/alpjs/auk-translate#readme",
   "devDependencies": {
-    "springbokjs-library": "^12.2.1"
+    "springbokjs-library": "^14.0.1"
   },
   "peerDependencies": {
-    "auk-config": "^1.0.0",
-    "auk-language": "^1.0.0"
+    "auk-config": "^1.1.0",
+    "auk-language": "^1.1.0"
   }
 }
