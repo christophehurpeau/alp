@@ -3,16 +3,18 @@ import { parse as parseError, log as logError } from 'alouette';
 import ErrorHtmlRenderer from 'alouette/lib/HtmlRenderer';
 const errorHtmlRenderer = new ErrorHtmlRenderer();
 
-process.on('uncaughtException', function(err) {
+process.on('uncaughtException', (err) => {
     try {
         logError(err);
     } catch (err2) {
+        /* eslint-disable no-console */
         console.error(err.stack);
         console.error(err2.stack);
+        /* eslint-enable no-console */
     }
 });
 
-export default async function aukErrors(ctx, next) {
+export default async function (ctx, next) {
     try {
         await next();
     } catch (err) {

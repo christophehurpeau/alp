@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/alpjs/auk-errors#readme",
   "devDependencies": {
-    "springbokjs-library": "^12.2.1"
+    "springbokjs-library": "^14.0.0"
   },
   "dependencies": {
     "alouette": "^3.3.0"
   },
   "peerDependencies": {
-    "auk-logger": "^1.0.0"
+    "auk-logger": "^1.2.0"
   }
 }

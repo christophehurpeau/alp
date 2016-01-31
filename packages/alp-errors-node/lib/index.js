@@ -12,23 +12,59 @@ var _HtmlRenderer = require('alouette/lib/HtmlRenderer');
 
 var _HtmlRenderer2 = _interopRequireDefault(_HtmlRenderer);
 
+/**
+ * @function
+ * @param obj
+*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } step("next"); }); }; }
+/**
+ * @function
+ * @param fn
+*/
+function _asyncToGenerator(fn) { return (/**
+                                         * @function
+                                        */ function () { var gen = fn.apply(this, arguments); return new Promise( /**
+                                                                                                                   * @function
+                                                                                                                   * @param resolve
+                                                                                                                   * @param reject
+                                                                                                                  */ function (resolve, reject) { /**
+                                                                                                                                                   * @function
+                                                                                                                                                   * @param key
+                                                                                                                                                   * @param arg
+                                                                                                                                                  */ function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then( /**
+                                                                                                                                                                                                                                                                                                                                                                 * @function
+                                                                                                                                                                                                                                                                                                                                                                 * @param value
+                                                                                                                                                                                                                                                                                                                                                                */ function (value) { return step("next", value); }, /**
+                                                                                                                                                                                                                                                                                                                                                                                                                      * @function
+                                                                                                                                                                                                                                                                                                                                                                                                                      * @param err
+                                                                                                                                                                                                                                                                                                                                                                                                                     */ function (err) { return step("throw", err); }); } } return step("next"); }); } ); }
 
 const errorHtmlRenderer = new _HtmlRenderer2.default();
 
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', err => {
     try {
         (0, _alouette.log)(err);
     } catch (err2) {
+        /* eslint-disable no-console */
         console.error(err.stack);
         console.error(err2.stack);
+        /* eslint-enable no-console */
     }
 });
 
-exports.default = (function () {
-    var ref = _asyncToGenerator(function* (ctx, next) {
+exports.default = /**
+                   * @function
+                   * @param ctx
+                   * @param next
+                  */ /**
+                      * @function
+                     */function () {
+    var ref = _asyncToGenerator( /**
+                                  * @function
+                                  * @param ctx
+                                  * @param next
+                                 */function* (ctx, next) {
         try {
             yield next();
         } catch (err) {
@@ -76,8 +112,13 @@ exports.default = (function () {
         }
     });
 
-    return function aukErrors(_x, _x2) {
-        return ref.apply(this, arguments);
-    };
-})();
+    return (/**
+            * @function
+            * @param _x
+            * @param _x2
+           */function (_x, _x2) {
+            return ref.apply(this, arguments);
+        }
+    );
+}();
 //# sourceMappingURL=index.js.map
