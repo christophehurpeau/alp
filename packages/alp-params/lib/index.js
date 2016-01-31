@@ -15,34 +15,49 @@ var _ParamValidatorValid = require('./ParamValidatorValid');
 
 var _ParamValidatorValid2 = _interopRequireDefault(_ParamValidatorValid);
 
+/**
+ * @function
+ * @param obj
+*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function aukParams(app) {
+/**
+ * @function
+ * @param app
+*/function aukParams(app) {
     Object.assign(app.context, {
-        param: function param(name) {
+        param(name) {
             return this.namedParam(name) || this.paramGET(name);
         },
-        namedParam: function namedParam(name) {
+
+        namedParam(name) {
             let namedParams = this.route.namedParams;
             return namedParams && namedParams.get(name);
         },
-        otherParam: function otherParam(position) {
+
+        otherParam(position) {
             let otherParams = this.route.otherParams;
             return otherParams && otherParams[position - 1];
         },
-        paramGET: function paramGET(name) {
+
+        paramGET(name) {
             let query = this.query;
             return query && query[name];
         },
-        paramGETorPOST: function paramGETorPOST(name) {
+
+        paramGETorPOST(name) {
             return this.body[name] !== undefined ? this.body[name] : this.query[name];
         }
     });
 
-    (0, _objectProperties.defineLazyProperty)(app.context, 'params', function () {
+    (0, _objectProperties.defineLazyProperty)(app.context, 'params', /**
+                                                                      * @function
+                                                                     */function () {
         return new _ParamValidator2.default(this);
     });
-    (0, _objectProperties.defineLazyProperty)(app.context, 'validParams', function () {
+    (0, _objectProperties.defineLazyProperty)(app.context, 'validParams', /**
+                                                                           * @function
+                                                                          */function () {
         return new _ParamValidatorValid2.default(this);
     });
 }
