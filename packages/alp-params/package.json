@@ -1,6 +1,6 @@
 {
   "name": "auk-params",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": " Validate params from query, router or post body in auk server",
   "main": "lib/index.js",
   "scripts": {
