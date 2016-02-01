@@ -22,27 +22,18 @@ watch: check
 build: check
 	@node_modules/.bin/gulp build
 
+w: clean build watch
 
 lint:
 	@echo "> Lint files"
-	@if [ -a .jshintrc ]; \
-	then \
-		echo '>> jshint'; \
-		$(BIN)jshint -c .jshintrc --reporter node_modules/jshint-stylish src/ tests/src/; \
-	fi
-	@echo '>> jscs';
-	@$(BIN)jscs -c .jscsrc src/ tests/src/
-	@if [ -a .eslintrc ]; \
-	then \
-		echo '>> eslint'; \
-		$(BIN)eslint -c .eslintrc src/ tests/src/; \
-	fi
+    @echo '>> eslint'; \
+    $(BIN)eslint -c .eslintrc src/ test/src/
 
 lint-fix:
-	$(BIN)jscs -x -c .jscsrc src/ tests/src/
+	$(BIN)eslint --fix -c .eslintrc src/ test/src/
 
-tests:
+test:
 	@echo "> Building"
-	$(BIN)babel -s --out-dir tests/lib tests/src
+	$(BIN)babel --presets es2015-node5 -s --out-dir test/lib test/src
 	@echo "> Run tests"
-	$(BIN)mocha --harmony --es_staging --recursive --bail -u tdd tests/lib
+	$(BIN)mocha --harmony --es_staging --recursive --bail -u tdd test/lib

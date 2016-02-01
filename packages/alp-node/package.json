@@ -4,24 +4,24 @@
   "description": "framework for nodejs 4 based on koa",
   "main": "./index.js",
   "dependencies": {
-    "alp": "^1.0.0",
-    "babel-plugin-transform-decorators-legacy": "^1.2.0",
+    "alp": "^1.1.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.3.13",
-    "babel-preset-es2015-node5": "^1.1.1",
+    "babel-preset-es2015-node5": "^1.1.2",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
-    "browser-sync": "^2.10.0",
+    "browser-sync": "^2.11.1",
     "gulp": "gulpjs/gulp#3311fcab7fe6de65a7a981d2433205c91d151c0a",
-    "gulp-babel": "^6.1.1",
+    "gulp-babel": "^6.1.2",
     "gulp-changed": "^1.3.0",
     "gulp-clip-empty-files": "^0.1.1",
     "gulp-grep": "^0.2.0",
-    "gulp-jspm": "^0.5.5",
+    "gulp-jspm": "^0.5.6",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-stylus": "^2.1.1",
+    "gulp-stylus": "^2.3.0",
     "gulp-util": "^3.0.7",
-    "js-yaml": "^3.4.3",
+    "js-yaml": "^3.5.2",
     "koa": "^2.0.0-alpha.3",
     "minimist": "^1.2.0",
     "portscanner": "^1.0.0",
@@ -29,11 +29,11 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "springbokjs-library": "^12.3.0"
+    "springbokjs-library": "^14.0.1"
   },
   "peerDependencies": {
-    "auk-config": "^1.0.0",
-    "auk-logger": "^1.0.0"
+    "auk-config": "^1.1.0",
+    "auk-logger": "^1.2.0"
   },
   "scripts": {
     "test": "make test",

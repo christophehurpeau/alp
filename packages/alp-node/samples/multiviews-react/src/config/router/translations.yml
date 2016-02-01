@@ -1,8 +1,0 @@
-common:
-    routeTranslations:
-        view1:
-            fr: view1
-            en: view1
-        view2:
-            fr: view2
-            en: view2

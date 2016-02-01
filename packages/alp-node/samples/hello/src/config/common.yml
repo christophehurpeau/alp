@@ -1,6 +1,0 @@
-include:
-    - router/translations.yml
-common:
-    applicationName: 'Hello'
-    availableLanguages: [ en, fr ]
-server:

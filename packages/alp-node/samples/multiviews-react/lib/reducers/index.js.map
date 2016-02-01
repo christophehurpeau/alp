@@ -1,1 +1,0 @@
-{"version":3,"sources":["reducers/index.js"],"names":[],"mappings":";;;;;;;;AAEA,MAAM,WAAW,GAAG,WAFX,eAAe,EAEY,EACnC,CAAC,CAAC;;kBAEY,WAAW","file":"reducers/index.js","sourcesContent":["import { combineReducers } from 'redux';\n\nconst rootReducer = combineReducers({\n});\n\nexport default rootReducer;\n"],"sourceRoot":"/"}
