@@ -1,0 +1,8 @@
+### v2.1.0
+
+- [`8e1e6d4`](https://github.com/alpjs/auk/commit/8e1e6d4c2d44eb7a7e44a0b2e396e6a3ee659ff3) hello react with redux (Christophe Hurpeau)
+- [`d9777c9`](https://github.com/alpjs/auk/commit/d9777c9ba985c4301a8d77103a4ac501d1656e6b) hello-react history state (Christophe Hurpeau)
+- [`771047a`](https://github.com/alpjs/auk/commit/771047a34619fbe5f3c673adf6d4492705dd6ef7) hello-react improvements (Christophe Hurpeau)
+- [`24268a9`](https://github.com/alpjs/auk/commit/24268a912723032b5ba9b0c03c5c07a87999cec6) multiviews-react (Christophe Hurpeau)
+- [`e0a9fc8`](https://github.com/alpjs/auk/commit/e0a9fc8aac63ab2eef95550f46d0b67123263631) remove samples and upgrade dependencies (Christophe Hurpeau)
+
