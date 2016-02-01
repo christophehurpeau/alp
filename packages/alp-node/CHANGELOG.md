@@ -1,3 +1,7 @@
+### v2.2.0
+
+- [`5dbed4c`](https://github.com/alpjs/auk/commit/5dbed4cd2194ab3a14b8bd370011c3ad62f0cb1b) upgrade alp dependency (Christophe Hurpeau)
+
 ### v2.1.0
 
 - [`8e1e6d4`](https://github.com/alpjs/auk/commit/8e1e6d4c2d44eb7a7e44a0b2e396e6a3ee659ff3) hello react with redux (Christophe Hurpeau)
