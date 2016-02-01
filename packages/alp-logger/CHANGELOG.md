@@ -1,3 +1,7 @@
+### v1.3.0
+
+- [`6d66615`](https://github.com/alpjs/alp-logger/commit/6d66615260d681a20032548079fb256d509d2e9f) upgrade dependencies (Christophe Hurpeau)
+
 ### v1.2.0
 
 - [`96ffdab`](https://github.com/alpjs/alp-logger/commit/96ffdabe88a057a4c83db0088cf4299267985777) upgrade dependencies (Christophe Hurpeau)
