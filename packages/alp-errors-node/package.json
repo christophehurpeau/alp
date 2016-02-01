@@ -27,7 +27,7 @@
     "springbokjs-library": "^14.0.1"
   },
   "dependencies": {
-    "alouette": "^3.3.0"
+    "alouette": "^3.4.0"
   },
   "peerDependencies": {
     "auk-logger": "^1.2.0"
