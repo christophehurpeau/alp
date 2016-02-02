@@ -1,3 +1,7 @@
+### v2.2.2
+
+- [`49a1437`](https://github.com/alpjs/auk/commit/49a1437a41339008a7fa54c23311c995eb21982d) fix gulp task by upgrading gulp dependency (Christophe Hurpeau)
+
 ### v2.2.1
 
 - [`5a9085d`](https://github.com/alpjs/auk/commit/5a9085d8da2f2c252184d5d045cc1694ca936277) fix indentation in tasks.mk (Christophe Hurpeau)
