@@ -26,8 +26,8 @@ w: clean build watch
 
 lint:
 	@echo "> Lint files"
-    @echo '>> eslint'; \
-    $(BIN)eslint -c .eslintrc src/ test/src/
+	@echo '>> eslint'; \
+	$(BIN)eslint -c .eslintrc src/ test/src/
 
 lint-fix:
 	$(BIN)eslint --fix -c .eslintrc src/ test/src/
