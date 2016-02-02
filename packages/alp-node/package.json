@@ -11,7 +11,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "browser-sync": "^2.11.1",
-    "gulp": "gulpjs/gulp#3311fcab7fe6de65a7a981d2433205c91d151c0a",
+    "gulp": "gulpjs/gulp#70cde1ee19e4425a2cdc5972e9f820677ece3a0a",
     "gulp-babel": "^6.1.2",
     "gulp-changed": "^1.3.0",
     "gulp-clip-empty-files": "^0.1.1",
