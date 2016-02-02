@@ -1,3 +1,7 @@
+### v2.2.1
+
+- [`5a9085d`](https://github.com/alpjs/auk/commit/5a9085d8da2f2c252184d5d045cc1694ca936277) fix indentation in tasks.mk (Christophe Hurpeau)
+
 ### v2.2.0
 
 - [`5dbed4c`](https://github.com/alpjs/auk/commit/5dbed4cd2194ab3a14b8bd370011c3ad62f0cb1b) upgrade alp dependency (Christophe Hurpeau)

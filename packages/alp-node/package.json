@@ -1,6 +1,6 @@
 {
   "name": "auk",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "framework for nodejs 4 based on koa",
   "main": "./index.js",
   "dependencies": {
