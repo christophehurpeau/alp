@@ -14,7 +14,7 @@ import Html from './views/layouts/Html';
 import controllers from './controllers';
 
 const app = new Auk();
-config(__dirname + '/config')(app);
+config(`${__dirname}/config`)(app);
 params(app);
 language(app);
 logger(app);
@@ -22,7 +22,7 @@ translate('locales')(app);
 reactredux(Html)(app);
 const handler = router(routerBuilder, controllers)(app);
 
-app.use(convert(serve(__dirname + '/../public/'))); // static files
+app.use(convert(serve(`${__dirname}/../public/`))); // static files
 app.use(handler);
 
 app.listen();

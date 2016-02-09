@@ -1,4 +1,4 @@
-import { SET_NAME } from '../actions/name'
+import { SET_NAME } from '../actions/name';
 
 export default function name(state = '', action) {
     switch (action.type) {

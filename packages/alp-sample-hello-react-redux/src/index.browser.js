@@ -5,12 +5,12 @@ import language from 'ibex-language';
 import logger from 'ibex-logger';
 import reactredux from 'ibex-react-redux';
 import translate from 'ibex-translate';
-import controllers from './controllers/index';
+import './controllers/index';
 import './config/common.json!text';
 
 import * as appDescriptor from './views/index';
 
-export default (async function main() {
+export default async function main() {
     const app = new Ibex();
     await config('js/config')(app);
     logger(app);
@@ -23,4 +23,4 @@ export default (async function main() {
     })(app);
 
     await app.run();
-});
+};

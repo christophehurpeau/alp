@@ -1,16 +1,18 @@
+/* global suite, suiteSetup, suiteTeardown, test */
 import { node as createDaemon } from 'springbokjs-daemon';
 import fetch from 'node-fetch';
 import { strictEqual } from 'assert';
 import { readFileSync } from 'fs';
 
 const fixtures = {
-    'hello-world': readFileSync(__dirname + '/../fixtures/hello-world.html').toString(),
+    'hello-world': readFileSync(`${__dirname}/../fixtures/hello-world.html`)
+                        .toString(),
 };
 
 function comparableContent(result, fixture) {
     return [
         result,
-        fixture
+        fixture,
     ].map(s => (
         s
             .trim()
@@ -19,7 +21,7 @@ function comparableContent(result, fixture) {
     ));
 }
 
-suite('test hello server', function() {
+suite('test hello server', () => {
     let daemon = createDaemon([
         '--es_staging',
         'lib/index.js',
@@ -35,8 +37,6 @@ suite('test hello server', function() {
                 if (done) {
                     done();
                 }
-
-                console.log('Server started');
             }
         });
     });
