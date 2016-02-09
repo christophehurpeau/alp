@@ -1,0 +1,20 @@
+machine:
+  node:
+    version: 5.5.0
+
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+dependencies:
+  cache_directories:
+    - node_modules
+  override:
+    - npm prune && npm install --no-spin
+
+test:
+  override:
+    - make lint
+    - make build
+    - make test
