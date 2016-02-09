@@ -35,7 +35,7 @@ let Html = (_temp = _class = class Html extends _react.Component {
                 _react2.default.createElement('meta', { name: 'description', content: this.props.description }),
                 _react2.default.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
                 _react2.default.createElement('link', { rel: 'apple-touch-icon', href: 'apple-touch-icon.png' }),
-                _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Arvo:400,700', rel: 'stylesheet', type: 'text/css' }),
+                _react2.default.createElement('link', { href: 'http://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic', rel: 'stylesheet', type: 'text/css' }),
                 _react2.default.createElement('link', { rel: 'stylesheet', href: '/index.css' }),
                 _react2.default.createElement('style', { id: 'css', dangerouslySetInnerHTML: { __html: this.props.css } }),
                 _react2.default.createElement('script', { dangerouslySetInnerHTML: { __html: 'window.initialData = ' + JSON.stringify(this.props.initialData) } })

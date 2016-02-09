@@ -55,7 +55,7 @@ var _controllers2 = _interopRequireDefault(_controllers);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const app = new _auk2.default();
-(0, _aukConfig2.default)(__dirname + '/config')(app);
+(0, _aukConfig2.default)(`${ __dirname }/config`)(app);
 (0, _aukParams2.default)(app);
 (0, _aukLanguage2.default)(app);
 (0, _aukLogger2.default)(app);
@@ -63,7 +63,7 @@ const app = new _auk2.default();
 (0, _aukReactRedux2.default)(_Html2.default)(app);
 const handler = (0, _aukLimosa2.default)(_routerBuilder2.default, _controllers2.default)(app);
 
-app.use((0, _koaConvert2.default)((0, _koaStatic2.default)(__dirname + '/../public/'))); // static files
+app.use((0, _koaConvert2.default)((0, _koaStatic2.default)(`${ __dirname }/../public/`))); // static files
 app.use(handler);
 
 app.listen();

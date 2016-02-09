@@ -26,7 +26,7 @@ export default class Html extends Component {
                 <meta name="description" content={this.props.description} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-                <link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet" type="text/css" />
+                <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" href="/index.css" />
                 <style id="css" dangerouslySetInnerHTML={{ __html: this.props.css }} />
                 <script dangerouslySetInnerHTML={{ __html: 'window.initialData = ' + JSON.stringify(this.props.initialData) }}></script>
