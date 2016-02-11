@@ -32,7 +32,7 @@ class Application extends Koa {
                 }
             }
 
-            super.listen(socketPath || port, hostname, () => {
+            const server = super.listen(socketPath || port, hostname, () => {
                 if (socketPath) {
                     chmodSync(socketPath, '777');
                 }
@@ -43,7 +43,7 @@ class Application extends Koa {
                     { [socketPath ? 'socketPath' : 'port']: ['yellow'] }
                 );
 
-                resolve();
+                resolve(server);
             });
         });
     }
