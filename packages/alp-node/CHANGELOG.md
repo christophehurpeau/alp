@@ -1,3 +1,8 @@
+### v2.3.0
+
+- [`3b496f7`](https://github.com/alpjs/auk/commit/3b496f7103bc828cc12dd44d4276dfcaf05b8cd0) browser tasks (Christophe Hurpeau)
+- [`ae6de7f`](https://github.com/alpjs/auk/commit/ae6de7fff93560e955d53622a81b39792aa282e3) .listen Promise resolve with http server (Christophe Hurpeau)
+
 ### v2.2.2
 
 - [`49a1437`](https://github.com/alpjs/auk/commit/49a1437a41339008a7fa54c23311c995eb21982d) fix gulp task by upgrading gulp dependency (Christophe Hurpeau)
