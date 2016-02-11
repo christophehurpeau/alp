@@ -1,4 +1,4 @@
-.PHONY: check clean tests watch build
+.PHONY: check clean tests watch build test
 
 BIN = ''
 
@@ -14,13 +14,13 @@ clean:
 	rm -Rf lib tests/lib public/*.css public/js public/*bundle.js*
 
 default: check
-	@node_modules/.bin/gulp
+	$(BIN)gulp
 
 watch: check
-	@node_modules/.bin/gulp watch
+	$(BIN)gulp watch
 
 build: check
-	@node_modules/.bin/gulp build
+	$(BIN)gulp build
 
 w: clean build watch
 
@@ -37,3 +37,10 @@ test:
 	$(BIN)babel --presets es2015-node5 -s --out-dir test/lib test/src
 	@echo "> Run tests"
 	$(BIN)mocha --harmony --es_staging --recursive --bail -u tdd test/lib
+
+browser-test:
+	@echo "> Browser test"
+	@mkdir -p dist
+	$(BIN)browserify -d -e test/browser/index.js -o dist/test.js -t [ babelify --presets [ es2015 ] ]
+	@echo "> Browser test: run karma"
+	$(BIN)karma run
