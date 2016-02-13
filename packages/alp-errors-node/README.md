@@ -10,5 +10,5 @@ const app = new Koa();
 config(__dirname + '/config')(app);
 logger(app);
 
-errors(app);
+app.use(errors);
 ```
