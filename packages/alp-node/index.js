@@ -2,6 +2,7 @@
 const fs = require('fs');
 const chmodSync = fs.chmodSync;
 const unlinkSync = fs.unlinkSync;
+const readFileSync = fs.readFileSync;
 const Koa = require('koa');
 
 class Application extends Koa {
@@ -13,11 +14,17 @@ class Application extends Koa {
         return fn(this);
     }
 
-    listen() {
+    /**
+     * @param [dirname] for tls server, dirname of the server.key and server.crt
+     * @returns {Promise}
+     */
+    listen(dirname) {
         return new Promise((resolve) => {
             const socketPath = this.config.get('socketPath');
             const port = this.config.get('port');
             const hostname = this.config.get('hostname');
+            const tls = this.config.get('tls');
+            const createServer = require(!socketPath && tls ? 'https' : 'http').createServer;
 
             this.logger.info(
                 'Creating server',
@@ -25,26 +32,39 @@ class Application extends Koa {
                 { [socketPath ? 'socketPath' : 'port']: ['yellow'] }
             );
 
+            const server = (() => {
+                if (!tls) {
+                    return createServer(this.callback());
+                }
+
+                const options = {
+                    key: readFileSync(`${dirname}/server.key`),
+                    cert: readFileSync(`${dirname}/server.crt`),
+                };
+
+                return createServer(options, this.callback());
+            })();
+
             if (socketPath) {
                 try {
                     unlinkSync(socketPath);
                 } catch (err) {
                 }
+
+                server.listen(socketPath, () => {
+                    if (socketPath) {
+                        chmodSync(socketPath, '777');
+                    }
+
+                    this.logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] });
+                    resolve(server);
+                });
+            } else {
+                server.listen(port, hostname, () => {
+                    this.logger.info('Server listening', { port }, { port: ['yellow'] });
+                    resolve(server);
+                });
             }
-
-            const server = super.listen(socketPath || port, hostname, () => {
-                if (socketPath) {
-                    chmodSync(socketPath, '777');
-                }
-
-                this.logger.info(
-                    'Server listening',
-                    socketPath ? { socketPath: socketPath } : { port: port },
-                    { [socketPath ? 'socketPath' : 'port']: ['yellow'] }
-                );
-
-                resolve(server);
-            });
         });
     }
 }
