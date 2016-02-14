@@ -1,3 +1,7 @@
+### v2.4.0
+
+- [`e83fca1`](https://github.com/alpjs/auk/commit/e83fca18cd35d296b9304c99960336005448b385) https (Christophe Hurpeau)
+
 ### v2.3.0
 
 - [`3b496f7`](https://github.com/alpjs/auk/commit/3b496f7103bc828cc12dd44d4276dfcaf05b8cd0) browser tasks (Christophe Hurpeau)
