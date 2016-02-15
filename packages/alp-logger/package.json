@@ -31,6 +31,6 @@
     "springbokjs-library": "^14.0.1"
   },
   "dependencies": {
-    "nightingale": "^2.3.0"
+    "nightingale": "^3.0.0"
   }
 }
