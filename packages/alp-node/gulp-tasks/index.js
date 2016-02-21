@@ -191,9 +191,12 @@ gulp.task(
                 'lib/index.js',
                 '--port',
                 port,
+                '--version',
+                `dev${Date.now()}`,
             ]);
             daemon.start();
             gulp.watch(['lib/**/*.{js,jsx}', '../lib/**/*.js']).on('change', function() {
+                daemon.args[daemon.args.length - 1] = `dev${Date.now()}`;
                 daemon.restart();
                 if (bs) {
                     setTimeout(function() {
