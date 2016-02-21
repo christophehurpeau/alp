@@ -34,6 +34,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             this.store = (0, _redux.createStore)(appDescriptor.app, data);
             this.body = (0, _fody2.default)({
                 htmlData: {
+                    context: this,
                     appDescriptor
                 },
                 context: this,

@@ -8,6 +8,7 @@ export default function aukReactRedux(Html) {
             this.store = createStore(appDescriptor.app, data);
             this.body = render({
                 htmlData: {
+                    context: this,
                     appDescriptor,
                 },
                 context: this,

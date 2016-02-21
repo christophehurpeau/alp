@@ -24,11 +24,12 @@
   },
   "homepage": "https://github.com/alpjs/auk-react-redux#readme",
   "devDependencies": {
-    "springbokjs-library": "^13.5.0"
+    "eslint": "^1.10.3",
+    "springbokjs-library": "^15.0.0"
   },
   "dependencies": {
-    "fody": "^2.0.0",
-    "fody-redux": "^2.0.0",
-    "redux": "^3.1.5"
+    "fody": "^2.0.1",
+    "fody-redux": "^2.0.1",
+    "redux": "^3.3.1"
   }
 }
