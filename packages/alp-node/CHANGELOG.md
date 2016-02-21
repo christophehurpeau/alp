@@ -1,3 +1,7 @@
+### v2.5.0
+
+- [`664bbce`](https://github.com/alpjs/auk/commit/664bbce6afb8327c1c6364ffcfebc1031f8728b1) add version in watch task (Christophe Hurpeau)
+
 ### v2.4.0
 
 - [`e83fca1`](https://github.com/alpjs/auk/commit/e83fca18cd35d296b9304c99960336005448b385) https (Christophe Hurpeau)
