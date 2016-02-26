@@ -1,3 +1,7 @@
+### v3.0.3
+
+- [`2b4181d`](https://github.com/alpjs/auk/commit/2b4181d0688c8a5a0664abf89af5a9e344fcbdf4) auk v3 uses common middlewares and initializers to start new application with less code (Christophe Hurpeau)
+
 ### v2.5.0
 
 - [`664bbce`](https://github.com/alpjs/auk/commit/664bbce6afb8327c1c6364ffcfebc1031f8728b1) add version in watch task (Christophe Hurpeau)
