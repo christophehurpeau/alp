@@ -1,10 +1,10 @@
 'use strict';
 
-var _class, _temp;
-
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _class, _temp;
 
 var _react = require('react');
 

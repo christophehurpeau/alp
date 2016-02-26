@@ -1,28 +1,12 @@
 import Auk from 'auk';
-import serve from 'koa-static';
-import convert from 'koa-convert';
-import config from 'auk-config';
-import params from 'auk-params';
-import language from 'auk-language';
-import logger from 'auk-logger';
-import translate from 'auk-translate';
-import router from 'auk-limosa';
-import routerBuilder from './routerBuilder';
 import reactredux from 'auk-react-redux';
+import routerBuilder from './routerBuilder';
 import Html from './views/layouts/Html';
-
 import controllers from './controllers';
 
-const app = new Auk();
-config(`${__dirname}/config`)(app);
-params(app);
-language(app);
-logger(app);
-translate('locales')(app);
+const app = new Auk(__dirname);
 reactredux(Html)(app);
-const handler = router(routerBuilder, controllers)(app);
-
-app.use(convert(serve(`${__dirname}/../public/`))); // static files
-app.use(handler);
-
+app.servePublic();
+app.catchErrors();
+app.useRouter(routerBuilder, controllers);
 app.listen();
