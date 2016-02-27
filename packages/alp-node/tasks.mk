@@ -1,4 +1,5 @@
 .PHONY: check clean tests watch build test
+.DEFAULT_GOAL := default
 
 BIN = ''
 
@@ -21,8 +22,6 @@ watch: check
 
 build: check
 	$(BIN)gulp build
-
-w: clean build watch
 
 lint:
 	@echo "> Lint files"

@@ -3,11 +3,11 @@
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
 var clip = require('gulp-clip-empty-files');
-var jspm = require('gulp-jspm');
 var rename = require('gulp-rename');
 var stylus = require('gulp-stylus');
 var grep = require('gulp-grep');
 var ymlConfig = require('./gulp-config');
+var jspm = require('jspm');
 var browserSync = require('browser-sync');
 var bs;
 
@@ -140,18 +140,15 @@ function buildJsBrowser() {
 }
 
 function buildJsBundle() {
-    var stream = gulp.src('public/js/index.js')
-        .pipe(sourcemaps.init())
-        .pipe(jspm({ selfExecutingBundle: false }))
-        // .pipe(rename('index.js'))
-        .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
-        .pipe(gulp.dest('public'));
+    return jspm.bundleSFX('js/index.js', 'index.js', {
+        minify: argv.production,
+        mangle: false,
+    }).then(() => {
+        if (bs) {
+            bs.reload('index.js');
+        }
+    });
 
-    if (bs) {
-        stream.pipe(bs.stream());
-    }
-
-    return stream;
 }
 
 gulp.task(
@@ -219,6 +216,7 @@ gulp.task(
             bs.init({
                 proxy: 'localhost:' + port,
                 port: browserSyncPort,
+                ui: { port: browserSyncPort + 1 },
                 notify: true,
                 open: false,
             }, cb);
