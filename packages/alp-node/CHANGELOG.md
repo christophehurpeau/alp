@@ -1,3 +1,11 @@
+### v4.0.0
+
+Use `auk-dev` for build tasks now
+
+- [`7022339`](https://github.com/alpjs/auk/commit/702233950d99616a66a1aef73052e589163988a9) use jspm instead of gulp-jspm, create sfx bundle (Christophe Hurpeau)
+- [`e844f9f`](https://github.com/alpjs/auk/commit/e844f9f757f210d1564aa7cf67d6a16be0f11a79) separate auk and auk-dev (tasks, dev env) (Christophe Hurpeau)
+
+
 ### v3.0.3
 
 - [`2b4181d`](https://github.com/alpjs/auk/commit/2b4181d0688c8a5a0664abf89af5a9e344fcbdf4) auk v3 uses common middlewares and initializers to start new application with less code (Christophe Hurpeau)
