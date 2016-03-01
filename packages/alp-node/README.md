@@ -1,7 +1,7 @@
 # auk
 
 Framework based on koa 2.
-Auk requires node v4.0.0 or higher
+Auk requires node v5 or higher
 
 
 ```js
