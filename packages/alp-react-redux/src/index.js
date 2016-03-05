@@ -1,11 +1,15 @@
 import render from 'fody';
-import App from 'fody-redux';
+import DefaultApp from 'fody/lib/App';
+import ReduxApp from 'fody-redux';
 import { createStore } from 'redux';
 
 export default function aukReactRedux(Html) {
     return (app) => {
         app.context.render = function (appDescriptor, data) {
-            this.store = createStore(appDescriptor.app, data);
+            if (appDescriptor.app) {
+                this.store = createStore(appDescriptor.app, data);
+            }
+
             this.body = render({
                 htmlData: {
                     context: this,
@@ -13,9 +17,9 @@ export default function aukReactRedux(Html) {
                 },
                 context: this,
                 View: appDescriptor.View,
-                initialData: () => this.store.getState(),
+                initialData: appDescriptor.app ? () => this.store.getState() : () => null,
                 Html,
-                App,
+                App: appDescriptor.app ? ReduxApp : DefaultApp,
             });
         };
     };
