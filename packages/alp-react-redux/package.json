@@ -1,6 +1,6 @@
 {
   "name": "auk-react-redux",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "render with react and redux in auk server",
   "main": "lib/index.js",
   "scripts": {
