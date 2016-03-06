@@ -1,3 +1,1 @@
-import bs from './browser-sync';
-
-
+import './browser-sync';
