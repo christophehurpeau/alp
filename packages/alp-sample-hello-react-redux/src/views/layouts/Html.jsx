@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-// import { production } from '../server/argv';
-const production = false;
 
 export default class Html extends Component {
     static propTypes = {
@@ -9,6 +7,7 @@ export default class Html extends Component {
         css: PropTypes.string,
         body: PropTypes.string.isRequired,
         initialData: PropTypes.object.isRequired,
+        context: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -26,18 +25,18 @@ export default class Html extends Component {
                 <meta name="description" content={this.props.description} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-                <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic" rel="stylesheet" type="text/css" />
+                <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" href="/index.css" />
                 <style id="css" dangerouslySetInnerHTML={{ __html: this.props.css }} />
-                <script dangerouslySetInnerHTML={{ __html: 'window.initialData = ' + JSON.stringify(this.props.initialData) }}></script>
+                <script defer src="/bundle.js"></script>
+                <script dangerouslySetInnerHTML={{ __html:
+                    `window.VERSION = '${this.props.context.config.get('version')}';`
+                    + `window.initialData = ${JSON.stringify(this.props.initialData)}`,
+                    }}
+                ></script>
             </head>
             <body>
-            <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} />
-            <div dangerouslySetInnerHTML={{ __html: production ? '<script defer src="/main-sfx.js"></script>' :
-                `<script src="/jspm_packages/system.js"></script>
-                <script src="/config.js"></script>
-                <script src="/index.bundle.js"></script>
-                <script>System.import('js/index.js').then(function(main) { return main.default() })</script>` }}></div>
+                <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} />
             </body>
             </html>
         );

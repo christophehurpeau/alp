@@ -6,13 +6,13 @@ import logger from 'ibex-logger';
 import reactredux from 'ibex-react-redux';
 import translate from 'ibex-translate';
 import './controllers/index';
-import './config/common.json!text';
 
 import * as appDescriptor from './views/index';
 
-export default async function main() {
+(async function main() {
     const app = new Ibex();
-    await config('js/config')(app);
+    app.appVersion = window.VERSION;
+    await config('config')(app);
     logger(app);
     language(app);
     await translate('locales')(app);
@@ -23,4 +23,4 @@ export default async function main() {
     })(app);
 
     await app.run();
-};
+}());

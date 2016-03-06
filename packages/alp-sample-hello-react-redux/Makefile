@@ -1,6 +1,6 @@
-include node_modules/auk/tasks.mk
+include node_modules/auk-dev/tasks.mk
 
 install:
 	npm install
-	node_modules/.bin/jspm install
+	cd browser && npm install
 
