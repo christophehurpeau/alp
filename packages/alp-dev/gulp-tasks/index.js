@@ -26,8 +26,8 @@ gulp.task('define-port', function(done) {
 
     var portscanner = require('portscanner');
     port = argv.startPort || 3000;
-    portscanner.findAPortNotInUse(port, port + 50, '127.0.0.1', function(error, port) {
-        port = port;
+    portscanner.findAPortNotInUse(port, port + 50, '127.0.0.1', function(error, foundPort) {
+        port = foundPort;
         done();
     });
 });
@@ -38,8 +38,8 @@ gulp.task('define-browser-sync-port', function(done) {
 
     var portscanner = require('portscanner');
     browserSyncPort = argv.browserSyncStartPort || 3100;
-    portscanner.findAPortNotInUse(browserSyncPort, browserSyncPort + 50, '127.0.0.1', function(err, port) {
-        browserSyncPort = port;
+    portscanner.findAPortNotInUse(browserSyncPort, browserSyncPort + 50, '127.0.0.1', function(err, foundPort) {
+        browserSyncPort = foundPort;
         done();
     });
 });
