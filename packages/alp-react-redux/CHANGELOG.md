@@ -1,3 +1,7 @@
+### v3.0.1
+
+- [`6289bae`](https://github.com/alpjs/auk-react-redux/commit/6289baea906dcc64971019867c3d962e5ab692e7) fix dependencies (Christophe Hurpeau)
+
 ### v3.0.0
 
 ### Breaking Change
