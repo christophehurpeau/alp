@@ -1,6 +1,6 @@
 {
   "name": "auk-dev",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Config for webpack/browsersync/makefile for auk-server",
   "main": "lib/index.js",
   "dependencies": {
