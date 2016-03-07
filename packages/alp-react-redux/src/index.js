@@ -17,6 +17,7 @@ export default function aukReactRedux(Html) {
                 },
                 context: this,
                 View: moduleDescriptor.View,
+                data: moduleDescriptor.reducer ? undefined : data,
                 initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
                 Html,
                 App: moduleDescriptor.reducer ? ReduxApp : DefaultApp,

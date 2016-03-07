@@ -46,6 +46,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                 },
                 context: this,
                 View: moduleDescriptor.View,
+                data: moduleDescriptor.reducer ? undefined : data,
                 initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
                 Html,
                 App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fodyApp2.default
