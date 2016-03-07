@@ -24,6 +24,7 @@
     "gulp-util": "^3.0.7",
     "js-yaml": "^3.5.3",
     "minimist-argv": "^1.0.0",
+    "offline-plugin": "^2.0.4",
     "portscanner": "^1.0.0",
     "springbokjs-daemon": "^0.2.0",
     "stylus": "^0.53.0",
