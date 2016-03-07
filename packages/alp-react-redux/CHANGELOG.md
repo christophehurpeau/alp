@@ -1,3 +1,7 @@
+### v3.0.2
+
+- [`230a98d`](https://github.com/alpjs/auk-react-redux/commit/230a98d1219cb29ab5410f2899489ce3a5b2577c) data for non-redux modules (Christophe Hurpeau)
+
 ### v3.0.1
 
 - [`6289bae`](https://github.com/alpjs/auk-react-redux/commit/6289baea906dcc64971019867c3d962e5ab692e7) fix dependencies (Christophe Hurpeau)
