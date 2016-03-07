@@ -5,7 +5,13 @@ const OfflinePlugin = require('offline-plugin');
 
 const production = process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production';
 
-const modulesList = fs.readdirSync(path.resolve('src/modules'));
+const modulesList = (() => {
+    try {
+        return fs.readdirSync(path.resolve('src/modules'));
+    } catch (e) {
+        return [];
+    }
+})();
 
 module.exports = {
     debug: !production,
