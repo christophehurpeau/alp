@@ -9,13 +9,13 @@ var _fody = require('fody');
 
 var _fody2 = _interopRequireDefault(_fody);
 
-var _App = require('fody/lib/App');
+var _fodyApp = require('fody-app');
 
-var _App2 = _interopRequireDefault(_App);
+var _fodyApp2 = _interopRequireDefault(_fodyApp);
 
-var _fodyRedux = require('fody-redux');
+var _fodyReduxApp = require('fody-redux-app');
 
-var _fodyRedux2 = _interopRequireDefault(_fodyRedux);
+var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
 
 var _redux = require('redux');
 
@@ -32,23 +32,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     return app => {
         app.context.render = /**
                               * @function
-                              * @param appDescriptor
+                              * @param moduleDescriptor
                               * @param data
-                             */function (appDescriptor, data) {
-            if (appDescriptor.app) {
-                this.store = (0, _redux.createStore)(appDescriptor.app, data);
+                             */function (moduleDescriptor, data) {
+            if (moduleDescriptor.reducer) {
+                this.store = (0, _redux.createStore)(moduleDescriptor.reducer, data);
             }
 
             this.body = (0, _fody2.default)({
                 htmlData: {
                     context: this,
-                    appDescriptor
+                    moduleDescriptor
                 },
                 context: this,
-                View: appDescriptor.View,
-                initialData: appDescriptor.app ? () => this.store.getState() : () => null,
+                View: moduleDescriptor.View,
+                initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
                 Html,
-                App: appDescriptor.app ? _fodyRedux2.default : _App2.default
+                App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fodyApp2.default
             });
         };
     };

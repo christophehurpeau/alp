@@ -1,25 +1,25 @@
 import render from 'fody';
-import DefaultApp from 'fody/lib/App';
-import ReduxApp from 'fody-redux';
+import DefaultApp from 'fody-app';
+import ReduxApp from 'fody-redux-app';
 import { createStore } from 'redux';
 
 export default function aukReactRedux(Html) {
     return (app) => {
-        app.context.render = function (appDescriptor, data) {
-            if (appDescriptor.app) {
-                this.store = createStore(appDescriptor.app, data);
+        app.context.render = function (moduleDescriptor, data) {
+            if (moduleDescriptor.reducer) {
+                this.store = createStore(moduleDescriptor.reducer, data);
             }
 
             this.body = render({
                 htmlData: {
                     context: this,
-                    appDescriptor,
+                    moduleDescriptor,
                 },
                 context: this,
-                View: appDescriptor.View,
-                initialData: appDescriptor.app ? () => this.store.getState() : () => null,
+                View: moduleDescriptor.View,
+                initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
                 Html,
-                App: appDescriptor.app ? ReduxApp : DefaultApp,
+                App: moduleDescriptor.reducer ? ReduxApp : DefaultApp,
             });
         };
     };
