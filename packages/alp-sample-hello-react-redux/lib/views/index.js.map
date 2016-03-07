@@ -1,1 +1,1 @@
-{"version":3,"sources":["views/index.js"],"names":[],"mappings":";;;;;;;;;;;8CAAS;;;;;;;;;0CACA","file":"views/index.js","sourcesContent":["export { default as View } from './IndexView';\nexport { default as app } from './reducers/index';\n"],"sourceRoot":"/"}
+{"version":3,"sources":["views/index.js"],"names":[],"mappings":";;;;;;;;;;;8CAAS;;;;;;;;;6CACA","file":"views/index.js","sourcesContent":["export { default as View } from './IndexView';\nexport { default as reducer } from './reducers';\n"],"sourceRoot":"/"}

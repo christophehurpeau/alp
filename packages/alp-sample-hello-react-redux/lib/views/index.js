@@ -13,12 +13,12 @@ Object.defineProperty(exports, 'View', {
   }
 });
 
-var _index = require('./reducers/index');
+var _reducers = require('./reducers');
 
-Object.defineProperty(exports, 'app', {
+Object.defineProperty(exports, 'reducer', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_index).default;
+    return _interopRequireDefault(_reducers).default;
   }
 });
 

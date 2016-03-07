@@ -7,7 +7,7 @@ import reactredux from 'ibex-react-redux';
 import translate from 'ibex-translate';
 import './controllers/index';
 
-import * as appDescriptor from './views/index';
+import * as moduleDescriptor from './views/index';
 
 (async function main() {
     const app = new Ibex();
@@ -17,7 +17,7 @@ import * as appDescriptor from './views/index';
     language(app);
     await translate('locales')(app);
     await reactredux({
-        appDescriptor,
+        moduleDescriptor,
         initialData: window.initialData,
         element: document.getElementById('app'),
     })(app);

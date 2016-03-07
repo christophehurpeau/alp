@@ -13,7 +13,7 @@
     "auk-limosa": "^2.1.1",
     "auk-logger": "^1.4.0",
     "auk-params": "^2.0.0",
-    "auk-react-redux": "^2.2.0",
+    "auk-react-redux": "^3.0.1",
     "auk-translate": "^1.1.0",
     "koa-convert": "^1.2.0",
     "koa-static": "^2.0.0",
