@@ -1,5 +1,10 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = /**
                     * @function
                    */ function () { /**
@@ -13,10 +18,7 @@ var _createClass = /**
                                                                                                                                                                                                                                                                                                                                                                             * @param staticProps
                                                                                                                                                                                                                                                                                                                                                                            */ function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; } ); }();
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = undefined;
+var _nightingale = require('nightingale');
 
 var _events = require('events');
 
@@ -28,10 +30,6 @@ var _context = require('./context');
 
 var _context2 = _interopRequireDefault(_context);
 
-/**
- * @function
- * @param obj
-*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -55,6 +53,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 */
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var logger = new _nightingale.ConsoleLogger('ibex');
+
 var Application = /**
                    * @function
                    * @param _EventEmitter
@@ -71,25 +71,16 @@ var Application = /**
 
         _this.middleware = [];
         _this.context = Object.create(_context2.default);
-        _this._initPromises = [];
         return _this;
     }
 
     _createClass(Application, [{
-        key: 'init',
-        value: /**
-                * @function
-                * @param fn
-               */function init(fn) {
-            this._initPromises.push(fn(this));
-        }
-    }, {
         key: 'use',
         value: /**
                 * @function
-                * @param fn
+                * @param {Function} fn
                */function use(fn) {
-            // logger.debug('use', {name: fn._name || fn.name || '-'});
+            logger.debug('use', { name: fn.name || '-' });
             this.middleware.push(fn);
             return this;
         }
@@ -97,34 +88,35 @@ var Application = /**
         key: 'onerror',
         value: /**
                 * @function
-                * @param e
+                * @param {*} e
                */function onerror(e) {
-            console.log(e.stack || e.message || e); // eslint-disable-line no-console
+            logger.error(e);
         }
     }, {
         key: 'run',
         value: /**
                 * @function
-               */function run() {
-            var _this2 = this;
+                * @param {*} url
+               */function run(url) {
+            if (!this.listeners('error').length) {
+                this.on('error', this.onerror);
+            }
 
-            return Promise.all(this._initPromises).then(function () {
-                delete _this2._initPromises;
+            this.callback = (0, _compose2.default)(this.middleware);
 
-                if (!_this2.listeners('error').length) {
-                    _this2.on('error', _this2.onerror);
-                }
-
-                _this2.callback = (0, _compose2.default)(_this2.middleware);
-            });
+            if (url) {
+                this.load(url);
+            }
         }
     }, {
         key: 'load',
         value: /**
                 * @function
-                * @param url
+                * @param {string} url
                */function load(url) {
-            var _this3 = this;
+            var _this2 = this;
+
+            logger.debug('load', { url: url });
 
             if (url.startsWith('?')) {
                 url = window.location.pathname + url;
@@ -132,9 +124,9 @@ var Application = /**
 
             this.context.path = url;
             this.callback.call(this.context).then(function () {
-                return respond.call(_this3.context);
+                return respond.call(_this2.context);
             }).catch(function (err) {
-                return _this3.emit('error', err);
+                return _this2.emit('error', err);
             });
         }
     }, {

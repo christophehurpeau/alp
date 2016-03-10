@@ -1,6 +1,6 @@
 {
   "name": "ibex",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Framework for browser, with the same API than koa 2",
   "main": "lib/index.js",
   "scripts": {
@@ -24,6 +24,11 @@
   },
   "homepage": "https://github.com/alpjs/ibex#readme",
   "devDependencies": {
-    "springbokjs-library": "^13.5.0"
+    "eslint": "~2.2.0",
+    "eslint-config-partridge": "^4.2.0",
+    "springbokjs-library": "^15.0.0"
+  },
+  "dependencies": {
+    "nightingale": "^3.0.5"
   }
 }

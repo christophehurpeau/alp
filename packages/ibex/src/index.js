@@ -1,46 +1,49 @@
+import { ConsoleLogger } from 'nightingale';
 import { EventEmitter } from 'events';
 import compose from './compose';
 import context from './context';
 
+const logger = new ConsoleLogger('ibex');
+
 export default class Application extends EventEmitter {
+    middleware: Array<Function>;
+    context: Object;
+
     constructor() {
         super();
         this.middleware = [];
         this.context = Object.create(context);
-        this._initPromises = [];
     }
 
-    get environment() {
+    get environment(): string {
         return this.env;
     }
 
-    init(fn) {
-        this._initPromises.push(fn(this));
-    }
-
-    use(fn) {
-        // logger.debug('use', {name: fn._name || fn.name || '-'});
+    use(fn: Function) {
+        logger.debug('use', { name: fn.name || '-' });
         this.middleware.push(fn);
         return this;
     }
 
-    onerror(e) {
-        console.log(e.stack || e.message || e); // eslint-disable-line no-console
+    onerror(e: any) {
+        logger.error(e);
     }
 
-    run() {
-        return Promise.all(this._initPromises).then(() => {
-            delete this._initPromises;
+    run(url: mixed) {
+        if (!this.listeners('error').length) {
+            this.on('error', this.onerror);
+        }
 
-            if (!this.listeners('error').length) {
-                this.on('error', this.onerror);
-            }
+        this.callback = compose(this.middleware);
 
-            this.callback = compose(this.middleware);
-        });
+        if (url) {
+            this.load(url);
+        }
     }
 
-    load(url) {
+    load(url: string) {
+        logger.debug('load', { url });
+
         if (url.startsWith('?')) {
             url = window.location.pathname + url;
         }
