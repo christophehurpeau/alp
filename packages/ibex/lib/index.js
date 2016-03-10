@@ -122,9 +122,10 @@ var Application = /**
                 url = window.location.pathname + url;
             }
 
-            this.context.path = url;
-            this.callback.call(this.context).then(function () {
-                return respond.call(_this2.context);
+            var context = Object.create(this.context);
+            context.path = url;
+            this.callback.call(context).then(function () {
+                return respond.call(context);
             }).catch(function (err) {
                 return _this2.emit('error', err);
             });
