@@ -1,3 +1,7 @@
+### v1.5.0
+
+- [`90333b3`](https://github.com/alpjs/alp-logger/commit/90333b3899ba79c29049657099f697c7268fc14f) deprecate ibex-limosa and auk-limosa, upgrade springbokjs-library (Christophe Hurpeau)
+
 ### v1.4.0
 
 - [`af2a942`](https://github.com/alpjs/alp-logger/commit/af2a94280d5088afff3612ccf2bacb7041c346c2) upgrade nightingale (Christophe Hurpeau)
