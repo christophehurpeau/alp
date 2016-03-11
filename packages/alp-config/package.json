@@ -1,6 +1,6 @@
 {
   "name": "alp-config",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "config in alp framework",
   "main": "lib/index.js",
   "browser": "browser/lib/browser.js",

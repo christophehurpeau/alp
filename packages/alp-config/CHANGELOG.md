@@ -1,3 +1,7 @@
+### v1.1.0
+
+
+
 ### v2.0.1
 
 - [`5bab1a4`](https://github.com/alpjs/auk-config/commit/5bab1a494d50cc046feea7b79899ea773f6807e9) use app.env instead of app.environment (Christophe Hurpeau)
