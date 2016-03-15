@@ -4,8 +4,7 @@
   "description": "framework for browser based on ibex",
   "main": "lib/index.js",
   "dependencies": {
-    "alp": "^1.2.0",
-    "alp-config": "^1.1.0",
+    "alp-config": "^1.1.1",
     "alp-language": "^1.1.0",
     "alp-limosa": "^2.1.1",
     "alp-logger": "^1.5.0",
