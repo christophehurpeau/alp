@@ -1,8 +1,8 @@
-# auk-params
+# alp-params-node
 
 ```js
 import Koa from 'koa';
-import params from 'auk-params';
+import params from 'alp-params-node';
 
 const app = new Koa();
 params(app);

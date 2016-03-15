@@ -26,26 +26,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param app
 */function aukParams(app) {
     Object.assign(app.context, {
-        param(name) {
+        param: /**
+                * @function
+                * @param name
+               */function param(name) {
             return this.namedParam(name) || this.paramGET(name);
         },
-
-        namedParam(name) {
+        namedParam: /**
+                     * @function
+                     * @param name
+                    */function namedParam(name) {
             let namedParams = this.route.namedParams;
             return namedParams && namedParams.get(name);
         },
-
-        otherParam(position) {
+        otherParam: /**
+                     * @function
+                     * @param position
+                    */function otherParam(position) {
             let otherParams = this.route.otherParams;
             return otherParams && otherParams[position - 1];
         },
-
-        paramGET(name) {
+        paramGET: /**
+                   * @function
+                   * @param name
+                  */function paramGET(name) {
             let query = this.query;
             return query && query[name];
         },
-
-        paramGETorPOST(name) {
+        paramGETorPOST: /**
+                         * @function
+                         * @param name
+                        */function paramGETorPOST(name) {
             return this.body[name] !== undefined ? this.body[name] : this.query[name];
         }
     });
