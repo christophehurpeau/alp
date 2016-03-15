@@ -1,3 +1,7 @@
+### v3.1.0
+
+- [`6065356`](https://github.com/alpjs/ibex/commit/6065356a29c44a0173ca47dcb443a4e6dd033a33) upgrade dependencies (Christophe Hurpeau)
+
 ### v3.0.0
 
 - [`c22bdbf`](https://github.com/alpjs/ibex/commit/c22bdbf7c5b40eddb0cd2f4c2b58e3b8e8116963) create a new context for each load url (Christophe Hurpeau)
