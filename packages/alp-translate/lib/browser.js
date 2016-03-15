@@ -3,9 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = aukTranslate;
+exports.default = ibexTranslate;
 /**
- * Format a string using {\d} (like {0} or {1})
+ * Format a string using {\d}
  *
  * @param {string} string
  * @param {string[]} args
@@ -19,12 +19,15 @@ function vformat(string, args) {
 /**
  * @function
  * @param dirname
-*/function aukTranslate(dirname) {
+*/function ibexTranslate(dirname) {
     dirname = dirname.replace(/\/*$/, '/');
     return app => {
         Object.assign(app.context, {
-            t(string) {
-                string = app.translations.get(this.language).get(string) || string;
+            t: /**
+                * @function
+                * @param string
+               */function t(string) {
+                string = app.translations.get(string) || string;
 
                 for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
                     args[_key - 1] = arguments[_key];
@@ -34,10 +37,8 @@ function vformat(string, args) {
             }
         });
 
-        app.translations = new Map();
-        app.config.get('availableLanguages').forEach(language => {
-            app.translations.set(language, app.loadConfig(dirname + language));
-        });
+        const language = app.context.language;
+        return app.loadConfig(dirname + language).then(map => app.translations = map);
     };
 }
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=browser.js.map

@@ -1,4 +1,4 @@
-# auk-translate
+# alp-translate
 
 `config/locales/en.yml`
 
@@ -7,12 +7,12 @@ common:
     'Hello %s!': "Hello %s!"
 ```
 
-`index.server.js`
+### With Koa
 
 ```js
 import Koa from 'koa';
-import config from 'auk-config';
-import translate from 'auk-translate';
+import config from 'alp-config';
+import translate from 'alp-translate';
 
 const app = new Auk();
 config(__dirname + '/config')(app);
@@ -22,7 +22,7 @@ translate('locales')(app);
 ```js
     index(ctx) {
         const name = ctx.params.string('name').notEmpty().value;
-        ctx.body = this.t('Hello %s!', ctx.params.isValid() ? name : 'World');
+        ctx.body = ctx.t('Hello %s!', ctx.params.isValid() ? name : 'World');
     },
 ```
 

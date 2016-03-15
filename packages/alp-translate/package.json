@@ -1,8 +1,9 @@
 {
-  "name": "auk-translate",
-  "version": "1.1.0",
-  "description": " Translation in auk server",
-  "main": "lib/index.js",
+  "name": "alp-translate",
+  "version": "0.1.0",
+  "description": "Translation in alp framework",
+  "main": "lib/node.js",
+  "browser": "lib/browser.js",
   "scripts": {
     "test": "make test",
     "lint": "make lint",
@@ -12,22 +13,17 @@
     "version": "make version",
     "watch": "make watch"
   },
-  "repository": "alpjs/auk-translate",
+  "repository": "alpjs/alp-translate",
   "keywords": [
-    "alp",
-    "auk"
+    "alp"
   ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alpjs/auk-translate/issues"
+    "url": "https://github.com/alpjs/alp-translate/issues"
   },
-  "homepage": "https://github.com/alpjs/auk-translate#readme",
+  "homepage": "https://github.com/alpjs/alp-translate#readme",
   "devDependencies": {
-    "springbokjs-library": "^14.0.1"
-  },
-  "peerDependencies": {
-    "auk-config": "^1.1.0",
-    "auk-language": "^1.1.0"
+    "springbokjs-library": "^16.1.1"
   }
 }
