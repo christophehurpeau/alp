@@ -24,9 +24,8 @@
   },
   "homepage": "https://github.com/alpjs/ibex#readme",
   "devDependencies": {
-    "eslint": "~2.2.0",
-    "eslint-config-partridge": "^4.2.0",
-    "springbokjs-library": "^15.0.0"
+    "eslint": "^2.4.0",
+    "springbokjs-library": "^16.1.1"
   },
   "dependencies": {
     "nightingale": "^3.0.5"
