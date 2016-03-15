@@ -18,9 +18,9 @@ var _slicedToArray = /**
 
 exports.default = alpConfig;
 
-var _storedConfig = require('./storedConfig');
+var _browserStoredConfig = require('./browserStoredConfig');
 
-var storedConfig = _interopRequireWildcard(_storedConfig);
+var storedConfig = _interopRequireWildcard(_browserStoredConfig);
 
 var _parseJsonObjectAsMap = require('parse-json-object-as-map');
 

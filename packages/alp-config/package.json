@@ -24,9 +24,8 @@
   },
   "homepage": "https://github.com/alpjs/alp-config#readme",
   "devDependencies": {
-    "eslint": "~2.2.0",
-    "eslint-config-partridge": "^4.2.0",
-    "springbokjs-library": "^16.0.0"
+    "eslint": "^2.4.0",
+    "springbokjs-library": "^16.1.1"
   },
   "dependencies": {
     "deep-freeze-es6": "^1.0.0",
