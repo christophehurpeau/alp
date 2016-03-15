@@ -1,6 +1,6 @@
 import Ibex from 'ibex';
 import config from 'alp-config';
-import errors from 'alp-errors-browser';
+// import errors from 'alp-errors-browser';
 // import params from 'alp-params-browser';
 import language from 'alp-language';
 import logger from 'alp-logger';
@@ -36,7 +36,7 @@ export default class AlpBrowser extends Ibex {
     }
 
     catchErrors() {
-        this.use(errors);
+        // this.use(errors);
     }
 
     useRouter(routerBuilder, controllers) {
