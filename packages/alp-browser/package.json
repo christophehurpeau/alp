@@ -1,0 +1,40 @@
+{
+  "name": "alp-browser",
+  "version": "0.1.1",
+  "description": "framework for browser based on ibex",
+  "main": "lib/index.js",
+  "dependencies": {
+    "alp": "^1.2.0",
+    "alp-config": "^1.1.0",
+    "alp-language": "^1.1.0",
+    "alp-limosa": "^2.1.1",
+    "alp-logger": "^1.5.0",
+    "alp-translate": "^0.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "springbokjs-library": "^16.1.1"
+  },
+  "scripts": {
+    "test": "make test",
+    "lint": "make lint",
+    "build": "make build",
+    "postpublish": "make post-publish",
+    "preversion": "make pre-version",
+    "version": "make version",
+    "watch": "make watch"
+  },
+  "repository": "alpjs/alp-browser",
+  "keywords": [
+    "springbokjs",
+    "alp",
+    "framework",
+    "ibex"
+  ],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alpjs/alp-browser/issues"
+  },
+  "homepage": "https://github.com/alpjs/alp-browser#readme"
+}
