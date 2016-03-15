@@ -29,6 +29,7 @@
     "springbokjs-library": "^16.0.0"
   },
   "dependencies": {
+    "deep-freeze-es6": "^1.0.0",
     "minimist-argv": "^1.0.0",
     "parse-json-object-as-map": "^1.0.1",
     "stringify-json": "^1.0.0"
