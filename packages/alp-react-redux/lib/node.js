@@ -42,16 +42,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             this.body = (0, _fody2.default)({
                 htmlData: {
                     context: this,
-                    moduleDescriptor
+                    moduleDescriptor: moduleDescriptor
                 },
                 context: this,
                 View: moduleDescriptor.View,
                 data: moduleDescriptor.reducer ? undefined : data,
                 initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
-                Html,
+                Html: Html,
                 App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fodyApp2.default
             });
         };
     };
 }
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=node.js.map

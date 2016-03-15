@@ -1,8 +1,9 @@
 {
-  "name": "auk-react-redux",
-  "version": "3.0.2",
-  "description": "render with react and redux in auk server",
-  "main": "lib/index.js",
+  "name": "alp-react-redux",
+  "version": "1.0.0",
+  "description": "render with react and redux in alp framework",
+  "main": "lib/node.js",
+  "browser": "browser/lib/browser.js",
   "scripts": {
     "test": "make test",
     "lint": "make lint",
@@ -12,7 +13,7 @@
     "version": "make version",
     "watch": "make watch"
   },
-  "repository": "alpjs/auk-react-redux",
+  "repository": "alpjs/alp-react-redux",
   "keywords": [
     "alp",
     "auk"
@@ -20,16 +21,18 @@
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alpjs/auk-react-redux/issues"
+    "url": "https://github.com/alpjs/alp-react-redux/issues"
   },
-  "homepage": "https://github.com/alpjs/auk-react-redux#readme",
+  "homepage": "https://github.com/alpjs/alp-react-redux#readme",
   "devDependencies": {
-    "eslint": "^1.10.3",
-    "springbokjs-library": "^15.0.0"
+    "eslint": "^2.4.0",
+    "springbokjs-library": "^16.1.1"
   },
   "dependencies": {
-    "fody": "^3.0.0",
+    "content-loaded": "^1.1.0",
+    "fody": "^3.0.1",
     "fody-redux-app": "^3.0.0",
+    "nightingale": "^3.0.5",
     "redux": "^3.3.1"
   }
 }
