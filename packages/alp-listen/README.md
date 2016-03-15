@@ -1,13 +1,13 @@
-# auk-listen
+# alp-listen
 
 Handles http and https via config
 
 ```js
 import Koa from 'koa';
-import config from 'auk-config';
-import errors from 'auk-errors';
-import logger from 'auk-logger';
-import listen from 'auk-listen';
+import config from 'alp-config';
+import errors from 'alp-errors';
+import logger from 'alp-logger';
+import listen from 'alp-listen';
 
 const app = new Koa();
 config(`${__dirname}/config`, { packageConfig })(app);
@@ -25,4 +25,4 @@ config:
  - `tls`: boolean
 
 If `tls` is true, the files `server.key` and `server.crt`
-will be loaded from the
+will be loaded from the path given in the first param
