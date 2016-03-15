@@ -4,10 +4,10 @@
   "description": "framework for node5 based on koa",
   "main": "lib/index.js",
   "dependencies": {
-    "alp-config": "^1.1.1",
+    "alp-config": "^1.1.2",
     "alp-controller": "^0.1.0",
     "alp-errors-node": "^1.0.0",
-    "alp-language": "^1.1.0",
+    "alp-language": "^1.1.1",
     "alp-limosa": "^2.1.1",
     "alp-listen": "^1.0.0",
     "alp-logger": "^1.5.0",
