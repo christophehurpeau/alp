@@ -1,3 +1,7 @@
+### v0.3.1
+
+- [`db493dc`](https://github.com/alpjs/auk/commit/db493dcc8666b52c93d174561230b9ff6ba8921c) dependencies fix (Christophe Hurpeau)
+
 ### v0.3.0
 
 
