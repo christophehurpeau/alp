@@ -1,1 +1,1 @@
-{"version":3,"sources":["dev.js"],"names":[],"mappings":";;AAAA,QAAQ,SAAR","file":"dev.js","sourcesContent":["require('auk-dev');\n"],"sourceRoot":"/"}
+{"version":3,"sources":["dev.js"],"names":[],"mappings":";;AAAA,QAAQ,SAAR","file":"dev.js","sourcesContent":["require('alp-dev');\n"],"sourceRoot":"/"}

@@ -1,4 +1,4 @@
 'use strict';
 
-require('auk-dev');
+require('alp-dev');
 //# sourceMappingURL=dev.js.map

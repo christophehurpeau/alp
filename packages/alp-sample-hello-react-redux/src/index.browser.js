@@ -1,21 +1,14 @@
 import 'babel-regenerator-runtime';
-import Ibex from 'ibex';
-import config from 'ibex-config';
-import language from 'ibex-language';
-import logger from 'ibex-logger';
-import reactredux from 'ibex-react-redux';
-import translate from 'ibex-translate';
+import Alp from 'alp';
+import reactredux from 'alp-react-redux';
 import './controllers/index';
 
 import * as moduleDescriptor from './views/index';
 
 (async function main() {
-    const app = new Ibex();
+    const app = new Alp();
     app.appVersion = window.VERSION;
-    await config('config')(app);
-    logger(app);
-    language(app);
-    await translate('locales')(app);
+    await app.init();
     await reactredux({
         moduleDescriptor,
         initialData: window.initialData,

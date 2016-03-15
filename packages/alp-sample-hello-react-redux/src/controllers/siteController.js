@@ -1,4 +1,4 @@
-import { newController } from 'alp';
+import newController from 'alp-controller';
 import * as appDescriptor from '../views/index';
 
 export default newController({

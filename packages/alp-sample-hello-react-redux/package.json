@@ -1,33 +1,25 @@
 {
-  "name": "auk-sample-hello-react-redux",
+  "name": "alp-sample-hello-react-redux",
   "private": true,
   "version": "0.1.0",
-  "description": "Say hello, with auk and redux",
+  "description": "Say hello, with alp and redux",
   "main": "./lib/index.js",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "MIT",
   "dependencies": {
-    "auk": "^4.0.0",
-    "auk-config": "^2.0.1",
-    "auk-language": "^1.1.1",
-    "auk-limosa": "^2.1.1",
-    "auk-logger": "^1.4.0",
-    "auk-params": "^2.0.0",
-    "auk-react-redux": "^3.0.1",
-    "auk-translate": "^1.1.0",
-    "koa-convert": "^1.2.0",
-    "koa-static": "^2.0.0",
-    "turaco-styl": "0.5.0"
+    "alp": "^2.0.1",
+    "alp-react-redux": "^1.0.0",
+    "turaco-styl": "0.6.0"
   },
   "devDependencies": {
-    "auk-dev": "^1.0.1",
+    "alp-dev": "^1.0.0",
     "babel": "^6.5.2",
     "babel-cli": "^6.6.5",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
-    "eslint": "^1.10.3",
-    "eslint-config-partridge": "^3.0.1",
-    "karma": "^0.13.21",
+    "eslint": "^2.4.0",
+    "eslint-config-partridge": "^4.3.1",
+    "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.2",
     "karma-cli": "^0.1.2",
     "karma-firefox-launcher": "^0.1.7",
@@ -38,6 +30,6 @@
     "karma-safari-launcher": "^0.1.1",
     "mocha": "^2.4.5",
     "node-fetch": "^1.3.3",
-    "stylus": "^0.54.0"
+    "stylus": "^0.54.2"
   }
 }
