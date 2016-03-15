@@ -1,3 +1,7 @@
+### v1.1.1
+
+- [`c300d30`](https://github.com/alpjs/alp-config/commit/c300d30fff793e32faf39911224f023ac5830f2e) missing dependency deep-freeze-es6 (Christophe Hurpeau)
+
 ### v1.1.0
 
 
