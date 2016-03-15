@@ -14,7 +14,7 @@ check:
 clean:
 	rm -Rf lib tests/lib public/*.css* public/*.js*
 
-default: check
+default: check clean
 	$(BIN)gulp
 
 watch: check

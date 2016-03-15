@@ -1,4 +1,4 @@
-# auk-dev
+# alp-dev
 
 Config for webpack/browsersync/makefile for auk-server
 
