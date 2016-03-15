@@ -17,37 +17,37 @@ var _koaConvert = require('koa-convert');
 
 var _koaConvert2 = _interopRequireDefault(_koaConvert);
 
-var _aukConfig = require('auk-config');
+var _alpConfig = require('alp-config');
 
-var _aukConfig2 = _interopRequireDefault(_aukConfig);
+var _alpConfig2 = _interopRequireDefault(_alpConfig);
 
-var _aukErrors = require('auk-errors');
+var _alpErrorsNode = require('alp-errors-node');
 
-var _aukErrors2 = _interopRequireDefault(_aukErrors);
+var _alpErrorsNode2 = _interopRequireDefault(_alpErrorsNode);
 
-var _aukParams = require('auk-params');
+var _alpParamsNode = require('alp-params-node');
 
-var _aukParams2 = _interopRequireDefault(_aukParams);
+var _alpParamsNode2 = _interopRequireDefault(_alpParamsNode);
 
-var _aukLanguage = require('auk-language');
+var _alpLanguage = require('alp-language');
 
-var _aukLanguage2 = _interopRequireDefault(_aukLanguage);
+var _alpLanguage2 = _interopRequireDefault(_alpLanguage);
 
-var _aukLogger = require('auk-logger');
+var _alpLogger = require('alp-logger');
 
-var _aukLogger2 = _interopRequireDefault(_aukLogger);
+var _alpLogger2 = _interopRequireDefault(_alpLogger);
 
-var _aukTranslate = require('auk-translate');
+var _alpTranslate = require('alp-translate');
 
-var _aukTranslate2 = _interopRequireDefault(_aukTranslate);
+var _alpTranslate2 = _interopRequireDefault(_alpTranslate);
 
-var _aukLimosa = require('auk-limosa');
+var _alpLimosa = require('alp-limosa');
 
-var _aukLimosa2 = _interopRequireDefault(_aukLimosa);
+var _alpLimosa2 = _interopRequireDefault(_alpLimosa);
 
-var _aukListen = require('auk-listen');
+var _alpListen = require('alp-listen');
 
-var _aukListen2 = _interopRequireDefault(_aukListen);
+var _alpListen2 = _interopRequireDefault(_alpListen);
 
 /**
  * @function
@@ -55,27 +55,27 @@ var _aukListen2 = _interopRequireDefault(_aukListen);
 */
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let Auk = class Auk extends _koa2.default {
+let Alp = class Alp extends _koa2.default {
     /**
-     * @param {string} [dirname] directory of the application (lib/) or `process.cwd()`
-     * @param {Object} [options] directory of the application (lib/) or `process.cwd()`
+     * @param {string} [dirname] directory of the application (lib/) or `process.cwd() + '/lib'`
+     * @param {Object} [options]
      * @param {array} [options.argv] list of overridable config by argv
     */
     constructor() {
-        let dirname = arguments.length <= 0 || arguments[0] === undefined ? process.cwd() : arguments[0];
+        let dirname = arguments.length <= 0 || arguments[0] === undefined ? `${ process.cwd() }/lib` : arguments[0];
         let options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
         super();
         this.dirname = dirname;
         const packageConfig = require(`${ dirname }/../package.json`);
-        (0, _aukConfig2.default)(`${ this.dirname }/config`, {
+        (0, _alpConfig2.default)(`${ this.dirname }/config`, {
             packageConfig,
             argv: options.argv
         })(this);
-        (0, _aukParams2.default)(this);
-        (0, _aukLanguage2.default)(this);
-        (0, _aukLogger2.default)(this);
-        (0, _aukTranslate2.default)('locales')(this);
+        (0, _alpParamsNode2.default)(this);
+        (0, _alpLanguage2.default)(this);
+        (0, _alpLogger2.default)(this);
+        (0, _alpTranslate2.default)('locales')(this);
     }
 
     /**
@@ -88,7 +88,7 @@ let Auk = class Auk extends _koa2.default {
      * @param routerBuilder
      * @param controllers
     */createRouter(routerBuilder, controllers) {
-        return (0, _aukLimosa2.default)(routerBuilder, controllers)(this);
+        return (0, _alpLimosa2.default)(routerBuilder, controllers)(this);
     }
 
     servePublic() {
@@ -96,7 +96,7 @@ let Auk = class Auk extends _koa2.default {
     }
 
     catchErrors() {
-        this.use(_aukErrors2.default);
+        this.use(_alpErrorsNode2.default);
     }
 
     /**
@@ -109,11 +109,11 @@ let Auk = class Auk extends _koa2.default {
     }
 
     listen() {
-        return (0, _aukListen2.default)(`${ this.dirname }/../config/cert`)(this).catch(err => {
+        return (0, _alpListen2.default)(`${ this.dirname }/../config/cert`)(this).catch(err => {
             this.logger.error(err);
             throw err;
         });
     }
 };
-exports.default = Auk;
+exports.default = Alp;
 //# sourceMappingURL=index.js.map

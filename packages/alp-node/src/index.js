@@ -1,22 +1,22 @@
 import Koa from 'koa';
 import serve from 'koa-static';
 import convert from 'koa-convert';
-import config from 'auk-config';
-import errors from 'auk-errors';
-import params from 'auk-params';
-import language from 'auk-language';
-import logger from 'auk-logger';
-import translate from 'auk-translate';
-import router from 'auk-limosa';
-import _listen from 'auk-listen';
+import config from 'alp-config';
+import errors from 'alp-errors-node';
+import params from 'alp-params-node';
+import language from 'alp-language';
+import logger from 'alp-logger';
+import translate from 'alp-translate';
+import router from 'alp-limosa';
+import _listen from 'alp-listen';
 
-export default class Auk extends Koa {
+export default class Alp extends Koa {
     /**
-     * @param {string} [dirname] directory of the application (lib/) or `process.cwd()`
-     * @param {Object} [options] directory of the application (lib/) or `process.cwd()`
+     * @param {string} [dirname] directory of the application (lib/) or `process.cwd() + '/lib'`
+     * @param {Object} [options]
      * @param {array} [options.argv] list of overridable config by argv
      */
-    constructor(dirname = process.cwd(), options = {}) {
+    constructor(dirname = `${process.cwd()}/lib`, options = {}) {
         super();
         this.dirname = dirname;
         const packageConfig = require(`${dirname}/../package.json`);

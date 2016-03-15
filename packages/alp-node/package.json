@@ -1,26 +1,25 @@
 {
-  "name": "auk",
-  "version": "4.0.0",
+  "name": "alp-node",
+  "version": "0.2.1",
   "description": "framework for node5 based on koa",
   "main": "lib/index.js",
   "dependencies": {
     "alp": "^1.2.0",
-    "auk-config": "^2.0.1",
-    "auk-errors": "^1.1.1",
-    "auk-language": "^1.1.1",
-    "auk-limosa": "^2.1.1",
-    "auk-listen": "^1.0.0",
-    "auk-logger": "^1.4.0",
-    "auk-params": "^2.0.0",
-    "auk-translate": "^1.1.0",
+    "alp-config": "^1.1.0",
+    "alp-errors-node": "^1.0.0",
+    "alp-language": "^1.1.0",
+    "alp-limosa": "^2.1.1",
+    "alp-listen": "^1.0.0",
+    "alp-logger": "^1.5.0",
+    "alp-params-node": "^0.1.1",
+    "alp-translate": "^0.1.0",
     "koa": "^2.0.0-alpha.3",
     "koa-convert": "^1.2.0",
     "koa-static": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^1.10.3",
-    "eslint-config-partridge": "^3.0.1",
-    "springbokjs-library": "^15.0.0"
+    "eslint": "^2.4.0",
+    "springbokjs-library": "^16.1.1"
   },
   "scripts": {
     "test": "make test",
@@ -37,13 +36,12 @@
     "alp",
     "framework",
     "koa",
-    "node4",
     "node5"
   ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alpjs/auk/issues"
+    "url": "https://github.com/alpjs/alp-node/issues"
   },
-  "homepage": "https://github.com/alpjs/auk#readme"
+  "homepage": "https://github.com/alpjs/alp-node#readme"
 }
