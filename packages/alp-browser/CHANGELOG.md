@@ -1,3 +1,7 @@
+### v0.1.6
+
+- [`d9e0f2e`](https://github.com/alpjs/alp-browser/commit/d9e0f2e2d4fccc31d1f9de74b877206d2611b0dc) update alp-translate (Christophe Hurpeau)
+
 ### v0.1.5
 
 - [`fedb0e4`](https://github.com/alpjs/alp-browser/commit/fedb0e40d3635292dc52b7cacb28fbba2b9658d0) update alp-limosa (Christophe Hurpeau)
