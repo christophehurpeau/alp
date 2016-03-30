@@ -9,13 +9,13 @@ var _koa = require('koa');
 
 var _koa2 = _interopRequireDefault(_koa);
 
+var _koaCompress = require('koa-compress');
+
+var _koaCompress2 = _interopRequireDefault(_koaCompress);
+
 var _koaStatic = require('koa-static');
 
 var _koaStatic2 = _interopRequireDefault(_koaStatic);
-
-var _koaConvert = require('koa-convert');
-
-var _koaConvert2 = _interopRequireDefault(_koaConvert);
 
 var _alpConfig = require('alp-config');
 
@@ -69,13 +69,14 @@ let Alp = class Alp extends _koa2.default {
         this.dirname = dirname;
         const packageConfig = require(`${ dirname }/../package.json`);
         (0, _alpConfig2.default)(`${ this.dirname }/config`, {
-            packageConfig,
+            packageConfig: packageConfig,
             argv: options.argv
         })(this);
         (0, _alpParamsNode2.default)(this);
         (0, _alpLanguage2.default)(this);
         (0, _alpLogger2.default)(this);
         (0, _alpTranslate2.default)('locales')(this);
+        this.use((0, _koaCompress2.default)());
     }
 
     /**
@@ -92,7 +93,7 @@ let Alp = class Alp extends _koa2.default {
     }
 
     servePublic() {
-        this.use((0, _koaConvert2.default)((0, _koaStatic2.default)(`${ this.dirname }/../public/`))); // static files
+        this.use((0, _koaStatic2.default)(`${ this.dirname }/../public/`)); // static files
     }
 
     catchErrors() {

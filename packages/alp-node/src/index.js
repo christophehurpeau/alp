@@ -1,6 +1,6 @@
 import Koa from 'koa';
+import compress from 'koa-compress';
 import serve from 'koa-static';
-import convert from 'koa-convert';
 import config from 'alp-config';
 import errors from 'alp-errors-node';
 import params from 'alp-params-node';
@@ -28,6 +28,7 @@ export default class Alp extends Koa {
         language(this);
         logger(this);
         translate('locales')(this);
+        this.use(compress());
     }
 
     get environment() {
@@ -39,7 +40,7 @@ export default class Alp extends Koa {
     }
 
     servePublic() {
-        this.use(convert(serve(`${this.dirname}/../public/`))); // static files
+        this.use(serve(`${this.dirname}/../public/`)); // static files
     }
 
     catchErrors() {
