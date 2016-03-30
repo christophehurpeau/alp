@@ -1,3 +1,7 @@
+### v0.4.0
+
+- [`56b6db9`](https://github.com/alpjs/auk/commit/56b6db90b4a612be03bb954f223826573b73d169) use compress (Christophe Hurpeau)
+
 ### v0.3.1
 
 - [`db493dc`](https://github.com/alpjs/auk/commit/db493dcc8666b52c93d174561230b9ff6ba8921c) dependencies fix (Christophe Hurpeau)
