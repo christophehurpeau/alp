@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "websocket in alp framework",
   "main": "lib/node.js",
-  "browser": "lib/browser.js",
+  "browser": "browser/lib/browser.js",
   "scripts": {
     "test": "make test",
     "lint": "make lint",
