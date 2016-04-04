@@ -1,0 +1,33 @@
+{
+  "name": "alp-body-parser",
+  "version": "1.0.0",
+  "description": "body parser in alp framework",
+  "main": "lib/node.js",
+  "scripts": {
+    "test": "make test",
+    "lint": "make lint",
+    "build": "make build",
+    "postpublish": "make post-publish",
+    "preversion": "make pre-version",
+    "version": "make version",
+    "watch": "make watch"
+  },
+  "repository": "alpjs/alp-body-parser",
+  "keywords": [
+    "alp",
+    "body-parser"
+  ],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alpjs/alp-body-parser/issues"
+  },
+  "homepage": "https://github.com/alpjs/alp-body-parser#readme",
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "springbokjs-library": "^16.1.1"
+  },
+  "dependencies": {
+    "co-body": "^4.0.0"
+  }
+}
