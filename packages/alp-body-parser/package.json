@@ -1,6 +1,6 @@
 {
   "name": "alp-body-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "body parser in alp framework",
   "main": "lib/index.js",
   "scripts": {
