@@ -1,12 +1,12 @@
 import parse from 'co-body';
 
 function parseBody(type, ctx) {
-    if (this.request.body) {
+    if (ctx.request.body) {
         throw new Error('Request is already parsed');
     }
 
     return parse[type](ctx).then(body => {
-        this.request.body = body;
+        ctx.request.body = body;
         return body;
     });
 }

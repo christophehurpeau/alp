@@ -22,12 +22,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 */
 
 function parseBody(type, ctx) {
-    if (this.request.body) {
+    if (ctx.request.body) {
         throw new Error('Request is already parsed');
     }
 
     return _coBody2.default[type](ctx).then(body => {
-        this.request.body = body;
+        ctx.request.body = body;
         return body;
     });
 }
