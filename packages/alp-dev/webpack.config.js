@@ -15,6 +15,7 @@ const modulesList = (() => {
 
 module.exports = {
     debug: !production,
+    devtool: production ? undefined : 'inline-source-map',
 
     entry: { 'bundle': './src/index.browser.js' },
     output: {
@@ -36,6 +37,12 @@ module.exports = {
         wrappedContextRegExp: /$^/,
         wrappedContextCritical: true,
         wrappedContextRecursive: false,
+
+
+        preLoaders: [
+            // {test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/},
+            {test: /\.jsx?$/, loader: 'source-map', exclude: /react-hot-loader/}
+        ],
 
         loaders: [
             {
