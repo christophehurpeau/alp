@@ -1,3 +1,7 @@
+### v1.1.0
+
+
+
 ### v1.1.1
 
 - [`95d7d11`](https://github.com/alpjs/auk/commit/95d7d11532821a68af1310c69a90919457444325) fix when src/modules does not exists (Christophe Hurpeau)
