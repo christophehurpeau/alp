@@ -1,3 +1,7 @@
+### v0.4.1
+
+- [`cd81c61`](https://github.com/alpjs/auk/commit/cd81c61fae588712658f8e8d0bd1aba9d76e0ca1) production getter (Christophe Hurpeau)
+
 ### v0.4.0
 
 - [`56b6db9`](https://github.com/alpjs/auk/commit/56b6db90b4a612be03bb954f223826573b73d169) use compress (Christophe Hurpeau)
