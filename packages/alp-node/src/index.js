@@ -35,6 +35,10 @@ export default class Alp extends Koa {
         return this.env;
     }
 
+    get production() {
+        return this.env === 'prod' || this.env === 'production';
+    }
+
     createRouter(routerBuilder, controllers) {
         return router(routerBuilder, controllers)(this);
     }

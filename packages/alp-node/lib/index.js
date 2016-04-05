@@ -86,6 +86,12 @@ let Alp = class Alp extends _koa2.default {
     }
 
     /**
+     * @member production
+    */get production() {
+        return this.env === 'prod' || this.env === 'production';
+    }
+
+    /**
      * @param routerBuilder
      * @param controllers
     */createRouter(routerBuilder, controllers) {
