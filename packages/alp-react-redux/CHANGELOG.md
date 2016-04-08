@@ -1,3 +1,7 @@
+### v2.0.1
+
+- [`a265349`](https://github.com/alpjs/alp-react-redux/commit/a26534973a151744d073669f41dd1ca25d9e115e) fody@4 (Christophe Hurpeau)
+
 ### v2.0.0
 
 react 15
