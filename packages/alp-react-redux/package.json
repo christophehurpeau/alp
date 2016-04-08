@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "content-loaded": "^1.1.0",
-    "fody": "^3.0.1",
+    "fody": "^4.0.0",
     "fody-redux-app": "^4.0.0",
     "nightingale": "^3.0.5",
     "redux": "^3.3.1"
