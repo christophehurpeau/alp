@@ -1,3 +1,8 @@
+### v2.0.0
+
+react 15
+
+
 ### v3.0.2
 
 - [`230a98d`](https://github.com/alpjs/auk-react-redux/commit/230a98d1219cb29ab5410f2899489ce3a5b2577c) data for non-redux modules (Christophe Hurpeau)

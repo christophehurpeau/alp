@@ -1,6 +1,6 @@
 {
   "name": "alp-react-redux",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "render with react and redux in alp framework",
   "main": "lib/node.js",
   "browser": "browser/lib/browser.js",
