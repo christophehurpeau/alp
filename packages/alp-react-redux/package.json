@@ -25,13 +25,14 @@
   },
   "homepage": "https://github.com/alpjs/alp-react-redux#readme",
   "devDependencies": {
-    "eslint": "^2.4.0",
-    "springbokjs-library": "^16.1.1"
+    "eslint": "^2.7.0",
+    "eslint-config-pob": "^5.0.0",
+    "springbokjs-library": "^17.0.0"
   },
   "dependencies": {
     "content-loaded": "^1.1.0",
     "fody": "^3.0.1",
-    "fody-redux-app": "^3.0.0",
+    "fody-redux-app": "^4.0.0",
     "nightingale": "^3.0.5",
     "redux": "^3.3.1"
   }
