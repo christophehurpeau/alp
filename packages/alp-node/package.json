@@ -30,7 +30,7 @@
     "version": "make version",
     "watch": "make watch"
   },
-  "repository": "alpjs/auk",
+  "repository": "alpjs/alp-node",
   "keywords": [
     "springbokjs",
     "alp",
