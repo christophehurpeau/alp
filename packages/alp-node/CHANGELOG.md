@@ -1,3 +1,7 @@
+### v0.5.0
+
+- [`6e38779`](https://github.com/alpjs/auk/commit/6e3877997b894c645f200b3238e3a998a1439720) split dirname arg into packageDirname + srcDirname (Christophe Hurpeau)
+
 ### v0.4.1
 
 - [`cd81c61`](https://github.com/alpjs/auk/commit/cd81c61fae588712658f8e8d0bd1aba9d76e0ca1) production getter (Christophe Hurpeau)
