@@ -10,16 +10,20 @@ import translate from 'alp-translate';
 import router from 'alp-limosa';
 import _listen from 'alp-listen';
 
+export { default as newController } from 'alp-controller';
+
 export default class Alp extends Koa {
     /**
-     * @param {string} [dirname] directory of the application (lib/) or `process.cwd() + '/lib'`
+     * @param {string} [packageDirname] directory of the package (where package.json is)
+     * @param {string} [srcDirname] directory of the application
      * @param {Object} [options]
      * @param {array} [options.argv] list of overridable config by argv
      */
-    constructor(dirname = `${process.cwd()}/lib`, options = {}) {
+    constructor(packageDirname = process.cwd(), srcDirname = `${packageDirname}/lib`, options = {}) {
         super();
-        this.dirname = dirname;
-        const packageConfig = require(`${dirname}/../package.json`);
+        this.packageDirname = packageDirname;
+        this.dirname = srcDirname;
+        const packageConfig = require(`${packageDirname}/package.json`);
         config(`${this.dirname}/config`, {
             packageConfig,
             argv: options.argv,
@@ -44,7 +48,7 @@ export default class Alp extends Koa {
     }
 
     servePublic() {
-        this.use(serve(`${this.dirname}/../public/`)); // static files
+        this.use(serve(`${this.packageDirname}/public/`)); // static files
     }
 
     catchErrors() {
@@ -58,7 +62,7 @@ export default class Alp extends Koa {
     }
 
     listen() {
-        return _listen(`${this.dirname}/../config/cert`)(this)
+        return _listen(`${this.packageDirname}/config/cert`)(this)
             .catch(err => {
                 this.logger.error(err);
                 throw err;

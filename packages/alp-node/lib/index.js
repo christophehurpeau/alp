@@ -3,7 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = undefined;
+exports.default = exports.newController = undefined;
+
+var _alpController = require('alp-controller');
+
+Object.defineProperty(exports, 'newController', {
+    enumerable: true,
+    get: /**
+          * @function
+         */function get() {
+        return _interopRequireDefault(_alpController).default;
+    }
+});
 
 var _koa = require('koa');
 
@@ -57,17 +68,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 let Alp = class Alp extends _koa2.default {
     /**
-     * @param {string} [dirname] directory of the application (lib/) or `process.cwd() + '/lib'`
+     * @param {string} [packageDirname] directory of the package (where package.json is)
+     * @param {string} [srcDirname] directory of the application
      * @param {Object} [options]
      * @param {array} [options.argv] list of overridable config by argv
     */
     constructor() {
-        let dirname = arguments.length <= 0 || arguments[0] === undefined ? `${ process.cwd() }/lib` : arguments[0];
-        let options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+        let packageDirname = arguments.length <= 0 || arguments[0] === undefined ? process.cwd() : arguments[0];
+        let srcDirname = arguments.length <= 1 || arguments[1] === undefined ? `${ packageDirname }/lib` : arguments[1];
+        let options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
 
         super();
-        this.dirname = dirname;
-        const packageConfig = require(`${ dirname }/../package.json`);
+        this.packageDirname = packageDirname;
+        this.dirname = srcDirname;
+        const packageConfig = require(`${ packageDirname }/package.json`);
         (0, _alpConfig2.default)(`${ this.dirname }/config`, {
             packageConfig: packageConfig,
             argv: options.argv
@@ -99,7 +113,7 @@ let Alp = class Alp extends _koa2.default {
     }
 
     servePublic() {
-        this.use((0, _koaStatic2.default)(`${ this.dirname }/../public/`)); // static files
+        this.use((0, _koaStatic2.default)(`${ this.packageDirname }/public/`)); // static files
     }
 
     catchErrors() {
@@ -116,7 +130,7 @@ let Alp = class Alp extends _koa2.default {
     }
 
     listen() {
-        return (0, _alpListen2.default)(`${ this.dirname }/../config/cert`)(this).catch(err => {
+        return (0, _alpListen2.default)(`${ this.packageDirname }/config/cert`)(this).catch(err => {
             this.logger.error(err);
             throw err;
         });
