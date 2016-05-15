@@ -1,3 +1,7 @@
+### v2.0.2
+
+- [`abbaa02`](https://github.com/alpjs/alp-dev/commit/abbaa025ac193697b1ba6c6a1e9947fccd63865a) UglifyJS doesn't understand ES2015 (Christophe Hurpeau)
+
 ### v2.0.1
 
 - [`b9980f8`](https://github.com/alpjs/alp-dev/commit/b9980f8b9131f3de7c8d4af6066edffd911aaf9e) fix prod dest (Christophe Hurpeau)
