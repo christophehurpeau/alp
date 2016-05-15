@@ -1,6 +1,6 @@
 {
   "name": "alp-dev",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Config for webpack/browsersync/makefile for alp server",
   "main": "lib/index.js",
   "dependencies": {
