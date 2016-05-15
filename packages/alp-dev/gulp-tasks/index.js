@@ -25,7 +25,7 @@ gulp.task('define-port', function(done) {
     }
 
     var portscanner = require('portscanner');
-    port = argv.startPort || 3000;
+    port = argv.startPort || 3050;
     portscanner.findAPortNotInUse(port, port + 50, '127.0.0.1', function(error, foundPort) {
         port = foundPort;
         done();
@@ -37,7 +37,7 @@ gulp.task('define-browser-sync-port', function(done) {
     }
 
     var portscanner = require('portscanner');
-    browserSyncPort = argv.browserSyncStartPort || 3100;
+    browserSyncPort = argv.browserSyncStartPort || 3000;
     portscanner.findAPortNotInUse(browserSyncPort, browserSyncPort + 50, '127.0.0.1', function(err, foundPort) {
         browserSyncPort = foundPort;
         done();
@@ -97,7 +97,8 @@ function buildJsServer() {
         .pipe(clip())
         .pipe(babel({
             presets: ['es2015-node5', 'react', 'stage-1'],
-            plugins: ['transform-decorators-legacy'],
+            plugins: (!argv.production ? ['typecheck'] : [])
+                .concat(['transform-decorators-legacy']),
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('lib'));
@@ -170,7 +171,6 @@ process.on('exit', function(code) {
         webpackAndBrowserSyncDaemon.stop();
     }
 });
-
 
 gulp.task(
     'webpack+browsersync',

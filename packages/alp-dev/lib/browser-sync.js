@@ -43,8 +43,9 @@ exports.default = browserSync({
             publicPath: webpackConfig.output.publicPath,
 
             // pretty colored output
-            stats: { colors: true }
+            stats: { colors: true },
 
+            noInfo: true
         }), // for other settings see
         // http://webpack.github.io/docs/webpack-dev-middleware.html
 

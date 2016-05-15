@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const OfflinePlugin = require('offline-plugin');
 
 const production = process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production';
+const dest = process.env.WEBPACK_DEST || 'modern-browsers';
 
 const modulesList = (() => {
     try {
@@ -17,7 +18,7 @@ module.exports = {
     debug: !production,
     devtool: production ? undefined : 'inline-source-map',
 
-    entry: { 'bundle': './src/index.browser.js' },
+    entry: { [dest]: './src/index.browser.js' },
     output: {
         path: path.resolve('public'),
         publicPath: '/',
@@ -52,10 +53,12 @@ module.exports = {
                 include: path.resolve('src'),
                 query: {
                     presets: (
-                        !production ? ['modern-browsers', 'react', 'modern-browsers/stage1']//, 'react-hmre']
-                                    : ['es2015', 'react', 'stage-1']
+                        dest === 'modern-browsers' ?
+                            ['modern-browsers', 'react', 'modern-browsers/stage1']//, 'react-hmre']
+                            : ['es2015', 'react', 'stage-1']
                     ),
-                    plugins: ['transform-decorators-legacy'],
+                    plugins: (!production ? ['typecheck'] : [])
+                        .concat(['transform-decorators-legacy']),
                 },
             },
         ],
