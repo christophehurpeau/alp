@@ -5,6 +5,7 @@ const OfflinePlugin = require('offline-plugin');
 
 const production = process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production';
 const dest = process.env.WEBPACK_DEST || 'modern-browsers';
+console.log(dest);
 
 const modulesList = (() => {
     try {
@@ -77,9 +78,9 @@ module.exports = {
     node: { util: 'empty' }, // fix nightingale...
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'bundle',
-            filename: 'bundle.js',
-            chunks: ['bundle'],
+            name: dest,
+            filename: `${dest}.js`,
+            chunks: [dest],
             // minChunks: modulesList.length === 1 ? 1 : 2,
         }),
         new webpack.LoaderOptionsPlugin({
