@@ -5,7 +5,6 @@ const OfflinePlugin = require('offline-plugin');
 
 const production = process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production';
 const dest = process.env.WEBPACK_DEST || 'modern-browsers';
-console.log(dest);
 
 const modulesList = (() => {
     try {
@@ -93,8 +92,9 @@ module.exports = {
             NODE: false,
             PRODUCTION: production,
         }),
-        ...(production ? [
-            new webpack.optimize.UglifyJsPlugin({
+        // Note: UglifyJS doesn't understand ES2015
+        ...(production && dest !== 'modern-browsers' ? [
+             new webpack.optimize.UglifyJsPlugin({
                 mangle: false,
                 compress: {
                     warnings: false,
