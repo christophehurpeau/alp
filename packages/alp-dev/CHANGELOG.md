@@ -1,3 +1,7 @@
+### v2.0.4
+
+- [`731f22b`](https://github.com/alpjs/alp-dev/commit/731f22b6fc8575df654dce0504135f082cef9fff) reduce production generated size (Christophe Hurpeau)
+
 ### v2.0.3
 
 - [`62875f7`](https://github.com/alpjs/alp-dev/commit/62875f71d331f8059d62f72089fadaaed341b906) UglifyJS now understand ES2015 (Christophe Hurpeau)
