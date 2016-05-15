@@ -1,3 +1,7 @@
+### v2.0.0
+
+- [`8800379`](https://github.com/alpjs/alp-dev/commit/880037978f487bd189d5b9e29d5579daecae1eb3) modern-browser preset 2.0, WEBPACK_DEST, noInfo: true (Christophe Hurpeau)
+
 ### v1.1.0
 
 
