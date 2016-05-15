@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = ibexReactRedux;
+exports.default = alpReactRedux;
 
 var _fodyApp = require('fody-app');
 
@@ -38,7 +38,7 @@ var store = void 0;
 /**
  * @function
  * @param
-*/function ibexReactRedux(_ref) {
+*/function alpReactRedux(_ref) {
     var moduleDescriptor = _ref.moduleDescriptor;
     var initialData = _ref.initialData;
     var element = _ref.element;

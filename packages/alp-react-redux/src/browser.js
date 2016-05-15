@@ -9,7 +9,7 @@ const logger = new ConsoleLogger('alp.react-redux');
 
 let store;
 
-export default function ibexReactRedux({ moduleDescriptor, initialData, element }) {
+export default function alpReactRedux({ moduleDescriptor, initialData, element }) {
     return (app) => {
         app.context.render = function (moduleDescriptor, data) {
             logger.debug('render view', { data });

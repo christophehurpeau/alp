@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = aukReactRedux;
+exports.default = alpReactRedux;
 
 var _fody = require('fody');
 
@@ -25,10 +25,16 @@ var _redux = require('redux');
 */
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// https://www.npmjs.com/package/babel-preset-modern-browsers
+const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 13 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 45 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 41 }, // also works for opera.
+{ name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 41 }];
+
 /**
  * @function
  * @param Html
-*/function aukReactRedux(Html) {
+*/
+// { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 },
+function alpReactRedux(Html) {
     return app => {
         app.context.render = /**
                               * @function
@@ -42,7 +48,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             this.body = (0, _fody2.default)({
                 htmlData: {
                     context: this,
-                    moduleDescriptor: moduleDescriptor
+                    moduleDescriptor: moduleDescriptor,
+                    get scriptName() {
+                        // TODO create alp-useragent with getter in context
+                        const ua = this.context.req.headers['user-agent'];
+
+                        for (let agent of agents) {
+                            const res = agent.regexp.exec(ua);
+                            if (res && res[1] >= agent.modernMinVersion) {
+                                return 'modern-browsers';
+                            }
+                        }
+                        return 'es2015';
+                    }
                 },
                 context: this,
                 View: moduleDescriptor.View,
