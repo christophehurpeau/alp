@@ -1,3 +1,7 @@
+### v2.0.3
+
+- [`62875f7`](https://github.com/alpjs/alp-dev/commit/62875f71d331f8059d62f72089fadaaed341b906) UglifyJS now understand ES2015 (Christophe Hurpeau)
+
 ### v2.0.2
 
 - [`abbaa02`](https://github.com/alpjs/alp-dev/commit/abbaa025ac193697b1ba6c6a1e9947fccd63865a) UglifyJS doesn't understand ES2015 (Christophe Hurpeau)
