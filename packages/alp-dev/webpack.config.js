@@ -91,6 +91,9 @@ module.exports = {
             SERVER: false,
             NODE: false,
             PRODUCTION: production,
+            'process.env': {
+                'NODE_ENV': JSON.stringify(production ? 'production' : process.env.NODE_ENV)
+            }
         }),
         ...(production ? [
              new webpack.optimize.UglifyJsPlugin({
