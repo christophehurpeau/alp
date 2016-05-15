@@ -1,3 +1,10 @@
+### v2.1.0
+
+use https://www.npmjs.com/package/babel-preset-modern-browsers to build your bundle :)
+
+- [`89d372b`](https://github.com/alpjs/alp-react-redux/commit/89d372b1b8d5cd9882f1d22470b689b848c4be13) scriptName: modern-browsers vs es2015 (Christophe Hurpeau)
+
+
 ### v2.0.1
 
 - [`a265349`](https://github.com/alpjs/alp-react-redux/commit/a26534973a151744d073669f41dd1ca25d9e115e) fody@4 (Christophe Hurpeau)
