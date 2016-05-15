@@ -92,8 +92,7 @@ module.exports = {
             NODE: false,
             PRODUCTION: production,
         }),
-        // Note: UglifyJS doesn't understand ES2015
-        ...(production && dest !== 'modern-browsers' ? [
+        ...(production ? [
              new webpack.optimize.UglifyJsPlugin({
                 mangle: false,
                 compress: {

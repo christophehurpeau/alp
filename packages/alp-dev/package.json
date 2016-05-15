@@ -32,7 +32,8 @@
     "springbokjs-daemon": "^0.2.0",
     "stylus": "^0.54.2",
     "through2": "^2.0.1",
-    "webpack": "^2.1.0-beta.4",
+    "uglify-js": "github:mishoo/UglifyJS2#harmony",
+    "webpack": "^2.1.0-beta.7",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.10.0"
   },
