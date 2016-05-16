@@ -1,9 +1,9 @@
-import { ConsoleLogger } from 'nightingale';
+import Logger from 'nightingale-logger';
 import { EventEmitter } from 'events';
 import compose from './compose';
 import context from './context';
 
-const logger = new ConsoleLogger('ibex');
+const logger = new Logger('ibex');
 
 export default class Application extends EventEmitter {
     middleware: Array<Function>;

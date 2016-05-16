@@ -14,8 +14,7 @@
   },
   "repository": "alpjs/ibex",
   "keywords": [
-    "alp",
-    "auk"
+    "alp"
   ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
@@ -24,10 +23,11 @@
   },
   "homepage": "https://github.com/alpjs/ibex#readme",
   "devDependencies": {
-    "eslint": "^2.4.0",
-    "springbokjs-library": "^16.1.1"
+    "eslint": "^2.10.1",
+    "eslint-config-pob": "^5.0.0",
+    "springbokjs-library": "^17.0.0"
   },
   "dependencies": {
-    "nightingale": "^3.0.5"
+    "nightingale-logger": "^1.1.0"
   }
 }
