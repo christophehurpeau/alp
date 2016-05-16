@@ -3,7 +3,6 @@ import config from 'alp-config';
 // import errors from 'alp-errors-browser';
 // import params from 'alp-params-browser';
 import language from 'alp-language';
-import logger from 'alp-logger';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
 
@@ -15,14 +14,13 @@ export default class AlpBrowser extends Ibex {
      * @param {string} [path='/']
      * @param {Object} [options]
      */
-    constructor(path = `/`, options = {}) {
+    constructor(path = '/', options = {}) {
         super();
         this.path = path;
     }
 
     async init() {
         await config('config')(this);
-        logger(this);
         language(this);
         await translate('locales')(this);
     }
