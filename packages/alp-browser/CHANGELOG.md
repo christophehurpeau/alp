@@ -1,3 +1,7 @@
+### v0.2.0
+
+- [`32b9fa5`](https://github.com/alpjs/alp-browser/commit/32b9fa5c72ee64e3c60969d784aa0a231907620e) remove alp-logger (Christophe Hurpeau)
+
 ### v0.1.6
 
 - [`d9e0f2e`](https://github.com/alpjs/alp-browser/commit/d9e0f2e2d4fccc31d1f9de74b877206d2611b0dc) update alp-translate (Christophe Hurpeau)
