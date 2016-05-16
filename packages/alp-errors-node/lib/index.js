@@ -12,6 +12,10 @@ var _HtmlRenderer = require('alouette/lib/HtmlRenderer');
 
 var _HtmlRenderer2 = _interopRequireDefault(_HtmlRenderer);
 
+var _nightingaleLogger = require('nightingale-logger');
+
+var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
+
 /**
  * @function
  * @param obj
@@ -40,26 +44,14 @@ function _asyncToGenerator(fn) { return (/**
                                                                                                                                                                                                                                                                                                                                                                                                                       * @param err
                                                                                                                                                                                                                                                                                                                                                                                                                      */ function (err) { return step("throw", err); }); } } return step("next"); }); } ); }
 
+const logger = new _nightingaleLogger2.default('alp.errors');
 const errorHtmlRenderer = new _HtmlRenderer2.default();
-
-process.on('uncaughtException', err => {
-    try {
-        (0, _alouette.log)(err);
-    } catch (err2) {
-        /* eslint-disable no-console */
-        console.error(err.stack);
-        console.error(err2.stack);
-        /* eslint-enable no-console */
-    }
-});
 
 exports.default = /**
                    * @function
                    * @param ctx
                    * @param next
-                  */ /**
-                      * @function
-                     */function () {
+                  */(() => {
     var ref = _asyncToGenerator( /**
                                   * @function
                                   * @param ctx
@@ -70,7 +62,7 @@ exports.default = /**
         } catch (err) {
             ctx.status = err.status || 500;
             const parsedError = (0, _alouette.parse)(err);
-            ctx.app.logger.error(parsedError.toString());
+            logger.error(err);
 
             switch (ctx.accepts('html', 'text', 'json')) {
                 case 'text':
@@ -120,5 +112,5 @@ exports.default = /**
             return ref.apply(this, arguments);
         }
     );
-}();
+})();
 //# sourceMappingURL=index.js.map

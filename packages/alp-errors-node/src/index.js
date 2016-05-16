@@ -1,6 +1,9 @@
 import { STATUS_CODES } from 'http';
 import { parse as parseError } from 'alouette';
 import ErrorHtmlRenderer from 'alouette/lib/HtmlRenderer';
+import Logger from 'nightingale-logger';
+
+const logger = new Logger('alp.errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer();
 
 export default async function (ctx, next) {
@@ -9,7 +12,7 @@ export default async function (ctx, next) {
     } catch (err) {
         ctx.status = err.status || 500;
         const parsedError = parseError(err);
-        ctx.app.logger.error(parsedError.toString());
+        logger.error(err);
 
         switch (ctx.accepts('html', 'text', 'json')) {
             case 'text':
