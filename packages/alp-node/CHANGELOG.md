@@ -1,3 +1,7 @@
+### v0.6.0
+
+- [`04bce45`](https://github.com/alpjs/alp-node/commit/04bce45205d36e08f8e779797b6297c00119cefd) nightingale-logger (Christophe Hurpeau)
+
 ### v0.5.0
 
 - [`6e38779`](https://github.com/alpjs/auk/commit/6e3877997b894c645f200b3238e3a998a1439720) split dirname arg into packageDirname + srcDirname (Christophe Hurpeau)
