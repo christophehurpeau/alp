@@ -9,7 +9,9 @@ var _socket = require('socket.io-client');
 
 var _socket2 = _interopRequireDefault(_socket);
 
-var _nightingale = require('nightingale');
+var _nightingaleLogger = require('nightingale-logger');
+
+var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 /**
  * @function
@@ -17,7 +19,7 @@ var _nightingale = require('nightingale');
 */
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const logger = new _nightingale.ConsoleLogger('alp-websocket', _nightingale.LogLevel.INFO);
+const logger = new _nightingaleLogger2.default('alp.websocket');
 let socket;
 
 /**

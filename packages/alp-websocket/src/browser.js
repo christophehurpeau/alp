@@ -1,7 +1,7 @@
 import socketio from 'socket.io-client';
-import { ConsoleLogger, LogLevel } from 'nightingale';
+import Logger from 'nightingale-logger';
 
-const logger = new ConsoleLogger('alp-websocket', LogLevel.INFO);
+const logger = new Logger('alp.websocket');
 let socket;
 
 export default function alpWebsocket(app) {
