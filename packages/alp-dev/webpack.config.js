@@ -91,6 +91,7 @@ module.exports = {
             SERVER: false,
             NODE: false,
             PRODUCTION: production,
+            MODERN_BROWSERS: dest === 'modern-browsers',
             'process.env': {
                 'NODE_ENV': JSON.stringify(production ? 'production' : process.env.NODE_ENV)
             }
