@@ -2,10 +2,10 @@ import DefaultApp from 'fody-app';
 import ReduxApp from 'fody-redux-app';
 import contentLoaded from 'content-loaded';
 import render from 'fody';
-import { ConsoleLogger } from 'nightingale';
+import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
 
-const logger = new ConsoleLogger('alp.react-redux');
+const logger = new Logger('alp.react-redux');
 
 let store;
 

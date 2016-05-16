@@ -17,6 +17,10 @@ var _fodyReduxApp = require('fody-redux-app');
 
 var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
 
+var _nightingaleLogger = require('nightingale-logger');
+
+var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
+
 var _redux = require('redux');
 
 /**
@@ -24,6 +28,8 @@ var _redux = require('redux');
  * @param obj
 */
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var logger = new _nightingaleLogger2.default('alp.react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 13 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 45 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 41 }, // also works for opera.
@@ -42,6 +48,8 @@ function alpReactRedux(Html) {
                               * @param data
                              */function (moduleDescriptor, data) {
             var _this = this;
+
+            logger.debug('render view', { data: data });
 
             if (moduleDescriptor.reducer) {
                 this.store = (0, _redux.createStore)(moduleDescriptor.reducer, data);

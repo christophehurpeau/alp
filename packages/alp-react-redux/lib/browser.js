@@ -21,7 +21,9 @@ var _fody = require('fody');
 
 var _fody2 = _interopRequireDefault(_fody);
 
-var _nightingale = require('nightingale');
+var _nightingaleLogger = require('nightingale-logger');
+
+var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 var _redux = require('redux');
 
@@ -31,7 +33,7 @@ var _redux = require('redux');
 */
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const logger = new _nightingale.ConsoleLogger('alp.react-redux');
+const logger = new _nightingaleLogger2.default('alp.react-redux');
 
 let store;
 

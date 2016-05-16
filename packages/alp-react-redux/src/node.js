@@ -1,7 +1,10 @@
 import render from 'fody';
 import DefaultApp from 'fody-app';
 import ReduxApp from 'fody-redux-app';
+import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
+
+const logger = new Logger('alp.react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 const agents = [
@@ -15,6 +18,8 @@ const agents = [
 export default function alpReactRedux(Html) {
     return (app) => {
         app.context.render = function (moduleDescriptor, data) {
+            logger.debug('render view', { data });
+
             if (moduleDescriptor.reducer) {
                 this.store = createStore(moduleDescriptor.reducer, data);
             }
