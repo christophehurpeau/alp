@@ -1,3 +1,7 @@
+### v2.2.1
+
+- [`09c4e05`](https://github.com/alpjs/alp-react-redux/commit/09c4e05c0d4b6628cc468c3a8169f14cb12842de) default is es5 not es2015 (Christophe Hurpeau)
+
 ### v2.2.0
 
 - [`1c75052`](https://github.com/alpjs/alp-react-redux/commit/1c7505270eac57bd940e38ba890836a7317216eb) nightingale-logger (Christophe Hurpeau)
