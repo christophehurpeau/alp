@@ -44,10 +44,6 @@ var _alpLanguage = require('alp-language');
 
 var _alpLanguage2 = _interopRequireDefault(_alpLanguage);
 
-var _alpLogger = require('alp-logger');
-
-var _alpLogger2 = _interopRequireDefault(_alpLogger);
-
 var _alpTranslate = require('alp-translate');
 
 var _alpTranslate2 = _interopRequireDefault(_alpTranslate);
@@ -60,11 +56,17 @@ var _alpListen = require('alp-listen');
 
 var _alpListen2 = _interopRequireDefault(_alpListen);
 
+var _nightingaleLogger = require('nightingale-logger');
+
+var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
+
 /**
  * @function
  * @param obj
 */
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const logger = new _nightingaleLogger2.default('alp');
 
 let Alp = class Alp extends _koa2.default {
     /**
@@ -88,7 +90,6 @@ let Alp = class Alp extends _koa2.default {
         })(this);
         (0, _alpParamsNode2.default)(this);
         (0, _alpLanguage2.default)(this);
-        (0, _alpLogger2.default)(this);
         (0, _alpTranslate2.default)('locales')(this);
         this.use((0, _koaCompress2.default)());
     }
@@ -131,7 +132,7 @@ let Alp = class Alp extends _koa2.default {
 
     listen() {
         return (0, _alpListen2.default)(`${ this.packageDirname }/config/cert`)(this).catch(err => {
-            this.logger.error(err);
+            logger.error(err);
             throw err;
         });
     }

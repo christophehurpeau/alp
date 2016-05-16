@@ -5,12 +5,14 @@ import config from 'alp-config';
 import errors from 'alp-errors-node';
 import params from 'alp-params-node';
 import language from 'alp-language';
-import logger from 'alp-logger';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
 import _listen from 'alp-listen';
+import Logger from 'nightingale-logger';
 
 export { default as newController } from 'alp-controller';
+
+const logger = new Logger('alp');
 
 export default class Alp extends Koa {
     /**
@@ -30,7 +32,6 @@ export default class Alp extends Koa {
         })(this);
         params(this);
         language(this);
-        logger(this);
         translate('locales')(this);
         this.use(compress());
     }
@@ -64,7 +65,7 @@ export default class Alp extends Koa {
     listen() {
         return _listen(`${this.packageDirname}/config/cert`)(this)
             .catch(err => {
-                this.logger.error(err);
+                logger.error(err);
                 throw err;
             });
     }
