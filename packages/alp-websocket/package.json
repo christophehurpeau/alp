@@ -1,6 +1,6 @@
 {
   "name": "alp-websocket",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "websocket in alp framework",
   "main": "lib/node.js",
   "browser": "browser/lib/browser.js",
