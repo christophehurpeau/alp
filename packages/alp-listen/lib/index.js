@@ -3,20 +3,30 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = aukListen;
+exports.default = alpListen;
 
 var _fs = require('fs');
 
+var _nightingaleLogger = require('nightingale-logger');
+
+var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
+
 /**
  * @function
- * @param dirname
+ * @param obj
 */
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const logger = new _nightingaleLogger2.default('alp.listen');
 
 /**
  * @param {string} dirname for tls server, dirname of the server.key and server.crt
  * @returns {Function}
  */
-function aukListen(dirname) {
+/**
+ * @function
+ * @param dirname
+*/function alpListen(dirname) {
     /**
      * @returns {Promise}
      */
@@ -28,7 +38,7 @@ function aukListen(dirname) {
             const tls = app.config.get('tls');
             const createServer = require(!socketPath && tls ? 'https' : 'http').createServer;
 
-            app.logger.info('Creating server', socketPath ? { socketPath: socketPath } : { port: port }, { [socketPath ? 'socketPath' : 'port']: ['yellow'] });
+            logger.info('Creating server', socketPath ? { socketPath: socketPath } : { port: port }, { [socketPath ? 'socketPath' : 'port']: ['yellow'] });
 
             const server = (() => {
                 if (!tls) {
@@ -53,12 +63,12 @@ function aukListen(dirname) {
                         (0, _fs.chmodSync)(socketPath, '777');
                     }
 
-                    app.logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] });
+                    logger.info('Server listening', { socketPath: socketPath }, { socketPath: ['yellow'] });
                     resolve(server);
                 });
             } else {
                 server.listen(port, hostname, () => {
-                    app.logger.info('Server listening', { port }, { port: ['yellow'] });
+                    logger.info('Server listening', { port: port }, { port: ['yellow'] });
                     resolve(server);
                 });
             }

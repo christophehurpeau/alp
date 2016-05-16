@@ -1,10 +1,13 @@
 import { chmodSync, unlinkSync, readFileSync } from 'fs';
+import Logger from 'nightingale-logger';
+
+const logger = new Logger('alp.listen');
 
 /**
  * @param {string} dirname for tls server, dirname of the server.key and server.crt
  * @returns {Function}
  */
-export default function aukListen(dirname) {
+export default function alpListen(dirname) {
     /**
      * @returns {Promise}
      */
@@ -16,7 +19,7 @@ export default function aukListen(dirname) {
             const tls = app.config.get('tls');
             const createServer = require(!socketPath && tls ? 'https' : 'http').createServer;
 
-            app.logger.info(
+            logger.info(
                 'Creating server',
                 socketPath ? { socketPath: socketPath } : { port: port },
                 { [socketPath ? 'socketPath' : 'port']: ['yellow'] }
@@ -46,12 +49,12 @@ export default function aukListen(dirname) {
                         chmodSync(socketPath, '777');
                     }
 
-                    app.logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] });
+                    logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] });
                     resolve(server);
                 });
             } else {
                 server.listen(port, hostname, () => {
-                    app.logger.info('Server listening', { port }, { port: ['yellow'] });
+                    logger.info('Server listening', { port }, { port: ['yellow'] });
                     resolve(server);
                 });
             }

@@ -23,8 +23,11 @@
   },
   "homepage": "https://github.com/alpjs/alp-listen#readme",
   "devDependencies": {
-    "eslint": "^1.10.3",
-    "eslint-config-partridge": "^3.0.1",
-    "springbokjs-library": "^15.0.0"
+    "eslint": "^2.10.1",
+    "eslint-config-pob": "^5.0.0",
+    "springbokjs-library": "^17.0.0"
+  },
+  "dependencies": {
+    "nightingale-logger": "^1.1.0"
   }
 }
