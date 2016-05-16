@@ -1,3 +1,7 @@
+### v2.2.0
+
+- [`1c75052`](https://github.com/alpjs/alp-react-redux/commit/1c7505270eac57bd940e38ba890836a7317216eb) nightingale-logger (Christophe Hurpeau)
+
 ### v2.1.0
 
 use https://www.npmjs.com/package/babel-preset-modern-browsers to build your bundle :)
