@@ -1,3 +1,7 @@
+### v2.1.0
+
+- [`482da38`](https://github.com/alpjs/alp-dev/commit/482da38f0ca36026c209755576785a0661dbba0f) MODERN_BROWSERS const (Christophe Hurpeau)
+
 ### v2.0.4
 
 - [`731f22b`](https://github.com/alpjs/alp-dev/commit/731f22b6fc8575df654dce0504135f082cef9fff) reduce production generated size (Christophe Hurpeau)
