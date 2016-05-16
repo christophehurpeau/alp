@@ -1,6 +1,6 @@
 {
   "name": "ibex",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Framework for browser, with the same API than koa 2",
   "main": "lib/index.js",
   "scripts": {

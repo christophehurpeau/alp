@@ -1,3 +1,7 @@
+### v3.2.0
+
+- [`2f1756c`](https://github.com/alpjs/ibex/commit/2f1756c9cfeaed500c3862cc2f61a09b0de44482) nightingale-logger (Christophe Hurpeau)
+
 ### v3.1.0
 
 - [`6065356`](https://github.com/alpjs/ibex/commit/6065356a29c44a0173ca47dcb443a4e6dd033a33) upgrade dependencies (Christophe Hurpeau)
