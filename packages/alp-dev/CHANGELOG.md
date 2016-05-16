@@ -1,3 +1,7 @@
+### v2.1.1
+
+- [`7bb1eb9`](https://github.com/alpjs/alp-dev/commit/7bb1eb9641684c95a445db0f15873b794d6169fb) es5 not es2015 (Christophe Hurpeau)
+
 ### v2.1.0
 
 - [`482da38`](https://github.com/alpjs/alp-dev/commit/482da38f0ca36026c209755576785a0661dbba0f) MODERN_BROWSERS const (Christophe Hurpeau)
