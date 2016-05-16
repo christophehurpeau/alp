@@ -91,7 +91,7 @@ function alpReactRedux(Html) {
                             }
                         }
 
-                        return 'es2015';
+                        return 'es5';
                     }
                 },
                 context: this,

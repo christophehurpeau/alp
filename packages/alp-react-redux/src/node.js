@@ -38,7 +38,7 @@ export default function alpReactRedux(Html) {
                                 return 'modern-browsers';
                             }
                         }
-                        return 'es2015';
+                        return 'es5';
                     },
                 },
                 context: this,
