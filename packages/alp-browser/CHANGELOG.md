@@ -1,4 +1,6 @@
-### v0.2.0
+### v0.3.0
+
+- [`60185d9`](https://github.com/alpjs/alp-browser/commit/60185d9bc2581eb3b00f8c8cb482dee0c529f8ea) pob (Christophe Hurpeau)### v0.2.0
 
 - [`32b9fa5`](https://github.com/alpjs/alp-browser/commit/32b9fa5c72ee64e3c60969d784aa0a231907620e) remove alp-logger (Christophe Hurpeau)
 

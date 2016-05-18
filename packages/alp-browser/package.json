@@ -1,6 +1,6 @@
 {
   "name": "alp-browser",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "framework for browser based on ibex",
   "homepage": "https://github.com/alpjs/alp-browser#readme",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
