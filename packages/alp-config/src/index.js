@@ -3,16 +3,16 @@ import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
 import { existsSync, readFileSync } from 'fs';
 
-function existsConfig(dirname, name) {
+function existsConfig(dirname: string, name: string) {
     return existsSync(`${dirname}${name}.json`);
 }
 
-function loadConfig(dirname, name) {
+function loadConfig(dirname: string, name: string) {
     let content = readFileSync(`${dirname}${name}.json`);
     return parseJSON(content);
 }
 
-export default function alpConfig(dirname, options = {}) {
+export default function alpConfig(dirname: string, options: Object = {}) {
     dirname = dirname.replace(/\/*$/, '/');
 
     options = Object.assign({}, options, {
@@ -54,7 +54,6 @@ export default function alpConfig(dirname, options = {}) {
 
         app.config = config;
         app.context.config = config;
-        app.context.production = !!config.get('production');
 
         return deepFreeze(config);
     };
