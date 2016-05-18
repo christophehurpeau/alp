@@ -1,4 +1,6 @@
-### v1.1.2
+### v2.0.0
+
+- [`31c9432`](https://github.com/alpjs/alp-config/commit/31c9432046eb10fa6437e7fc86fbd95a3becd331) use pob (Christophe Hurpeau)### v1.1.2
 
 - [`d53de85`](https://github.com/alpjs/alp-config/commit/d53de85681a276e9aefcb2556bc0bb9d0dbd2322) fix browserStoredConfig (Christophe Hurpeau)
 

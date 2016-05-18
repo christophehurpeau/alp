@@ -1,6 +1,6 @@
 {
   "name": "alp-config",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "config in alp framework",
   "homepage": "https://github.com/alpjs/alp-config#readme",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
