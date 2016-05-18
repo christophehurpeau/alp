@@ -1,3 +1,7 @@
+### v2.2.0
+
+- [`585c818`](https://github.com/alpjs/alp-dev/commit/585c81817db0b5fb6060b760eb916ecf55450bc8) upgrade dependencies (Christophe Hurpeau)
+
 ### v2.1.2
 
 - [`184d25a`](https://github.com/alpjs/alp-dev/commit/184d25a84beb3fb28e5e8fb1eae9971203ae9e11) webpack mainFields (previously packageMains) (Christophe Hurpeau)
