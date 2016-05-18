@@ -70,7 +70,16 @@ module.exports = {
         alias: { 'socket.io': 'socket.io-client' },
         modules: ['browser/node_modules', 'node_modules'],
         extensions: ['', '.browser.js', '.js', '.browser.jsx', '.jsx', '.json'],
-        packageMains: ['webpack', 'browser', 'main'],
+        mainFields: [
+            dest === 'modern-browsers' && !production && 'main-modern-browsers-dev',
+            dest === 'modern-browsers' && 'main-modern-browsers',
+            !production && 'webpack-dev',
+            'webpack',
+            !production && 'browser-dev',
+            'browser',
+            !production && 'main-dev',
+            'main',
+        ].filter(Boolean),
         packageAlias: ['webpack', 'browser'],
     },
 
