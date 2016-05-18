@@ -1,1 +1,21 @@
-node_modules/springbokjs-library/config-files/.babelrc
+{
+  "env": {
+
+    "es5": {
+      "presets": ["es2015", "flow", "stage-1"]
+    },
+    "es5-dev": {
+      "presets": ["es2015", "flow", "stage-1"],
+      "plugins": ["typecheck"]
+    },
+
+
+    "modern-browsers": {
+      "presets": ["modern-browsers", "flow", "modern-browsers/stage1"]
+    },
+    "modern-browsers-dev": {
+      "presets": ["modern-browsers", "flow", "modern-browsers/stage1"],
+      "plugins": ["typecheck"]
+    }
+  }
+}

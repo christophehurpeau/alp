@@ -2,39 +2,54 @@
   "name": "alp-browser",
   "version": "0.2.0",
   "description": "framework for browser based on ibex",
-  "main": "lib/index.js",
-  "dependencies": {
-    "alp-config": "^1.1.2",
-    "alp-language": "^1.1.1",
-    "alp-limosa": "^2.1.2",
-    "alp-translate": "^0.1.1",
-    "ibex": "^3.2.0"
-  },
-  "devDependencies": {
-    "eslint": "^2.10.1",
-    "eslint-config-pob": "^5.0.0",
-    "springbokjs-library": "^17.0.0"
-  },
-  "scripts": {
-    "test": "make test",
-    "lint": "make lint",
-    "build": "make build",
-    "postpublish": "make post-publish",
-    "preversion": "make pre-version",
-    "version": "make version",
-    "watch": "make watch"
-  },
-  "repository": "alpjs/alp-browser",
+  "homepage": "https://github.com/alpjs/alp-browser#readme",
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "keywords": [
     "springbokjs",
     "alp",
     "framework",
     "ibex"
   ],
-  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "main": "lib/index.js",
+  "dependencies": {
+    "alp-config": "^2.0.0",
+    "alp-language": "^1.1.1",
+    "alp-limosa": "^2.1.2",
+    "alp-translate": "^0.1.1",
+    "ibex": "^3.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-eslint": "^6.0.4",
+    "babel-plugin-typecheck": "^3.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-flow": "^1.0.0",
+    "babel-preset-modern-browsers": "^2.0.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-config-pob": "^6.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "pob-release": "^2.0.0"
+  },
+  "scripts": {
+    "lint": "eslint --fix -c .eslintrc.yml src/",
+    "build": "rm -Rf dist && BABEL_ENV=es5 babel -s --out-dir dist/es5 src && BABEL_ENV=es5-dev babel -s --out-dir dist/es5-dev src && BABEL_ENV=modern-browsers babel -s --out-dir dist/modern-browsers src && BABEL_ENV=modern-browsers-dev babel -s --out-dir dist/modern-browsers-dev src",
+    "preversion": "npm run lint && npm run build && npm run build && pob-repository-check-clean",
+    "version": "pob-version",
+    "release": "pob-repository-check-clean && pob-release",
+    "clean": "rm -Rf docs dist test/node6 coverage",
+    "prepublish": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit || echo",
+    "build:dev": "rm -Rf dist/*-dev/ && BABEL_ENV=es5-dev babel -s --out-dir dist/es5-dev src && BABEL_ENV=modern-browsers-dev babel -s --out-dir dist/modern-browsers-dev src",
+    "watch:dev": "rm -Rf dist test/node6 && echo \"BABEL_ENV=es5-dev babel -sw --out-dir dist/es5-dev src\\nBABEL_ENV=modern-browsers-dev babel -sw --out-dir dist/modern-browsers-dev src\" | while read i; do printf \"%q\\n\" \"$i\"; done | xargs -n1 -P 2 -I cmd bash -c \"cmd\""
+  },
+  "repository": "alpjs/alp-browser",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alpjs/alp-browser/issues"
   },
-  "homepage": "https://github.com/alpjs/alp-browser#readme"
+  "browser": "./dist/es5/index.js",
+  "browser-dev": "./dist/es5-dev/index.js",
+  "main-modern-browsers": "./dist/modern-browsers/index.js",
+  "main-modern-browsers-dev": "./dist/modern-browsers-dev/index.js"
 }
