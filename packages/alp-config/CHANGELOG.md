@@ -1,3 +1,7 @@
+### v2.1.0
+
+- [`3db7532`](https://github.com/alpjs/alp-config/commit/3db7532f26f4b865bcb803701a88e00f7734eb01) new pob version (Christophe Hurpeau)
+
 ### v2.0.0
 
 - [`31c9432`](https://github.com/alpjs/alp-config/commit/31c9432046eb10fa6437e7fc86fbd95a3becd331) use pob (Christophe Hurpeau)
