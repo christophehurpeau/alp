@@ -6,6 +6,8 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
 
+export { default as newController } from 'alp-controller';
+
 export default class AlpBrowser extends Ibex {
     path: string;
     appVersion: string;

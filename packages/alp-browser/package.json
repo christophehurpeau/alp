@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "alp-config": "^2.1.1",
+    "alp-controller": "^0.1.0",
     "alp-language": "^1.1.1",
     "alp-limosa": "^2.1.2",
     "alp-translate": "^0.1.1",

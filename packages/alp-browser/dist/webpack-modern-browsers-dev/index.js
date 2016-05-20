@@ -3,6 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.newController = undefined;
+
+var _alpController = require('alp-controller');
+
+Object.defineProperty(exports, 'newController', {
+    enumerable: true,
+    get: function get() {
+        return _interopRequireDefault(_alpController).default;
+    }
+});
 
 var _ibex = require('ibex');
 
