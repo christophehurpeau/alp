@@ -32,7 +32,7 @@
     "watch:dev": "pob-watch"
   },
   "dependencies": {
-    "alp-config": "^2.1.0",
+    "alp-config": "^2.1.1",
     "alp-language": "^1.1.1",
     "alp-limosa": "^2.1.2",
     "alp-translate": "^0.1.1",
@@ -44,13 +44,13 @@
     "babel-plugin-typecheck": "^3.9.0",
     "babel-preset-es2015-webpack": "^6.4.1",
     "babel-preset-flow": "^1.0.0",
-    "babel-preset-modern-browsers": "^2.0.0",
+    "babel-preset-modern-browsers": "^2.0.1",
     "babel-preset-stage-1": "^6.5.0",
     "eslint": "^2.10.2",
     "eslint-config-airbnb-base": "^3.0.1",
     "eslint-config-pob": "^6.0.1",
     "eslint-plugin-import": "^1.8.0",
-    "pob-babel": "^0.1.1",
-    "pob-release": "^2.0.1"
+    "pob-babel": "^0.1.2",
+    "pob-release": "^2.0.2"
   }
 }
