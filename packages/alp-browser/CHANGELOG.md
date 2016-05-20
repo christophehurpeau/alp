@@ -1,3 +1,7 @@
+### v0.4.1
+
+- [`00652f2`](https://github.com/alpjs/alp-browser/commit/00652f27915a4dda0f562746c08d46359fe7470b) pob patch (Christophe Hurpeau)
+
 ### v0.4.0
 
 - [`6408abf`](https://github.com/alpjs/alp-browser/commit/6408abf6a0a6da1bc3549a5adde460b7cf29fe98) pob release (Christophe Hurpeau)
