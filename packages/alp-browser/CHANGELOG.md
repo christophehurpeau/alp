@@ -1,3 +1,7 @@
+### v0.4.2
+
+- [`ef8913a`](https://github.com/alpjs/alp-browser/commit/ef8913aa5183af03d9190aa8431593ed673e5e8d) export newController (Christophe Hurpeau)
+
 ### v0.4.1
 
 - [`00652f2`](https://github.com/alpjs/alp-browser/commit/00652f27915a4dda0f562746c08d46359fe7470b) pob patch (Christophe Hurpeau)
