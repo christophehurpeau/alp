@@ -1,8 +1,28 @@
 'use strict';
 
-import deepFreeze from 'deep-freeze-es6';
-import parseJSON from 'parse-json-object-as-map';
-import stringify from 'stringify-json';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.getVersion = getVersion;
+exports.has = has;
+exports.get = get;
+exports.save = save;
+exports.set = set;
+exports.clear = clear;
+
+var _deepFreezeEs = require('deep-freeze-es6');
+
+var _deepFreezeEs2 = _interopRequireDefault(_deepFreezeEs);
+
+var _parseJsonObjectAsMap = require('parse-json-object-as-map');
+
+var _parseJsonObjectAsMap2 = _interopRequireDefault(_parseJsonObjectAsMap);
+
+var _stringifyJson = require('stringify-json');
+
+var _stringifyJson2 = _interopRequireDefault(_stringifyJson);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var map = (() => {
     var config = localStorage.getItem('ibex-config');
@@ -10,33 +30,33 @@ var map = (() => {
         return new Map();
     }
 
-    return parseJSON(config);
+    return (0, _parseJsonObjectAsMap2.default)(config);
 })();
 
-map.forEach(value => deepFreeze(value));
+map.forEach(value => (0, _deepFreezeEs2.default)(value));
 
-export function getVersion() {
+function getVersion() {
     return map.get('version');
 }
 
-export function has(key) {
+function has(key) {
     return map.has(key);
 }
 
-export function get(key) {
+function get(key) {
     return map.get(key);
 }
 
-export function save() {
-    localStorage.setItem('ibex-config', stringify(map));
+function save() {
+    localStorage.setItem('ibex-config', (0, _stringifyJson2.default)(map));
 }
 
-export function set(key, value) {
+function set(key, value) {
     map.set(key, value);
     save();
 }
 
-export function clear(version) {
+function clear(version) {
     map.clear();
     map.set('version', version);
     save();
