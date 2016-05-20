@@ -1,3 +1,10 @@
+### v2.1.1
+
+- [`ca8d3bd`](https://github.com/alpjs/alp-config/commit/ca8d3bd76e041f370b3acf0fff4cb1c8134b9a70) Update CHANGELOG.md (Christophe Hurpeau)
+- [`32db35c`](https://github.com/alpjs/alp-config/commit/32db35ce6a2b676e3519596b2dccd560da56fc74) new pob version (Christophe Hurpeau)
+- [`63940ff`](https://github.com/alpjs/alp-config/commit/63940ff70a7f48dfe5af481caa1b585a56b19bf9) 2.1.0 (Christophe Hurpeau)
+- [`35c76ce`](https://github.com/alpjs/alp-config/commit/35c76cea0a7b48ba2f9799513420513e6ec138cd) upgrade pob and fix main (Christophe Hurpeau)
+
 ### v2.1.0
 
 - [`3db7532`](https://github.com/alpjs/alp-config/commit/3db7532f26f4b865bcb803701a88e00f7734eb01) new pob version (Christophe Hurpeau)
