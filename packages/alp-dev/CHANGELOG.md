@@ -1,3 +1,7 @@
+### v2.2.1
+
+- [`487d729`](https://github.com/alpjs/alp-dev/commit/487d7291653bc2c67f7f8613a16c8c743e624f08) mainFields update (Christophe Hurpeau)
+
 ### v2.2.0
 
 - [`585c818`](https://github.com/alpjs/alp-dev/commit/585c81817db0b5fb6060b760eb916ecf55450bc8) upgrade dependencies (Christophe Hurpeau)
