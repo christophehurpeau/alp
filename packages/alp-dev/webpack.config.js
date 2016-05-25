@@ -54,7 +54,7 @@ module.exports = {
                 query: {
                     presets: (
                         dest === 'modern-browsers' ?
-                            ['modern-browsers', 'react', 'modern-browsers/stage1']//, 'react-hmre']
+                            ['modern-browsers/webpack2', 'react', 'modern-browsers/stage1']//, 'react-hmre']
                             : ['es2015', 'react', 'stage-1']
                     ),
                     plugins: (!production ? ['typecheck'] : [])
@@ -71,13 +71,14 @@ module.exports = {
         modules: ['browser/node_modules', 'node_modules'],
         extensions: ['', '.browser.js', '.js', '.browser.jsx', '.jsx', '.json'],
         mainFields: [
-            dest === 'modern-browsers' && !production && 'main-modern-browsers-dev',
-            dest === 'modern-browsers' && 'main-modern-browsers',
-            !production && 'webpack-dev',
-            'webpack',
+            dest === 'modern-browsers' && !production && 'webpack:main-modern-browsers-dev',
+            dest === 'modern-browsers' && 'webpack:main-modern-browsers',
+            !production && 'webpack:main-dev',
+            'webpack:main',
             !production && 'browser-dev',
             'browser',
             !production && 'main-dev',
+            'webpack',
             'main',
         ].filter(Boolean),
         packageAlias: ['webpack', 'browser'],
