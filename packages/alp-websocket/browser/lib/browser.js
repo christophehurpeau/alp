@@ -25,8 +25,9 @@ var socket = void 0;
 /**
  * @function
  * @param app
-*/function alpWebsocket(app) {
-    start(app.config);
+ * @param namespaceName
+*/function alpWebsocket(app, namespaceName) {
+    start(app.config, namespaceName);
     app.websocket = {
         socket: socket,
         on: on,
@@ -40,7 +41,10 @@ var socket = void 0;
 /**
  * @function
  * @param config
+ * @param [namespaceName]
 */function start(config) {
+    var namespaceName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+
     if (socket) {
         throw new Error('WebSocket already started');
     }
@@ -58,7 +62,7 @@ var socket = void 0;
     var secure = webSocketConfig.get('secure');
     var port = webSocketConfig.get('port');
 
-    socket = (0, _socket3.default)('http' + (secure ? 's' : '') + '://' + location.hostname + ':' + port + '/', {
+    socket = (0, _socket3.default)('http' + (secure ? 's' : '') + '://' + location.hostname + ':' + port + '/' + namespaceName, {
         reconnectionDelay: 500,
         reconnectionDelayMax: 1000,
         timeout: 4000,

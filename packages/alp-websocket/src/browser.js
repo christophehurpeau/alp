@@ -4,8 +4,8 @@ import Logger from 'nightingale-logger';
 const logger = new Logger('alp.websocket');
 let socket;
 
-export default function alpWebsocket(app) {
-    start(app.config);
+export default function alpWebsocket(app, namespaceName) {
+    start(app.config, namespaceName);
     app.websocket = {
         socket,
         on,
@@ -16,7 +16,7 @@ export default function alpWebsocket(app) {
     return socket;
 }
 
-function start(config) {
+function start(config, namespaceName = '') {
     if (socket) {
         throw new Error('WebSocket already started');
     }
@@ -34,7 +34,7 @@ function start(config) {
     const secure = webSocketConfig.get('secure');
     const port = webSocketConfig.get('port');
 
-    socket = socketio(`http${secure ? 's' : ''}://${location.hostname}:${port}/`, {
+    socket = socketio(`http${secure ? 's' : ''}://${location.hostname}:${port}/${namespaceName}`, {
         reconnectionDelay: 500,
         reconnectionDelayMax: 1000,
         timeout: 4000,
