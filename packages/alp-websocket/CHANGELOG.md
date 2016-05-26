@@ -1,3 +1,7 @@
+### v1.2.0
+
+- [`90b2de2`](https://github.com/alpjs/alp-websocket/commit/90b2de2a36261980bb7cfe01382c3527d91be22b) browser namespace name (Christophe Hurpeau)
+
 ### v1.1.0
 
 - [`1f1bf3f`](https://github.com/alpjs/alp-websocket/commit/1f1bf3f708ca59cb3dab7aa8e1a5ada1f1f20566) readme (Christophe Hurpeau)
