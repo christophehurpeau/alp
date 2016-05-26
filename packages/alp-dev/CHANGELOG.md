@@ -1,3 +1,7 @@
+### v2.2.2
+
+- [`509c345`](https://github.com/alpjs/alp-dev/commit/509c34568993b0e42302c789099975e1281d5429) use modern-browsers/webpack2-uglifyjs (Christophe Hurpeau)
+
 ### v2.2.1
 
 - [`487d729`](https://github.com/alpjs/alp-dev/commit/487d7291653bc2c67f7f8613a16c8c743e624f08) mainFields update (Christophe Hurpeau)
