@@ -1,14 +1,24 @@
 # alp-config
 
-## With Koa
+## In your app
 
 ```js
 import packageConfig from './package.json';
+import { Config } from 'alp-config';
+
+const config = new Config(__dirname + '/config');
+export default config;
+config.loadSync({ packageConfig });
+```
+
+## With Koa
+
+```js
 import Koa from 'koa';
-import config from 'alp-config';
+import config from './config';
 
 const app = new Koa();
-config(__dirname + '/config', { packageConfig })(app);
+config()(app, config);
 ```
 
 ## With Ibex
@@ -17,7 +27,7 @@ Config is cached in localstorage. `/config` is the path to the public config fol
 
 ```js
 import Ibex from 'ibex';
-import config from 'alp-config';
+import config from './config';
 
 const app = new Ibex();
 app.appVersion = '1.0.0';
@@ -28,7 +38,8 @@ config('/config')(app);
 ## With Alp
 
 ```js
-import Alp from 'alp';
+import Alp from 'alp'; 
+import config from './config';
 
-const app = new Alp();
+const app = new Alp({ config });
 ```

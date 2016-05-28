@@ -1,2 +1,4 @@
 ---
-    extends: pob/babel
+  extends: pob/babel
+  rules:
+    no-underscore-dangle: off

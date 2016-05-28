@@ -13,10 +13,10 @@
     "url": "https://github.com/alpjs/alp-config/issues"
   },
   "main": "./index.js",
-  "webpack:main": "./dist/webpack/browser.js",
-  "webpack:main-dev": "./dist/webpack-dev/browser.js",
-  "webpack:main-modern-browsers": "./dist/webpack-modern-browsers/browser.js",
-  "webpack:main-modern-browsers-dev": "./dist/webpack-modern-browsers-dev/browser.js",
+  "webpack:main": "./lib-webpack/browser.js",
+  "webpack:main-dev": "./lib-webpack-dev/browser.js",
+  "webpack:main-modern-browsers": "./lib-webpack-modern-browsers/browser.js",
+  "webpack:main-modern-browsers-dev": "./lib-webpack-modern-browsers-dev/browser.js",
   "scripts": {
     "build": "pob-build",
     "build:dev": "pob-build",
@@ -43,13 +43,13 @@
     "babel-preset-es2015-node6": "^0.2.0",
     "babel-preset-es2015-webpack": "^6.4.1",
     "babel-preset-flow": "^1.0.0",
-    "babel-preset-modern-browsers": "^2.0.1",
+    "babel-preset-modern-browsers": "^2.1.0",
     "babel-preset-stage-1": "^6.5.0",
-    "eslint": "^2.10.2",
+    "eslint": "^2.11.0",
     "eslint-config-airbnb-base": "^3.0.1",
     "eslint-config-pob": "^6.0.1",
-    "eslint-plugin-import": "^1.8.0",
-    "pob-babel": "^0.1.2",
+    "eslint-plugin-import": "^1.8.1",
+    "pob-babel": "^0.3.0",
     "pob-release": "^2.0.2"
   }
 }
