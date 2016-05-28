@@ -1,3 +1,7 @@
+### v1.3.0
+
+- [`ddd7296`](https://github.com/alpjs/alp-websocket/commit/ddd72961c52daf2a4f337c5c91b36d8c0eab9d03) change log connected/disconnected from info level to debug level (Christophe Hurpeau)
+
 ### v1.2.0
 
 - [`90b2de2`](https://github.com/alpjs/alp-websocket/commit/90b2de2a36261980bb7cfe01382c3527d91be22b) browser namespace name (Christophe Hurpeau)
