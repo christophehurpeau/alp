@@ -82,11 +82,11 @@ let io;
     io = (0, _socket2.default)(server);
 
     io.on('connection', socket => {
-        logger.info('connected', { id: socket.id });
+        logger.debug('connected', { id: socket.id });
         socket.emit('hello', { version: config.get('version') });
 
         socket.on('disconnect', () => {
-            logger.info('disconnected', { id: socket.id });
+            logger.debug('disconnected', { id: socket.id });
         });
     });
 

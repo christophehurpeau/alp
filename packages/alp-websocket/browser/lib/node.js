@@ -84,11 +84,11 @@ var io = void 0;
     io = (0, _socket2.default)(server);
 
     io.on('connection', function (socket) {
-        logger.info('connected', { id: socket.id });
+        logger.debug('connected', { id: socket.id });
         socket.emit('hello', { version: config.get('version') });
 
         socket.on('disconnect', function () {
-            logger.info('disconnected', { id: socket.id });
+            logger.debug('disconnected', { id: socket.id });
         });
     });
 
