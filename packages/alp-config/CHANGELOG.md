@@ -1,3 +1,8 @@
+### v2.1.2
+
+- [`7f93cd1`](https://github.com/alpjs/alp-config/commit/7f93cd1b7d1f3bc2895d149c5db7f2a80743086c) Config class (Christophe Hurpeau)
+- [`9ef0f32`](https://github.com/alpjs/alp-config/commit/9ef0f321925f2c327d105a17dcef735538678e5d) argv.version, fix argv with dot (Christophe Hurpeau)
+
 ### v2.1.1
 
 - [`ca8d3bd`](https://github.com/alpjs/alp-config/commit/ca8d3bd76e041f370b3acf0fff4cb1c8134b9a70) Update CHANGELOG.md (Christophe Hurpeau)
