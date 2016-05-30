@@ -75,7 +75,7 @@ class Config {
         }
 
         if (!config.has('version')) {
-            config.set('version', version || packageConfig.version);
+            config.set('version', version || _minimistArgv2.default.version || packageConfig.version);
         }
 
         let socketPath = _minimistArgv2.default['socket-path'] || _minimistArgv2.default.socketPath;
@@ -87,11 +87,12 @@ class Config {
         }
 
         argvOverrides.forEach(key => {
-            if (_minimistArgv2.default[key] !== undefined) {
-                const splitted = key.split('.');
+            const splitted = key.split('.');
+            const value = splitted.length !== 0 && splitted.reduce((config, partialKey) => config && config[partialKey], _minimistArgv2.default);
+            if (value !== undefined) {
                 const last = splitted.pop();
                 const map = splitted.length === 0 ? config : splitted.reduce((config, partialKey) => config.get(partialKey), config);
-                map.set(last, _minimistArgv2.default[key]);
+                map.set(last, value);
             }
         });
 

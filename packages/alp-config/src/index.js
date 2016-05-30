@@ -44,7 +44,7 @@ export class Config {
         }
 
         if (!config.has('version')) {
-            config.set('version', version || packageConfig.version);
+            config.set('version', version || argv.version || packageConfig.version);
         }
 
         let socketPath = argv['socket-path'] || argv.socketPath;
@@ -56,12 +56,14 @@ export class Config {
         }
 
         argvOverrides.forEach(key => {
-            if (argv[key] !== undefined) {
-                const splitted = key.split('.');
+            const splitted = key.split('.');
+            const value = splitted.length !== 0
+                && splitted.reduce((config, partialKey) => config && config[partialKey], argv);
+            if (value !== undefined) {
                 const last = splitted.pop();
                 const map = splitted.length === 0 ? config
                     : splitted.reduce((config, partialKey) => config.get(partialKey), config);
-                map.set(last, argv[key]);
+                map.set(last, value);
             }
         });
 

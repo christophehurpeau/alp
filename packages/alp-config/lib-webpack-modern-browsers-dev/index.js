@@ -190,7 +190,7 @@ class Config {
         }
 
         if (!config.has('version')) {
-            config.set('version', version || packageConfig.version);
+            config.set('version', version || _minimistArgv2.default.version || packageConfig.version);
         }
 
         var socketPath = _minimistArgv2.default['socket-path'] || _minimistArgv2.default.socketPath;
@@ -202,13 +202,16 @@ class Config {
         }
 
         argvOverrides.forEach(key => {
-            if (_minimistArgv2.default[key] !== undefined) {
-                var splitted = key.split('.');
+            var splitted = key.split('.');
+            var value = splitted.length !== 0 && splitted.reduce((config, partialKey) => {
+                return config && config[partialKey];
+            }, _minimistArgv2.default);
+            if (value !== undefined) {
                 var last = splitted.pop();
                 var map = splitted.length === 0 ? config : splitted.reduce((config, partialKey) => {
                     return config.get(partialKey);
                 }, config);
-                map.set(last, _minimistArgv2.default[key]);
+                map.set(last, value);
             }
         });
 
