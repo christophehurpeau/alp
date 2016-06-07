@@ -1,3 +1,7 @@
+### v2.2.0
+
+- [`ee27d79`](https://github.com/alpjs/alp-config/commit/ee27d79471ab7b44f8a25e3cedf24104f3007a1d) remove async use promise to make the debug easier (Christophe Hurpeau)
+
 ### v2.1.2
 
 - [`7f93cd1`](https://github.com/alpjs/alp-config/commit/7f93cd1b7d1f3bc2895d149c5db7f2a80743086c) Config class (Christophe Hurpeau)
