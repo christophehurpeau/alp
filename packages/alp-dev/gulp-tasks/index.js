@@ -85,7 +85,7 @@ function buildJsServer() {
     }
 
     var stream = gulp.src(
-            ['src/**/*.{js,jsx}', '!src/**/*.browser.{js,jsx}', '!src/browser/**/*.{js,jsx}'],
+            ['src/**/*.{js,jsx}', '!src/**/*.browser.{js,jsx}', '!src/**/browser/**/*'],
             { since: gulp.lastRun(buildJsServer) }
         )
         .pipe(rename(function(path) {
@@ -98,7 +98,12 @@ function buildJsServer() {
         .pipe(babel({
             presets: ['es2015-node5', 'react', 'stage-1'],
             plugins: (!argv.production ? ['typecheck'] : [])
-                .concat(['transform-decorators-legacy']),
+                .concat([
+                    ['defines', { PRODUCTION: !!argv.production, BROWSER: false, SERVER: true }],
+                    'remove-dead-code',
+                    ['discard-module-references', { targets: [], unusedWhitelist: ['react'] }],
+                    'react-require',
+                ]),
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('lib'));

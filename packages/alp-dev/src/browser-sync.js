@@ -32,7 +32,16 @@ export default browserSync({
 
     proxy: {
         target: `localhost:${argv.proxyPort}`,
+        proxyOptions: { xfwd: true },
         middleware: [
+            // headers
+            function (req, res, next) {
+                if (!req.headers['X-Forwarded-Host']) {
+                    req.headers['X-Forwarded-Host'] = req.headers.host;
+                }
+                next();
+            },
+
             webpackDevMiddleware(bundler, {
                 // IMPORTANT: dev middleware can't access config, so we should
                 // provide publicPath by ourselves

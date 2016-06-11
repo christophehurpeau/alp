@@ -18,7 +18,14 @@ module.exports = {
     debug: !production,
     devtool: production ? undefined : 'inline-source-map',
 
-    entry: { [dest]: './src/index.browser.js' },
+    entry: {
+        [dest]: [
+            dest !== 'modern-browsers' && 'babel-regenerator-runtime',
+            !production && 'webpack-hot-middleware/client',
+            !production && 'react-hot-loader/patch',
+            './src/index.browser.js',
+        ].filter(Boolean)
+    },
     output: {
         path: path.resolve('public'),
         publicPath: '/',
@@ -42,23 +49,29 @@ module.exports = {
 
         preLoaders: [
             // {test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/},
-            {test: /\.jsx?$/, loader: 'source-map', exclude: /react-hot-loader/}
+            { test: /\.jsx?$/, loader: 'source-map', exclude: /react-hot-loader/ }
         ],
 
         loaders: [
             {
                 test: /\.jsx?$/,
-                // exclude: /(node_modules)/,
+                exclude: /(node_modules)|\.server\.jsx?$/,
                 loader: 'babel',
                 include: path.resolve('src'),
                 query: {
                     presets: (
                         dest === 'modern-browsers' ?
-                            ['modern-browsers/webpack2-uglifyjs', 'react', 'modern-browsers/stage1']//, 'react-hmre']
+                            ['modern-browsers/webpack2-uglifyjs', 'react', 'modern-browsers/stage1']
                             : ['es2015', 'react', 'stage-1']
                     ),
-                    plugins: (!production ? ['typecheck'] : [])
-                        .concat(['transform-decorators-legacy']),
+                    plugins: [
+                        !production && 'typecheck',
+                        !production && 'react-hot-loader/babel',
+                        ['defines', { PRODUCTION: production, BROWSER: true, SERVER: false }],
+                        'remove-dead-code',
+                        ['discard-module-references', { targets: [], unusedWhitelist: ['react'] }],
+                        'react-require',
+                    ],
                 },
             },
         ],
@@ -106,29 +119,27 @@ module.exports = {
                 'NODE_ENV': JSON.stringify(production ? 'production' : process.env.NODE_ENV)
             }
         }),
-        ...(production ? [
-             new webpack.optimize.UglifyJsPlugin({
-                mangle: false,
-                compress: {
-                    warnings: false,
-                    'drop_debugger': !!production,
-                    unused: false,
-                    comparisons: true,
-                    sequences: false
+        !production && new webpack.HotModuleReplacementPlugin(),
+        !production && new webpack.NoErrorsPlugin(),
+        production && new webpack.optimize.UglifyJsPlugin({
+            mangle: false,
+            compress: {
+                warnings: false,
+                'drop_debugger': !!production,
+                unused: false,
+                comparisons: true,
+                sequences: false
+            },
+            output: {
+                beautify: !production && {
+                    'max-line-len': 200,
+                    bracketize: true,
                 },
-                output: {
-                    beautify: !production && {
-                        'max-line-len': 200,
-                        bracketize: true,
-                    },
-                    comments: !production && 'all',
-                },
-                sourceMap: !production
-            })
-        ] : [
-            // new webpack.HotModuleReplacementPlugin()
-        ]),
+                comments: !production && 'all',
+            },
+            sourceMap: !production
+        }),
 
         // TODO https://github.com/NekR/offline-plugin
-    ],
+    ].filter(Boolean),
 };
