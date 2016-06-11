@@ -5,6 +5,7 @@ import config from 'alp-config';
 import language from 'alp-language';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
+import contentLoaded from 'content-loaded';
 
 export { default as newController } from 'alp-controller';
 
@@ -41,5 +42,17 @@ export default class AlpBrowser extends Ibex {
 
     useRouter(routerBuilder, controllers) {
         this.use(this.createRouter(routerBuilder, controllers));
+    }
+
+    initialRender(...args) {
+        const context = Object.create(this.context);
+        if (global.initialContextState) {
+            context.state = global.initialContextState;
+            this.state = context.state;
+        }
+
+        return contentLoaded().then(() => {
+            context.render(...args);
+        });
     }
 }
