@@ -3,18 +3,27 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = exports.newController = undefined;
+exports.newController = exports.Config = undefined;
+
+var _alpConfig = require('alp-config');
+
+Object.defineProperty(exports, 'Config', {
+    enumerable: true,
+    get: function get() {
+        return _alpConfig.Config;
+    }
+});
 
 var _alpController = require('alp-controller');
 
 Object.defineProperty(exports, 'newController', {
     enumerable: true,
-    get: /**
-          * @function
-         */function get() {
+    get: function get() {
         return _interopRequireDefault(_alpController).default;
     }
 });
+
+var _util = require('util');
 
 var _koa = require('koa');
 
@@ -27,8 +36,6 @@ var _koaCompress2 = _interopRequireDefault(_koaCompress);
 var _koaStatic = require('koa-static');
 
 var _koaStatic2 = _interopRequireDefault(_koaStatic);
-
-var _alpConfig = require('alp-config');
 
 var _alpConfig2 = _interopRequireDefault(_alpConfig);
 
@@ -60,56 +67,70 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
-/**
- * @function
- * @param obj
-*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const logger = new _nightingaleLogger2.default('alp');
 
-let Alp = class Alp extends _koa2.default {
+class Alp extends _koa2.default {
+
     /**
-     * @param {string} [packageDirname] directory of the package (where package.json is)
-     * @param {string} [srcDirname] directory of the application
      * @param {Object} [options]
-     * @param {array} [options.argv] list of overridable config by argv
-    */
+     * @param {string} [options.srcDirname] directory of the application
+     * @param {Config} [options.config] alp-config object
+     * @param {string} [options.packageDirname] deprecated, directory of the package (where package.json is)
+     * @param {Array} [options.argv] deprecated, list of overridable config by argv
+     */
     constructor() {
-        let packageDirname = arguments.length <= 0 || arguments[0] === undefined ? process.cwd() : arguments[0];
-        let srcDirname = arguments.length <= 1 || arguments[1] === undefined ? `${ packageDirname }/lib` : arguments[1];
-        let options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+        let options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
         super();
-        this.packageDirname = packageDirname;
-        this.dirname = srcDirname;
-        const packageConfig = require(`${ packageDirname }/package.json`);
-        (0, _alpConfig2.default)(`${ this.dirname }/config`, {
-            packageConfig: packageConfig,
-            argv: options.argv
-        })(this);
+        if (!options.packageDirname) options.packageDirname = process.cwd();
+        if (!options.srcDirname) options.srcDirname = `${ options.packageDirname }/lib`;
+
+        this.dirname = options.srcDirname;
+        Object.defineProperty(this, 'packageDirname', {
+            get: (0, _util.deprecate)(() => options.packageDirname, 'packageDirname'),
+            configurable: false,
+            enumerable: false
+        });
+
+        if (!options.config) {
+            (0, _util.deprecate)(() => () => null, 'Alp options: missing options.config')();
+            // eslint-disable-next-line
+            const packageConfig = require(`${ options.packageDirname }/package.json`);
+            (0, _alpConfig2.default)(`${ this.dirname }/config`, { packageConfig, argv: options.argv })(this);
+        } else {
+            (0, _alpConfig2.default)()(this, options.config);
+        }
+
         (0, _alpParamsNode2.default)(this);
         (0, _alpLanguage2.default)(this);
         (0, _alpTranslate2.default)('locales')(this);
         this.use((0, _koaCompress2.default)());
+
+        this.browserStateTransformers = [];
+        this.context.computeInitialStateForBrowser = function () {
+            const initialBrowserState = Object.create(null);
+            this.app.browserStateTransformers.forEach(transformer => transformer(initialBrowserState, this));
+            return initialBrowserState;
+        };
     }
 
-    /**
-     * @member environment
-    */get environment() {
+    registerBrowserStateTransformers(transformer) {
+        this.browserStateTransformers.push(transformer);
+    }
+
+    get environment() {
+        (0, _util.deprecate)(() => () => null, 'app.environment, use app.env instead')();
         return this.env;
     }
 
-    /**
-     * @member production
-    */get production() {
+    get production() {
+        (0, _util.deprecate)(() => () => null, 'app.production, use global.PRODUCTION instead')();
         return this.env === 'prod' || this.env === 'production';
     }
 
-    /**
-     * @param routerBuilder
-     * @param controllers
-    */createRouter(routerBuilder, controllers) {
+    createRouter(routerBuilder, controllers) {
         return (0, _alpLimosa2.default)(routerBuilder, controllers)(this);
     }
 
@@ -121,11 +142,10 @@ let Alp = class Alp extends _koa2.default {
         this.use(_alpErrorsNode2.default);
     }
 
-    /**
-     * @param routerBuilder
-     * @param controllers
-    */useRouter(routerBuilder, controllers) {
+    useRouter(routerBuilder, controllers) {
+        // eslint-disable-next-line global-require
         routerBuilder = routerBuilder || require(`${ this.dirname }/routerBuilder`);
+        // eslint-disable-next-line global-require
         controllers = controllers || require(`${ this.dirname }/controllers`);
         this.use(this.createRouter(routerBuilder, controllers));
     }
@@ -136,6 +156,6 @@ let Alp = class Alp extends _koa2.default {
             throw err;
         });
     }
-};
+}
 exports.default = Alp;
 //# sourceMappingURL=index.js.map

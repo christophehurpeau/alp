@@ -2,36 +2,6 @@
   "name": "alp-node",
   "version": "0.6.0",
   "description": "framework for node5 based on koa",
-  "main": "lib/index.js",
-  "dependencies": {
-    "alp-config": "^1.1.2",
-    "alp-controller": "^0.1.0",
-    "alp-errors-node": "^1.1.0",
-    "alp-language": "^1.1.1",
-    "alp-limosa": "^2.1.2",
-    "alp-listen": "^1.1.0",
-    "alp-params-node": "^0.1.1",
-    "alp-translate": "^0.1.1",
-    "koa": "^2.0.0-alpha.3",
-    "koa-compress": "^2.0.0",
-    "koa-static": "^3.0.0",
-    "nightingale-logger": "^1.1.0"
-  },
-  "devDependencies": {
-    "eslint": "^2.10.1",
-    "eslint-config-pob": "^5.0.0",
-    "springbokjs-library": "^17.0.0"
-  },
-  "scripts": {
-    "test": "make test",
-    "lint": "make lint",
-    "build": "make build",
-    "postpublish": "make post-publish",
-    "preversion": "make pre-version",
-    "version": "make version",
-    "watch": "make watch"
-  },
-  "repository": "alpjs/alp-node",
   "keywords": [
     "springbokjs",
     "alp",
@@ -41,8 +11,54 @@
   ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
+  "repository": "alpjs/alp-node",
+  "homepage": "https://github.com/alpjs/alp-node#readme",
   "bugs": {
     "url": "https://github.com/alpjs/alp-node/issues"
   },
-  "homepage": "https://github.com/alpjs/alp-node#readme"
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "pob-build",
+    "build:dev": "pob-build",
+    "clean": "rm -Rf docs dist test/node6 coverage",
+    "lint": "eslint --fix -c .eslintrc.yml src/",
+    "prepublish": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit || echo",
+    "preversion": "npm run lint && npm run build && npm run build && pob-repository-check-clean",
+    "release": "pob-repository-check-clean && pob-release",
+    "version": "pob-version",
+    "watch": "pob-watch",
+    "watch:dev": "pob-watch"
+  },
+  "dependencies": {
+    "alp-config": "^2.3.0",
+    "alp-controller": "^0.1.0",
+    "alp-errors-node": "^1.1.0",
+    "alp-language": "^1.1.1",
+    "alp-limosa": "^2.1.3",
+    "alp-listen": "^1.1.0",
+    "alp-params-node": "^0.1.1",
+    "alp-translate": "^0.1.1",
+    "koa": "^2.0.0-alpha.3",
+    "koa-compress": "^2.0.0",
+    "koa-static": "^3.0.0",
+    "nightingale-logger": "^1.1.1",
+    "node-fetch": "^1.5.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "babel-plugin-defines": "^2.0.0",
+    "babel-plugin-discard-module-references": "^1.0.0",
+    "babel-plugin-remove-dead-code": "^1.0.1",
+    "babel-plugin-typecheck": "^3.9.0",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-es2015-node6": "^0.2.0",
+    "babel-preset-flow": "^1.0.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "eslint": "^2.12.0",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-config-pob": "^6.1.1",
+    "eslint-plugin-import": "^1.8.1",
+    "pob-babel": "^0.4.1",
+    "pob-release": "^2.0.4"
+  }
 }
