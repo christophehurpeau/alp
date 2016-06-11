@@ -71,7 +71,7 @@ module.exports = {
                         'remove-dead-code',
                         ['discard-module-references', { targets: [], unusedWhitelist: ['react'] }],
                         'react-require',
-                    ],
+                    ].filter(Boolean),
                 },
             },
         ],
