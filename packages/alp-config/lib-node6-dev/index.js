@@ -117,13 +117,13 @@ class Config {
             throw new TypeError('Expected _loadConfigSync2 to be iterable, got ' + _inspect(_loadConfigSync2));
         }
 
-        for (let _ref5 of _loadConfigSync2) {
+        for (let _ref2 of _loadConfigSync2) {
             var _loadConfigSync2;
 
-            var _ref6 = _slicedToArray(_ref5, 2);
+            var _ref5 = _slicedToArray(_ref2, 2);
 
-            let key = _ref6[0];
-            let value = _ref6[1];
+            let key = _ref5[0];
+            let value = _ref5[1];
 
             config.set(key, value);
         }
@@ -135,13 +135,13 @@ class Config {
                 throw new TypeError('Expected _loadConfigSync3 to be iterable, got ' + _inspect(_loadConfigSync3));
             }
 
-            for (let _ref7 of _loadConfigSync3) {
+            for (let _ref6 of _loadConfigSync3) {
                 var _loadConfigSync3;
 
-                var _ref8 = _slicedToArray(_ref7, 2);
+                var _ref7 = _slicedToArray(_ref6, 2);
 
-                let key = _ref8[0];
-                let value = _ref8[1];
+                let key = _ref7[0];
+                let value = _ref7[1];
 
                 config.set(key, value);
             }

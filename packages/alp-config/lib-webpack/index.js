@@ -1,46 +1,25 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.Config = undefined;
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-exports.default = alpConfig;
-
-var _util = require('util');
-
-var _minimistArgv = require('minimist-argv');
-
-var _minimistArgv2 = _interopRequireDefault(_minimistArgv);
-
-var _deepFreezeEs = require('deep-freeze-es6');
-
-var _deepFreezeEs2 = _interopRequireDefault(_deepFreezeEs);
-
-var _parseJsonObjectAsMap = require('parse-json-object-as-map');
-
-var _parseJsonObjectAsMap2 = _interopRequireDefault(_parseJsonObjectAsMap);
-
-var _fs = require('fs');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+import { deprecate } from 'util';
+import argv from 'minimist-argv';
+import deepFreeze from 'deep-freeze-es6';
+import parseJSON from 'parse-json-object-as-map';
+import { existsSync, readFileSync } from 'fs';
+
 function _existsConfigSync(dirname, name) {
-    return (0, _fs.existsSync)('' + dirname + name + '.json');
+    return existsSync('' + dirname + name + '.json');
 }
 
 function _loadConfigSync(dirname, name) {
-    var content = (0, _fs.readFileSync)('' + dirname + name + '.json');
-    return (0, _parseJsonObjectAsMap2.default)(content);
+    var content = readFileSync('' + dirname + name + '.json');
+    return parseJSON(content);
 }
 
-var Config = exports.Config = function () {
+export var Config = function () {
     function Config(dirname) {
         _classCallCheck(this, Config);
 
@@ -120,14 +99,14 @@ var Config = exports.Config = function () {
             }
 
             if (!config.has('version')) {
-                config.set('version', version || _minimistArgv2.default.version || packageConfig.version);
+                config.set('version', version || argv.version || packageConfig.version);
             }
 
-            var socketPath = _minimistArgv2.default['socket-path'] || _minimistArgv2.default.socketPath;
+            var socketPath = argv['socket-path'] || argv.socketPath;
             if (socketPath) {
                 config.set('socketPath', socketPath);
-            } else if (_minimistArgv2.default.port) {
-                config.set('port', _minimistArgv2.default.port);
+            } else if (argv.port) {
+                config.set('port', argv.port);
                 config.delete('socketPath');
             }
 
@@ -135,7 +114,7 @@ var Config = exports.Config = function () {
                 var splitted = key.split('.');
                 var value = splitted.length !== 0 && splitted.reduce(function (config, partialKey) {
                     return config && config[partialKey];
-                }, _minimistArgv2.default);
+                }, argv);
                 if (value !== undefined) {
                     var last = splitted.pop();
                     var map = splitted.length === 0 ? config : splitted.reduce(function (config, partialKey) {
@@ -145,7 +124,7 @@ var Config = exports.Config = function () {
                 }
             });
 
-            return this._map = (0, _deepFreezeEs2.default)(config);
+            return this._map = deepFreeze(config);
         }
     }, {
         key: 'get',
@@ -167,7 +146,7 @@ var Config = exports.Config = function () {
     return Config;
 }();
 
-function alpConfig(dirname) {
+export default function alpConfig(dirname) {
     var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     return function (app, config) {
@@ -176,10 +155,10 @@ function alpConfig(dirname) {
             config.loadSync(options);
         }
 
-        app.existsConfig = (0, _util.deprecate)(function (name) {
+        app.existsConfig = deprecate(function (name) {
             return config.existsConfigSync(name);
         }, 'use app.existsConfigSync');
-        app.loadConfig = (0, _util.deprecate)(function (name) {
+        app.loadConfig = deprecate(function (name) {
             return config.loadConfigSync(name);
         }, 'use app.loadConfigSync');
 

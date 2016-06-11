@@ -1,30 +1,14 @@
-'use strict';
+function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = alpConfig;
-
-var _browserStoredConfig = require('./browserStoredConfig');
-
-var storedConfig = _interopRequireWildcard(_browserStoredConfig);
-
-var _parseJsonObjectAsMap = require('parse-json-object-as-map');
-
-var _parseJsonObjectAsMap2 = _interopRequireDefault(_parseJsonObjectAsMap);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); } /* global fetch */
-
+/* global fetch */
+import * as storedConfig from './browserStoredConfig';
+import parseJSON from 'parse-json-object-as-map';
 
 function fetchConfig(path) {
     return fetch(path + '.json').then(function (res) {
         return res.text();
     }).then(function (text) {
-        return (0, _parseJsonObjectAsMap2.default)(text);
+        return parseJSON(text);
     }).catch(function () {
         return false;
     });
@@ -80,7 +64,7 @@ var getOrFetchAppConfig = function getOrFetchAppConfig(version, environment, con
     });
 };
 
-function alpConfig(configPath) {
+export default function alpConfig(configPath) {
     configPath = configPath.replace(/\/*$/, '/');
     return function (app) {
         app.existsConfig = function (name) {

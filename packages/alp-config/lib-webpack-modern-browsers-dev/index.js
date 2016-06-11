@@ -1,31 +1,10 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.Config = undefined;
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-exports.default = alpConfig;
-
-var _util = require('util');
-
-var _minimistArgv = require('minimist-argv');
-
-var _minimistArgv2 = _interopRequireDefault(_minimistArgv);
-
-var _deepFreezeEs = require('deep-freeze-es6');
-
-var _deepFreezeEs2 = _interopRequireDefault(_deepFreezeEs);
-
-var _parseJsonObjectAsMap = require('parse-json-object-as-map');
-
-var _parseJsonObjectAsMap2 = _interopRequireDefault(_parseJsonObjectAsMap);
-
-var _fs = require('fs');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+import { deprecate } from 'util';
+import argv from 'minimist-argv';
+import deepFreeze from 'deep-freeze-es6';
+import parseJSON from 'parse-json-object-as-map';
+import { existsSync, readFileSync } from 'fs';
 
 function _existsConfigSync(dirname, name) {
     if (!(typeof dirname === 'string')) {
@@ -36,7 +15,7 @@ function _existsConfigSync(dirname, name) {
         throw new TypeError('Value of argument "name" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(name));
     }
 
-    return (0, _fs.existsSync)(`${ dirname }${ name }.json`);
+    return existsSync(`${ dirname }${ name }.json`);
 }
 
 function _loadConfigSync(dirname, name) {
@@ -48,8 +27,8 @@ function _loadConfigSync(dirname, name) {
         throw new TypeError('Value of argument "name" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(name));
     }
 
-    var content = (0, _fs.readFileSync)(`${ dirname }${ name }.json`);
-    return (0, _parseJsonObjectAsMap2.default)(content);
+    var content = readFileSync(`${ dirname }${ name }.json`);
+    return parseJSON(content);
 }
 
 var ConfigOptions = function () {
@@ -68,7 +47,7 @@ var ConfigOptions = function () {
     return ConfigOptions;
 }();
 
-class Config {
+export class Config {
 
     constructor(dirname) {
         if (!(typeof dirname === 'string')) {
@@ -125,12 +104,12 @@ class Config {
             for (var _iterator = _loadConfigSync2[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                 var _loadConfigSync2;
 
-                var _ref5 = _step.value;
+                var _ref2 = _step.value;
 
-                var _ref6 = _slicedToArray(_ref5, 2);
+                var _ref5 = _slicedToArray(_ref2, 2);
 
-                var key = _ref6[0];
-                var value = _ref6[1];
+                var key = _ref5[0];
+                var value = _ref5[1];
 
                 config.set(key, value);
             }
@@ -164,12 +143,12 @@ class Config {
                 for (var _iterator2 = _loadConfigSync3[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                     var _loadConfigSync3;
 
-                    var _ref7 = _step2.value;
+                    var _ref6 = _step2.value;
 
-                    var _ref8 = _slicedToArray(_ref7, 2);
+                    var _ref7 = _slicedToArray(_ref6, 2);
 
-                    var _key = _ref8[0];
-                    var _value = _ref8[1];
+                    var _key = _ref7[0];
+                    var _value = _ref7[1];
 
                     config.set(_key, _value);
                 }
@@ -190,14 +169,14 @@ class Config {
         }
 
         if (!config.has('version')) {
-            config.set('version', version || _minimistArgv2.default.version || packageConfig.version);
+            config.set('version', version || argv.version || packageConfig.version);
         }
 
-        var socketPath = _minimistArgv2.default['socket-path'] || _minimistArgv2.default.socketPath;
+        var socketPath = argv['socket-path'] || argv.socketPath;
         if (socketPath) {
             config.set('socketPath', socketPath);
-        } else if (_minimistArgv2.default.port) {
-            config.set('port', _minimistArgv2.default.port);
+        } else if (argv.port) {
+            config.set('port', argv.port);
             config.delete('socketPath');
         }
 
@@ -205,7 +184,7 @@ class Config {
             var splitted = key.split('.');
             var value = splitted.length !== 0 && splitted.reduce((config, partialKey) => {
                 return config && config[partialKey];
-            }, _minimistArgv2.default);
+            }, argv);
             if (value !== undefined) {
                 var last = splitted.pop();
                 var map = splitted.length === 0 ? config : splitted.reduce((config, partialKey) => {
@@ -215,7 +194,7 @@ class Config {
             }
         });
 
-        return _ref(this._map = (0, _deepFreezeEs2.default)(config));
+        return _ref(this._map = deepFreeze(config));
 
         if (!(this._map instanceof Map)) {
             throw new TypeError('Value of "this._map" violates contract.\n\nExpected:\nMap\n\nGot:\n' + _inspect(this._map));
@@ -263,8 +242,7 @@ class Config {
     }
 }
 
-exports.Config = Config;
-function alpConfig(dirname) {
+export default function alpConfig(dirname) {
     var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     if (!(dirname == null || typeof dirname === 'string')) {
@@ -285,10 +263,10 @@ function alpConfig(dirname) {
             config.loadSync(options);
         }
 
-        app.existsConfig = (0, _util.deprecate)(name => {
+        app.existsConfig = deprecate(name => {
             return config.existsConfigSync(name);
         }, 'use app.existsConfigSync');
-        app.loadConfig = (0, _util.deprecate)(name => {
+        app.loadConfig = deprecate(name => {
             return config.loadConfigSync(name);
         }, 'use app.loadConfigSync');
 
