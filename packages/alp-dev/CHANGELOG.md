@@ -1,3 +1,8 @@
+### v2.3.0
+
+- [`ebeadfd`](https://github.com/alpjs/alp-dev/commit/ebeadfdc0f7a72691306cf9b5b1e4acc61a896ba) babel plugins defines remove-dead-code discard-module-references and react-require (Christophe Hurpeau)
+
+
 ### v2.2.2
 
 - [`509c345`](https://github.com/alpjs/alp-dev/commit/509c34568993b0e42302c789099975e1281d5429) use modern-browsers/webpack2-uglifyjs (Christophe Hurpeau)
