@@ -1,3 +1,7 @@
+### v2.3.1
+
+- [`3ca46fe`](https://github.com/alpjs/alp-dev/commit/3ca46fe71fb79d2f68390b27f72d7fb3270177a0) fix undefined plugin in production (Christophe Hurpeau)
+
 ### v2.3.0
 
 - [`ebeadfd`](https://github.com/alpjs/alp-dev/commit/ebeadfdc0f7a72691306cf9b5b1e4acc61a896ba) babel plugins defines remove-dead-code discard-module-references and react-require (Christophe Hurpeau)
