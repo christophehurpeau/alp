@@ -1,64 +1,29 @@
-'use strict';
+import render from 'fody';
+import DefaultApp from 'fody-app';
+import ReduxApp from 'fody-redux-app';
+import Logger from 'nightingale-logger';
+import { createStore } from 'redux';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = alpReactRedux;
-
-var _fody = require('fody');
-
-var _fody2 = _interopRequireDefault(_fody);
-
-var _fodyApp = require('fody-app');
-
-var _fodyApp2 = _interopRequireDefault(_fodyApp);
-
-var _fodyReduxApp = require('fody-redux-app');
-
-var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
-
-var _nightingaleLogger = require('nightingale-logger');
-
-var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
-
-var _redux = require('redux');
-
-/**
- * @function
- * @param obj
-*/
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var logger = new _nightingaleLogger2.default('alp.react-redux');
+var logger = new Logger('alp.react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 13 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 45 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 41 }, // also works for opera.
 { name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 41 }];
 
-/**
- * @function
- * @param Html
-*/
 // { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 },
-function alpReactRedux(Html) {
-    return function (app) {
-        app.context.render = /**
-                              * @function
-                              * @param moduleDescriptor
-                              * @param data
-                             */function (moduleDescriptor, data) {
-            var _this = this;
-
-            logger.debug('render view', { data: data });
+export default function alpReactRedux(Html) {
+    return app => {
+        app.context.render = function (moduleDescriptor, data) {
+            logger.debug('render view', { data });
 
             if (moduleDescriptor.reducer) {
-                this.store = (0, _redux.createStore)(moduleDescriptor.reducer, data);
+                this.store = createStore(moduleDescriptor.reducer, data);
             }
 
-            this.body = (0, _fody2.default)({
+            this.body = render({
                 htmlData: {
                     context: this,
-                    moduleDescriptor: moduleDescriptor,
+                    moduleDescriptor,
                     get scriptName() {
                         // TODO create alp-useragent with getter in context
                         var ua = this.context.req.headers['user-agent'];
@@ -92,18 +57,15 @@ function alpReactRedux(Html) {
                         }
 
                         return 'es5';
-                    }
+                    },
+                    initialContextState: this.computeInitialStateForBrowser()
                 },
                 context: this,
                 View: moduleDescriptor.View,
                 data: moduleDescriptor.reducer ? undefined : data,
-                initialData: moduleDescriptor.reducer ? function () {
-                    return _this.store.getState();
-                } : function () {
-                    return null;
-                },
-                Html: Html,
-                App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fodyApp2.default
+                initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
+                Html,
+                App: moduleDescriptor.reducer ? ReduxApp : DefaultApp
             });
         };
     };

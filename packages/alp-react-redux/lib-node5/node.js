@@ -23,10 +23,6 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 var _redux = require('redux');
 
-/**
- * @function
- * @param obj
-*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const logger = new _nightingaleLogger2.default('alp.react-redux');
@@ -35,18 +31,10 @@ const logger = new _nightingaleLogger2.default('alp.react-redux');
 const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 13 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 45 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 41 }, // also works for opera.
 { name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 41 }];
 
-/**
- * @function
- * @param Html
-*/
 // { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 },
 function alpReactRedux(Html) {
     return app => {
-        app.context.render = /**
-                              * @function
-                              * @param moduleDescriptor
-                              * @param data
-                             */function (moduleDescriptor, data) {
+        app.context.render = function (moduleDescriptor, data) {
             logger.debug('render view', { data: data });
 
             if (moduleDescriptor.reducer) {
@@ -68,7 +56,8 @@ function alpReactRedux(Html) {
                             }
                         }
                         return 'es5';
-                    }
+                    },
+                    initialContextState: this.computeInitialStateForBrowser()
                 },
                 context: this,
                 View: moduleDescriptor.View,

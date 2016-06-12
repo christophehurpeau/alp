@@ -13,10 +13,6 @@ var _fodyReduxApp = require('fody-redux-app');
 
 var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
 
-var _contentLoaded = require('content-loaded');
-
-var _contentLoaded2 = _interopRequireDefault(_contentLoaded);
-
 var _fody = require('fody');
 
 var _fody2 = _interopRequireDefault(_fody);
@@ -27,31 +23,16 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 var _redux = require('redux');
 
-/**
- * @function
- * @param obj
-*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const logger = new _nightingaleLogger2.default('alp.react-redux');
 
 let store;
 
-/**
- * @function
- * @param
-*/function alpReactRedux(_ref) {
-    let moduleDescriptor = _ref.moduleDescriptor;
-    let initialData = _ref.initialData;
-    let element = _ref.element;
-
+function alpReactRedux(element) {
     return app => {
-        app.context.render = /**
-                              * @function
-                              * @param moduleDescriptor
-                              * @param data
-                             */function (moduleDescriptor, data) {
-            logger.debug('render view', { data: data });
+        app.context.render = function (moduleDescriptor, data) {
+            logger.debug('render view', { data });
 
             if (!moduleDescriptor.View) {
                 throw new Error('View is undefined, class expected');
@@ -84,19 +65,11 @@ let store;
             (0, _fody2.default)({
                 context: this,
                 View: moduleDescriptor.View,
-                data: data,
-                element: element,
+                data,
+                element,
                 App: reducer ? _fodyReduxApp2.default : _fodyApp2.default
             });
         };
-
-        if (moduleDescriptor) {
-            const context = Object.create(app.context);
-            (0, _contentLoaded2.default)().then(() => {
-                logger.debug('document ready');
-                context.render(moduleDescriptor, initialData);
-            });
-        }
     };
 }
 //# sourceMappingURL=browser.js.map

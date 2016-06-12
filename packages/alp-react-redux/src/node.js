@@ -40,6 +40,7 @@ export default function alpReactRedux(Html) {
                         }
                         return 'es5';
                     },
+                    initialContextState: this.computeInitialStateForBrowser(),
                 },
                 context: this,
                 View: moduleDescriptor.View,

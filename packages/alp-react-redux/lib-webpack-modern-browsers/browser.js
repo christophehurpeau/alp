@@ -4,12 +4,12 @@ import render from 'fody';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
 
-const logger = new Logger('alp.react-redux');
+var logger = new Logger('alp.react-redux');
 
-let store;
+var store = undefined;
 
 export default function alpReactRedux(element) {
-    return (app) => {
+    return app => {
         app.context.render = function (moduleDescriptor, data) {
             logger.debug('render view', { data });
 
@@ -17,24 +17,26 @@ export default function alpReactRedux(element) {
                 throw new Error('View is undefined, class expected');
             }
 
-            const reducer = moduleDescriptor.reducer;
+            var reducer = moduleDescriptor.reducer;
 
             if (store === undefined) {
                 if (reducer) {
                     store = createStore(reducer, data);
                 }
             } else {
-                // replace state
-                const state = store.getState();
-                Object.keys(state).forEach(key => delete state[key]);
-                Object.assign(state, data);
+                (function () {
+                    // replace state
+                    var state = store.getState();
+                    Object.keys(state).forEach(key => delete state[key]);
+                    Object.assign(state, data);
 
-                // replace reducer
-                if (reducer) {
-                    store.replaceReducer(reducer);
-                } else {
-                    store.replaceReducer((state, action) => state);
-                }
+                    // replace reducer
+                    if (reducer) {
+                        store.replaceReducer(reducer);
+                    } else {
+                        store.replaceReducer((state, action) => state);
+                    }
+                })();
             }
 
             if (reducer) {
@@ -46,8 +48,9 @@ export default function alpReactRedux(element) {
                 View: moduleDescriptor.View,
                 data,
                 element,
-                App: reducer ? ReduxApp : DefaultApp,
+                App: reducer ? ReduxApp : DefaultApp
             });
         };
     };
 }
+//# sourceMappingURL=browser.js.map
