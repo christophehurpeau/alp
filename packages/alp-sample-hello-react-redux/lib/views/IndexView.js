@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _class, _temp;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -20,14 +18,16 @@ var _name = require('./actions/name');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let IndexView = (_temp = _class = class IndexView extends _react.Component {
+class IndexView extends _react.Component {
 
     render() {
         const name = this.props.name;
 
         const title = this.context.context.t('Hello {0}!', name || 'World');
         this.context.setTitle(title);
-        return _react2.default.createElement(_HelloComponent2.default, { name: name, setName: name => this.setName(name) });
+        return _react2.default.createElement(_HelloComponent2.default, { name: name, setName: name => {
+                return this.setName(name);
+            } });
     }
 
     setName(name) {
@@ -60,13 +60,18 @@ let IndexView = (_temp = _class = class IndexView extends _react.Component {
             store.unsubscribe(this._storeListener);
         }
     }
-}, _class.contextTypes = {
+}
+
+IndexView.contextTypes = {
     setTitle: _react.PropTypes.func.isRequired,
     context: _react.PropTypes.object.isRequired
-}, _class.propTypes = {
+};
+IndexView.propTypes = {
     name: _react.PropTypes.string
-}, _temp);
-exports.default = (0, _reactRedux.connect)(state => ({
-    name: state.name
-}))(IndexView);
+};
+exports.default = (0, _reactRedux.connect)(state => {
+    return {
+        name: state.name
+    };
+})(IndexView);
 //# sourceMappingURL=IndexView.js.map

@@ -3,9 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = undefined;
-
-var _class, _temp;
 
 var _react = require('react');
 
@@ -17,7 +14,7 @@ var _InputNameComponent2 = _interopRequireDefault(_InputNameComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let HelloComponent = (_temp = _class = class HelloComponent extends _react.Component {
+class HelloComponent extends _react.Component {
 
     render() {
         var _props = this.props;
@@ -35,11 +32,13 @@ let HelloComponent = (_temp = _class = class HelloComponent extends _react.Compo
             _react2.default.createElement(_InputNameComponent2.default, { name: name, setName: setName })
         );
     }
-}, _class.contextTypes = {
+}
+exports.default = HelloComponent;
+HelloComponent.contextTypes = {
     context: _react.PropTypes.object.isRequired
-}, _class.propTypes = {
+};
+HelloComponent.propTypes = {
     name: _react.PropTypes.string.isRequired,
     setName: _react.PropTypes.func.isRequired
-}, _temp);
-exports.default = HelloComponent;
+};
 //# sourceMappingURL=HelloComponent.js.map
