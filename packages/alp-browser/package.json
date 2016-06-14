@@ -38,7 +38,7 @@
     "alp-limosa": "^2.2.1",
     "alp-translate": "^0.1.1",
     "content-loaded": "^1.1.0",
-    "ibex": "^3.2.0"
+    "ibex": "^3.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
@@ -55,6 +55,6 @@
     "eslint-config-pob": "^6.1.1",
     "eslint-plugin-import": "^1.8.1",
     "pob-babel": "^0.4.1",
-    "pob-release": "^2.0.4"
+    "pob-release": "^2.0.5"
   }
 }
