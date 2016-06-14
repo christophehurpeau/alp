@@ -1,3 +1,7 @@
+### v0.6.0
+
+- [`7bb0695`](https://github.com/alpjs/alp-browser/commit/7bb06958a4ce604f39b7295bff23bd43e39712a8) ibex 3.3 + changelog (Christophe Hurpeau)
+
 ### v0.5.1
 
 - [`4bbd230`](https://github.com/alpjs/alp-browser/commit/4bbd230b6ce49cb0c8b1373b9e172da676fbef1b) alp-limosa@2.2.1 (Christophe Hurpeau)
@@ -40,5 +44,3 @@
 ### v0.1.3
 
 - [`b5eee26`](https://github.com/alpjs/alp-browser/commit/b5eee263bfd1e0f2e4c0015eb7eac3f0de712ea6) missing ibex dependency (Christophe Hurpeau)
-
-
