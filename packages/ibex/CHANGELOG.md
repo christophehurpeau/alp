@@ -1,3 +1,7 @@
+### v3.3.0
+
+- [`3e21b52`](https://github.com/alpjs/ibex/commit/3e21b520810825aadca203ec6225401a0f6d2498) pob (Christophe Hurpeau)
+
 ### v3.2.0
 
 - [`2f1756c`](https://github.com/alpjs/ibex/commit/2f1756c9cfeaed500c3862cc2f61a09b0de44482) nightingale-logger (Christophe Hurpeau)
@@ -19,6 +23,3 @@
 - [`90cd430`](https://github.com/alpjs/ibex/commit/90cd4302746552fcd170ad7519e8623423f2b62e) nightingale, springbokjs-library@15, remove init (Christophe Hurpeau)
 
 ### v1.0.1
-
-
-
