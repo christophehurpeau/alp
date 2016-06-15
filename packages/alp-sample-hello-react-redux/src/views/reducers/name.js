@@ -1,10 +1,6 @@
-import { SET_NAME } from '../actions/name';
+import { createReducer } from 'alp-react-redux';
+import { setName } from '../actions/name';
 
-export default function name(state = '', action) {
-    switch (action.type) {
-        case SET_NAME:
-            return action.name;
-        default:
-            return state;
-    }
-}
+export default createReducer(() => '', {
+    [setName]: (state, { name }: { name: string }): string => name,
+});

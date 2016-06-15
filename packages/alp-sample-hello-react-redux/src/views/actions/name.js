@@ -1,8 +1,3 @@
-export const SET_NAME = 'SET_NAME';
+import { createAction } from 'alp-react-redux';
 
-export function setName(name) {
-    return {
-        type: SET_NAME,
-        name: name,
-    };
-}
+export const setName = createAction('SET_NAME', ['name']);

@@ -7,8 +7,8 @@
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "MIT",
   "dependencies": {
-    "alp": "^3.4.0",
-    "alp-react-redux": "^3.0.0",
+    "alp": "^3.5.0",
+    "alp-react-redux": "^3.1.0",
     "fody-html-layout": "^2.2.0",
     "turaco-styl": "0.7.1"
   },

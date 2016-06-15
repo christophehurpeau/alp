@@ -1,15 +1,11 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.setName = setName;
-const SET_NAME = exports.SET_NAME = 'SET_NAME';
+exports.setName = undefined;
 
-function setName(name) {
-    return {
-        type: SET_NAME,
-        name: name
-    };
-}
+var _alpReactRedux = require('alp-react-redux');
+
+const setName = exports.setName = (0, _alpReactRedux.createAction)('SET_NAME', ['name']);
 //# sourceMappingURL=name.js.map

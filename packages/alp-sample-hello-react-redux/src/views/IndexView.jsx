@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Hello from './components/HelloComponent';
-import { setName } from './actions/name'
+import { setName as actionSetName } from './actions/name';
 
 class IndexView extends Component {
     static contextTypes = {
@@ -17,13 +17,14 @@ class IndexView extends Component {
         const { name } = this.props;
         const title = this.context.context.t('Hello {0}!', name || 'World');
         this.context.setTitle(title);
-        return (<Hello name={name} setName={name => this.setName(name)}></Hello>);
+        return (<Hello name={name} setName={this.setName}></Hello>);
     }
 
-    setName(name) {
+    setName = (name: string) => {
+        if (this.props.name === name) return;
         const dispatch = this.context.context.store.dispatch;
-        dispatch(setName(name));
-    }
+        dispatch(actionSetName(name));
+    };
 
     componentDidMount() {
         const store = this.context.context.store;
