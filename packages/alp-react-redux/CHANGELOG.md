@@ -1,3 +1,8 @@
+### v3.1.0
+
+- [`f61f6ea`](https://github.com/alpjs/alp-react-redux/commit/f61f6ea347f82d0b9c3b90c8bf4af5f731782556) changelog (Christophe Hurpeau)
+- [`71f4623`](https://github.com/alpjs/alp-react-redux/commit/71f4623562ccb14f7d3fac867f7109b015efc822) createAction, createReducer (Christophe Hurpeau)
+
 ### v3.0.0
 
 - [`3a6f252`](https://github.com/alpjs/alp-react-redux/commit/3a6f25294ab5059d8ec29a639d559905351631cc) Breaking: alpReactRedux(element), use alp-browser.initialRender (Christophe Hurpeau)
