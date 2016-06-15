@@ -32,7 +32,7 @@ build-prod: check
 lint:
 	@echo "> Lint files"
 	@echo '>> eslint'; \
-	$(BIN)eslint -c .eslintrc src/ test/src/
+	$(BIN)eslint --ext .js,.jsx --fix -c .eslintrc src/ test/src/
 
 lint-fix:
 	$(BIN)eslint --fix -c .eslintrc src/ test/src/
