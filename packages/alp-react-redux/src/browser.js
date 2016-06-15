@@ -4,6 +4,9 @@ import render from 'fody';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
 
+export createAction from './createAction';
+export createReducer from './createReducer';
+
 const logger = new Logger('alp.react-redux');
 
 let store;

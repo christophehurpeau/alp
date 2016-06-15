@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.createReducer = exports.createAction = undefined;
 exports.default = alpReactRedux;
 
 var _fody = require('fody');
@@ -23,7 +24,19 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 var _redux = require('redux');
 
+var _createAction2 = require('./createAction');
+
+var _createAction3 = _interopRequireDefault(_createAction2);
+
+var _createReducer2 = require('./createReducer');
+
+var _createReducer3 = _interopRequireDefault(_createReducer2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.createAction = _createAction3.default;
+exports.createReducer = _createReducer3.default;
+
 
 const logger = new _nightingaleLogger2.default('alp.react-redux');
 

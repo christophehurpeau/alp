@@ -4,6 +4,9 @@ import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
 
+export createAction from './createAction';
+export createReducer from './createReducer';
+
 const logger = new Logger('alp.react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
