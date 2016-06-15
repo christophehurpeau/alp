@@ -61,3 +61,22 @@ It add in Koa's context (or Ibex's context) the following method:
 `data` is an object with the initial data, sent to redux as the initial data for the store, or to react simple component as properties
 
 For brower, this package keeps a single redux store, and reinitialize it each time the `render` method is called.
+
+
+## createAction / createReducer
+
+[Reduce some boilerplate in your application](http://redux.js.org/docs/recipes/ReducingBoilerplate.html):
+
+```js
+import { createAction, createReducer } from 'alp-react-redux';
+
+
+export const increment = createAction('INCREMENT');
+export const addTodo = createAction('ADD_TODO'); // addTodo({ name: 'Todo Name' })
+export const removeTodo = createAction('REMOVE_TODO', ['id']); // removeTodo(todo.id)
+
+export default createReducer(() => [], {
+    [addTodo]: (todos, todo) => [...todos, todo],
+    [removeTodo]: (state, { id }) => todos.filter(todo => todo.id !== id),
+});
+```
