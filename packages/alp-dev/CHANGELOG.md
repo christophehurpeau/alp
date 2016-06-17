@@ -1,3 +1,9 @@
+### v2.4.0
+
+- [`831b557`](https://github.com/alpjs/alp-dev/commit/831b55744b1781db5f7ade8bace6c0cbaa00037e) missing dependency babel-regenerator-runtime (Christophe Hurpeau)
+- [`13ea7f0`](https://github.com/alpjs/alp-dev/commit/13ea7f08d8c1e5667696ee8fda0d7aae109e65fc) lint jsx files (Christophe Hurpeau)
+- [`52831e2`](https://github.com/alpjs/alp-dev/commit/52831e220cb6a14b14a1570d6c5da668426538f1) babel clean presets/plugins (Christophe Hurpeau)
+
 ### v2.3.1
 
 - [`3ca46fe`](https://github.com/alpjs/alp-dev/commit/3ca46fe71fb79d2f68390b27f72d7fb3270177a0) fix undefined plugin in production (Christophe Hurpeau)
