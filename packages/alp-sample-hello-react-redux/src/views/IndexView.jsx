@@ -52,7 +52,7 @@ export default connect(({ name }) => ({ name }))(class IndexView extends Compone
 
     render() {
         const { name } = this.props;
-        const title = this.context.context.t('Hello {0}!', name || 'World');
+        const title = this.context.context.t('Hello {name}!', { name: name || 'World' });
         this.context.setTitle(title);
         return <Hello name={name} setName={this.setName} />;
     }

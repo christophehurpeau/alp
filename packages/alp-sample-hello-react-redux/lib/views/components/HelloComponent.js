@@ -35,7 +35,7 @@ function HelloComponent(_ref, _ref2) {
         _react2.default.createElement(
             'div',
             { className: 'hello-name' },
-            context.t('Hello {0}!', name || 'World')
+            context.t('Hello {name}!', { name: name || 'World' })
         ),
         _react2.default.createElement(_InputNameComponent2.default, { name: name, setName: setName })
     );

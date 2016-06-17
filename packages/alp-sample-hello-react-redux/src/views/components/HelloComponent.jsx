@@ -12,7 +12,7 @@ HelloComponent.propTypes = {
 
 export default function HelloComponent({ name, setName }, { context }) {
     return (<div className="hello-component">
-        <div className="hello-name">{context.t('Hello {0}!', name || 'World')}</div>
+        <div className="hello-name">{context.t('Hello {name}!', { name: name || 'World' })}</div>
         <InputName name={name} setName={setName} />
     </div>);
 }

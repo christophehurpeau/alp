@@ -67,7 +67,7 @@ exports.default = (0, _reactRedux.connect)(_ref => {
     render() {
         const name = this.props.name;
 
-        const title = this.context.context.t('Hello {0}!', name || 'World');
+        const title = this.context.context.t('Hello {name}!', { name: name || 'World' });
         this.context.setTitle(title);
         return _react2.default.createElement(_HelloComponent2.default, { name: name, setName: this.setName });
     }
