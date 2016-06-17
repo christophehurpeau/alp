@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = HelloComponent;
 
 var _react = require('react');
 
@@ -14,31 +15,29 @@ var _InputNameComponent2 = _interopRequireDefault(_InputNameComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-class HelloComponent extends _react.Component {
-
-    render() {
-        var _props = this.props;
-        const name = _props.name;
-        const setName = _props.setName;
-
-        return _react2.default.createElement(
-            'div',
-            { className: 'hello-component' },
-            _react2.default.createElement(
-                'div',
-                { className: 'hello-name' },
-                this.context.context.t('Hello {0}!', name || 'World')
-            ),
-            _react2.default.createElement(_InputNameComponent2.default, { name: name, setName: setName })
-        );
-    }
-}
-exports.default = HelloComponent;
 HelloComponent.contextTypes = {
     context: _react.PropTypes.object.isRequired
 };
+
 HelloComponent.propTypes = {
     name: _react.PropTypes.string.isRequired,
     setName: _react.PropTypes.func.isRequired
 };
+
+function HelloComponent(_ref, _ref2) {
+    let name = _ref.name;
+    let setName = _ref.setName;
+    let context = _ref2.context;
+
+    return _react2.default.createElement(
+        'div',
+        { className: 'hello-component' },
+        _react2.default.createElement(
+            'div',
+            { className: 'hello-name' },
+            context.t('Hello {0}!', name || 'World')
+        ),
+        _react2.default.createElement(_InputNameComponent2.default, { name: name, setName: setName })
+    );
+}
 //# sourceMappingURL=HelloComponent.js.map

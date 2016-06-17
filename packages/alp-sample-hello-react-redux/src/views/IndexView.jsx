@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Hello from './components/HelloComponent';
 import { setName as actionSetName } from './actions/name';
 
-class IndexView extends Component {
+export default connect(({ name }) => ({ name }))(class IndexView extends Component {
     static contextTypes = {
         setTitle: PropTypes.func.isRequired,
         context: PropTypes.object.isRequired,
@@ -11,19 +11,6 @@ class IndexView extends Component {
 
     static propTypes = {
         name: PropTypes.string,
-    };
-
-    render() {
-        const { name } = this.props;
-        const title = this.context.context.t('Hello {0}!', name || 'World');
-        this.context.setTitle(title);
-        return (<Hello name={name} setName={this.setName}></Hello>);
-    }
-
-    setName = (name: string) => {
-        if (this.props.name === name) return;
-        const dispatch = this.context.context.store.dispatch;
-        dispatch(actionSetName(name));
     };
 
     componentDidMount() {
@@ -44,7 +31,7 @@ class IndexView extends Component {
                     { name: state.name },
                     document.title,
                     (location.pathname.slice(0, -(location.search.length - 1)) || '/')
-                        + (queryString && '?' + queryString)
+                        + (queryString && `?${queryString}`)
                 );
             }
         });
@@ -56,8 +43,17 @@ class IndexView extends Component {
             store.unsubscribe(this._storeListener);
         }
     }
-}
 
-export default connect((state) => ({
-    name: state.name,
-}))(IndexView);
+    setName = (name: string) => {
+        if (this.props.name === name) return;
+        const dispatch = this.context.context.store.dispatch;
+        dispatch(actionSetName(name));
+    };
+
+    render() {
+        const { name } = this.props;
+        const title = this.context.context.t('Hello {0}!', name || 'World');
+        this.context.setTitle(title);
+        return <Hello name={name} setName={this.setName} />;
+    }
+});

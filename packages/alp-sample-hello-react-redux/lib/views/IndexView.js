@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _class, _temp2;
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -18,7 +20,10 @@ var _name = require('./actions/name');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-class IndexView extends _react.Component {
+exports.default = (0, _reactRedux.connect)(_ref => {
+    let name = _ref.name;
+    return { name: name };
+})((_temp2 = _class = class IndexView extends _react.Component {
     constructor() {
         var _temp;
 
@@ -31,14 +36,6 @@ class IndexView extends _react.Component {
             const dispatch = this.context.context.store.dispatch;
             dispatch((0, _name.setName)(name));
         }, _temp;
-    }
-
-    render() {
-        const name = this.props.name;
-
-        const title = this.context.context.t('Hello {0}!', name || 'World');
-        this.context.setTitle(title);
-        return _react2.default.createElement(_HelloComponent2.default, { name: name, setName: this.setName });
     }
 
     componentDidMount() {
@@ -55,7 +52,7 @@ class IndexView extends _react.Component {
 
             const queryString = queryParams.toString();
             if (queryString !== location.query) {
-                history.replaceState({ name: state.name }, document.title, (location.pathname.slice(0, -(location.search.length - 1)) || '/') + (queryString && '?' + queryString));
+                history.replaceState({ name: state.name }, document.title, (location.pathname.slice(0, -(location.search.length - 1)) || '/') + (queryString && `?${ queryString }`));
             }
         });
     }
@@ -66,20 +63,20 @@ class IndexView extends _react.Component {
             store.unsubscribe(this._storeListener);
         }
     }
-}
 
-IndexView.contextTypes = {
+    render() {
+        const name = this.props.name;
+
+        const title = this.context.context.t('Hello {0}!', name || 'World');
+        this.context.setTitle(title);
+        return _react2.default.createElement(_HelloComponent2.default, { name: name, setName: this.setName });
+    }
+}, _class.contextTypes = {
     setTitle: _react.PropTypes.func.isRequired,
     context: _react.PropTypes.object.isRequired
-};
-IndexView.propTypes = {
+}, _class.propTypes = {
     name: _react.PropTypes.string
-};
-exports.default = (0, _reactRedux.connect)(state => {
-    return {
-        name: state.name
-    };
-})(IndexView);
+}, _temp2));
 
 function _inspect(input, depth) {
     const maxDepth = 4;
