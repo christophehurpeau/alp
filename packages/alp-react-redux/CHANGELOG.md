@@ -1,3 +1,8 @@
+### v3.2.0
+
+- [`57264fe`](https://github.com/alpjs/alp-react-redux/commit/57264fed4edf6320bebc6a53f57ee98206ffe17e) readme createAction / createReducer (Christophe Hurpeau)
+- [`9d33a88`](https://github.com/alpjs/alp-react-redux/commit/9d33a88c24a84887a99f9ca00528d2861a40f905) improve createAction and createReducer (Christophe Hurpeau)
+
 ### v3.1.0
 
 - [`f61f6ea`](https://github.com/alpjs/alp-react-redux/commit/f61f6ea347f82d0b9c3b90c8bf4af5f731782556) changelog (Christophe Hurpeau)
