@@ -24,7 +24,11 @@ export default function alpReactRedux(element) {
 
             if (store === undefined) {
                 if (reducer) {
-                    store = createStore(reducer, data);
+                    store = createStore(
+                        reducer,
+                        data,
+                        window.devToolsExtension && window.devToolsExtension()
+                    );
                 }
             } else {
                 // replace state

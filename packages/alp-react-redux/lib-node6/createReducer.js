@@ -5,6 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createReducer;
 function createReducer(defaultState, handlers) {
+    if (typeof defaultState === 'object') {
+        handlers = defaultState;
+        defaultState = () => null;
+    }
+
     const handlerMap = new Map();
     Object.keys(handlers).forEach(key => {
         if (typeof key === 'function') {

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -7,19 +7,34 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = createAction;
-function createAction(type, argsNames) {
-    const action = argsNames ? function () {
-        const action = { type: type };
+function createAction(type, argsNamesOrHandler) {
+    let action;
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
+    const typeofSecondArg = typeof argsNamesOrHandler;
+
+    if (typeofSecondArg === 'function') {
+        action = function action() {
+            return _extends({ type: type }, argsNamesOrHandler(...arguments));
+        };
+    } else {
+        if (typeofSecondArg === 'string') {
+            argsNamesOrHandler = argsNamesOrHandler.split(',');
         }
 
-        args.forEach((value, index) => action[argsNames[index]] = value);
-        return action;
-    } : function (args) {
-        return _extends({ type: type }, args);
-    };
+        if (argsNamesOrHandler) {
+            action = function action() {
+                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                }
+
+                const action = { type: type };
+                args.forEach((value, index) => action[argsNamesOrHandler[index]] = value);
+                return action;
+            };
+        } else {
+            action = args => _extends({ type: type }, args);
+        }
+    }
 
     action.type = type;
     action.toString = () => type;

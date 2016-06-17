@@ -1,32 +1,53 @@
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-export default function createAction(type, argsNames) {
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+export default function createAction(type, argsNamesOrHandler) {
     if (!(typeof type === 'string')) {
-        throw new TypeError("Value of argument \"type\" violates contract.\n\nExpected:\nstring\n\nGot:\n" + _inspect(type));
+        throw new TypeError('Value of argument "type" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(type));
     }
 
-    if (!(argsNames == null || Array.isArray(argsNames) && argsNames.every(function (item) {
+    if (!(argsNamesOrHandler == null || Array.isArray(argsNamesOrHandler) && argsNamesOrHandler.every(function (item) {
         return typeof item === 'string';
-    }))) {
-        throw new TypeError("Value of argument \"argsNames\" violates contract.\n\nExpected:\n?Array<string>\n\nGot:\n" + _inspect(argsNames));
+    }) || typeof argsNamesOrHandler === 'string' || typeof argsNamesOrHandler === 'function')) {
+        throw new TypeError('Value of argument "argsNamesOrHandler" violates contract.\n\nExpected:\n?Array<string> | string | Function\n\nGot:\n' + _inspect(argsNamesOrHandler));
     }
 
-    var action = argsNames ? function () {
-        var action = { type: type };
+    var action = undefined;
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
+    var typeofSecondArg = typeof argsNamesOrHandler === 'undefined' ? 'undefined' : _typeof(argsNamesOrHandler);
+
+    if (typeofSecondArg === 'function') {
+        action = function action() {
+            return _extends({ type: type }, argsNamesOrHandler.apply(undefined, arguments));
+        };
+    } else {
+        if (typeofSecondArg === 'string') {
+            argsNamesOrHandler = argsNamesOrHandler.split(',');
         }
 
-        args.forEach(function (value, index) {
-            return action[argsNames[index]] = value;
-        });
-        return action;
-    } : function (args) {
-        return _extends({ type: type }, args);
-    };
+        if (argsNamesOrHandler) {
+            action = function action() {
+                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                }
+
+                var action = { type: type };
+                args.forEach(function (value, index) {
+                    return action[argsNamesOrHandler[index]] = value;
+                });
+                return action;
+            };
+        } else {
+            action = function action(args) {
+                if (!(args == null || args instanceof Object)) {
+                    throw new TypeError('Value of argument "args" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(args));
+                }
+
+                return _extends({ type: type }, args);
+            };
+        }
+    }
 
     action.type = type;
     action.toString = function () {
@@ -51,7 +72,7 @@ function _inspect(input, depth) {
     } else if (input === undefined) {
         return 'void';
     } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-        return typeof input === "undefined" ? "undefined" : _typeof(input);
+        return typeof input === 'undefined' ? 'undefined' : _typeof(input);
     } else if (Array.isArray(input)) {
         if (input.length > 0) {
             var _ret = function () {
@@ -76,7 +97,7 @@ function _inspect(input, depth) {
                 }
             }();
 
-            if ((typeof _ret === "undefined" ? "undefined" : _typeof(_ret)) === "object") return _ret.v;
+            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
         } else {
             return 'Array';
         }

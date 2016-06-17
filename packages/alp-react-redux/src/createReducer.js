@@ -1,4 +1,9 @@
-export default function createReducer(defaultState: Function, handlers: Object) {
+export default function createReducer(defaultState: Function|Object, handlers: ?Object) {
+    if (typeof defaultState === 'object') {
+        handlers = defaultState;
+        defaultState = () => null;
+    }
+
     const handlerMap = new Map();
     Object.keys(handlers).forEach(key => {
         if (typeof key === 'function') {

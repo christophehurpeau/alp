@@ -55,7 +55,7 @@ function alpReactRedux(element) {
 
             if (store === undefined) {
                 if (reducer) {
-                    store = (0, _redux.createStore)(reducer, data);
+                    store = (0, _redux.createStore)(reducer, data, window.devToolsExtension && window.devToolsExtension());
                 }
             } else {
                 // replace state

@@ -1,4 +1,13 @@
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 export default function createReducer(defaultState, handlers) {
+    if ((typeof defaultState === 'undefined' ? 'undefined' : _typeof(defaultState)) === 'object') {
+        handlers = defaultState;
+        defaultState = function defaultState() {
+            return null;
+        };
+    }
+
     var handlerMap = new Map();
     Object.keys(handlers).forEach(function (key) {
         if (typeof key === 'function') {

@@ -5,12 +5,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createReducer;
 function createReducer(defaultState, handlers) {
-    if (!(typeof defaultState === 'function')) {
-        throw new TypeError('Value of argument "defaultState" violates contract.\n\nExpected:\nFunction\n\nGot:\n' + _inspect(defaultState));
+    if (!(typeof defaultState === 'function' || defaultState instanceof Object)) {
+        throw new TypeError('Value of argument "defaultState" violates contract.\n\nExpected:\nFunction | Object\n\nGot:\n' + _inspect(defaultState));
     }
 
-    if (!(handlers instanceof Object)) {
-        throw new TypeError('Value of argument "handlers" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(handlers));
+    if (!(handlers == null || handlers instanceof Object)) {
+        throw new TypeError('Value of argument "handlers" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(handlers));
+    }
+
+    if (typeof defaultState === 'object') {
+        handlers = defaultState;
+        defaultState = () => {
+            return null;
+        };
     }
 
     const handlerMap = new Map();

@@ -1,12 +1,19 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 export default function createReducer(defaultState, handlers) {
-    if (!(typeof defaultState === 'function')) {
-        throw new TypeError('Value of argument "defaultState" violates contract.\n\nExpected:\nFunction\n\nGot:\n' + _inspect(defaultState));
+    if (!(typeof defaultState === 'function' || defaultState instanceof Object)) {
+        throw new TypeError('Value of argument "defaultState" violates contract.\n\nExpected:\nFunction | Object\n\nGot:\n' + _inspect(defaultState));
     }
 
-    if (!(handlers instanceof Object)) {
-        throw new TypeError('Value of argument "handlers" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(handlers));
+    if (!(handlers == null || handlers instanceof Object)) {
+        throw new TypeError('Value of argument "handlers" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(handlers));
+    }
+
+    if ((typeof defaultState === 'undefined' ? 'undefined' : _typeof(defaultState)) === 'object') {
+        handlers = defaultState;
+        defaultState = function defaultState() {
+            return null;
+        };
     }
 
     var handlerMap = new Map();
