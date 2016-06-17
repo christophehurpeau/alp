@@ -1,3 +1,7 @@
+### v0.7.1
+
+- [`99408df`](https://github.com/alpjs/alp-browser/commit/99408df8095b884fb4a094fc55c8d9c62b7d94bb) alp-language@1.2 (Christophe Hurpeau)
+
 ### v0.7.0
 
 - [`eec73c2`](https://github.com/alpjs/alp-browser/commit/eec73c2036db2895dd60faeddc8a044a4bd9d607) alp-translate 2.0 (Christophe Hurpeau)
