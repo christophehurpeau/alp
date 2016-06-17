@@ -97,13 +97,13 @@ function buildJsServer() {
         .pipe(clip())
         .pipe(babel({
             presets: ['es2015-node5', 'react', 'stage-1'],
-            plugins: (!argv.production ? ['typecheck'] : [])
-                .concat([
-                    ['defines', { PRODUCTION: !!argv.production, BROWSER: false, SERVER: true }],
-                    'remove-dead-code',
-                    ['discard-module-references', { targets: [], unusedWhitelist: ['react'] }],
-                    'react-require',
-                ]),
+            plugins: [
+                !argv.production && 'typecheck',
+                ['defines', { PRODUCTION: !!argv.production, BROWSER: false, SERVER: true }],
+                'remove-dead-code',
+                ['discard-module-references', { targets: [], unusedWhitelist: ['react'] }],
+                'react-require',
+            ].filter(Boolean),
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('lib'));

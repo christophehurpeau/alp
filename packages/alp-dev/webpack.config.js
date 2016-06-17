@@ -61,7 +61,7 @@ module.exports = {
                 query: {
                     presets: (
                         dest === 'modern-browsers' ?
-                            ['modern-browsers/webpack2-uglifyjs', 'react', 'modern-browsers/stage1']
+                            ['modern-browsers/webpack2-uglifyjs', 'react', 'modern-browsers/stage-1']
                             : ['es2015', 'react', 'stage-1']
                     ),
                     plugins: [
