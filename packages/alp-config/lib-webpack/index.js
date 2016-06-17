@@ -162,6 +162,13 @@ export default function alpConfig(dirname) {
             return config.loadConfigSync(name);
         }, 'use app.loadConfigSync');
 
+        app.existsConfigSync = function (name) {
+            return config.existsConfigSync(name);
+        };
+        app.loadConfigSync = function (name) {
+            return config.loadConfigSync(name);
+        };
+
         app.config = config;
         app.context.config = config;
 

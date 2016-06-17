@@ -145,6 +145,9 @@ export default function alpConfig(dirname) {
         app.existsConfig = deprecate(name => config.existsConfigSync(name), 'use app.existsConfigSync');
         app.loadConfig = deprecate(name => config.loadConfigSync(name), 'use app.loadConfigSync');
 
+        app.existsConfigSync = name => config.existsConfigSync(name);
+        app.loadConfigSync = name => config.loadConfigSync(name);
+
         app.config = config;
         app.context.config = config;
 

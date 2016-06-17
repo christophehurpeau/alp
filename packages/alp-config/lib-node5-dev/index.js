@@ -250,6 +250,13 @@ function alpConfig(dirname) {
             return config.loadConfigSync(name);
         }, 'use app.loadConfigSync');
 
+        app.existsConfigSync = name => {
+            return config.existsConfigSync(name);
+        };
+        app.loadConfigSync = name => {
+            return config.loadConfigSync(name);
+        };
+
         app.config = config;
         app.context.config = config;
 

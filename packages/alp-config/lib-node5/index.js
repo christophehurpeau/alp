@@ -125,6 +125,9 @@ function alpConfig(dirname) {
         app.existsConfig = (0, _util.deprecate)(name => config.existsConfigSync(name), 'use app.existsConfigSync');
         app.loadConfig = (0, _util.deprecate)(name => config.loadConfigSync(name), 'use app.loadConfigSync');
 
+        app.existsConfigSync = name => config.existsConfigSync(name);
+        app.loadConfigSync = name => config.loadConfigSync(name);
+
         app.config = config;
         app.context.config = config;
 
