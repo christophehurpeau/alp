@@ -14,7 +14,7 @@ import Koa from 'koa';
 import config from 'alp-config';
 import translate from 'alp-translate';
 
-const app = new Auk();
+const app = new Koa();
 config(__dirname + '/config')(app);
 translate('locales')(app);
 ```

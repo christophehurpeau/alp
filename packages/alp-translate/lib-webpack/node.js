@@ -2,19 +2,20 @@ import load from './load';
 
 export default function alpTranslate(dirname) {
     dirname = dirname.replace(/\/*$/, '/');
-    return app => {
+    return function (app) {
         Object.assign(app.context, {
-            t(key: string, args: ?Object): string {
-                const msg = app.translations.get(this.language).get(key);
+            t: function t(key, args) {
+                var msg = app.translations.get(this.language).get(key);
                 if (!msg) return key;
                 return msg.format(args);
-            },
+            }
         });
 
         app.translations = new Map();
-        app.config.get('availableLanguages').forEach(language => {
-            const translations = app.loadConfigSync(dirname + language);
+        app.config.get('availableLanguages').forEach(function (language) {
+            var translations = app.loadConfigSync(dirname + language);
             app.translations.set(language, load(translations, language));
         });
     };
 }
+//# sourceMappingURL=node.js.map

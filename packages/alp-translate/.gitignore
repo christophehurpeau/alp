@@ -1,11 +1,10 @@
+node_modules
 /docs
-/dist
 /coverage
 /build
-node_modules
 
 /.settings
-.project
+/.project
 /.idea
 *.sublime-project
 *.sublime-workspace
@@ -18,6 +17,3 @@ node_modules
 *.old
 *~
 .#*
-.*.swp
-.DS_Store
-,*
