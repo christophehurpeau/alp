@@ -1,3 +1,7 @@
+### v0.7.0
+
+- [`eec73c2`](https://github.com/alpjs/alp-browser/commit/eec73c2036db2895dd60faeddc8a044a4bd9d607) alp-translate 2.0 (Christophe Hurpeau)
+
 ### v0.6.0
 
 - [`7bb0695`](https://github.com/alpjs/alp-browser/commit/7bb06958a4ce604f39b7295bff23bd43e39712a8) ibex 3.3 + changelog (Christophe Hurpeau)
