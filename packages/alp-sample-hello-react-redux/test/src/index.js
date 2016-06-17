@@ -45,18 +45,18 @@ suite('test hello server', () => {
         daemon.stop();
     });
 
-    test('hello without name', () => {
-        return fetch('http://localhost:5555/')
+    test('hello without name', () => (
+        fetch('http://localhost:5555/')
             .then(res => res.text())
             .then(res => {
                 strictEqual(
                     ...comparableContent(res, fixtures['hello-world'])
                 );
-            });
-    });
+            })
+    ));
 
-    test('hello with name', () => {
-        return fetch('http://localhost:5555/?name=Chris')
+    test('hello with name', () => (
+        fetch('http://localhost:5555/?name=Chris')
             .then(res => res.text())
             .then(res => {
                 strictEqual(
@@ -71,6 +71,6 @@ suite('test hello server', () => {
                             )
                     )
                 );
-            });
-    });
+            })
+    ));
 });

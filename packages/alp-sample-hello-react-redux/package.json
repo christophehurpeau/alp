@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "alp": "^3.5.0",
-    "alp-react-redux": "^3.1.0",
+    "alp-react-redux": "^3.2.0",
     "fody-html-layout": "^2.2.0",
     "turaco-styl": "0.7.1"
   },
@@ -23,8 +23,8 @@
     "eslint-config-airbnb": "^9.0.1",
     "eslint-config-pob": "^6.1.1",
     "eslint-plugin-import": "^1.8.1",
-    "eslint-plugin-jsx-a11y": "^1.4.2",
-    "eslint-plugin-react": "^5.1.1",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-react": "^5.2.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^1.0.1",
     "karma-cli": "^1.0.0",
