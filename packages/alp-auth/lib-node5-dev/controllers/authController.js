@@ -53,6 +53,12 @@ function createAuthController(_ref) {
                 ctx.state.connected = connectedUser;
                 yield ctx.redirect(ctx.urlGenerator(homeRouterKey));
             })();
+        },
+        logout: function logout(ctx) {
+            return _asyncToGenerator(function* () {
+                ctx.logout();
+                yield ctx.redirect(ctx.urlGenerator(homeRouterKey));
+            })();
         }
     };
 }

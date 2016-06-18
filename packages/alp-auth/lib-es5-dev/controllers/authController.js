@@ -102,6 +102,26 @@ function createAuthController(_ref) {
                     }
                 }, _callee2, _this2);
             }))();
+        },
+        logout: function logout(ctx) {
+            var _this3 = this;
+
+            return _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
+                return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                ctx.logout();
+                                _context3.next = 3;
+                                return ctx.redirect(ctx.urlGenerator(homeRouterKey));
+
+                            case 3:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, _this3);
+            }))();
         }
     };
 }

@@ -37,5 +37,10 @@ export default function createAuthController({
             ctx.state.connected = connectedUser;
             await ctx.redirect(ctx.urlGenerator(homeRouterKey));
         },
+
+        async logout(ctx) {
+            ctx.logout();
+            await ctx.redirect(ctx.urlGenerator(homeRouterKey));
+        },
     };
 }
