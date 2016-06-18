@@ -87,6 +87,13 @@ var Application = function (_EventEmitter) {
             }
         }
     }, {
+        key: 'createContext',
+        value: function createContext() {
+            var context = Object.create(this.context);
+            context.state = {};
+            return context;
+        }
+    }, {
         key: 'load',
         value: function load(url) {
             var _this2 = this;
@@ -101,7 +108,7 @@ var Application = function (_EventEmitter) {
                 url = window.location.pathname + url;
             }
 
-            var context = Object.create(this.context);
+            var context = this.createContext();
             context.path = url;
             this.callback.call(context).then(function () {
                 return respond.call(context);

@@ -41,6 +41,12 @@ export default class Application extends EventEmitter {
         }
     }
 
+    createContext() {
+        const context = Object.create(this.context);
+        context.state = {};
+        return context;
+    }
+
     load(url: string) {
         logger.debug('load', { url });
 
@@ -48,7 +54,7 @@ export default class Application extends EventEmitter {
             url = window.location.pathname + url;
         }
 
-        const context = Object.create(this.context);
+        const context = this.createContext();
         context.path = url;
         this.callback.call(context)
             .then(() => respond.call(context))

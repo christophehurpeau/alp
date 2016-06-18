@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"context.js","sourcesContent":[]}
+{"version":3,"sources":["../src/context.js"],"names":[],"mappings":"AAAA,eAAe,EAAf","file":"context.js","sourcesContent":["export default {\n\n};\n"]}

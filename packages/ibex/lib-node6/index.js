@@ -56,6 +56,12 @@ class Application extends _events.EventEmitter {
         }
     }
 
+    createContext() {
+        const context = Object.create(this.context);
+        context.state = {};
+        return context;
+    }
+
     load(url) {
         logger.debug('load', { url });
 
@@ -63,7 +69,7 @@ class Application extends _events.EventEmitter {
             url = window.location.pathname + url;
         }
 
-        const context = Object.create(this.context);
+        const context = this.createContext();
         context.path = url;
         this.callback.call(context).then(() => respond.call(context)).catch(err => this.emit('error', err));
     }

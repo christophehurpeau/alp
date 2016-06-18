@@ -79,6 +79,12 @@ class Application extends _events.EventEmitter {
         }
     }
 
+    createContext() {
+        const context = Object.create(this.context);
+        context.state = {};
+        return context;
+    }
+
     load(url) {
         if (!(typeof url === 'string')) {
             throw new TypeError('Value of argument "url" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(url));
@@ -90,7 +96,7 @@ class Application extends _events.EventEmitter {
             url = window.location.pathname + url;
         }
 
-        const context = Object.create(this.context);
+        const context = this.createContext();
         context.path = url;
         this.callback.call(context).then(() => {
             return respond.call(context);
