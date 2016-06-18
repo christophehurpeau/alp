@@ -1,24 +1,15 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = TranslateComponent;
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+import React from 'react';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+import { PropTypes } from 'react';
+
 TranslateComponent.propTypes = {
-    id: _react.PropTypes.string
+    id: PropTypes.string.isRequired
 };
 
 TranslateComponent.contextTypes = {
-    context: _react.PropTypes.object.isRequired
+    context: PropTypes.object.isRequired
 };
 
 var Props = function () {
@@ -35,7 +26,7 @@ var Props = function () {
     return Props;
 }();
 
-function TranslateComponent(_ref, _ref2) {
+export default function TranslateComponent(_ref, _ref2) {
     var id = _ref.id;
 
     var props = _objectWithoutProperties(_ref, ['id']);
@@ -46,10 +37,10 @@ function TranslateComponent(_ref, _ref2) {
         throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\nProps\n\nGot:\n' + _inspect(arguments[0]));
     }
 
-    return _react2.default.createElement(
+    return React.createElement(
         'span',
         null,
-        context.t(id)
+        context.t(id, props)
     );
 }
 

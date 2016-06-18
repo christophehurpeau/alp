@@ -7,7 +7,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { PropTypes } from 'react';
 
 TranslateComponent.propTypes = {
-    id: PropTypes.string
+    id: PropTypes.string.isRequired
 };
 
 TranslateComponent.contextTypes = {
@@ -42,7 +42,7 @@ export default function TranslateComponent(_ref, _ref2) {
     return React.createElement(
         'span',
         null,
-        context.t(id)
+        context.t(id, props)
     );
 }
 

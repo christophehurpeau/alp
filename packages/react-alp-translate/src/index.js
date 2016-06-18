@@ -1,7 +1,7 @@
 import { PropTypes } from 'react';
 
 TranslateComponent.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
 };
 
 TranslateComponent.contextTypes = {
@@ -13,5 +13,5 @@ type Props = {
 }
 
 export default function TranslateComponent({ id, ...props }: Props, { context }) {
-    return <span>{context.t(id)}</span>;
+    return <span>{context.t(id, props)}</span>;
 }
