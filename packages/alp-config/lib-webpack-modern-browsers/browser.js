@@ -1,5 +1,3 @@
-function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
-
 /* global fetch */
 import * as storedConfig from './browserStoredConfig';
 import parseJSON from 'parse-json-object-as-map';
@@ -37,13 +35,7 @@ var getOrFetchAppConfig = function getOrFetchAppConfig(version, environment, con
 
     storedConfig.clear(version);
 
-    return Promise.all([getConfig(`${ configPath }common`), environment && getConfig(`${ configPath }environment`), getConfig(`${ configPath }local`)]).then(_ref => {
-        var _ref2 = _toArray(_ref);
-
-        var config = _ref2[0];
-
-        var others = _ref2.slice(1);
-
+    return Promise.all([getConfig(`${ configPath }common`), environment && getConfig(`${ configPath }environment`), getConfig(`${ configPath }local`)]).then(([config, ...others]) => {
         if (!config) config = new Map();
 
         others.filter(Boolean).forEach(jsonConfig => {

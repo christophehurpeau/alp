@@ -1,5 +1,3 @@
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 import { deprecate } from 'util';
 import argv from 'minimist-argv';
 import deepFreeze from 'deep-freeze-es6';
@@ -67,9 +65,7 @@ export class Config {
         }
     }
 
-    loadSync() {
-        var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
+    loadSync(options = {}) {
         function _ref(_id) {
             if (!(_id instanceof Map)) {
                 throw new TypeError('Function return value violates contract.\n\nExpected:\nMap\n\nGot:\n' + _inspect(_id));
@@ -83,11 +79,7 @@ export class Config {
         }
 
         var env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
-        var _options$argv = options.argv;
-        var argvOverrides = _options$argv === undefined ? [] : _options$argv;
-        var packageConfig = options.packageConfig;
-        var version = options.version;
-
+        var { argv: argvOverrides = [], packageConfig, version } = options;
 
         var config = this.loadConfigSync('common');
         _loadConfigSync2 = this.loadConfigSync(env);
@@ -96,36 +88,10 @@ export class Config {
             throw new TypeError('Expected _loadConfigSync2 to be iterable, got ' + _inspect(_loadConfigSync2));
         }
 
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+        for (var [key, value] of _loadConfigSync2) {
+            var _loadConfigSync2;
 
-        try {
-            for (var _iterator = _loadConfigSync2[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var _loadConfigSync2;
-
-                var _ref2 = _step.value;
-
-                var _ref5 = _slicedToArray(_ref2, 2);
-
-                var key = _ref5[0];
-                var value = _ref5[1];
-
-                config.set(key, value);
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
+            config.set(key, value);
         }
 
         if (this.existsConfigSync('local')) {
@@ -135,36 +101,10 @@ export class Config {
                 throw new TypeError('Expected _loadConfigSync3 to be iterable, got ' + _inspect(_loadConfigSync3));
             }
 
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
+            for (var [_key, _value] of _loadConfigSync3) {
+                var _loadConfigSync3;
 
-            try {
-                for (var _iterator2 = _loadConfigSync3[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var _loadConfigSync3;
-
-                    var _ref6 = _step2.value;
-
-                    var _ref7 = _slicedToArray(_ref6, 2);
-
-                    var _key = _ref7[0];
-                    var _value = _ref7[1];
-
-                    config.set(_key, _value);
-                }
-            } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
-                    }
-                } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
-                    }
-                }
+                config.set(_key, _value);
             }
         }
 
@@ -242,9 +182,7 @@ export class Config {
     }
 }
 
-export default function alpConfig(dirname) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
+export default function alpConfig(dirname, options = {}) {
     if (!(dirname == null || typeof dirname === 'string')) {
         throw new TypeError('Value of argument "dirname" violates contract.\n\nExpected:\n?string\n\nGot:\n' + _inspect(dirname));
     }
