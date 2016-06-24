@@ -25,7 +25,7 @@
     "watch:dev": "pob-watch"
   },
   "devDependencies": {
-    "babel-eslint": "^6.0.4",
+    "babel-eslint": "^6.1.0",
     "babel-plugin-defines": "^2.0.0",
     "babel-plugin-discard-module-references": "^1.0.0",
     "babel-plugin-remove-dead-code": "^1.0.1",
@@ -35,16 +35,16 @@
     "babel-preset-es2015-node6": "^0.2.0",
     "babel-preset-flow": "^1.0.0",
     "babel-preset-stage-1": "^6.5.0",
-    "eslint": "^2.12.0",
+    "eslint": "^2.13.1",
     "eslint-config-airbnb-base": "^3.0.1",
     "eslint-config-pob": "^6.1.1",
-    "eslint-plugin-import": "^1.8.1",
-    "pob-babel": "^0.4.0",
-    "pob-release": "^2.0.4"
+    "eslint-plugin-import": "^1.9.2",
+    "pob-babel": "^1.0.0",
+    "pob-release": "^2.0.5"
   },
   "dependencies": {
-    "jsonwebtoken": "^7.0.0",
-    "liwi": "^0.2.1",
+    "jsonwebtoken": "^7.0.1",
+    "liwi": "^0.3.0",
     "nightingale-logger": "^1.1.1",
     "promise-callback-factory": "^1.0.0",
     "simple-oauth2": "^0.7.0"
