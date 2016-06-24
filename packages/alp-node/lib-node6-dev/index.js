@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.newController = exports.Config = undefined;
+exports.MigrationsManager = exports.newController = exports.Config = undefined;
 
 var _alpConfig = require('alp-config');
 
@@ -20,6 +20,15 @@ Object.defineProperty(exports, 'newController', {
     enumerable: true,
     get: function get() {
         return _interopRequireDefault(_alpController).default;
+    }
+});
+
+var _alpMigrations = require('alp-migrations');
+
+Object.defineProperty(exports, 'MigrationsManager', {
+    enumerable: true,
+    get: function get() {
+        return _alpMigrations.MigrationsManager;
     }
 });
 
@@ -62,6 +71,8 @@ var _alpLimosa2 = _interopRequireDefault(_alpLimosa);
 var _alpListen = require('alp-listen');
 
 var _alpListen2 = _interopRequireDefault(_alpListen);
+
+var _alpMigrations2 = _interopRequireDefault(_alpMigrations);
 
 var _nightingaleLogger = require('nightingale-logger');
 
@@ -117,6 +128,7 @@ class Alp extends _koa2.default {
         (0, _alpParamsNode2.default)(this);
         (0, _alpLanguage2.default)(this);
         (0, _alpTranslate2.default)('locales')(this);
+
         this.use((0, _koaCompress2.default)());
 
         this.browserStateTransformers = [];
@@ -138,6 +150,16 @@ class Alp extends _koa2.default {
 
     registerBrowserStateTransformers(transformer) {
         this.browserStateTransformers.push(transformer);
+    }
+
+    migrate(_ref) {
+        let migrationsManager = _ref.migrationsManager;
+
+        return (0, _alpMigrations2.default)({
+            config: this.config,
+            dirname: this.dirname,
+            migrationsManager
+        });
     }
 
     get environment() {

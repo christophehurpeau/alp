@@ -9,10 +9,12 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
 import _listen from 'alp-listen';
+import migrations from 'alp-migrations';
 import Logger from 'nightingale-logger';
 
 export { Config } from 'alp-config';
 export { default as newController } from 'alp-controller';
+export { MigrationsManager } from 'alp-migrations';
 
 const logger = new Logger('alp');
 
@@ -20,6 +22,7 @@ export default class Alp extends Koa {
     dirname: string;
     packageDirname: string;
     browserStateTransformers: Array<Function>;
+    config;
 
     /**
      * @param {Object} [options]
@@ -53,6 +56,7 @@ export default class Alp extends Koa {
         params(this);
         language(this);
         translate('locales')(this);
+
         this.use(compress());
 
         this.browserStateTransformers = [];
@@ -65,6 +69,14 @@ export default class Alp extends Koa {
 
     registerBrowserStateTransformers(transformer) {
         this.browserStateTransformers.push(transformer);
+    }
+
+    migrate({ migrationsManager }) {
+        return migrations({
+            config: this.config,
+            dirname: this.dirname,
+            migrationsManager,
+        });
     }
 
     get environment() {
