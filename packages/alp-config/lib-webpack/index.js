@@ -38,6 +38,7 @@ export var Config = function () {
             var packageConfig = options.packageConfig;
             var version = options.version;
 
+            this.packageConfig = packageConfig;
 
             var config = this.loadConfigSync('common');
             var _iteratorNormalCompletion = true;

@@ -109,6 +109,11 @@ class Config {
         const packageConfig = options.packageConfig;
         const version = options.version;
 
+        this.packageConfig = packageConfig;
+
+        if (!(this.packageConfig instanceof Object)) {
+            throw new TypeError('Value of "this.packageConfig" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(this.packageConfig));
+        }
 
         const config = this.loadConfigSync('common');
         _loadConfigSync2 = this.loadConfigSync(env);

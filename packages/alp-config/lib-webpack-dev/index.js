@@ -97,6 +97,11 @@ export var Config = function () {
             var packageConfig = options.packageConfig;
             var version = options.version;
 
+            this.packageConfig = packageConfig;
+
+            if (!(this.packageConfig instanceof Object)) {
+                throw new TypeError('Value of "this.packageConfig" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(this.packageConfig));
+            }
 
             var config = this.loadConfigSync('common');
             _loadConfigSync2 = this.loadConfigSync(env);

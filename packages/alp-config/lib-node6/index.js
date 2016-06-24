@@ -52,6 +52,7 @@ class Config {
         const packageConfig = options.packageConfig;
         const version = options.version;
 
+        this.packageConfig = packageConfig;
 
         const config = this.loadConfigSync('common');
         for (let _ref of this.loadConfigSync(env)) {

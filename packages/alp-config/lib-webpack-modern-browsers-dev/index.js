@@ -80,6 +80,11 @@ export class Config {
 
         var env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
         var { argv: argvOverrides = [], packageConfig, version } = options;
+        this.packageConfig = packageConfig;
+
+        if (!(this.packageConfig instanceof Object)) {
+            throw new TypeError('Value of "this.packageConfig" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(this.packageConfig));
+        }
 
         var config = this.loadConfigSync('common');
         _loadConfigSync2 = this.loadConfigSync(env);

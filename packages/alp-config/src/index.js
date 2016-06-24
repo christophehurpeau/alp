@@ -22,6 +22,7 @@ type ConfigOptions = {
 export class Config {
     _map: Map;
     _dirname: string;
+    packageConfig: Object;
 
     constructor(dirname: string) {
         this._map = new Map();
@@ -31,6 +32,7 @@ export class Config {
     loadSync(options: ConfigOptions = {}): Map {
         const env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
         const { argv: argvOverrides = [], packageConfig, version } = options;
+        this.packageConfig = packageConfig;
 
         const config = this.loadConfigSync('common');
         for (let [key, value] of this.loadConfigSync(env)) {

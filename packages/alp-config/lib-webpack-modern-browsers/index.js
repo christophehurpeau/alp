@@ -23,6 +23,7 @@ export class Config {
     loadSync(options = {}) {
         var env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
         var { argv: argvOverrides = [], packageConfig, version } = options;
+        this.packageConfig = packageConfig;
 
         var config = this.loadConfigSync('common');
         for (var [key, value] of this.loadConfigSync(env)) {
