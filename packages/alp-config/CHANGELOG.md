@@ -1,3 +1,7 @@
+### v2.5.0
+
+- [`4307ad6`](https://github.com/alpjs/alp-config/commit/4307ad6a269d2778a5c75eb11d936c28c90bf64f) add packageConfig (Christophe Hurpeau)
+
 ### v2.4.0
 
 - [`4d3af62`](https://github.com/alpjs/alp-config/commit/4d3af629e79009361105fb3c0e151df8b5492708) update dependencies (Christophe Hurpeau)
