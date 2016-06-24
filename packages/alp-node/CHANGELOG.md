@@ -1,3 +1,7 @@
+### v0.8.2
+
+- [`3c78d30`](https://github.com/alpjs/alp-node/commit/3c78d30a40d81e9e9d3354ddeb136821f62586c0) migrate (Christophe Hurpeau)
+
 ### v0.8.1
 
 - [`1438745`](https://github.com/alpjs/alp-node/commit/1438745806faf21429a48ee114873149a6e8bb86) alp-language@1.2 (Christophe Hurpeau)
