@@ -3,7 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.createReducer = exports.createAction = undefined;
+exports.connect = exports.createReducer = exports.createAction = undefined;
+
+var _reactRedux = require('react-redux');
+
+Object.defineProperty(exports, 'connect', {
+    enumerable: true,
+    get: function get() {
+        return _reactRedux.connect;
+    }
+});
 exports.default = alpReactRedux;
 
 var _fody = require('fody');
