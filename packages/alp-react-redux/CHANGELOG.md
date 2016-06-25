@@ -1,3 +1,8 @@
+### v3.3.0
+
+- [`e1cf01b`](https://github.com/alpjs/alp-react-redux/commit/e1cf01b53715dce5ba74d15f63f23d125d85e87f) export connect from react-redux (Christophe Hurpeau)
+- [`22c8ec7`](https://github.com/alpjs/alp-react-redux/commit/22c8ec7754a3219b353f15df80953cb59d1407b6) remove node5 (Christophe Hurpeau)
+
 ### v3.2.0
 
 - [`57264fe`](https://github.com/alpjs/alp-react-redux/commit/57264fed4edf6320bebc6a53f57ee98206ffe17e) readme createAction / createReducer (Christophe Hurpeau)
