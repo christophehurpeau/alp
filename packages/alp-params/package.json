@@ -1,6 +1,6 @@
 {
   "name": "alp-params-node",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Validate params from query, router or post body in koa 2",
   "keywords": [
     "alp",
@@ -8,7 +8,7 @@
   ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
-  "repository": "alpjs/auk-params",
+  "repository": "alpjs/alp-params-node",
   "homepage": "https://github.com/alpjs/alp-params-node#readme",
   "bugs": {
     "url": "https://github.com/alpjs/alp-params-node/issues"
