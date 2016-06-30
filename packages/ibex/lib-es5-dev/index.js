@@ -22,6 +22,10 @@ var _context = require('./context');
 
 var _context2 = _interopRequireDefault(_context);
 
+var _request = require('./request');
+
+var _request2 = _interopRequireDefault(_request);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -90,6 +94,7 @@ var Application = function (_EventEmitter) {
         key: 'createContext',
         value: function createContext() {
             var context = Object.create(this.context);
+            context.request = Object.create(_request2.default);
             context.state = {};
             return context;
         }

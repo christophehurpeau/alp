@@ -18,6 +18,10 @@ var _context = require('./context');
 
 var _context2 = _interopRequireDefault(_context);
 
+var _request = require('./request');
+
+var _request2 = _interopRequireDefault(_request);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const logger = new _nightingaleLogger2.default('ibex');
@@ -58,6 +62,7 @@ class Application extends _events.EventEmitter {
 
     createContext() {
         const context = Object.create(this.context);
+        context.request = Object.create(_request2.default);
         context.state = {};
         return context;
     }

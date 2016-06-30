@@ -2,6 +2,7 @@ import Logger from 'nightingale-logger';
 import { EventEmitter } from 'events';
 import compose from './compose';
 import context from './context';
+import request from './request';
 
 var logger = new Logger('ibex');
 
@@ -64,6 +65,7 @@ export default class Application extends EventEmitter {
 
     createContext() {
         var context = Object.create(this.context);
+        context.request = Object.create(request);
         context.state = {};
         return context;
     }
