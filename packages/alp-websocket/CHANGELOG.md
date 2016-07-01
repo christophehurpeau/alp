@@ -1,3 +1,7 @@
+### v2.0.0
+
+- [`df92d6b`](https://github.com/alpjs/alp-websocket/commit/df92d6bf1c703b8dddeb643fe6b011ac5be3d9a6) emit returns a promise, update dependencies, breaking: dirname is required for ssl (Christophe Hurpeau)
+
 ### v1.3.0
 
 - [`ddd7296`](https://github.com/alpjs/alp-websocket/commit/ddd72961c52daf2a4f337c5c91b36d8c0eab9d03) change log connected/disconnected from info level to debug level (Christophe Hurpeau)
@@ -16,6 +20,3 @@
 - [`2eac293`](https://github.com/alpjs/alp-websocket/commit/2eac29373dfce7ff40a9dc80a4b012f222aa4c8d) fix browser build (Christophe Hurpeau)
 
 ### v1.0.1
-
-
-
