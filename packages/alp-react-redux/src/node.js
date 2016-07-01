@@ -12,11 +12,11 @@ const logger = new Logger('alp.react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 const agents = [
-    { name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 13 },
-    { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 45 },
-    { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 41 }, // also works for opera.
-    { name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 41 },
-    // { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 },
+    { name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 },
+    { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 },
+    { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
+    { name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 38 },
+    { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 },
 ];
 
 export default function alpReactRedux(Html) {
@@ -55,4 +55,8 @@ export default function alpReactRedux(Html) {
             });
         };
     };
+}
+
+export function emitAction(to, action) {
+    to.emit('redux:action', action);
 }

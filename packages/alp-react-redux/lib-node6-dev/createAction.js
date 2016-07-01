@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = createAction;
-function createAction(type, argsNamesOrHandler) {
+function createAction(type, argsNamesOrHandler, data) {
     if (!(typeof type === 'string')) {
         throw new TypeError('Value of argument "type" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(type));
     }
@@ -18,13 +18,17 @@ function createAction(type, argsNamesOrHandler) {
         throw new TypeError('Value of argument "argsNamesOrHandler" violates contract.\n\nExpected:\n?Array<string> | string | Function\n\nGot:\n' + _inspect(argsNamesOrHandler));
     }
 
+    if (!(data == null || data instanceof Object)) {
+        throw new TypeError('Value of argument "data" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(data));
+    }
+
     let action;
 
     const typeofSecondArg = typeof argsNamesOrHandler;
 
     if (typeofSecondArg === 'function') {
         action = function action() {
-            return _extends({ type }, argsNamesOrHandler(...arguments));
+            return _extends({ type }, data, argsNamesOrHandler(...arguments));
         };
     } else {
         if (typeofSecondArg === 'string') {
@@ -37,7 +41,7 @@ function createAction(type, argsNamesOrHandler) {
                     args[_key] = arguments[_key];
                 }
 
-                const action = { type };
+                const action = _extends({ type }, data);
                 args.forEach((value, index) => {
                     return action[argsNamesOrHandler[index]] = value;
                 });
@@ -49,7 +53,7 @@ function createAction(type, argsNamesOrHandler) {
                     throw new TypeError('Value of argument "args" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(args));
                 }
 
-                return _extends({ type }, args);
+                return _extends({ type }, data, args);
             };
         }
     }

@@ -1,10 +1,14 @@
-export default function createAction(type: string, argsNamesOrHandler: ?Array<string>|string|Function) {
+export default function createAction(
+    type:string,
+    argsNamesOrHandler:?Array<string>|string|Function,
+    data:?Object,
+) {
     let action;
 
     const typeofSecondArg = typeof argsNamesOrHandler;
 
     if (typeofSecondArg === 'function') {
-        action = (...args) => ({ type, ...argsNamesOrHandler(...args) });
+        action = (...args) => ({ type, ...data, ...argsNamesOrHandler(...args) });
     } else {
         if (typeofSecondArg === 'string') {
             argsNamesOrHandler = argsNamesOrHandler.split(',');
@@ -12,12 +16,12 @@ export default function createAction(type: string, argsNamesOrHandler: ?Array<st
 
         if (argsNamesOrHandler) {
             action = (...args) => {
-                const action = { type };
+                const action = { type, ...data };
                 args.forEach((value, index) => action[argsNamesOrHandler[index]] = value);
                 return action;
             };
         } else {
-            action = (args: ?Object) => ({ type, ...args });
+            action = (args: ?Object) => ({ type, ...data, ...args });
         }
     }
 

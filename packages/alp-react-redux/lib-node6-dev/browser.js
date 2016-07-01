@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.connect = exports.createReducer = exports.createAction = undefined;
+exports.createEmitPromiseAction = exports.createEmitAction = exports.createReducer = exports.createAction = exports.connect = undefined;
 
 var _reactRedux = require('react-redux');
 
@@ -11,6 +11,21 @@ Object.defineProperty(exports, 'connect', {
     enumerable: true,
     get: function get() {
         return _reactRedux.connect;
+    }
+});
+
+var _websocket = require('./websocket');
+
+Object.defineProperty(exports, 'createEmitAction', {
+    enumerable: true,
+    get: function get() {
+        return _websocket.createEmitAction;
+    }
+});
+Object.defineProperty(exports, 'createEmitPromiseAction', {
+    enumerable: true,
+    get: function get() {
+        return _websocket.createEmitPromiseAction;
     }
 });
 exports.default = alpReactRedux;
@@ -33,6 +48,8 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 var _redux = require('redux');
 
+var _middlewares = require('./middlewares');
+
 var _createAction2 = require('./createAction');
 
 var _createAction3 = _interopRequireDefault(_createAction2);
@@ -53,6 +70,18 @@ let store;
 
 function alpReactRedux(element) {
     return app => {
+        const middlewares = [(0, _middlewares.createFunctionMiddleware)(app), _middlewares.promiseMiddleware];
+        if (app.websocket) {
+            logger.debug('register websocket redux:action');
+            app.websocket.on('redux:action', action => {
+                logger.info('dispatch action from websocket', action);
+                if (store) {
+                    store.dispatch(action);
+                }
+            });
+            middlewares.push((0, _websocket.websocketMiddleware)(app));
+        }
+
         app.context.render = function (moduleDescriptor, data) {
             logger.debug('render view', { data });
 
@@ -64,7 +93,9 @@ function alpReactRedux(element) {
 
             if (store === undefined) {
                 if (reducer) {
-                    store = (0, _redux.createStore)(reducer, data, window.devToolsExtension && window.devToolsExtension());
+                    store = (0, _redux.createStore)(reducer, data, (0, _redux.compose)((0, _redux.applyMiddleware)(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => {
+                        return f;
+                    }));
                 }
             } else {
                 // replace state

@@ -14,6 +14,7 @@ Object.defineProperty(exports, 'connect', {
     }
 });
 exports.default = alpReactRedux;
+exports.emitAction = emitAction;
 
 var _fody = require('fody');
 
@@ -50,10 +51,9 @@ exports.createReducer = _createReducer3.default;
 const logger = new _nightingaleLogger2.default('alp.react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
-const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 13 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 45 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 41 }, // also works for opera.
-{ name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 41 }];
+const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
+{ name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 38 }, { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 }];
 
-// { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 },
 function alpReactRedux(Html) {
     return app => {
         app.context.render = function (moduleDescriptor, data) {
@@ -90,5 +90,9 @@ function alpReactRedux(Html) {
             });
         };
     };
+}
+
+function emitAction(to, action) {
+    to.emit('redux:action', action);
 }
 //# sourceMappingURL=node.js.map

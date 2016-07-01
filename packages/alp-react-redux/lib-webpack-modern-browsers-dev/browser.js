@@ -2,14 +2,17 @@ import DefaultApp from 'fody-app';
 import ReduxApp from 'fody-redux-app';
 import render from 'fody';
 import Logger from 'nightingale-logger';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { promiseMiddleware, createFunctionMiddleware } from './middlewares';
+import { websocketMiddleware } from './websocket';
 
+export { connect } from 'react-redux';
 import _createAction from './createAction';
 export { _createAction as createAction };
 import _createReducer from './createReducer';
 export { _createReducer as createReducer };
 
-export { connect } from 'react-redux';
+export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 var logger = new Logger('alp.react-redux');
 
@@ -17,6 +20,18 @@ var store = undefined;
 
 export default function alpReactRedux(element) {
     return app => {
+        var middlewares = [createFunctionMiddleware(app), promiseMiddleware];
+        if (app.websocket) {
+            logger.debug('register websocket redux:action');
+            app.websocket.on('redux:action', action => {
+                logger.info('dispatch action from websocket', action);
+                if (store) {
+                    store.dispatch(action);
+                }
+            });
+            middlewares.push(websocketMiddleware(app));
+        }
+
         app.context.render = function (moduleDescriptor, data) {
             logger.debug('render view', { data });
 
@@ -28,7 +43,9 @@ export default function alpReactRedux(element) {
 
             if (store === undefined) {
                 if (reducer) {
-                    store = createStore(reducer, data, window.devToolsExtension && window.devToolsExtension());
+                    store = createStore(reducer, data, compose(applyMiddleware(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => {
+                        return f;
+                    }));
                 }
             } else {
                 (function () {

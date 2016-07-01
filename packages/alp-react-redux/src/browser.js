@@ -2,11 +2,14 @@ import DefaultApp from 'fody-app';
 import ReduxApp from 'fody-redux-app';
 import render from 'fody';
 import Logger from 'nightingale-logger';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { promiseMiddleware, createFunctionMiddleware } from './middlewares';
+import { websocketMiddleware } from './websocket';
 
+export { connect } from 'react-redux';
 export createAction from './createAction';
 export createReducer from './createReducer';
-export { connect } from 'react-redux';
+export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 const logger = new Logger('alp.react-redux');
 
@@ -14,6 +17,21 @@ let store;
 
 export default function alpReactRedux(element) {
     return (app) => {
+        const middlewares = [
+            createFunctionMiddleware(app),
+            promiseMiddleware,
+        ];
+        if (app.websocket) {
+            logger.debug('register websocket redux:action');
+            app.websocket.on('redux:action', action => {
+                logger.info('dispatch action from websocket', action);
+                if (store) {
+                    store.dispatch(action);
+                }
+            });
+            middlewares.push(websocketMiddleware(app));
+        }
+
         app.context.render = function (moduleDescriptor, data) {
             logger.debug('render view', { data });
 
@@ -28,7 +46,10 @@ export default function alpReactRedux(element) {
                     store = createStore(
                         reducer,
                         data,
-                        window.devToolsExtension && window.devToolsExtension()
+                        compose(
+                            applyMiddleware(...middlewares),
+                            window.devToolsExtension ? window.devToolsExtension() : f => f
+                        )
                     );
                 }
             } else {

@@ -2,14 +2,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-export default function createAction(type, argsNamesOrHandler) {
+export default function createAction(type, argsNamesOrHandler, data) {
     var action = undefined;
 
     var typeofSecondArg = typeof argsNamesOrHandler === 'undefined' ? 'undefined' : _typeof(argsNamesOrHandler);
 
     if (typeofSecondArg === 'function') {
         action = function action() {
-            return _extends({ type: type }, argsNamesOrHandler.apply(undefined, arguments));
+            return _extends({ type: type }, data, argsNamesOrHandler.apply(undefined, arguments));
         };
     } else {
         if (typeofSecondArg === 'string') {
@@ -22,7 +22,7 @@ export default function createAction(type, argsNamesOrHandler) {
                     args[_key] = arguments[_key];
                 }
 
-                var action = { type: type };
+                var action = _extends({ type: type }, data);
                 args.forEach(function (value, index) {
                     return action[argsNamesOrHandler[index]] = value;
                 });
@@ -30,7 +30,7 @@ export default function createAction(type, argsNamesOrHandler) {
             };
         } else {
             action = function action(args) {
-                return _extends({ type: type }, args);
+                return _extends({ type: type }, data, args);
             };
         }
     }
