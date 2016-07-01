@@ -15,41 +15,29 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
-/**
- * @function
- * @param obj
-*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var logger = new _nightingaleLogger2.default('alp.websocket');
+const logger = new _nightingaleLogger2.default('alp.websocket');
 
-var io = void 0;
+let io;
 
 /**
  * @param {Koa} app
  * @param {string} dirname for tls server, dirname of the server.key and server.crt
  */
-/**
- * @function
- * @param app
- * @param dirname
-*/function alpWebsocket(app, dirname) {
-    start(app.config, dirname || app.dirname + '/../config/cert');
+function alpWebsocket(app, dirname) {
+    start(app.config, dirname);
     app.websocket = io;
 
     return io;
 }
 
-/**
- * @function
- * @param config
- * @param dirname
-*/function start(config, dirname) {
+function start(config, dirname) {
     if (io) {
         throw new Error('Already started');
     }
 
-    var webSocketConfig = config.get('webSocket');
+    const webSocketConfig = config.get('webSocket');
 
     if (!webSocketConfig) {
         throw new Error('Missing config webSocket');
@@ -59,35 +47,34 @@ var io = void 0;
         throw new Error('Missing config webSocket.port');
     }
 
-    var secure = webSocketConfig.get('secure');
-    var port = webSocketConfig.get('port');
-    var createServer = require(secure ? 'https' : 'http').createServer;
+    const secure = webSocketConfig.get('secure');
+    const port = webSocketConfig.get('port');
+    // eslint-disable-next-line global-require
+    const createServer = require(secure ? 'https' : 'http').createServer;
 
-    var server = function () {
+    const server = (() => {
         if (!secure) {
             return createServer();
         }
 
-        var options = {
-            key: (0, _fs.readFileSync)(dirname + '/server.key'),
-            cert: (0, _fs.readFileSync)(dirname + '/server.crt')
-        };
+        return createServer({
+            key: (0, _fs.readFileSync)(`${ dirname }/server.key`),
+            cert: (0, _fs.readFileSync)(`${ dirname }/server.crt`)
+        });
+    })();
 
-        return createServer(options);
-    }();
-
-    logger.info('Starting', { port: port });
-    server.listen(port, function () {
-        return logger.info('Listening', { port: port });
+    logger.info('Starting', { port });
+    server.listen(port, () => {
+        return logger.info('Listening', { port });
     });
     server.on('error', logger.error);
     io = (0, _socket2.default)(server);
 
-    io.on('connection', function (socket) {
+    io.on('connection', socket => {
         logger.debug('connected', { id: socket.id });
         socket.emit('hello', { version: config.get('version') });
 
-        socket.on('disconnect', function () {
+        socket.on('disconnect', () => {
             logger.debug('disconnected', { id: socket.id });
         });
     });

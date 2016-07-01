@@ -2,9 +2,9 @@ import { readFileSync } from 'fs';
 import socketio from 'socket.io';
 import Logger from 'nightingale-logger';
 
-const logger = new Logger('alp.websocket');
+var logger = new Logger('alp.websocket');
 
-let io;
+var io = undefined;
 
 /**
  * @param {Koa} app
@@ -22,7 +22,7 @@ function start(config, dirname) {
         throw new Error('Already started');
     }
 
-    const webSocketConfig = config.get('webSocket');
+    var webSocketConfig = config.get('webSocket');
 
     if (!webSocketConfig) {
         throw new Error('Missing config webSocket');
@@ -32,24 +32,26 @@ function start(config, dirname) {
         throw new Error('Missing config webSocket.port');
     }
 
-    const secure = webSocketConfig.get('secure');
-    const port = webSocketConfig.get('port');
+    var secure = webSocketConfig.get('secure');
+    var port = webSocketConfig.get('port');
     // eslint-disable-next-line global-require
-    const createServer = require(secure ? 'https' : 'http').createServer;
+    var createServer = require(secure ? 'https' : 'http').createServer;
 
-    const server = (() => {
+    var server = (() => {
         if (!secure) {
             return createServer();
         }
 
         return createServer({
-            key: readFileSync(`${dirname}/server.key`),
-            cert: readFileSync(`${dirname}/server.crt`),
+            key: readFileSync(`${ dirname }/server.key`),
+            cert: readFileSync(`${ dirname }/server.crt`)
         });
     })();
 
     logger.info('Starting', { port });
-    server.listen(port, () => logger.info('Listening', { port }));
+    server.listen(port, () => {
+        return logger.info('Listening', { port });
+    });
     server.on('error', logger.error);
     io = socketio(server);
 
@@ -66,3 +68,4 @@ function start(config, dirname) {
 
     return io;
 }
+//# sourceMappingURL=node.js.map

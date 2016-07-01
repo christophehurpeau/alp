@@ -13,36 +13,24 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
-/**
- * @function
- * @param obj
-*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const logger = new _nightingaleLogger2.default('alp.websocket');
 let socket;
 
-/**
- * @function
- * @param app
- * @param namespaceName
-*/function alpWebsocket(app, namespaceName) {
+function alpWebsocket(app, namespaceName) {
     start(app.config, namespaceName);
     app.websocket = {
-        socket: socket,
-        on: on,
-        off: off,
-        emit: emit
+        socket,
+        on,
+        off,
+        emit
     };
 
     return socket;
 }
 
-/**
- * @function
- * @param config
- * @param [namespaceName]
-*/function start(config) {
+function start(config) {
     let namespaceName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
     if (socket) {
@@ -88,32 +76,31 @@ let socket;
     return socket;
 }
 
-/**
- * @function
- * @param {...*} args
-*/function emit() {
+function emit() {
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
     }
 
-    logger.debug('emit', { args: args });
-    return socket.emit(...args);
+    logger.debug('emit', { args });
+    return new Promise((resolve, reject) => {
+        const resolved = setTimeout(() => {
+            logger.warn('websocket emit timeout', { args });
+            reject('timeout');
+        }, 10000);
+
+        socket.emit(...args, result => {
+            clearTimeout(resolved);
+            resolve(result);
+        });
+    });
 }
 
-/**
- * @function
- * @param type
- * @param handler
-*/function on(type, handler) {
+function on(type, handler) {
     socket.on(type, handler);
     return handler;
 }
 
-/**
- * @function
- * @param type
- * @param handler
-*/function off(type, handler) {
+function off(type, handler) {
     socket.off(type, handler);
 }
 //# sourceMappingURL=browser.js.map

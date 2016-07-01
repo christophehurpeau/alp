@@ -1,8 +1,8 @@
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
-const logger = new Logger('alp.websocket');
-let socket;
+var logger = new Logger('alp.websocket');
+var socket = undefined;
 
 export default function alpWebsocket(app, namespaceName) {
     start(app.config, namespaceName);
@@ -10,7 +10,7 @@ export default function alpWebsocket(app, namespaceName) {
         socket,
         on,
         off,
-        emit,
+        emit
     };
 
     return socket;
@@ -21,7 +21,7 @@ function start(config, namespaceName = '') {
         throw new Error('WebSocket already started');
     }
 
-    const webSocketConfig = config.get('webSocket');
+    var webSocketConfig = config.get('webSocket');
 
     if (!webSocketConfig) {
         throw new Error('Missing config webSocket');
@@ -31,14 +31,14 @@ function start(config, namespaceName = '') {
         throw new Error('Missing config webSocket.port');
     }
 
-    const secure = webSocketConfig.get('secure');
-    const port = webSocketConfig.get('port');
+    var secure = webSocketConfig.get('secure');
+    var port = webSocketConfig.get('port');
 
-    socket = socketio(`http${secure ? 's' : ''}://${location.hostname}:${port}/${namespaceName}`, {
+    socket = socketio(`http${ secure ? 's' : '' }://${ location.hostname }:${ port }/${ namespaceName }`, {
         reconnectionDelay: 500,
         reconnectionDelayMax: 1000,
         timeout: 4000,
-        transports: ['websocket'],
+        transports: ['websocket']
     });
 
     socket.on('connect', () => {
@@ -58,10 +58,10 @@ function start(config, namespaceName = '') {
     return socket;
 }
 
-function emit(...args): Promise {
+function emit(...args) {
     logger.debug('emit', { args });
     return new Promise((resolve, reject) => {
-        const resolved = setTimeout(() => {
+        var resolved = setTimeout(() => {
             logger.warn('websocket emit timeout', { args });
             reject('timeout');
         }, 10000);
@@ -81,3 +81,4 @@ function on(type, handler) {
 function off(type, handler) {
     socket.off(type, handler);
 }
+//# sourceMappingURL=browser.js.map

@@ -15,10 +15,6 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
-/**
- * @function
- * @param obj
-*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const logger = new _nightingaleLogger2.default('alp.websocket');
@@ -29,22 +25,14 @@ let io;
  * @param {Koa} app
  * @param {string} dirname for tls server, dirname of the server.key and server.crt
  */
-/**
- * @function
- * @param app
- * @param dirname
-*/function alpWebsocket(app, dirname) {
-    start(app.config, dirname || `${ app.dirname }/../config/cert`);
+function alpWebsocket(app, dirname) {
+    start(app.config, dirname);
     app.websocket = io;
 
     return io;
 }
 
-/**
- * @function
- * @param config
- * @param dirname
-*/function start(config, dirname) {
+function start(config, dirname) {
     if (io) {
         throw new Error('Already started');
     }
@@ -61,6 +49,7 @@ let io;
 
     const secure = webSocketConfig.get('secure');
     const port = webSocketConfig.get('port');
+    // eslint-disable-next-line global-require
     const createServer = require(secure ? 'https' : 'http').createServer;
 
     const server = (() => {
@@ -68,16 +57,14 @@ let io;
             return createServer();
         }
 
-        const options = {
+        return createServer({
             key: (0, _fs.readFileSync)(`${ dirname }/server.key`),
             cert: (0, _fs.readFileSync)(`${ dirname }/server.crt`)
-        };
-
-        return createServer(options);
+        });
     })();
 
-    logger.info('Starting', { port: port });
-    server.listen(port, () => logger.info('Listening', { port: port }));
+    logger.info('Starting', { port });
+    server.listen(port, () => logger.info('Listening', { port }));
     server.on('error', logger.error);
     io = (0, _socket2.default)(server);
 

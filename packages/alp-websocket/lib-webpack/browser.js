@@ -1,32 +1,10 @@
-'use strict';
+import socketio from 'socket.io-client';
+import Logger from 'nightingale-logger';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = alpWebsocket;
+var logger = new Logger('alp.websocket');
+var socket = undefined;
 
-var _socket2 = require('socket.io-client');
-
-var _socket3 = _interopRequireDefault(_socket2);
-
-var _nightingaleLogger = require('nightingale-logger');
-
-var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
-
-/**
- * @function
- * @param obj
-*/
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var logger = new _nightingaleLogger2.default('alp.websocket');
-var socket = void 0;
-
-/**
- * @function
- * @param app
- * @param namespaceName
-*/function alpWebsocket(app, namespaceName) {
+export default function alpWebsocket(app, namespaceName) {
     start(app.config, namespaceName);
     app.websocket = {
         socket: socket,
@@ -38,11 +16,7 @@ var socket = void 0;
     return socket;
 }
 
-/**
- * @function
- * @param config
- * @param [namespaceName]
-*/function start(config) {
+function start(config) {
     var namespaceName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
     if (socket) {
@@ -62,7 +36,7 @@ var socket = void 0;
     var secure = webSocketConfig.get('secure');
     var port = webSocketConfig.get('port');
 
-    socket = (0, _socket3.default)('http' + (secure ? 's' : '') + '://' + location.hostname + ':' + port + '/' + namespaceName, {
+    socket = socketio('http' + (secure ? 's' : '') + '://' + location.hostname + ':' + port + '/' + namespaceName, {
         reconnectionDelay: 500,
         reconnectionDelayMax: 1000,
         timeout: 4000,
@@ -88,34 +62,33 @@ var socket = void 0;
     return socket;
 }
 
-/**
- * @function
- * @param {...*} args
-*/function emit() {
-    var _socket;
-
+function emit() {
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
     }
 
     logger.debug('emit', { args: args });
-    return (_socket = socket).emit.apply(_socket, args);
+    return new Promise(function (resolve, reject) {
+        var _socket;
+
+        var resolved = setTimeout(function () {
+            logger.warn('websocket emit timeout', { args: args });
+            reject('timeout');
+        }, 10000);
+
+        (_socket = socket).emit.apply(_socket, args.concat([function (result) {
+            clearTimeout(resolved);
+            resolve(result);
+        }]));
+    });
 }
 
-/**
- * @function
- * @param type
- * @param handler
-*/function on(type, handler) {
+function on(type, handler) {
     socket.on(type, handler);
     return handler;
 }
 
-/**
- * @function
- * @param type
- * @param handler
-*/function off(type, handler) {
+function off(type, handler) {
     socket.off(type, handler);
 }
 //# sourceMappingURL=browser.js.map
