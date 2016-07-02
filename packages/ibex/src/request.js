@@ -2,7 +2,7 @@ const qs = require('query-string');
 
 export default {
     get search() { return location.search; },
-    get path() { return location.path; },
+    get path() { return location.pathname; },
     get port() { return location.port; },
     get url() { return location.url; },
     get origin() { return location.origin; },

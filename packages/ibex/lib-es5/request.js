@@ -10,7 +10,7 @@ exports.default = {
         return location.search;
     },
     get path() {
-        return location.path;
+        return location.pathname;
     },
     get port() {
         return location.port;
