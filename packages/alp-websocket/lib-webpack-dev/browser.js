@@ -12,7 +12,8 @@ export default function alpWebsocket(app, namespaceName) {
         socket: socket,
         on: on,
         off: off,
-        emit: emit
+        emit: emit,
+        isConnected: isConnected
     };
 
     return socket;
@@ -92,6 +93,10 @@ function on(type, handler) {
 
 function off(type, handler) {
     socket.off(type, handler);
+}
+
+function isConnected() {
+    return socket && socket.connected;
 }
 
 function _inspect(input, depth) {

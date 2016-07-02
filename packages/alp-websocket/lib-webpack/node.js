@@ -17,6 +17,25 @@ export default function alpWebsocket(app, dirname) {
     return io;
 }
 
+export function subscribe(socket, name, callbackOnSubscribe) {
+    socket.on('subscribe:' + name, function (callback) {
+        logger.info('join', { name: name });
+        socket.join(name);
+
+        if (callbackOnSubscribe) {
+            callback(callbackOnSubscribe());
+        } else {
+            callback();
+        }
+    });
+
+    socket.on('unsubscribe:' + name, function (callback) {
+        logger.info('leave', { name: name });
+        socket.leave(name);
+        callback();
+    });
+}
+
 function start(config, dirname) {
     if (io) {
         throw new Error('Already started');

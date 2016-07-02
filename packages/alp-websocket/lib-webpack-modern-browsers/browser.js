@@ -10,7 +10,8 @@ export default function alpWebsocket(app, namespaceName) {
         socket,
         on,
         off,
-        emit
+        emit,
+        isConnected
     };
 
     return socket;
@@ -80,5 +81,9 @@ function on(type, handler) {
 
 function off(type, handler) {
     socket.off(type, handler);
+}
+
+function isConnected() {
+    return socket && socket.connected;
 }
 //# sourceMappingURL=browser.js.map

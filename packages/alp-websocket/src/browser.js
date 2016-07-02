@@ -11,6 +11,7 @@ export default function alpWebsocket(app, namespaceName) {
         on,
         off,
         emit,
+        isConnected,
     };
 
     return socket;
@@ -80,4 +81,9 @@ function on(type, handler) {
 
 function off(type, handler) {
     socket.off(type, handler);
+}
+
+
+function isConnected() {
+    return socket && socket.connected;
 }
