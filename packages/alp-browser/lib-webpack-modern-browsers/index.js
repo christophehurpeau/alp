@@ -17,10 +17,7 @@ export default class AlpBrowser extends Ibex {
      * @param {string} [path='/']
      * @param {Object} [options]
      */
-    constructor() {
-        var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
-        var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
+    constructor(path = '/', options = {}) {
         super();
         this.path = path;
     }
@@ -29,9 +26,9 @@ export default class AlpBrowser extends Ibex {
         var _this = this;
 
         return _asyncToGenerator(function* () {
-            yield config('config')(_this);
+            yield config('/config')(_this);
             language(_this);
-            yield translate('locales')(_this);
+            yield translate('/locales')(_this);
         })();
     }
 
@@ -51,11 +48,7 @@ export default class AlpBrowser extends Ibex {
         this.use(this.createRouter(routerBuilder, controllers));
     }
 
-    initialRender() {
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
+    initialRender(...args) {
         var context = Object.create(this.context);
         if (global.initialContextState) {
             context.state = global.initialContextState;
@@ -63,7 +56,7 @@ export default class AlpBrowser extends Ibex {
         }
 
         return contentLoaded().then(() => {
-            context.render.apply(context, args);
+            context.render(...args);
         });
     }
 }

@@ -23,9 +23,9 @@ export default class AlpBrowser extends Ibex {
     }
 
     async init() {
-        await config('config')(this);
+        await config('/config')(this);
         language(this);
-        await translate('locales')(this);
+        await translate('/locales')(this);
     }
 
     get environment() {

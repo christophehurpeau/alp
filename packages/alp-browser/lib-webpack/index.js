@@ -48,12 +48,12 @@ var AlpBrowser = function (_Ibex) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 _context.next = 2;
-                                return config('config')(this);
+                                return config('/config')(this);
 
                             case 2:
                                 language(this);
                                 _context.next = 5;
-                                return translate('locales')(this);
+                                return translate('/locales')(this);
 
                             case 5:
                             case 'end':
