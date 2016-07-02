@@ -24,6 +24,7 @@ var Application = function (_EventEmitter) {
 
         _this.middleware = [];
         _this.context = Object.create(context);
+        _this.context.app = _this;
         return _this;
     }
 

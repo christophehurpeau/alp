@@ -58,6 +58,7 @@ var Application = function (_EventEmitter) {
             throw new TypeError('Value of "this.context" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(_this.context));
         }
 
+        _this.context.app = _this;
         return _this;
     }
 

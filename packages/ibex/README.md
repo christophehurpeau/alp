@@ -14,6 +14,7 @@ app.use(...);
  
 ### context
 
+- context.app Application instance reference.
 - context.host (see context.request)
 - context.hostname (see context.request)
 - context.href (see context.request)

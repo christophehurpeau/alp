@@ -32,6 +32,7 @@ class Application extends _events.EventEmitter {
         super();
         this.middleware = [];
         this.context = Object.create(_context2.default);
+        this.context.app = this;
     }
 
     get environment() {

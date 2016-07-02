@@ -43,6 +43,8 @@ class Application extends _events.EventEmitter {
         if (!(this.context instanceof Object)) {
             throw new TypeError('Value of "this.context" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(this.context));
         }
+
+        this.context.app = this;
     }
 
     get environment() {

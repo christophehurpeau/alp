@@ -14,6 +14,7 @@ export default class Application extends EventEmitter {
         super();
         this.middleware = [];
         this.context = Object.create(context);
+        this.context.app = this;
     }
 
     get environment(): string {
