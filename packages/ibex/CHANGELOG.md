@@ -1,3 +1,8 @@
+### v3.4.1
+
+- [`b8efe90`](https://github.com/alpjs/ibex/commit/b8efe908d621ce77c63590be4c23eda5a971afe8) add context.request methods (Christophe Hurpeau)
+- [`abc8b0a`](https://github.com/alpjs/ibex/commit/abc8b0a036c76771cc504b0abc569faa5384d509) fix request.path (Christophe Hurpeau)
+
 ### v3.4.0
 
 - [`1fe6259`](https://github.com/alpjs/ibex/commit/1fe62590fc152d7107457652d731c157edc9ed68) remove postpublish hook (Christophe Hurpeau)
