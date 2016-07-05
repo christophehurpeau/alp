@@ -1,3 +1,7 @@
+### v4.1.0
+
+- [`b3111fd`](https://github.com/alpjs/alp-react-redux/commit/b3111fd9874699c75e190249a7410c971220fb9d) 4.0.0 (Christophe Hurpeau)
+
 ### v4.0.0
 
 - [`b4be807`](https://github.com/alpjs/alp-react-redux/commit/b4be80776eab228b7f78292dc30e5bf2d3b1f5b4) add middlewares and websocket support (Christophe Hurpeau)
