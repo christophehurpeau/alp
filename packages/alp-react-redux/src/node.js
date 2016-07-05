@@ -1,5 +1,4 @@
-import render from 'fody';
-import DefaultApp from 'fody-app';
+import render, { App as DefaultApp } from 'fody';
 import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';

@@ -1,3 +1,7 @@
+### v4.0.0
+
+- [`b4be807`](https://github.com/alpjs/alp-react-redux/commit/b4be80776eab228b7f78292dc30e5bf2d3b1f5b4) add middlewares and websocket support (Christophe Hurpeau)
+
 ### v3.3.0
 
 - [`e1cf01b`](https://github.com/alpjs/alp-react-redux/commit/e1cf01b53715dce5ba74d15f63f23d125d85e87f) export connect from react-redux (Christophe Hurpeau)

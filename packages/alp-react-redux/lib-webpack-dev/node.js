@@ -1,7 +1,6 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-import render from 'fody';
-import DefaultApp from 'fody-app';
+import render, { App as DefaultApp } from 'fody';
 import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';

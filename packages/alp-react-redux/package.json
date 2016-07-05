@@ -1,6 +1,6 @@
 {
   "name": "alp-react-redux",
-  "version": "3.3.0",
+  "version": "4.0.0",
   "description": "render with react and redux in alp framework",
   "keywords": [
     "alp",
@@ -31,17 +31,17 @@
     "watch:dev": "pob-watch"
   },
   "dependencies": {
-    "fody": "^4.2.0",
-    "fody-redux-app": "^4.0.0",
+    "fody": "^5.0.0",
+    "fody-redux-app": "^5.0.0",
     "nightingale-logger": "^1.1.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.0",
-    "babel-plugin-defines": "^2.0.0",
+    "babel-plugin-defines": "^3.0.0",
     "babel-plugin-discard-module-references": "^1.0.0",
-    "babel-plugin-remove-dead-code": "^1.0.1",
+    "babel-plugin-remove-dead-code": "^1.1.0",
     "babel-plugin-typecheck": "^3.9.0",
     "babel-preset-es2015-node5": "^1.2.0",
     "babel-preset-es2015-node6": "^0.2.0",
@@ -50,10 +50,10 @@
     "babel-preset-modern-browsers": "^5.0.2",
     "babel-preset-modern-browsers-stage-1": "^1.0.0",
     "babel-preset-stage-1": "^6.5.0",
-    "eslint": "^3.0.0",
-    "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-config-pob": "^6.1.1",
-    "eslint-plugin-import": "^1.10.0",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb-base": "^4.0.0",
+    "eslint-config-pob": "^6.1.2",
+    "eslint-plugin-import": "^1.10.2",
     "pob-babel": "^2.0.0",
     "pob-release": "^2.0.5"
   }

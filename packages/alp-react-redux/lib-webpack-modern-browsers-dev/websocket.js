@@ -46,6 +46,7 @@ export var websocketMiddleware = app => {
 
                 var resolved = setTimeout(() => {
                     logger.warn('websocket emit timeout', { action });
+                    // eslint-disable-next-line no-console
                     console.log('alp.react-redux websocket emit timeout', action);
                 }, 10000);
 

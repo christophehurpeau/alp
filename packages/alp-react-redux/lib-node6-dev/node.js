@@ -20,10 +20,6 @@ var _fody = require('fody');
 
 var _fody2 = _interopRequireDefault(_fody);
 
-var _fodyApp = require('fody-app');
-
-var _fodyApp2 = _interopRequireDefault(_fodyApp);
-
 var _fodyReduxApp = require('fody-redux-app');
 
 var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
@@ -94,7 +90,7 @@ function alpReactRedux(Html) {
                     return null;
                 },
                 Html,
-                App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fodyApp2.default
+                App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fody.App
             });
         };
     };

@@ -1,6 +1,5 @@
-import DefaultApp from 'fody-app';
+import render, { App as DefaultApp } from 'fody';
 import ReduxApp from 'fody-redux-app';
-import render from 'fody';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares';

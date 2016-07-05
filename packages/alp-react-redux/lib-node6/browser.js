@@ -30,17 +30,13 @@ Object.defineProperty(exports, 'createEmitPromiseAction', {
 });
 exports.default = alpReactRedux;
 
-var _fodyApp = require('fody-app');
+var _fody = require('fody');
 
-var _fodyApp2 = _interopRequireDefault(_fodyApp);
+var _fody2 = _interopRequireDefault(_fody);
 
 var _fodyReduxApp = require('fody-redux-app');
 
 var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
-
-var _fody = require('fody');
-
-var _fody2 = _interopRequireDefault(_fody);
 
 var _nightingaleLogger = require('nightingale-logger');
 
@@ -118,7 +114,7 @@ function alpReactRedux(element) {
                 View: moduleDescriptor.View,
                 data,
                 element,
-                App: reducer ? _fodyReduxApp2.default : _fodyApp2.default
+                App: reducer ? _fodyReduxApp2.default : _fody.App
             });
         };
     };
