@@ -7,7 +7,6 @@ var rename = require('gulp-rename');
 var stylus = require('gulp-stylus');
 var grep = require('gulp-grep');
 var ymlConfig = require('./gulp-config');
-var bs;
 
 var port, browserSyncPort;
 
@@ -45,11 +44,6 @@ gulp.task('define-browser-sync-port', function(done) {
 });
 
 /* CONFIG */
-function buildConfigServer() {
-    return gulp.src('src/config/**/*.yml')
-        .pipe(ymlConfig({ dest: 'server' }))
-        .pipe(gulp.dest('lib/config'));
-}
 
 function buildConfigBrowser() {
     return gulp.src('src/config/**/*.yml')
@@ -60,11 +54,7 @@ function buildConfigBrowser() {
 /* FRONT */
 
 function buildStylus() {
-    if (bs) {
-        bs.notify('Compiling, please wait!');
-    }
-
-    var stream = gulp.src(['styles/*.styl', '!styles/_*'])
+    return gulp.src(['styles/*.styl', '!styles/_*'])
         .pipe(sourcemaps.init())
         .pipe(stylus({
             paths: ['node_modules'],
@@ -72,103 +62,24 @@ function buildStylus() {
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('public/'))
         .pipe(grep('**/*.css', { read: false, dot: true }));
-    if (bs) {
-        stream.pipe(bs.stream());
-    }
-
-    return stream;
-}
-
-function buildJsServer() {
-    if (bs) {
-        bs.notify('Compiling, please wait!');
-    }
-
-    var stream = gulp.src(
-            ['src/**/*.{js,jsx}', '!src/**/*.browser.{js,jsx}', '!src/**/browser/**/*'],
-            { since: gulp.lastRun(buildJsServer) }
-        )
-        .pipe(rename(function(path) {
-            if (path.basename.endsWith('.server')) {
-                path.basename = path.basename.slice(0, -'.server'.length);
-            }
-        }))
-        .pipe(sourcemaps.init())
-        .pipe(clip())
-        .pipe(babel({
-            presets: ['es2015-node5', 'react', 'stage-1'],
-            plugins: [
-                !argv.production && 'typecheck',
-                ['defines', { PRODUCTION: !!argv.production, BROWSER: false, SERVER: true }],
-                'remove-dead-code',
-                ['discard-module-references', { targets: [], unusedWhitelist: ['react'] }],
-                'react-require',
-            ].filter(Boolean),
-        }))
-        .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
-        .pipe(gulp.dest('lib'));
-
-    if (bs) {
-        stream.pipe(bs.stream());
-    }
-
-    return stream;
 }
 
 gulp.task(
     'build',
     gulp.parallel(
         buildStylus,
-        buildConfigServer,
-        buildConfigBrowser,
-        buildJsServer
+        buildConfigBrowser
     )
 );
 
 function watchThenBuild() {
-    gulp.watch('src/config/*.yml', gulp.parallel(buildConfigServer, buildConfigBrowser));
+    gulp.watch('src/config/**/*.yml', buildConfigBrowser);
     gulp.watch('styles/**/*.styl', buildStylus);
-    gulp.watch('src/**/*.{js,jsx}', gulp.parallel(buildJsServer));
 }
 
 gulp.task(watchThenBuild);
 
-var daemon;
-process.on('exit', function(code) {
-    if (daemon) {
-        daemon.stop();
-    }
-});
-
-gulp.task(
-    'runandwatch:server',
-    gulp.series(
-        'define-port',
-        function runAndWatchApp() {
-            daemon = daemon || require('springbokjs-daemon').node([
-                '--harmony',
-                '--es_staging',
-                'lib/index.js',
-                '--port',
-                port,
-                '--version',
-                `dev${Date.now()}`,
-            ]);
-            daemon.start();
-            gulp.watch(['lib/**/*.{js,jsx}', '../lib/**/*.js']).on('change', function() {
-                daemon.args[daemon.args.length - 1] = `dev${Date.now()}`;
-                daemon.restart();
-                if (bs) {
-                    setTimeout(function() {
-                        bs.reload();
-                    }, 1000);
-                }
-            });
-        }
-    )
-);
-
-gulp.task('watch', gulp.parallel('watchThenBuild', 'runandwatch:server'));
+gulp.task('watch', gulp.parallel('watchThenBuild'));
 
 var webpackAndBrowserSyncDaemon;
 process.on('exit', function(code) {
@@ -185,7 +96,7 @@ gulp.task(
             webpackAndBrowserSyncDaemon = webpackAndBrowserSyncDaemon || require('springbokjs-daemon').node([
                 '--harmony',
                 '--es_staging',
-                'lib/dev.js',
+                require.resolve('../dev'),
                 '--port',
                 browserSyncPort,
                 '--proxyPort',

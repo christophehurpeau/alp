@@ -40,12 +40,7 @@ exports.default = browserSync({
         proxyOptions: { xfwd: true },
         middleware: [
         // headers
-        /**
-         * @function
-         * @param req
-         * @param res
-         * @param next
-        */function (req, res, next) {
+        function (req, res, next) {
             if (!req.headers['X-Forwarded-Host']) {
                 req.headers['X-Forwarded-Host'] = req.headers.host;
             }
@@ -59,9 +54,7 @@ exports.default = browserSync({
             stats: { colors: true },
 
             noInfo: true
-        }), // for other settings see
-        // http://webpack.github.io/docs/webpack-dev-middleware.html
-
+        }),
 
         // bundler should be the same as above
         webpackHotMiddleware(bundler)]

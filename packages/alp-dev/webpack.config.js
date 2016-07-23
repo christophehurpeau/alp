@@ -16,7 +16,7 @@ const modulesList = (() => {
 
 module.exports = {
     debug: !production,
-    devtool: production ? undefined : 'inline-source-map',
+    devtool: production ? undefined : 'cheap-source-map',
 
     entry: {
         [dest]: [
@@ -48,8 +48,8 @@ module.exports = {
 
 
         preLoaders: [
-            // {test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/},
-            { test: /\.jsx?$/, loader: 'source-map', exclude: /react-hot-loader/ }
+            // { test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ },
+            // { test: /\.jsx?$/, loader: 'source-map', exclude: /react-hot-loader/ }
         ],
 
         loaders: [
@@ -61,7 +61,7 @@ module.exports = {
                 query: {
                     presets: (
                         dest === 'modern-browsers' ?
-                            ['modern-browsers/webpack2-uglifyjs', 'react', 'modern-browsers/stage-1']
+                            ['modern-browsers/webpack2', 'react', 'modern-browsers-stage-1']
                             : ['es2015', 'react', 'stage-1']
                     ),
                     plugins: [

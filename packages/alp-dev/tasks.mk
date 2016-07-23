@@ -12,9 +12,9 @@ check:
 	mkdir -p lib/config public/config || echo
 
 clean:
-	rm -Rf lib tests/lib public/*.css* public/*.js*
+	rm -Rf lib tests/lib public/*.css* public/*.js* public/config
 
-default: check clean
+default: check
 	$(BIN)gulp
 
 watch: check
