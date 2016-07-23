@@ -1,7 +1,8 @@
 {
   "envs": [
-    "es5",
-    "node6"
+    "node6",
+    "webpack",
+    "webpack-modern-browsers"
   ],
   "react": false,
   "testing": false

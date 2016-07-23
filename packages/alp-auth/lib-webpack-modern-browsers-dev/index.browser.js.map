@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/index.browser.js"],"names":[],"mappings":"AAAA,SAAS,WAAW,MAApB,QAAkC,UAAlC","file":"index.browser.js","sourcesContent":["export { default as routes } from './routes';\n"]}

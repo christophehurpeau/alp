@@ -4,7 +4,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _class, _temp2;
+var _class, _temp2; /* global fetch */
+
 
 var _events = require('events');
 

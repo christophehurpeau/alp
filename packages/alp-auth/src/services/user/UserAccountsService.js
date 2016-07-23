@@ -1,3 +1,4 @@
+/* global fetch */
 import EventEmitter from 'events';
 import Logger from 'nightingale-logger';
 import UsersManager from '../../models/user/UsersManager';

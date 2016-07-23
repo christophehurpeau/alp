@@ -1,3 +1,4 @@
+/* global fetch */
 import EventEmitter from 'events';
 
 export default new class UserAccountGoogleService extends EventEmitter {
