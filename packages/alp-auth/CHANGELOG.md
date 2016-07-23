@@ -1,3 +1,7 @@
+### v0.2.0
+
+- [`4c2bcfd`](https://github.com/alpjs/alp-auth/commit/4c2bcfd906e8291af6a582547b9581295ef1b89f) rewrite (Christophe Hurpeau)
+
 ### v0.1.2
 
 - [`da4ebc6`](https://github.com/alpjs/alp-auth/commit/da4ebc6a2d0b91c3efeb2e9b62d0241ea26b68f0) add styl and types (Christophe Hurpeau)
