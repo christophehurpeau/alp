@@ -1,3 +1,7 @@
+### v2.5.0
+
+- [`18c12b8`](https://github.com/alpjs/alp-dev/commit/18c12b8029ac3887a83d80aef0eb15bc32d712db) remove more gulp tasks, use pob-babel (Christophe Hurpeau)
+
 ### v2.4.0
 
 - [`831b557`](https://github.com/alpjs/alp-dev/commit/831b55744b1781db5f7ade8bace6c0cbaa00037e) missing dependency babel-regenerator-runtime (Christophe Hurpeau)
@@ -72,5 +76,3 @@
 ### v1.0.1
 
 fix port already in use
-
-
