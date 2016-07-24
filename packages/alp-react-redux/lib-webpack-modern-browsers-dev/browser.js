@@ -1,3 +1,4 @@
+/* global window */
 import render, { App as DefaultApp } from 'fody';
 import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
@@ -5,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares';
 import { websocketMiddleware } from './websocket';
 
-export { connect } from 'react-redux';
+export { connect, combineReducers } from 'react-redux';
 import _createAction from './createAction';
 export { _createAction as createAction };
 import _createReducer from './createReducer';

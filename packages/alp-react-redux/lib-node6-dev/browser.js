@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.createEmitPromiseAction = exports.createEmitAction = exports.createReducer = exports.createAction = exports.connect = undefined;
+exports.createEmitPromiseAction = exports.createEmitAction = exports.createReducer = exports.createAction = exports.combineReducers = exports.connect = undefined;
 
 var _reactRedux = require('react-redux');
 
@@ -11,6 +11,12 @@ Object.defineProperty(exports, 'connect', {
     enumerable: true,
     get: function get() {
         return _reactRedux.connect;
+    }
+});
+Object.defineProperty(exports, 'combineReducers', {
+    enumerable: true,
+    get: function get() {
+        return _reactRedux.combineReducers;
     }
 });
 

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.connect = exports.createReducer = exports.createAction = undefined;
+exports.combineReducers = exports.connect = exports.createReducer = exports.createAction = undefined;
 
 var _reactRedux = require('react-redux');
 
@@ -11,6 +11,12 @@ Object.defineProperty(exports, 'connect', {
     enumerable: true,
     get: function get() {
         return _reactRedux.connect;
+    }
+});
+Object.defineProperty(exports, 'combineReducers', {
+    enumerable: true,
+    get: function get() {
+        return _reactRedux.combineReducers;
     }
 });
 exports.default = alpReactRedux;

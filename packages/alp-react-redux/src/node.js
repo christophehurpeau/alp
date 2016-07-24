@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 
 export createAction from './createAction';
 export createReducer from './createReducer';
-export { connect } from 'react-redux';
+export { connect, combineReducers } from 'react-redux';
 
 const logger = new Logger('alp.react-redux');
 
