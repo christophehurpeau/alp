@@ -1,3 +1,7 @@
+### v4.2.1
+
+- [`6b27196`](https://github.com/alpjs/alp-react-redux/commit/6b2719674153f48da7fcd06a6a07527fb3282845) export combineReducers from react-redux (Christophe Hurpeau)
+
 ### v4.1.0
 
 - [`b3111fd`](https://github.com/alpjs/alp-react-redux/commit/b3111fd9874699c75e190249a7410c971220fb9d) 4.0.0 (Christophe Hurpeau)
