@@ -10,7 +10,8 @@ export { _createAction as createAction };
 import _createReducer from './createReducer';
 export { _createReducer as createReducer };
 
-export { connect, combineReducers } from 'react-redux';
+export { combineReducers } from 'redux';
+export { connect } from 'react-redux';
 
 var logger = new Logger('alp.react-redux');
 

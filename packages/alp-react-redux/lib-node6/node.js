@@ -3,7 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.combineReducers = exports.connect = exports.createReducer = exports.createAction = undefined;
+exports.connect = exports.combineReducers = exports.createReducer = exports.createAction = undefined;
+
+var _redux = require('redux');
+
+Object.defineProperty(exports, 'combineReducers', {
+    enumerable: true,
+    get: function get() {
+        return _redux.combineReducers;
+    }
+});
 
 var _reactRedux = require('react-redux');
 
@@ -11,12 +20,6 @@ Object.defineProperty(exports, 'connect', {
     enumerable: true,
     get: function get() {
         return _reactRedux.connect;
-    }
-});
-Object.defineProperty(exports, 'combineReducers', {
-    enumerable: true,
-    get: function get() {
-        return _reactRedux.combineReducers;
     }
 });
 exports.default = alpReactRedux;
@@ -33,8 +36,6 @@ var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
 var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
-
-var _redux = require('redux');
 
 var _createAction2 = require('./createAction');
 

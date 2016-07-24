@@ -6,7 +6,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares';
 import { websocketMiddleware } from './websocket';
 
-export { connect, combineReducers } from 'react-redux';
+export { combineReducers } from 'redux';
+export { connect } from 'react-redux';
 import _createAction from './createAction';
 export { _createAction as createAction };
 import _createReducer from './createReducer';
