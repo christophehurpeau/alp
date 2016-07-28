@@ -1,3 +1,8 @@
+### v2.6.0
+
+- [`9dc83ea`](https://github.com/alpjs/alp-config/commit/9dc83eac8b3de5184c0c76f3007920195abcef4a) remove node5 (Christophe Hurpeau)
+- [`23cf4f3`](https://github.com/alpjs/alp-config/commit/23cf4f3116253fd38d70ef09abdc78535ce878a4) update dependencies (Christophe Hurpeau)
+
 ### v2.5.0
 
 - [`4307ad6`](https://github.com/alpjs/alp-config/commit/4307ad6a269d2778a5c75eb11d936c28c90bf64f) add packageConfig (Christophe Hurpeau)
