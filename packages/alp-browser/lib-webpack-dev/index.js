@@ -6,7 +6,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
@@ -28,7 +28,6 @@ var AlpBrowser = function (_Ibex) {
      * @param {string} [path='/']
      * @param {Object} [options]
      */
-
     function AlpBrowser() {
         var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
         var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
@@ -49,7 +48,7 @@ var AlpBrowser = function (_Ibex) {
     _createClass(AlpBrowser, [{
         key: 'init',
         value: function () {
-            var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+            var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
@@ -71,7 +70,7 @@ var AlpBrowser = function (_Ibex) {
             }));
 
             function init() {
-                return ref.apply(this, arguments);
+                return _ref.apply(this, arguments);
             }
 
             return init;
