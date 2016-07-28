@@ -5,17 +5,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = alpConfig;
 
-var _browserStoredConfig = require('./browserStoredConfig');
-
-var storedConfig = _interopRequireWildcard(_browserStoredConfig);
-
 var _parseJsonObjectAsMap = require('parse-json-object-as-map');
 
 var _parseJsonObjectAsMap2 = _interopRequireDefault(_parseJsonObjectAsMap);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _browserStoredConfig = require('./browserStoredConfig');
+
+var storedConfig = _interopRequireWildcard(_browserStoredConfig);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); } /* global fetch */
 

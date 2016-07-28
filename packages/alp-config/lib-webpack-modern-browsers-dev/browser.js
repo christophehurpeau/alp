@@ -1,6 +1,6 @@
 /* global fetch */
-import * as storedConfig from './browserStoredConfig';
 import parseJSON from 'parse-json-object-as-map';
+import * as storedConfig from './browserStoredConfig';
 
 function fetchConfig(path) {
     return fetch(`${ path }.json`).then(res => {

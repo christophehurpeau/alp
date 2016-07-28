@@ -1,8 +1,8 @@
 function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
 
 /* global fetch */
-import * as storedConfig from './browserStoredConfig';
 import parseJSON from 'parse-json-object-as-map';
+import * as storedConfig from './browserStoredConfig';
 
 function fetchConfig(path) {
     return fetch(path + '.json').then(function (res) {

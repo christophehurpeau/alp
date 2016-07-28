@@ -31,7 +31,8 @@ const map = (() => {
     }
 
     return (0, _parseJsonObjectAsMap2.default)(config);
-})();
+})(); /* global localStorage */
+
 
 map.forEach(value => {
     return (0, _deepFreezeEs2.default)(value);

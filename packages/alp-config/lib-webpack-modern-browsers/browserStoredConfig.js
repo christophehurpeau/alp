@@ -1,3 +1,4 @@
+/* global localStorage */
 import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
 import stringify from 'stringify-json';
