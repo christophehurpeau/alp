@@ -1,11 +1,9 @@
 import React from 'react';
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 import { PropTypes } from 'react';
 
 TranslateComponent.propTypes = {
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    children: PropTypes.func
 };
 
 TranslateComponent.contextTypes = {
@@ -26,21 +24,23 @@ var Props = function () {
     return Props;
 }();
 
-export default function TranslateComponent(_ref, _ref2) {
-    var id = _ref.id;
-
-    var props = _objectWithoutProperties(_ref, ['id']);
-
-    var context = _ref2.context;
-
+export default function TranslateComponent({ id, children, ...props }, { context }) {
     if (!Props(arguments[0])) {
         throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\nProps\n\nGot:\n' + _inspect(arguments[0]));
     }
 
+    var translated = context.t(id, props);
+
+    if (children) {
+        return children(translated);
+    }
+
     return React.createElement(
         'span',
-        null,
-        context.t(id, props)
+        {
+            __self: this
+        },
+        translated
     );
 }
 
