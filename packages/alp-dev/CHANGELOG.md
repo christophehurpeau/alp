@@ -1,3 +1,7 @@
+### v2.6.0
+
+- [`c4e3a97`](https://github.com/alpjs/alp-dev/commit/c4e3a977e15fc98b9bb68a0fd95da940f7b45cc2) transform-react-jsx-self, update dependencies (Christophe Hurpeau)
+
 ### v2.5.0
 
 - [`18c12b8`](https://github.com/alpjs/alp-dev/commit/18c12b8029ac3887a83d80aef0eb15bc32d712db) remove more gulp tasks, use pob-babel (Christophe Hurpeau)
