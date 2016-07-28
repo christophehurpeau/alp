@@ -1,3 +1,7 @@
+### v4.3.0
+
+- [`0faabd9`](https://github.com/alpjs/alp-react-redux/commit/0faabd9a2b8e00ebd9bc72ad7a8156b95a2b3f32) update dependencies (Christophe Hurpeau)
+
 ### v4.2.2
 
 - [`b6822df`](https://github.com/alpjs/alp-react-redux/commit/b6822df51f127fb6316509315e41c334b200a637) combineReducers is from redux not react-redux (Christophe Hurpeau)
