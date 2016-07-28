@@ -17,6 +17,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
  * Require ./webpack.config.js and make a bundler from it
  */
 const webpackConfig = require('../webpack.config');
+
 const bundler = webpack(webpackConfig);
 
 const port = argv.port || 3000;
@@ -54,7 +55,9 @@ exports.default = browserSync({
             stats: { colors: true },
 
             noInfo: true
-        }),
+        }), // for other settings see
+        // http://webpack.github.io/docs/webpack-dev-middleware.html
+
 
         // bundler should be the same as above
         webpackHotMiddleware(bundler)]

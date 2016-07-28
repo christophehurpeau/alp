@@ -24,7 +24,7 @@ module.exports = {
             !production && 'webpack-hot-middleware/client',
             !production && 'react-hot-loader/patch',
             './src/index.browser.js',
-        ].filter(Boolean)
+        ].filter(Boolean),
     },
     output: {
         path: path.resolve('public'),
@@ -66,6 +66,7 @@ module.exports = {
                     ),
                     plugins: [
                         !production && 'typecheck',
+                        !production && 'transform-react-jsx-self',
                         !production && 'react-hot-loader/babel',
                         ['defines', { PRODUCTION: production, BROWSER: true, SERVER: false }],
                         'remove-dead-code',
@@ -116,8 +117,8 @@ module.exports = {
             PRODUCTION: production,
             MODERN_BROWSERS: dest === 'modern-browsers',
             'process.env': {
-                'NODE_ENV': JSON.stringify(production ? 'production' : process.env.NODE_ENV)
-            }
+                NODE_ENV: JSON.stringify(production ? 'production' : process.env.NODE_ENV),
+            },
         }),
         !production && new webpack.HotModuleReplacementPlugin(),
         !production && new webpack.NoErrorsPlugin(),
@@ -125,10 +126,11 @@ module.exports = {
             mangle: false,
             compress: {
                 warnings: false,
-                'drop_debugger': !!production,
+                // eslint-disable-next-line camelcase
+                drop_debugger: !!production,
                 unused: false,
                 comparisons: true,
-                sequences: false
+                sequences: false,
             },
             output: {
                 beautify: !production && {
@@ -137,7 +139,7 @@ module.exports = {
                 },
                 comments: !production && 'all',
             },
-            sourceMap: !production
+            sourceMap: !production,
         }),
 
         // TODO https://github.com/NekR/offline-plugin
