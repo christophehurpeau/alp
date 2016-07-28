@@ -1,3 +1,7 @@
+### v0.9.0
+
+- [`3535b40`](https://github.com/alpjs/alp-node/commit/3535b4072684845ae4ea08b18bd4498e81854f7f) update dependencies (Christophe Hurpeau)
+
 ### v0.8.2
 
 - [`3c78d30`](https://github.com/alpjs/alp-node/commit/3c78d30a40d81e9e9d3354ddeb136821f62586c0) migrate (Christophe Hurpeau)
