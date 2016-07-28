@@ -1,3 +1,7 @@
+### v0.9.0
+
+- [`8db3bd1`](https://github.com/alpjs/alp-browser/commit/8db3bd14144d0ab8e6705cd6f7675d4ae16c3637) update dependencies (Christophe Hurpeau)
+
 ### v0.8.0
 
 - [`63cf05f`](https://github.com/alpjs/alp-browser/commit/63cf05f19de3dcb8d190f075fc4b3492ab2b28e8) update dependencies (Christophe Hurpeau)
