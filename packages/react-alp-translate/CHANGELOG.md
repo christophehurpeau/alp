@@ -1,3 +1,7 @@
+### v0.1.2
+
+- [`b8e0fdf`](https://github.com/alpjs/react-alp-translate/commit/b8e0fdf9b0c548a378b1ef34aa85b86e5e8b9fd1) children can be a function (Christophe Hurpeau)
+
 ### v0.1.1
 
 - [`d179325`](https://github.com/alpjs/react-alp-translate/commit/d179325d4b9b952b7e53c0312dca16f5a237502f) first commit (Christophe Hurpeau)
