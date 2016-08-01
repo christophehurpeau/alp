@@ -62,7 +62,7 @@ module.exports = {
                     presets: (
                         dest === 'modern-browsers' ?
                             ['modern-browsers/webpack2', 'react', 'modern-browsers-stage-1']
-                            : ['es2015', 'react', 'stage-1']
+                            : ['es2015-native-modules', 'react', 'stage-1']
                     ),
                     plugins: [
                         !production && 'typecheck',
