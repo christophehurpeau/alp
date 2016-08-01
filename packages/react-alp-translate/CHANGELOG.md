@@ -1,3 +1,7 @@
+### v0.1.3
+
+- [`f3c748d`](https://github.com/alpjs/react-alp-translate/commit/f3c748d8cc5bc44425a61ed217eecb2647c32549) fix object-rest (Christophe Hurpeau)
+
 ### v0.1.2
 
 - [`b8e0fdf`](https://github.com/alpjs/react-alp-translate/commit/b8e0fdf9b0c548a378b1ef34aa85b86e5e8b9fd1) children can be a function (Christophe Hurpeau)
