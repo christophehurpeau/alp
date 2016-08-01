@@ -1,3 +1,7 @@
+### v2.7.0
+
+- [`8ba5116`](https://github.com/alpjs/alp-dev/commit/8ba5116743e3081705854fd95097b4e125377f98) babel-preset-es2015-native-modules (Christophe Hurpeau)
+
 ### v2.6.0
 
 - [`c4e3a97`](https://github.com/alpjs/alp-dev/commit/c4e3a977e15fc98b9bb68a0fd95da940f7b45cc2) transform-react-jsx-self, update dependencies (Christophe Hurpeau)
