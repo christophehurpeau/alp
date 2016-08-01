@@ -1,4 +1,7 @@
 import React from 'react';
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 import { PropTypes } from 'react';
 
 TranslateComponent.propTypes = {
@@ -24,7 +27,14 @@ var Props = function () {
     return Props;
 }();
 
-export default function TranslateComponent({ id, children, ...props }, { context }) {
+export default function TranslateComponent(_ref, _ref2) {
+    var id = _ref.id;
+    var children = _ref.children;
+
+    var props = _objectWithoutProperties(_ref, ['id', 'children']);
+
+    var context = _ref2.context;
+
     if (!Props(arguments[0])) {
         throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\nProps\n\nGot:\n' + _inspect(arguments[0]));
     }
