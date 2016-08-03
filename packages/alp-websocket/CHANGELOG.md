@@ -1,3 +1,7 @@
+### v3.0.0
+
+- [`ee1a7cd`](https://github.com/alpjs/alp-websocket/commit/ee1a7cd8751244f9b12851e1ceb0499efe1e9dd1) emit callback first arg is now an error, and second is the result (Christophe Hurpeau)
+
 ### v2.1.0
 
 - [`d621259`](https://github.com/alpjs/alp-websocket/commit/d621259ecb85858a358a6b7b9ce4b280f232e9cf) browser isConnected, node subscribe events (Christophe Hurpeau)
