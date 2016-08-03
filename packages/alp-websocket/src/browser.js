@@ -1,3 +1,4 @@
+/* global location, window, confirm */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
@@ -5,7 +6,7 @@ const logger = new Logger('alp.websocket');
 let socket;
 
 export default function alpWebsocket(app, namespaceName) {
-    start(app.config, namespaceName);
+    start(app, namespaceName);
     app.websocket = {
         socket,
         on,
@@ -17,7 +18,7 @@ export default function alpWebsocket(app, namespaceName) {
     return socket;
 }
 
-function start(config, namespaceName = '') {
+function start({ config, context }, namespaceName = '') {
     if (socket) {
         throw new Error('WebSocket already started');
     }
@@ -37,7 +38,7 @@ function start(config, namespaceName = '') {
 
     socket = socketio(`http${secure ? 's' : ''}://${location.hostname}:${port}/${namespaceName}`, {
         reconnectionDelay: 500,
-        reconnectionDelayMax: 1000,
+        reconnectionDelayMax: 2500,
         timeout: 4000,
         transports: ['websocket'],
     });
@@ -52,7 +53,10 @@ function start(config, namespaceName = '') {
 
     socket.on('hello', ({ version }) => {
         if (version !== window.VERSION) {
-            return location.reload(true);
+            // eslint-disable-next-line no-alert
+            if (!global.PRODUCTION || confirm(context.t('newversion'))) {
+                return location.reload(true);
+            }
         }
     });
 
@@ -67,8 +71,9 @@ function emit(...args): Promise {
             reject('timeout');
         }, 10000);
 
-        socket.emit(...args, result => {
+        socket.emit(...args, (error, result) => {
             clearTimeout(resolved);
+            if (error != null) return reject(error);
             resolve(result);
         });
     });

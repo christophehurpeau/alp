@@ -39,16 +39,16 @@ function subscribe(socket, name, callbackOnSubscribe) {
         socket.join(name);
 
         if (callbackOnSubscribe) {
-            callback(callbackOnSubscribe());
+            callback(null, callbackOnSubscribe());
         } else {
-            callback();
+            callback(null);
         }
     });
 
     socket.on(`unsubscribe:${ name }`, callback => {
         logger.info('leave', { name });
         socket.leave(name);
-        callback();
+        callback(null);
     });
 }
 

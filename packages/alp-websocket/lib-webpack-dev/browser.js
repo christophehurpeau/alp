@@ -1,5 +1,6 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
+/* global location, window, confirm */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
@@ -7,7 +8,7 @@ var logger = new Logger('alp.websocket');
 var socket = undefined;
 
 export default function alpWebsocket(app, namespaceName) {
-    start(app.config, namespaceName);
+    start(app, namespaceName);
     app.websocket = {
         socket: socket,
         on: on,
@@ -19,7 +20,9 @@ export default function alpWebsocket(app, namespaceName) {
     return socket;
 }
 
-function start(config) {
+function start(_ref) {
+    var config = _ref.config;
+    var context = _ref.context;
     var namespaceName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
     if (socket) {
@@ -41,7 +44,7 @@ function start(config) {
 
     socket = socketio('http' + (secure ? 's' : '') + '://' + location.hostname + ':' + port + '/' + namespaceName, {
         reconnectionDelay: 500,
-        reconnectionDelayMax: 1000,
+        reconnectionDelayMax: 2500,
         timeout: 4000,
         transports: ['websocket']
     });
@@ -54,11 +57,14 @@ function start(config) {
         logger.warn('disconnected');
     });
 
-    socket.on('hello', function (_ref) {
-        var version = _ref.version;
+    socket.on('hello', function (_ref2) {
+        var version = _ref2.version;
 
         if (version !== window.VERSION) {
-            return location.reload(true);
+            // eslint-disable-next-line no-alert
+            {
+                return location.reload(true);
+            }
         }
     });
 
@@ -79,8 +85,9 @@ function emit() {
             reject('timeout');
         }, 10000);
 
-        (_socket = socket).emit.apply(_socket, args.concat([function (result) {
+        (_socket = socket).emit.apply(_socket, args.concat([function (error, result) {
             clearTimeout(resolved);
+            if (error != null) return reject(error);
             resolve(result);
         }]));
     });

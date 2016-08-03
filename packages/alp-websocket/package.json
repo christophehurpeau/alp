@@ -33,27 +33,27 @@
     "watch:dev": "pob-watch"
   },
   "dependencies": {
-    "nightingale-logger": "^1.1.1",
+    "nightingale-logger": "^1.2.0",
     "socket.io": "^1.4.8",
     "socket.io-client": "^1.4.8"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.0",
-    "babel-plugin-defines": "^2.0.0",
+    "babel-eslint": "^6.1.2",
+    "babel-plugin-defines": "^3.1.0",
     "babel-plugin-discard-module-references": "^1.0.0",
-    "babel-plugin-remove-dead-code": "^1.0.1",
+    "babel-plugin-remove-dead-code": "^1.1.0",
     "babel-plugin-typecheck": "^3.9.0",
     "babel-preset-es2015-node6": "^0.2.0",
-    "babel-preset-es2015-webpack": "^6.4.1",
+    "babel-preset-es2015-webpack": "^6.4.2",
     "babel-preset-flow": "^1.0.0",
-    "babel-preset-modern-browsers": "^5.0.2",
+    "babel-preset-modern-browsers": "^5.1.0",
     "babel-preset-modern-browsers-stage-1": "^1.0.0",
     "babel-preset-stage-1": "^6.5.0",
-    "eslint": "^3.0.0",
-    "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-config-pob": "^6.1.2",
-    "eslint-plugin-import": "^1.10.0",
-    "pob-babel": "^2.0.0",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-config-pob": "^6.1.4",
+    "eslint-plugin-import": "^1.12.0",
+    "pob-babel": "^5.0.0",
     "pob-release": "^2.0.5",
     "springbokjs-library": "^17.0.0"
   }

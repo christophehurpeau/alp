@@ -1,3 +1,4 @@
+/* global location, window, confirm */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
@@ -5,7 +6,7 @@ var logger = new Logger('alp.websocket');
 var socket = undefined;
 
 export default function alpWebsocket(app, namespaceName) {
-    start(app.config, namespaceName);
+    start(app, namespaceName);
     app.websocket = {
         socket,
         on,
@@ -17,7 +18,11 @@ export default function alpWebsocket(app, namespaceName) {
     return socket;
 }
 
-function start(config, namespaceName = '') {
+function start(_ref) {
+    var config = _ref.config;
+    var context = _ref.context;
+    var namespaceName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+
     if (socket) {
         throw new Error('WebSocket already started');
     }
@@ -37,7 +42,7 @@ function start(config, namespaceName = '') {
 
     socket = socketio(`http${ secure ? 's' : '' }://${ location.hostname }:${ port }/${ namespaceName }`, {
         reconnectionDelay: 500,
-        reconnectionDelayMax: 1000,
+        reconnectionDelayMax: 2500,
         timeout: 4000,
         transports: ['websocket']
     });
@@ -50,16 +55,25 @@ function start(config, namespaceName = '') {
         logger.warn('disconnected');
     });
 
-    socket.on('hello', ({ version }) => {
+    socket.on('hello', _ref2 => {
+        var version = _ref2.version;
+
         if (version !== window.VERSION) {
-            return location.reload(true);
+            // eslint-disable-next-line no-alert
+            if (!true /*defines: PRODUCTION = true*/ || confirm(context.t('newversion'))) {
+                return location.reload(true);
+            }
         }
     });
 
     return socket;
 }
 
-function emit(...args) {
+function emit() {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
+
     logger.debug('emit', { args });
     return new Promise((resolve, reject) => {
         var resolved = setTimeout(() => {
@@ -67,8 +81,9 @@ function emit(...args) {
             reject('timeout');
         }, 10000);
 
-        socket.emit(...args, result => {
+        socket.emit(...args, (error, result) => {
             clearTimeout(resolved);
+            if (error != null) return reject(error);
             resolve(result);
         });
     });

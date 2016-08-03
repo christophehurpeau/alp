@@ -15,11 +15,12 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* global location, window, confirm */
 const logger = new _nightingaleLogger2.default('alp.websocket');
 let socket;
 
 function alpWebsocket(app, namespaceName) {
-    start(app.config, namespaceName);
+    start(app, namespaceName);
     app.websocket = {
         socket,
         on,
@@ -31,7 +32,9 @@ function alpWebsocket(app, namespaceName) {
     return socket;
 }
 
-function start(config) {
+function start(_ref) {
+    let config = _ref.config;
+    let context = _ref.context;
     let namespaceName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
     if (socket) {
@@ -53,7 +56,7 @@ function start(config) {
 
     socket = (0, _socket2.default)(`http${ secure ? 's' : '' }://${ location.hostname }:${ port }/${ namespaceName }`, {
         reconnectionDelay: 500,
-        reconnectionDelayMax: 1000,
+        reconnectionDelayMax: 2500,
         timeout: 4000,
         transports: ['websocket']
     });
@@ -66,11 +69,14 @@ function start(config) {
         logger.warn('disconnected');
     });
 
-    socket.on('hello', _ref => {
-        let version = _ref.version;
+    socket.on('hello', _ref2 => {
+        let version = _ref2.version;
 
         if (version !== window.VERSION) {
-            return location.reload(true);
+            // eslint-disable-next-line no-alert
+            {
+                return location.reload(true);
+            }
         }
     });
 
@@ -89,8 +95,9 @@ function emit() {
             reject('timeout');
         }, 10000);
 
-        socket.emit(...args, result => {
+        socket.emit(...args, (error, result) => {
             clearTimeout(resolved);
+            if (error != null) return reject(error);
             resolve(result);
         });
     });
