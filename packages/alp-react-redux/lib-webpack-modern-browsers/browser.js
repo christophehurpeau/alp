@@ -8,6 +8,8 @@ import { websocketMiddleware } from './websocket';
 
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
+import _createPureStatelessComponent from 'react-pure-stateless-component';
+export { _createPureStatelessComponent as createPureStatelessComponent };
 import _createAction from './createAction';
 export { _createAction as createAction };
 import _createReducer from './createReducer';

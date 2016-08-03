@@ -20,8 +20,8 @@ export default function createAction(type, argsNamesOrHandler, data) {
     var typeofSecondArg = typeof argsNamesOrHandler;
 
     if (typeofSecondArg === 'function') {
-        action = (...args) => {
-            return _extends({ type }, data, argsNamesOrHandler(...args));
+        action = function action() {
+            return _extends({ type }, data, argsNamesOrHandler(...arguments));
         };
     } else {
         if (typeofSecondArg === 'string') {
@@ -29,7 +29,11 @@ export default function createAction(type, argsNamesOrHandler, data) {
         }
 
         if (argsNamesOrHandler) {
-            action = (...args) => {
+            action = function action() {
+                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                }
+
                 var action = _extends({ type }, data);
                 args.forEach((value, index) => {
                     return action[argsNamesOrHandler[index]] = value;

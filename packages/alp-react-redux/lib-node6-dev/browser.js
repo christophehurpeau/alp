@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.createEmitPromiseAction = exports.createEmitAction = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = undefined;
+exports.createEmitPromiseAction = exports.createEmitAction = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
 
 var _redux = require('redux');
 
@@ -53,6 +53,10 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 var _middlewares = require('./middlewares');
 
+var _reactPureStatelessComponent = require('react-pure-stateless-component');
+
+var _reactPureStatelessComponent2 = _interopRequireDefault(_reactPureStatelessComponent);
+
 var _createAction2 = require('./createAction');
 
 var _createAction3 = _interopRequireDefault(_createAction2);
@@ -63,6 +67,7 @@ var _createReducer3 = _interopRequireDefault(_createReducer2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
 exports.createAction = _createAction3.default;
 exports.createReducer = _createReducer3.default;
 

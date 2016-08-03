@@ -3,13 +3,15 @@ import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
 
+export { combineReducers } from 'redux';
+export { connect } from 'react-redux';
+import _createPureStatelessComponent from 'react-pure-stateless-component';
+export { _createPureStatelessComponent as createPureStatelessComponent };
 import _createAction from './createAction';
 export { _createAction as createAction };
 import _createReducer from './createReducer';
 export { _createReducer as createReducer };
 
-export { combineReducers } from 'redux';
-export { connect } from 'react-redux';
 
 var logger = new Logger('alp.react-redux');
 
