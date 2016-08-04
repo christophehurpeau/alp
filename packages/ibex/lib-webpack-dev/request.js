@@ -1,3 +1,5 @@
+/* global location, URLSearchParams */
+
 var qs = require('query-string');
 
 export default {

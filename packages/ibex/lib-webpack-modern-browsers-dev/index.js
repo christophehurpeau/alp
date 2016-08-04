@@ -1,3 +1,5 @@
+/* global window, document */
+
 import Logger from 'nightingale-logger';
 import { EventEmitter } from 'events';
 import compose from './compose';
@@ -99,9 +101,9 @@ function respond() {
         return;
     }
 
-    if (!this.writable) return;
-
     var body = this.body;
+    if (body == null) return;
+
     // let code = this.status;
 
     if (typeof body === 'string') {

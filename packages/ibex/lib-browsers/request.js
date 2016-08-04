@@ -3,6 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+/* global location, URLSearchParams */
+
 var qs = require('query-string');
 
 exports.default = {
