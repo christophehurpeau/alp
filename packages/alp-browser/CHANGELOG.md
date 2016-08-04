@@ -1,3 +1,7 @@
+### v0.10.1
+
+- [`45aa648`](https://github.com/alpjs/alp-browser/commit/45aa6480806c73c23a255c0a83ab91d2e12fde69) fix ibex (Christophe Hurpeau)
+
 ### v0.10.0
 
 - [`eb471f5`](https://github.com/alpjs/alp-browser/commit/eb471f5f14d04a830c9ac01cf5299554e2cf4481) remove duplicate npm run build (Christophe Hurpeau)
