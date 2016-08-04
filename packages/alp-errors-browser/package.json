@@ -1,0 +1,49 @@
+{
+  "name": "alp-errors-browser",
+  "version": "0.0.0",
+  "description": "display errors in alp framework",
+  "keywords": [],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
+  "license": "ISC",
+  "repository": "alpjs/alp-errors-browser",
+  "homepage": "https://github.com/alpjs/alp-errors-browser",
+  "main": "./index.js",
+  "webpack:main": "./lib-webpack/index.js",
+  "webpack:main-dev": "./lib-webpack-dev/index.js",
+  "webpack:main-modern-browsers": "./lib-webpack-modern-browsers/index.js",
+  "webpack:main-modern-browsers-dev": "./lib-webpack-modern-browsers-dev/index.js",
+  "scripts": {
+    "build": "pob-build",
+    "build:dev": "pob-build",
+    "clean": "rm -Rf docs dist test/node6 coverage",
+    "lint": "eslint --ext .js,.jsx --fix -c .eslintrc.yml src/",
+    "prepublish": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit || echo",
+    "preversion": "npm run lint && npm run build && pob-repository-check-clean",
+    "release": "pob-repository-check-clean && pob-release",
+    "version": "pob-version",
+    "watch": "pob-watch",
+    "watch:dev": "pob-watch"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "babel-plugin-defines": "^3.1.0",
+    "babel-plugin-discard-module-references": "^1.0.0",
+    "babel-plugin-remove-dead-code": "^1.1.0",
+    "babel-plugin-typecheck": "^3.9.0",
+    "babel-preset-es2015-webpack": "^6.4.2",
+    "babel-preset-flow": "^1.0.0",
+    "babel-preset-modern-browsers": "^5.1.0",
+    "babel-preset-modern-browsers-stage-1": "^1.0.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-config-pob": "^6.1.4",
+    "eslint-plugin-import": "^1.12.0",
+    "pob-babel": "^5.0.0",
+    "pob-release": "^2.0.5"
+  },
+  "dependencies": {
+    "alouette": "^5.2.0",
+    "nightingale-logger": "^1.2.0"
+  }
+}
