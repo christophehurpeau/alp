@@ -34,7 +34,7 @@
     "fody": "^5.0.0",
     "fody-redux-app": "^5.0.0",
     "nightingale-logger": "^1.2.0",
-    "react-pure-stateless-component": "0.0.2",
+    "react-pure-stateless-component": "0.0.3",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2"
   },
