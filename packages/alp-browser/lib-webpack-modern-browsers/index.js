@@ -2,7 +2,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 import Ibex from 'ibex';
 import config from 'alp-config';
-// import errors from 'alp-errors-browser';
+import errors from 'alp-errors-browser';
 // import params from 'alp-params-browser';
 import language from 'alp-language';
 import translate from 'alp-translate';
@@ -17,7 +17,10 @@ export default class AlpBrowser extends Ibex {
      * @param {string} [path='/']
      * @param {Object} [options]
      */
-    constructor(path = '/', options = {}) {
+    constructor() {
+        var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
+        var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
         super();
         this.path = path;
     }
@@ -41,14 +44,18 @@ export default class AlpBrowser extends Ibex {
     }
 
     catchErrors() {
-        // this.use(errors);
+        this.use(errors);
     }
 
     useRouter(routerBuilder, controllers) {
         this.use(this.createRouter(routerBuilder, controllers));
     }
 
-    initialRender(...args) {
+    initialRender() {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
         var context = Object.create(this.context);
         if (global.initialContextState) {
             context.state = global.initialContextState;

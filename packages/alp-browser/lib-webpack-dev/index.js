@@ -12,7 +12,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import Ibex from 'ibex';
 import config from 'alp-config';
-// import errors from 'alp-errors-browser';
+import errors from 'alp-errors-browser';
 // import params from 'alp-params-browser';
 import language from 'alp-language';
 import translate from 'alp-translate';
@@ -83,7 +83,7 @@ var AlpBrowser = function (_Ibex) {
     }, {
         key: 'catchErrors',
         value: function catchErrors() {
-            // this.use(errors);
+            this.use(errors);
         }
     }, {
         key: 'useRouter',
