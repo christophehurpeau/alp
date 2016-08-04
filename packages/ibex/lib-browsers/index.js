@@ -94,7 +94,7 @@ var Application = function (_EventEmitter) {
 
             var context = this.createContext();
             context.path = url;
-            this.callback.call(context).then(function () {
+            return this.callback(context).then(function () {
                 return respond.call(context);
             }).catch(function (err) {
                 return _this2.emit('error', err);

@@ -61,7 +61,7 @@ export default class Application extends EventEmitter {
 
         const context = this.createContext();
         context.path = url;
-        this.callback.call(context)
+        return this.callback(context)
             .then(() => respond.call(context))
             .catch((err) => this.emit('error', err));
     }

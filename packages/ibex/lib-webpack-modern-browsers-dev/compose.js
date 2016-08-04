@@ -1,36 +1,19 @@
 // create lib
-function noop() {}
-
 export default function compose(middleware) {
-    return function (next) {
-        next = next || noop;
-        var i = middleware.length;
-        while (i--) {
-            next = wrap(middleware[i], this, next);
-        }
-
-        return next;
+    return function (ctx, next) {
+        return function dispatch(i) {
+            var fn = middleware[i] || next;
+            var called = false;
+            try {
+                return Promise.resolve(fn.call(ctx, ctx, () => {
+                    if (called) throw new Error('Cannot call next() more than once.');
+                    called = true;
+                    return dispatch(i + 1);
+                }));
+            } catch (e) {
+                return Promise.reject(e);
+            }
+        }(0);
     };
-}
-
-/**
-* Wrap a function, then lazily call it,
-* always returning both a promise and a generator.
-*
-* @param {Function} fn
-* @param {Object} ctx
-* @param {Wrap} next
-*/
-
-function wrap(fn, ctx, next) {
-    if (typeof fn !== 'function') {
-        throw new TypeError('Not a function!');
-    }
-
-    try {
-        return Promise.resolve(fn.call(ctx, ctx, next));
-    } catch (e) {
-        return Promise.reject(e);
-    }
 }
 //# sourceMappingURL=compose.js.map
