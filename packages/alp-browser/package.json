@@ -39,7 +39,7 @@
     "alp-limosa": "^2.2.2",
     "alp-translate": "^2.0.0",
     "content-loaded": "^1.1.0",
-    "ibex": "^3.5.1"
+    "ibex": "^3.5.2"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
