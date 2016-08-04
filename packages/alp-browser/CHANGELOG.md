@@ -1,3 +1,8 @@
+### v0.10.0
+
+- [`eb471f5`](https://github.com/alpjs/alp-browser/commit/eb471f5f14d04a830c9ac01cf5299554e2cf4481) remove duplicate npm run build (Christophe Hurpeau)
+- [`c44c92c`](https://github.com/alpjs/alp-browser/commit/c44c92c166031b27e98b571803f726c98a86c939) alp-errors-browser (Christophe Hurpeau)
+
 ### v0.9.0
 
 - [`8db3bd1`](https://github.com/alpjs/alp-browser/commit/8db3bd14144d0ab8e6705cd6f7675d4ae16c3637) update dependencies (Christophe Hurpeau)
