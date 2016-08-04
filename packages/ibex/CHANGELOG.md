@@ -1,3 +1,7 @@
+### v3.5.1
+
+- [`8a58437`](https://github.com/alpjs/ibex/commit/8a58437c466571519af856dba09332618b8f1b0b) update dependencies and fix never writable and null body (Christophe Hurpeau)
+
 ### v3.5.0
 
 - [`dec2461`](https://github.com/alpjs/ibex/commit/dec24611d68a64393d90c28be0623883c63c2eb4) add context.app (Christophe Hurpeau)
