@@ -60,14 +60,14 @@ exports.default = /**
         try {
             yield next();
         } catch (err) {
+            if (!err) err = new Error('Unknown error');
             ctx.status = err.status || 500;
-            const parsedError = (0, _alouette.parse)(err);
             logger.error(err);
 
             switch (ctx.accepts('html', 'text', 'json')) {
                 case 'text':
                     ctx.type = 'text/plain';
-                    if (!ctx.app.production) {
+                    if (process.env.NODE_ENV !== 'production') {
                         ctx.body = err.message;
                     } else if (err.expose) {
                         ctx.body = err.message;
@@ -79,7 +79,7 @@ exports.default = /**
 
                 case 'json':
                     ctx.type = 'application/json';
-                    if (!ctx.app.production) {
+                    if (process.env.NODE_ENV !== 'production') {
                         ctx.body = { error: err.message };
                     } else if (err.expose) {
                         ctx.body = { error: err.message };
@@ -91,7 +91,8 @@ exports.default = /**
 
                 case 'html':
                     ctx.type = 'text/html';
-                    if (!ctx.app.production) {
+                    if (process.env.NODE_ENV !== 'production') {
+                        const parsedError = (0, _alouette.parse)(err);
                         ctx.body = errorHtmlRenderer.render(parsedError);
                     } else if (err.expose) {
                         ctx.body = err.message;
