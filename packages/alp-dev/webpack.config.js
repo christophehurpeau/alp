@@ -68,6 +68,7 @@ module.exports = {
                         !production && 'typecheck',
                         !production && 'transform-react-jsx-self',
                         !production && 'react-hot-loader/babel',
+                        ['import-rename', { '^([a-z\\-]+)/src(.*)$': '$1$2' }],
                         ['defines', { PRODUCTION: production, BROWSER: true, SERVER: false }],
                         'remove-dead-code',
                         ['discard-module-references', { targets: [], unusedWhitelist: ['react'] }],
