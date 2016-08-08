@@ -1,3 +1,7 @@
+### v2.8.0
+
+- [`4dac11b`](https://github.com/alpjs/alp-dev/commit/4dac11bd6900a3faa91ff3c102d7135c48ea1791) update dependencies (Christophe Hurpeau)
+
 ### v2.7.0
 
 - [`8ba5116`](https://github.com/alpjs/alp-dev/commit/8ba5116743e3081705854fd95097b4e125377f98) babel-preset-es2015-native-modules (Christophe Hurpeau)
