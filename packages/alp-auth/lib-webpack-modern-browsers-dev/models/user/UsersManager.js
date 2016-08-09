@@ -3,13 +3,17 @@ import { AbstractManager } from 'liwi';
 import { UserType, AccountType } from './types';
 
 export default class UsersManager extends AbstractManager {
-    constructor(...args) {
+    constructor() {
         var _temp;
 
-        return _temp = super(...args), this.STATUSES = UsersManager.STATUSES, _temp;
+        return _temp = super(...arguments), this.STATUSES = UsersManager.STATUSES, _temp;
     }
 
-    findOneByAccountOrEmails({ provider, accountId, emails }) {
+    findOneByAccountOrEmails(_ref5) {
+        var provider = _ref5.provider;
+        var accountId = _ref5.accountId;
+        var emails = _ref5.emails;
+
         function _ref(_id) {
             if (!(_id instanceof Promise)) {
                 throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserTypeUserType>\n\nGot:\n' + _inspect(_id));

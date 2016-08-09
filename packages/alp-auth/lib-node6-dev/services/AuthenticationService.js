@@ -278,6 +278,13 @@ class AuthenticationService extends _events2.default {
                 throw new TypeError('Value of argument "isConnected" violates contract.\n\nExpected:\n?bool\n\nGot:\n' + _inspect(isConnected));
             }
 
+            if (ctx.query.error) {
+                const error = new Error(ctx.query.error);
+                error.status = 403;
+                error.expose = true;
+                throw error;
+            }
+
             const code = ctx.query.code;
             const state = ctx.query.state;
             const cookieName = `auth_${ strategy }_${ state }`;

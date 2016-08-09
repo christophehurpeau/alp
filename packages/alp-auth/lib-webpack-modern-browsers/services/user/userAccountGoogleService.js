@@ -4,10 +4,10 @@ var _class, _temp2;
 import EventEmitter from 'events';
 
 export default new (_temp2 = _class = class UserAccountGoogleService extends EventEmitter {
-    constructor(...args) {
+    constructor() {
         var _temp;
 
-        return _temp = super(...args), this.providerKey = 'google', _temp;
+        return _temp = super(...arguments), this.providerKey = 'google', _temp;
     }
 
     getProfile(tokens) {

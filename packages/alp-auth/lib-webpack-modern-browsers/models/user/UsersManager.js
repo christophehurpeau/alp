@@ -3,13 +3,17 @@ import { AbstractManager } from 'liwi';
 import { UserType, AccountType } from './types';
 
 export default class UsersManager extends AbstractManager {
-    constructor(...args) {
+    constructor() {
         var _temp;
 
-        return _temp = super(...args), this.STATUSES = UsersManager.STATUSES, _temp;
+        return _temp = super(...arguments), this.STATUSES = UsersManager.STATUSES, _temp;
     }
 
-    findOneByAccountOrEmails({ provider, accountId, emails }) {
+    findOneByAccountOrEmails(_ref) {
+        var provider = _ref.provider;
+        var accountId = _ref.accountId;
+        var emails = _ref.emails;
+
         var query = {
             'accounts.provider': provider,
             'accounts.accountId': accountId

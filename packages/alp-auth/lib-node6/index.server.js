@@ -37,9 +37,9 @@ var _UserAccountsService = require('./services/user/UserAccountsService');
 
 var _UserAccountsService2 = _interopRequireDefault(_UserAccountsService);
 
-var _authController = require('./controllers/authController');
+var _createAuthController = require('./controllers/createAuthController.server');
 
-var _authController2 = _interopRequireDefault(_authController);
+var _createAuthController2 = _interopRequireDefault(_createAuthController);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63,7 +63,7 @@ function init(_ref) {
 
         const authenticationService = new _AuthenticationService2.default(app.config, strategies, userAccountsService);
 
-        controllers.set('auth', (0, _authController2.default)({
+        controllers.set('auth', (0, _createAuthController2.default)({
             authenticationService,
             loginModuleDescriptor,
             homeRouterKey

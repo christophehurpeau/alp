@@ -181,6 +181,13 @@ export default class AuthenticationService extends EventEmitter {
      * @returns {*}
      */
     async accessResponse(ctx, strategy: string, isConnected: ?boolean) {
+        if (ctx.query.error) {
+            const error = new Error(ctx.query.error);
+            error.status = 403;
+            error.expose = true;
+            throw error;
+        }
+
         const code = ctx.query.code;
         const state = ctx.query.state;
         const cookieName = `auth_${strategy}_${state}`;

@@ -6,7 +6,7 @@ import Logger from 'nightingale-logger';
 import UsersManager from './models/user/UsersManager';
 import AuthenticationService from './services/AuthenticationService';
 import UserAccountsService from './services/user/UserAccountsService';
-import createAuthController from './controllers/authController';
+import createAuthController from './controllers/createAuthController.server';
 
 export { UsersManager };
 export { default as routes } from './routes';
@@ -14,13 +14,13 @@ export { default as routes } from './routes';
 var COOKIE_NAME = 'connectedUser';
 var logger = new Logger('alp-auth');
 
-export default function init({
-    controllers,
-    usersManager,
-    strategies,
-    loginModuleDescriptor,
-    homeRouterKey
-}) {
+export default function init(_ref) {
+    var controllers = _ref.controllers;
+    var usersManager = _ref.usersManager;
+    var strategies = _ref.strategies;
+    var loginModuleDescriptor = _ref.loginModuleDescriptor;
+    var homeRouterKey = _ref.homeRouterKey;
+
     return app => {
         var userAccountsService = new UserAccountsService(usersManager);
 

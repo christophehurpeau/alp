@@ -8,7 +8,7 @@ import Logger from 'nightingale-logger';
 import UsersManager from './models/user/UsersManager';
 import AuthenticationService from './services/AuthenticationService';
 import UserAccountsService from './services/user/UserAccountsService';
-import createAuthController from './controllers/authController';
+import createAuthController from './controllers/createAuthController.server';
 
 export { UsersManager };
 export { default as routes } from './routes';

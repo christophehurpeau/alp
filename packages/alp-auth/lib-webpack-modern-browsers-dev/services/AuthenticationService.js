@@ -73,7 +73,9 @@ export default class AuthenticationService extends EventEmitter {
      * @param {boolean} [options.includeGrantedScopes] If this is provided with the value true, and the authorization request is granted, the authorization will include any previous authorizations granted to this user/application combination for other scopes
      * @returns {string}
      */
-    generateAuthUrl(strategy, options = {}) {
+    generateAuthUrl(strategy) {
+        var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
         if (!(typeof strategy === 'string')) {
             throw new TypeError('Value of argument "strategy" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(strategy));
         }
@@ -99,7 +101,9 @@ export default class AuthenticationService extends EventEmitter {
         }
     }
 
-    getTokens(strategy, options = {}) {
+    getTokens(strategy) {
+        var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
         if (!(typeof strategy === 'string')) {
             throw new TypeError('Value of argument "strategy" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(strategy));
         }
@@ -258,6 +262,13 @@ export default class AuthenticationService extends EventEmitter {
 
             if (!(isConnected == null || typeof isConnected === 'boolean')) {
                 throw new TypeError('Value of argument "isConnected" violates contract.\n\nExpected:\n?bool\n\nGot:\n' + _inspect(isConnected));
+            }
+
+            if (ctx.query.error) {
+                var error = new Error(ctx.query.error);
+                error.status = 403;
+                error.expose = true;
+                throw error;
             }
 
             var code = ctx.query.code;

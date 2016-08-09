@@ -2,11 +2,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 import AuthenticationService from '../services/AuthenticationService';
 
-export default function createAuthController({
-    authenticationService,
-    loginModuleDescriptor,
-    homeRouterKey = 'home'
-}) {
+export default function createAuthController(_ref) {
+    var authenticationService = _ref.authenticationService;
+    var loginModuleDescriptor = _ref.loginModuleDescriptor;
+    var _ref$homeRouterKey = _ref.homeRouterKey;
+    var homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
+
     if (!(arguments[0] != null && arguments[0].authenticationService instanceof AuthenticationService && arguments[0].loginModuleDescriptor instanceof Object && (arguments[0].homeRouterKey == null || typeof arguments[0].homeRouterKey === 'string'))) {
         throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{ authenticationService: AuthenticationService;\n  loginModuleDescriptor: Object;\n  homeRouterKey: ?string;\n}\n\nGot:\n' + _inspect(arguments[0]));
     }
@@ -121,4 +122,4 @@ function _inspect(input, depth) {
         }
     }
 }
-//# sourceMappingURL=authController.js.map
+//# sourceMappingURL=createAuthController.server.js.map

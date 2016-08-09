@@ -6,7 +6,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
@@ -225,11 +225,23 @@ var AuthenticationService = function (_EventEmitter) {
         key: 'accessResponse',
         value: function () {
             var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, strategy, isConnected) {
-                var code, state, cookieName, cookie, tokens, user, connectedUser;
+                var error, code, state, cookieName, cookie, tokens, user, connectedUser;
                 return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
+                                if (!ctx.query.error) {
+                                    _context2.next = 5;
+                                    break;
+                                }
+
+                                error = new Error(ctx.query.error);
+
+                                error.status = 403;
+                                error.expose = true;
+                                throw error;
+
+                            case 5:
                                 code = ctx.query.code;
                                 state = ctx.query.state;
                                 cookieName = 'auth_' + strategy + '_' + state;
@@ -238,69 +250,69 @@ var AuthenticationService = function (_EventEmitter) {
                                 ctx.cookies.set(cookieName, '', { expires: new Date(1) });
 
                                 if (cookie) {
-                                    _context2.next = 7;
+                                    _context2.next = 12;
                                     break;
                                 }
 
                                 throw new Error('No cookie for this state');
 
-                            case 7:
+                            case 12:
 
                                 cookie = JSON.parse(cookie);
 
                                 if (!(!cookie || !cookie.scope)) {
-                                    _context2.next = 10;
+                                    _context2.next = 15;
                                     break;
                                 }
 
                                 throw new Error('Unexpected cookie value');
 
-                            case 10:
+                            case 15:
                                 if (cookie.isLoginAccess) {
-                                    _context2.next = 13;
+                                    _context2.next = 18;
                                     break;
                                 }
 
                                 if (isConnected) {
-                                    _context2.next = 13;
+                                    _context2.next = 18;
                                     break;
                                 }
 
                                 throw new Error('You are not connected');
 
-                            case 13:
-                                _context2.next = 15;
+                            case 18:
+                                _context2.next = 20;
                                 return this.getTokens(strategy, {
                                     code: code,
                                     redirectUri: this.redirectUri(ctx, strategy)
                                 });
 
-                            case 15:
+                            case 20:
                                 tokens = _context2.sent;
 
                                 if (!cookie.isLoginAccess) {
-                                    _context2.next = 21;
+                                    _context2.next = 26;
                                     break;
                                 }
 
-                                _context2.next = 19;
+                                _context2.next = 24;
                                 return this.userAccountsService.findOrCreateFromGoogle(strategy, tokens, cookie.scope, cookie.scopeKey);
 
-                            case 19:
+                            case 24:
                                 user = _context2.sent;
                                 return _context2.abrupt('return', user);
 
-                            case 21:
+                            case 26:
 
                                 ctx.cookies.set(cookieName, '', { expires: new Date(1) });
                                 connectedUser = ctx.state.connected;
-                                _context2.next = 25;
+                                _context2.next = 30;
                                 return this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
 
-                            case 25:
+                            case 30:
                                 return _context2.abrupt('return', connectedUser);
 
-                            case 26:
+                            case 31:
                             case 'end':
                                 return _context2.stop();
                         }
