@@ -1,3 +1,9 @@
+### v2.8.2
+
+- [`2c8d0bd`](https://github.com/alpjs/alp-dev/commit/2c8d0bd8d3317e589660dc36f71d9a42c9120946) remove pob-babel in devDependencies (Christophe Hurpeau)
+- [`c68a6f9`](https://github.com/alpjs/alp-dev/commit/c68a6f9a687790e6052fa12ebd1393acaa406875) Revert "preset es2015 option modules false" (Christophe Hurpeau)
+- [`3139345`](https://github.com/alpjs/alp-dev/commit/313934597f9895b462210de90aaef3222c351e23) fix uglify (Christophe Hurpeau)
+
 ### v2.8.1
 
 - [`86b321b`](https://github.com/alpjs/alp-dev/commit/86b321b381d31a5bb587eed0b7815dbe1f577bb8) preset es2015 option modules false (Christophe Hurpeau)
