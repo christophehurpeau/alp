@@ -18,11 +18,9 @@
     "build:dev": "pob-build",
     "clean": "rm -Rf docs dist test/node6 coverage",
     "lint": "eslint --ext .js,.jsx --fix -c .eslintrc.yml src/",
-    "postpublish": "make post-publish",
     "prepublish": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit 2>/dev/null || true ; ln -s ../../git-hooks/post-merge .git/hooks/post-merge 2>/dev/null || true",
     "preversion": "npm run lint && npm run build && pob-repository-check-clean",
     "release": "pob-repository-check-clean && pob-release",
-    "test": "make test",
     "version": "pob-version",
     "watch": "pob-watch",
     "watch:dev": "pob-watch"
