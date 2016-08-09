@@ -1,3 +1,7 @@
+### v2.8.1
+
+- [`86b321b`](https://github.com/alpjs/alp-dev/commit/86b321b381d31a5bb587eed0b7815dbe1f577bb8) preset es2015 option modules false (Christophe Hurpeau)
+
 ### v2.8.0
 
 - [`4dac11b`](https://github.com/alpjs/alp-dev/commit/4dac11bd6900a3faa91ff3c102d7135c48ea1791) update dependencies (Christophe Hurpeau)
