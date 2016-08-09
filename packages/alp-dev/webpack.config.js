@@ -61,7 +61,7 @@ module.exports = {
                 query: {
                     presets: (
                         dest === 'modern-browsers' ?
-                            ['modern-browsers/webpack2', 'react', 'modern-browsers-stage-1']
+                            ['modern-browsers/webpack2', 'modern-browsers/object-rest', 'react', 'modern-browsers-stage-1']
                             : ['es2015-native-modules', 'react', 'stage-1']
                     ),
                     plugins: [
