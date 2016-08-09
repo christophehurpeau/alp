@@ -62,7 +62,7 @@ module.exports = {
                     presets: (
                         dest === 'modern-browsers' ?
                             ['modern-browsers/webpack2', 'react', 'modern-browsers-stage-1']
-                            : [['es2015', { modules: false }], 'react', 'stage-1']
+                            : ['es2015-native-modules', 'react', 'stage-1']
                     ),
                     plugins: [
                         !production && 'typecheck',
@@ -96,14 +96,7 @@ module.exports = {
             'webpack',
             'main',
         ].filter(Boolean),
-        packageAlias: [
-            dest === 'modern-browsers' && !production && 'webpack:aliases-modern-browsers-dev',
-            dest === 'modern-browsers' && 'webpack:aliases-modern-browsers',
-            !production && 'webpack:aliases-dev',
-            'webpack:aliases',
-            'webpack',
-            'browser',
-        ].filter(Boolean),
+        packageAlias: ['webpack', 'browser'],
     },
 
     node: { util: 'empty' }, // fix nightingale...
