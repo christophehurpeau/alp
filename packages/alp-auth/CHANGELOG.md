@@ -1,3 +1,7 @@
+### v0.2.1
+
+- [`ce0458d`](https://github.com/alpjs/alp-auth/commit/ce0458d35976d85796425ed17f0c93ae86316bd4) browser controller (Christophe Hurpeau)
+
 ### v0.2.0
 
 - [`4c2bcfd`](https://github.com/alpjs/alp-auth/commit/4c2bcfd906e8291af6a582547b9581295ef1b89f) rewrite (Christophe Hurpeau)
