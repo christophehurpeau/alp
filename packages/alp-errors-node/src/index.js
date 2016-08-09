@@ -1,6 +1,6 @@
 import { STATUS_CODES } from 'http';
-import { parse as parseError } from 'alouette';
-import ErrorHtmlRenderer from 'alouette/lib/HtmlRenderer';
+import { parse as parseError } from 'alouette/src';
+import ErrorHtmlRenderer from 'alouette/src/HtmlRenderer';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp.errors');
@@ -10,6 +10,7 @@ export default async function (ctx, next) {
     try {
         await next();
     } catch (err) {
+        // eslint-disable-next-line no-ex-assign
         if (!err) err = new Error('Unknown error');
         ctx.status = err.status || 500;
         logger.error(err);
