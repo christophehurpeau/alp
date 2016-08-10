@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/pob-build.js"],"names":[],"mappings":";;;;;;;AAAA;;;;;qBAES,K;;;;;;qBAAO,K;;;;;;qBAAO,K;;;;;AAEvB,8BAAe,QAAQ,yBAAR,CAAf","file":"pob-build.js","sourcesContent":["import { registerPlugin } from 'pob-babel';\n\nexport { clean, build, watch } from 'pob-babel';\n\nregisterPlugin(require('./pob-build-plugins/yml'));\n"]}

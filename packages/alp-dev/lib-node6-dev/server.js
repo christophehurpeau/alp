@@ -1,20 +1,18 @@
 'use strict';
 
-var _pobBabel = require('pob-babel');
-
 var _minimistArgv = require('minimist-argv');
 
 var _minimistArgv2 = _interopRequireDefault(_minimistArgv);
 
 var _springbokjsDaemon = require('springbokjs-daemon');
 
+var _pobBuild = require('./pob-build');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _pobBabel.registerPlugin)(require('./pob-build-plugins/yml')); // const bsReload = require('./bs-reload');
+(0, _pobBuild.clean)(); // const bsReload = require('./bs-reload');
 
-
-(0, _pobBabel.clean)();
-(0, _pobBabel.watch)().then(emitter => {
+(0, _pobBuild.watch)().then(emitter => {
     start();
     emitter.on('changed', () => {
         return restart();

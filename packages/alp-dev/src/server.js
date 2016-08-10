@@ -1,9 +1,7 @@
 // const bsReload = require('./bs-reload');
-import { clean, watch, registerPlugin } from 'pob-babel';
 import argv from 'minimist-argv';
 import { node as nodeDaemon } from 'springbokjs-daemon';
-
-registerPlugin(require('./pob-build-plugins/yml'));
+import { clean, watch } from './pob-build';
 
 clean();
 watch().then(emitter => {

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/build.js"],"names":[],"mappings":";;AAAA;;AAEA;AACA","file":"build.js","sourcesContent":["import { clean, build } from './pob-build';\n\nclean();\nbuild();\n"]}
