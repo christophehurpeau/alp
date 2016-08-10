@@ -1,3 +1,7 @@
+### v2.8.3
+
+- [`815223b`](https://github.com/alpjs/alp-dev/commit/815223baef0f51d939cf9da4077314083302d9a7) alp-dev-build (Christophe Hurpeau)
+
 ### v2.8.2
 
 - [`2c8d0bd`](https://github.com/alpjs/alp-dev/commit/2c8d0bd8d3317e589660dc36f71d9a42c9120946) remove pob-babel in devDependencies (Christophe Hurpeau)
