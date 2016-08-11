@@ -1,3 +1,7 @@
+### v3.0.1
+
+- [`3185924`](https://github.com/alpjs/alp-websocket/commit/3185924e5ca996bc535b7771c0002f014b26834b) throw error instead of string for timeout (Christophe Hurpeau)
+
 ### v3.0.0
 
 - [`ee1a7cd`](https://github.com/alpjs/alp-websocket/commit/ee1a7cd8751244f9b12851e1ceb0499efe1e9dd1) emit callback first arg is now an error, and second is the result (Christophe Hurpeau)
