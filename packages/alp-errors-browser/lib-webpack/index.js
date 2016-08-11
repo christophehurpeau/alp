@@ -19,17 +19,22 @@ export default (function () {
                         return next();
 
                     case 3:
-                        _context.next = 20;
+                        _context.next = 22;
                         break;
 
                     case 5:
                         _context.prev = 5;
                         _context.t0 = _context['catch'](0);
 
+                        // eslint-disable-next-line no-ex-assign
+                        if (!_context.t0) _context.t0 = new Error('Unknown error');
+                        // eslint-disable-next-line no-ex-assign
+                        if (typeof _context.t0 === 'string') _context.t0 = new Error(_context.t0);
+
                         ctx.status = _context.t0.status || 500;
 
                         if (!(process.env.NODE_ENV !== 'production')) {
-                            _context.next = 14;
+                            _context.next = 16;
                             break;
                         }
 
@@ -38,25 +43,25 @@ export default (function () {
                         logger.error(parsedError);
                         // ctx.body = errorHtmlRenderer.render(parsedError);
                         ctx.body = parsedError.stack;
-                        _context.next = 20;
+                        _context.next = 22;
                         break;
 
-                    case 14:
+                    case 16:
                         logger.error(_context.t0);
 
                         if (!_context.t0.expose) {
-                            _context.next = 19;
+                            _context.next = 21;
                             break;
                         }
 
                         ctx.body = _context.t0.message;
-                        _context.next = 20;
+                        _context.next = 22;
                         break;
 
-                    case 19:
+                    case 21:
                         throw _context.t0;
 
-                    case 20:
+                    case 22:
                     case 'end':
                         return _context.stop();
                 }

@@ -12,6 +12,11 @@ export default (() => {
         try {
             yield next();
         } catch (err) {
+            // eslint-disable-next-line no-ex-assign
+            if (!err) err = new Error('Unknown error');
+            // eslint-disable-next-line no-ex-assign
+            if (typeof err === 'string') err = new Error(err);
+
             ctx.status = err.status || 500;
 
             if (process.env.NODE_ENV !== 'production') {
