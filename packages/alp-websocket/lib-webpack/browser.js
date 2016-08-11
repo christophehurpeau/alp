@@ -5,16 +5,16 @@ import Logger from 'nightingale-logger';
 var logger = new Logger('alp.websocket');
 var socket = undefined;
 
+export var websocket = {
+    on: on,
+    off: off,
+    emit: emit,
+    isConnected: isConnected
+};
+
 export default function alpWebsocket(app, namespaceName) {
     start(app, namespaceName);
-    app.websocket = {
-        socket: socket,
-        on: on,
-        off: off,
-        emit: emit,
-        isConnected: isConnected
-    };
-
+    websocket.socket = socket;
     return socket;
 }
 
@@ -27,7 +27,7 @@ function start(_ref) {
         throw new Error('WebSocket already started');
     }
 
-    var webSocketConfig = config.get('webSocket');
+    var webSocketConfig = config.get('webSocket') || config.get('websocket');
 
     if (!webSocketConfig) {
         throw new Error('Missing config webSocket');
@@ -60,7 +60,7 @@ function start(_ref) {
 
         if (version !== window.VERSION) {
             // eslint-disable-next-line no-alert
-            if (!true /*defines: PRODUCTION = true*/ || confirm(context.t('newversion'))) {
+            if (process.env.NODE_ENV !== 'production' || confirm(context.t('newversion'))) {
                 return location.reload(true);
             }
         }
@@ -80,7 +80,7 @@ function emit() {
 
         var resolved = setTimeout(function () {
             logger.warn('websocket emit timeout', { args: args });
-            reject('timeout');
+            reject(new Error('websocket response timeout'));
         }, 10000);
 
         (_socket = socket).emit.apply(_socket, args.concat([function (error, result) {

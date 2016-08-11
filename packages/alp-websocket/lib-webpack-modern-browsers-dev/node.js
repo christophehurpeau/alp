@@ -41,7 +41,7 @@ function start(config, dirname) {
         throw new Error('Already started');
     }
 
-    var webSocketConfig = config.get('webSocket');
+    var webSocketConfig = config.get('webSocket') || config.get('websocket');
 
     if (!webSocketConfig) {
         throw new Error('Missing config webSocket');
