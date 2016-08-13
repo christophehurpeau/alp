@@ -24,6 +24,7 @@ export default (() => {
                 logger.error(parsedError);
                 // ctx.body = errorHtmlRenderer.render(parsedError);
                 ctx.body = parsedError.stack;
+                debugger;
             } else {
                 logger.error(err);
                 if (err.expose) {

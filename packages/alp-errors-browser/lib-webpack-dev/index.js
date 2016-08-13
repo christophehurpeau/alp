@@ -19,7 +19,7 @@ export default (function () {
                         return next();
 
                     case 3:
-                        _context.next = 22;
+                        _context.next = 23;
                         break;
 
                     case 5:
@@ -34,7 +34,7 @@ export default (function () {
                         ctx.status = _context.t0.status || 500;
 
                         if (!(process.env.NODE_ENV !== 'production')) {
-                            _context.next = 16;
+                            _context.next = 17;
                             break;
                         }
 
@@ -43,25 +43,26 @@ export default (function () {
                         logger.error(parsedError);
                         // ctx.body = errorHtmlRenderer.render(parsedError);
                         ctx.body = parsedError.stack;
-                        _context.next = 22;
+                        debugger;
+                        _context.next = 23;
                         break;
 
-                    case 16:
+                    case 17:
                         logger.error(_context.t0);
 
                         if (!_context.t0.expose) {
-                            _context.next = 21;
+                            _context.next = 22;
                             break;
                         }
 
                         ctx.body = _context.t0.message;
-                        _context.next = 22;
+                        _context.next = 23;
                         break;
 
-                    case 21:
+                    case 22:
                         throw _context.t0;
 
-                    case 22:
+                    case 23:
                     case 'end':
                         return _context.stop();
                 }
