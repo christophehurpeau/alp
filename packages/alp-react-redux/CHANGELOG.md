@@ -1,3 +1,7 @@
+### v4.5.0
+
+- [`59a5c83`](https://github.com/alpjs/alp-react-redux/commit/59a5c8301a786680d6daa5328707cb439aa4f80e) react-pure-stateless-component@0.0.3 (Christophe Hurpeau)
+
 ### v4.4.0
 
 - [`ca5bea7`](https://github.com/alpjs/alp-react-redux/commit/ca5bea78371afcf92f9d232cb007315a79cce15a) update dependencies (Christophe Hurpeau)
