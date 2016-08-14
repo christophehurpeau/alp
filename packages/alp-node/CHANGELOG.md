@@ -1,3 +1,7 @@
+### v0.11.0
+
+- [`4659b8a`](https://github.com/alpjs/alp-node/commit/4659b8a65b2fa7cd13c0366dc3c85a5e316fe0ab) update dependencies (Christophe Hurpeau)
+
 ### v0.10.0
 
 - [`da12962`](https://github.com/alpjs/alp-node/commit/da12962c97b21ab1a4c761d6e5466664b65fef90) upgrade dependencies (Christophe Hurpeau)

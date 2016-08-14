@@ -1,6 +1,6 @@
 {
   "name": "alp-node",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "framework for node5 based on koa",
   "keywords": [
     "springbokjs",
