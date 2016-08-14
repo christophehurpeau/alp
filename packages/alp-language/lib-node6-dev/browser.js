@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = alpLanguage;
+/* global navigator */
 function alpLanguage(app) {
     const config = app.context.config;
     const availableLanguages = config.get('availableLanguages');

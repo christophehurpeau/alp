@@ -1,3 +1,4 @@
+/* global navigator */
 export default function alpLanguage(app) {
     var config = app.context.config;
     var availableLanguages = config.get('availableLanguages');
