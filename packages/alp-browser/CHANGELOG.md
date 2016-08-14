@@ -1,3 +1,7 @@
+### v0.11.0
+
+- [`bad0072`](https://github.com/alpjs/alp-browser/commit/bad0072bed2dd801b7f5e8d542737cd0af7414bb) update dependencies (Christophe Hurpeau)
+
 ### v0.10.1
 
 - [`45aa648`](https://github.com/alpjs/alp-browser/commit/45aa6480806c73c23a255c0a83ab91d2e12fde69) fix ibex (Christophe Hurpeau)
