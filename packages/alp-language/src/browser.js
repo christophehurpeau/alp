@@ -1,3 +1,4 @@
+/* global navigator */
 export default function alpLanguage(app) {
     const config = app.context.config;
     const availableLanguages = config.get('availableLanguages');
@@ -5,10 +6,12 @@ export default function alpLanguage(app) {
         throw new Error('Missing config "availableLanguages"');
     }
 
+    app.context.firstAcceptedLanguage = navigator.languages[0] || availableLanguages[0];
+
     if (!navigator.languages.some(language => {
-        const l = language.split('-')[0].toLowerCase();
-        if (availableLanguages.indexOf(l) !== -1) {
-            app.context.language = l;
+        const languageCode = language.split('-')[0].toLowerCase();
+        if (availableLanguages.indexOf(languageCode) !== -1) {
+            app.context.language = languageCode;
             return true;
         }
 
