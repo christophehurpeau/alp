@@ -1,3 +1,7 @@
+### v3.0.2
+
+- [`9f8d130`](https://github.com/alpjs/alp-websocket/commit/9f8d1305ab4cb13372a0a2f3f66008e0ecea0501) fix error and update dependencies (Christophe Hurpeau)
+
 ### v3.0.1
 
 - [`3185924`](https://github.com/alpjs/alp-websocket/commit/3185924e5ca996bc535b7771c0002f014b26834b) throw error instead of string for timeout (Christophe Hurpeau)
