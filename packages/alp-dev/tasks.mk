@@ -22,7 +22,6 @@ watch: check
 
 build-prod: check
 	NODE_ENV=production $(BIN)gulp build --production
-	NODE_ENV=production node_modules/.bin/alp-dev-build
 	NODE_ENV=production WEBPACK_DEST=es5 node_modules/.bin/webpack
 	NODE_ENV=production WEBPACK_DEST=modern-browsers node_modules/.bin/webpack
 

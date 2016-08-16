@@ -2,9 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const OfflinePlugin = require('offline-plugin');
+const createBabelOpts = require('pob-babel/lib/babel-options');
 
 const production = process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production';
 const dest = process.env.WEBPACK_DEST || 'modern-browsers';
+
+const babelOptions = createBabelOpts(
+    `webpack${dest === 'modern-browsers' ? '-modern-browsers' : ''}${!production ? '-dev' : ''}`,
+    true
+);
 
 const modulesList = (() => {
     try {
@@ -58,23 +64,7 @@ module.exports = {
                 exclude: /(node_modules)|\.server\.jsx?$/,
                 loader: 'babel',
                 include: path.resolve('src'),
-                query: {
-                    presets: (
-                        dest === 'modern-browsers' ?
-                            ['modern-browsers/webpack2', 'modern-browsers/object-rest', 'react', 'modern-browsers-stage-1']
-                            : ['es2015-native-modules', 'react', 'stage-1']
-                    ),
-                    plugins: [
-                        !production && 'typecheck',
-                        !production && 'transform-react-jsx-self',
-                        !production && 'react-hot-loader/babel',
-                        ['import-rename', { '^([a-z\\-]+)/src(.*)$': '$1$2' }],
-                        ['defines', { PRODUCTION: production, BROWSER: true, SERVER: false }],
-                        'remove-dead-code',
-                        ['discard-module-references', { targets: [], unusedWhitelist: ['react'] }],
-                        'react-require',
-                    ].filter(Boolean),
-                },
+                query: babelOptions,
             },
         ],
     },
@@ -96,10 +86,16 @@ module.exports = {
             'webpack',
             'main',
         ].filter(Boolean),
-        packageAlias: ['webpack', 'browser'],
+        aliasFields: [
+            dest === 'modern-browsers' && !production && 'webpack:aliases-modern-browsers-dev',
+            dest === 'modern-browsers' && 'webpack:aliases-modern-browsers',
+            !production && 'webpack:aliases-dev',
+            'webpack:aliases',
+            'webpack',
+            'browser',
+        ],
     },
 
-    node: { util: 'empty' }, // fix nightingale...
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
             name: dest,

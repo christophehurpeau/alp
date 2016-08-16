@@ -55,9 +55,7 @@ exports.default = browserSync({
             stats: { colors: true },
 
             noInfo: true
-        }), // for other settings see
-        // http://webpack.github.io/docs/webpack-dev-middleware.html
-
+        }),
 
         // bundler should be the same as above
         webpackHotMiddleware(bundler)]
