@@ -87,7 +87,9 @@ function start(config, dirname) {
     server.listen(port, () => {
         return logger.info('Listening', { port });
     });
-    server.on('error', logger.error);
+    server.on('error', err => {
+        return logger.error(err);
+    });
     io = (0, _socket2.default)(server);
 
     io.on('connection', socket => {
@@ -99,7 +101,9 @@ function start(config, dirname) {
         });
     });
 
-    io.on('error', logger.error);
+    io.on('error', err => {
+        return logger.error(err);
+    });
 
     return io;
 }
