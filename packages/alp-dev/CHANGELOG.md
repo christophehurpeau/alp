@@ -1,3 +1,7 @@
+### v2.9.0
+
+- [`144d302`](https://github.com/alpjs/alp-dev/commit/144d30288884ead553e27d17fef466f558c1045c) alias field, use babelOptions from pob-babel (Christophe Hurpeau)
+
 ### v2.8.3
 
 - [`815223b`](https://github.com/alpjs/alp-dev/commit/815223baef0f51d939cf9da4077314083302d9a7) alp-dev-build (Christophe Hurpeau)
