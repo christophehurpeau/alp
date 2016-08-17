@@ -1,3 +1,10 @@
+### v0.12.0
+
+change `migrate({ migrationsManager })` to `migrate(migrationsManager)`
+
+- [`b2b277d`](https://github.com/alpjs/alp-node/commit/b2b277dd210293e22516d4d319fe63512bd4cafd) update dependencies, migrate (Christophe Hurpeau)
+
+
 ### v0.11.0
 
 - [`4659b8a`](https://github.com/alpjs/alp-node/commit/4659b8a65b2fa7cd13c0366dc3c85a5e316fe0ab) update dependencies (Christophe Hurpeau)
