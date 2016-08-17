@@ -1,3 +1,7 @@
+### v0.2.2
+
+- [`b2ed04c`](https://github.com/alpjs/alp-auth/commit/b2ed04c7b36281a48a57ba9797bf811d0e8650aa) update dependencies (Christophe Hurpeau)
+
 ### v0.2.1
 
 - [`ce0458d`](https://github.com/alpjs/alp-auth/commit/ce0458d35976d85796425ed17f0c93ae86316bd4) browser controller (Christophe Hurpeau)
