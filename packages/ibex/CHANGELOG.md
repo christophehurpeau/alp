@@ -1,3 +1,7 @@
+### v4.0.0
+
+- [`972096d`](https://github.com/alpjs/ibex/commit/972096d142a1fde94a3ae75c2f2239027cd08c76) response.redirect and fix request delegate and other changes in context (Christophe Hurpeau)
+
 ### v3.5.2
 
 - [`ebd3259`](https://github.com/alpjs/ibex/commit/ebd3259e22df542e7e0225b5310b075ed5890c02) fix compose (Christophe Hurpeau)
