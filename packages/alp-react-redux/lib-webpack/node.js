@@ -11,6 +11,8 @@ import _createAction from './createAction';
 export { _createAction as createAction };
 import _createReducer from './createReducer';
 export { _createReducer as createReducer };
+import _createLoader from './createLoader';
+export { _createLoader as createLoader };
 
 
 var logger = new Logger('alp.react-redux');
@@ -21,10 +23,17 @@ var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, 
 
 export default function alpReactRedux(Html) {
     return function (app) {
-        app.context.render = function (moduleDescriptor, data) {
+        app.context.render = function (moduleDescriptor, data, _loaded) {
             var _this = this;
 
             logger.debug('render view', { data: data });
+
+            if (!_loaded && moduleDescriptor.loader) {
+                // const _state = data;
+                return moduleDescriptor.loader(undefined, data).then(function (data) {
+                    return _this.render(moduleDescriptor, data, true);
+                });
+            }
 
             if (moduleDescriptor.reducer) {
                 this.store = createStore(moduleDescriptor.reducer, data);

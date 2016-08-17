@@ -1,5 +1,7 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
+/* global PRODUCTION */
+
 export default function createReducer(defaultState, handlers) {
     if ((typeof defaultState === 'undefined' ? 'undefined' : _typeof(defaultState)) === 'object') {
         handlers = defaultState;
@@ -11,14 +13,12 @@ export default function createReducer(defaultState, handlers) {
     var handlerMap = new Map();
     Object.keys(handlers).forEach(function (key) {
         if (typeof key === 'function') {
-            if (typeof key.type !== 'string') {
-                throw new Error('Invalid handler key: "' + key.name + '"');
-            }
             handlerMap.set(key.type, handlers[key]);
         } else {
             handlerMap.set(key, handlers[key]);
         }
     });
+    handlers = undefined;
 
     return function () {
         var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState() : arguments[0];

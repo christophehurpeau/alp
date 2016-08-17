@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
+exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
 
 var _redux = require('redux');
 
@@ -49,11 +49,16 @@ var _createReducer2 = require('./createReducer');
 
 var _createReducer3 = _interopRequireDefault(_createReducer2);
 
+var _createLoader2 = require('./createLoader');
+
+var _createLoader3 = _interopRequireDefault(_createLoader2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
 exports.createAction = _createAction3.default;
 exports.createReducer = _createReducer3.default;
+exports.createLoader = _createLoader3.default;
 
 
 const logger = new _nightingaleLogger2.default('alp.react-redux');
@@ -64,8 +69,13 @@ const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }
 
 function alpReactRedux(Html) {
     return app => {
-        app.context.render = function (moduleDescriptor, data) {
+        app.context.render = function (moduleDescriptor, data, _loaded) {
             logger.debug('render view', { data });
+
+            if (!_loaded && moduleDescriptor.loader) {
+                // const _state = data;
+                return moduleDescriptor.loader(undefined, data).then(data => this.render(moduleDescriptor, data, true));
+            }
 
             if (moduleDescriptor.reducer) {
                 this.store = (0, _redux.createStore)(moduleDescriptor.reducer, data);

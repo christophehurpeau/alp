@@ -14,12 +14,15 @@ import _createAction from './createAction';
 export { _createAction as createAction };
 import _createReducer from './createReducer';
 export { _createReducer as createReducer };
+import _createLoader from './createLoader';
+export { _createLoader as createLoader };
 
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 var logger = new Logger('alp.react-redux');
 
 var store = undefined;
+var currentModuleDescriptorIdentifier = undefined;
 
 export default function alpReactRedux(element) {
     return function (app) {
@@ -35,44 +38,60 @@ export default function alpReactRedux(element) {
             middlewares.push(websocketMiddleware(app));
         }
 
-        app.context.render = function (moduleDescriptor, data) {
+        app.context.render = function (moduleDescriptor, data, _loaded) {
+            var _this = this;
+
             logger.debug('render view', { data: data });
 
             if (!moduleDescriptor.View) {
                 throw new Error('View is undefined, class expected');
             }
 
+            if (!_loaded && moduleDescriptor.loader) {
+                var currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+
+                // const _state = data;
+                return moduleDescriptor.loader(currentState, data).then(function (data) {
+                    return _this.render(moduleDescriptor, data, true);
+                });
+            }
+
             var reducer = moduleDescriptor.reducer;
 
-            if (store === undefined) {
-                if (reducer) {
-                    store = createStore(reducer, data, compose(applyMiddleware.apply(undefined, middlewares), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-                        return f;
-                    }));
-                }
+            if (!reducer) {
+                store = undefined;
+            } else if (store === undefined) {
+                store = createStore(reducer, data, compose(applyMiddleware.apply(undefined, middlewares), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+                    return f;
+                }));
             } else {
                 (function () {
-                    // replace state
                     var state = store.getState();
-                    Object.keys(state).forEach(function (key) {
-                        return delete state[key];
-                    });
+
+                    if (currentModuleDescriptorIdentifier !== moduleDescriptor.identifier) {
+                        // replace state
+                        Object.keys(state).forEach(function (key) {
+                            return delete state[key];
+                        });
+                    }
+
                     Object.assign(state, data);
 
-                    // replace reducer
-                    if (reducer) {
-                        store.replaceReducer(reducer);
-                    } else {
-                        store.replaceReducer(function (state, action) {
-                            return state;
-                        });
+                    if (currentModuleDescriptorIdentifier !== moduleDescriptor.identifier) {
+                        // replace reducer
+                        if (reducer) {
+                            store.replaceReducer(reducer);
+                        } else {
+                            store.replaceReducer(function (state, action) {
+                                return state;
+                            });
+                        }
                     }
                 })();
             }
 
-            if (reducer) {
-                this.store = store;
-            }
+            currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
+            this.store = store;
 
             render({
                 context: this,

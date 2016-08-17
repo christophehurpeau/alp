@@ -1,3 +1,5 @@
+/* global PRODUCTION */
+
 export default function createReducer(defaultState: Function|Object, handlers: ?Object) {
     if (typeof defaultState === 'object') {
         handlers = defaultState;
@@ -7,7 +9,7 @@ export default function createReducer(defaultState: Function|Object, handlers: ?
     const handlerMap = new Map();
     Object.keys(handlers).forEach(key => {
         if (typeof key === 'function') {
-            if (typeof key.type !== 'string') {
+            if (!PRODUCTION && typeof key.type !== 'string') {
                 throw new Error(`Invalid handler key: "${key.name}"`);
             }
             handlerMap.set(key.type, handlers[key]);
@@ -15,6 +17,7 @@ export default function createReducer(defaultState: Function|Object, handlers: ?
             handlerMap.set(key, handlers[key]);
         }
     });
+    handlers = undefined;
 
     return (state = defaultState(), action) => {
         if (action && handlerMap.has(action.type)) {

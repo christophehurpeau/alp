@@ -1,3 +1,5 @@
+/* global PRODUCTION */
+
 export default function createReducer(defaultState, handlers) {
     if (!(typeof defaultState === 'function' || defaultState instanceof Object)) {
         throw new TypeError('Value of argument "defaultState" violates contract.\n\nExpected:\nFunction | Object\n\nGot:\n' + _inspect(defaultState));
@@ -25,6 +27,7 @@ export default function createReducer(defaultState, handlers) {
             handlerMap.set(key, handlers[key]);
         }
     });
+    handlers = undefined;
 
     return function () {
         var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState() : arguments[0];

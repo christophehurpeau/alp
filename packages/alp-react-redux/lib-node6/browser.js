@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.createEmitPromiseAction = exports.createEmitAction = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
+exports.createEmitPromiseAction = exports.createEmitAction = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
 
 var _redux = require('redux');
 
@@ -65,16 +65,22 @@ var _createReducer2 = require('./createReducer');
 
 var _createReducer3 = _interopRequireDefault(_createReducer2);
 
+var _createLoader2 = require('./createLoader');
+
+var _createLoader3 = _interopRequireDefault(_createLoader2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
 exports.createAction = _createAction3.default;
 exports.createReducer = _createReducer3.default;
+exports.createLoader = _createLoader3.default;
 
 
 const logger = new _nightingaleLogger2.default('alp.react-redux');
 
 let store;
+let currentModuleDescriptorIdentifier;
 
 function alpReactRedux(element) {
     return app => {
@@ -90,41 +96,53 @@ function alpReactRedux(element) {
             middlewares.push((0, _websocket.websocketMiddleware)(app));
         }
 
-        app.context.render = function (moduleDescriptor, data) {
+        app.context.render = function (moduleDescriptor, data, _loaded) {
             logger.debug('render view', { data });
 
             if (!moduleDescriptor.View) {
                 throw new Error('View is undefined, class expected');
             }
 
+            if (!_loaded && moduleDescriptor.loader) {
+                const currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+
+                // const _state = data;
+                return moduleDescriptor.loader(currentState, data).then(data => this.render(moduleDescriptor, data, true));
+            }
+
             const reducer = moduleDescriptor.reducer;
 
-            if (store === undefined) {
-                if (reducer) {
-                    store = (0, _redux.createStore)(reducer, data, (0, _redux.compose)((0, _redux.applyMiddleware)(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => f));
-                }
+            if (!reducer) {
+                store = undefined;
+            } else if (store === undefined) {
+                store = (0, _redux.createStore)(reducer, data, (0, _redux.compose)((0, _redux.applyMiddleware)(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => f));
             } else {
-                // replace state
                 const state = store.getState();
-                Object.keys(state).forEach(key => delete state[key]);
+
+                if (currentModuleDescriptorIdentifier !== moduleDescriptor.identifier) {
+                    // replace state
+                    Object.keys(state).forEach(key => delete state[key]);
+                }
+
                 Object.assign(state, data);
 
-                // replace reducer
-                if (reducer) {
-                    store.replaceReducer(reducer);
-                } else {
-                    store.replaceReducer((state, action) => state);
+                if (currentModuleDescriptorIdentifier !== moduleDescriptor.identifier) {
+                    // replace reducer
+                    if (reducer) {
+                        store.replaceReducer(reducer);
+                    } else {
+                        store.replaceReducer((state, action) => state);
+                    }
                 }
             }
 
-            if (reducer) {
-                this.store = store;
-            }
+            currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
+            this.store = store;
 
             (0, _fody2.default)({
                 context: this,
                 View: moduleDescriptor.View,
-                data,
+                data: data,
                 element,
                 App: reducer ? _fodyReduxApp2.default : _fody.App
             });

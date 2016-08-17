@@ -1,7 +1,7 @@
 export default function createAction(
     type:string,
     argsNamesOrHandler:?Array<string>|string|Function,
-    data:?Object,
+    data:?Object
 ) {
     let action;
 

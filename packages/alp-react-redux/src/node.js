@@ -8,6 +8,7 @@ export { connect } from 'react-redux';
 export createPureStatelessComponent from 'react-pure-stateless-component';
 export createAction from './createAction';
 export createReducer from './createReducer';
+export createLoader from './createLoader';
 
 const logger = new Logger('alp.react-redux');
 
@@ -21,9 +22,16 @@ const agents = [
 ];
 
 export default function alpReactRedux(Html) {
-    return (app) => {
-        app.context.render = function (moduleDescriptor, data) {
+    return (app: Object) => {
+        app.context.render = function (moduleDescriptor, data, _loaded) {
             logger.debug('render view', { data });
+
+            if (!_loaded && moduleDescriptor.loader) {
+                // const _state = data;
+                return moduleDescriptor.loader(undefined, data).then(data => (
+                    this.render(moduleDescriptor, data, true)
+                ));
+            }
 
             if (moduleDescriptor.reducer) {
                 this.store = createStore(moduleDescriptor.reducer, data);

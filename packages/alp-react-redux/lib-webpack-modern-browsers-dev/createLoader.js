@@ -1,12 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = createReducer;
 /* global PRODUCTION */
-
-function createReducer(defaultState, handlers) {
+export default function createLoader(defaultState, handlers) {
     if (!(typeof defaultState === 'function' || defaultState instanceof Object)) {
         throw new TypeError('Value of argument "defaultState" violates contract.\n\nExpected:\nFunction | Object\n\nGot:\n' + _inspect(defaultState));
     }
@@ -18,38 +11,36 @@ function createReducer(defaultState, handlers) {
     if (typeof defaultState === 'object') {
         handlers = defaultState;
         defaultState = () => {
-            return null;
+            return {};
         };
     }
 
-    const handlerMap = new Map();
-    Object.keys(handlers).forEach(key => {
-        if (typeof key === 'function') {
-            if (typeof key.type !== 'string') {
-                throw new Error(`Invalid handler key: "${ key.name }"`);
-            }
-            handlerMap.set(key.type, handlers[key]);
-        } else {
-            handlerMap.set(key, handlers[key]);
-        }
-    });
+    var handlerMap = new Map(Object.keys(handlers).map(key => {
+        return [key, handlers[key]];
+    }));
     handlers = undefined;
 
     return function () {
-        let state = arguments.length <= 0 || arguments[0] === undefined ? defaultState() : arguments[0];
-        let action = arguments[1];
+        var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState() : arguments[0];
+        var data = arguments[1];
 
-        if (action && handlerMap.has(action.type)) {
-            return handlerMap.get(action.type)(state, action);
-        }
-
-        return state;
+        var keys = Object.keys(data);
+        return Promise.all(keys.map(key => {
+            var handler = handlerMap.get(key);
+            if (!handler) throw new Error(`Missing handler for "${ key }".`);
+            return handler(state, keys[key]);
+        })).then(results => {
+            results.forEach((result, index) => {
+                state[keys[index]] = result;
+            });
+            return state;
+        });
     };
 }
 
 function _inspect(input, depth) {
-    const maxDepth = 4;
-    const maxKeys = 15;
+    var maxDepth = 4;
+    var maxKeys = 15;
 
     if (depth === undefined) {
         depth = 0;
@@ -65,20 +56,30 @@ function _inspect(input, depth) {
         return typeof input;
     } else if (Array.isArray(input)) {
         if (input.length > 0) {
-            if (depth > maxDepth) return '[...]';
+            var _ret = function () {
+                if (depth > maxDepth) return {
+                        v: '[...]'
+                    };
 
-            const first = _inspect(input[0], depth);
+                var first = _inspect(input[0], depth);
 
-            if (input.every(item => _inspect(item, depth) === first)) {
-                return first.trim() + '[]';
-            } else {
-                return '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']';
-            }
+                if (input.every(item => _inspect(item, depth) === first)) {
+                    return {
+                        v: first.trim() + '[]'
+                    };
+                } else {
+                    return {
+                        v: '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
+                    };
+                }
+            }();
+
+            if (typeof _ret === "object") return _ret.v;
         } else {
             return 'Array';
         }
     } else {
-        const keys = Object.keys(input);
+        var keys = Object.keys(input);
 
         if (!keys.length) {
             if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
@@ -89,8 +90,8 @@ function _inspect(input, depth) {
         }
 
         if (depth > maxDepth) return '{...}';
-        const indent = '  '.repeat(depth - 1);
-        let entries = keys.slice(0, maxKeys).map(key => {
+        var indent = '  '.repeat(depth - 1);
+        var entries = keys.slice(0, maxKeys).map(key => {
             return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
         }).join('\n  ' + indent);
 
@@ -105,4 +106,4 @@ function _inspect(input, depth) {
         }
     }
 }
-//# sourceMappingURL=createReducer.js.map
+//# sourceMappingURL=createLoader.js.map
