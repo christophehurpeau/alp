@@ -6,6 +6,7 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
 import contentLoaded from 'content-loaded';
+import { init as initWebApp, redirect } from 'alauda/src/web-app';
 
 export { default as newController } from 'alp-controller';
 
@@ -20,6 +21,10 @@ export default class AlpBrowser extends Ibex {
     constructor(path = '/', options = {}) {
         super();
         this.path = path;
+
+        if (global.initialContextState) {
+            this.context.state = global.initialContextState;
+        }
     }
 
     async init() {
@@ -44,15 +49,15 @@ export default class AlpBrowser extends Ibex {
         this.use(this.createRouter(routerBuilder, controllers));
     }
 
-    initialRender(...args) {
+    initialRender(moduleDescriptor, data) {
         const context = Object.create(this.context);
-        if (global.initialContextState) {
-            context.state = global.initialContextState;
-            this.state = context.state;
-        }
 
-        return contentLoaded().then(() => {
-            context.render(...args);
-        });
+        return contentLoaded()
+            .then(() => (
+                context.render(moduleDescriptor, data, true)
+            )).then(() => {
+                this.on('redirect', redirect);
+                initWebApp(url => this.load(url));
+            });
     }
 }

@@ -16,6 +16,7 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
 import contentLoaded from 'content-loaded';
+import { init as initWebApp, redirect } from 'alauda/web-app';
 
 export { default as newController } from 'alp-controller';
 
@@ -35,6 +36,10 @@ var AlpBrowser = function (_Ibex) {
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AlpBrowser).call(this));
 
         _this.path = path;
+
+        if (global.initialContextState) {
+            _this.context.state = global.initialContextState;
+        }
         return _this;
     }
 
@@ -85,19 +90,18 @@ var AlpBrowser = function (_Ibex) {
         }
     }, {
         key: 'initialRender',
-        value: function initialRender() {
-            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-                args[_key] = arguments[_key];
-            }
+        value: function initialRender(moduleDescriptor, data) {
+            var _this2 = this;
 
             var context = Object.create(this.context);
-            if (global.initialContextState) {
-                context.state = global.initialContextState;
-                this.state = context.state;
-            }
 
             return contentLoaded().then(function () {
-                context.render.apply(context, args);
+                return context.render(moduleDescriptor, data, true);
+            }).then(function () {
+                _this2.on('redirect', redirect);
+                initWebApp(function (url) {
+                    return _this2.load(url);
+                });
             });
         }
     }, {
