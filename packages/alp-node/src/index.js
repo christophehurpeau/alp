@@ -71,7 +71,7 @@ export default class Alp extends Koa {
         this.browserStateTransformers.push(transformer);
     }
 
-    migrate({ migrationsManager }) {
+    migrate(migrationsManager) {
         return migrations({
             config: this.config,
             dirname: this.dirname,

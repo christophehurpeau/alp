@@ -152,9 +152,7 @@ class Alp extends _koa2.default {
         this.browserStateTransformers.push(transformer);
     }
 
-    migrate(_ref) {
-        let migrationsManager = _ref.migrationsManager;
-
+    migrate(migrationsManager) {
         return (0, _alpMigrations2.default)({
             config: this.config,
             dirname: this.dirname,
