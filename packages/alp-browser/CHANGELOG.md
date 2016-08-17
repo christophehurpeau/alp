@@ -1,3 +1,7 @@
+### v0.12.0
+
+- [`ccdd502`](https://github.com/alpjs/alp-browser/commit/ccdd502d77b4e20421275fe5ecb6bba273d675ee) ibex@4, include alauda (Christophe Hurpeau)
+
 ### v0.11.0
 
 - [`bad0072`](https://github.com/alpjs/alp-browser/commit/bad0072bed2dd801b7f5e8d542737cd0af7414bb) update dependencies (Christophe Hurpeau)
