@@ -1,3 +1,7 @@
+### v4.0.1
+
+- [`a17646f`](https://github.com/alpjs/ibex/commit/a17646f9d3ca5b785e8af792c8588c4f8a618686) missing param redirect (Christophe Hurpeau)
+
 ### v4.0.0
 
 - [`972096d`](https://github.com/alpjs/ibex/commit/972096d142a1fde94a3ae75c2f2239027cd08c76) response.redirect and fix request delegate and other changes in context (Christophe Hurpeau)
