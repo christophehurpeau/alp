@@ -1,3 +1,7 @@
+### v0.12.1
+
+- [`3dcd36d`](https://github.com/alpjs/alp-node/commit/3dcd36df10eaf0b89ae0294eb6b8561b6b7982a2) alp-limosa@2.2.3 (Christophe Hurpeau)
+
 ### v0.12.0
 
 change `migrate({ migrationsManager })` to `migrate(migrationsManager)`
