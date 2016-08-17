@@ -1,4 +1,7 @@
+import Logger from 'nightingale-logger';
 import load from './load';
+
+var logger = new Logger('alp.translate');
 
 export default function alpTranslate(dirname) {
     dirname = dirname.replace(/\/*$/, '/');
@@ -22,14 +25,18 @@ export default function alpTranslate(dirname) {
                 }
 
                 var msg = app.translations.get(this.language).get(key);
-                if (!msg) return key;
+                if (!msg) {
+                    logger.warn('invalid msg', { language: this.language, key });
+                    return key;
+                }
+
                 return _t(msg.format(args));
             }
         });
 
         app.translations = new Map();
         app.config.get('availableLanguages').forEach(language => {
-            var translations = app.loadConfigSync(dirname + language);
+            var translations = app.config.loadConfigSync(dirname + language);
             app.translations.set(language, load(translations, language));
         });
     };

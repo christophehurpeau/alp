@@ -11,11 +11,19 @@ export default function load(translations, language) {
         throw new TypeError('Value of argument "language" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(language));
     }
 
-    translations.forEach(function (value, key) {
-        translations.set(key, new IntlMessageFormat(value, language));
-    });
+    var result = new Map();
 
-    return translations;
+    (function loadMap(map, prefix) {
+        map.forEach(function (value, key) {
+            if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
+                return loadMap(value, key + '.');
+            }
+
+            result.set('' + prefix + key, new IntlMessageFormat(value, language));
+        });
+    })(translations, '');
+
+    return result;
 }
 
 function _inspect(input, depth) {

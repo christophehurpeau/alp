@@ -20,11 +20,19 @@ function load(translations, language) {
         throw new TypeError('Value of argument "language" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(language));
     }
 
-    translations.forEach((value, key) => {
-        translations.set(key, new _intlMessageformat2.default(value, language));
-    });
+    const result = new Map();
 
-    return translations;
+    (function loadMap(map, prefix) {
+        map.forEach((value, key) => {
+            if (typeof value === 'object') {
+                return loadMap(value, `${ key }.`);
+            }
+
+            result.set(`${ prefix }${ key }`, new _intlMessageformat2.default(value, language));
+        });
+    })(translations, '');
+
+    return result;
 }
 
 function _inspect(input, depth) {

@@ -1,6 +1,9 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
+import Logger from 'nightingale-logger';
 import load from './load';
+
+var logger = new Logger('alp.translate');
 
 export default function alpTranslate(dirname) {
     dirname = dirname.replace(/\/*$/, '/');
@@ -24,14 +27,18 @@ export default function alpTranslate(dirname) {
                 }
 
                 var msg = app.translations.get(this.language).get(key);
-                if (!msg) return key;
+                if (!msg) {
+                    logger.warn('invalid msg', { language: this.language, key: key });
+                    return key;
+                }
+
                 return _t(msg.format(args));
             }
         });
 
         app.translations = new Map();
         app.config.get('availableLanguages').forEach(function (language) {
-            var translations = app.loadConfigSync(dirname + language);
+            var translations = app.config.loadConfigSync(dirname + language);
             app.translations.set(language, load(translations, language));
         });
     };
