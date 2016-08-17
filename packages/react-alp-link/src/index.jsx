@@ -1,7 +1,7 @@
 import { PropTypes } from 'react';
 
 LinkComponent.propTypes = {
-    to: PropTypes.string.isRequired,
+    to: PropTypes.string,
     params: PropTypes.object,
     children: PropTypes.node,
 };
@@ -15,6 +15,6 @@ type Props = {
     params: ?Object,
 };
 
-export default function LinkComponent({ to, params, children, ...props }: Props, { context: ctx }) {
+export default function LinkComponent({ to = 'default', params, children, ...props }: Props, { context: ctx }) {
     return <a href={ctx.urlGenerator(to, params)} {...props}>{children}</a>;
 }

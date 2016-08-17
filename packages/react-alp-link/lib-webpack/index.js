@@ -7,7 +7,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { PropTypes } from 'react';
 
 LinkComponent.propTypes = {
-    to: PropTypes.string.isRequired,
+    to: PropTypes.string,
     params: PropTypes.object,
     children: PropTypes.node
 };
@@ -17,7 +17,8 @@ LinkComponent.contextTypes = {
 };
 
 export default function LinkComponent(_ref, _ref2) {
-    var to = _ref.to;
+    var _ref$to = _ref.to;
+    var to = _ref$to === undefined ? 'default' : _ref$to;
     var params = _ref.params;
     var children = _ref.children;
 

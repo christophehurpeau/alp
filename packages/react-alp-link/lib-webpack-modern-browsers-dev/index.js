@@ -1,29 +1,19 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.default = LinkComponent;
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+import React from 'react';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+import { PropTypes } from 'react';
+
 LinkComponent.propTypes = {
-    to: _react.PropTypes.string.isRequired,
-    params: _react.PropTypes.object,
-    children: _react.PropTypes.node
+    to: PropTypes.string,
+    params: PropTypes.object,
+    children: PropTypes.node
 };
 
 LinkComponent.contextTypes = {
-    context: _react.PropTypes.object
+    context: PropTypes.object
 };
 
 var Props = function () {
@@ -40,8 +30,9 @@ var Props = function () {
     return Props;
 }();
 
-function LinkComponent(_ref, _ref2) {
-    var to = _ref.to;
+export default function LinkComponent(_ref, _ref2) {
+    var _ref$to = _ref.to;
+    var to = _ref$to === undefined ? 'default' : _ref$to;
     var params = _ref.params;
     var children = _ref.children;
 
@@ -53,9 +44,11 @@ function LinkComponent(_ref, _ref2) {
         throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\nProps\n\nGot:\n' + _inspect(arguments[0]));
     }
 
-    return _react2.default.createElement(
+    return React.createElement(
         'a',
-        _extends({ href: ctx.urlGenerator(to, params) }, props),
+        _extends({ href: ctx.urlGenerator(to, params) }, props, {
+            __self: this
+        }),
         children
     );
 }
