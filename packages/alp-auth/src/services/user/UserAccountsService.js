@@ -5,8 +5,8 @@ import UsersManager from '../../models/user/UsersManager';
 import userAccountGoogleService from './userAccountGoogleService';
 
 type TokensObject = {
-    accessToken: string,
-    refreshToken?: string,
+    accessToken: string;
+    refreshToken?: string;
 };
 
 const logger = new Logger('alp-auth.services.userAccounts');

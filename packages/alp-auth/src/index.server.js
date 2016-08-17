@@ -19,11 +19,11 @@ export default function init({
     loginModuleDescriptor,
     homeRouterKey,
 }: {
-    controllers: Map,
-    usersManager: UsersManager,
-    strategies: Object,
-    loginModuleDescriptor: Object,
-    homeRouterKey: ?string,
+    controllers: Map;
+    usersManager: UsersManager;
+    strategies: Object;
+    loginModuleDescriptor: Object;
+    homeRouterKey: ?string;
 }) {
     return app => {
         const userAccountsService = new UserAccountsService(usersManager);

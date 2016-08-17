@@ -11,7 +11,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* global fetch */
 import EventEmitter from 'events';
 import Logger from 'nightingale-logger';
-import UsersManager from '../../models/user/UsersManager';
+
 import userAccountGoogleService from './userAccountGoogleService';
 
 var logger = new Logger('alp-auth.services.userAccounts');

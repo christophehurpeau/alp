@@ -14,7 +14,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import EventEmitter from 'events';
 import promiseCallback from 'promise-callback-factory';
 import Logger from 'nightingale-logger';
-import UserAccountsService from './user/UserAccountsService';
+
 import { randomHex } from '../utils/generators';
 
 var logger = new Logger('alp-auth.services.authentication');

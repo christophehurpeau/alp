@@ -4,15 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _mongo = require('liwi/mongo');
-
-var _mongo2 = _interopRequireDefault(_mongo);
-
 var _liwi = require('liwi');
-
-var _types = require('./types');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class UsersManager extends _liwi.AbstractManager {
     constructor() {
@@ -69,7 +61,8 @@ class UsersManager extends _liwi.AbstractManager {
                 provider: account.provider,
                 accountId: account.accountId,
                 name: account.name,
-                status: account.status
+                status: account.status,
+                profile: account.profile
             }))
         };
     }

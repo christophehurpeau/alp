@@ -22,7 +22,7 @@ export default function init(_ref) {
     var homeRouterKey = _ref.homeRouterKey;
 
     if (!(arguments[0] != null && arguments[0].controllers instanceof Map && arguments[0].usersManager instanceof UsersManager && arguments[0].strategies instanceof Object && arguments[0].loginModuleDescriptor instanceof Object && (arguments[0].homeRouterKey == null || typeof arguments[0].homeRouterKey === 'string'))) {
-        throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{ controllers: Map;\n  usersManager: UsersManager;\n  strategies: Object;\n  loginModuleDescriptor: Object;\n  homeRouterKey: ?string;\n}\n\nGot:\n' + _inspect(arguments[0]));
+        throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{\n  controllers: Map;\n  usersManager: UsersManager;\n  strategies: Object;\n  loginModuleDescriptor: Object;\n  homeRouterKey: ?string;\n}\n\nGot:\n' + _inspect(arguments[0]));
     }
 
     return app => {

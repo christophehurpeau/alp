@@ -4,15 +4,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _mongo = require('liwi/mongo');
-
-var _mongo2 = _interopRequireDefault(_mongo);
-
 var _liwi = require('liwi');
 
 var _types = require('./types');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class UsersManager extends _liwi.AbstractManager {
     constructor() {
@@ -28,7 +22,7 @@ class UsersManager extends _liwi.AbstractManager {
 
         function _ref(_id) {
             if (!(_id instanceof Promise)) {
-                throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserTypeUserType>\n\nGot:\n' + _inspect(_id));
+                throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserType>\n\nGot:\n' + _inspect(_id));
             }
 
             return _id;
@@ -37,7 +31,7 @@ class UsersManager extends _liwi.AbstractManager {
         if (!(arguments[0] != null && typeof arguments[0].provider === 'string' && (typeof arguments[0].accountId === 'string' || typeof arguments[0].accountId === 'number') && (arguments[0].emails == null || Array.isArray(arguments[0].emails) && arguments[0].emails.every(function (item) {
             return typeof item === 'string';
         })))) {
-            throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{ provider: string;\n  accountId: string | number;\n  emails: ?Array<string>;\n}\n\nGot:\n' + _inspect(arguments[0]));
+            throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{\n  provider: string;\n  accountId: string | number;\n  emails: ?Array<string>;\n}\n\nGot:\n' + _inspect(arguments[0]));
         }
 
         let query = {
@@ -59,7 +53,7 @@ class UsersManager extends _liwi.AbstractManager {
     findConnected(connected) {
         function _ref2(_id2) {
             if (!(_id2 instanceof Promise)) {
-                throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserTypeUserType>\n\nGot:\n' + _inspect(_id2));
+                throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserType>\n\nGot:\n' + _inspect(_id2));
             }
 
             return _id2;
@@ -116,7 +110,8 @@ class UsersManager extends _liwi.AbstractManager {
                     provider: account.provider,
                     accountId: account.accountId,
                     name: account.name,
-                    status: account.status
+                    status: account.status,
+                    profile: account.profile
                 };
             })
         };

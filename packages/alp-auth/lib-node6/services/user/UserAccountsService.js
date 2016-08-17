@@ -12,10 +12,6 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
-var _UsersManager = require('../../models/user/UsersManager');
-
-var _UsersManager2 = _interopRequireDefault(_UsersManager);
-
 var _userAccountGoogleService = require('./userAccountGoogleService');
 
 var _userAccountGoogleService2 = _interopRequireDefault(_userAccountGoogleService);

@@ -14,7 +14,7 @@ export default class UsersManager extends AbstractManager {
 
     findOneByAccountOrEmails(
         { provider, accountId, emails }:
-            { provider: string, accountId: string|number, emails: ?Array<string> }
+            { provider: string; accountId: string|number; emails: ?Array<string> }
     ): Promise<?UserType> {
         let query = {
             'accounts.provider': provider,
@@ -63,6 +63,7 @@ export default class UsersManager extends AbstractManager {
                 accountId: account.accountId,
                 name: account.name,
                 status: account.status,
+                profile: account.profile,
             })),
         };
     }

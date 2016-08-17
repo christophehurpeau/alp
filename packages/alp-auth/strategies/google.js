@@ -11,4 +11,4 @@ module.exports = function googleStrategy(config) {
             tokenPath: '/o/oauth2/token',
         }),
     };
-}
+};

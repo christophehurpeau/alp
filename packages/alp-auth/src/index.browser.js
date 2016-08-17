@@ -7,9 +7,9 @@ export default function init({
     loginModuleDescriptor,
     homeRouterKey,
 }: {
-    controllers: Map,
-    loginModuleDescriptor: Object,
-    homeRouterKey: ?string,
+    controllers: Map;
+    loginModuleDescriptor: Object;
+    homeRouterKey: ?string;
 }) {
     return app => {
         controllers.set('auth', createAuthController({

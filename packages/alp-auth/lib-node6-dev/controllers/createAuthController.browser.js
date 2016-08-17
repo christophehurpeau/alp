@@ -13,7 +13,7 @@ function createAuthController(_ref) {
     let homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
 
     if (!(arguments[0] != null && arguments[0].loginModuleDescriptor instanceof Object && (arguments[0].homeRouterKey == null || typeof arguments[0].homeRouterKey === 'string'))) {
-        throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{ loginModuleDescriptor: Object;\n  homeRouterKey: ?string;\n}\n\nGot:\n' + _inspect(arguments[0]));
+        throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{\n  loginModuleDescriptor: Object;\n  homeRouterKey: ?string;\n}\n\nGot:\n' + _inspect(arguments[0]));
     }
 
     return {

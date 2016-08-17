@@ -1,4 +1,4 @@
-import MongoStore from 'liwi/mongo';
+
 import { AbstractManager } from 'liwi';
 import { UserType, AccountType } from './types';
 
@@ -16,7 +16,7 @@ export default class UsersManager extends AbstractManager {
 
         function _ref(_id) {
             if (!(_id instanceof Promise)) {
-                throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserTypeUserType>\n\nGot:\n' + _inspect(_id));
+                throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserType>\n\nGot:\n' + _inspect(_id));
             }
 
             return _id;
@@ -25,7 +25,7 @@ export default class UsersManager extends AbstractManager {
         if (!(arguments[0] != null && typeof arguments[0].provider === 'string' && (typeof arguments[0].accountId === 'string' || typeof arguments[0].accountId === 'number') && (arguments[0].emails == null || Array.isArray(arguments[0].emails) && arguments[0].emails.every(function (item) {
             return typeof item === 'string';
         })))) {
-            throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{ provider: string;\n  accountId: string | number;\n  emails: ?Array<string>;\n}\n\nGot:\n' + _inspect(arguments[0]));
+            throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{\n  provider: string;\n  accountId: string | number;\n  emails: ?Array<string>;\n}\n\nGot:\n' + _inspect(arguments[0]));
         }
 
         var query = {
@@ -47,7 +47,7 @@ export default class UsersManager extends AbstractManager {
     findConnected(connected) {
         function _ref2(_id2) {
             if (!(_id2 instanceof Promise)) {
-                throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserTypeUserType>\n\nGot:\n' + _inspect(_id2));
+                throw new TypeError('Function return value violates contract.\n\nExpected:\nPromise<?UserType>\n\nGot:\n' + _inspect(_id2));
             }
 
             return _id2;
@@ -104,7 +104,8 @@ export default class UsersManager extends AbstractManager {
                     provider: account.provider,
                     accountId: account.accountId,
                     name: account.name,
-                    status: account.status
+                    status: account.status,
+                    profile: account.profile
                 };
             })
         };

@@ -1,6 +1,6 @@
-import MongoStore from 'liwi/mongo';
+
 import { AbstractManager } from 'liwi';
-import { UserType, AccountType } from './types';
+
 
 export default class UsersManager extends AbstractManager {
     constructor() {
@@ -57,7 +57,8 @@ export default class UsersManager extends AbstractManager {
                 provider: account.provider,
                 accountId: account.accountId,
                 name: account.name,
-                status: account.status
+                status: account.status,
+                profile: account.profile
             }))
         };
     }

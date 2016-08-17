@@ -5,9 +5,9 @@ export default function createAuthController({
     loginModuleDescriptor,
     homeRouterKey = 'home',
 }: {
-    authenticationService: AuthenticationService,
-    loginModuleDescriptor: Object,
-    homeRouterKey: ?string,
+    authenticationService: AuthenticationService;
+    loginModuleDescriptor: Object;
+    homeRouterKey: ?string;
 }) {
     return {
         async login(ctx) {

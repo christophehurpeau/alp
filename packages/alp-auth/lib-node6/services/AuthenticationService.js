@@ -16,10 +16,6 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
-var _UserAccountsService = require('./user/UserAccountsService');
-
-var _UserAccountsService2 = _interopRequireDefault(_UserAccountsService);
-
 var _generators = require('../utils/generators');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

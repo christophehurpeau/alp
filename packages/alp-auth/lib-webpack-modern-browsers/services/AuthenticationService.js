@@ -4,7 +4,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 import EventEmitter from 'events';
 import promiseCallback from 'promise-callback-factory';
 import Logger from 'nightingale-logger';
-import UserAccountsService from './user/UserAccountsService';
+
 import { randomHex } from '../utils/generators';
 
 var logger = new Logger('alp-auth.services.authentication');

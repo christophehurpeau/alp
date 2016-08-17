@@ -8,9 +8,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import MongoStore from 'liwi/mongo';
 import { AbstractManager } from 'liwi';
-import { UserType, AccountType } from './types';
 
 var UsersManager = function (_AbstractManager) {
     _inherits(UsersManager, _AbstractManager);
@@ -85,7 +83,8 @@ var UsersManager = function (_AbstractManager) {
                         provider: account.provider,
                         accountId: account.accountId,
                         name: account.name,
-                        status: account.status
+                        status: account.status,
+                        profile: account.profile
                     };
                 })
             };

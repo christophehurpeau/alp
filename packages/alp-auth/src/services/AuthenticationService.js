@@ -8,19 +8,19 @@ import { randomHex } from '../utils/generators';
 const logger = new Logger('alp-auth.services.authentication');
 
 type GenerateAuthUrlOptions = {
-    redirectUri?: string,
-    scope?: string,
-    state?: string,
-    grantType?: string,
-    accessType?: string,
-    prompt?: string,
-    loginHint?: string,
-    includeGrantedScopes?: boolean,
+    redirectUri?: string;
+    scope?: string;
+    state?: string;
+    grantType?: string;
+    accessType?: string;
+    prompt?: string;
+    loginHint?: string;
+    includeGrantedScopes?: boolean;
 }
 
 type GetTokensOptions = {
-    code: string,
-    redirectUri: string,
+    code: string;
+    redirectUri: string;
 }
 
 export default class AuthenticationService extends EventEmitter {
