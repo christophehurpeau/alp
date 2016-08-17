@@ -5,22 +5,29 @@ import GoogleIcon from 'react-icons/lib/fa/google';
 export default function LoginButtonsComponent() {
     return React.createElement(
         'ul',
-        { className: 'list links buttons login-buttons' },
+        { className: 'list links buttons login-buttons', __self: this
+        },
         React.createElement(
             'li',
-            null,
+            {
+                __self: this
+            },
             React.createElement(
                 Link,
                 {
                     className: 'button flat social-button google-button',
                     to: 'login',
                     params: { strategy: 'google' },
-                    target: '_self'
+                    target: '_self',
+                    __self: this
                 },
-                React.createElement(GoogleIcon, { className: 'icon' }),
+                React.createElement(GoogleIcon, { className: 'icon', __self: this
+                }),
                 React.createElement(
                     'span',
-                    null,
+                    {
+                        __self: this
+                    },
                     'Login with Google'
                 )
             )

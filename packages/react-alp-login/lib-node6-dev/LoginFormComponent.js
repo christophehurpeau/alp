@@ -14,13 +14,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function LoginFormComponent() {
     return _react2.default.createElement(
         "form",
-        { model: "User", action: "/site/login" },
+        { model: "User", action: "/site/login", __self: this
+        },
         _react2.default.createElement(
             "fieldset",
-            { legend: "Login" },
-            _react2.default.createElement("input", { name: "email", label: "Email", placeholder: "Enter your email" }),
-            _react2.default.createElement("input", { name: "pwd" }),
-            _react2.default.createElement("submit", { "container-class": "center" })
+            { legend: "Login", __self: this
+            },
+            _react2.default.createElement("input", { name: "email", label: "Email", placeholder: "Enter your email", __self: this
+            }),
+            _react2.default.createElement("input", { name: "pwd", __self: this
+            }),
+            _react2.default.createElement("submit", { "container-class": "center", __self: this
+            })
         )
     );
 }

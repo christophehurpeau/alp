@@ -22,22 +22,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function LoginButtonsComponent() {
     return _react2.default.createElement(
         'ul',
-        { className: 'list links buttons login-buttons' },
+        { className: 'list links buttons login-buttons', __self: this
+        },
         _react2.default.createElement(
             'li',
-            null,
+            {
+                __self: this
+            },
             _react2.default.createElement(
                 _reactAlpLink2.default,
                 {
                     className: 'button flat social-button google-button',
                     to: 'login',
                     params: { strategy: 'google' },
-                    target: '_self'
+                    target: '_self',
+                    __self: this
                 },
-                _react2.default.createElement(_google2.default, { className: 'icon' }),
+                _react2.default.createElement(_google2.default, { className: 'icon', __self: this
+                }),
                 _react2.default.createElement(
                     'span',
-                    null,
+                    {
+                        __self: this
+                    },
                     'Login with Google'
                 )
             )

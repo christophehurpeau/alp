@@ -1,26 +1,20 @@
-"use strict";
+import React from 'react';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = LoginFormComponent;
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function LoginFormComponent() {
-    return _react2.default.createElement(
+export default function LoginFormComponent() {
+    return React.createElement(
         "form",
-        { model: "User", action: "/site/login" },
-        _react2.default.createElement(
+        { model: "User", action: "/site/login", __self: this
+        },
+        React.createElement(
             "fieldset",
-            { legend: "Login" },
-            _react2.default.createElement("input", { name: "email", label: "Email", placeholder: "Enter your email" }),
-            _react2.default.createElement("input", { name: "pwd" }),
-            _react2.default.createElement("submit", { "container-class": "center" })
+            { legend: "Login", __self: this
+            },
+            React.createElement("input", { name: "email", label: "Email", placeholder: "Enter your email", __self: this
+            }),
+            React.createElement("input", { name: "pwd", __self: this
+            }),
+            React.createElement("submit", { "container-class": "center", __self: this
+            })
         )
     );
 }
