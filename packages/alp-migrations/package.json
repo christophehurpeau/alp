@@ -14,31 +14,31 @@
     "clean": "rm -Rf docs dist test/node6 coverage",
     "lint": "eslint --ext .js,.jsx --fix -c .eslintrc.yml src/",
     "prepublish": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit || echo",
-    "preversion": "npm run lint && npm run build && npm run build && pob-repository-check-clean",
+    "preversion": "npm run lint && npm run build && pob-repository-check-clean",
     "release": "pob-repository-check-clean && pob-release",
     "version": "pob-version",
     "watch": "pob-watch",
     "watch:dev": "pob-watch"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.0",
-    "babel-plugin-defines": "^2.0.0",
-    "babel-plugin-discard-module-references": "^1.0.0",
-    "babel-plugin-remove-dead-code": "^1.0.1",
-    "babel-plugin-typecheck": "^3.9.0",
-    "babel-preset-es2015-node6": "^0.2.0",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015-node6": "^0.3.0",
     "babel-preset-flow": "^1.0.0",
-    "babel-preset-stage-1": "^6.5.0",
-    "eslint": "^2.13.1",
-    "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-config-pob": "^6.1.1",
-    "eslint-plugin-import": "^1.9.2",
-    "pob-babel": "^1.0.0",
-    "pob-release": "^2.0.5"
+    "babel-preset-stage-1": "^6.13.0",
+    "eslint": "^3.3.1",
+    "eslint-config-airbnb-base": "^5.0.2",
+    "eslint-config-pob": "^6.1.6",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^1.13.0",
+    "liwi": "^0.4.1",
+    "pob-babel": "^7.1.2",
+    "pob-release": "^2.1.0"
   },
   "dependencies": {
-    "liwi": "^0.3.0",
-    "nightingale-logger": "^1.1.1",
-    "semver": "^5.1.1"
+    "nightingale-logger": "^1.2.0",
+    "semver": "^5.3.0"
+  },
+  "peerDependencies": {
+    "liwi": "^0.4.1"
   }
 }

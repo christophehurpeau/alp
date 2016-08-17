@@ -35,10 +35,10 @@ process.on('unhandledRejection', err => {
 exports.MigrationsManager = _Manager2.default;
 
 exports.default = (() => {
-    var ref = _asyncToGenerator(function* (_ref) {
-        let config = _ref.config;
-        let dirname = _ref.dirname;
-        let migrationsManager = _ref.migrationsManager;
+    var _ref = _asyncToGenerator(function* (_ref2) {
+        let config = _ref2.config;
+        let dirname = _ref2.dirname;
+        let migrationsManager = _ref2.migrationsManager;
 
         const packageVersion = config.packageConfig.version;
         let currentVersion = yield migrationsManager.findLastVersion();
@@ -100,7 +100,7 @@ exports.default = (() => {
     });
 
     function migrate(_x) {
-        return ref.apply(this, arguments);
+        return _ref.apply(this, arguments);
     }
 
     return migrate;
