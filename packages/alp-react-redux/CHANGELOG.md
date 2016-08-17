@@ -1,3 +1,7 @@
+### v4.7.0
+
+- [`6f10d48`](https://github.com/alpjs/alp-react-redux/commit/6f10d48856ac9e382f1af8bb499a9c0ff804cc8d) createLoader (Christophe Hurpeau)
+
 ### v4.6.0
 
 - [`f53a3a5`](https://github.com/alpjs/alp-react-redux/commit/f53a3a5581b947d32dfdd4d7f30cbe630ceeeb3b) 4.5.0 (Christophe Hurpeau)
