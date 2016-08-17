@@ -1,3 +1,7 @@
+### v0.2.0
+
+- [`451bf7c`](https://github.com/alpjs/react-alp-link/commit/451bf7c04a84e57ef4a700e618f900bd9dc8b1bf) udpate dependencies, default to (Christophe Hurpeau)
+
 ### v0.1.0
 
 - [`d1873d3`](https://github.com/alpjs/react-alp-link/commit/d1873d3b2935afc26b16d4af4e8a3d98dc8d2809) first commit (Christophe Hurpeau)
