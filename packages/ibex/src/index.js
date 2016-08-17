@@ -5,6 +5,7 @@ import { EventEmitter } from 'events';
 import compose from './compose';
 import context from './context';
 import request from './request';
+import response from './response';
 
 const logger = new Logger('ibex');
 
@@ -17,6 +18,7 @@ export default class Application extends EventEmitter {
         this.middleware = [];
         this.context = Object.create(context);
         this.context.app = this;
+        this.context.state = {};
     }
 
     get environment(): string {
@@ -48,7 +50,8 @@ export default class Application extends EventEmitter {
     createContext() {
         const context = Object.create(this.context);
         context.request = Object.create(request);
-        context.state = {};
+        context.response = Object.create(response);
+        context.request.app = context.response.app = this;
         return context;
     }
 
@@ -60,23 +63,22 @@ export default class Application extends EventEmitter {
         }
 
         const context = this.createContext();
-        context.path = url;
         return this.callback(context)
-            .then(() => respond.call(context))
+            .then(() => respond(context))
             .catch((err) => this.emit('error', err));
     }
 }
 
-function respond() {
+function respond(ctx) {
     // allow bypassing
-    if (this.respond === false) {
+    if (ctx.respond === false) {
         return;
     }
 
-    let body = this.body;
+    let body = ctx.body;
     if (body == null) return;
 
-    // let code = this.status;
+    // const code = ctx.status;
 
     if (typeof body === 'string') {
         document.body.innerHTML = body;

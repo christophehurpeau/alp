@@ -2,7 +2,9 @@ import delegate from 'delegates';
 
 var proto = {};
 
-delegate(proto, 'request').access('host').access('hostname').access('href').access('origin').access('path').access('protocol').access('query').access('url').access('search').access('searchParams');
+delegate(proto, 'response').access('body').method('redirect');
+
+delegate(proto, 'request').getter('host').getter('hostname').getter('href').getter('origin').getter('path').getter('protocol').getter('query').getter('url').getter('search').getter('searchParams');
 
 export default proto;
 //# sourceMappingURL=context.js.map

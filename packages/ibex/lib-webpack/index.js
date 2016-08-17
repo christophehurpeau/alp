@@ -2,7 +2,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
@@ -13,6 +13,7 @@ import { EventEmitter } from 'events';
 import compose from './compose';
 import context from './context';
 import request from './request';
+import response from './response';
 
 var logger = new Logger('ibex');
 
@@ -27,6 +28,7 @@ var Application = function (_EventEmitter) {
         _this.middleware = [];
         _this.context = Object.create(context);
         _this.context.app = _this;
+        _this.context.state = {};
         return _this;
     }
 
@@ -60,7 +62,8 @@ var Application = function (_EventEmitter) {
         value: function createContext() {
             var context = Object.create(this.context);
             context.request = Object.create(request);
-            context.state = {};
+            context.response = Object.create(response);
+            context.request.app = context.response.app = this;
             return context;
         }
     }, {
@@ -75,9 +78,8 @@ var Application = function (_EventEmitter) {
             }
 
             var context = this.createContext();
-            context.path = url;
             return this.callback(context).then(function () {
-                return respond.call(context);
+                return respond(context);
             }).catch(function (err) {
                 return _this2.emit('error', err);
             });
@@ -95,16 +97,16 @@ var Application = function (_EventEmitter) {
 export default Application;
 
 
-function respond() {
+function respond(ctx) {
     // allow bypassing
-    if (this.respond === false) {
+    if (ctx.respond === false) {
         return;
     }
 
-    var body = this.body;
+    var body = ctx.body;
     if (body == null) return;
 
-    // let code = this.status;
+    // const code = ctx.status;
 
     if (typeof body === 'string') {
         document.body.innerHTML = body;
