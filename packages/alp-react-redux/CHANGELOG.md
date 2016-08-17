@@ -1,3 +1,7 @@
+### v4.7.1
+
+- [`d651738`](https://github.com/alpjs/alp-react-redux/commit/d6517385f17d78117be8b1b854949ec236a35cde) fix in createLoader (Christophe Hurpeau)
+
 ### v4.7.0
 
 - [`6f10d48`](https://github.com/alpjs/alp-react-redux/commit/6f10d48856ac9e382f1af8bb499a9c0ff804cc8d) createLoader (Christophe Hurpeau)
