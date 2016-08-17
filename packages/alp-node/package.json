@@ -34,7 +34,7 @@
     "alp-controller": "^0.1.0",
     "alp-errors-node": "^2.0.1",
     "alp-language": "^1.3.0",
-    "alp-limosa": "^2.2.2",
+    "alp-limosa": "^2.2.3",
     "alp-listen": "^1.1.0",
     "alp-migrations": "^0.1.1",
     "alp-params-node": "^0.2.0",
