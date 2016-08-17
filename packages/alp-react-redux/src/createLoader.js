@@ -13,7 +13,7 @@ export default function createLoader(defaultState: Function|Object, handlers: ?O
         return Promise.all(keys.map(key => {
             const handler = handlerMap.get(key);
             if (!PRODUCTION && !handler) throw new Error(`Missing handler for "${key}".`);
-            return handler(state, keys[key]);
+            return handler(state, data[key]);
         })).then(results => {
             results.forEach((result, index) => {
                 state[keys[index]] = result;

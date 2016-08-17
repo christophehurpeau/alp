@@ -22,7 +22,7 @@ function createLoader(defaultState, handlers) {
         return Promise.all(keys.map(key => {
             const handler = handlerMap.get(key);
 
-            return handler(state, keys[key]);
+            return handler(state, data[key]);
         })).then(results => {
             results.forEach((result, index) => {
                 state[keys[index]] = result;
