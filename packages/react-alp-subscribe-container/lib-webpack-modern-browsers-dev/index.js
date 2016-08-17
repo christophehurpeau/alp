@@ -3,8 +3,11 @@ import { PropTypes, Component } from 'react';
 export default class SubscribeContainerComponent extends Component {
 
     componentDidMount() {
-        var { dispatch, name } = this.props;
-        var { context: { app: { websocket } } } = this.context;
+        var _props = this.props;
+        var dispatch = _props.dispatch;
+        var name = _props.name;
+        var websocket = this.context.context.app.websocket;
+
         this._handlerConnected = websocket.on('connect', () => {
             websocket.emit(`subscribe:${ name }`).then(action => {
                 return action && dispatch(action);
@@ -16,8 +19,9 @@ export default class SubscribeContainerComponent extends Component {
     }
 
     componentWillUnmount() {
-        var { name } = this.props;
-        var { context: { app: { websocket } } } = this.context;
+        var name = this.props.name;
+        var websocket = this.context.context.app.websocket;
+
         if (websocket.isConnected()) {
             websocket.emit(`unsubscribe:${ name }`);
         }
