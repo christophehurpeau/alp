@@ -1,3 +1,7 @@
+### v0.12.1
+
+- [`e4e67cd`](https://github.com/alpjs/alp-browser/commit/e4e67cde397d048b69c8d4fe0ef9579f6e51af02) alp-limosa@2.2.3 (Christophe Hurpeau)
+
 ### v0.12.0
 
 - [`ccdd502`](https://github.com/alpjs/alp-browser/commit/ccdd502d77b4e20421275fe5ecb6bba273d675ee) ibex@4, include alauda (Christophe Hurpeau)
