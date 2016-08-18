@@ -1,3 +1,7 @@
+### v5.0.0
+
+- [`78d3a70`](https://github.com/alpjs/alp-react-redux/commit/78d3a7015fb31bffd37006642b1599da26845be4) breaking: computeInitialContextForBrowser (Christophe Hurpeau)
+
 ### v4.7.4
 
 - [`54799ae`](https://github.com/alpjs/alp-react-redux/commit/54799ae4d22c4f59a69ff1d4e79d201e34f137a3) fix fody (Christophe Hurpeau)
