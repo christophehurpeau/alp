@@ -1,3 +1,7 @@
+### v0.13.0
+
+- [`3f035d4`](https://github.com/alpjs/alp-browser/commit/3f035d4d4a14bcea49d9ae87511f2b291ff3544b) update dependencies, initialBrowserContext (Christophe Hurpeau)
+
 ### v0.12.1
 
 - [`e4e67cd`](https://github.com/alpjs/alp-browser/commit/e4e67cde397d048b69c8d4fe0ef9579f6e51af02) alp-limosa@2.2.3 (Christophe Hurpeau)
