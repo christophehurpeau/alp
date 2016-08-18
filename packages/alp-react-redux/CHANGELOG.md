@@ -1,3 +1,7 @@
+### v4.7.3
+
+- [`5579045`](https://github.com/alpjs/alp-react-redux/commit/5579045baad7ec8e7944b1abb25266c371a765dd) fix fody (Christophe Hurpeau)
+
 ### v4.7.2
 
 - [`166e4ab`](https://github.com/alpjs/alp-react-redux/commit/166e4ababf89e4627aa3501ebbb72263087cf389) update dependencies (Christophe Hurpeau)
