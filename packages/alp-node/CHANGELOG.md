@@ -1,3 +1,7 @@
+### v0.13.0
+
+- [`47be0cb`](https://github.com/alpjs/alp-node/commit/47be0cbc6d81534ebb6ed0c7631234a3c31c55d6) breaking: computeInitialContextForBrowser, add registerBrowserContextTransformer (Christophe Hurpeau)
+
 ### v0.12.1
 
 - [`3dcd36d`](https://github.com/alpjs/alp-node/commit/3dcd36df10eaf0b89ae0294eb6b8561b6b7982a2) alp-limosa@2.2.3 (Christophe Hurpeau)
