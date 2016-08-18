@@ -1,11 +1,8 @@
 // https://gist.github.com/demisx/beef93591edc1521330a
 
 var sourcemaps = require('gulp-sourcemaps');
-var babel = require('gulp-babel');
-var clip = require('gulp-clip-empty-files');
 var rename = require('gulp-rename');
 var stylus = require('gulp-stylus');
-var grep = require('gulp-grep');
 var ymlConfig = require('./gulp-config');
 
 var port, browserSyncPort;
@@ -60,8 +57,7 @@ function buildStylus() {
             paths: ['node_modules'],
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
-        .pipe(gulp.dest('public/'))
-        .pipe(grep('**/*.css', { read: false, dot: true }));
+        .pipe(gulp.dest('public/'));
 }
 
 gulp.task(
