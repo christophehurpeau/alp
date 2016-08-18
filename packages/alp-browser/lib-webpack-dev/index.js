@@ -23,175 +23,177 @@ import { init as initWebApp, redirect } from 'alauda/web-app';
 export { default as newController } from 'alp-controller';
 
 var AlpBrowser = function (_Ibex) {
-    _inherits(AlpBrowser, _Ibex);
+  _inherits(AlpBrowser, _Ibex);
 
-    /**
-     * @param {string} [path='/']
-     * @param {Object} [options]
-     */
-    function AlpBrowser() {
-        var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
-        var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  /**
+   * @param {string} [path='/']
+   * @param {Object} [options]
+   */
+  function AlpBrowser() {
+    var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
-        _classCallCheck(this, AlpBrowser);
+    _classCallCheck(this, AlpBrowser);
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AlpBrowser).call(this));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AlpBrowser).call(this));
 
-        _this.path = path;
+    _this.path = path;
 
-        if (!(typeof _this.path === 'string')) {
-            throw new TypeError('Value of "this.path" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(_this.path));
-        }
-
-        if (global.initialContextState) {
-            _this.context.state = global.initialContextState;
-        }
-        return _this;
+    if (!(typeof _this.path === 'string')) {
+      throw new TypeError('Value of "this.path" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(_this.path));
     }
 
-    _createClass(AlpBrowser, [{
-        key: 'init',
-        value: function () {
-            var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
-                return regeneratorRuntime.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.next = 2;
-                                return config('/config')(this);
+    if (global.initialBrowserContext) {
+      _this.context.state = global.initialBrowserContext.state;
+    }
+    return _this;
+  }
 
-                            case 2:
-                                language(this);
-                                _context.next = 5;
-                                return translate('/locales')(this);
+  _createClass(AlpBrowser, [{
+    key: 'init',
+    value: function () {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return config('/config')(this);
 
-                            case 5:
-                            case 'end':
-                                return _context.stop();
-                        }
-                    }
-                }, _callee, this);
-            }));
+              case 2:
+                language(this);
+                _context.next = 5;
+                return translate('/locales')(this);
 
-            function init() {
-                return _ref.apply(this, arguments);
+              case 5:
+              case 'end':
+                return _context.stop();
             }
+          }
+        }, _callee, this);
+      }));
 
-            return init;
-        }()
-    }, {
-        key: 'createRouter',
-        value: function createRouter(routerBuilder, controllers) {
-            return router(routerBuilder, controllers)(this);
-        }
-    }, {
-        key: 'catchErrors',
-        value: function catchErrors() {
-            this.use(errors);
-        }
-    }, {
-        key: 'useRouter',
-        value: function useRouter(routerBuilder, controllers) {
-            this.use(this.createRouter(routerBuilder, controllers));
-        }
-    }, {
-        key: 'initialRender',
-        value: function initialRender(moduleDescriptor, data) {
-            var _this2 = this;
+      function init() {
+        return _ref.apply(this, arguments);
+      }
 
-            var context = Object.create(this.context);
+      return init;
+    }()
+  }, {
+    key: 'createRouter',
+    value: function createRouter(routerBuilder, controllers) {
+      return router(routerBuilder, controllers)(this);
+    }
+  }, {
+    key: 'catchErrors',
+    value: function catchErrors() {
+      this.use(errors);
+    }
+  }, {
+    key: 'useRouter',
+    value: function useRouter(routerBuilder, controllers) {
+      this.use(this.createRouter(routerBuilder, controllers));
+    }
+  }, {
+    key: 'initialRender',
+    value: function initialRender(moduleDescriptor, data) {
+      var _this2 = this;
 
-            return contentLoaded().then(function () {
-                return context.render(moduleDescriptor, data, true);
-            }).then(function () {
-                _this2.on('redirect', redirect);
-                initWebApp(function (url) {
-                    return _this2.load(url);
-                });
-            });
-        }
-    }, {
-        key: 'environment',
-        get: function get() {
-            return this.env;
-        }
-    }]);
+      var context = Object.create(this.context);
+      Object.assign(context, global.initialBrowserContext);
+      delete context.state;
 
-    return AlpBrowser;
+      return contentLoaded().then(function () {
+        return context.render(moduleDescriptor, data, true);
+      }).then(function () {
+        _this2.on('redirect', redirect);
+        initWebApp(function (url) {
+          return _this2.load(url);
+        });
+      });
+    }
+  }, {
+    key: 'environment',
+    get: function get() {
+      return this.env;
+    }
+  }]);
+
+  return AlpBrowser;
 }(Ibex);
 
 export default AlpBrowser;
 
 function _inspect(input, depth) {
-    var maxDepth = 4;
-    var maxKeys = 15;
+  var maxDepth = 4;
+  var maxKeys = 15;
 
-    if (depth === undefined) {
-        depth = 0;
-    }
+  if (depth === undefined) {
+    depth = 0;
+  }
 
-    depth += 1;
+  depth += 1;
 
-    if (input === null) {
-        return 'null';
-    } else if (input === undefined) {
-        return 'void';
-    } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-        return typeof input === 'undefined' ? 'undefined' : _typeof(input);
-    } else if (Array.isArray(input)) {
-        if (input.length > 0) {
-            var _ret = function () {
-                if (depth > maxDepth) return {
-                        v: '[...]'
-                    };
+  if (input === null) {
+    return 'null';
+  } else if (input === undefined) {
+    return 'void';
+  } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
+    return typeof input === 'undefined' ? 'undefined' : _typeof(input);
+  } else if (Array.isArray(input)) {
+    if (input.length > 0) {
+      var _ret = function () {
+        if (depth > maxDepth) return {
+            v: '[...]'
+          };
 
-                var first = _inspect(input[0], depth);
+        var first = _inspect(input[0], depth);
 
-                if (input.every(function (item) {
-                    return _inspect(item, depth) === first;
-                })) {
-                    return {
-                        v: first.trim() + '[]'
-                    };
-                } else {
-                    return {
-                        v: '[' + input.slice(0, maxKeys).map(function (item) {
-                            return _inspect(item, depth);
-                        }).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-                    };
-                }
-            }();
-
-            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+        if (input.every(function (item) {
+          return _inspect(item, depth) === first;
+        })) {
+          return {
+            v: first.trim() + '[]'
+          };
         } else {
-            return 'Array';
+          return {
+            v: '[' + input.slice(0, maxKeys).map(function (item) {
+              return _inspect(item, depth);
+            }).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
+          };
         }
+      }();
+
+      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
     } else {
-        var keys = Object.keys(input);
-
-        if (!keys.length) {
-            if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-                return input.constructor.name;
-            } else {
-                return 'Object';
-            }
-        }
-
-        if (depth > maxDepth) return '{...}';
-        var indent = '  '.repeat(depth - 1);
-        var entries = keys.slice(0, maxKeys).map(function (key) {
-            return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-        }).join('\n  ' + indent);
-
-        if (keys.length >= maxKeys) {
-            entries += '\n  ' + indent + '...';
-        }
-
-        if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-            return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-        } else {
-            return '{\n  ' + indent + entries + '\n' + indent + '}';
-        }
+      return 'Array';
     }
+  } else {
+    var keys = Object.keys(input);
+
+    if (!keys.length) {
+      if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
+        return input.constructor.name;
+      } else {
+        return 'Object';
+      }
+    }
+
+    if (depth > maxDepth) return '{...}';
+    var indent = '  '.repeat(depth - 1);
+    var entries = keys.slice(0, maxKeys).map(function (key) {
+      return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
+    }).join('\n  ' + indent);
+
+    if (keys.length >= maxKeys) {
+      entries += '\n  ' + indent + '...';
+    }
+
+    if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
+      return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
+    } else {
+      return '{\n  ' + indent + entries + '\n' + indent + '}';
+    }
+  }
 }
 //# sourceMappingURL=index.js.map

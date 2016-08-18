@@ -11,53 +11,55 @@ import { init as initWebApp, redirect } from 'alauda/src/web-app';
 export { default as newController } from 'alp-controller';
 
 export default class AlpBrowser extends Ibex {
-    path: string;
-    appVersion: string;
+  path: string;
+  appVersion: string;
 
-    /**
-     * @param {string} [path='/']
-     * @param {Object} [options]
-     */
-    constructor(path = '/', options = {}) {
-        super();
-        this.path = path;
+  /**
+   * @param {string} [path='/']
+   * @param {Object} [options]
+   */
+  constructor(path = '/', options = {}) {
+    super();
+    this.path = path;
 
-        if (global.initialContextState) {
-            this.context.state = global.initialContextState;
-        }
+    if (global.initialBrowserContext) {
+      this.context.state = global.initialBrowserContext.state;
     }
+  }
 
-    async init() {
-        await config('/config')(this);
-        language(this);
-        await translate('/locales')(this);
-    }
+  async init() {
+    await config('/config')(this);
+    language(this);
+    await translate('/locales')(this);
+  }
 
-    get environment() {
-        return this.env;
-    }
+  get environment() {
+    return this.env;
+  }
 
-    createRouter(routerBuilder, controllers) {
-        return router(routerBuilder, controllers)(this);
-    }
+  createRouter(routerBuilder, controllers) {
+    return router(routerBuilder, controllers)(this);
+  }
 
-    catchErrors() {
-        this.use(errors);
-    }
+  catchErrors() {
+    this.use(errors);
+  }
 
-    useRouter(routerBuilder, controllers) {
-        this.use(this.createRouter(routerBuilder, controllers));
-    }
+  useRouter(routerBuilder, controllers) {
+    this.use(this.createRouter(routerBuilder, controllers));
+  }
 
-    initialRender(moduleDescriptor, data) {
-        const context = Object.create(this.context);
+  initialRender(moduleDescriptor, data) {
+    const context = Object.create(this.context);
+    Object.assign(context, global.initialBrowserContext);
+    delete context.state;
 
-        return contentLoaded()
-            .then(() => (
-                context.render(moduleDescriptor, data, true)
-            )).then(() => {
-                this.on('redirect', redirect);
-                initWebApp(url => this.load(url));
-            });
-    }
+    return contentLoaded()
+      .then(() => (
+        context.render(moduleDescriptor, data, true)
+      )).then(() => {
+        this.on('redirect', redirect);
+        initWebApp(url => this.load(url));
+      });
+  }
 }

@@ -21,97 +21,99 @@ import { init as initWebApp, redirect } from 'alauda/web-app';
 export { default as newController } from 'alp-controller';
 
 var AlpBrowser = function (_Ibex) {
-    _inherits(AlpBrowser, _Ibex);
+  _inherits(AlpBrowser, _Ibex);
 
-    /**
-     * @param {string} [path='/']
-     * @param {Object} [options]
-     */
-    function AlpBrowser() {
-        var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
-        var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  /**
+   * @param {string} [path='/']
+   * @param {Object} [options]
+   */
+  function AlpBrowser() {
+    var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
-        _classCallCheck(this, AlpBrowser);
+    _classCallCheck(this, AlpBrowser);
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AlpBrowser).call(this));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AlpBrowser).call(this));
 
-        _this.path = path;
+    _this.path = path;
 
-        if (global.initialContextState) {
-            _this.context.state = global.initialContextState;
-        }
-        return _this;
+    if (global.initialBrowserContext) {
+      _this.context.state = global.initialBrowserContext.state;
     }
+    return _this;
+  }
 
-    _createClass(AlpBrowser, [{
-        key: 'init',
-        value: function () {
-            var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
-                return regeneratorRuntime.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.next = 2;
-                                return config('/config')(this);
+  _createClass(AlpBrowser, [{
+    key: 'init',
+    value: function () {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return config('/config')(this);
 
-                            case 2:
-                                language(this);
-                                _context.next = 5;
-                                return translate('/locales')(this);
+              case 2:
+                language(this);
+                _context.next = 5;
+                return translate('/locales')(this);
 
-                            case 5:
-                            case 'end':
-                                return _context.stop();
-                        }
-                    }
-                }, _callee, this);
-            }));
-
-            function init() {
-                return _ref.apply(this, arguments);
+              case 5:
+              case 'end':
+                return _context.stop();
             }
+          }
+        }, _callee, this);
+      }));
 
-            return init;
-        }()
-    }, {
-        key: 'createRouter',
-        value: function createRouter(routerBuilder, controllers) {
-            return router(routerBuilder, controllers)(this);
-        }
-    }, {
-        key: 'catchErrors',
-        value: function catchErrors() {
-            this.use(errors);
-        }
-    }, {
-        key: 'useRouter',
-        value: function useRouter(routerBuilder, controllers) {
-            this.use(this.createRouter(routerBuilder, controllers));
-        }
-    }, {
-        key: 'initialRender',
-        value: function initialRender(moduleDescriptor, data) {
-            var _this2 = this;
+      function init() {
+        return _ref.apply(this, arguments);
+      }
 
-            var context = Object.create(this.context);
+      return init;
+    }()
+  }, {
+    key: 'createRouter',
+    value: function createRouter(routerBuilder, controllers) {
+      return router(routerBuilder, controllers)(this);
+    }
+  }, {
+    key: 'catchErrors',
+    value: function catchErrors() {
+      this.use(errors);
+    }
+  }, {
+    key: 'useRouter',
+    value: function useRouter(routerBuilder, controllers) {
+      this.use(this.createRouter(routerBuilder, controllers));
+    }
+  }, {
+    key: 'initialRender',
+    value: function initialRender(moduleDescriptor, data) {
+      var _this2 = this;
 
-            return contentLoaded().then(function () {
-                return context.render(moduleDescriptor, data, true);
-            }).then(function () {
-                _this2.on('redirect', redirect);
-                initWebApp(function (url) {
-                    return _this2.load(url);
-                });
-            });
-        }
-    }, {
-        key: 'environment',
-        get: function get() {
-            return this.env;
-        }
-    }]);
+      var context = Object.create(this.context);
+      Object.assign(context, global.initialBrowserContext);
+      delete context.state;
 
-    return AlpBrowser;
+      return contentLoaded().then(function () {
+        return context.render(moduleDescriptor, data, true);
+      }).then(function () {
+        _this2.on('redirect', redirect);
+        initWebApp(function (url) {
+          return _this2.load(url);
+        });
+      });
+    }
+  }, {
+    key: 'environment',
+    get: function get() {
+      return this.env;
+    }
+  }]);
+
+  return AlpBrowser;
 }(Ibex);
 
 export default AlpBrowser;
