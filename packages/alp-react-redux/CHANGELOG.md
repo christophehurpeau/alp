@@ -1,3 +1,7 @@
+### v4.7.4
+
+- [`54799ae`](https://github.com/alpjs/alp-react-redux/commit/54799ae4d22c4f59a69ff1d4e79d201e34f137a3) fix fody (Christophe Hurpeau)
+
 ### v4.7.3
 
 - [`5579045`](https://github.com/alpjs/alp-react-redux/commit/5579045baad7ec8e7944b1abb25266c371a765dd) fix fody (Christophe Hurpeau)
