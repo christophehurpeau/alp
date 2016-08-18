@@ -19,123 +19,123 @@ export { MigrationsManager } from 'alp-migrations';
 const logger = new Logger('alp');
 
 export default class Alp extends Koa {
-    dirname: string;
-    packageDirname: string;
-    browserStateTransformers: Array<Function>;
-    config;
+  dirname: string;
+  packageDirname: string;
+  browserStateTransformers: Array<Function>;
+  config;
 
-    /**
-     * @param {Object} [options]
-     * @param {string} [options.srcDirname] directory of the application
-     * @param {Config} [options.config] alp-config object
-     * @param {string} [options.packageDirname] deprecated, directory of the package (where package.json is)
-     * @param {Array} [options.argv] deprecated, list of overridable config by argv
-     */
-    constructor(options = {}) {
-        super();
-        if (!options.packageDirname) options.packageDirname = process.cwd();
-        if (!options.srcDirname) options.srcDirname = `${options.packageDirname}/lib`;
+  /**
+   * @param {Object} [options]
+   * @param {string} [options.srcDirname] directory of the application
+   * @param {Config} [options.config] alp-config object
+   * @param {string} [options.packageDirname] deprecated, directory of the package
+   * @param {Array} [options.argv] deprecated, list of overridable config by argv
+   */
+  constructor(options = {}) {
+    super();
+    if (!options.packageDirname) options.packageDirname = process.cwd();
+    if (!options.srcDirname) options.srcDirname = `${options.packageDirname}/lib`;
 
-        this.dirname = options.srcDirname;
-        Object.defineProperty(this, 'packageDirname', {
-            get: deprecate(() => options.packageDirname, 'packageDirname'),
-            configurable: false,
-            enumerable: false,
-        });
+    this.dirname = options.srcDirname;
+    Object.defineProperty(this, 'packageDirname', {
+      get: deprecate(() => options.packageDirname, 'packageDirname'),
+      configurable: false,
+      enumerable: false,
+    });
 
 
-        if (!options.config) {
-            deprecate(() => () => null, 'Alp options: missing options.config')();
-            // eslint-disable-next-line
-            const packageConfig = require(`${options.packageDirname}/package.json`);
-            config(`${this.dirname}/config`, { packageConfig, argv: options.argv })(this);
-        } else {
-            config()(this, options.config);
-        }
-
-        params(this);
-        language(this);
-        translate('locales')(this);
-
-        this.use(compress());
-
-        this.browserStateTransformers = [];
-        this.browserContextTransformers = [
-            (initialBrowserContext, context) => {
-                initialBrowserContext.state = Object.create(null);
-                this.browserStateTransformers.forEach(transformer => (
-                    transformer(initialBrowserContext.state, context)
-                ));
-            },
-        ];
-
-        this.context.computeInitialContextForBrowser = function () {
-            const initialBrowserContext = Object.create(null);
-
-            this.app.browserContextTransformers.forEach(transformer => (
-                transformer(initialBrowserContext, this)
-            ));
-
-            return initialBrowserContext;
-        };
+    if (!options.config) {
+      deprecate(() => () => null, 'Alp options: missing options.config')();
+      // eslint-disable-next-line
+      const packageConfig = require(`${options.packageDirname}/package.json`);
+      config(`${this.dirname}/config`, { packageConfig, argv: options.argv })(this);
+    } else {
+      config()(this, options.config);
     }
 
-    registerBrowserContextTransformer(transformer: Function) {
-        this.browserContextTransformers.push(transformer);
-    }
+    params(this);
+    language(this);
+    translate('locales')(this);
 
-    registerBrowserStateTransformer(transformer: Function) {
-        this.browserStateTransformers.push(transformer);
-    }
+    this.use(compress());
 
-    registerBrowserStateTransformers(transformer) {
-        deprecate(() => () => null, 'breaking: use registerBrowserStateTransformer instead')();
-        this.browserStateTransformers.push(transformer);
-    }
+    this.browserStateTransformers = [];
+    this.browserContextTransformers = [
+      (initialBrowserContext, context) => {
+        initialBrowserContext.state = Object.create(null);
+        this.browserStateTransformers.forEach(transformer => (
+          transformer(initialBrowserContext.state, context)
+        ));
+      },
+    ];
 
-    migrate(migrationsManager) {
-        return migrations({
-            config: this.config,
-            dirname: this.dirname,
-            migrationsManager,
-        });
-    }
+    this.context.computeInitialContextForBrowser = function () {
+      const initialBrowserContext = Object.create(null);
 
-    get environment() {
-        deprecate(() => () => null, 'app.environment, use app.env instead')();
-        return this.env;
-    }
+      this.app.browserContextTransformers.forEach(transformer => (
+        transformer(initialBrowserContext, this)
+      ));
 
-    get production() {
-        deprecate(() => () => null, 'app.production, use global.PRODUCTION instead')();
-        return this.env === 'prod' || this.env === 'production';
-    }
+      return initialBrowserContext;
+    };
+  }
 
-    createRouter(routerBuilder, controllers) {
-        return router(routerBuilder, controllers)(this);
-    }
+  registerBrowserContextTransformer(transformer: Function) {
+    this.browserContextTransformers.push(transformer);
+  }
 
-    servePublic() {
-        this.use(serve(`${this.packageDirname}/public/`)); // static files
-    }
+  registerBrowserStateTransformer(transformer: Function) {
+    this.browserStateTransformers.push(transformer);
+  }
 
-    catchErrors() {
-        this.use(errors);
-    }
+  registerBrowserStateTransformers(transformer) {
+    deprecate(() => () => null, 'breaking: use registerBrowserStateTransformer instead')();
+    this.browserStateTransformers.push(transformer);
+  }
 
-    useRouter(routerBuilder, controllers) {
-        // eslint-disable-next-line global-require
-        routerBuilder = routerBuilder || require(`${this.dirname}/routerBuilder`);
-        // eslint-disable-next-line global-require
-        controllers = controllers || require(`${this.dirname}/controllers`);
-        this.use(this.createRouter(routerBuilder, controllers));
-    }
+  migrate(migrationsManager) {
+    return migrations({
+      config: this.config,
+      dirname: this.dirname,
+      migrationsManager,
+    });
+  }
 
-    listen() {
-        return _listen(`${this.packageDirname}/config/cert`)(this)
-            .catch(err => {
-                logger.error(err);
-                throw err;
-            });
-    }
+  get environment() {
+    deprecate(() => () => null, 'app.environment, use app.env instead')();
+    return this.env;
+  }
+
+  get production() {
+    deprecate(() => () => null, 'app.production, use global.PRODUCTION instead')();
+    return this.env === 'prod' || this.env === 'production';
+  }
+
+  createRouter(routerBuilder, controllers) {
+    return router(routerBuilder, controllers)(this);
+  }
+
+  servePublic() {
+    this.use(serve(`${this.packageDirname}/public/`)); // static files
+  }
+
+  catchErrors() {
+    this.use(errors);
+  }
+
+  useRouter(routerBuilder, controllers) {
+    // eslint-disable-next-line global-require
+    routerBuilder = routerBuilder || require(`${this.dirname}/routerBuilder`);
+    // eslint-disable-next-line global-require
+    controllers = controllers || require(`${this.dirname}/controllers`);
+    this.use(this.createRouter(routerBuilder, controllers));
+  }
+
+  listen() {
+    return _listen(`${this.packageDirname}/config/cert`)(this)
+      .catch(err => {
+        logger.error(err);
+        throw err;
+      });
+  }
 }
