@@ -139,16 +139,46 @@ class Alp extends _koa2.default {
             throw new TypeError('Value of "this.browserStateTransformers" violates contract.\n\nExpected:\nArray<Function>\n\nGot:\n' + _inspect(this.browserStateTransformers));
         }
 
-        this.context.computeInitialStateForBrowser = function () {
-            const initialBrowserState = Object.create(null);
-            this.app.browserStateTransformers.forEach(transformer => {
-                return transformer(initialBrowserState, this);
+        this.browserContextTransformers = [(initialBrowserContext, context) => {
+            initialBrowserContext.state = Object.create(null);
+            this.browserStateTransformers.forEach(transformer => {
+                return transformer(initialBrowserContext.state, context);
             });
-            return initialBrowserState;
+        }];
+
+        this.context.computeInitialContextForBrowser = function () {
+            const initialBrowserContext = Object.create(null);
+
+            this.app.browserContextTransformers.forEach(transformer => {
+                return transformer(initialBrowserContext, this);
+            });
+
+            return initialBrowserContext;
         };
     }
 
+    registerBrowserContextTransformer(transformer) {
+        if (!(typeof transformer === 'function')) {
+            throw new TypeError('Value of argument "transformer" violates contract.\n\nExpected:\nFunction\n\nGot:\n' + _inspect(transformer));
+        }
+
+        this.browserContextTransformers.push(transformer);
+    }
+
+    registerBrowserStateTransformer(transformer) {
+        if (!(typeof transformer === 'function')) {
+            throw new TypeError('Value of argument "transformer" violates contract.\n\nExpected:\nFunction\n\nGot:\n' + _inspect(transformer));
+        }
+
+        this.browserStateTransformers.push(transformer);
+    }
+
     registerBrowserStateTransformers(transformer) {
+        (0, _util.deprecate)(() => {
+            return () => {
+                return null;
+            };
+        }, 'breaking: use registerBrowserStateTransformer instead')();
         this.browserStateTransformers.push(transformer);
     }
 

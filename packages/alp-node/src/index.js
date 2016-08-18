@@ -60,14 +60,36 @@ export default class Alp extends Koa {
         this.use(compress());
 
         this.browserStateTransformers = [];
-        this.context.computeInitialStateForBrowser = function () {
-            const initialBrowserState = Object.create(null);
-            this.app.browserStateTransformers.forEach(transformer => transformer(initialBrowserState, this));
-            return initialBrowserState;
+        this.browserContextTransformers = [
+            (initialBrowserContext, context) => {
+                initialBrowserContext.state = Object.create(null);
+                this.browserStateTransformers.forEach(transformer => (
+                    transformer(initialBrowserContext.state, context)
+                ));
+            },
+        ];
+
+        this.context.computeInitialContextForBrowser = function () {
+            const initialBrowserContext = Object.create(null);
+
+            this.app.browserContextTransformers.forEach(transformer => (
+                transformer(initialBrowserContext, this)
+            ));
+
+            return initialBrowserContext;
         };
     }
 
+    registerBrowserContextTransformer(transformer: Function) {
+        this.browserContextTransformers.push(transformer);
+    }
+
+    registerBrowserStateTransformer(transformer: Function) {
+        this.browserStateTransformers.push(transformer);
+    }
+
     registerBrowserStateTransformers(transformer) {
+        deprecate(() => () => null, 'breaking: use registerBrowserStateTransformer instead')();
         this.browserStateTransformers.push(transformer);
     }
 
