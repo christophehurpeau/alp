@@ -31,7 +31,7 @@
     "watch:dev": "pob-watch"
   },
   "dependencies": {
-    "fody": "^5.1.2",
+    "fody": "^5.1.4",
     "fody-redux-app": "^5.0.0",
     "nightingale-logger": "^1.2.0",
     "react-pure-stateless-component": "0.2.1",
