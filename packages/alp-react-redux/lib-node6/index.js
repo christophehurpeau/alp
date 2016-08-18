@@ -1,26 +1,26 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
 
 var _redux = require('redux');
 
 Object.defineProperty(exports, 'combineReducers', {
-    enumerable: true,
-    get: function get() {
-        return _redux.combineReducers;
-    }
+  enumerable: true,
+  get: function get() {
+    return _redux.combineReducers;
+  }
 });
 
 var _reactRedux = require('react-redux');
 
 Object.defineProperty(exports, 'connect', {
-    enumerable: true,
-    get: function get() {
-        return _reactRedux.connect;
-    }
+  enumerable: true,
+  get: function get() {
+    return _reactRedux.connect;
+  }
 });
 exports.default = alpReactRedux;
 exports.emitAction = emitAction;
@@ -68,49 +68,49 @@ const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }
 { name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 38 }, { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 }];
 
 function alpReactRedux(Html) {
-    return app => {
-        app.context.render = function (moduleDescriptor, data, _loaded) {
-            logger.debug('render view', { data });
+  return app => {
+    app.context.render = function (moduleDescriptor, data, _loaded) {
+      logger.debug('render view', { data });
 
-            if (!_loaded && moduleDescriptor.loader) {
-                // const _state = data;
-                return moduleDescriptor.loader(undefined, data).then(data => this.render(moduleDescriptor, data, true));
+      if (!_loaded && moduleDescriptor.loader) {
+        // const _state = data;
+        return moduleDescriptor.loader(undefined, data).then(data => this.render(moduleDescriptor, data, true));
+      }
+
+      if (moduleDescriptor.reducer) {
+        this.store = (0, _redux.createStore)(moduleDescriptor.reducer, data);
+      }
+
+      this.body = (0, _fody2.default)({
+        htmlData: {
+          context: this,
+          moduleDescriptor,
+          get scriptName() {
+            // TODO create alp-useragent with getter in context
+            const ua = this.context.req.headers['user-agent'];
+
+            for (let agent of agents) {
+              const res = agent.regexp.exec(ua);
+              if (res && res[1] >= agent.modernMinVersion) {
+                return 'modern-browsers';
+              }
             }
-
-            if (moduleDescriptor.reducer) {
-                this.store = (0, _redux.createStore)(moduleDescriptor.reducer, data);
-            }
-
-            this.body = (0, _fody2.default)({
-                htmlData: {
-                    context: this,
-                    moduleDescriptor,
-                    get scriptName() {
-                        // TODO create alp-useragent with getter in context
-                        const ua = this.context.req.headers['user-agent'];
-
-                        for (let agent of agents) {
-                            const res = agent.regexp.exec(ua);
-                            if (res && res[1] >= agent.modernMinVersion) {
-                                return 'modern-browsers';
-                            }
-                        }
-                        return 'es5';
-                    },
-                    initialContextState: this.computeInitialStateForBrowser()
-                },
-                context: this,
-                View: moduleDescriptor.View,
-                data: moduleDescriptor.reducer ? undefined : data,
-                initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
-                Html,
-                App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fody.App
-            });
-        };
+            return 'es5';
+          },
+          initialContextState: this.computeInitialStateForBrowser()
+        },
+        context: this,
+        View: moduleDescriptor.View,
+        data: moduleDescriptor.reducer ? undefined : data,
+        initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
+        Html,
+        App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fody.App
+      });
     };
+  };
 }
 
 function emitAction(to, action) {
-    to.emit('redux:action', action);
+  to.emit('redux:action', action);
 }
-//# sourceMappingURL=node.js.map
+//# sourceMappingURL=index.js.map

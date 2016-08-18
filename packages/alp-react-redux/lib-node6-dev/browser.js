@@ -1,41 +1,41 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.createEmitPromiseAction = exports.createEmitAction = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
 
 var _redux = require('redux');
 
 Object.defineProperty(exports, 'combineReducers', {
-    enumerable: true,
-    get: function get() {
-        return _redux.combineReducers;
-    }
+  enumerable: true,
+  get: function get() {
+    return _redux.combineReducers;
+  }
 });
 
 var _reactRedux = require('react-redux');
 
 Object.defineProperty(exports, 'connect', {
-    enumerable: true,
-    get: function get() {
-        return _reactRedux.connect;
-    }
+  enumerable: true,
+  get: function get() {
+    return _reactRedux.connect;
+  }
 });
 
 var _websocket = require('./websocket');
 
 Object.defineProperty(exports, 'createEmitAction', {
-    enumerable: true,
-    get: function get() {
-        return _websocket.createEmitAction;
-    }
+  enumerable: true,
+  get: function get() {
+    return _websocket.createEmitAction;
+  }
 });
 Object.defineProperty(exports, 'createEmitPromiseAction', {
-    enumerable: true,
-    get: function get() {
-        return _websocket.createEmitPromiseAction;
-    }
+  enumerable: true,
+  get: function get() {
+    return _websocket.createEmitPromiseAction;
+  }
 });
 exports.default = alpReactRedux;
 
@@ -83,78 +83,70 @@ let store;
 let currentModuleDescriptorIdentifier;
 
 function alpReactRedux(element) {
-    return app => {
-        const middlewares = [(0, _middlewares.createFunctionMiddleware)(app), _middlewares.promiseMiddleware];
-        if (app.websocket) {
-            logger.debug('register websocket redux:action');
-            app.websocket.on('redux:action', action => {
-                logger.info('dispatch action from websocket', action);
-                if (store) {
-                    store.dispatch(action);
-                }
-            });
-            middlewares.push((0, _websocket.websocketMiddleware)(app));
+  return app => {
+    const middlewares = [(0, _middlewares.createFunctionMiddleware)(app), _middlewares.promiseMiddleware];
+    if (app.websocket) {
+      logger.debug('register websocket redux:action');
+      app.websocket.on('redux:action', action => {
+        logger.info('dispatch action from websocket', action);
+        if (store) {
+          store.dispatch(action);
+        }
+      });
+      middlewares.push((0, _websocket.websocketMiddleware)(app));
+    }
+
+    app.context.render = function (moduleDescriptor, data, _loaded) {
+      logger.debug('render view', { data });
+
+      if (!moduleDescriptor.View) {
+        throw new Error('View is undefined, class expected');
+      }
+
+      if (!_loaded && moduleDescriptor.loader) {
+        const currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+
+        // const _state = data;
+        return moduleDescriptor.loader(currentState, data).then(data => {
+          return this.render(moduleDescriptor, data, true);
+        });
+      }
+
+      const reducer = moduleDescriptor.reducer;
+
+      if (!reducer) {
+        store = undefined;
+      } else if (store === undefined) {
+        store = (0, _redux.createStore)(reducer, data, (0, _redux.compose)((0, _redux.applyMiddleware)(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => {
+          return f;
+        }));
+      } else {
+        const state = store.getState();
+
+        if (currentModuleDescriptorIdentifier !== moduleDescriptor.identifier) {
+          // replace state
+          Object.keys(state).forEach(key => {
+            return delete state[key];
+          });
         }
 
-        app.context.render = function (moduleDescriptor, data, _loaded) {
-            logger.debug('render view', { data });
+        Object.assign(state, data);
 
-            if (!moduleDescriptor.View) {
-                throw new Error('View is undefined, class expected');
-            }
+        // replace reducer and dispatch init action
+        store.replaceReducer(reducer);
+      }
 
-            if (!_loaded && moduleDescriptor.loader) {
-                const currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+      currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
+      this.store = store;
 
-                // const _state = data;
-                return moduleDescriptor.loader(currentState, data).then(data => {
-                    return this.render(moduleDescriptor, data, true);
-                });
-            }
-
-            const reducer = moduleDescriptor.reducer;
-
-            if (!reducer) {
-                store = undefined;
-            } else if (store === undefined) {
-                store = (0, _redux.createStore)(reducer, data, (0, _redux.compose)((0, _redux.applyMiddleware)(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => {
-                    return f;
-                }));
-            } else {
-                const state = store.getState();
-
-                if (currentModuleDescriptorIdentifier !== moduleDescriptor.identifier) {
-                    // replace state
-                    Object.keys(state).forEach(key => {
-                        return delete state[key];
-                    });
-                }
-
-                Object.assign(state, data);
-
-                if (currentModuleDescriptorIdentifier !== moduleDescriptor.identifier) {
-                    // replace reducer
-                    if (reducer) {
-                        store.replaceReducer(reducer);
-                    } else {
-                        store.replaceReducer((state, action) => {
-                            return state;
-                        });
-                    }
-                }
-            }
-
-            currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
-            this.store = store;
-
-            (0, _fody2.default)({
-                context: this,
-                View: moduleDescriptor.View,
-                data: data,
-                element,
-                App: reducer ? _fodyReduxApp2.default : _fody.App
-            });
-        };
+      (0, _fody2.default)({
+        context: this,
+        View: moduleDescriptor.View,
+        data: data,
+        element,
+        App: reducer ? _fodyReduxApp2.default : _fody.App
+      });
     };
+  };
 }
 //# sourceMappingURL=browser.js.map
