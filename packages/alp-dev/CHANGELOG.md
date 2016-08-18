@@ -1,3 +1,9 @@
+### v2.10.0
+
+- [`8ba166e`](https://github.com/alpjs/alp-dev/commit/8ba166e63f20476bc450b76c67fd56a84134581e) webpack@2.1.0-beta.21 (Christophe Hurpeau)
+- [`b02f83c`](https://github.com/alpjs/alp-dev/commit/b02f83c59ab10481359cbfcee4ed819a4b4340d5) remove gulp-grep, gulp-babel, gulp-clip-empty-files, gulp-changed (Christophe Hurpeau)
+- [`e709b1e`](https://github.com/alpjs/alp-dev/commit/e709b1e66a707fc4999a9a86baa69dcbbade91bd) update dependencies (Christophe Hurpeau)
+
 ### v2.9.1
 
 
