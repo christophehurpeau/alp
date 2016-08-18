@@ -77,7 +77,7 @@ export default function alpReactRedux(Html) {
 
             return 'es5';
           },
-          initialContextState: this.computeInitialStateForBrowser()
+          initialBrowserContext: this.computeInitialContextForBrowser()
         },
         context: this,
         View: moduleDescriptor.View,

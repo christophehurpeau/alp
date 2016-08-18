@@ -14,11 +14,11 @@ const logger = new Logger('alp.react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 const agents = [
-    { name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 },
-    { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 },
-    { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-    { name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 38 },
-    { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 },
+  { name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 },
+  { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 },
+  { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
+  { name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 38 },
+  { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 },
 ];
 
 export default function alpReactRedux(Html) {
@@ -27,10 +27,10 @@ export default function alpReactRedux(Html) {
       logger.debug('render view', { data });
 
       if (!_loaded && moduleDescriptor.loader) {
-                // const _state = data;
+        // const _state = data;
         return moduleDescriptor.loader(undefined, data).then(data => (
-                    this.render(moduleDescriptor, data, true)
-                ));
+          this.render(moduleDescriptor, data, true)
+        ));
       }
 
       if (moduleDescriptor.reducer) {
@@ -42,7 +42,7 @@ export default function alpReactRedux(Html) {
           context: this,
           moduleDescriptor,
           get scriptName() {
-                        // TODO create alp-useragent with getter in context
+            // TODO create alp-useragent with getter in context
             const ua = this.context.req.headers['user-agent'];
 
             for (let agent of agents) {
@@ -53,7 +53,7 @@ export default function alpReactRedux(Html) {
             }
             return 'es5';
           },
-          initialContextState: this.computeInitialStateForBrowser(),
+          initialBrowserContext: this.computeInitialContextForBrowser(),
         },
         context: this,
         View: moduleDescriptor.View,
