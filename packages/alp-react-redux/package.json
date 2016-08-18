@@ -31,7 +31,7 @@
     "watch:dev": "pob-watch"
   },
   "dependencies": {
-    "fody": "^5.1.1",
+    "fody": "^5.1.2",
     "fody-redux-app": "^5.0.0",
     "nightingale-logger": "^1.2.0",
     "react-pure-stateless-component": "0.2.1",
@@ -48,7 +48,7 @@
     "babel-preset-stage-1": "^6.13.0",
     "eslint": "^3.3.1",
     "eslint-config-airbnb-base": "^5.0.2",
-    "eslint-config-pob": "^7.0.0",
+    "eslint-config-pob": "^7.0.1",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^1.13.0",
     "pob-babel": "^7.2.0",
