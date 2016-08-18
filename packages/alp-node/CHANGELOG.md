@@ -1,3 +1,7 @@
+### v0.14.0
+
+- [`e9bf768`](https://github.com/alpjs/alp-node/commit/e9bf76832f1a8bf8feea71b5534a1903f749f6f4) update dependencies (Christophe Hurpeau)
+
 ### v0.13.0
 
 - [`47be0cb`](https://github.com/alpjs/alp-node/commit/47be0cbc6d81534ebb6ed0c7631234a3c31c55d6) breaking: computeInitialContextForBrowser, add registerBrowserContextTransformer (Christophe Hurpeau)
