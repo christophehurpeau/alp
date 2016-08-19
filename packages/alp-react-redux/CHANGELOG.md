@@ -1,3 +1,7 @@
+### v5.0.1
+
+- [`37a281c`](https://github.com/alpjs/alp-react-redux/commit/37a281ca38b5ba4f5f5dc5d4fb77ae769003fee2) fix store replace state, add loading bar (Christophe Hurpeau)
+
 ### v5.0.0
 
 - [`78d3a70`](https://github.com/alpjs/alp-react-redux/commit/78d3a7015fb31bffd37006642b1599da26845be4) breaking: computeInitialContextForBrowser (Christophe Hurpeau)
