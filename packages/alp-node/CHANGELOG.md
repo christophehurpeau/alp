@@ -1,3 +1,7 @@
+### v0.15.0
+
+- [`ff7ec6b`](https://github.com/alpjs/alp-node/commit/ff7ec6beea6164a62253be51a3e94c53472a311e) alp-params (Christophe Hurpeau)
+
 ### v0.14.0
 
 - [`e9bf768`](https://github.com/alpjs/alp-node/commit/e9bf76832f1a8bf8feea71b5534a1903f749f6f4) update dependencies (Christophe Hurpeau)
