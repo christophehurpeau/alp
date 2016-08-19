@@ -52,9 +52,9 @@ var _alpErrorsNode = require('alp-errors-node');
 
 var _alpErrorsNode2 = _interopRequireDefault(_alpErrorsNode);
 
-var _alpParamsNode = require('alp-params-node');
+var _alpParams = require('alp-params');
 
-var _alpParamsNode2 = _interopRequireDefault(_alpParamsNode);
+var _alpParams2 = _interopRequireDefault(_alpParams);
 
 var _alpLanguage = require('alp-language');
 
@@ -125,7 +125,7 @@ class Alp extends _koa2.default {
       (0, _alpConfig2.default)()(this, options.config);
     }
 
-    (0, _alpParamsNode2.default)(this);
+    (0, _alpParams2.default)(this);
     (0, _alpLanguage2.default)(this);
     (0, _alpTranslate2.default)('locales')(this);
 

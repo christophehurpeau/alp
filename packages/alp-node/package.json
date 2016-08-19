@@ -37,7 +37,7 @@
     "alp-limosa": "^2.3.0",
     "alp-listen": "^1.1.0",
     "alp-migrations": "^0.1.1",
-    "alp-params-node": "^0.2.0",
+    "alp-params": "^0.3.0",
     "alp-translate": "^2.1.0",
     "koa": "^2.0.0-alpha.3",
     "koa-compress": "^2.0.0",

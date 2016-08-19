@@ -4,7 +4,7 @@ import compress from 'koa-compress';
 import serve from 'koa-static';
 import config from 'alp-config';
 import errors from 'alp-errors-node';
-import params from 'alp-params-node';
+import params from 'alp-params';
 import language from 'alp-language';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
