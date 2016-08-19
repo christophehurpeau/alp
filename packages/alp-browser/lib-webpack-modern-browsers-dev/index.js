@@ -3,7 +3,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 import Ibex from 'ibex';
 import config from 'alp-config';
 import errors from 'alp-errors-browser';
-// import params from 'alp-params-browser';
+import params from 'alp-params';
 import language from 'alp-language';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
@@ -39,6 +39,7 @@ export default class AlpBrowser extends Ibex {
 
     return _asyncToGenerator(function* () {
       yield config('/config')(_this);
+      params(_this);
       language(_this);
       yield translate('/locales')(_this);
     })();

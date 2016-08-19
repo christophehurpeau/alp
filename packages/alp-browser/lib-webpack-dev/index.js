@@ -13,7 +13,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import Ibex from 'ibex';
 import config from 'alp-config';
 import errors from 'alp-errors-browser';
-// import params from 'alp-params-browser';
+import params from 'alp-params';
 import language from 'alp-language';
 import translate from 'alp-translate';
 import router from 'alp-limosa';
@@ -61,11 +61,12 @@ var AlpBrowser = function (_Ibex) {
                 return config('/config')(this);
 
               case 2:
+                params(this);
                 language(this);
-                _context.next = 5;
+                _context.next = 6;
                 return translate('/locales')(this);
 
-              case 5:
+              case 6:
               case 'end':
                 return _context.stop();
             }
