@@ -1,3 +1,7 @@
+### v0.14.0
+
+- [`f1dcada`](https://github.com/alpjs/alp-browser/commit/f1dcada9d35a99d3b1c067a0f19bf09252662677) alp-params (Christophe Hurpeau)
+
 ### v0.13.0
 
 - [`3f035d4`](https://github.com/alpjs/alp-browser/commit/3f035d4d4a14bcea49d9ae87511f2b291ff3544b) update dependencies, initialBrowserContext (Christophe Hurpeau)
