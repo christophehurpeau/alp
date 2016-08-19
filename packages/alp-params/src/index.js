@@ -2,36 +2,39 @@ import { defineLazyProperty } from 'object-properties';
 import ParamValidator from './ParamValidator';
 import ParamValidatorValid from './ParamValidatorValid';
 
-export default function aukParams(app) {
-    Object.assign(app.context, {
-        param(name) {
-            return this.namedParam(name) || this.paramGET(name);
-        },
+export { ParamValidator };
 
-        namedParam(name) {
-            let namedParams = this.route.namedParams;
-            return namedParams && namedParams.get(name);
-        },
+export default function alpParams(app) {
+  Object.assign(app.context, {
+    param(name) {
+      return this.namedParam(name) || this.paramGET(name);
+    },
 
-        otherParam(position) {
-            let otherParams = this.route.otherParams;
-            return otherParams && otherParams[position - 1];
-        },
+    namedParam(name) {
+      let namedParams = this.route.namedParams;
+      return namedParams && namedParams.get(name);
+    },
 
-        paramGET(name) {
-            let query = this.query;
-            return query && query[name];
-        },
+    otherParam(position) {
+      let otherParams = this.route.otherParams;
+      return otherParams && otherParams[position - 1];
+    },
 
-        paramGETorPOST(name) {
-            return this.body[name] !== undefined ? this.body[name] : this.query[name];
-        },
-    });
+    paramGET(name) {
+      let query = this.query;
+      return query && query[name];
+    },
 
-    defineLazyProperty(app.context, 'params', function () {
-        return new ParamValidator(this);
-    });
-    defineLazyProperty(app.context, 'validParams', function () {
-        return new ParamValidatorValid(this);
-    });
+    paramGETorPOST(name) {
+      return this.body[name] !== undefined ? this.body[name] : this.query[name];
+    },
+  });
+
+  defineLazyProperty(app.context, 'params', function () {
+    return new ParamValidator(this);
+  });
+
+  defineLazyProperty(app.context, 'validParams', function () {
+    return new ParamValidatorValid(this);
+  });
 }
