@@ -1,24 +1,13 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createLoader;
 /* global PRODUCTION */
-function createLoader(defaultState, handlers) {
-  if (!(typeof defaultState === 'function' || defaultState instanceof Object)) {
-    throw new TypeError('Value of argument "defaultState" violates contract.\n\nExpected:\nFunction | Object\n\nGot:\n' + _inspect(defaultState));
-  }
-
+function createLoader(handlers) {
   if (!(handlers == null || handlers instanceof Object)) {
-    throw new TypeError('Value of argument "handlers" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(handlers));
-  }
-
-  if (typeof defaultState === 'object') {
-    handlers = defaultState;
-    defaultState = () => {
-      return {};
-    };
+    throw new TypeError("Value of argument \"handlers\" violates contract.\n\nExpected:\n?Object\n\nGot:\n" + _inspect(handlers));
   }
 
   const handlerMap = new Map(Object.keys(handlers).map(key => {
@@ -26,20 +15,18 @@ function createLoader(defaultState, handlers) {
   }));
   handlers = undefined;
 
-  return function () {
-    let state = arguments.length <= 0 || arguments[0] === undefined ? defaultState() : arguments[0];
-    let data = arguments[1];
-
+  return (state, data) => {
     const keys = Object.keys(data);
     return Promise.all(keys.map(key => {
       const handler = handlerMap.get(key);
       if (!handler) throw new Error(`Missing handler for "${ key }".`);
       return handler(state, data[key]);
     })).then(results => {
+      const data = Object.create(null);
       results.forEach((result, index) => {
-        state[keys[index]] = result;
+        data[keys[index]] = result;
       });
-      return state;
+      return data;
     });
   };
 }

@@ -78,7 +78,7 @@ function alpReactRedux(Html) {
 
       if (!_loaded && moduleDescriptor.loader) {
         // const _state = data;
-        return moduleDescriptor.loader(undefined, data).then(data => {
+        return moduleDescriptor.loader(Object.create(null), data).then(data => {
           return this.render(moduleDescriptor, data, true);
         });
       }

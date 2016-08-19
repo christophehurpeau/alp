@@ -30,7 +30,7 @@ export default function alpReactRedux(Html) {
 
       if (!_loaded && moduleDescriptor.loader) {
         // const _state = data;
-        return moduleDescriptor.loader(undefined, data).then(function (data) {
+        return moduleDescriptor.loader(Object.create(null), data).then(function (data) {
           return _this.render(moduleDescriptor, data, true);
         });
       }

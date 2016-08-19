@@ -1,10 +1,11 @@
-/* global window */
+/* global window, PRODUCTION */
 import render, { App as DefaultApp } from 'fody';
 import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares';
 import { websocketMiddleware } from './websocket';
+import loadingBar from './loading-bar';
 
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
@@ -14,6 +15,7 @@ export createReducer from './createReducer';
 export createLoader from './createLoader';
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
+const HYDRATE_STATE = 'HYDRATE_STATE';
 const logger = new Logger('alp.react-redux');
 
 let store;
@@ -36,49 +38,57 @@ export default function alpReactRedux(element) {
       middlewares.push(websocketMiddleware(app));
     }
 
-    app.context.render = function (moduleDescriptor, data, _loaded) {
+    app.context.render = function (moduleDescriptor, data, _loaded, _loadingBar) {
+      if (!_loadingBar) _loadingBar = loadingBar();
       logger.debug('render view', { data });
 
-      if (!moduleDescriptor.View) {
+      if (!PRODUCTION && !moduleDescriptor.View) {
         throw new Error('View is undefined, class expected');
       }
 
       if (!_loaded && moduleDescriptor.loader) {
         const currentState = store &&
-                             currentModuleDescriptorIdentifier === moduleDescriptor.identifier ?
-                             store.getState() : undefined;
+        currentModuleDescriptorIdentifier === moduleDescriptor.identifier ?
+          store.getState() : undefined;
 
-                // const _state = data;
+        // const _state = data;
         return moduleDescriptor.loader(currentState, data).then(data => (
-                    this.render(moduleDescriptor, data, true)
-                ));
+          this.render(moduleDescriptor, data, true, _loadingBar)
+        ));
       }
 
-      const reducer = moduleDescriptor.reducer;
+      let reducer = moduleDescriptor.reducer;
 
       if (!reducer) {
-        store = undefined;
+        if (store) {
+          reducer = () => {};
+          store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
+        }
       } else if (store === undefined) {
         store = createStore(
-                    reducer,
-                    data,
-                    compose(
-                        applyMiddleware(...middlewares),
-                        window.devToolsExtension ? window.devToolsExtension() : f => f,
-                    ),
-                );
-      } else {
-        const state = store.getState();
+          (state, action) => {
+            if (action.type === HYDRATE_STATE) {
+              state = action.state;
+            }
 
-        if (currentModuleDescriptorIdentifier !== moduleDescriptor.identifier) {
-          // replace state
-          Object.keys(state).forEach(key => delete state[key]);
+            return reducer(state, action);
+          },
+          data,
+          compose(
+            applyMiddleware(...middlewares),
+            window.devToolsExtension ? window.devToolsExtension() : f => f,
+          ),
+        );
+      } else {
+        const state = Object.create(null);
+
+        if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
+          // keep state
+          Object.assign(state, store.getState());
         }
 
         Object.assign(state, data);
-
-        // replace reducer and dispatch init action
-        store.replaceReducer(reducer);
+        store.dispatch({ type: HYDRATE_STATE, state });
       }
 
       currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
@@ -91,6 +101,8 @@ export default function alpReactRedux(element) {
         element,
         App: reducer ? ReduxApp : DefaultApp,
       });
+
+      _loadingBar();
     };
   };
 }
