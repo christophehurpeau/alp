@@ -1,3 +1,7 @@
+### v0.16.0
+
+- [`607f2b4`](https://github.com/alpjs/alp-node/commit/607f2b4e0e8aaa0a31ab55d65cca71817b80d228) remove alp-limosa (Christophe Hurpeau)
+
 ### v0.15.0
 
 - [`ff7ec6b`](https://github.com/alpjs/alp-node/commit/ff7ec6beea6164a62253be51a3e94c53472a311e) alp-params (Christophe Hurpeau)
