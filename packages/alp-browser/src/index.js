@@ -4,7 +4,6 @@ import errors from 'alp-errors-browser';
 import params from 'alp-params';
 import language from 'alp-language';
 import translate from 'alp-translate';
-import router from 'alp-limosa';
 import contentLoaded from 'content-loaded';
 import { init as initWebApp, redirect } from 'alauda/src/web-app';
 
@@ -38,16 +37,8 @@ export default class AlpBrowser extends Ibex {
     return this.env;
   }
 
-  createRouter(routerBuilder, controllers) {
-    return router(routerBuilder, controllers)(this);
-  }
-
   catchErrors() {
     this.use(errors);
-  }
-
-  useRouter(routerBuilder, controllers) {
-    this.use(this.createRouter(routerBuilder, controllers));
   }
 
   initialRender(moduleDescriptor, data) {
