@@ -7,7 +7,6 @@ import errors from 'alp-errors-node';
 import params from 'alp-params';
 import language from 'alp-language';
 import translate from 'alp-translate';
-import router from 'alp-limosa';
 import _listen from 'alp-listen';
 import migrations from 'alp-migrations';
 import Logger from 'nightingale-logger';
@@ -110,25 +109,12 @@ export default class Alp extends Koa {
     deprecate(() => () => null, 'app.production, use global.PRODUCTION instead')();
     return this.env === 'prod' || this.env === 'production';
   }
-
-  createRouter(routerBuilder, controllers) {
-    return router(routerBuilder, controllers)(this);
-  }
-
   servePublic() {
     this.use(serve(`${this.packageDirname}/public/`)); // static files
   }
 
   catchErrors() {
     this.use(errors);
-  }
-
-  useRouter(routerBuilder, controllers) {
-    // eslint-disable-next-line global-require
-    routerBuilder = routerBuilder || require(`${this.dirname}/routerBuilder`);
-    // eslint-disable-next-line global-require
-    controllers = controllers || require(`${this.dirname}/controllers`);
-    this.use(this.createRouter(routerBuilder, controllers));
   }
 
   listen() {

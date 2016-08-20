@@ -64,10 +64,6 @@ var _alpTranslate = require('alp-translate');
 
 var _alpTranslate2 = _interopRequireDefault(_alpTranslate);
 
-var _alpLimosa = require('alp-limosa');
-
-var _alpLimosa2 = _interopRequireDefault(_alpLimosa);
-
 var _alpListen = require('alp-listen');
 
 var _alpListen2 = _interopRequireDefault(_alpListen);
@@ -207,25 +203,12 @@ class Alp extends _koa2.default {
     }, 'app.production, use global.PRODUCTION instead')();
     return this.env === 'prod' || this.env === 'production';
   }
-
-  createRouter(routerBuilder, controllers) {
-    return (0, _alpLimosa2.default)(routerBuilder, controllers)(this);
-  }
-
   servePublic() {
     this.use((0, _koaStatic2.default)(`${ this.packageDirname }/public/`)); // static files
   }
 
   catchErrors() {
     this.use(_alpErrorsNode2.default);
-  }
-
-  useRouter(routerBuilder, controllers) {
-    // eslint-disable-next-line global-require
-    routerBuilder = routerBuilder || require(`${ this.dirname }/routerBuilder`);
-    // eslint-disable-next-line global-require
-    controllers = controllers || require(`${ this.dirname }/controllers`);
-    this.use(this.createRouter(routerBuilder, controllers));
   }
 
   listen() {
