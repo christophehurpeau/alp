@@ -1,3 +1,7 @@
+### v0.15.0
+
+- [`1d873cb`](https://github.com/alpjs/alp-browser/commit/1d873cb7deb0c1976a40065bc5ae840a230d5b4b) remove alp-limosa (Christophe Hurpeau)
+
 ### v0.14.0
 
 - [`f1dcada`](https://github.com/alpjs/alp-browser/commit/f1dcada9d35a99d3b1c067a0f19bf09252662677) alp-params (Christophe Hurpeau)
