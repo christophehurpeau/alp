@@ -3,9 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-/* global location, URLSearchParams */
 
-var qs = require('query-string');
+var _queryString = require('query-string');
 
 exports.default = {
     get search() {
@@ -27,7 +26,7 @@ exports.default = {
         return location.protocol;
     },
     get query() {
-        return qs.parse(location.search);
+        return (0, _queryString.parse)(location.search);
     },
     get searchParams() {
         return new URLSearchParams(!location.search.length ? location.search : location.search.substr(1));
@@ -41,5 +40,5 @@ exports.default = {
     get hostname() {
         return location.hostname;
     }
-};
+}; /* global location, URLSearchParams */
 //# sourceMappingURL=request.js.map

@@ -1,6 +1,6 @@
 /* global location, URLSearchParams */
 
-var qs = require('query-string');
+import { parse as parseQueryString } from 'query-string';
 
 export default {
     get search() {
@@ -22,7 +22,7 @@ export default {
         return location.protocol;
     },
     get query() {
-        return qs.parse(location.search);
+        return parseQueryString(location.search);
     },
     get searchParams() {
         return new URLSearchParams(!location.search.length ? location.search : location.search.substr(1));
