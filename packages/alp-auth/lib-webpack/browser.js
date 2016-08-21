@@ -7,11 +7,11 @@ export default function init(_ref) {
     var loginModuleDescriptor = _ref.loginModuleDescriptor;
     var homeRouterKey = _ref.homeRouterKey;
 
-    return app => {
+    return function (app) {
         controllers.set('auth', createAuthController({
-            loginModuleDescriptor,
-            homeRouterKey
+            loginModuleDescriptor: loginModuleDescriptor,
+            homeRouterKey: homeRouterKey
         }));
     };
 }
-//# sourceMappingURL=index.browser.js.map
+//# sourceMappingURL=browser.js.map

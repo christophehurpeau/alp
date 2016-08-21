@@ -96,4 +96,4 @@ function _inspect(input, depth) {
         }
     }
 }
-//# sourceMappingURL=index.browser.js.map
+//# sourceMappingURL=browser.js.map

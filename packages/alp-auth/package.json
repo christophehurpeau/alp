@@ -10,10 +10,10 @@
   "repository": "alpjs/alp-auth",
   "homepage": "https://github.com/alpjs/alp-auth",
   "main": "./index.js",
-  "webpack:main": "./lib-webpack/index.browser.js",
-  "webpack:main-dev": "./lib-webpack-dev/index.browser.js",
-  "webpack:main-modern-browsers": "./lib-webpack-modern-browsers/index.browser.js",
-  "webpack:main-modern-browsers-dev": "./lib-webpack-modern-browsers-dev/index.browser.js",
+  "webpack:main": "./lib-webpack/browser.js",
+  "webpack:main-dev": "./lib-webpack-dev/browser.js",
+  "webpack:main-modern-browsers": "./lib-webpack-modern-browsers/browser.js",
+  "webpack:main-modern-browsers-dev": "./lib-webpack-modern-browsers-dev/browser.js",
   "scripts": {
     "build": "pob-build",
     "build:dev": "pob-build",
@@ -27,6 +27,7 @@
     "watch:dev": "pob-watch"
   },
   "dependencies": {
+    "cookies": "^0.6.1",
     "jsonwebtoken": "^7.1.9",
     "nightingale-logger": "^1.2.0",
     "promise-callback-factory": "^1.0.0",

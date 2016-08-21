@@ -1,73 +1,36 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.routes = exports.UsersManager = undefined;
-
-var _routes = require('./routes');
-
-Object.defineProperty(exports, 'routes', {
-    enumerable: true,
-    get: function get() {
-        return _interopRequireDefault(_routes).default;
-    }
-});
-exports.default = init;
-
-var _jsonwebtoken = require('jsonwebtoken');
-
-var _promiseCallbackFactory = require('promise-callback-factory');
-
-var _promiseCallbackFactory2 = _interopRequireDefault(_promiseCallbackFactory);
-
-var _nightingaleLogger = require('nightingale-logger');
-
-var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
-
-var _UsersManager = require('./models/user/UsersManager');
-
-var _UsersManager2 = _interopRequireDefault(_UsersManager);
-
-var _AuthenticationService = require('./services/AuthenticationService');
-
-var _AuthenticationService2 = _interopRequireDefault(_AuthenticationService);
-
-var _UserAccountsService = require('./services/user/UserAccountsService');
-
-var _UserAccountsService2 = _interopRequireDefault(_UserAccountsService);
-
-var _createAuthController = require('./controllers/createAuthController.server');
-
-var _createAuthController2 = _interopRequireDefault(_createAuthController);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
-exports.UsersManager = _UsersManager2.default;
+import { sign, verify } from 'jsonwebtoken';
+import promiseCallback from 'promise-callback-factory';
+import Logger from 'nightingale-logger';
+import UsersManager from './models/user/UsersManager';
+import AuthenticationService from './services/AuthenticationService';
+import UserAccountsService from './services/user/UserAccountsService';
+import createAuthController from './controllers/createAuthController.server';
 
+export { UsersManager };
+export { default as routes } from './routes';
 
-const COOKIE_NAME = 'connectedUser';
-const logger = new _nightingaleLogger2.default('alp-auth');
+var COOKIE_NAME = 'connectedUser';
+var logger = new Logger('alp-auth');
 
-function init(_ref) {
-    let controllers = _ref.controllers;
-    let usersManager = _ref.usersManager;
-    let strategies = _ref.strategies;
-    let loginModuleDescriptor = _ref.loginModuleDescriptor;
-    let homeRouterKey = _ref.homeRouterKey;
+export default function init(_ref) {
+    var controllers = _ref.controllers;
+    var usersManager = _ref.usersManager;
+    var strategies = _ref.strategies;
+    var loginModuleDescriptor = _ref.loginModuleDescriptor;
+    var homeRouterKey = _ref.homeRouterKey;
 
-    if (!(arguments[0] != null && arguments[0].controllers instanceof Map && arguments[0].usersManager instanceof _UsersManager2.default && arguments[0].strategies instanceof Object && arguments[0].loginModuleDescriptor instanceof Object && (arguments[0].homeRouterKey == null || typeof arguments[0].homeRouterKey === 'string'))) {
+    if (!(arguments[0] != null && arguments[0].controllers instanceof Map && arguments[0].usersManager instanceof UsersManager && arguments[0].strategies instanceof Object && arguments[0].loginModuleDescriptor instanceof Object && (arguments[0].homeRouterKey == null || typeof arguments[0].homeRouterKey === 'string'))) {
         throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{\n  controllers: Map;\n  usersManager: UsersManager;\n  strategies: Object;\n  loginModuleDescriptor: Object;\n  homeRouterKey: ?string;\n}\n\nGot:\n' + _inspect(arguments[0]));
     }
 
     return app => {
-        const userAccountsService = new _UserAccountsService2.default(usersManager);
+        var userAccountsService = new UserAccountsService(usersManager);
 
-        const authenticationService = new _AuthenticationService2.default(app.config, strategies, userAccountsService);
+        var authenticationService = new AuthenticationService(app.config, strategies, userAccountsService);
 
-        controllers.set('auth', (0, _createAuthController2.default)({
+        controllers.set('auth', createAuthController({
             authenticationService,
             loginModuleDescriptor,
             homeRouterKey
@@ -93,8 +56,8 @@ function init(_ref) {
                 this.state.connected = connected;
                 this.state.user = user;
 
-                const token = yield (0, _promiseCallbackFactory2.default)(function (done) {
-                    return (0, _jsonwebtoken.sign)({ connected, time: Date.now() }, _this.config.get('authentication').get('secretKey'), {
+                var token = yield promiseCallback(function (done) {
+                    return sign({ connected, time: Date.now() }, _this.config.get('authentication').get('secretKey'), {
                         algorithm: 'HS512',
                         audience: _this.request.headers['user-agent'],
                         expiresIn: '30 days'
@@ -118,26 +81,73 @@ function init(_ref) {
             this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
         };
 
-        app.registerBrowserStateTransformers((initialBrowserState, ctx) => {
+        app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
             if (ctx.state.connected) {
                 initialBrowserState.connected = ctx.state.connected;
                 initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user);
             }
         });
 
+        var decodeJwt = (token, userAgent) => {
+            var result = verify(token, app.config.get('authentication').get('secretKey'), {
+                algorithm: 'HS512',
+                audience: userAgent
+            });
+            return result && result.connected;
+        };
+
+        if (app.websocket) {
+            (function () {
+                logger.debug('app has websocket');
+                // eslint-disable-next-line
+                var Cookies = require('cookies');
+
+                app.websocket.use((() => {
+                    var ref = _asyncToGenerator(function* (socket, next) {
+                        var handshakeData = socket.request;
+                        var cookies = new Cookies(handshakeData, null, { keys: app.keys });
+                        var token = cookies.get(COOKIE_NAME);
+                        logger.debug('middleware websocket', { token });
+
+                        if (!token) return yield next();
+
+                        var connected = undefined;
+                        try {
+                            connected = yield decodeJwt(token, handshakeData.headers['user-agent']);
+                        } catch (err) {
+                            logger.info('failed to verify authentification', { err });
+                            return yield next();
+                        }
+                        logger.debug('middleware websocket', { connected });
+
+                        if (!connected) return yield next();
+
+                        var user = yield usersManager.findConnected(connected);
+
+                        if (!user) return yield next();
+
+                        socket.user = user;
+
+                        yield next();
+                    });
+
+                    return function (_x3, _x4) {
+                        return ref.apply(this, arguments);
+                    };
+                })());
+            })();
+        }
+
         return (() => {
             var ref = _asyncToGenerator(function* (ctx, next) {
-                let token = ctx.cookies.get(COOKIE_NAME);
+                var token = ctx.cookies.get(COOKIE_NAME);
                 logger.debug('middleware', { token });
+
                 if (!token) return yield next();
 
-                let connected;
+                var connected = undefined;
                 try {
-                    let decoded = yield (0, _jsonwebtoken.verify)(token, ctx.config.get('authentication').get('secretKey'), {
-                        algorithm: 'HS512',
-                        audience: ctx.request.headers['user-agent']
-                    });
-                    connected = decoded.connected;
+                    connected = yield decodeJwt(token, ctx.request.headers['user-agent']);
                 } catch (err) {
                     logger.info('failed to verify authentification', { err });
                     ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
@@ -147,7 +157,7 @@ function init(_ref) {
 
                 if (!connected) return yield next();
 
-                const user = yield usersManager.findConnected(connected);
+                var user = yield usersManager.findConnected(connected);
 
                 if (!user) {
                     ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
@@ -160,7 +170,7 @@ function init(_ref) {
                 yield next();
             });
 
-            return function (_x3, _x4) {
+            return function (_x5, _x6) {
                 return ref.apply(this, arguments);
             };
         })();
@@ -168,8 +178,8 @@ function init(_ref) {
 }
 
 function _inspect(input, depth) {
-    const maxDepth = 4;
-    const maxKeys = 15;
+    var maxDepth = 4;
+    var maxKeys = 15;
 
     if (depth === undefined) {
         depth = 0;
@@ -185,20 +195,30 @@ function _inspect(input, depth) {
         return typeof input;
     } else if (Array.isArray(input)) {
         if (input.length > 0) {
-            if (depth > maxDepth) return '[...]';
+            var _ret2 = function () {
+                if (depth > maxDepth) return {
+                        v: '[...]'
+                    };
 
-            const first = _inspect(input[0], depth);
+                var first = _inspect(input[0], depth);
 
-            if (input.every(item => _inspect(item, depth) === first)) {
-                return first.trim() + '[]';
-            } else {
-                return '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']';
-            }
+                if (input.every(item => _inspect(item, depth) === first)) {
+                    return {
+                        v: first.trim() + '[]'
+                    };
+                } else {
+                    return {
+                        v: '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
+                    };
+                }
+            }();
+
+            if (typeof _ret2 === "object") return _ret2.v;
         } else {
             return 'Array';
         }
     } else {
-        const keys = Object.keys(input);
+        var keys = Object.keys(input);
 
         if (!keys.length) {
             if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
@@ -209,8 +229,8 @@ function _inspect(input, depth) {
         }
 
         if (depth > maxDepth) return '{...}';
-        const indent = '  '.repeat(depth - 1);
-        let entries = keys.slice(0, maxKeys).map(key => {
+        var indent = '  '.repeat(depth - 1);
+        var entries = keys.slice(0, maxKeys).map(key => {
             return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
         }).join('\n  ' + indent);
 
@@ -225,4 +245,4 @@ function _inspect(input, depth) {
         }
     }
 }
-//# sourceMappingURL=index.server.js.map
+//# sourceMappingURL=index.js.map

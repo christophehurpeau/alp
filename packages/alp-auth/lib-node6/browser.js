@@ -33,4 +33,4 @@ function init(_ref) {
         }));
     };
 }
-//# sourceMappingURL=index.browser.js.map
+//# sourceMappingURL=browser.js.map

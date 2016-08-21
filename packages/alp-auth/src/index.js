@@ -72,25 +72,64 @@ export default function init({
             this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
         };
 
-        app.registerBrowserStateTransformers((initialBrowserState, ctx) => {
+        app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
             if (ctx.state.connected) {
                 initialBrowserState.connected = ctx.state.connected;
                 initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user);
             }
         });
 
+        const decodeJwt = (token, userAgent) => {
+            const result = verify(token, app.config.get('authentication').get('secretKey'), {
+                algorithm: 'HS512',
+                audience: userAgent,
+            });
+            return result && result.connected;
+        };
+
+        if (app.websocket) {
+            logger.debug('app has websocket');
+            // eslint-disable-next-line
+            const Cookies = require('cookies');
+
+            app.websocket.use(async (socket, next) => {
+                const handshakeData = socket.request;
+                const cookies = new Cookies(handshakeData, null, { keys: app.keys });
+                let token = cookies.get(COOKIE_NAME);
+                logger.debug('middleware websocket', { token });
+
+                if (!token) return await next();
+
+                let connected;
+                try {
+                    connected = await decodeJwt(token, handshakeData.headers['user-agent']);
+                } catch (err) {
+                    logger.info('failed to verify authentification', { err });
+                    return await next();
+                }
+                logger.debug('middleware websocket', { connected });
+
+                if (!connected) return await next();
+
+                const user = await usersManager.findConnected(connected);
+
+                if (!user) return await next();
+
+                socket.user = user;
+
+                await next();
+            });
+        }
+
         return async (ctx, next) => {
             let token = ctx.cookies.get(COOKIE_NAME);
             logger.debug('middleware', { token });
+
             if (!token) return await next();
 
             let connected;
             try {
-                let decoded = await verify(token, ctx.config.get('authentication').get('secretKey'), {
-                    algorithm: 'HS512',
-                    audience: ctx.request.headers['user-agent'],
-                });
-                connected = decoded.connected;
+                connected = await decodeJwt(token, ctx.request.headers['user-agent']);
             } catch (err) {
                 logger.info('failed to verify authentification', { err });
                 ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
