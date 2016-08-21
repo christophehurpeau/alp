@@ -1,3 +1,7 @@
+### v0.3.0
+
+- [`c3acac8`](https://github.com/alpjs/alp-auth/commit/c3acac87514ea3d827f53bed9e36798b6400593c) websocket auth (Christophe Hurpeau)
+
 ### v0.2.2
 
 - [`b2ed04c`](https://github.com/alpjs/alp-auth/commit/b2ed04c7b36281a48a57ba9797bf811d0e8650aa) update dependencies (Christophe Hurpeau)
