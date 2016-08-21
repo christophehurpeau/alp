@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = reload;
 
@@ -14,9 +14,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 let _reloadTimeout;
 
 function reload() {
-    if (_reloadTimeout) clearTimeout(_reloadTimeout);
-    _reloadTimeout = setTimeout(() => {
-        return _browserSync2.default.reload();
-    }, 1000);
+  if (_reloadTimeout) clearTimeout(_reloadTimeout);
+  _reloadTimeout = setTimeout(() => {
+    return _browserSync2.default.reload();
+  }, 1000);
 }
 //# sourceMappingURL=bs-reload.js.map

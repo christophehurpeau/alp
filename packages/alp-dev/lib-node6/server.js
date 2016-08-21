@@ -13,21 +13,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _pobBuild.clean)(); // const bsReload = require('./bs-reload');
 
 (0, _pobBuild.watch)().then(emitter => {
-    const daemon = (0, _springbokjsDaemon.node)(['--harmony', '--es_staging', 'lib-node6-dev/index.server.js', '--port', _minimistArgv2.default.proxyPort, '--version', `dev${ Date.now() }`]);
+  const daemon = (0, _springbokjsDaemon.node)(['--harmony', '--es_staging', 'lib-node6-dev/index.server.js', '--port', _minimistArgv2.default.proxyPort, '--version', `dev${ Date.now() }`]);
 
-    process.on('exit', () => {
-        if (daemon) {
-            daemon.stop();
-        }
-    });
+  process.on('exit', () => {
+    if (daemon) {
+      daemon.stop();
+    }
+  });
 
-    daemon.start();
+  daemon.start();
 
-    let _restartTimeout;
-    emitter.on('changed', () => {
-        if (_restartTimeout) clearTimeout(_restartTimeout);
-        daemon.args[daemon.args.length - 1] = `dev${ Date.now() }`;
-        _restartTimeout = daemon.restartTimeout(1000);
-    });
+  let _restartTimeout;
+  emitter.on('changed', () => {
+    if (_restartTimeout) clearTimeout(_restartTimeout);
+    daemon.args[daemon.args.length - 1] = `dev${ Date.now() }`;
+    _restartTimeout = daemon.restartTimeout(1000);
+  });
 });
 //# sourceMappingURL=server.js.map

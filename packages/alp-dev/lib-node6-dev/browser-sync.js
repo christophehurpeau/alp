@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 /**
  * https://github.com/BrowserSync/recipes/blob/master/recipes/webpack.react-hot-loader/app.js
@@ -26,45 +26,45 @@ const port = argv.port || 3000;
  * Run Browsersync and use middleware for Hot Module Replacement
  */
 exports.default = browserSync({
-    open: argv.open,
-    port: port,
-    ui: { port: port + 1 },
+  open: argv.open,
+  port: port,
+  ui: { port: port + 1 },
 
-    ghostMode: {
-        clicks: false,
-        forms: false,
-        scroll: true
-    },
+  ghostMode: {
+    clicks: false,
+    forms: false,
+    scroll: true
+  },
 
-    proxy: {
-        target: `localhost:${ argv.proxyPort }`,
-        proxyOptions: { xfwd: true },
-        middleware: [
-        // headers
-        function (req, res, next) {
-            if (!req.headers['X-Forwarded-Host']) {
-                req.headers['X-Forwarded-Host'] = req.headers.host;
-            }
-            next();
-        }, webpackDevMiddleware(bundler, {
-            // IMPORTANT: dev middleware can't access config, so we should
-            // provide publicPath by ourselves
-            publicPath: webpackConfig.output.publicPath,
+  proxy: {
+    target: `localhost:${ argv.proxyPort }`,
+    proxyOptions: { xfwd: true },
+    middleware: [
+    // headers
+    function (req, res, next) {
+      if (!req.headers['X-Forwarded-Host']) {
+        req.headers['X-Forwarded-Host'] = req.headers.host;
+      }
+      next();
+    }, webpackDevMiddleware(bundler, {
+      // IMPORTANT: dev middleware can't access config, so we should
+      // provide publicPath by ourselves
+      publicPath: webpackConfig.output.publicPath,
 
-            // pretty colored output
-            stats: { colors: true },
+      // pretty colored output
+      stats: { colors: true },
 
-            noInfo: true
-        }),
+      noInfo: true
+    }),
 
-        // bundler should be the same as above
-        webpackHotMiddleware(bundler)]
-    },
+    // bundler should be the same as above
+    webpackHotMiddleware(bundler)]
+  },
 
-    serveStatic: ['public'],
+  serveStatic: ['public'],
 
-    // no need to watch '*.js' here, webpack will take care of it for us,
-    // including full page reloads if HMR won't work
-    files: ['public/**/*.css']
+  // no need to watch '*.js' here, webpack will take care of it for us,
+  // including full page reloads if HMR won't work
+  files: ['public/**/*.css']
 });
 //# sourceMappingURL=browser-sync.js.map

@@ -56,10 +56,10 @@
     "portscanner": "^1.0.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "source-map-loader": "^0.1.5",
-    "springbokjs-daemon": "^1.0.1",
+    "springbokjs-daemon": "^1.1.1",
     "stylus": "^0.54.5",
     "through2": "^2.0.1",
-    "uglify-js": "github:christophehurpeau/UglifyJS2#harmony+patch",
+    "uglify-js": "mishoo/UglifyJS2#f870ae39efd2a4b56dbf9917942de3471e3fd3ed",
     "webpack": "^2.1.0-beta.21",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
@@ -71,8 +71,8 @@
     "babel-preset-stage-1": "^6.13.0",
     "eslint": "^3.3.1",
     "eslint-config-airbnb-base": "^5.0.2",
-    "eslint-config-pob": "^6.1.6",
+    "eslint-config-pob": "^7.0.1",
     "eslint-plugin-import": "^1.13.0",
-    "pob-release": "^2.1.0"
+    "pob-release": "^2.1.1"
   }
 }
