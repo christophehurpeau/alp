@@ -17,7 +17,8 @@
   "main": "lib/index.js",
   "bin": {
     "alp-dev": "./dev",
-    "alp-dev-build": "./dev-build"
+    "alp-dev-build": "./dev-build",
+    "alp-dev-build-config": "./dev-build"
   },
   "scripts": {
     "build": "pob-build",
