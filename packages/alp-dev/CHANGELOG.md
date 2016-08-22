@@ -1,3 +1,8 @@
+### v2.10.1
+
+- [`3f715e3`](https://github.com/alpjs/alp-dev/commit/3f715e30acb812721d061e49082dca1d06ea7011) update dependencies (Christophe Hurpeau)
+- [`4224ab1`](https://github.com/alpjs/alp-dev/commit/4224ab14d1b800815ba4d0b874dcda1f6f1caab4) alp-dev-build-config (Christophe Hurpeau)
+
 ### v2.10.0
 
 - [`8ba166e`](https://github.com/alpjs/alp-dev/commit/8ba166e63f20476bc450b76c67fd56a84134581e) webpack@2.1.0-beta.21 (Christophe Hurpeau)
