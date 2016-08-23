@@ -30,8 +30,7 @@
     "release": "pob-repository-check-clean && pob-release",
     "version": "pob-version",
     "watch": "pob-watch",
-    "watch:dev": "pob-watch",
-    "postinstall": "rm -Rf node_modules/alp-dev/node_modules/uglify-js"
+    "watch:dev": "pob-watch"
   },
   "dependencies": {
     "babel-core": "^6.13.2",
@@ -61,8 +60,7 @@
     "springbokjs-daemon": "^1.1.1",
     "stylus": "^0.54.5",
     "through2": "^2.0.1",
-    "uglify-js": "mishoo/UglifyJS2#harmony",
-    "webpack": "^2.1.0-beta.21",
+    "webpack": "christophehurpeau/webpack#7929b4fabae1e37956e3d30085f099a1f247f6e7",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
   },
