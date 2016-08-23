@@ -1,3 +1,7 @@
+### v2.11.1
+
+- [`0d617a6`](https://github.com/alpjs/alp-dev/commit/0d617a693ac69ffdab35ac448a2ac99fbf507f72) test postinstall (Christophe Hurpeau)
+
 ### v2.11.0
 
 - [`8298dd8`](https://github.com/alpjs/alp-dev/commit/8298dd8d931654c09433c12a76fc767f46f1bca7) uglify, production mode, modern-browsers (Christophe Hurpeau)
