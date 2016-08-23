@@ -1,3 +1,7 @@
+### v2.11.2
+
+- [`19adb0d`](https://github.com/alpjs/alp-dev/commit/19adb0db23db518e6f5c9abb8c02cf9fc49d96d6) fork webpack (Christophe Hurpeau)
+
 ### v2.11.1
 
 - [`0d617a6`](https://github.com/alpjs/alp-dev/commit/0d617a693ac69ffdab35ac448a2ac99fbf507f72) test postinstall (Christophe Hurpeau)

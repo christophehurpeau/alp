@@ -1,6 +1,6 @@
 {
   "name": "alp-dev",
-  "version": "2.11.1",
+  "version": "2.11.2",
   "description": "Config for webpack/browsersync/makefile for alp server",
   "keywords": [
     "alp",
