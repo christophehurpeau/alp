@@ -1,3 +1,7 @@
+### v2.11.0
+
+- [`8298dd8`](https://github.com/alpjs/alp-dev/commit/8298dd8d931654c09433c12a76fc767f46f1bca7) uglify, production mode, modern-browsers (Christophe Hurpeau)
+
 ### v2.10.1
 
 - [`3f715e3`](https://github.com/alpjs/alp-dev/commit/3f715e30acb812721d061e49082dca1d06ea7011) update dependencies (Christophe Hurpeau)
