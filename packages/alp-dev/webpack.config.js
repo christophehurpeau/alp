@@ -6,9 +6,11 @@ const createBabelOpts = require('pob-babel/lib/babel-options');
 
 const production = process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production';
 const dest = process.env.WEBPACK_DEST || 'modern-browsers';
+const modernBrowsers = dest === 'modern-browsers';
+// const modernBrowsers = false;
 
 const babelOptions = createBabelOpts(
-    `webpack${dest === 'modern-browsers' ? '-modern-browsers' : ''}${!production ? '-dev' : ''}`,
+    `webpack${modernBrowsers ? '-modern-browsers' : ''}${!production ? '-dev' : ''}`,
     true
 );
 
@@ -23,10 +25,11 @@ const modulesList = (() => {
 module.exports = {
     debug: !production,
     devtool: production ? undefined : 'cheap-source-map',
+    bail: true,
 
     entry: {
         [dest]: [
-            dest !== 'modern-browsers' && 'babel-regenerator-runtime',
+            !modernBrowsers && 'babel-regenerator-runtime',
             !production && 'webpack-hot-middleware/client',
             !production && 'react-hot-loader/patch',
             './src/index.browser.js',
@@ -41,15 +44,15 @@ module.exports = {
     module: {
         // Disable handling of unknown requires
         unknownContextRegExp: /$^/,
-        unknownContextCritical: true,
+        unknownContextCritical: false,
 
         // Disable handling of requires with a single expression
         exprContextRegExp: /$^/,
-        exprContextCritical: true,
+        exprContextCritical: false,
 
         // Disable handling of expression in require
         wrappedContextRegExp: /$^/,
-        wrappedContextCritical: true,
+        wrappedContextCritical: false,
         wrappedContextRecursive: false,
 
 
@@ -61,10 +64,16 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules)|\.server\.jsx?$/,
+                exclude: /\.server\.jsx?$/,
                 loader: 'babel',
                 include: path.resolve('src'),
-                query: babelOptions,
+                query: {
+                    compact: production,
+                    minified: production,
+                    comments: !production,
+                    presets: babelOptions.presets,
+                    plugins: babelOptions.plugins,
+                },
             },
         ],
     },
@@ -73,11 +82,11 @@ module.exports = {
     },
     resolve: {
         alias: { 'socket.io': 'socket.io-client' },
-        modules: ['browser/node_modules', 'node_modules'],
+        modules: ['node_modules'],
         extensions: ['', '.browser.js', '.js', '.browser.jsx', '.jsx', '.json'],
         mainFields: [
-            dest === 'modern-browsers' && !production && 'webpack:main-modern-browsers-dev',
-            dest === 'modern-browsers' && 'webpack:main-modern-browsers',
+            modernBrowsers && !production && 'webpack:main-modern-browsers-dev',
+            modernBrowsers && 'webpack:main-modern-browsers',
             !production && 'webpack:main-dev',
             'webpack:main',
             !production && 'browser-dev',
@@ -87,8 +96,8 @@ module.exports = {
             'main',
         ].filter(Boolean),
         aliasFields: [
-            dest === 'modern-browsers' && !production && 'webpack:aliases-modern-browsers-dev',
-            dest === 'modern-browsers' && 'webpack:aliases-modern-browsers',
+            modernBrowsers && !production && 'webpack:aliases-modern-browsers-dev',
+            modernBrowsers && 'webpack:aliases-modern-browsers',
             !production && 'webpack:aliases-dev',
             'webpack:aliases',
             'webpack',
@@ -105,14 +114,14 @@ module.exports = {
         }),
         new webpack.LoaderOptionsPlugin({
             debug: !production,
-            minimize: !production,
+            minimize: production,
         }),
         new webpack.DefinePlugin({
             BROWSER: true,
             SERVER: false,
-            NODE: false,
+            NODEJS: false,
             PRODUCTION: production,
-            MODERN_BROWSERS: dest === 'modern-browsers',
+            MODERN_BROWSERS: modernBrowsers,
             'process.env': {
                 NODE_ENV: JSON.stringify(production ? 'production' : process.env.NODE_ENV),
             },
@@ -123,18 +132,6 @@ module.exports = {
             mangle: false,
             compress: {
                 warnings: false,
-                // eslint-disable-next-line camelcase
-                drop_debugger: !!production,
-                unused: false,
-                comparisons: true,
-                sequences: false,
-            },
-            output: {
-                beautify: !production && {
-                    'max-line-len': 200,
-                    bracketize: true,
-                },
-                comments: !production && 'all',
             },
             sourceMap: !production,
         }),
