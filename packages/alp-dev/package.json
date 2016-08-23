@@ -31,7 +31,7 @@
     "version": "pob-version",
     "watch": "pob-watch",
     "watch:dev": "pob-watch",
-    "postinstall": "rm -Rf node_modules/uglify-js"
+    "postinstall": "rm -Rf node_modules/alp-dev/node_modules/uglify-js"
   },
   "dependencies": {
     "babel-core": "^6.13.2",
