@@ -1,3 +1,7 @@
+### v2.13.0
+
+- [`c643df1`](https://github.com/alpjs/alp-dev/commit/c643df1991b78e924a1d9f7d690012b8148e7185) update dependencies (Christophe Hurpeau)
+
 ### v2.12.0
 
 - [`4a18966`](https://github.com/alpjs/alp-dev/commit/4a18966609cec5c71a81a5f393bc39bbe74d7e6c) stylus include css (Christophe Hurpeau)
