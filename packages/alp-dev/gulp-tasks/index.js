@@ -54,6 +54,7 @@ function buildStylus() {
     return gulp.src(['styles/*.styl', '!styles/_*'])
         .pipe(sourcemaps.init())
         .pipe(stylus({
+            'include css': true,
             paths: ['node_modules'],
         }))
         .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
