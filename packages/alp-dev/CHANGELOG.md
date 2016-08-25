@@ -1,3 +1,7 @@
+### v2.12.0
+
+- [`4a18966`](https://github.com/alpjs/alp-dev/commit/4a18966609cec5c71a81a5f393bc39bbe74d7e6c) stylus include css (Christophe Hurpeau)
+
 ### v2.11.2
 
 - [`19adb0d`](https://github.com/alpjs/alp-dev/commit/19adb0db23db518e6f5c9abb8c02cf9fc49d96d6) fork webpack (Christophe Hurpeau)
