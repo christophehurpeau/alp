@@ -32,7 +32,7 @@ var AlpBrowser = function (_Ibex) {
 
     _classCallCheck(this, AlpBrowser);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AlpBrowser).call(this));
+    var _this = _possibleConstructorReturn(this, (AlpBrowser.__proto__ || Object.getPrototypeOf(AlpBrowser)).call(this));
 
     _this.path = path;
 
