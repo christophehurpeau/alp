@@ -27,11 +27,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 const logger = new _nightingaleLogger2.default('alp.migrations');
 
-process.on('unhandledRejection', err => {
-    logger.error('unhandledRejection', { err });
-    process.exit(1);
-});
-
 exports.MigrationsManager = _Manager2.default;
 
 exports.default = (() => {
@@ -39,6 +34,12 @@ exports.default = (() => {
         let config = _ref2.config;
         let dirname = _ref2.dirname;
         let migrationsManager = _ref2.migrationsManager;
+
+        const unhandledRejectionHandler = function unhandledRejectionHandler(err) {
+            logger.error('unhandledRejection', { err });
+            process.exit(1);
+        };
+        process.on('unhandledRejection', unhandledRejectionHandler);
 
         const packageVersion = config.packageConfig.version;
         let currentVersion = yield migrationsManager.findLastVersion();
@@ -93,6 +94,8 @@ exports.default = (() => {
             logger.error(err);
             process.exit(1);
         }
+
+        process.removeListener('unhandledRejection', unhandledRejectionHandler);
     });
 
     function migrate(_x) {

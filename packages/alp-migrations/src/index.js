@@ -4,14 +4,15 @@ import readRecursiveDirectory from './readRecursiveDirectory';
 
 const logger = new Logger('alp.migrations');
 
-process.on('unhandledRejection', (err) => {
-    logger.error('unhandledRejection', { err });
-    process.exit(1);
-});
-
 export MigrationsManager from './Manager';
 
 export default async function migrate({ config, dirname, migrationsManager }) {
+    const unhandledRejectionHandler = (err) => {
+        logger.error('unhandledRejection', { err });
+        process.exit(1);
+    };
+    process.on('unhandledRejection', unhandledRejectionHandler);
+
     const packageVersion = config.packageConfig.version;
     let currentVersion = await migrationsManager.findLastVersion();
     let migrations = [];
@@ -63,4 +64,6 @@ export default async function migrate({ config, dirname, migrationsManager }) {
         logger.error(err);
         process.exit(1);
     }
+
+    process.removeListener('unhandledRejection', unhandledRejectionHandler);
 }
