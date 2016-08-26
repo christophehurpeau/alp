@@ -1,3 +1,9 @@
+### v1.4.0
+
+- [`3a07307`](https://github.com/alpjs/alp-language/commit/3a073072eccb0e3c61b86d3fd6c68640357dc5bb) 1.3.0 (Christophe Hurpeau)
+- [`16e2370`](https://github.com/alpjs/alp-language/commit/16e2370234bf226ca79d76daf1e4a0a812cc51f2) remove duplicate npm run build (Christophe Hurpeau)
+- [`61a8720`](https://github.com/alpjs/alp-language/commit/61a87200c74192fce44ec6ac7d50831716562782) pob update and readme (Christophe Hurpeau)
+
 ### v1.3.0
 
 - [`9fc849e`](https://github.com/alpjs/alp-language/commit/9fc849e7fedc266ec727253e331b8c07a4d5ba98) update depdencies (Christophe Hurpeau)
