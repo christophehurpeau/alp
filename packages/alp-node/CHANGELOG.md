@@ -1,3 +1,7 @@
+### v0.17.0
+
+- [`96aa261`](https://github.com/alpjs/alp-node/commit/96aa2618d22fbf74377a884a173122e6d5e738f9) update dependencies (Christophe Hurpeau)
+
 ### v0.16.0
 
 - [`607f2b4`](https://github.com/alpjs/alp-node/commit/607f2b4e0e8aaa0a31ab55d65cca71817b80d228) remove alp-limosa (Christophe Hurpeau)
