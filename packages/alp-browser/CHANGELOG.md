@@ -1,3 +1,7 @@
+### v0.16.0
+
+- [`fcf2629`](https://github.com/alpjs/alp-browser/commit/fcf26292c8a5d5aaa4ea2f18ac16f5f35d2ca11b) update dependencies (Christophe Hurpeau)
+
 ### v0.15.0
 
 - [`1d873cb`](https://github.com/alpjs/alp-browser/commit/1d873cb7deb0c1976a40065bc5ae840a230d5b4b) remove alp-limosa (Christophe Hurpeau)
