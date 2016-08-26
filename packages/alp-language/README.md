@@ -30,3 +30,13 @@ const app = new Ibex();
 config('/config')(app);
 language(app);
 ```
+
+## context
+
+### language: string
+
+First accepted language in the header / in `navigator.languages` contained in `availableLanguages`, or the first language in `availableLanguages`.
+
+### firstAcceptedLanguage: string
+
+The first accepted language in the header / in `navigator.languages` regardless of `availableLanguages`. Can be a locale. Usefull for date/time/...
