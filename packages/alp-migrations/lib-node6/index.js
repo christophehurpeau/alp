@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.MigrationsManager = undefined;
 
@@ -30,78 +30,74 @@ const logger = new _nightingaleLogger2.default('alp.migrations');
 exports.MigrationsManager = _Manager2.default;
 
 exports.default = (() => {
-    var _ref = _asyncToGenerator(function* (_ref2) {
-        let config = _ref2.config;
-        let dirname = _ref2.dirname;
-        let migrationsManager = _ref2.migrationsManager;
+  var _ref = _asyncToGenerator(function* (_ref2) {
+    let config = _ref2.config;
+    let dirname = _ref2.dirname;
+    let migrationsManager = _ref2.migrationsManager;
 
-        const unhandledRejectionHandler = function unhandledRejectionHandler(err) {
-            logger.error('unhandledRejection', { err });
-            process.exit(1);
-        };
-        process.on('unhandledRejection', unhandledRejectionHandler);
+    const unhandledRejectionHandler = function unhandledRejectionHandler(err) {
+      logger.error('unhandledRejection', { err });
+      process.exit(1);
+    };
+    process.on('unhandledRejection', unhandledRejectionHandler);
 
-        const packageVersion = config.packageConfig.version;
-        let currentVersion = yield migrationsManager.findLastVersion();
-        let migrations = [];
+    const packageVersion = config.packageConfig.version;
+    let currentVersion = yield migrationsManager.findLastVersion();
+    let migrations = [];
 
-        logger.info('migrate', { packageVersion, currentVersion });
+    logger.info('migrate', { packageVersion, currentVersion });
 
-        yield (0, _readRecursiveDirectory2.default)(dirname, function (res) {
-            let fileName = res.path.substr(dirname.length + 1);
+    yield (0, _readRecursiveDirectory2.default)(dirname, function (res) {
+      let fileName = res.path.substr(dirname.length + 1);
 
-            if (fileName.slice(-3) !== '.js') {
-                return;
-            }
+      if (fileName.slice(-3) !== '.js') {
+        return;
+      }
 
-            let version = /([\d\.]+)(_.*|\.js)$/.exec(fileName);
+      let version = /([\d\.]+)(_.*|\.js)$/.exec(fileName);
 
-            if (!version || !version[1]) {
-                return;
-            }
+      if (!version || !version[1]) {
+        return;
+      }
 
-            version = version[1];
+      version = version[1];
 
-            if (currentVersion && _semver2.default.lte(version, currentVersion) || _semver2.default.gt(version, packageVersion)) {
-                return;
-            }
+      if (currentVersion && _semver2.default.lte(version, currentVersion)) return;
+      if (_semver2.default.gt(version, packageVersion)) return;
 
-            migrations.push({ version: version, fileName: fileName });
-        });
-
-        migrations = migrations.sort(function (a, b) {
-            return _semver2.default.gt(a.version, b.version);
-        });
-
-        try {
-            for (let migration of migrations) {
-                // logger.info('Migration to ' + migration.fileName);
-                console.log(`Migration to ${ migration.version }`);
-                try {
-                    // eslint-disable-next-line global-require
-                    yield require(`${ dirname }/${ migration.fileName }`).default();
-                } catch (err) {
-                    // logger.error('Migration to ' + migration.version + ' Failed !');
-                    console.log(`Migration to ${ migration.version } Failed !`);
-                    throw err;
-                }
-
-                // logger.success('Migration to ' + migration.fileName + ' done !');
-                console.log(`Migration to ${ migration.fileName } done !`);
-                yield migrationsManager.addMigrationDone(migration);
-            }
-        } catch (err) {
-            logger.error(err);
-            process.exit(1);
-        }
-
-        process.removeListener('unhandledRejection', unhandledRejectionHandler);
+      migrations.push({ version: version, fileName: fileName });
     });
 
-    function migrate(_x) {
-        return _ref.apply(this, arguments);
+    migrations = migrations.sort(function (a, b) {
+      return _semver2.default.gt(a.version, b.version);
+    });
+
+    try {
+      for (let migration of migrations) {
+        logger.info(`Migration to ${ migration.fileName }`);
+        try {
+          // eslint-disable-next-line global-require
+          yield require(`${ dirname }/${ migration.fileName }`).default();
+        } catch (err) {
+          logger.error(`Migration to ${ migration.version } Failed !`);
+          throw err;
+        }
+
+        logger.success(`Migration to ${ migration.fileName } done !`);
+        yield migrationsManager.addMigrationDone(migration);
+      }
+    } catch (err) {
+      logger.error(err);
+      process.exit(1);
     }
 
-    return migrate;
+    process.removeListener('unhandledRejection', unhandledRejectionHandler);
+  });
+
+  function migrate(_x) {
+    return _ref.apply(this, arguments);
+  }
+
+  return migrate;
 })();
 //# sourceMappingURL=index.js.map
