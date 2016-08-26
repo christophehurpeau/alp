@@ -1,3 +1,8 @@
+### v3.1.0
+
+- [`89954f5`](https://github.com/alpjs/alp-websocket/commit/89954f5128540fb2609af2e664c66e6c7f7f7c79) remove duplicate npm run build (Christophe Hurpeau)
+- [`964031c`](https://github.com/alpjs/alp-websocket/commit/964031c60d39ebd231cb19c7ec80409f3a38978b) pob update (Christophe Hurpeau)
+
 ### v3.0.2
 
 - [`9f8d130`](https://github.com/alpjs/alp-websocket/commit/9f8d1305ab4cb13372a0a2f3f66008e0ecea0501) fix error and update dependencies (Christophe Hurpeau)
