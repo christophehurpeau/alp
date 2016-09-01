@@ -10,15 +10,13 @@
   "main": "./index.js",
   "scripts": {
     "build": "pob-build",
-    "build:dev": "pob-build",
     "clean": "rm -Rf docs dist test/node6 coverage",
     "lint": "eslint --ext .js,.jsx --fix src/",
     "prepublish": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit 2>/dev/null || true ; ln -s ../../git-hooks/post-checkout .git/hooks/post-checkout 2>/dev/null || true ; ln -s ../../git-hooks/post-merge .git/hooks/post-merge 2>/dev/null || true",
     "preversion": "npm run lint && npm run build && pob-repository-check-clean",
     "release": "pob-repository-check-clean && pob-release",
     "version": "pob-version",
-    "watch": "pob-watch",
-    "watch:dev": "pob-watch"
+    "watch": "pob-watch"
   },
   "dependencies": {
     "nightingale-logger": "^1.2.0",
