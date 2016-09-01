@@ -63,7 +63,6 @@ exports.default = (() => {
       version = version[1];
 
       if (currentVersion && _semver2.default.lte(version, currentVersion)) return;
-      if (_semver2.default.gt(version, packageVersion)) return;
 
       migrations.push({ version: version, fileName: fileName });
     });
@@ -84,7 +83,11 @@ exports.default = (() => {
         }
 
         logger.success(`Migration to ${ migration.fileName } done !`);
-        yield migrationsManager.addMigrationDone(migration);
+
+        // only add to db if migration version <= package version
+        if (!_semver2.default.gt(migration.version, packageVersion)) {
+          yield migrationsManager.addMigrationDone(migration);
+        }
       }
     } catch (err) {
       logger.error(err);

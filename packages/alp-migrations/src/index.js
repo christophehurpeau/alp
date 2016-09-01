@@ -35,7 +35,6 @@ export default async function migrate({ config, dirname, migrationsManager }) {
     version = version[1];
 
     if (currentVersion && semver.lte(version, currentVersion)) return;
-    if (semver.gt(version, packageVersion)) return;
 
     migrations.push({ version: version, fileName: fileName });
   });
@@ -54,7 +53,11 @@ export default async function migrate({ config, dirname, migrationsManager }) {
       }
 
       logger.success(`Migration to ${migration.fileName} done !`);
-      await migrationsManager.addMigrationDone(migration);
+
+      // only add to db if migration version <= package version
+      if (!semver.gt(migration.version, packageVersion)) {
+        await migrationsManager.addMigrationDone(migration);
+      }
     }
   } catch (err) {
     logger.error(err);
