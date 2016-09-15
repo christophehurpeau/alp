@@ -1,3 +1,8 @@
+### v4.0.2
+
+- [`5e8fef3`](https://github.com/alpjs/ibex/commit/5e8fef3c41641dddae11a13614115a9d82283cc2) compose more info when error (Christophe Hurpeau)
+- [`8426aaa`](https://github.com/alpjs/ibex/commit/8426aaa46bfb06e715b8c054dee4cebf385c5c21) pob and fix querystring import (Christophe Hurpeau)
+
 ### v4.0.1
 
 - [`a17646f`](https://github.com/alpjs/ibex/commit/a17646f9d3ca5b785e8af792c8588c4f8a618686) missing param redirect (Christophe Hurpeau)
