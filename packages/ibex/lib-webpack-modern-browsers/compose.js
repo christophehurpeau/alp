@@ -1,28 +1,28 @@
 /* global PRODUCTION */
 // create lib
 export default function compose(middleware) {
-    return function (ctx) {
-        var index = -1;
-        return function dispatch(i) {
-            if (i <= index) {
-                return Promise.reject(new Error(false));
-            }
-            index = i; // #if !PRODUCTION
+  return function (ctx) {
+    var index = -1;
+    return function dispatch(i) {
+      if (i <= index) {
+        return Promise.reject(new Error(false));
+      }
+      ; //defines: #if !PRODUCTION = !true
 
-            var fn = middleware[i];
+      var fn = middleware[i];
 
 
-            var called = false;
-            try {
-                return Promise.resolve(fn.call(ctx, ctx, () => {
-                    if (called) throw new Error(false);
-                    called = true;
-                    return dispatch(i + 1);
-                }));
-            } catch (e) {
-                return Promise.reject(e);
-            }
-        }(0);
-    };
+      var called = false;
+      try {
+        return Promise.resolve(fn.call(ctx, ctx, () => {
+          if (called) throw new Error(false);
+          called = true;
+          return dispatch(i + 1);
+        }));
+      } catch (e) {
+        return Promise.reject(e);
+      }
+    }(0);
+  };
 }
 //# sourceMappingURL=compose.js.map
