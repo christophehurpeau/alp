@@ -32,6 +32,10 @@ Object.defineProperty(exports, 'MigrationsManager', {
   }
 });
 
+var _tcombForked = require('tcomb-forked');
+
+var _tcombForked2 = _interopRequireDefault(_tcombForked);
+
 var _util = require('util');
 
 var _koa = require('koa');
@@ -95,25 +99,14 @@ class Alp extends _koa2.default {
     if (!options.srcDirname) options.srcDirname = `${ options.packageDirname }/lib`;
 
     this.dirname = options.srcDirname;
-
-    if (!(typeof this.dirname === 'string')) {
-      throw new TypeError('Value of "this.dirname" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(this.dirname));
-    }
-
     Object.defineProperty(this, 'packageDirname', {
-      get: (0, _util.deprecate)(() => {
-        return options.packageDirname;
-      }, 'packageDirname'),
+      get: (0, _util.deprecate)(() => options.packageDirname, 'packageDirname'),
       configurable: false,
       enumerable: false
     });
 
     if (!options.config) {
-      (0, _util.deprecate)(() => {
-        return () => {
-          return null;
-        };
-      }, 'Alp options: missing options.config')();
+      (0, _util.deprecate)(() => () => null, 'Alp options: missing options.config')();
       // eslint-disable-next-line
       const packageConfig = require(`${ options.packageDirname }/package.json`);
       (0, _alpConfig2.default)(`${ this.dirname }/config`, { packageConfig, argv: options.argv })(this);
@@ -128,79 +121,52 @@ class Alp extends _koa2.default {
     this.use((0, _koaCompress2.default)());
 
     this.browserStateTransformers = [];
-
-    if (!(Array.isArray(this.browserStateTransformers) && this.browserStateTransformers.every(function (item) {
-      return typeof item === 'function';
-    }))) {
-      throw new TypeError('Value of "this.browserStateTransformers" violates contract.\n\nExpected:\nArray<Function>\n\nGot:\n' + _inspect(this.browserStateTransformers));
-    }
-
     this.browserContextTransformers = [(initialBrowserContext, context) => {
       initialBrowserContext.state = Object.create(null);
-      this.browserStateTransformers.forEach(transformer => {
-        return transformer(initialBrowserContext.state, context);
-      });
+      this.browserStateTransformers.forEach(transformer => transformer(initialBrowserContext.state, context));
     }];
 
     this.context.computeInitialContextForBrowser = function () {
       const initialBrowserContext = Object.create(null);
 
-      this.app.browserContextTransformers.forEach(transformer => {
-        return transformer(initialBrowserContext, this);
-      });
+      this.app.browserContextTransformers.forEach(transformer => transformer(initialBrowserContext, this));
 
       return initialBrowserContext;
     };
   }
 
   registerBrowserContextTransformer(transformer) {
-    if (!(typeof transformer === 'function')) {
-      throw new TypeError('Value of argument "transformer" violates contract.\n\nExpected:\nFunction\n\nGot:\n' + _inspect(transformer));
-    }
+    _assert(transformer, _tcombForked2.default.Function, 'transformer');
 
     this.browserContextTransformers.push(transformer);
   }
 
   registerBrowserStateTransformer(transformer) {
-    if (!(typeof transformer === 'function')) {
-      throw new TypeError('Value of argument "transformer" violates contract.\n\nExpected:\nFunction\n\nGot:\n' + _inspect(transformer));
-    }
+    _assert(transformer, _tcombForked2.default.Function, 'transformer');
 
     this.browserStateTransformers.push(transformer);
   }
 
   registerBrowserStateTransformers(transformer) {
-    (0, _util.deprecate)(() => {
-      return () => {
-        return null;
-      };
-    }, 'breaking: use registerBrowserStateTransformer instead')();
+    (0, _util.deprecate)(() => () => null, 'breaking: use registerBrowserStateTransformer instead')();
     this.browserStateTransformers.push(transformer);
   }
 
   migrate(migrationsManager) {
     return (0, _alpMigrations2.default)({
       config: this.config,
-      dirname: this.dirname,
+      dirname: `${ this.dirname }/migrations`,
       migrationsManager
     });
   }
 
   get environment() {
-    (0, _util.deprecate)(() => {
-      return () => {
-        return null;
-      };
-    }, 'app.environment, use app.env instead')();
+    (0, _util.deprecate)(() => () => null, 'app.environment, use app.env instead')();
     return this.env;
   }
 
   get production() {
-    (0, _util.deprecate)(() => {
-      return () => {
-        return null;
-      };
-    }, 'app.production, use global.PRODUCTION instead')();
+    (0, _util.deprecate)(() => () => null, 'app.production, use global.PRODUCTION instead')();
     return this.env === 'prod' || this.env === 'production';
   }
   servePublic() {
@@ -220,62 +186,21 @@ class Alp extends _koa2.default {
 }
 exports.default = Alp;
 
-function _inspect(input, depth) {
-  const maxDepth = 4;
-  const maxKeys = 15;
-
-  if (depth === undefined) {
-    depth = 0;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
   }
 
-  depth += 1;
+  if (_tcombForked2.default.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
 
-  if (input === null) {
-    return 'null';
-  } else if (input === undefined) {
-    return 'void';
-  } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-    return typeof input;
-  } else if (Array.isArray(input)) {
-    if (input.length > 0) {
-      if (depth > maxDepth) return '[...]';
-
-      const first = _inspect(input[0], depth);
-
-      if (input.every(item => _inspect(item, depth) === first)) {
-        return first.trim() + '[]';
-      } else {
-        return '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']';
-      }
-    } else {
-      return 'Array';
+      _tcombForked2.default.fail(message());
     }
-  } else {
-    const keys = Object.keys(input);
-
-    if (!keys.length) {
-      if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-        return input.constructor.name;
-      } else {
-        return 'Object';
-      }
-    }
-
-    if (depth > maxDepth) return '{...}';
-    const indent = '  '.repeat(depth - 1);
-    let entries = keys.slice(0, maxKeys).map(key => {
-      return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-    }).join('\n  ' + indent);
-
-    if (keys.length >= maxKeys) {
-      entries += '\n  ' + indent + '...';
-    }
-
-    if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-      return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-    } else {
-      return '{\n  ' + indent + entries + '\n' + indent + '}';
-    }
+  } else if (!(x instanceof type)) {
+    _tcombForked2.default.fail(message());
   }
+
+  return x;
 }
 //# sourceMappingURL=index.js.map
