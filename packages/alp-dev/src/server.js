@@ -4,7 +4,7 @@ import { node as nodeDaemon } from 'springbokjs-daemon/src';
 import { clean, watch } from './pob-build';
 
 clean();
-watch().then(emitter => {
+watch().then((emitter) => {
   const daemon = nodeDaemon([
     '--harmony',
     '--es_staging',

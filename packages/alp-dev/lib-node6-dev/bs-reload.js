@@ -15,8 +15,6 @@ let _reloadTimeout;
 
 function reload() {
   if (_reloadTimeout) clearTimeout(_reloadTimeout);
-  _reloadTimeout = setTimeout(() => {
-    return _browserSync2.default.reload();
-  }, 1000);
+  _reloadTimeout = setTimeout(() => _browserSync2.default.reload(), 1000);
 }
 //# sourceMappingURL=bs-reload.js.map

@@ -19,8 +19,8 @@ module.exports = function loadConfigFile(content, dest, dirname) {
     includePaths
       .map(includePath => readFileSync(includePath))
       .map((content, index) => loadConfigFile(content, dest, path.dirname(includePaths[index])))
-      .forEach(includeConfig => {
-        Object.keys(includeConfig).forEach(key => {
+      .forEach((includeConfig) => {
+        Object.keys(includeConfig).forEach((key) => {
           if (!(key in config)) {
             config[key] = includeConfig[key];
             return;

@@ -24,14 +24,8 @@ module.exports = function loadConfigFile(content, dest, dirname) {
   }
 
   if (data.include) {
-    const includePaths = data.include.map(includePath => {
-      return path.resolve(dirname, includePath);
-    });
-    includePaths.map(includePath => {
-      return readFileSync(includePath);
-    }).map((content, index) => {
-      return loadConfigFile(content, dest, path.dirname(includePaths[index]));
-    }).forEach(includeConfig => {
+    const includePaths = data.include.map(includePath => path.resolve(dirname, includePath));
+    includePaths.map(includePath => readFileSync(includePath)).map((content, index) => loadConfigFile(content, dest, path.dirname(includePaths[index]))).forEach(includeConfig => {
       Object.keys(includeConfig).forEach(key => {
         if (!(key in config)) {
           config[key] = includeConfig[key];
