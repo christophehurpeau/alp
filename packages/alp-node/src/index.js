@@ -95,7 +95,7 @@ export default class Alp extends Koa {
   migrate(migrationsManager) {
     return migrations({
       config: this.config,
-      dirname: this.dirname,
+      dirname: `${this.dirname}/migrations`,
       migrationsManager,
     });
   }
