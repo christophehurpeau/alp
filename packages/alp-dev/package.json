@@ -53,7 +53,7 @@
     "js-yaml": "^3.6.1",
     "minimist-argv": "^1.0.0",
     "offline-plugin": "^3.4.2",
-    "pob-babel": "^8.0.1",
+    "pob-babel": "^8.0.3",
     "portscanner": "^1.0.0",
     "react-hot-loader": "^3.0.0-beta.4",
     "source-map-loader": "^0.1.5",
@@ -61,13 +61,12 @@
     "stylus": "^0.54.5",
     "through2": "^2.0.1",
     "webpack": "christophehurpeau/webpack#7929b4fabae1e37956e3d30085f099a1f247f6e7",
-    "webpack-dev-middleware": "^1.7.0",
+    "webpack-dev-middleware": "^1.8.1",
     "webpack-hot-middleware": "^2.12.2"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "babel-preset-es2015-node6": "^0.3.0",
-    "babel-preset-flow": "^1.0.0",
     "babel-preset-stage-1": "^6.13.0",
     "eslint": "^3.5.0",
     "eslint-config-airbnb-base": "^7.1.0",
