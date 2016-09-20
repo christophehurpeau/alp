@@ -1,3 +1,7 @@
+### v2.15.0
+
+- [`9574881`](https://github.com/alpjs/alp-dev/commit/9574881556a20929b803052797a3d985a33f29a7) update dependencies (Christophe Hurpeau)
+
 ### v2.14.0
 
 - [`2d5bcf5`](https://github.com/alpjs/alp-dev/commit/2d5bcf5e5cebc917936b4747564bd8cb3aaac210) update dependencies (Christophe Hurpeau)
