@@ -19,17 +19,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* global location, window, confirm */
 const logger = new _nightingaleLogger2.default('alp.websocket');
 let socket;
+let successfullConnection = false;
+let connected = false;
 
 const websocket = exports.websocket = {
+  get socket() {
+    return socket;
+  },
+  get connected() {
+    return connected;
+  },
   on,
   off,
   emit,
-  isConnected
+  isConnected,
+  isDisconnected
 };
 
 function alpWebsocket(app, namespaceName) {
   start(app, namespaceName);
-  websocket.socket = socket;
   return socket;
 }
 
@@ -64,10 +72,18 @@ function start(_ref) {
 
   socket.on('connect', () => {
     logger.success('connected');
+    successfullConnection = true;
+    connected = true;
+  });
+
+  socket.on('reconnect', () => {
+    logger.success('reconnected');
+    connected = true;
   });
 
   socket.on('disconnect', () => {
     logger.warn('disconnected');
+    connected = false;
   });
 
   socket.on('hello', _ref2 => {
@@ -114,6 +130,11 @@ function off(type, handler) {
 }
 
 function isConnected() {
-  return socket && socket.connected;
+  // socket.connected is not updated after reconnect event
+  return socket && connected;
+}
+
+function isDisconnected() {
+  return successfullConnection && !isConnected();
 }
 //# sourceMappingURL=browser.js.map

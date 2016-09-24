@@ -68,12 +68,8 @@ function start(config, dirname) {
   })();
 
   logger.info('Starting', { port });
-  server.listen(port, () => {
-    return logger.info('Listening', { port });
-  });
-  server.on('error', err => {
-    return logger.error(err);
-  });
+  server.listen(port, () => logger.info('Listening', { port }));
+  server.on('error', err => logger.error(err));
   io = socketio(server);
 
   io.on('connection', socket => {
@@ -85,9 +81,7 @@ function start(config, dirname) {
     });
   });
 
-  io.on('error', err => {
-    return logger.error(err);
-  });
+  io.on('error', err => logger.error(err));
 
   return io;
 }

@@ -1,20 +1,29 @@
+import _t from 'tcomb-forked';
 /* global location, window, confirm */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
 var logger = new Logger('alp.websocket');
 var socket = undefined;
+var successfullConnection = false;
+var connected = false;
 
 export var websocket = {
+  get socket() {
+    return socket;
+  },
+  get connected() {
+    return connected;
+  },
   on,
   off,
   emit,
-  isConnected
+  isConnected,
+  isDisconnected
 };
 
 export default function alpWebsocket(app, namespaceName) {
   start(app, namespaceName);
-  websocket.socket = socket;
   return socket;
 }
 
@@ -49,10 +58,18 @@ function start(_ref) {
 
   socket.on('connect', () => {
     logger.success('connected');
+    successfullConnection = true;
+    connected = true;
+  });
+
+  socket.on('reconnect', () => {
+    logger.success('reconnected');
+    connected = true;
   });
 
   socket.on('disconnect', () => {
     logger.warn('disconnected');
+    connected = false;
   });
 
   socket.on('hello', _ref2 => {
@@ -74,19 +91,21 @@ function emit() {
     args[_key] = arguments[_key];
   }
 
-  logger.debug('emit', { args });
-  return new Promise((resolve, reject) => {
-    var resolved = setTimeout(() => {
-      logger.warn('websocket emit timeout', { args });
-      reject(new Error('websocket response timeout'));
-    }, 10000);
+  return _assert(function () {
+    logger.debug('emit', { args });
+    return new Promise((resolve, reject) => {
+      var resolved = setTimeout(() => {
+        logger.warn('websocket emit timeout', { args });
+        reject(new Error('websocket response timeout'));
+      }, 10000);
 
-    socket.emit(...args, (error, result) => {
-      clearTimeout(resolved);
-      if (error != null) return reject(error);
-      resolve(result);
+      socket.emit(...args, (error, result) => {
+        clearTimeout(resolved);
+        if (error != null) return reject(error);
+        resolve(result);
+      });
     });
-  });
+  }.apply(this, arguments), _t.Promise, 'return value');
 }
 
 function on(type, handler) {
@@ -99,75 +118,33 @@ function off(type, handler) {
 }
 
 function isConnected() {
-  return socket && socket.connected;
+  // socket.connected is not updated after reconnect event
+  return socket && connected;
 }
 
-function _inspect(input, depth) {
-  var maxDepth = 4;
-  var maxKeys = 15;
+function isDisconnected() {
+  return successfullConnection && !isConnected();
+}
 
-  if (depth === undefined) {
-    depth = 0;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
   }
 
-  depth += 1;
+  if (_t.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _t.getTypeName(type)]);
 
-  if (input === null) {
-    return 'null';
-  } else if (input === undefined) {
-    return 'void';
-  } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-    return typeof input;
-  } else if (Array.isArray(input)) {
-    if (input.length > 0) {
-      var _ret = function () {
-        if (depth > maxDepth) return {
-            v: '[...]'
-          };
-
-        var first = _inspect(input[0], depth);
-
-        if (input.every(item => _inspect(item, depth) === first)) {
-          return {
-            v: first.trim() + '[]'
-          };
-        } else {
-          return {
-            v: '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-          };
-        }
-      }();
-
-      if (typeof _ret === "object") return _ret.v;
-    } else {
-      return 'Array';
-    }
-  } else {
-    var keys = Object.keys(input);
-
-    if (!keys.length) {
-      if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-        return input.constructor.name;
-      } else {
-        return 'Object';
-      }
+      _t.fail(message());
     }
 
-    if (depth > maxDepth) return '{...}';
-    var indent = '  '.repeat(depth - 1);
-    var entries = keys.slice(0, maxKeys).map(key => {
-      return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-    }).join('\n  ' + indent);
-
-    if (keys.length >= maxKeys) {
-      entries += '\n  ' + indent + '...';
-    }
-
-    if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-      return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-    } else {
-      return '{\n  ' + indent + entries + '\n' + indent + '}';
-    }
+    return type(x);
   }
+
+  if (!(x instanceof type)) {
+    _t.fail(message());
+  }
+
+  return x;
 }
 //# sourceMappingURL=browser.js.map
