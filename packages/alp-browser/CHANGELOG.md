@@ -1,3 +1,7 @@
+### v0.17.0
+
+- [`e6096b0`](https://github.com/alpjs/alp-browser/commit/e6096b00aaf2cf03d7b075b69f3de46af130607a) chore(package) update dependencies (Christophe Hurpeau)
+
 ### v0.16.0
 
 - [`fcf2629`](https://github.com/alpjs/alp-browser/commit/fcf26292c8a5d5aaa4ea2f18ac16f5f35d2ca11b) update dependencies (Christophe Hurpeau)
