@@ -33,9 +33,7 @@ function readRecursiveDirectory(directory, callback) {
             }
           });
         });
-      })).then(() => {
-        return resolve();
-      });
+      })).then(() => resolve());
     });
   });
 }
