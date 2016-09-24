@@ -1,3 +1,7 @@
+### v0.18.0
+
+- [`1b32856`](https://github.com/alpjs/alp-node/commit/1b328565ffd54237e4fcb1a75838622aca072424) update dependencies (Christophe Hurpeau)
+
 ### v0.17.1
 
 - [`8f91262`](https://github.com/alpjs/alp-node/commit/8f912624e8f5d2d032604b2fb98687522886232d) use dirname/migrations (Christophe Hurpeau)
