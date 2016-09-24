@@ -1,3 +1,9 @@
+### v3.2.0
+
+- [`509172b`](https://github.com/alpjs/alp-websocket/commit/509172bf662b16bf46a0510d1ab98ecb7048bc52) fix: keep internal connected state (Christophe Hurpeau)
+- [`2921337`](https://github.com/alpjs/alp-websocket/commit/2921337ee8dce7bfc2ebdfe0f4428c40bc239e32) chore: dependencies (Christophe Hurpeau)
+- [`6ba39bb`](https://github.com/alpjs/alp-websocket/commit/6ba39bb8d065320ad9aceabcd4fdfb5c2acce769) build (Christophe Hurpeau)
+
 ### v3.1.0
 
 - [`89954f5`](https://github.com/alpjs/alp-websocket/commit/89954f5128540fb2609af2e664c66e6c7f7f7c79) remove duplicate npm run build (Christophe Hurpeau)
