@@ -1,3 +1,7 @@
+### v2.16.0
+
+- [`63b3f1d`](https://github.com/alpjs/alp-dev/commit/63b3f1d48f70bea64a6f953d1bab950130e0181f) chore(package): update dependencies (Christophe Hurpeau)
+
 ### v2.15.0
 
 - [`9574881`](https://github.com/alpjs/alp-dev/commit/9574881556a20929b803052797a3d985a33f29a7) update dependencies (Christophe Hurpeau)
