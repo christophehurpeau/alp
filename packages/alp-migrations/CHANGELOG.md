@@ -1,3 +1,7 @@
+### v0.3.0
+
+- [`7455623`](https://github.com/alpjs/alp-migrations/commit/74556232bc469536ae3f95d351ccdf4bbc9ad9cd) chore(package) update dependencies (Christophe Hurpeau)
+
 ### v0.2.0
 
 - [`3acfdef`](https://github.com/alpjs/alp-migrations/commit/3acfdefbcdf27ee6ceebca3aa6d1423bf67206ef) only listen to unhandledRejection when migrating (Christophe Hurpeau)
