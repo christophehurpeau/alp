@@ -53,25 +53,25 @@
     "js-yaml": "^3.6.1",
     "minimist-argv": "^1.0.0",
     "offline-plugin": "^3.4.2",
-    "pob-babel": "^8.0.3",
+    "pob-babel": "^8.0.4",
     "portscanner": "^1.0.0",
-    "react-hot-loader": "^3.0.0-beta.4",
+    "react-hot-loader": "^3.0.0-beta.5",
     "source-map-loader": "^0.1.5",
     "springbokjs-daemon": "^1.1.1",
     "stylus": "^0.54.5",
     "through2": "^2.0.1",
     "webpack": "christophehurpeau/webpack#7929b4fabae1e37956e3d30085f099a1f247f6e7",
-    "webpack-dev-middleware": "^1.8.1",
+    "webpack-dev-middleware": "^1.8.2",
     "webpack-hot-middleware": "^2.12.2"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "babel-preset-es2015-node6": "^0.3.0",
     "babel-preset-stage-1": "^6.13.0",
-    "eslint": "^3.5.0",
-    "eslint-config-airbnb-base": "^7.1.0",
+    "eslint": "^3.6.0",
+    "eslint-config-airbnb-base": "^7.2.0",
     "eslint-config-pob": "^7.3.2",
-    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-import": "^1.16.0",
     "pob-release": "^2.1.2"
   }
 }

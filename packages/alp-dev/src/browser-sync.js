@@ -35,7 +35,7 @@ export default browserSync({
     target: `localhost:${argv.proxyPort}`,
     proxyOptions: { xfwd: true },
     middleware: [
-            // headers
+      // headers
       function (req, res, next) {
         if (!req.headers['X-Forwarded-Host']) {
           req.headers['X-Forwarded-Host'] = req.headers.host;
@@ -44,19 +44,19 @@ export default browserSync({
       },
 
       webpackDevMiddleware(bundler, {
-                // IMPORTANT: dev middleware can't access config, so we should
-                // provide publicPath by ourselves
+        // IMPORTANT: dev middleware can't access config, so we should
+        // provide publicPath by ourselves
         publicPath: webpackConfig.output.publicPath,
 
-                // pretty colored output
+        // pretty colored output
         stats: { colors: true },
 
         noInfo: true,
-                // for other settings see
-                // http://webpack.github.io/docs/webpack-dev-middleware.html
+        // for other settings see
+        // http://webpack.github.io/docs/webpack-dev-middleware.html
       }),
 
-            // bundler should be the same as above
+      // bundler should be the same as above
       webpackHotMiddleware(bundler),
     ],
   },
