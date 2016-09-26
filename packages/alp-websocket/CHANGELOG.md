@@ -1,3 +1,7 @@
+### v3.3.0
+
+- [`8f36fc8`](https://github.com/alpjs/alp-websocket/commit/8f36fc80f40ca03929cbf12e323afaa6d7802d5a) close websocket (Christophe Hurpeau)
+
 ### v3.2.0
 
 - [`509172b`](https://github.com/alpjs/alp-websocket/commit/509172bf662b16bf46a0510d1ab98ecb7048bc52) fix: keep internal connected state (Christophe Hurpeau)
