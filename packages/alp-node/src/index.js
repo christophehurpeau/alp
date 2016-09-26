@@ -119,9 +119,20 @@ export default class Alp extends Koa {
 
   listen() {
     return _listen(`${this.packageDirname}/config/cert`)(this)
+      .then(server => this._server = server)
       .catch(err => {
         logger.error(err);
         throw err;
       });
+  }
+
+  /**
+   * Close server and emit close event
+   */
+  close() {
+    if (this._server) {
+      this._server.close();
+      this.emit('close');
+    }
   }
 }

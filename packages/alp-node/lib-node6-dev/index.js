@@ -178,10 +178,20 @@ class Alp extends _koa2.default {
   }
 
   listen() {
-    return (0, _alpListen2.default)(`${ this.packageDirname }/config/cert`)(this).catch(err => {
+    return (0, _alpListen2.default)(`${ this.packageDirname }/config/cert`)(this).then(server => this._server = server).catch(err => {
       logger.error(err);
       throw err;
     });
+  }
+
+  /**
+   * Close server and emit close event
+   */
+  close() {
+    if (this._server) {
+      this._server.close();
+      this.emit('close');
+    }
   }
 }
 exports.default = Alp;
