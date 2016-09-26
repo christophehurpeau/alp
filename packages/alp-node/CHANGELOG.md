@@ -1,3 +1,7 @@
+### v0.19.0
+
+- [`3f406e2`](https://github.com/alpjs/alp-node/commit/3f406e28054156b12b3e6e4bdfd61e4fd12ab4c1) close server (Christophe Hurpeau)
+
 ### v0.18.0
 
 - [`1b32856`](https://github.com/alpjs/alp-node/commit/1b328565ffd54237e4fcb1a75838622aca072424) update dependencies (Christophe Hurpeau)
