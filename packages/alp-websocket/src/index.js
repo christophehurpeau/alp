@@ -13,8 +13,12 @@ let io;
 export default function alpWebsocket(app, dirname) {
   start(app.config, dirname);
   app.websocket = io;
-
+  app.on('close', close);
   return io;
+}
+
+export function close() {
+  io.close();
 }
 
 export function subscribe(socket, name, callbackOnSubscribe) {

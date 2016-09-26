@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = alpWebsocket;
+exports.close = close;
 exports.subscribe = subscribe;
 
 var _fs = require('fs');
@@ -29,8 +30,12 @@ let io;
 function alpWebsocket(app, dirname) {
   start(app.config, dirname);
   app.websocket = io;
-
+  app.on('close', close);
   return io;
+}
+
+function close() {
+  io.close();
 }
 
 function subscribe(socket, name, callbackOnSubscribe) {
