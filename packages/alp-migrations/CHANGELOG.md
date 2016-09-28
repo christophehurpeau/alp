@@ -1,3 +1,7 @@
+### v0.3.1
+
+- [`ee75395`](https://github.com/alpjs/alp-migrations/commit/ee75395d3712a968abc2705827fed0edaf3fe6c7) support rethinkdb (Christophe Hurpeau)
+
 ### v0.3.0
 
 - [`7455623`](https://github.com/alpjs/alp-migrations/commit/74556232bc469536ae3f95d351ccdf4bbc9ad9cd) chore(package) update dependencies (Christophe Hurpeau)
