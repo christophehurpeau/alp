@@ -12,92 +12,92 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import EventEmitter from 'events';
 
 export default new (_temp2 = _class = function (_EventEmitter) {
-    _inherits(UserAccountGoogleService, _EventEmitter);
+  _inherits(UserAccountGoogleService, _EventEmitter);
 
-    function UserAccountGoogleService() {
-        var _Object$getPrototypeO;
+  function UserAccountGoogleService() {
+    var _ref;
 
-        var _temp, _this, _ret;
+    var _temp, _this, _ret;
 
-        _classCallCheck(this, UserAccountGoogleService);
+    _classCallCheck(this, UserAccountGoogleService);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(UserAccountGoogleService)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.providerKey = 'google', _temp), _possibleConstructorReturn(_this, _ret);
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    _createClass(UserAccountGoogleService, [{
-        key: 'getProfile',
-        value: function getProfile(tokens) {
-            return fetch('https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + tokens.accessToken).then(function (response) {
-                return response.json();
-            });
-        }
-    }, {
-        key: 'isAccount',
-        value: function isAccount(account, profile) {
-            return account.googleId === profile.id;
-        }
-    }, {
-        key: 'getId',
-        value: function getId(profile) {
-            return profile.id;
-        }
-    }, {
-        key: 'getAccountName',
-        value: function getAccountName(profile) {
-            return profile.email;
-        }
-    }, {
-        key: 'getEmails',
-        value: function getEmails(profile, plusProfile) {
-            var emails = [];
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserAccountGoogleService.__proto__ || Object.getPrototypeOf(UserAccountGoogleService)).call.apply(_ref, [this].concat(args))), _this), _this.providerKey = 'google', _temp), _possibleConstructorReturn(_this, _ret);
+  }
 
-            if (profile.email) {
-                emails.push(profile.email);
-            }
+  _createClass(UserAccountGoogleService, [{
+    key: 'getProfile',
+    value: function getProfile(tokens) {
+      return fetch('https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + tokens.accessToken).then(function (response) {
+        return response.json();
+      });
+    }
+  }, {
+    key: 'isAccount',
+    value: function isAccount(account, profile) {
+      return account.googleId === profile.id;
+    }
+  }, {
+    key: 'getId',
+    value: function getId(profile) {
+      return profile.id;
+    }
+  }, {
+    key: 'getAccountName',
+    value: function getAccountName(profile) {
+      return profile.email;
+    }
+  }, {
+    key: 'getEmails',
+    value: function getEmails(profile, plusProfile) {
+      var emails = [];
 
-            if (plusProfile.emails) {
-                plusProfile.emails.forEach(function (email) {
-                    if (emails.indexOf(email.value) === -1) {
-                        emails.push(email.value);
-                    }
-                });
-            }
+      if (profile.email) {
+        emails.push(profile.email);
+      }
 
-            return emails;
-        }
-    }, {
-        key: 'getDisplayName',
-        value: function getDisplayName(profile) {
-            return profile.name;
-        }
-    }, {
-        key: 'getFullName',
-        value: function getFullName(profile) {
-            return {
-                givenName: profile.given_name,
-                familyName: profile.family_name
-            };
-        }
-    }, {
-        key: 'getDefaultScope',
-        value: function getDefaultScope(newScope) {
-            return this.getScope(newScope);
-        }
-    }, {
-        key: 'getScope',
-        value: function getScope(oldScope, newScope) {
-            return !oldScope ? newScope.split(' ') : oldScope.concat(newScope.split(' ')).filter(function (item, i, ar) {
-                return ar.indexOf(item) === i;
-            });
-        }
-    }]);
+      if (plusProfile.emails) {
+        plusProfile.emails.forEach(function (email) {
+          if (emails.indexOf(email.value) === -1) {
+            emails.push(email.value);
+          }
+        });
+      }
 
-    return UserAccountGoogleService;
+      return emails;
+    }
+  }, {
+    key: 'getDisplayName',
+    value: function getDisplayName(profile) {
+      return profile.name;
+    }
+  }, {
+    key: 'getFullName',
+    value: function getFullName(profile) {
+      return {
+        givenName: profile.given_name,
+        familyName: profile.family_name
+      };
+    }
+  }, {
+    key: 'getDefaultScope',
+    value: function getDefaultScope(newScope) {
+      return this.getScope(newScope);
+    }
+  }, {
+    key: 'getScope',
+    value: function getScope(oldScope, newScope) {
+      return !oldScope ? newScope.split(' ') : oldScope.concat(newScope.split(' ')).filter(function (item, i, ar) {
+        return ar.indexOf(item) === i;
+      });
+    }
+  }]);
+
+  return UserAccountGoogleService;
 }(EventEmitter), _class.scopeKeyToScope = {
-    login: 'openid profile email https://www.googleapis.com/auth/plus.profile.emails.read'
+  login: 'openid profile email https://www.googleapis.com/auth/plus.profile.emails.read'
 }, _temp2)();
 //# sourceMappingURL=userAccountGoogleService.js.map

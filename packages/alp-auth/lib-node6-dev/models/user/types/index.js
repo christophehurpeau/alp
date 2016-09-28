@@ -1,86 +1,53 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+exports.UserBrowserType = exports.AccountBrowserType = exports.UserType = exports.AccountType = exports.UserNameType = undefined;
 
-const UserNameType = exports.UserNameType = function () {
-    function UserNameType(input) {
-        return input != null && typeof input.givenName === 'string' && typeof input.familyName === 'string';
-    }
+var _tcombForked = require("tcomb-forked");
 
-    ;
-    Object.defineProperty(UserNameType, Symbol.hasInstance, {
-        value: function value(input) {
-            return UserNameType(input);
-        }
-    });
-    return UserNameType;
-}();
+var _tcombForked2 = _interopRequireDefault(_tcombForked);
 
-const AccountType = exports.AccountType = function () {
-    function AccountType(input) {
-        return input != null && typeof input.provider === 'string' && typeof input.accountId === 'string' && typeof input.name === 'string' && typeof input.status === 'string' && typeof input.accessToken === 'string' && input.tokenExpireDate instanceof Date && (input.refreshToken === undefined || typeof input.refreshToken === 'string') && (input.profile === undefined || input.profile instanceof Object) && Array.isArray(input.scope) && input.scope.every(function (item) {
-            return typeof item === 'string';
-        });
-    }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    ;
-    Object.defineProperty(AccountType, Symbol.hasInstance, {
-        value: function value(input) {
-            return AccountType(input);
-        }
-    });
-    return AccountType;
-}();
+const UserNameType = exports.UserNameType = _tcombForked2.default.interface({
+  givenName: _tcombForked2.default.String,
+  familyName: _tcombForked2.default.String
+}, "UserNameType");
 
-const UserType = exports.UserType = function () {
-    function UserType(input) {
-        return input != null && typeof input.displayName === 'string' && UserNameType(input.fullName) && typeof input.status === 'string' && Array.isArray(input.emails) && input.emails.every(function (item) {
-            return typeof item === 'string';
-        }) && Array.isArray(input.accounts) && input.accounts.every(function (item) {
-            return AccountType(item);
-        });
-    }
+const AccountType = exports.AccountType = _tcombForked2.default.interface({
+  provider: _tcombForked2.default.String,
+  accountId: _tcombForked2.default.String,
+  name: _tcombForked2.default.String,
+  status: _tcombForked2.default.String,
+  accessToken: _tcombForked2.default.String,
+  tokenExpireDate: Date,
+  refreshToken: _tcombForked2.default.maybe(_tcombForked2.default.String),
+  profile: _tcombForked2.default.maybe(_tcombForked2.default.Object),
+  scope: _tcombForked2.default.list(_tcombForked2.default.String)
+}, "AccountType");
 
-    ;
-    Object.defineProperty(UserType, Symbol.hasInstance, {
-        value: function value(input) {
-            return UserType(input);
-        }
-    });
-    return UserType;
-}();
+const UserType = exports.UserType = _tcombForked2.default.interface({
+  displayName: _tcombForked2.default.String,
+  fullName: UserNameType,
+  status: _tcombForked2.default.String,
+  emails: _tcombForked2.default.list(_tcombForked2.default.String),
+  accounts: _tcombForked2.default.list(AccountType)
+}, "UserType");
 
-const AccountBrowserType = exports.AccountBrowserType = function () {
-    function AccountBrowserType(input) {
-        return input != null && typeof input.provider === 'string' && typeof input.accountId === 'string' && typeof input.name === 'string' && typeof input.status === 'string';
-    }
+const AccountBrowserType = exports.AccountBrowserType = _tcombForked2.default.interface({
+  provider: _tcombForked2.default.String,
+  accountId: _tcombForked2.default.String,
+  name: _tcombForked2.default.String,
+  status: _tcombForked2.default.String
+}, "AccountBrowserType");
 
-    ;
-    Object.defineProperty(AccountBrowserType, Symbol.hasInstance, {
-        value: function value(input) {
-            return AccountBrowserType(input);
-        }
-    });
-    return AccountBrowserType;
-}();
-
-const UserBrowserType = exports.UserBrowserType = function () {
-    function UserBrowserType(input) {
-        return input != null && typeof input.displayName === 'string' && UserNameType(input.fullName) && typeof input.status === 'string' && Array.isArray(input.emails) && input.emails.every(function (item) {
-            return typeof item === 'string';
-        }) && Array.isArray(input.accounts) && input.accounts.every(function (item) {
-            return AccountBrowserType(item);
-        });
-    }
-
-    ;
-    Object.defineProperty(UserBrowserType, Symbol.hasInstance, {
-        value: function value(input) {
-            return UserBrowserType(input);
-        }
-    });
-    return UserBrowserType;
-}();
+const UserBrowserType = exports.UserBrowserType = _tcombForked2.default.interface({
+  displayName: _tcombForked2.default.String,
+  fullName: UserNameType,
+  status: _tcombForked2.default.String,
+  emails: _tcombForked2.default.list(_tcombForked2.default.String),
+  accounts: _tcombForked2.default.list(AccountBrowserType)
+}, "UserBrowserType");
 //# sourceMappingURL=index.js.map

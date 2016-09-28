@@ -1,112 +1,42 @@
+import _t from 'tcomb-forked';
 import { randomBytes } from 'crypto';
 import promiseCallback from 'promise-callback-factory';
 
 export function randomBase64(size) {
-    function _ref(_id) {
-        if (!(_id instanceof Promise)) {
-            throw new TypeError('Function "randomBase64" return value violates contract.\n\nExpected:\nPromise\n\nGot:\n' + _inspect(_id));
-        }
+  _assert(size, _t.Number, 'size');
 
-        return _id;
-    }
-
-    if (!(typeof size === 'number')) {
-        throw new TypeError('Value of argument "size" violates contract.\n\nExpected:\nnumber\n\nGot:\n' + _inspect(size));
-    }
-
-    return _ref(promiseCallback(done => {
-        return randomBytes(size, done);
-    }).then(buffer => {
-        return buffer.toString('base64');
-    }));
+  return _assert(function () {
+    return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('base64'));
+  }.apply(this, arguments), _t.Promise, 'return value');
 }
 
 export function randomHex(size) {
-    function _ref2(_id2) {
-        if (!(_id2 instanceof Promise)) {
-            throw new TypeError('Function "randomHex" return value violates contract.\n\nExpected:\nPromise\n\nGot:\n' + _inspect(_id2));
-        }
+  _assert(size, _t.Number, 'size');
 
-        return _id2;
-    }
-
-    if (!(typeof size === 'number')) {
-        throw new TypeError('Value of argument "size" violates contract.\n\nExpected:\nnumber\n\nGot:\n' + _inspect(size));
-    }
-
-    return _ref2(promiseCallback(done => {
-        return randomBytes(size, done);
-    }).then(buffer => {
-        return buffer.toString('hex');
-    }));
+  return _assert(function () {
+    return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('hex'));
+  }.apply(this, arguments), _t.Promise, 'return value');
 }
 
-function _inspect(input, depth) {
-    var maxDepth = 4;
-    var maxKeys = 15;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  }
 
-    if (depth === undefined) {
-        depth = 0;
+  if (_t.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _t.getTypeName(type)]);
+
+      _t.fail(message());
     }
 
-    depth += 1;
+    return type(x);
+  }
 
-    if (input === null) {
-        return 'null';
-    } else if (input === undefined) {
-        return 'void';
-    } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-        return typeof input;
-    } else if (Array.isArray(input)) {
-        if (input.length > 0) {
-            var _ret = function () {
-                if (depth > maxDepth) return {
-                        v: '[...]'
-                    };
+  if (!(x instanceof type)) {
+    _t.fail(message());
+  }
 
-                var first = _inspect(input[0], depth);
-
-                if (input.every(item => _inspect(item, depth) === first)) {
-                    return {
-                        v: first.trim() + '[]'
-                    };
-                } else {
-                    return {
-                        v: '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-                    };
-                }
-            }();
-
-            if (typeof _ret === "object") return _ret.v;
-        } else {
-            return 'Array';
-        }
-    } else {
-        var keys = Object.keys(input);
-
-        if (!keys.length) {
-            if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-                return input.constructor.name;
-            } else {
-                return 'Object';
-            }
-        }
-
-        if (depth > maxDepth) return '{...}';
-        var indent = '  '.repeat(depth - 1);
-        var entries = keys.slice(0, maxKeys).map(key => {
-            return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-        }).join('\n  ' + indent);
-
-        if (keys.length >= maxKeys) {
-            entries += '\n  ' + indent + '...';
-        }
-
-        if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-            return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-        } else {
-            return '{\n  ' + indent + entries + '\n' + indent + '}';
-        }
-    }
+  return x;
 }
 //# sourceMappingURL=generators.js.map

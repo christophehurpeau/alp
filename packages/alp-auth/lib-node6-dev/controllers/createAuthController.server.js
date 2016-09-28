@@ -1,9 +1,13 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = createAuthController;
+
+var _tcombForked = require('tcomb-forked');
+
+var _tcombForked2 = _interopRequireDefault(_tcombForked);
 
 var _AuthenticationService = require('../services/AuthenticationService');
 
@@ -14,113 +18,93 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
 function createAuthController(_ref) {
-    let authenticationService = _ref.authenticationService;
-    let loginModuleDescriptor = _ref.loginModuleDescriptor;
-    var _ref$homeRouterKey = _ref.homeRouterKey;
-    let homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
+  var _assert2 = _assert(_ref, _tcombForked2.default.interface({
+    usersManager: _tcombForked2.default.Object,
+    authenticationService: _AuthenticationService2.default,
+    loginModuleDescriptor: _tcombForked2.default.Object,
+    homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
+  }), '{ usersManager, authenticationService, loginModuleDescriptor, homeRouterKey = \'home\' }');
 
-    if (!(arguments[0] != null && arguments[0].authenticationService instanceof _AuthenticationService2.default && arguments[0].loginModuleDescriptor instanceof Object && (arguments[0].homeRouterKey == null || typeof arguments[0].homeRouterKey === 'string'))) {
-        throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\n{\n  authenticationService: AuthenticationService;\n  loginModuleDescriptor: Object;\n  homeRouterKey: ?string;\n}\n\nGot:\n' + _inspect(arguments[0]));
-    }
+  let usersManager = _assert2.usersManager;
+  let authenticationService = _assert2.authenticationService;
+  let loginModuleDescriptor = _assert2.loginModuleDescriptor;
+  var _assert2$homeRouterKe = _assert2.homeRouterKey;
+  let homeRouterKey = _assert2$homeRouterKe === undefined ? 'home' : _assert2$homeRouterKe;
 
-    return {
-        login(ctx) {
-            return _asyncToGenerator(function* () {
-                if (ctx.state.connected) {
-                    ctx.redirect(ctx.urlGenerator(homeRouterKey));
-                }
+  _assert({
+    usersManager,
+    authenticationService,
+    loginModuleDescriptor,
+    homeRouterKey
+  }, _tcombForked2.default.interface({
+    usersManager: _tcombForked2.default.Object,
+    authenticationService: _AuthenticationService2.default,
+    loginModuleDescriptor: _tcombForked2.default.Object,
+    homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
+  }), '{ usersManager, authenticationService, loginModuleDescriptor, homeRouterKey }');
 
-                const strategy = ctx.namedParam('strategy');
-                if (strategy) {
-                    yield authenticationService.redirectAuthUrl(ctx, strategy);
-                    return;
-                }
-
-                yield ctx.render(loginModuleDescriptor);
-            })();
-        },
-
-        loginResponse(ctx) {
-            return _asyncToGenerator(function* () {
-                if (ctx.state.connected) {
-                    ctx.redirect(ctx.urlGenerator(homeRouterKey));
-                }
-
-                const strategy = ctx.namedParam('strategy');
-                ctx.assert(strategy);
-
-                const connectedUser = yield authenticationService.accessResponse(ctx, strategy);
-                yield ctx.setConnected(connectedUser._id, connectedUser);
-                ctx.state.connected = connectedUser;
-                yield ctx.redirect(ctx.urlGenerator(homeRouterKey));
-            })();
-        },
-
-        logout(ctx) {
-            return _asyncToGenerator(function* () {
-                ctx.logout();
-                yield ctx.redirect(ctx.urlGenerator(homeRouterKey));
-            })();
+  return {
+    login(ctx) {
+      return _asyncToGenerator(function* () {
+        if (ctx.state.connected) {
+          ctx.redirect(ctx.urlGenerator(homeRouterKey));
         }
-    };
+
+        const strategy = ctx.namedParam('strategy');
+        if (strategy) {
+          yield authenticationService.redirectAuthUrl(ctx, strategy);
+          return;
+        }
+
+        yield ctx.render(loginModuleDescriptor);
+      })();
+    },
+
+    loginResponse(ctx) {
+      return _asyncToGenerator(function* () {
+        if (ctx.state.connected) {
+          ctx.redirect(ctx.urlGenerator(homeRouterKey));
+        }
+
+        const strategy = ctx.namedParam('strategy');
+        ctx.assert(strategy);
+
+        const connectedUser = yield authenticationService.accessResponse(ctx, strategy);
+        const keyPath = _assert(usersManager.store.keyPath, _tcombForked2.default.String, 'keyPath');
+        yield ctx.setConnected(connectedUser[keyPath], connectedUser);
+        ctx.state.connected = connectedUser;
+        yield ctx.redirect(ctx.urlGenerator(homeRouterKey));
+      })();
+    },
+
+    logout(ctx) {
+      return _asyncToGenerator(function* () {
+        ctx.logout();
+        yield ctx.redirect(ctx.urlGenerator(homeRouterKey));
+      })();
+    }
+  };
 }
 
-function _inspect(input, depth) {
-    const maxDepth = 4;
-    const maxKeys = 15;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  }
 
-    if (depth === undefined) {
-        depth = 0;
+  if (_tcombForked2.default.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
+
+      _tcombForked2.default.fail(message());
     }
 
-    depth += 1;
+    return type(x);
+  }
 
-    if (input === null) {
-        return 'null';
-    } else if (input === undefined) {
-        return 'void';
-    } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-        return typeof input;
-    } else if (Array.isArray(input)) {
-        if (input.length > 0) {
-            if (depth > maxDepth) return '[...]';
+  if (!(x instanceof type)) {
+    _tcombForked2.default.fail(message());
+  }
 
-            const first = _inspect(input[0], depth);
-
-            if (input.every(item => _inspect(item, depth) === first)) {
-                return first.trim() + '[]';
-            } else {
-                return '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']';
-            }
-        } else {
-            return 'Array';
-        }
-    } else {
-        const keys = Object.keys(input);
-
-        if (!keys.length) {
-            if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-                return input.constructor.name;
-            } else {
-                return 'Object';
-            }
-        }
-
-        if (depth > maxDepth) return '{...}';
-        const indent = '  '.repeat(depth - 1);
-        let entries = keys.slice(0, maxKeys).map(key => {
-            return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-        }).join('\n  ' + indent);
-
-        if (keys.length >= maxKeys) {
-            entries += '\n  ' + indent + '...';
-        }
-
-        if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-            return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-        } else {
-            return '{\n  ' + indent + entries + '\n' + indent + '}';
-        }
-    }
+  return x;
 }
 //# sourceMappingURL=createAuthController.server.js.map
