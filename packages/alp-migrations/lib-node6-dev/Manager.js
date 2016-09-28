@@ -9,7 +9,11 @@ var _liwi = require('liwi');
 class MigrationsManager extends _liwi.AbstractManager {
 
   findLastVersion() {
-    return this.store.findOne({}, { created: -1 }).then(row => row && row.version);
+    if (this.store.r) {
+      return this.store.findOne(this.store.table().getField('version'));
+    } else {
+      return this.store.findOne({}, { created: -1 }).then(row => row && row.version);
+    }
   }
 
   addMigrationDone(migration) {
