@@ -1,3 +1,7 @@
+### v0.4.1
+
+- [`ea53217`](https://github.com/alpjs/alp-auth/commit/ea53217ac1d40a5aa75fcfe66cc0e6fb76238517) fix dev exports types (Christophe Hurpeau)
+
 ### v0.4.0
 
 - [`352730e`](https://github.com/alpjs/alp-auth/commit/352730e00f3459544258195f4871c573e209fe2f) liwi 0.8 and rethinkdb and simple-oauth2 1.0 (Christophe Hurpeau)
