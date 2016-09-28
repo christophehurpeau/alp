@@ -1,1 +1,1 @@
-export * from './src/models/user/types';
+module.exports = require('./lib-node6-dev/models/user/types');
