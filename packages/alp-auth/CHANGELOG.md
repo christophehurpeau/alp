@@ -1,3 +1,7 @@
+### v0.4.0
+
+- [`352730e`](https://github.com/alpjs/alp-auth/commit/352730e00f3459544258195f4871c573e209fe2f) liwi 0.8 and rethinkdb and simple-oauth2 1.0 (Christophe Hurpeau)
+
 ### v0.3.0
 
 - [`c3acac8`](https://github.com/alpjs/alp-auth/commit/c3acac87514ea3d827f53bed9e36798b6400593c) websocket auth (Christophe Hurpeau)
