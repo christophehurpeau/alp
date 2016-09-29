@@ -1,3 +1,8 @@
+### v0.2.0
+
+- [`58b321b`](https://github.com/alpjs/react-alp-translate/commit/58b321bcb84075262062b5b7bd1bb61a991ba774) update dependencies (Christophe Hurpeau)
+- [`ff4e0c3`](https://github.com/alpjs/react-alp-translate/commit/ff4e0c38ce57ec7d00227e78ddc48458d29f368e) update dependencies (Christophe Hurpeau)
+
 ### v0.1.3
 
 - [`f3c748d`](https://github.com/alpjs/react-alp-translate/commit/f3c748d8cc5bc44425a61ed217eecb2647c32549) fix object-rest (Christophe Hurpeau)
