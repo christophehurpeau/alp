@@ -23,7 +23,6 @@ const modulesList = (() => {
 })();
 
 module.exports = {
-    debug: !production,
     devtool: production ? undefined : 'cheap-source-map',
     bail: true,
 
@@ -56,34 +55,38 @@ module.exports = {
         wrappedContextRecursive: false,
 
 
-        preLoaders: [
+        // preLoaders: [
             // { test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ },
             // { test: /\.jsx?$/, loader: 'source-map', exclude: /react-hot-loader/ }
-        ],
+        // ],
 
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
-                exclude: /\.server\.jsx?$/,
-                loader: 'babel',
                 include: path.resolve('src'),
-                query: {
-                    compact: production,
-                    minified: production,
-                    comments: !production,
-                    presets: babelOptions.presets,
-                    plugins: babelOptions.plugins,
-                },
+                exclude: /\.server\.jsx?$/,
+                use: [
+                    {
+                        loader: 'babel',
+                        options: {
+                            compact: production,
+                            minified: production,
+                            comments: !production,
+                            presets: babelOptions.presets,
+                            plugins: babelOptions.plugins,
+                        },
+                    }
+                ]
             },
         ],
     },
     resolveLoader: {
-        modulesDirectories: ['node_modules'],
+        modules: ['node_modules'],
     },
     resolve: {
         alias: { 'socket.io': 'socket.io-client' },
         modules: ['node_modules'],
-        extensions: ['', '.browser.js', '.js', '.browser.jsx', '.jsx', '.json'],
+        extensions: ['.browser.js', '.js', '.browser.jsx', '.jsx', '.json'],
         mainFields: [
             modernBrowsers && !production && 'webpack:main-modern-browsers-dev',
             modernBrowsers && 'webpack:main-modern-browsers',
@@ -102,7 +105,7 @@ module.exports = {
             'webpack:aliases',
             'webpack',
             'browser',
-        ],
+        ].filter(Boolean),
     },
 
     plugins: [
