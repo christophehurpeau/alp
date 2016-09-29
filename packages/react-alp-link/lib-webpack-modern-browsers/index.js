@@ -7,29 +7,31 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { PropTypes } from 'react';
 
 LinkComponent.propTypes = {
-    to: PropTypes.string,
-    params: PropTypes.object,
-    children: PropTypes.node
+  to: PropTypes.string,
+  params: PropTypes.object,
+  children: PropTypes.node
 };
 
 LinkComponent.contextTypes = {
-    context: PropTypes.object
+  context: PropTypes.shape({
+    urlGenerator: PropTypes.func
+  })
 };
 
 export default function LinkComponent(_ref, _ref2) {
-    var _ref$to = _ref.to;
-    var to = _ref$to === undefined ? 'default' : _ref$to;
-    var params = _ref.params;
-    var children = _ref.children;
+  var _ref$to = _ref.to;
+  var to = _ref$to === undefined ? 'default' : _ref$to;
+  var params = _ref.params;
+  var children = _ref.children;
 
-    var props = _objectWithoutProperties(_ref, ['to', 'params', 'children']);
+  var props = _objectWithoutProperties(_ref, ['to', 'params', 'children']);
 
-    var ctx = _ref2.context;
+  var ctx = _ref2.context;
 
-    return React.createElement(
-        'a',
-        _extends({ href: ctx.urlGenerator(to, params) }, props),
-        children
-    );
+  return React.createElement(
+    'a',
+    _extends({ href: ctx.urlGenerator(to, params) }, props),
+    children
+  );
 }
 //# sourceMappingURL=index.js.map

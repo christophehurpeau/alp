@@ -1,130 +1,89 @@
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _jsxFileName = 'index.jsx';
 import React from 'react';
+import _t from 'tcomb-forked';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 import { PropTypes } from 'react';
 
 LinkComponent.propTypes = {
-    to: PropTypes.string,
-    params: PropTypes.object,
-    children: PropTypes.node
+  to: PropTypes.string,
+  params: PropTypes.object,
+  children: PropTypes.node
 };
 
 LinkComponent.contextTypes = {
-    context: PropTypes.object
+  context: PropTypes.shape({
+    urlGenerator: PropTypes.func
+  })
 };
 
-var Props = function () {
-    function Props(input) {
-        return input != null && typeof input.to === 'string' && (input.params == null || input.params instanceof Object);
-    }
+var PropsType = _t.interface({
+  to: _t.String,
+  params: _t.maybe(_t.Object)
+}, 'PropsType');
 
-    ;
-    Object.defineProperty(Props, Symbol.hasInstance, {
-        value: function value(input) {
-            return Props(input);
-        }
-    });
-    return Props;
-}();
+var ContextType = _t.interface({
+  context: _t.interface({
+    urlGenerator: _t.Function
+  })
+}, 'ContextType');
 
 export default function LinkComponent(_ref, _ref2) {
-    var _ref$to = _ref.to;
-    var to = _ref$to === undefined ? 'default' : _ref$to;
-    var params = _ref.params;
-    var children = _ref.children;
+  var _ref$to = _ref.to;
+  var to = _ref$to === undefined ? 'default' : _ref$to;
+  var params = _ref.params;
+  var children = _ref.children;
 
-    var props = _objectWithoutProperties(_ref, ['to', 'params', 'children']);
+  var props = _objectWithoutProperties(_ref, ['to', 'params', 'children']);
 
-    var ctx = _ref2.context;
+  var ctx = _ref2.context;
 
-    if (!Props(arguments[0])) {
-        throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\nProps\n\nGot:\n' + _inspect(arguments[0]));
-    }
+  _assert({
+    to: to,
+    params: params,
+    children: children,
+    props: props
+  }, PropsType, '{ to, params, children, props }');
 
-    return React.createElement(
-        'a',
-        _extends({ href: ctx.urlGenerator(to, params) }, props, {
-            __self: this
-        }),
-        children
-    );
+  _assert({
+    context: ctx
+  }, ContextType, '{ context: ctx }');
+
+  return React.createElement(
+    'a',
+    _extends({ href: ctx.urlGenerator(to, params) }, props, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 30
+      }
+    }),
+    children
+  );
 }
 
-function _inspect(input, depth) {
-    var maxDepth = 4;
-    var maxKeys = 15;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  }
 
-    if (depth === undefined) {
-        depth = 0;
+  if (_t.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _t.getTypeName(type)]);
+
+      _t.fail(message());
     }
 
-    depth += 1;
+    return type(x);
+  }
 
-    if (input === null) {
-        return 'null';
-    } else if (input === undefined) {
-        return 'void';
-    } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-        return typeof input === 'undefined' ? 'undefined' : _typeof(input);
-    } else if (Array.isArray(input)) {
-        if (input.length > 0) {
-            var _ret = function () {
-                if (depth > maxDepth) return {
-                        v: '[...]'
-                    };
+  if (!(x instanceof type)) {
+    _t.fail(message());
+  }
 
-                var first = _inspect(input[0], depth);
-
-                if (input.every(function (item) {
-                    return _inspect(item, depth) === first;
-                })) {
-                    return {
-                        v: first.trim() + '[]'
-                    };
-                } else {
-                    return {
-                        v: '[' + input.slice(0, maxKeys).map(function (item) {
-                            return _inspect(item, depth);
-                        }).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-                    };
-                }
-            }();
-
-            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-        } else {
-            return 'Array';
-        }
-    } else {
-        var keys = Object.keys(input);
-
-        if (!keys.length) {
-            if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-                return input.constructor.name;
-            } else {
-                return 'Object';
-            }
-        }
-
-        if (depth > maxDepth) return '{...}';
-        var indent = '  '.repeat(depth - 1);
-        var entries = keys.slice(0, maxKeys).map(function (key) {
-            return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-        }).join('\n  ' + indent);
-
-        if (keys.length >= maxKeys) {
-            entries += '\n  ' + indent + '...';
-        }
-
-        if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-            return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-        } else {
-            return '{\n  ' + indent + entries + '\n' + indent + '}';
-        }
-    }
+  return x;
 }
 //# sourceMappingURL=index.js.map

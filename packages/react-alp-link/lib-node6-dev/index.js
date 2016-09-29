@@ -1,124 +1,106 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _jsxFileName = 'index.jsx';
 exports.default = LinkComponent;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _tcombForked = require('tcomb-forked');
+
+var _tcombForked2 = _interopRequireDefault(_tcombForked);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 LinkComponent.propTypes = {
-    to: _react.PropTypes.string,
-    params: _react.PropTypes.object,
-    children: _react.PropTypes.node
+  to: _react.PropTypes.string,
+  params: _react.PropTypes.object,
+  children: _react.PropTypes.node
 };
 
 LinkComponent.contextTypes = {
-    context: _react.PropTypes.object
+  context: _react.PropTypes.shape({
+    urlGenerator: _react.PropTypes.func
+  })
 };
 
-const Props = function () {
-    function Props(input) {
-        return input != null && typeof input.to === 'string' && (input.params == null || input.params instanceof Object);
-    }
+const PropsType = _tcombForked2.default.interface({
+  to: _tcombForked2.default.String,
+  params: _tcombForked2.default.maybe(_tcombForked2.default.Object)
+}, 'PropsType');
 
-    ;
-    Object.defineProperty(Props, Symbol.hasInstance, {
-        value: function value(input) {
-            return Props(input);
-        }
-    });
-    return Props;
-}();
+const ContextType = _tcombForked2.default.interface({
+  context: _tcombForked2.default.interface({
+    urlGenerator: _tcombForked2.default.Function
+  })
+}, 'ContextType');
 
 function LinkComponent(_ref, _ref2) {
-    var _ref$to = _ref.to;
-    let to = _ref$to === undefined ? 'default' : _ref$to;
-    let params = _ref.params;
-    let children = _ref.children;
+  var _assert3 = _assert(_ref, PropsType, '{ to = \'default\', params, children, ...props }');
 
-    let props = _objectWithoutProperties(_ref, ['to', 'params', 'children']);
+  var _assert3$to = _assert3.to;
+  let to = _assert3$to === undefined ? 'default' : _assert3$to;
+  let params = _assert3.params;
+  let children = _assert3.children;
 
-    let ctx = _ref2.context;
+  let props = _objectWithoutProperties(_assert3, ['to', 'params', 'children']);
 
-    if (!Props(arguments[0])) {
-        throw new TypeError('Value of argument 0 violates contract.\n\nExpected:\nProps\n\nGot:\n' + _inspect(arguments[0]));
-    }
+  var _assert2 = _assert(_ref2, ContextType, '{ context: ctx }');
 
-    return _react2.default.createElement(
-        'a',
-        _extends({ href: ctx.urlGenerator(to, params) }, props, {
-            __self: this
-        }),
-        children
-    );
+  let ctx = _assert2.context;
+
+  _assert({
+    to,
+    params,
+    children,
+    props
+  }, PropsType, '{ to, params, children, props }');
+
+  _assert({
+    context: ctx
+  }, ContextType, '{ context: ctx }');
+
+  return _react2.default.createElement(
+    'a',
+    _extends({ href: ctx.urlGenerator(to, params) }, props, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 30
+      }
+    }),
+    children
+  );
 }
 
-function _inspect(input, depth) {
-    const maxDepth = 4;
-    const maxKeys = 15;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  }
 
-    if (depth === undefined) {
-        depth = 0;
+  if (_tcombForked2.default.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
+
+      _tcombForked2.default.fail(message());
     }
 
-    depth += 1;
+    return type(x);
+  }
 
-    if (input === null) {
-        return 'null';
-    } else if (input === undefined) {
-        return 'void';
-    } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-        return typeof input;
-    } else if (Array.isArray(input)) {
-        if (input.length > 0) {
-            if (depth > maxDepth) return '[...]';
+  if (!(x instanceof type)) {
+    _tcombForked2.default.fail(message());
+  }
 
-            const first = _inspect(input[0], depth);
-
-            if (input.every(item => _inspect(item, depth) === first)) {
-                return first.trim() + '[]';
-            } else {
-                return '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']';
-            }
-        } else {
-            return 'Array';
-        }
-    } else {
-        const keys = Object.keys(input);
-
-        if (!keys.length) {
-            if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-                return input.constructor.name;
-            } else {
-                return 'Object';
-            }
-        }
-
-        if (depth > maxDepth) return '{...}';
-        const indent = '  '.repeat(depth - 1);
-        let entries = keys.slice(0, maxKeys).map(key => {
-            return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-        }).join('\n  ' + indent);
-
-        if (keys.length >= maxKeys) {
-            entries += '\n  ' + indent + '...';
-        }
-
-        if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-            return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-        } else {
-            return '{\n  ' + indent + entries + '\n' + indent + '}';
-        }
-    }
+  return x;
 }
 //# sourceMappingURL=index.js.map
