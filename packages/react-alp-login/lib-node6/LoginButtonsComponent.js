@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = LoginButtonsComponent;
 
@@ -20,28 +20,28 @@ var _google2 = _interopRequireDefault(_google);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function LoginButtonsComponent() {
-    return _react2.default.createElement(
-        'ul',
-        { className: 'list links buttons login-buttons' },
+  return _react2.default.createElement(
+    'ul',
+    { className: 'list links buttons login-buttons' },
+    _react2.default.createElement(
+      'li',
+      null,
+      _react2.default.createElement(
+        _reactAlpLink2.default,
+        {
+          className: 'button flat social-button google-button',
+          to: 'login',
+          params: { strategy: 'google' },
+          target: '_self'
+        },
+        _react2.default.createElement(_google2.default, { className: 'icon' }),
         _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-                _reactAlpLink2.default,
-                {
-                    className: 'button flat social-button google-button',
-                    to: 'login',
-                    params: { strategy: 'google' },
-                    target: '_self'
-                },
-                _react2.default.createElement(_google2.default, { className: 'icon' }),
-                _react2.default.createElement(
-                    'span',
-                    null,
-                    'Login with Google'
-                )
-            )
+          'span',
+          null,
+          'Login with Google'
         )
-    );
+      )
+    )
+  );
 }
 //# sourceMappingURL=LoginButtonsComponent.js.map
