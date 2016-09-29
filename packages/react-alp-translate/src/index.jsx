@@ -1,24 +1,27 @@
 import { PropTypes } from 'react';
 
 TranslateComponent.propTypes = {
-    id: PropTypes.string.isRequired,
-    children: PropTypes.func,
+  id: PropTypes.string.isRequired,
+  children: PropTypes.func,
 };
 
 TranslateComponent.contextTypes = {
-    context: PropTypes.object.isRequired,
+  context: PropTypes.object.isRequired,
 };
 
 type Props = {
-    id: string,
-}
+  id: string,
+};
 
-export default function TranslateComponent({ id, children, ...props }: Props, { context }) {
-    const translated = context.t(id, props);
+export default function TranslateComponent(
+    { id, children, ...props }: Props,
+    { context },
+) {
+  const translated = context.t(id, props);
 
-    if (children) {
-        return children(translated);
-    }
+  if (children) {
+    return children(translated);
+  }
 
-    return <span>{translated}</span>;
+  return <span>{translated}</span>;
 }
