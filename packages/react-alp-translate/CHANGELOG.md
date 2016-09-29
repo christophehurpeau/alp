@@ -1,3 +1,7 @@
+### v0.3.0
+
+- [`9e58caf`](https://github.com/alpjs/react-alp-translate/commit/9e58caf08e963f89ec5bbc0094888cc94062605e) pob-babel@8.3.1 (Christophe Hurpeau)
+
 ### v0.2.0
 
 - [`58b321b`](https://github.com/alpjs/react-alp-translate/commit/58b321bcb84075262062b5b7bd1bb61a991ba774) update dependencies (Christophe Hurpeau)
