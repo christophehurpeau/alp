@@ -1,3 +1,7 @@
+### v2.17.0-rc2
+
+- [`4274f1a`](https://github.com/alpjs/alp-dev/commit/4274f1a9d43e58faeb383b9e0f8eb892f33b725e) pob-babel 8.3.1 (Christophe Hurpeau)
+
 ### v2.17.0-rc
 
 - [`4223660`](https://github.com/alpjs/alp-dev/commit/4223660473d3da21d1150e4af0c053da91a71c9f) webpack and other dependencies update (Christophe Hurpeau)
