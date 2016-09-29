@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+var _jsxFileName = 'LoginButtonsComponent.jsx';
 exports.default = LoginButtonsComponent;
 
 var _react = require('react');
@@ -22,12 +23,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function LoginButtonsComponent() {
     return _react2.default.createElement(
         'ul',
-        { className: 'list links buttons login-buttons', __self: this
+        { className: 'list links buttons login-buttons', __self: this,
+            __source: {
+                fileName: _jsxFileName,
+                lineNumber: 6
+            }
         },
         _react2.default.createElement(
             'li',
             {
-                __self: this
+                __self: this,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 7
+                }
             },
             _react2.default.createElement(
                 _reactAlpLink2.default,
@@ -36,14 +45,26 @@ function LoginButtonsComponent() {
                     to: 'login',
                     params: { strategy: 'google' },
                     target: '_self',
-                    __self: this
+                    __self: this,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 8
+                    }
                 },
-                _react2.default.createElement(_google2.default, { className: 'icon', __self: this
+                _react2.default.createElement(_google2.default, { className: 'icon', __self: this,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 14
+                    }
                 }),
                 _react2.default.createElement(
                     'span',
                     {
-                        __self: this
+                        __self: this,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 15
+                        }
                     },
                     'Login with Google'
                 )

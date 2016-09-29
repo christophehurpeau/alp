@@ -1,1 +1,1 @@
-{"version":3,"sources":["../src/index.js"],"names":[],"mappings":"0BAAyB,yB;0BAAlB,Y;uBACe,sB;uBAAf,S","file":"index.js","sourcesContent":["export LoginButtons from './LoginButtonsComponent';\nexport LoginForm from './LoginFormComponent';\n"]}
+{"version":3,"sources":["../src/index.js"],"names":["LoginButtons","LoginForm"],"mappings":"0BAAyB,yB;0BAAlBA,Y;uBACe,sB;uBAAfC,S","file":"index.js","sourcesContent":["export LoginButtons from './LoginButtonsComponent';\nexport LoginForm from './LoginFormComponent';\n"]}
