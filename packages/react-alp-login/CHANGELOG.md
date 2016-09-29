@@ -1,3 +1,8 @@
+### v0.4.0
+
+- [`c663af4`](https://github.com/alpjs/react-alp-login/commit/c663af498ff2123966bd58093924efe43d1d0307) 0.3.0 (Christophe Hurpeau)
+- [`9dc21bb`](https://github.com/alpjs/react-alp-login/commit/9dc21bbc2a2ed3dd4185ebd7d66d8dfc14eebc87) pob-babel@8.3.1 (Christophe Hurpeau)
+
 ### v0.3.0
 
 - [`263f8fc`](https://github.com/alpjs/react-alp-login/commit/263f8fcb68005775be1c551f196fa8e8d16031d4) update dependencies (Christophe Hurpeau)
