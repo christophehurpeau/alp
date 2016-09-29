@@ -1,3 +1,7 @@
+### v2.17.0-rc
+
+- [`4223660`](https://github.com/alpjs/alp-dev/commit/4223660473d3da21d1150e4af0c053da91a71c9f) webpack and other dependencies update (Christophe Hurpeau)
+
 ### v2.16.0
 
 - [`63b3f1d`](https://github.com/alpjs/alp-dev/commit/63b3f1d48f70bea64a6f953d1bab950130e0181f) chore(package): update dependencies (Christophe Hurpeau)
