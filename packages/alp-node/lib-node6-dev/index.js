@@ -101,7 +101,7 @@ class Alp extends _koa2.default {
    * @param {Array} [options.argv] deprecated, list of overridable config by argv
    */
   constructor() {
-    let options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     super();
     if (options.packageDirname) (0, _util.deprecate)(() => () => null, 'options.packageDirname')();
@@ -111,7 +111,7 @@ class Alp extends _koa2.default {
     }
     if (!options.dirname) options.dirname = process.cwd();
 
-    this.dirname = options.dirname;
+    this.dirname = _path2.default.normalize(options.dirname);
 
     const packagePath = (0, _findupSync2.default)('package.json', { cwd: options.dirname });
     if (!packagePath) throw new Error(`Could not find package.json: "${ packagePath }"`);
@@ -234,11 +234,7 @@ function _assert(x, type, name) {
 
       _tcombForked2.default.fail(message());
     }
-
-    return type(x);
-  }
-
-  if (!(x instanceof type)) {
+  } else if (!(x instanceof type)) {
     _tcombForked2.default.fail(message());
   }
 

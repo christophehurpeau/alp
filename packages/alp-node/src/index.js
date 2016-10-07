@@ -42,7 +42,7 @@ export default class Alp extends Koa {
     }
     if (!options.dirname) options.dirname = process.cwd();
 
-    this.dirname = options.dirname;
+    this.dirname = path.normalize(options.dirname);
 
     const packagePath = findUp('package.json', { cwd: options.dirname });
     if (!packagePath) throw new Error(`Could not find package.json: "${packagePath}"`);
