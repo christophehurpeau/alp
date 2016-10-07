@@ -38,6 +38,7 @@ const websocket = exports.websocket = {
 
 function alpWebsocket(app, namespaceName) {
   start(app, namespaceName);
+  app.websocket = socket;
   return socket;
 }
 
