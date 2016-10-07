@@ -135,4 +135,10 @@ export default class Alp extends Koa {
       this.emit('close');
     }
   }
+
+  start(fn: Function) {
+    fn()
+      .then(() => logger.success('started'))
+      .catch(err => logger.error('start fail', { err }));
+  }
 }

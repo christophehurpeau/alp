@@ -193,6 +193,12 @@ class Alp extends _koa2.default {
       this.emit('close');
     }
   }
+
+  start(fn) {
+    _assert(fn, _tcombForked2.default.Function, 'fn');
+
+    fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
+  }
 }
 exports.default = Alp;
 

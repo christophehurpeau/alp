@@ -185,6 +185,10 @@ class Alp extends _koa2.default {
       this.emit('close');
     }
   }
+
+  start(fn) {
+    fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
+  }
 }
 exports.default = Alp;
 //# sourceMappingURL=index.js.map
