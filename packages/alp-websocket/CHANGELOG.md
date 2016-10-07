@@ -1,3 +1,7 @@
+### v3.3.2
+
+- [`04e9a7e`](https://github.com/alpjs/alp-websocket/commit/04e9a7e38fa80180488e09b93c42abca97ff2371) app.websocket = websocket instead of socket (emits returns a Promise) (Christophe Hurpeau)
+
 ### v3.3.1
 
 - [`fdafd6b`](https://github.com/alpjs/alp-websocket/commit/fdafd6b340fafa0298a59401e672ca461df22e7d) browser app.websocket (Christophe Hurpeau)
