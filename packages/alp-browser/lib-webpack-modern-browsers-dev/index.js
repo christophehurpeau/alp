@@ -1,3 +1,5 @@
+import _t from 'tcomb-forked';
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
 import Ibex from 'ibex';
@@ -8,8 +10,12 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import contentLoaded from 'content-loaded';
 import { init as initWebApp, redirect } from 'alauda/web-app';
+import Logger from 'nightingale-logger';
 
+export { Config } from 'alp-config';
 export { default as newController } from 'alp-controller';
+
+var logger = new Logger('alp');
 
 export default class AlpBrowser extends Ibex {
 
@@ -58,5 +64,29 @@ export default class AlpBrowser extends Ibex {
       initWebApp(url => this.load(url));
     });
   }
+
+  start(fn) {
+    _assert(fn, _t.Function, 'fn');
+
+    fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
+  }
+}
+
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  }
+
+  if (_t.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _t.getTypeName(type)]);
+
+      _t.fail(message());
+    }
+  } else if (!(x instanceof type)) {
+    _t.fail(message());
+  }
+
+  return x;
 }
 //# sourceMappingURL=index.js.map

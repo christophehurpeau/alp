@@ -16,8 +16,12 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import contentLoaded from 'content-loaded';
 import { init as initWebApp, redirect } from 'alauda/web-app';
+import Logger from 'nightingale-logger';
 
+export { Config } from 'alp-config';
 export { default as newController } from 'alp-controller';
+
+var logger = new Logger('alp');
 
 var AlpBrowser = function (_Ibex) {
   _inherits(AlpBrowser, _Ibex);
@@ -94,6 +98,15 @@ var AlpBrowser = function (_Ibex) {
         initWebApp(function (url) {
           return _this2.load(url);
         });
+      });
+    }
+  }, {
+    key: 'start',
+    value: function start(fn) {
+      fn().then(function () {
+        return logger.success('started');
+      }).catch(function (err) {
+        return logger.error('start fail', { err: err });
       });
     }
   }, {

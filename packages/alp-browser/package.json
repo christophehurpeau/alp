@@ -39,7 +39,8 @@
     "alp-params": "^0.3.0",
     "alp-translate": "^2.1.0",
     "content-loaded": "^1.1.0",
-    "ibex": "^4.0.2"
+    "ibex": "^4.0.2",
+    "nightingale-logger": "^1.4.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",

@@ -6,8 +6,12 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import contentLoaded from 'content-loaded';
 import { init as initWebApp, redirect } from 'alauda/src/web-app';
+import Logger from 'nightingale-logger';
 
+export { Config } from 'alp-config';
 export { default as newController } from 'alp-controller';
+
+const logger = new Logger('alp');
 
 export default class AlpBrowser extends Ibex {
   path: string;
@@ -53,5 +57,11 @@ export default class AlpBrowser extends Ibex {
         this.on('redirect', redirect);
         initWebApp(url => this.load(url));
       });
+  }
+
+  start(fn: Function) {
+    fn()
+      .then(() => logger.success('started'))
+      .catch(err => logger.error('start fail', { err }));
   }
 }
