@@ -9,60 +9,61 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import { PropTypes, Component } from 'react';
 
 var SubscribeContainerComponent = function (_Component) {
-    _inherits(SubscribeContainerComponent, _Component);
+  _inherits(SubscribeContainerComponent, _Component);
 
-    function SubscribeContainerComponent() {
-        _classCallCheck(this, SubscribeContainerComponent);
+  function SubscribeContainerComponent() {
+    _classCallCheck(this, SubscribeContainerComponent);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(SubscribeContainerComponent).apply(this, arguments));
+    return _possibleConstructorReturn(this, (SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).apply(this, arguments));
+  }
+
+  _createClass(SubscribeContainerComponent, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _props = this.props;
+      var dispatch = _props.dispatch;
+      var name = _props.name;
+      var websocket = this.context.context.app.websocket;
+
+      this._handlerConnected = websocket.on('connect', function () {
+        websocket.emit('subscribe:' + name).then(function (action) {
+          return action && dispatch(action);
+        });
+      });
+      if (websocket.isConnected()) {
+        this._handlerConnected();
+      }
     }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      var name = this.props.name;
+      var context = this.context.context;
 
-    _createClass(SubscribeContainerComponent, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _props = this.props;
-            var dispatch = _props.dispatch;
-            var name = _props.name;
-            var websocket = this.context.context.app.websocket;
+      var websocket = context.app.websocket;
+      if (websocket.isConnected()) {
+        websocket.emit('unsubscribe:' + name);
+      }
 
-            this._handlerConnected = websocket.on('connect', function () {
-                websocket.emit('subscribe:' + name).then(function (action) {
-                    return action && dispatch(action);
-                });
-            });
-            if (websocket.isConnected()) {
-                this._handlerConnected();
-            }
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            var name = this.props.name;
-            var websocket = this.context.context.app.websocket;
+      websocket.off('connect', this._handlerConnected);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return this.props.children;
+    }
+  }]);
 
-            if (websocket.isConnected()) {
-                websocket.emit('unsubscribe:' + name);
-            }
-
-            websocket.off('connect', this._handlerConnected);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return this.props.children;
-        }
-    }]);
-
-    return SubscribeContainerComponent;
+  return SubscribeContainerComponent;
 }(Component);
 
 SubscribeContainerComponent.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    children: PropTypes.node
+  dispatch: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  children: PropTypes.node
 };
 SubscribeContainerComponent.contextTypes = {
-    context: PropTypes.object
+  context: PropTypes.object
 };
 export default SubscribeContainerComponent;
 //# sourceMappingURL=index.js.map
