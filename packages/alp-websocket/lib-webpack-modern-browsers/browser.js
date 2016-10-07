@@ -4,13 +4,10 @@ import Logger from 'nightingale-logger';
 
 var logger = new Logger('alp.websocket');
 var socket = undefined;
-var successfullConnection = false;
+var successfulConnection = false;
 var connected = false;
 
 export var websocket = {
-  get socket() {
-    return socket;
-  },
   get connected() {
     return connected;
   },
@@ -23,7 +20,8 @@ export var websocket = {
 
 export default function alpWebsocket(app, namespaceName) {
   start(app, namespaceName);
-  app.websocket = socket;
+  app.websocket = websocket;
+  websocket.socket = socket;
   return socket;
 }
 
@@ -58,7 +56,7 @@ function start(_ref) {
 
   socket.on('connect', () => {
     logger.success('connected');
-    successfullConnection = true;
+    successfulConnection = true;
     connected = true;
   });
 
@@ -121,6 +119,6 @@ function isConnected() {
 }
 
 function isDisconnected() {
-  return successfullConnection && !isConnected();
+  return successfulConnection && !isConnected();
 }
 //# sourceMappingURL=browser.js.map

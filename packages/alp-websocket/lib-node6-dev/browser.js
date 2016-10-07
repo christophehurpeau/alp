@@ -23,13 +23,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* global location, window, confirm */
 const logger = new _nightingaleLogger2.default('alp.websocket');
 let socket;
-let successfullConnection = false;
+let successfulConnection = false;
 let connected = false;
 
 const websocket = exports.websocket = {
-  get socket() {
-    return socket;
-  },
   get connected() {
     return connected;
   },
@@ -42,7 +39,8 @@ const websocket = exports.websocket = {
 
 function alpWebsocket(app, namespaceName) {
   start(app, namespaceName);
-  app.websocket = socket;
+  app.websocket = websocket;
+  websocket.socket = socket;
   return socket;
 }
 
@@ -77,7 +75,7 @@ function start(_ref) {
 
   socket.on('connect', () => {
     logger.success('connected');
-    successfullConnection = true;
+    successfulConnection = true;
     connected = true;
   });
 
@@ -142,7 +140,7 @@ function isConnected() {
 }
 
 function isDisconnected() {
-  return successfullConnection && !isConnected();
+  return successfulConnection && !isConnected();
 }
 
 function _assert(x, type, name) {
