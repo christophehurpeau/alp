@@ -1,3 +1,8 @@
+### v0.21.0
+
+- [`7e819f2`](https://github.com/alpjs/alp-node/commit/7e819f2052454d382198e01423f9f461d0cacece) options.dirname and findup package.json (Christophe Hurpeau)
+- [`d2bbf6c`](https://github.com/alpjs/alp-node/commit/d2bbf6c92c0ddea5d5b50f60c37bd98d90eaa42d) normalize options.dirname (Christophe Hurpeau)
+
 ### v0.20.0
 
 - [`659afc1`](https://github.com/alpjs/alp-node/commit/659afc16c56fa8f143b1beb9f1fd37eb4435728c) add start method (Christophe Hurpeau)
