@@ -10,6 +10,8 @@ import translate from 'alp-translate';
 import _listen from 'alp-listen';
 import migrations from 'alp-migrations';
 import Logger from 'nightingale-logger';
+import findUp from 'findup-sync';
+import path from 'path';
 
 export { Config } from 'alp-config';
 export { default as newController } from 'alp-controller';
@@ -25,23 +27,35 @@ export default class Alp extends Koa {
 
   /**
    * @param {Object} [options]
-   * @param {string} [options.srcDirname] directory of the application
+   * @param {string} [options.dirname] directory of the application
+   * @param {string} [options.certPath] directory of the ssl certificates
+   * @param {string} [options.publicPath] directory of public files
    * @param {Config} [options.config] alp-config object
-   * @param {string} [options.packageDirname] deprecated, directory of the package
    * @param {Array} [options.argv] deprecated, list of overridable config by argv
    */
   constructor(options = {}) {
     super();
-    if (!options.packageDirname) options.packageDirname = process.cwd();
-    if (!options.srcDirname) options.srcDirname = `${options.packageDirname}/lib`;
+    if (options.packageDirname) deprecate(() => () => null, 'options.packageDirname')();
+    if (options.srcDirname) {
+      deprecate(() => () => null, 'options.srcDirname: use dirname instead')();
+      options.dirname = options.srcDirname;
+    }
+    if (!options.dirname) options.dirname = process.cwd();
 
-    this.dirname = options.srcDirname;
+    this.dirname = options.dirname;
+
+    const packagePath = findUp('package.json', { cwd: options.dirname });
+    if (!packagePath) throw new Error(`Could not find package.json: "${packagePath}"`);
+    const packageDirname = path.dirname(packagePath);
+
     Object.defineProperty(this, 'packageDirname', {
-      get: deprecate(() => options.packageDirname, 'packageDirname'),
+      get: deprecate(() => packageDirname, 'packageDirname'),
       configurable: false,
       enumerable: false,
     });
 
+    this.certPath = options.certPath || `${this.packageDirname}/config/cert`;
+    this.publicPath = options.publicPath || `${this.packageDirname}/public/`;
 
     if (!options.config) {
       deprecate(() => () => null, 'Alp options: missing options.config')();
@@ -110,7 +124,7 @@ export default class Alp extends Koa {
     return this.env === 'prod' || this.env === 'production';
   }
   servePublic() {
-    this.use(serve(`${this.packageDirname}/public/`)); // static files
+    this.use(serve(this.publicPath)); // static files
   }
 
   catchErrors() {
@@ -118,7 +132,7 @@ export default class Alp extends Koa {
   }
 
   listen() {
-    return _listen(`${this.packageDirname}/config/cert`)(this)
+    return _listen(this.certPath)(this)
       .then(server => this._server = server)
       .catch(err => {
         logger.error(err);

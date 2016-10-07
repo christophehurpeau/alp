@@ -74,6 +74,14 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
+var _findupSync = require('findup-sync');
+
+var _findupSync2 = _interopRequireDefault(_findupSync);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const logger = new _nightingaleLogger2.default('alp');
@@ -82,24 +90,37 @@ class Alp extends _koa2.default {
 
   /**
    * @param {Object} [options]
-   * @param {string} [options.srcDirname] directory of the application
+   * @param {string} [options.dirname] directory of the application
+   * @param {string} [options.certPath] directory of the ssl certificates
+   * @param {string} [options.publicPath] directory of public files
    * @param {Config} [options.config] alp-config object
-   * @param {string} [options.packageDirname] deprecated, directory of the package
    * @param {Array} [options.argv] deprecated, list of overridable config by argv
    */
   constructor() {
     let options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
     super();
-    if (!options.packageDirname) options.packageDirname = process.cwd();
-    if (!options.srcDirname) options.srcDirname = `${ options.packageDirname }/lib`;
+    if (options.packageDirname) (0, _util.deprecate)(() => () => null, 'options.packageDirname')();
+    if (options.srcDirname) {
+      (0, _util.deprecate)(() => () => null, 'options.srcDirname: use dirname instead')();
+      options.dirname = options.srcDirname;
+    }
+    if (!options.dirname) options.dirname = process.cwd();
 
-    this.dirname = options.srcDirname;
+    this.dirname = options.dirname;
+
+    const packagePath = (0, _findupSync2.default)('package.json', { cwd: options.dirname });
+    if (!packagePath) throw new Error(`Could not find package.json: "${ packagePath }"`);
+    const packageDirname = _path2.default.dirname(packagePath);
+
     Object.defineProperty(this, 'packageDirname', {
-      get: (0, _util.deprecate)(() => options.packageDirname, 'packageDirname'),
+      get: (0, _util.deprecate)(() => packageDirname, 'packageDirname'),
       configurable: false,
       enumerable: false
     });
+
+    this.certPath = options.certPath || `${ this.packageDirname }/config/cert`;
+    this.publicPath = options.publicPath || `${ this.packageDirname }/public/`;
 
     if (!options.config) {
       (0, _util.deprecate)(() => () => null, 'Alp options: missing options.config')();
@@ -162,7 +183,7 @@ class Alp extends _koa2.default {
     return this.env === 'prod' || this.env === 'production';
   }
   servePublic() {
-    this.use((0, _koaStatic2.default)(`${ this.packageDirname }/public/`)); // static files
+    this.use((0, _koaStatic2.default)(this.publicPath)); // static files
   }
 
   catchErrors() {
@@ -170,7 +191,7 @@ class Alp extends _koa2.default {
   }
 
   listen() {
-    return (0, _alpListen2.default)(`${ this.packageDirname }/config/cert`)(this).then(server => this._server = server).catch(err => {
+    return (0, _alpListen2.default)(this.certPath)(this).then(server => this._server = server).catch(err => {
       logger.error(err);
       throw err;
     });
