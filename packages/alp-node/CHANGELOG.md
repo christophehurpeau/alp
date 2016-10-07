@@ -1,3 +1,7 @@
+### v0.20.0
+
+- [`659afc1`](https://github.com/alpjs/alp-node/commit/659afc16c56fa8f143b1beb9f1fd37eb4435728c) add start method (Christophe Hurpeau)
+
 ### v0.19.1
 
 - [`82e4f78`](https://github.com/alpjs/alp-node/commit/82e4f78896664be830211867d90bbfbff0f37985) update dependencies (Christophe Hurpeau)
