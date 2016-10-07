@@ -1,3 +1,7 @@
+### v3.3.1
+
+- [`fdafd6b`](https://github.com/alpjs/alp-websocket/commit/fdafd6b340fafa0298a59401e672ca461df22e7d) browser app.websocket (Christophe Hurpeau)
+
 ### v3.3.0
 
 - [`8f36fc8`](https://github.com/alpjs/alp-websocket/commit/8f36fc80f40ca03929cbf12e323afaa6d7802d5a) close websocket (Christophe Hurpeau)
