@@ -109,7 +109,9 @@ class Alp extends _koa2.default {
       (0, _util.deprecate)(() => () => null, 'options.srcDirname: use dirname instead')();
       options.dirname = options.srcDirname;
     }
-    if (!options.dirname) options.dirname = process.cwd();
+    if (!options.dirname) {
+      options.dirname = _path2.default.dirname(process.argv[1]);
+    }
 
     this.dirname = _path2.default.normalize(options.dirname);
 

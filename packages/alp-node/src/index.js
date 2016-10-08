@@ -40,7 +40,9 @@ export default class Alp extends Koa {
       deprecate(() => () => null, 'options.srcDirname: use dirname instead')();
       options.dirname = options.srcDirname;
     }
-    if (!options.dirname) options.dirname = process.cwd();
+    if (!options.dirname) {
+      options.dirname = path.dirname(process.argv[1]);
+    }
 
     this.dirname = path.normalize(options.dirname);
 
