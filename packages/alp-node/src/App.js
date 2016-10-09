@@ -2,34 +2,22 @@ import { deprecate } from 'util';
 import Koa from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
-import _config, { Config } from 'alp-config/src';
-import errors from 'alp-errors-node/src';
-import params from 'alp-params/src';
-import language from 'alp-language/src';
+import config from 'alp-config/src';
+import errors from 'alp-errors-node';
+import params from 'alp-params';
+import language from 'alp-language';
 import translate from 'alp-translate';
-import _listen from 'alp-listen/src';
-import migrations from 'alp-migrations/src';
-import Logger from 'nightingale-logger/src';
+import _listen from 'alp-listen';
+import migrations from 'alp-migrations';
+import Logger from 'nightingale-logger';
 import findUp from 'findup-sync';
 import path from 'path';
 
 export { Config } from 'alp-config';
-export newController from 'alp-controller';
+export { default as newController } from 'alp-controller';
 export { MigrationsManager } from 'alp-migrations';
 
 const logger = new Logger('alp');
-
-export const appDirname = path.dirname(process.argv[1]);
-logger.info('appDirname', { appDirname });
-
-const packagePath = findUp('package.json', { cwd: appDirname });
-if (!packagePath) throw new Error(`Could not find package.json: "${packagePath}"`);
-export const packageDirname = path.dirname(packagePath);
-
-// eslint-disable-next-line import/no-dynamic-require, global-require
-export const packageConfig = require(packagePath);
-export const config = new Config(`${appDirname}/config/`);
-config.loadSync({ packageConfig });
 
 export default class Alp extends Koa {
   dirname: string;
@@ -47,20 +35,20 @@ export default class Alp extends Koa {
    */
   constructor(options = {}) {
     super();
-    if (options.packageDirname) {
-      throw new Error('options.packageDirname is deprecated');
-    }
-    if (options.config) {
-      throw new Error('options.config is deprecated');
-    }
+    if (options.packageDirname) deprecate(() => () => null, 'options.packageDirname')();
     if (options.srcDirname) {
-      throw new Error('options.srcDirname is deprecated');
+      deprecate(() => () => null, 'options.srcDirname: use dirname instead')();
+      options.dirname = options.srcDirname;
     }
-    if (options.dirname) {
-      throw new Error('options.dirname is deprecated');
+    if (!options.dirname) {
+      options.dirname = path.dirname(process.argv[1]);
     }
 
-    this.dirname = path.normalize(appDirname);
+    this.dirname = path.normalize(options.dirname);
+
+    const packagePath = findUp('package.json', { cwd: options.dirname });
+    if (!packagePath) throw new Error(`Could not find package.json: "${packagePath}"`);
+    const packageDirname = path.dirname(packagePath);
 
     Object.defineProperty(this, 'packageDirname', {
       get: deprecate(() => packageDirname, 'packageDirname'),
@@ -71,7 +59,13 @@ export default class Alp extends Koa {
     this.certPath = options.certPath || `${this.packageDirname}/config/cert`;
     this.publicPath = options.publicPath || `${this.packageDirname}/public/`;
 
-    _config()(this, config);
+    if (!options.config) {
+      // eslint-disable-next-line import/no-dynamic-require, global-require
+      const packageConfig = require(`${options.packageDirname}/package.json`);
+      config(`${this.dirname}/config`, { packageConfig, argv: options.argv })(this);
+    } else {
+      config()(this, options.config);
+    }
 
     params(this);
     language(this);

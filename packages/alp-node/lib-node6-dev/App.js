@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.config = exports.packageConfig = exports.packageDirname = exports.appDirname = exports.MigrationsManager = exports.newController = exports.Config = undefined;
+exports.MigrationsManager = exports.newController = exports.Config = undefined;
 
 var _alpConfig = require('alp-config');
 
@@ -11,6 +11,15 @@ Object.defineProperty(exports, 'Config', {
   enumerable: true,
   get: function get() {
     return _alpConfig.Config;
+  }
+});
+
+var _alpController = require('alp-controller');
+
+Object.defineProperty(exports, 'newController', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_alpController).default;
   }
 });
 
@@ -22,6 +31,10 @@ Object.defineProperty(exports, 'MigrationsManager', {
     return _alpMigrations.MigrationsManager;
   }
 });
+
+var _tcombForked = require('tcomb-forked');
+
+var _tcombForked2 = _interopRequireDefault(_tcombForked);
 
 var _util = require('util');
 
@@ -73,28 +86,9 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
-var _alpController = require('alp-controller');
-
-var _alpController2 = _interopRequireDefault(_alpController);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.newController = _alpController2.default;
-
-
 const logger = new _nightingaleLogger2.default('alp');
-
-const appDirname = exports.appDirname = _path2.default.dirname(process.argv[1]);
-logger.info('appDirname', { appDirname });
-
-const packagePath = (0, _findupSync2.default)('package.json', { cwd: appDirname });
-if (!packagePath) throw new Error(`Could not find package.json: "${ packagePath }"`);
-const packageDirname = exports.packageDirname = _path2.default.dirname(packagePath);
-
-// eslint-disable-next-line import/no-dynamic-require, global-require
-const packageConfig = exports.packageConfig = require(packagePath);
-const config = exports.config = new _alpConfig.Config(`${ appDirname }/config/`);
-config.loadSync({ packageConfig });
 
 class Alp extends _koa2.default {
 
@@ -110,20 +104,20 @@ class Alp extends _koa2.default {
     let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     super();
-    if (options.packageDirname) {
-      throw new Error('options.packageDirname is deprecated');
-    }
-    if (options.config) {
-      throw new Error('options.config is deprecated');
-    }
+    if (options.packageDirname) (0, _util.deprecate)(() => () => null, 'options.packageDirname')();
     if (options.srcDirname) {
-      throw new Error('options.srcDirname is deprecated');
+      (0, _util.deprecate)(() => () => null, 'options.srcDirname: use dirname instead')();
+      options.dirname = options.srcDirname;
     }
-    if (options.dirname) {
-      throw new Error('options.dirname is deprecated');
+    if (!options.dirname) {
+      options.dirname = _path2.default.dirname(process.argv[1]);
     }
 
-    this.dirname = _path2.default.normalize(appDirname);
+    this.dirname = _path2.default.normalize(options.dirname);
+
+    const packagePath = (0, _findupSync2.default)('package.json', { cwd: options.dirname });
+    if (!packagePath) throw new Error(`Could not find package.json: "${ packagePath }"`);
+    const packageDirname = _path2.default.dirname(packagePath);
 
     Object.defineProperty(this, 'packageDirname', {
       get: (0, _util.deprecate)(() => packageDirname, 'packageDirname'),
@@ -134,7 +128,13 @@ class Alp extends _koa2.default {
     this.certPath = options.certPath || `${ this.packageDirname }/config/cert`;
     this.publicPath = options.publicPath || `${ this.packageDirname }/public/`;
 
-    (0, _alpConfig2.default)()(this, config);
+    if (!options.config) {
+      // eslint-disable-next-line import/no-dynamic-require, global-require
+      const packageConfig = require(`${ options.packageDirname }/package.json`);
+      (0, _alpConfig2.default)(`${ this.dirname }/config`, { packageConfig, argv: options.argv })(this);
+    } else {
+      (0, _alpConfig2.default)()(this, options.config);
+    }
 
     (0, _alpParams2.default)(this);
     (0, _alpLanguage2.default)(this);
@@ -158,10 +158,14 @@ class Alp extends _koa2.default {
   }
 
   registerBrowserContextTransformer(transformer) {
+    _assert(transformer, _tcombForked2.default.Function, 'transformer');
+
     this.browserContextTransformers.push(transformer);
   }
 
   registerBrowserStateTransformer(transformer) {
+    _assert(transformer, _tcombForked2.default.Function, 'transformer');
+
     this.browserStateTransformers.push(transformer);
   }
 
@@ -213,8 +217,28 @@ class Alp extends _koa2.default {
   }
 
   start(fn) {
+    _assert(fn, _tcombForked2.default.Function, 'fn');
+
     fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
 }
 exports.default = Alp;
-//# sourceMappingURL=index.js.map
+
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  }
+
+  if (_tcombForked2.default.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
+
+      _tcombForked2.default.fail(message());
+    }
+  } else if (!(x instanceof type)) {
+    _tcombForked2.default.fail(message());
+  }
+
+  return x;
+}
+//# sourceMappingURL=App.js.map
