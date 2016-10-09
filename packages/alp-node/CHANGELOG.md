@@ -1,3 +1,9 @@
+### v0.22.0
+
+- [`6b570b5`](https://github.com/alpjs/alp-node/commit/6b570b51ec0d99ec99dfdc43e949fb17b6b39545) chore: add komet (Christophe Hurpeau)
+- [`43e10c1`](https://github.com/alpjs/alp-node/commit/43e10c115387b727fc55cffc5e52a0d81733a9de) refactor: dirname uses process.argv[1] (Christophe Hurpeau)
+- [`1d2a536`](https://github.com/alpjs/alp-node/commit/1d2a536b8625ae1c2911ca0bd50fec1069edbd1a) refactor: breaking: config and options (Christophe Hurpeau)
+
 ### v0.21.0
 
 - [`7e819f2`](https://github.com/alpjs/alp-node/commit/7e819f2052454d382198e01423f9f461d0cacece) options.dirname and findup package.json (Christophe Hurpeau)
