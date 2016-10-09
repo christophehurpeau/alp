@@ -85,11 +85,12 @@ exports.newController = _alpController2.default;
 const logger = new _nightingaleLogger2.default('alp');
 
 const appDirname = exports.appDirname = _path2.default.dirname(process.argv[1]);
-logger.info('appDirname', { appDirname });
 
 const packagePath = (0, _findupSync2.default)('package.json', { cwd: appDirname });
 if (!packagePath) throw new Error(`Could not find package.json: "${ packagePath }"`);
 const packageDirname = exports.packageDirname = _path2.default.dirname(packagePath);
+
+logger.debug('init', { appDirname, packageDirname });
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
 const packageConfig = exports.packageConfig = require(packagePath);

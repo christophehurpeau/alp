@@ -20,11 +20,12 @@ export { MigrationsManager } from 'alp-migrations';
 const logger = new Logger('alp');
 
 export const appDirname = path.dirname(process.argv[1]);
-logger.info('appDirname', { appDirname });
 
 const packagePath = findUp('package.json', { cwd: appDirname });
 if (!packagePath) throw new Error(`Could not find package.json: "${packagePath}"`);
 export const packageDirname = path.dirname(packagePath);
+
+logger.debug('init', { appDirname, packageDirname });
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
 export const packageConfig = require(packagePath);
