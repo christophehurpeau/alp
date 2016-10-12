@@ -1,3 +1,7 @@
+### v0.5.0
+
+- [`1ba9d67`](https://github.com/alpjs/alp-auth/commit/1ba9d672b711f51146a722f4f606a3b0628a0e8c) feat: emaildomains (Christophe Hurpeau)
+
 ### v0.4.1
 
 - [`ea53217`](https://github.com/alpjs/alp-auth/commit/ea53217ac1d40a5aa75fcfe66cc0e6fb76238517) fix dev exports types (Christophe Hurpeau)
