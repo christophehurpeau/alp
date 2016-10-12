@@ -89,7 +89,7 @@ export default class UserAccountsService extends EventEmitter {
       emails,
     });
 
-    console.log(user);
+    logger.info('create user', { emails, user });
 
     if (!user) {
       user = {};
@@ -138,6 +138,11 @@ export default class UserAccountsService extends EventEmitter {
         userEmails.push(email);
       }
     });
+
+    user.emailDomains = Array.from(user.emails.reduce(
+      (domains, email) => domains.add(email.split('@', 2)[1]),
+      new Set(),
+    ));
 
     const keyPath: string = this.usersManager.store.keyPath;
     await this.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);

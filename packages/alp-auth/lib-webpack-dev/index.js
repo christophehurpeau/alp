@@ -1,6 +1,6 @@
 import _t from 'tcomb-forked';
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 import { sign, verify } from 'jsonwebtoken';
 import promiseCallback from 'promise-callback-factory';
@@ -54,7 +54,7 @@ export default function init(_ref) {
     }));
 
     app.context.setConnected = function () {
-      var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(connected, user) {
+      var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(connected, user) {
         var _this = this;
 
         var token;
@@ -107,7 +107,7 @@ export default function init(_ref) {
       }));
 
       return function (_x, _x2) {
-        return ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
 
@@ -139,7 +139,7 @@ export default function init(_ref) {
         var Cookies = require('cookies');
 
         app.websocket.use(function () {
-          var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(socket, next) {
+          var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(socket, next) {
             var handshakeData, cookies, token, connected, user;
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
               while (1) {
@@ -232,14 +232,14 @@ export default function init(_ref) {
           }));
 
           return function (_x3, _x4) {
-            return ref.apply(this, arguments);
+            return _ref3.apply(this, arguments);
           };
         }());
       })();
     }
 
     return function () {
-      var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(ctx, next) {
+      var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(ctx, next) {
         var token, connected, user;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
@@ -333,7 +333,7 @@ export default function init(_ref) {
       }));
 
       return function (_x5, _x6) {
-        return ref.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       };
     }();
   };
@@ -350,11 +350,7 @@ function _assert(x, type, name) {
 
       _t.fail(message());
     }
-
-    return type(x);
-  }
-
-  if (!(x instanceof type)) {
+  } else if (!(x instanceof type)) {
     _t.fail(message());
   }
 

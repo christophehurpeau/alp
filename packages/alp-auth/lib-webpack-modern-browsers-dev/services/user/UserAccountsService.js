@@ -1,6 +1,6 @@
 import _t from 'tcomb-forked';
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 /* global fetch */
 import EventEmitter from 'events';
@@ -106,7 +106,7 @@ export default class UserAccountsService extends EventEmitter {
         emails
       });
 
-      console.log(user);
+      logger.info('create user', { emails, user });
 
       if (!user) {
         user = {};
@@ -156,6 +156,10 @@ export default class UserAccountsService extends EventEmitter {
         }
       });
 
+      user.emailDomains = Array.from(user.emails.reduce(function (domains, email) {
+        return domains.add(email.split('@', 2)[1]);
+      }, new Set()));
+
       var keyPath = _this2.usersManager.store.keyPath;
       yield _this2.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);
       return user;
@@ -181,11 +185,7 @@ function _assert(x, type, name) {
 
       _t.fail(message());
     }
-
-    return type(x);
-  }
-
-  if (!(x instanceof type)) {
+  } else if (!(x instanceof type)) {
     _t.fail(message());
   }
 

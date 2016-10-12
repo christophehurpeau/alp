@@ -48,6 +48,7 @@ const UserBrowserType = exports.UserBrowserType = _tcombForked2.default.interfac
   fullName: UserNameType,
   status: _tcombForked2.default.String,
   emails: _tcombForked2.default.list(_tcombForked2.default.String),
+  emailDomains: _tcombForked2.default.list(_tcombForked2.default.String),
   accounts: _tcombForked2.default.list(AccountBrowserType)
 }, "UserBrowserType");
 //# sourceMappingURL=index.js.map

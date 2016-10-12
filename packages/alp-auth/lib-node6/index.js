@@ -51,7 +51,7 @@ var _createAuthController2 = _interopRequireDefault(_createAuthController);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 exports.abstractUsersManager = _abstractUsersManager2.default;
 exports.mongoUsersManager = _mongoUsersManager2.default;
@@ -81,7 +81,7 @@ function init(_ref) {
     }));
 
     app.context.setConnected = (() => {
-      var ref = _asyncToGenerator(function* (connected, user) {
+      var _ref2 = _asyncToGenerator(function* (connected, user) {
         var _this = this;
 
         logger.debug('setConnected', { connected });
@@ -107,7 +107,7 @@ function init(_ref) {
       });
 
       return function (_x, _x2) {
-        return ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     })();
 
@@ -138,7 +138,7 @@ function init(_ref) {
       const Cookies = require('cookies');
 
       app.websocket.use((() => {
-        var ref = _asyncToGenerator(function* (socket, next) {
+        var _ref3 = _asyncToGenerator(function* (socket, next) {
           const handshakeData = socket.request;
           const cookies = new Cookies(handshakeData, null, { keys: app.keys });
           let token = cookies.get(COOKIE_NAME);
@@ -167,13 +167,13 @@ function init(_ref) {
         });
 
         return function (_x3, _x4) {
-          return ref.apply(this, arguments);
+          return _ref3.apply(this, arguments);
         };
       })());
     }
 
     return (() => {
-      var ref = _asyncToGenerator(function* (ctx, next) {
+      var _ref4 = _asyncToGenerator(function* (ctx, next) {
         let token = ctx.cookies.get(COOKIE_NAME);
         logger.debug('middleware', { token });
 
@@ -205,7 +205,7 @@ function init(_ref) {
       });
 
       return function (_x5, _x6) {
-        return ref.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       };
     })();
   };

@@ -2,7 +2,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 import _t from 'tcomb-forked';
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -62,7 +62,7 @@ var UserAccountsService = function (_EventEmitter) {
   }, {
     key: 'update',
     value: function () {
-      var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(user, strategy, tokens, scope, subservice) {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(user, strategy, tokens, scope, subservice) {
         var service, profile, account;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -115,7 +115,7 @@ var UserAccountsService = function (_EventEmitter) {
       }));
 
       function update(_x, _x2, _x3, _x4, _x5) {
-        return ref.apply(this, arguments);
+        return _ref.apply(this, arguments);
       }
 
       return update;
@@ -123,7 +123,7 @@ var UserAccountsService = function (_EventEmitter) {
   }, {
     key: 'findOrCreateFromGoogle',
     value: function () {
-      var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(strategy, tokens, scope, subservice) {
+      var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(strategy, tokens, scope, subservice) {
         var service, profile, plusProfile, emails, user, accountId, account, userEmails, keyPath;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -168,7 +168,7 @@ var UserAccountsService = function (_EventEmitter) {
                 user = _context2.sent;
 
 
-                console.log(user);
+                logger.info('create user', { emails: emails, user: user });
 
                 if (!user) {
                   user = {};
@@ -219,14 +219,18 @@ var UserAccountsService = function (_EventEmitter) {
                   }
                 });
 
+                user.emailDomains = Array.from(user.emails.reduce(function (domains, email) {
+                  return domains.add(email.split('@', 2)[1]);
+                }, new Set()));
+
                 keyPath = this.usersManager.store.keyPath;
-                _context2.next = 38;
+                _context2.next = 39;
                 return this.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);
 
-              case 38:
+              case 39:
                 return _context2.abrupt('return', user);
 
-              case 39:
+              case 40:
               case 'end':
                 return _context2.stop();
             }
@@ -235,7 +239,7 @@ var UserAccountsService = function (_EventEmitter) {
       }));
 
       function findOrCreateFromGoogle(_x6, _x7, _x8, _x9) {
-        return ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       }
 
       return findOrCreateFromGoogle;
@@ -268,11 +272,7 @@ function _assert(x, type, name) {
 
       _t.fail(message());
     }
-
-    return type(x);
-  }
-
-  if (!(x instanceof type)) {
+  } else if (!(x instanceof type)) {
     _t.fail(message());
   }
 

@@ -18,7 +18,7 @@ var _userAccountGoogleService2 = _interopRequireDefault(_userAccountGoogleServic
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; } /* global fetch */
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* global fetch */
 
 
 const logger = new _nightingaleLogger2.default('alp-auth.services.userAccounts');
@@ -102,7 +102,7 @@ class UserAccountsService extends _events2.default {
         emails
       });
 
-      console.log(user);
+      logger.info('create user', { emails, user });
 
       if (!user) {
         user = {};
@@ -151,6 +151,10 @@ class UserAccountsService extends _events2.default {
           userEmails.push(email);
         }
       });
+
+      user.emailDomains = Array.from(user.emails.reduce(function (domains, email) {
+        return domains.add(email.split('@', 2)[1]);
+      }, new Set()));
 
       const keyPath = _this2.usersManager.store.keyPath;
       yield _this2.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);

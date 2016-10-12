@@ -36,6 +36,7 @@ export var UserBrowserType = _t.interface({
   fullName: UserNameType,
   status: _t.String,
   emails: _t.list(_t.String),
+  emailDomains: _t.list(_t.String),
   accounts: _t.list(AccountBrowserType)
 }, "UserBrowserType");
 //# sourceMappingURL=index.js.map

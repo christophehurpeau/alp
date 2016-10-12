@@ -35,5 +35,6 @@ export type UserBrowserType = {
   fullName: UserNameType,
   status: string,
   emails: Array<string>,
+  emailDomains: Array<string>,
   accounts: Array<AccountBrowserType>,
 };

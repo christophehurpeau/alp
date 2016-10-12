@@ -1,10 +1,10 @@
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 import _t from 'tcomb-forked';
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -81,7 +81,7 @@ var AuthenticationService = function (_EventEmitter) {
   _createClass(AuthenticationService, [{
     key: 'generateAuthUrl',
     value: function generateAuthUrl(strategy) {
-      var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       _assert(strategy, _t.String, 'strategy');
 
@@ -105,7 +105,7 @@ var AuthenticationService = function (_EventEmitter) {
   }, {
     key: 'getTokens',
     value: function getTokens(strategy) {
-      var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       _assert(strategy, _t.String, 'strategy');
 
@@ -202,7 +202,7 @@ var AuthenticationService = function (_EventEmitter) {
   }, {
     key: 'redirectAuthUrl',
     value: function () {
-      var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx, strategy, refreshToken, scopeKey, user, accountId) {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx, strategy, refreshToken, scopeKey, user, accountId) {
         var state, isLoginAccess, scope, redirectUri;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -256,7 +256,7 @@ var AuthenticationService = function (_EventEmitter) {
       }));
 
       function redirectAuthUrl(_x3, _x4, _x5, _x6, _x7, _x8) {
-        return ref.apply(this, arguments);
+        return _ref.apply(this, arguments);
       }
 
       return redirectAuthUrl;
@@ -272,7 +272,7 @@ var AuthenticationService = function (_EventEmitter) {
   }, {
     key: 'accessResponse',
     value: function () {
-      var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, strategy, isConnected) {
+      var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, strategy, isConnected) {
         var error, code, state, cookieName, cookie, tokens, user, connectedUser;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -373,7 +373,7 @@ var AuthenticationService = function (_EventEmitter) {
       }));
 
       function accessResponse(_x9, _x10, _x11) {
-        return ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       }
 
       return accessResponse;
@@ -419,11 +419,7 @@ function _assert(x, type, name) {
 
       _t.fail(message());
     }
-
-    return type(x);
-  }
-
-  if (!(x instanceof type)) {
+  } else if (!(x instanceof type)) {
     _t.fail(message());
   }
 
