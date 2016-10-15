@@ -1,3 +1,26 @@
+### v0.23.0
+
+BREAKING
+
+replace
+
+```js
+app.migrate(migrationsManager)
+```
+
+by
+
+```js
+import migrate from 'alp-migrations/src';
+
+migrate({ app, migrationsManager });
+```
+
+- [`fb6b74d`](https://github.com/alpjs/alp-node/commit/fb6b74da1fd8e3881e9fe62929db717a2c6c0217) refactor: logger.debug app and package dirnames (Christophe Hurpeau)
+- [`6996941`](https://github.com/alpjs/alp-node/commit/6996941cbf56bbcdb3db98d78b71b027e647662e) refactor: remove alp-migrations (Christophe Hurpeau)
+- [`89b8de4`](https://github.com/alpjs/alp-node/commit/89b8de427ee9118aad81185b1de0ebffbca00fc9) undefined (Christophe Hurpeau)
+
+
 ### v0.22.0
 
 - [`6b570b5`](https://github.com/alpjs/alp-node/commit/6b570b51ec0d99ec99dfdc43e949fb17b6b39545) chore: add komet (Christophe Hurpeau)
