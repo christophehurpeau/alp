@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.config = exports.packageConfig = exports.packageDirname = exports.appDirname = exports.MigrationsManager = exports.newController = exports.Config = undefined;
+exports.config = exports.packageConfig = exports.packageDirname = exports.appDirname = exports.newController = exports.Config = undefined;
 
 var _alpConfig = require('alp-config');
 
@@ -11,15 +11,6 @@ Object.defineProperty(exports, 'Config', {
   enumerable: true,
   get: function get() {
     return _alpConfig.Config;
-  }
-});
-
-var _alpMigrations = require('alp-migrations');
-
-Object.defineProperty(exports, 'MigrationsManager', {
-  enumerable: true,
-  get: function get() {
-    return _alpMigrations.MigrationsManager;
   }
 });
 
@@ -62,8 +53,6 @@ var _alpTranslate2 = _interopRequireDefault(_alpTranslate);
 var _alpListen = require('alp-listen');
 
 var _alpListen2 = _interopRequireDefault(_alpListen);
-
-var _alpMigrations2 = _interopRequireDefault(_alpMigrations);
 
 var _nightingaleLogger = require('nightingale-logger');
 
@@ -177,14 +166,6 @@ class Alp extends _koa2.default {
   registerBrowserStateTransformers(transformer) {
     (0, _util.deprecate)(() => () => null, 'breaking: use registerBrowserStateTransformer instead')();
     this.browserStateTransformers.push(transformer);
-  }
-
-  migrate(migrationsManager) {
-    return (0, _alpMigrations2.default)({
-      config: this.config,
-      dirname: `${ this.dirname }/migrations`,
-      migrationsManager
-    });
   }
 
   get environment() {

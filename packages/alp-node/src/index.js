@@ -8,14 +8,12 @@ import params from 'alp-params/src';
 import language from 'alp-language/src';
 import translate from 'alp-translate';
 import _listen from 'alp-listen/src';
-import migrations from 'alp-migrations/src';
 import Logger from 'nightingale-logger/src';
 import findUp from 'findup-sync';
 import path from 'path';
 
 export { Config } from 'alp-config';
 export newController from 'alp-controller';
-export { MigrationsManager } from 'alp-migrations';
 
 const logger = new Logger('alp');
 
@@ -112,14 +110,6 @@ export default class Alp extends Koa {
   registerBrowserStateTransformers(transformer) {
     deprecate(() => () => null, 'breaking: use registerBrowserStateTransformer instead')();
     this.browserStateTransformers.push(transformer);
-  }
-
-  migrate(migrationsManager) {
-    return migrations({
-      config: this.config,
-      dirname: `${this.dirname}/migrations`,
-      migrationsManager,
-    });
   }
 
   get environment() {
