@@ -1,12 +1,15 @@
 import semver from 'semver';
-import Logger from 'nightingale-logger';
+import Logger from 'nightingale-logger/src';
 import readRecursiveDirectory from './readRecursiveDirectory';
 
 const logger = new Logger('alp.migrations');
 
 export MigrationsManager from './Manager';
 
-export default async function migrate({ config, dirname, migrationsManager }) {
+export default async function migrate({ app, config, dirname, migrationsManager }) {
+  if (!config) config = app.config;
+  if (!dirname) dirname = `${app.dirname}/migrations`;
+
   const unhandledRejectionHandler = (err) => {
     logger.error('unhandledRejection', { err });
     process.exit(1);
@@ -45,7 +48,7 @@ export default async function migrate({ config, dirname, migrationsManager }) {
     for (let migration of migrations) {
       logger.info(`Migration to ${migration.fileName}`);
       try {
-        // eslint-disable-next-line global-require
+        // eslint-disable-next-line global-require, import/no-dynamic-require
         await require(`${dirname}/${migration.fileName}`).default();
       } catch (err) {
         logger.error(`Migration to ${migration.version} Failed !`);
