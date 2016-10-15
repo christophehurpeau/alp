@@ -47,10 +47,12 @@ export default {
 
   transformForBrowser(user) {
     return {
+      id: user.id,
       displayName: user.displayName,
       fullName: user.fullName,
       status: user.status,
       emails: user.emails,
+      emailDomains: user.emailDomains,
       accounts: user.accounts.map(account => ({
         provider: account.provider,
         accountId: account.accountId,

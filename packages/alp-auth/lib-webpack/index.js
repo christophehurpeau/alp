@@ -115,8 +115,11 @@ export default function init(_ref) {
     if (app.websocket) {
       (function () {
         logger.debug('app has websocket');
-        // eslint-disable-next-line
+        // eslint-disable-next-line global-require
         var Cookies = require('cookies');
+
+        var users = new Map();
+        app.websocket.users = users;
 
         app.websocket.use(function () {
           var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(socket, next) {
@@ -157,7 +160,7 @@ export default function init(_ref) {
                     _context2.prev = 15;
                     _context2.t0 = _context2['catch'](9);
 
-                    logger.info('failed to verify authentification', { err: _context2.t0 });
+                    logger.info('failed to verify authentication', { err: _context2.t0 });
                     _context2.next = 20;
                     return next();
 
@@ -198,12 +201,16 @@ export default function init(_ref) {
 
                   case 33:
 
-                    socket.user = user;
+                    users.set(socket.client.id, user);
 
-                    _context2.next = 36;
+                    socket.on('disconnected', function () {
+                      return users.delete(socket.client.id);
+                    });
+
+                    _context2.next = 37;
                     return next();
 
-                  case 36:
+                  case 37:
                   case 'end':
                     return _context2.stop();
                 }

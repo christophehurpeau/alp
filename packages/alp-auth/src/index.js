@@ -92,8 +92,11 @@ export default function init({
 
     if (app.websocket) {
       logger.debug('app has websocket');
-            // eslint-disable-next-line
-            const Cookies = require('cookies');
+      // eslint-disable-next-line global-require
+      const Cookies = require('cookies');
+
+      const users = new Map();
+      app.websocket.users = users;
 
       app.websocket.use(async (socket, next) => {
         const handshakeData = socket.request;
@@ -107,7 +110,7 @@ export default function init({
         try {
           connected = await decodeJwt(token, handshakeData.headers['user-agent']);
         } catch (err) {
-          logger.info('failed to verify authentification', { err });
+          logger.info('failed to verify authentication', { err });
           return await next();
         }
         logger.debug('middleware websocket', { connected });
@@ -118,7 +121,9 @@ export default function init({
 
         if (!user) return await next();
 
-        socket.user = user;
+        users.set(socket.client.id, user);
+
+        socket.on('disconnected', () => users.delete(socket.client.id));
 
         await next();
       });

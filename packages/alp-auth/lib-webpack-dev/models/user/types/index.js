@@ -21,6 +21,7 @@ export var UserType = _t.interface({
   fullName: UserNameType,
   status: _t.String,
   emails: _t.list(_t.String),
+  emailDomains: _t.list(_t.String),
   accounts: _t.list(AccountType)
 }, "UserType");
 

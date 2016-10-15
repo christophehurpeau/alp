@@ -33,6 +33,7 @@ const UserType = exports.UserType = _tcombForked2.default.interface({
   fullName: UserNameType,
   status: _tcombForked2.default.String,
   emails: _tcombForked2.default.list(_tcombForked2.default.String),
+  emailDomains: _tcombForked2.default.list(_tcombForked2.default.String),
   accounts: _tcombForked2.default.list(AccountType)
 }, "UserType");
 
