@@ -1,6 +1,7 @@
 import { PropTypes, Component } from 'react';
+import { connect } from 'alp-react-redux';
 
-export default class SubscribeContainerComponent extends Component {
+class SubscribeContainerComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
@@ -38,3 +39,5 @@ export default class SubscribeContainerComponent extends Component {
     return this.props.children;
   }
 }
+
+export default connect()(SubscribeContainerComponent);

@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _react = require('react');
 
+var _alpReactRedux = require('alp-react-redux');
+
 class SubscribeContainerComponent extends _react.Component {
 
   componentDidMount() {
@@ -38,7 +40,7 @@ class SubscribeContainerComponent extends _react.Component {
     return this.props.children;
   }
 }
-exports.default = SubscribeContainerComponent;
+
 SubscribeContainerComponent.propTypes = {
   dispatch: _react.PropTypes.func.isRequired,
   name: _react.PropTypes.string.isRequired,
@@ -47,4 +49,5 @@ SubscribeContainerComponent.propTypes = {
 SubscribeContainerComponent.contextTypes = {
   context: _react.PropTypes.object
 };
+exports.default = (0, _alpReactRedux.connect)()(SubscribeContainerComponent);
 //# sourceMappingURL=index.js.map

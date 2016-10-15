@@ -1,6 +1,7 @@
 import { PropTypes, Component } from 'react';
+import { connect } from 'alp-react-redux';
 
-export default class SubscribeContainerComponent extends Component {
+class SubscribeContainerComponent extends Component {
 
   componentDidMount() {
     var _props = this.props;
@@ -32,6 +33,7 @@ export default class SubscribeContainerComponent extends Component {
     return this.props.children;
   }
 }
+
 SubscribeContainerComponent.propTypes = {
   dispatch: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
@@ -40,4 +42,5 @@ SubscribeContainerComponent.propTypes = {
 SubscribeContainerComponent.contextTypes = {
   context: PropTypes.object
 };
+export default connect()(SubscribeContainerComponent);
 //# sourceMappingURL=index.js.map
