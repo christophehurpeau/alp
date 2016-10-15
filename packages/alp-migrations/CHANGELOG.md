@@ -1,3 +1,8 @@
+### v0.4.0
+
+- [`8c33739`](https://github.com/alpjs/alp-migrations/commit/8c33739e99b64833472c705341f34c4087f0673c) chore: pob update (Christophe Hurpeau)
+- [`33c119d`](https://github.com/alpjs/alp-migrations/commit/33c119daa2a99f8812d2a7e2fc297490f40680f8) refactor: accept app to default config and dirname (Christophe Hurpeau)
+
 ### v0.3.1
 
 - [`ee75395`](https://github.com/alpjs/alp-migrations/commit/ee75395d3712a968abc2705827fed0edaf3fe6c7) support rethinkdb (Christophe Hurpeau)
