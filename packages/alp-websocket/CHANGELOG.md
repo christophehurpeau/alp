@@ -1,3 +1,8 @@
+### v3.4.0
+
+- [`7b293d5`](https://github.com/alpjs/alp-websocket/commit/7b293d5f068bd6311fdc36811492f776e137d917) chore: pob update (Christophe Hurpeau)
+- [`a53399a`](https://github.com/alpjs/alp-websocket/commit/a53399a9842ca8013d6c60a16e5cfd21246d0c55) feat: add callbackonunsubscribe (Christophe Hurpeau)
+
 ### v3.3.2
 
 - [`04e9a7e`](https://github.com/alpjs/alp-websocket/commit/04e9a7e38fa80180488e09b93c42abca97ff2371) app.websocket = websocket instead of socket (emits returns a Promise) (Christophe Hurpeau)
