@@ -1,3 +1,8 @@
+### v2.18.0
+
+- [`cbffdc1`](https://github.com/alpjs/alp-dev/commit/cbffdc1070d71425dc0b17a530d86aa14513d2f8) remove obsolete tasks (Christophe Hurpeau)
+- [`d306a65`](https://github.com/alpjs/alp-dev/commit/d306a65ab4582a5d1aae55e27daa4e99c70d0a76) update pob-babel (Christophe Hurpeau)
+
 ### v2.17.0
 
 - [`9cc8e7f`](https://github.com/alpjs/alp-dev/commit/9cc8e7f8cfed7c42c59e1373bf54771bbba28c5c) update dependencies (Christophe Hurpeau)
