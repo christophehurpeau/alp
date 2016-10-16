@@ -1,3 +1,7 @@
+### v2.18.1
+
+- [`a455b1f`](https://github.com/alpjs/alp-dev/commit/a455b1f4e1ad3e95dd374ce895e0009dae4d365f) fix: pob-babel (Christophe Hurpeau)
+
 ### v2.18.0
 
 - [`cbffdc1`](https://github.com/alpjs/alp-dev/commit/cbffdc1070d71425dc0b17a530d86aa14513d2f8) remove obsolete tasks (Christophe Hurpeau)
