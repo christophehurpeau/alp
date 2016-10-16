@@ -31,24 +31,3 @@ build-prod: check
 	lzma -fke9 --threads 0 public/es5.js
 	# bro --input public/modern-browsers.js --output public/modern-browsers.js.bro
 	# bro --input public/es5.js --output public/es5.js.bro
-
-lint:
-	@echo "> Lint files"
-	@echo '>> eslint'; \
-	$(BIN)eslint --ext .js,.jsx --fix -c .eslintrc src/ test/src/
-
-lint-fix:
-	$(BIN)eslint --fix -c .eslintrc src/ test/src/
-
-test:
-	@echo "> Building"
-	$(BIN)babel --presets es2015-node5 -s --out-dir test/lib test/src
-	@echo "> Run tests"
-	$(BIN)mocha --harmony --es_staging --recursive --bail -u tdd test/lib
-
-browser-test:
-	@echo "> Browser test"
-	@mkdir -p dist
-	$(BIN)browserify -d -e test/browser/index.js -o dist/test.js -t [ babelify --presets [ es2015 ] ]
-	@echo "> Browser test: run karma"
-	$(BIN)karma run
