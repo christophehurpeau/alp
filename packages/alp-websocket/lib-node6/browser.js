@@ -43,7 +43,7 @@ function alpWebsocket(app, namespaceName) {
 function start(_ref) {
   let config = _ref.config;
   let context = _ref.context;
-  let namespaceName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+  let namespaceName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
   if (socket) {
     throw new Error('WebSocket already started');
@@ -85,7 +85,7 @@ function start(_ref) {
     connected = false;
   });
 
-  socket.on('hello', _ref2 => {
+  socket.on('hello', (_ref2) => {
     let version = _ref2.version;
 
     if (version !== window.VERSION) {

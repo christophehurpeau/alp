@@ -21,7 +21,7 @@ export function close() {
   io.close();
 }
 
-export function subscribe(socket, name, callbackOnSubscribe) {
+export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
   socket.on('subscribe:' + name, function (callback) {
     logger.info('join', { name: name });
     socket.join(name);
@@ -36,7 +36,12 @@ export function subscribe(socket, name, callbackOnSubscribe) {
   socket.on('unsubscribe:' + name, function (callback) {
     logger.info('leave', { name: name });
     socket.leave(name);
-    callback(null);
+
+    if (callbackOnUnsubscribe) {
+      callback(null, callbackOnUnsubscribe());
+    } else {
+      callback(null);
+    }
   });
 }
 
@@ -57,7 +62,7 @@ function start(config, dirname) {
 
   var secure = webSocketConfig.get('secure');
   var port = webSocketConfig.get('port');
-  // eslint-disable-next-line global-require
+  // eslint-disable-next-line global-require, import/no-dynamic-require
   var createServer = require(secure ? 'https' : 'http').createServer;
 
   var server = function () {
@@ -84,6 +89,9 @@ function start(config, dirname) {
     logger.debug('connected', { id: socket.id });
     socket.emit('hello', { version: config.get('version') });
 
+    socket.on('error', function (err) {
+      return logger.error(err);
+    });
     socket.on('disconnect', function () {
       logger.debug('disconnected', { id: socket.id });
     });

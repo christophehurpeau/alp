@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import socketio from 'socket.io';
-import Logger from 'nightingale-logger';
+import Logger from 'nightingale-logger/src';
 
 const logger = new Logger('alp.websocket');
 
@@ -21,7 +21,7 @@ export function close() {
   io.close();
 }
 
-export function subscribe(socket, name, callbackOnSubscribe) {
+export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
   socket.on(`subscribe:${name}`, callback => {
     logger.info('join', { name });
     socket.join(name);
@@ -36,7 +36,12 @@ export function subscribe(socket, name, callbackOnSubscribe) {
   socket.on(`unsubscribe:${name}`, callback => {
     logger.info('leave', { name });
     socket.leave(name);
-    callback(null);
+
+    if (callbackOnUnsubscribe) {
+      callback(null, callbackOnUnsubscribe());
+    } else {
+      callback(null);
+    }
   });
 }
 
@@ -57,7 +62,7 @@ function start(config, dirname) {
 
   const secure = webSocketConfig.get('secure');
   const port = webSocketConfig.get('port');
-  // eslint-disable-next-line global-require
+  // eslint-disable-next-line global-require, import/no-dynamic-require
   const createServer = require(secure ? 'https' : 'http').createServer;
 
   const server = (() => {
@@ -80,6 +85,7 @@ function start(config, dirname) {
     logger.debug('connected', { id: socket.id });
     socket.emit('hello', { version: config.get('version') });
 
+    socket.on('error', err => logger.error(err));
     socket.on('disconnect', () => {
       logger.debug('disconnected', { id: socket.id });
     });
