@@ -1,3 +1,7 @@
+### v0.6.0
+
+- [`91e64a8`](https://github.com/alpjs/alp-auth/commit/91e64a8f5061230d14ccca98616fa22ee996eb7e) refactor: transformforbrowser, types and websocket auth (Christophe Hurpeau)
+
 ### v0.5.0
 
 - [`1ba9d67`](https://github.com/alpjs/alp-auth/commit/1ba9d672b711f51146a722f4f606a3b0628a0e8c) feat: emaildomains (Christophe Hurpeau)
