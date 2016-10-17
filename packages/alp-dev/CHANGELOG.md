@@ -1,3 +1,7 @@
+### v3.0.0
+
+- [`02386c2`](https://github.com/alpjs/alp-dev/commit/02386c296015c04a903209dc04ff91aa323e9b67) pob-babel@11 (Christophe Hurpeau)
+
 ### v2.19.0
 
 - [`c9960a5`](https://github.com/alpjs/alp-dev/commit/c9960a5aea705307ded165a00c25b121ea965fa1) chore(package): springbokjs-daemon@^1.3.0 (Christophe Hurpeau)
