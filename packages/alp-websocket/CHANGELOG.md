@@ -1,3 +1,7 @@
+### v3.5.0
+
+- [`3bad4a3`](https://github.com/alpjs/alp-websocket/commit/3bad4a32eeb71f0711bed4db3f813bdb28961c21) chore(package): nightingale-logger@^1.6.0 (Christophe Hurpeau)
+
 ### v3.4.0
 
 - [`7b293d5`](https://github.com/alpjs/alp-websocket/commit/7b293d5f068bd6311fdc36811492f776e137d917) chore: pob update (Christophe Hurpeau)
