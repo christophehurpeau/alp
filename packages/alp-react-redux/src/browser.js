@@ -3,7 +3,7 @@ import render, { App as DefaultApp } from 'fody';
 import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { promiseMiddleware, createFunctionMiddleware } from './middlewares';
+import { promiseMiddleware, createFunctionMiddleware } from './middlewares-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
 
@@ -42,65 +42,70 @@ export default function alpReactRedux(element) {
       if (!_loadingBar) _loadingBar = loadingBar();
       logger.debug('render view', { data });
 
-      if (!PRODUCTION && !moduleDescriptor.View) {
-        throw new Error('View is undefined, class expected');
-      }
-
-      if (!_loaded && moduleDescriptor.loader) {
-        const currentState = store &&
-        currentModuleDescriptorIdentifier === moduleDescriptor.identifier ?
-          store.getState() : undefined;
-
-        // const _state = data;
-        return moduleDescriptor.loader(currentState, data).then(data => (
-          this.render(moduleDescriptor, data, true, _loadingBar)
-        ));
-      }
-
-      let reducer = moduleDescriptor.reducer;
-
-      if (!reducer) {
-        if (store) {
-          reducer = () => {};
-          store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
-        }
-      } else if (store === undefined) {
-        store = createStore(
-          (state, action) => {
-            if (action.type === HYDRATE_STATE) {
-              state = action.state;
-            }
-
-            return reducer(state, action);
-          },
-          data,
-          compose(
-            applyMiddleware(...middlewares),
-            window.devToolsExtension ? window.devToolsExtension() : f => f,
-          ),
-        );
-      } else {
-        const state = Object.create(null);
-
-        if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
-          // keep state
-          Object.assign(state, store.getState());
+      try {
+        if (!PRODUCTION && !moduleDescriptor.View) {
+          throw new Error('View is undefined, class expected');
         }
 
-        Object.assign(state, data);
-        store.dispatch({ type: HYDRATE_STATE, state });
+        if (!_loaded && moduleDescriptor.loader) {
+          const currentState = store &&
+          currentModuleDescriptorIdentifier === moduleDescriptor.identifier ?
+            store.getState() : undefined;
+
+          // const _state = data;
+          return moduleDescriptor.loader(currentState, data).then(data => (
+            this.render(moduleDescriptor, data, true, _loadingBar)
+          ));
+        }
+
+        let reducer = moduleDescriptor.reducer;
+
+        if (!reducer) {
+          if (store) {
+            reducer = () => {};
+            store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
+          }
+        } else if (store === undefined) {
+          store = createStore(
+            (state, action) => {
+              if (action.type === HYDRATE_STATE) {
+                state = action.state;
+              }
+
+              return reducer(state, action);
+            },
+            data,
+            compose(
+              applyMiddleware(...middlewares),
+              window.devToolsExtension ? window.devToolsExtension() : f => f,
+            ),
+          );
+        } else {
+          const state = Object.create(null);
+
+          if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
+            // keep state
+            Object.assign(state, store.getState());
+          }
+
+          Object.assign(state, data);
+          store.dispatch({ type: HYDRATE_STATE, state });
+        }
+
+        currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
+        this.store = store;
+
+        render({
+          context: this,
+          View: moduleDescriptor.View,
+          data: data,
+          element,
+          App: reducer ? ReduxApp : DefaultApp,
+        });
+      } catch (err) {
+        _loadingBar();
+        throw err;
       }
-
-      currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
-      this.store = store;
-
-      render({
-        context: this,
-        View: moduleDescriptor.View,
-        data: data,
-        element,
-        App: reducer ? ReduxApp : DefaultApp,
-      });
 
       _loadingBar();
     };

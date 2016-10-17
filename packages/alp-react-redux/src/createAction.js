@@ -1,8 +1,17 @@
+/* global PRODUCTION */
+
 export default function createAction(
     type:string,
     argsNamesOrHandler:?Array<string>|string|Function,
     data:?Object,
 ) {
+  if (!PRODUCTION) {
+    if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
+      throw new Error('handler should be a function');
+    }
+    if (data) throw new Error('data is deprecated');
+  }
+
   let action;
 
   const typeofSecondArg = typeof argsNamesOrHandler;

@@ -30,6 +30,7 @@ export default function loadingBar() {
   var loadingBar = document.getElementById('loading-bar');
   var loadingBarProgress = loadingBar.firstElementChild;
   loadingBarProgress.style.width = '1%';
+  loadingBarProgress.style.willChange = 'width';
   loadingBar.style.display = 'block';
 
   var percent = 20;
@@ -45,11 +46,14 @@ export default function loadingBar() {
     clearTimeout(first20Timeout);
     clearInterval(progressTimer);
     loadingBarProgress.style.width = '100%';
+    loadingBarProgress.style.willChange = '';
+    loadingBar.style.willChange = 'display';
     loading = false;
 
     setTimeout(function () {
       if (!loading) {
         loadingBar.style.display = 'none';
+        loadingBar.style.willChange = '';
       }
     }, 500);
   };

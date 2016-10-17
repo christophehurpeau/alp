@@ -7,6 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = createAction;
+/* global PRODUCTION */
+
 function createAction(type, argsNamesOrHandler, data) {
   if (!(typeof type === 'string')) {
     throw new TypeError('Value of argument "type" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(type));
@@ -20,6 +22,13 @@ function createAction(type, argsNamesOrHandler, data) {
 
   if (!(data == null || data instanceof Object)) {
     throw new TypeError('Value of argument "data" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(data));
+  }
+
+  {
+    if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
+      throw new Error('handler should be a function');
+    }
+    if (data) throw new Error('data is deprecated');
   }
 
   let action;

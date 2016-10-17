@@ -36,6 +36,7 @@ function loadingBar() {
   const loadingBar = document.getElementById('loading-bar');
   const loadingBarProgress = loadingBar.firstElementChild;
   loadingBarProgress.style.width = '1%';
+  loadingBarProgress.style.willChange = 'width';
   loadingBar.style.display = 'block';
 
   let percent = 20;
@@ -51,11 +52,14 @@ function loadingBar() {
     clearTimeout(first20Timeout);
     clearInterval(progressTimer);
     loadingBarProgress.style.width = '100%';
+    loadingBarProgress.style.willChange = '';
+    loadingBar.style.willChange = 'display';
     loading = false;
 
     setTimeout(() => {
       if (!loading) {
         loadingBar.style.display = 'none';
+        loadingBar.style.willChange = '';
       }
     }, 500);
   };
