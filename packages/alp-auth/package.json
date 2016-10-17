@@ -51,7 +51,7 @@
     "liwi": "^0.7.4",
     "minami": "^1.1.1",
     "pob-babel": "^8.3.2",
-    "pob-release": "^2.1.2",
+    "pob-release": "^2.2.2",
     "tcomb-forked": "^3.4.0"
   },
   "peerDependencies": {
