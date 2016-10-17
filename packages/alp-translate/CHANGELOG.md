@@ -1,3 +1,8 @@
+### v2.2.0
+
+- [`eee1d4c`](https://github.com/alpjs/alp-translate/commit/eee1d4cfd63dfd63b8282a11faa34135e8f95c30) chore(package): nightingale-logger@^1.6.0 (Christophe Hurpeau)
+- [`2c3c36f`](https://github.com/alpjs/alp-translate/commit/2c3c36f500a9eda065b2b89af3e635e85b6da8d6) chore(package): pob-release@^2.2.2 (Christophe Hurpeau)
+
 ### v2.1.0
 
 - [`1676030`](https://github.com/alpjs/alp-translate/commit/1676030a45a97be9c8fe615e10d441830a19c294) remove deprecated npm scripts (Christophe Hurpeau)
