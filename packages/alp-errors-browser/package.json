@@ -42,10 +42,11 @@
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^1.13.0",
     "pob-babel": "^6.0.2",
-    "pob-release": "^2.2.2"
+    "pob-release": "^2.2.2",
+    "tcomb-forked": "^3.4.0"
   },
   "dependencies": {
     "alouette": "^5.3.0",
-    "nightingale-logger": "^1.2.0"
+    "nightingale-logger": "^1.6.0"
   }
 }
