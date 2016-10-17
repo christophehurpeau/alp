@@ -18,4 +18,4 @@ const createFunctionMiddleware = exports.createFunctionMiddleware = app => store
 
   return action(store.dispatch, app);
 };
-//# sourceMappingURL=middlewares.js.map
+//# sourceMappingURL=middlewares-browser.js.map

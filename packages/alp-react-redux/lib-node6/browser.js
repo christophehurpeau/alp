@@ -51,7 +51,7 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
-var _middlewares = require('./middlewares');
+var _middlewaresBrowser = require('./middlewares-browser');
 
 var _loadingBar2 = require('./loading-bar');
 
@@ -89,7 +89,7 @@ let currentModuleDescriptorIdentifier;
 
 function alpReactRedux(element) {
   return app => {
-    const middlewares = [(0, _middlewares.createFunctionMiddleware)(app), _middlewares.promiseMiddleware];
+    const middlewares = [(0, _middlewaresBrowser.createFunctionMiddleware)(app), _middlewaresBrowser.promiseMiddleware];
     if (app.websocket) {
       logger.debug('register websocket redux:action');
       app.websocket.on('redux:action', action => {
@@ -105,50 +105,56 @@ function alpReactRedux(element) {
       if (!_loadingBar) _loadingBar = (0, _loadingBar3.default)();
       logger.debug('render view', { data });
 
-      if (!_loaded && moduleDescriptor.loader) {
-        const currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+      try {
 
-        // const _state = data;
-        return moduleDescriptor.loader(currentState, data).then(data => this.render(moduleDescriptor, data, true, _loadingBar));
-      }
+        if (!_loaded && moduleDescriptor.loader) {
+          const currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
 
-      let reducer = moduleDescriptor.reducer;
-
-      if (!reducer) {
-        if (store) {
-          reducer = () => {};
-          store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
+          // const _state = data;
+          return moduleDescriptor.loader(currentState, data).then(data => this.render(moduleDescriptor, data, true, _loadingBar));
         }
-      } else if (store === undefined) {
-        store = (0, _redux.createStore)((state, action) => {
-          if (action.type === HYDRATE_STATE) {
-            state = action.state;
+
+        let reducer = moduleDescriptor.reducer;
+
+        if (!reducer) {
+          if (store) {
+            reducer = () => {};
+            store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
+          }
+        } else if (store === undefined) {
+          store = (0, _redux.createStore)((state, action) => {
+            if (action.type === HYDRATE_STATE) {
+              state = action.state;
+            }
+
+            return reducer(state, action);
+          }, data, (0, _redux.compose)((0, _redux.applyMiddleware)(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => f));
+        } else {
+          const state = Object.create(null);
+
+          if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
+            // keep state
+            Object.assign(state, store.getState());
           }
 
-          return reducer(state, action);
-        }, data, (0, _redux.compose)((0, _redux.applyMiddleware)(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => f));
-      } else {
-        const state = Object.create(null);
-
-        if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
-          // keep state
-          Object.assign(state, store.getState());
+          Object.assign(state, data);
+          store.dispatch({ type: HYDRATE_STATE, state });
         }
 
-        Object.assign(state, data);
-        store.dispatch({ type: HYDRATE_STATE, state });
+        currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
+        this.store = store;
+
+        (0, _fody2.default)({
+          context: this,
+          View: moduleDescriptor.View,
+          data: data,
+          element,
+          App: reducer ? _fodyReduxApp2.default : _fody.App
+        });
+      } catch (err) {
+        _loadingBar();
+        throw err;
       }
-
-      currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
-      this.store = store;
-
-      (0, _fody2.default)({
-        context: this,
-        View: moduleDescriptor.View,
-        data: data,
-        element,
-        App: reducer ? _fodyReduxApp2.default : _fody.App
-      });
 
       _loadingBar();
     };

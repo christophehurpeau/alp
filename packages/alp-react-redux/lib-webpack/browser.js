@@ -1,9 +1,11 @@
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 /* global window, PRODUCTION */
 import render, { App as DefaultApp } from 'fody';
 import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { promiseMiddleware, createFunctionMiddleware } from './middlewares';
+import { promiseMiddleware, createFunctionMiddleware } from './middlewares-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
 
@@ -46,54 +48,66 @@ export default function alpReactRedux(element) {
       if (!_loadingBar) _loadingBar = loadingBar();
       logger.debug('render view', { data: data });
 
-      if (!_loaded && moduleDescriptor.loader) {
-        var currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+      try {
+        var _ret = function () {
 
-        // const _state = data;
-        return moduleDescriptor.loader(currentState, data).then(function (data) {
-          return _this.render(moduleDescriptor, data, true, _loadingBar);
-        });
-      }
+          if (!_loaded && moduleDescriptor.loader) {
+            var currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
 
-      var reducer = moduleDescriptor.reducer;
-
-      if (!reducer) {
-        if (store) {
-          reducer = function reducer() {};
-          store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
-        }
-      } else if (store === undefined) {
-        store = createStore(function (state, action) {
-          if (action.type === HYDRATE_STATE) {
-            state = action.state;
+            // const _state = data;
+            return {
+              v: moduleDescriptor.loader(currentState, data).then(function (data) {
+                return _this.render(moduleDescriptor, data, true, _loadingBar);
+              })
+            };
           }
 
-          return reducer(state, action);
-        }, data, compose(applyMiddleware.apply(undefined, middlewares), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-          return f;
-        }));
-      } else {
-        var state = Object.create(null);
+          var reducer = moduleDescriptor.reducer;
 
-        if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
-          // keep state
-          Object.assign(state, store.getState());
-        }
+          if (!reducer) {
+            if (store) {
+              reducer = function reducer() {};
+              store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
+            }
+          } else if (store === undefined) {
+            store = createStore(function (state, action) {
+              if (action.type === HYDRATE_STATE) {
+                state = action.state;
+              }
 
-        Object.assign(state, data);
-        store.dispatch({ type: HYDRATE_STATE, state: state });
+              return reducer(state, action);
+            }, data, compose(applyMiddleware.apply(undefined, middlewares), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+              return f;
+            }));
+          } else {
+            var state = Object.create(null);
+
+            if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
+              // keep state
+              Object.assign(state, store.getState());
+            }
+
+            Object.assign(state, data);
+            store.dispatch({ type: HYDRATE_STATE, state: state });
+          }
+
+          currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
+          _this.store = store;
+
+          render({
+            context: _this,
+            View: moduleDescriptor.View,
+            data: data,
+            element: element,
+            App: reducer ? ReduxApp : DefaultApp
+          });
+        }();
+
+        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+      } catch (err) {
+        _loadingBar();
+        throw err;
       }
-
-      currentModuleDescriptorIdentifier = moduleDescriptor.identifier;
-      this.store = store;
-
-      render({
-        context: this,
-        View: moduleDescriptor.View,
-        data: data,
-        element: element,
-        App: reducer ? ReduxApp : DefaultApp
-      });
 
       _loadingBar();
     };

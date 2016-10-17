@@ -7,22 +7,21 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = createAction;
+
+var _tcombForked = require('tcomb-forked');
+
+var _tcombForked2 = _interopRequireDefault(_tcombForked);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /* global PRODUCTION */
 
 function createAction(type, argsNamesOrHandler, data) {
-  if (!(typeof type === 'string')) {
-    throw new TypeError('Value of argument "type" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(type));
-  }
+  _assert(type, _tcombForked2.default.String, 'type');
 
-  if (!(argsNamesOrHandler == null || Array.isArray(argsNamesOrHandler) && argsNamesOrHandler.every(function (item) {
-    return typeof item === 'string';
-  }) || typeof argsNamesOrHandler === 'string' || typeof argsNamesOrHandler === 'function')) {
-    throw new TypeError('Value of argument "argsNamesOrHandler" violates contract.\n\nExpected:\n?Array<string> | string | Function\n\nGot:\n' + _inspect(argsNamesOrHandler));
-  }
+  _assert(argsNamesOrHandler, _tcombForked2.default.union([_tcombForked2.default.maybe(_tcombForked2.default.list(_tcombForked2.default.String)), _tcombForked2.default.String, _tcombForked2.default.Function]), 'argsNamesOrHandler');
 
-  if (!(data == null || data instanceof Object)) {
-    throw new TypeError('Value of argument "data" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(data));
-  }
+  _assert(data, _tcombForked2.default.maybe(_tcombForked2.default.Object), 'data');
 
   {
     if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
@@ -51,16 +50,12 @@ function createAction(type, argsNamesOrHandler, data) {
         }
 
         const action = _extends({ type }, data);
-        args.forEach((value, index) => {
-          return action[argsNamesOrHandler[index]] = value;
-        });
+        args.forEach((value, index) => action[argsNamesOrHandler[index]] = value);
         return action;
       };
     } else {
       action = args => {
-        if (!(args == null || args instanceof Object)) {
-          throw new TypeError('Value of argument "args" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(args));
-        }
+        _assert(args, _tcombForked2.default.maybe(_tcombForked2.default.Object), 'args');
 
         return _extends({ type }, data, args);
       };
@@ -68,69 +63,26 @@ function createAction(type, argsNamesOrHandler, data) {
   }
 
   action.type = type;
-  action.toString = () => {
-    return type;
-  };
+  action.toString = () => type;
 
   return action;
 }
 
-function _inspect(input, depth) {
-  const maxDepth = 4;
-  const maxKeys = 15;
-
-  if (depth === undefined) {
-    depth = 0;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
   }
 
-  depth += 1;
+  if (_tcombForked2.default.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
 
-  if (input === null) {
-    return 'null';
-  } else if (input === undefined) {
-    return 'void';
-  } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-    return typeof input;
-  } else if (Array.isArray(input)) {
-    if (input.length > 0) {
-      if (depth > maxDepth) return '[...]';
-
-      const first = _inspect(input[0], depth);
-
-      if (input.every(item => _inspect(item, depth) === first)) {
-        return first.trim() + '[]';
-      } else {
-        return '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']';
-      }
-    } else {
-      return 'Array';
+      _tcombForked2.default.fail(message());
     }
-  } else {
-    const keys = Object.keys(input);
-
-    if (!keys.length) {
-      if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-        return input.constructor.name;
-      } else {
-        return 'Object';
-      }
-    }
-
-    if (depth > maxDepth) return '{...}';
-    const indent = '  '.repeat(depth - 1);
-    let entries = keys.slice(0, maxKeys).map(key => {
-      return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-    }).join('\n  ' + indent);
-
-    if (keys.length >= maxKeys) {
-      entries += '\n  ' + indent + '...';
-    }
-
-    if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-      return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-    } else {
-      return '{\n  ' + indent + entries + '\n' + indent + '}';
-    }
+  } else if (!(x instanceof type)) {
+    _tcombForked2.default.fail(message());
   }
+
+  return x;
 }
 //# sourceMappingURL=createAction.js.map

@@ -23,4 +23,4 @@ export var createFunctionMiddleware = function createFunctionMiddleware(app) {
     };
   };
 };
-//# sourceMappingURL=middlewares.js.map
+//# sourceMappingURL=middlewares-browser.js.map

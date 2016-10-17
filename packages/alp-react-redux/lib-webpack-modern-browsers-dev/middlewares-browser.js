@@ -13,4 +13,4 @@ export var createFunctionMiddleware = app => store => next => action => {
 
   return action(store.dispatch, app);
 };
-//# sourceMappingURL=middlewares.js.map
+//# sourceMappingURL=middlewares-browser.js.map
