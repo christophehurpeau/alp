@@ -1,3 +1,8 @@
+### v0.7.0
+
+- [`bd144cf`](https://github.com/alpjs/alp-auth/commit/bd144cf208bf97b5521c7e02aeb50c1f8d253e6d) chore(package): komet-karma@^0.2.3 (Christophe Hurpeau)
+- [`e390d3e`](https://github.com/alpjs/alp-auth/commit/e390d3eb0f93dfeada5768f848700edb1df21f76) chore(package): pob-release@^2.2.2 (Christophe Hurpeau)
+
 ### v0.6.0
 
 - [`91e64a8`](https://github.com/alpjs/alp-auth/commit/91e64a8f5061230d14ccca98616fa22ee996eb7e) refactor: transformforbrowser, types and websocket auth (Christophe Hurpeau)
