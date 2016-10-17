@@ -1,3 +1,7 @@
+### v0.24.0
+
+- [`fe07086`](https://github.com/alpjs/alp-node/commit/fe07086e46380c0a7aaf3537a77aa83331e5854e) chore(package): update dependencies (Christophe Hurpeau)
+
 ### v0.23.0
 
 BREAKING
