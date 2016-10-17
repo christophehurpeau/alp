@@ -1,3 +1,9 @@
+### v5.1.0
+
+- [`ba2ecd5`](https://github.com/alpjs/alp-react-redux/commit/ba2ecd512fa76181886016c98be2398b12338136) chore(package): pob-release@^2.2.2 (Christophe Hurpeau)
+- [`e1d87de`](https://github.com/alpjs/alp-react-redux/commit/e1d87de858bde69a5a9dd4b20b92d070274bcb5d) chore(package): nightingale-logger@^1.6.0 (Christophe Hurpeau)
+- [`4abdea1`](https://github.com/alpjs/alp-react-redux/commit/4abdea17df89797c25e9b2fa71bc8e524e023784) refactor: update babel-preset-modern-browsers (Christophe Hurpeau)
+
 ### v5.0.1
 
 - [`37a281c`](https://github.com/alpjs/alp-react-redux/commit/37a281ca38b5ba4f5f5dc5d4fb77ae769003fee2) fix store replace state, add loading bar (Christophe Hurpeau)
