@@ -28,6 +28,6 @@
     "springbokjs-library": "^17.0.0"
   },
   "dependencies": {
-    "nightingale-logger": "^1.1.0"
+    "nightingale-logger": "^1.6.0"
   }
 }
