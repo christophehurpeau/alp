@@ -24,8 +24,8 @@ export default class AlpBrowser extends Ibex {
    * @param {Object} [options]
    */
   constructor() {
-    var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/';
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     super();
     this.path = path;
