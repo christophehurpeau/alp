@@ -43,6 +43,7 @@ export default (function () {
                         logger.error(parsedError);
                         // ctx.body = errorHtmlRenderer.render(parsedError);
                         ctx.body = parsedError.stack;
+                        // eslint-disable-next-line no-debugger, no-restricted-syntax
                         debugger;
                         _context.next = 23;
                         break;

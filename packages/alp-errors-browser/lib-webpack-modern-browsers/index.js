@@ -24,6 +24,7 @@ export default (() => {
                 logger.error(parsedError);
                 // ctx.body = errorHtmlRenderer.render(parsedError);
                 ctx.body = parsedError.stack;
+                // eslint-disable-next-line no-debugger, no-restricted-syntax
                 debugger;
             } else {
                 logger.error(err);
