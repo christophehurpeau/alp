@@ -1,3 +1,9 @@
+### v0.5.0
+
+- [`1b120cc`](https://github.com/alpjs/alp-migrations/commit/1b120cc603607502fa065be85e4bfc6e86cc91a7) chore(package): komet-karma@^0.2.3 (Christophe Hurpeau)
+- [`363a3c5`](https://github.com/alpjs/alp-migrations/commit/363a3c54f5c4a6e11b61b606f043a7ee19581add) chore(package): pob-release@^2.2.2 (Christophe Hurpeau)
+- [`e596834`](https://github.com/alpjs/alp-migrations/commit/e5968345c151c2431834e7a9d2af49f6be9f3fcb) chore(package): nightingale-logger@^1.6.0 (Christophe Hurpeau)
+
 ### v0.4.0
 
 - [`8c33739`](https://github.com/alpjs/alp-migrations/commit/8c33739e99b64833472c705341f34c4087f0673c) chore: pob update (Christophe Hurpeau)
