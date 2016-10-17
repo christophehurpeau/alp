@@ -58,7 +58,7 @@
     "springbokjs-daemon": "^1.3.0",
     "stylus": "^0.54.5",
     "through2": "^2.0.1",
-    "webpack": "christophehurpeau/webpack#9d9e3fa0cf43c2057df1e4a9e968099bc472fad4",
+    "webpack": "christophehurpeau/webpack#9a790989ef1e29ea3980ca363a14720307e805ad",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.0"
   },
