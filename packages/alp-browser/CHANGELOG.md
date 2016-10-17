@@ -1,3 +1,8 @@
+### v0.19.0
+
+- [`64af8ba`](https://github.com/alpjs/alp-browser/commit/64af8ba07e19a13db55b44ed4c62c789c365ce20) chore(package): update dependencies (Christophe Hurpeau)
+- [`a92964d`](https://github.com/alpjs/alp-browser/commit/a92964d047144239f81a93e5014483df90e32634) build (Christophe Hurpeau)
+
 ### v0.18.0
 
 - [`f8735cd`](https://github.com/alpjs/alp-browser/commit/f8735cde2ef61c0dc56fff114d9822675179b010) add start method (Christophe Hurpeau)
