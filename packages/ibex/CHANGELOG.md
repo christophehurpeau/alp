@@ -1,3 +1,7 @@
+### v4.1.0
+
+- [`ce04024`](https://github.com/alpjs/ibex/commit/ce04024edc8f9d299c5ddfa28cfb6ffa2c82899d) refactor: update dependencies (Christophe Hurpeau)
+
 ### v4.0.2
 
 - [`5e8fef3`](https://github.com/alpjs/ibex/commit/5e8fef3c41641dddae11a13614115a9d82283cc2) compose more info when error (Christophe Hurpeau)
