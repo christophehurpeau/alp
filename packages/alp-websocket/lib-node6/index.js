@@ -24,11 +24,11 @@ const logger = new _nightingaleLogger2.default('alp.websocket');
 let io;
 
 /**
- * @param {Koa} app
- * @param {string} dirname for tls server, dirname of the server.key and server.crt
+ * @param {Koa|AlpNodeApp} app
+ * @param {string} [dirname] for tls, dirname of server.key server.crt. If undefined: app.certPath
  */
 function alpWebsocket(app, dirname) {
-  start(app.config, dirname);
+  start(app.config, dirname || app.certPath);
   app.websocket = io;
   app.on('close', close);
   return io;

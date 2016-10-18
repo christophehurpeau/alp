@@ -7,11 +7,11 @@ var logger = new Logger('alp.websocket');
 var io = undefined;
 
 /**
- * @param {Koa} app
- * @param {string} dirname for tls server, dirname of the server.key and server.crt
+ * @param {Koa|AlpNodeApp} app
+ * @param {string} [dirname] for tls, dirname of server.key server.crt. If undefined: app.certPath
  */
 export default function alpWebsocket(app, dirname) {
-  start(app.config, dirname);
+  start(app.config, dirname || app.certPath);
   app.websocket = io;
   app.on('close', close);
   return io;
