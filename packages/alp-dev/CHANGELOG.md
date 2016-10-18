@@ -1,3 +1,8 @@
+### v3.1.0
+
+- [`0d4d6b9`](https://github.com/alpjs/alp-dev/commit/0d4d6b9dd2bd84b594c9376756200bf82870aa25) update webpack (Christophe Hurpeau)
+- [`fe8f1de`](https://github.com/alpjs/alp-dev/commit/fe8f1de9c770bf9c1bfc569f052a32e3ae7d5824) use babili (Christophe Hurpeau)
+
 ### v3.0.0
 
 - [`02386c2`](https://github.com/alpjs/alp-dev/commit/02386c296015c04a903209dc04ff91aa323e9b67) pob-babel@11 (Christophe Hurpeau)
