@@ -26,9 +26,12 @@ const port = argv.port || 3000;
  * Run Browsersync and use middleware for Hot Module Replacement
  */
 exports.default = browserSync({
+  // options: https://www.browsersync.io/docs/options
   open: argv.open,
   port: port,
   ui: { port: port + 1 },
+  notify: 'bottomleft', // https://github.com/BrowserSync/browser-sync/issues/685
+  online: false,
 
   ghostMode: {
     clicks: false,
