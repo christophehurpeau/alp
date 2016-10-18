@@ -140,14 +140,7 @@ module.exports = {
     }),
     !production && new webpack.HotModuleReplacementPlugin(),
     !production && new webpack.NoErrorsPlugin(),
-    production && !modernBrowsers && new webpack.optimize.UglifyJsPlugin({
-      mangle: false,
-      compress: {
-        warnings: false,
-      },
-      sourceMap: !production,
-    }),
-    production && modernBrowsers && new BabiliCustomPlugin({
+    production && new BabiliCustomPlugin({
       comments: false,
       plugins: [
         [
@@ -175,6 +168,12 @@ module.exports = {
         'transform-remove-debugger',
         'minify-mangle-names',
       ].map(resolveBabel(resolvePlugin)),
+    }),
+    production && !modernBrowsers && new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      sourceMap: !production,
     }),
     // TODO https://github.com/NekR/offline-plugin
   ].filter(Boolean),
