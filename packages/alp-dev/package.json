@@ -35,6 +35,9 @@
   "dependencies": {
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
+    "babel-plugin-minify-empty-function": "0.0.1",
+    "babel-plugin-transform-remove-debugger": "^6.8.0",
+    "babel-preset-babili": "0.0.5",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-es2015-node6": "^0.3.0",
     "babel-preset-modern-browsers": "^6.0.0",
@@ -58,7 +61,7 @@
     "springbokjs-daemon": "^1.3.0",
     "stylus": "^0.54.5",
     "through2": "^2.0.1",
-    "webpack": "christophehurpeau/webpack#9a790989ef1e29ea3980ca363a14720307e805ad",
+    "webpack": "^2.1.0-beta.25",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.0"
   },
