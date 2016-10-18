@@ -1,3 +1,7 @@
+### v3.6.0
+
+- [`c3626b4`](https://github.com/alpjs/alp-websocket/commit/c3626b4d46f33cc73ad1650d7b0b80921b80d043) feat: use app.certpath (Christophe Hurpeau)
+
 ### v3.5.0
 
 - [`3bad4a3`](https://github.com/alpjs/alp-websocket/commit/3bad4a32eeb71f0711bed4db3f813bdb28961c21) chore(package): nightingale-logger@^1.6.0 (Christophe Hurpeau)
