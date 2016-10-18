@@ -3,18 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 exports.default = compose;
+
+var _tcombForked = require('tcomb-forked');
+
+var _tcombForked2 = _interopRequireDefault(_tcombForked);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /* global PRODUCTION */
 // create lib
 function compose(middleware) {
-  if (!(Array.isArray(middleware) && middleware.every(function (item) {
-    return typeof item === 'function';
-  }))) {
-    throw new TypeError('Value of argument "middleware" violates contract.\n\nExpected:\nArray<Function>\n\nGot:\n' + _inspect(middleware));
-  }
+  _assert(middleware, _tcombForked2.default.list(_tcombForked2.default.Function), 'middleware');
 
   return function (ctx) {
     var index = -1;
@@ -41,76 +41,21 @@ function compose(middleware) {
   };
 }
 
-function _inspect(input, depth) {
-  var maxDepth = 4;
-  var maxKeys = 15;
-
-  if (depth === undefined) {
-    depth = 0;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
   }
 
-  depth += 1;
+  if (_tcombForked2.default.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
 
-  if (input === null) {
-    return 'null';
-  } else if (input === undefined) {
-    return 'void';
-  } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-    return typeof input === 'undefined' ? 'undefined' : _typeof(input);
-  } else if (Array.isArray(input)) {
-    if (input.length > 0) {
-      var _ret = function () {
-        if (depth > maxDepth) return {
-            v: '[...]'
-          };
-
-        var first = _inspect(input[0], depth);
-
-        if (input.every(function (item) {
-          return _inspect(item, depth) === first;
-        })) {
-          return {
-            v: first.trim() + '[]'
-          };
-        } else {
-          return {
-            v: '[' + input.slice(0, maxKeys).map(function (item) {
-              return _inspect(item, depth);
-            }).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-          };
-        }
-      }();
-
-      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-    } else {
-      return 'Array';
+      _tcombForked2.default.fail(message());
     }
-  } else {
-    var keys = Object.keys(input);
-
-    if (!keys.length) {
-      if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-        return input.constructor.name;
-      } else {
-        return 'Object';
-      }
-    }
-
-    if (depth > maxDepth) return '{...}';
-    var indent = '  '.repeat(depth - 1);
-    var entries = keys.slice(0, maxKeys).map(function (key) {
-      return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-    }).join('\n  ' + indent);
-
-    if (keys.length >= maxKeys) {
-      entries += '\n  ' + indent + '...';
-    }
-
-    if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-      return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-    } else {
-      return '{\n  ' + indent + entries + '\n' + indent + '}';
-    }
+  } else if (!(x instanceof type)) {
+    _tcombForked2.default.fail(message());
   }
+
+  return x;
 }
 //# sourceMappingURL=compose.js.map

@@ -1,3 +1,4 @@
+import _t from 'tcomb-forked';
 /* eslint class-methods-use-this: 'off' */
 /* global window, document */
 
@@ -15,39 +16,19 @@ export default class Application extends EventEmitter {
   constructor() {
     super();
     this.middleware = [];
-
-    if (!(Array.isArray(this.middleware) && this.middleware.every(function (item) {
-      return typeof item === 'function';
-    }))) {
-      throw new TypeError('Value of "this.middleware" violates contract.\n\nExpected:\nArray<Function>\n\nGot:\n' + _inspect(this.middleware));
-    }
-
     this.context = Object.create(context);
-
-    if (!(this.context instanceof Object)) {
-      throw new TypeError('Value of "this.context" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(this.context));
-    }
-
     this.context.app = this;
     this.context.state = {};
   }
 
   get environment() {
-    function _ref(_id) {
-      if (!(typeof _id === 'string')) {
-        throw new TypeError('Function return value violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(_id));
-      }
-
-      return _id;
-    }
-
-    return _ref(this.env);
+    return _assert(function () {
+      return this.env;
+    }.apply(this, arguments), _t.String, 'return value');
   }
 
   use(fn) {
-    if (!(typeof fn === 'function')) {
-      throw new TypeError('Value of argument "fn" violates contract.\n\nExpected:\nFunction\n\nGot:\n' + _inspect(fn));
-    }
+    _assert(fn, _t.Function, 'fn');
 
     logger.debug('use', { name: fn.name || '-' });
     this.middleware.push(fn);
@@ -55,10 +36,14 @@ export default class Application extends EventEmitter {
   }
 
   onerror(e) {
+    _assert(e, _t.Any, 'e');
+
     logger.error(e);
   }
 
   run(url) {
+    _assert(url, _t.Any, 'url');
+
     if (!this.listeners('error').length) {
       this.on('error', this.onerror);
     }
@@ -79,9 +64,7 @@ export default class Application extends EventEmitter {
   }
 
   load(url) {
-    if (!(typeof url === 'string')) {
-      throw new TypeError('Value of argument "url" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(url));
-    }
+    _assert(url, _t.String, 'url');
 
     logger.debug('load', { url });
 
@@ -90,11 +73,7 @@ export default class Application extends EventEmitter {
     }
 
     var context = this.createContext();
-    return this.callback(context).then(() => {
-      return respond(context);
-    }).catch(err => {
-      return this.emit('error', err);
-    });
+    return this.callback(context).then(() => respond(context)).catch(err => this.emit('error', err));
   }
 }
 
@@ -122,72 +101,21 @@ function respond(ctx) {
   throw new Error('Invalid body result');
 }
 
-function _inspect(input, depth) {
-  var maxDepth = 4;
-  var maxKeys = 15;
-
-  if (depth === undefined) {
-    depth = 0;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
   }
 
-  depth += 1;
+  if (_t.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _t.getTypeName(type)]);
 
-  if (input === null) {
-    return 'null';
-  } else if (input === undefined) {
-    return 'void';
-  } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-    return typeof input;
-  } else if (Array.isArray(input)) {
-    if (input.length > 0) {
-      var _ret = function () {
-        if (depth > maxDepth) return {
-            v: '[...]'
-          };
-
-        var first = _inspect(input[0], depth);
-
-        if (input.every(item => _inspect(item, depth) === first)) {
-          return {
-            v: first.trim() + '[]'
-          };
-        } else {
-          return {
-            v: '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-          };
-        }
-      }();
-
-      if (typeof _ret === "object") return _ret.v;
-    } else {
-      return 'Array';
+      _t.fail(message());
     }
-  } else {
-    var keys = Object.keys(input);
-
-    if (!keys.length) {
-      if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-        return input.constructor.name;
-      } else {
-        return 'Object';
-      }
-    }
-
-    if (depth > maxDepth) return '{...}';
-    var indent = '  '.repeat(depth - 1);
-    var entries = keys.slice(0, maxKeys).map(key => {
-      return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-    }).join('\n  ' + indent);
-
-    if (keys.length >= maxKeys) {
-      entries += '\n  ' + indent + '...';
-    }
-
-    if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-      return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-    } else {
-      return '{\n  ' + indent + entries + '\n' + indent + '}';
-    }
+  } else if (!(x instanceof type)) {
+    _t.fail(message());
   }
+
+  return x;
 }
 //# sourceMappingURL=index.js.map

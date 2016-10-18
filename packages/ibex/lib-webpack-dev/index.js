@@ -1,6 +1,6 @@
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+import _t from 'tcomb-forked';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29,19 +29,7 @@ var Application = function (_EventEmitter) {
     var _this = _possibleConstructorReturn(this, (Application.__proto__ || Object.getPrototypeOf(Application)).call(this));
 
     _this.middleware = [];
-
-    if (!(Array.isArray(_this.middleware) && _this.middleware.every(function (item) {
-      return typeof item === 'function';
-    }))) {
-      throw new TypeError('Value of "this.middleware" violates contract.\n\nExpected:\nArray<Function>\n\nGot:\n' + _inspect(_this.middleware));
-    }
-
     _this.context = Object.create(context);
-
-    if (!(_this.context instanceof Object)) {
-      throw new TypeError('Value of "this.context" violates contract.\n\nExpected:\nObject\n\nGot:\n' + _inspect(_this.context));
-    }
-
     _this.context.app = _this;
     _this.context.state = {};
     return _this;
@@ -50,9 +38,7 @@ var Application = function (_EventEmitter) {
   _createClass(Application, [{
     key: 'use',
     value: function use(fn) {
-      if (!(typeof fn === 'function')) {
-        throw new TypeError('Value of argument "fn" violates contract.\n\nExpected:\nFunction\n\nGot:\n' + _inspect(fn));
-      }
+      _assert(fn, _t.Function, 'fn');
 
       logger.debug('use', { name: fn.name || '-' });
       this.middleware.push(fn);
@@ -61,11 +47,15 @@ var Application = function (_EventEmitter) {
   }, {
     key: 'onerror',
     value: function onerror(e) {
+      _assert(e, _t.Any, 'e');
+
       logger.error(e);
     }
   }, {
     key: 'run',
     value: function run(url) {
+      _assert(url, _t.Any, 'url');
+
       if (!this.listeners('error').length) {
         this.on('error', this.onerror);
       }
@@ -90,9 +80,7 @@ var Application = function (_EventEmitter) {
     value: function load(url) {
       var _this2 = this;
 
-      if (!(typeof url === 'string')) {
-        throw new TypeError('Value of argument "url" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(url));
-      }
+      _assert(url, _t.String, 'url');
 
       logger.debug('load', { url: url });
 
@@ -110,15 +98,7 @@ var Application = function (_EventEmitter) {
   }, {
     key: 'environment',
     get: function get() {
-      function _ref(_id) {
-        if (!(typeof _id === 'string')) {
-          throw new TypeError('Function return value violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(_id));
-        }
-
-        return _id;
-      }
-
-      return _ref(this.env);
+      return this.env;
     }
   }]);
 
@@ -152,76 +132,21 @@ function respond(ctx) {
   throw new Error('Invalid body result');
 }
 
-function _inspect(input, depth) {
-  var maxDepth = 4;
-  var maxKeys = 15;
-
-  if (depth === undefined) {
-    depth = 0;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
   }
 
-  depth += 1;
+  if (_t.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _t.getTypeName(type)]);
 
-  if (input === null) {
-    return 'null';
-  } else if (input === undefined) {
-    return 'void';
-  } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-    return typeof input === 'undefined' ? 'undefined' : _typeof(input);
-  } else if (Array.isArray(input)) {
-    if (input.length > 0) {
-      var _ret = function () {
-        if (depth > maxDepth) return {
-            v: '[...]'
-          };
-
-        var first = _inspect(input[0], depth);
-
-        if (input.every(function (item) {
-          return _inspect(item, depth) === first;
-        })) {
-          return {
-            v: first.trim() + '[]'
-          };
-        } else {
-          return {
-            v: '[' + input.slice(0, maxKeys).map(function (item) {
-              return _inspect(item, depth);
-            }).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-          };
-        }
-      }();
-
-      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-    } else {
-      return 'Array';
+      _t.fail(message());
     }
-  } else {
-    var keys = Object.keys(input);
-
-    if (!keys.length) {
-      if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-        return input.constructor.name;
-      } else {
-        return 'Object';
-      }
-    }
-
-    if (depth > maxDepth) return '{...}';
-    var indent = '  '.repeat(depth - 1);
-    var entries = keys.slice(0, maxKeys).map(function (key) {
-      return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-    }).join('\n  ' + indent);
-
-    if (keys.length >= maxKeys) {
-      entries += '\n  ' + indent + '...';
-    }
-
-    if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-      return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-    } else {
-      return '{\n  ' + indent + entries + '\n' + indent + '}';
-    }
+  } else if (!(x instanceof type)) {
+    _t.fail(message());
   }
+
+  return x;
 }
 //# sourceMappingURL=index.js.map
