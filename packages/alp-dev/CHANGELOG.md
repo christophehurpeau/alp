@@ -1,3 +1,8 @@
+### v3.2.0
+
+- [`1b84719`](https://github.com/alpjs/alp-dev/commit/1b847194a8f2256f4c9cf76064464e1718bb2dc6) also use babili for es5 (Christophe Hurpeau)
+- [`a1be959`](https://github.com/alpjs/alp-dev/commit/a1be9594af80093497a25c7cacc928780c00fe01) browsersync conf (Christophe Hurpeau)
+
 ### v3.1.0
 
 - [`0d4d6b9`](https://github.com/alpjs/alp-dev/commit/0d4d6b9dd2bd84b594c9376756200bf82870aa25) update webpack (Christophe Hurpeau)
