@@ -203,7 +203,7 @@ var AuthenticationService = function (_EventEmitter) {
     key: 'redirectAuthUrl',
     value: function () {
       var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx, strategy, refreshToken, scopeKey, user, accountId) {
-        var state, isLoginAccess, scope, redirectUri;
+        var state, scope, redirectUri;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -222,14 +222,13 @@ var AuthenticationService = function (_EventEmitter) {
 
               case 7:
                 state = _context.sent;
-                isLoginAccess = !scopeKey || scopeKey === 'login';
                 scope = this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
 
                 ctx.cookies.set('auth_' + strategy + '_' + state, JSON.stringify({
                   scopeKey: scopeKey,
                   scope: scope,
-                  isLoginAccess: isLoginAccess
+                  isLoginAccess: !scopeKey || scopeKey === 'login'
                 }), {
                   maxAge: 600000,
                   httpOnly: true,
@@ -241,13 +240,13 @@ var AuthenticationService = function (_EventEmitter) {
                   state: state,
                   accessType: refreshToken ? 'offline' : 'online'
                 });
-                _context.next = 14;
+                _context.next = 13;
                 return ctx.redirect(redirectUri);
 
-              case 14:
+              case 13:
                 return _context.abrupt('return', _context.sent);
 
-              case 15:
+              case 14:
               case 'end':
                 return _context.stop();
             }

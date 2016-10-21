@@ -40,7 +40,7 @@ export default class AuthenticationService extends EventEmitter {
    * @returns {string}
    */
   generateAuthUrl(strategy) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     logger.debug('generateAuthUrl', { strategy, options });
     var strategyInstance = this.strategies[strategy];
@@ -59,7 +59,7 @@ export default class AuthenticationService extends EventEmitter {
   }
 
   getTokens(strategy) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     logger.debug('getTokens', { strategy, options });
     var strategyInstance = this.strategies[strategy];
@@ -144,13 +144,13 @@ export default class AuthenticationService extends EventEmitter {
     return _asyncToGenerator(function* () {
       logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
       var state = yield randomHex(8);
-      var isLoginAccess = !scopeKey || scopeKey === 'login';
+
       var scope = _this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
       ctx.cookies.set(`auth_${ strategy }_${ state }`, JSON.stringify({
         scopeKey: scopeKey,
         scope: scope,
-        isLoginAccess: isLoginAccess
+        isLoginAccess: !scopeKey || scopeKey === 'login'
       }), {
         maxAge: 600000,
         httpOnly: true,

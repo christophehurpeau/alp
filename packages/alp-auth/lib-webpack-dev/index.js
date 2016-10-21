@@ -166,7 +166,7 @@ export default function init(_ref) {
                     return _context2.abrupt('return', _context2.sent);
 
                   case 8:
-                    connected = undefined;
+                    connected = void 0;
                     _context2.prev = 9;
                     _context2.next = 12;
                     return decodeJwt(token, handshakeData.headers['user-agent']);
@@ -268,7 +268,7 @@ export default function init(_ref) {
                 return _context3.abrupt('return', _context3.sent);
 
               case 6:
-                connected = undefined;
+                connected = void 0;
                 _context3.prev = 7;
                 _context3.next = 10;
                 return decodeJwt(token, ctx.request.headers['user-agent']);

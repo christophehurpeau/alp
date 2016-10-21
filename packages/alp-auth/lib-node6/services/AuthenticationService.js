@@ -154,13 +154,13 @@ class AuthenticationService extends _events2.default {
     return _asyncToGenerator(function* () {
       logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
       const state = yield (0, _generators.randomHex)(8);
-      const isLoginAccess = !scopeKey || scopeKey === 'login';
+
       const scope = _this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
       ctx.cookies.set(`auth_${ strategy }_${ state }`, JSON.stringify({
         scopeKey: scopeKey,
         scope: scope,
-        isLoginAccess: isLoginAccess
+        isLoginAccess: !scopeKey || scopeKey === 'login'
       }), {
         maxAge: 600000,
         httpOnly: true,

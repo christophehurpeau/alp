@@ -105,7 +105,7 @@ export default function init(_ref) {
 
             if (!token) return yield next();
 
-            var connected = undefined;
+            var connected = void 0;
             try {
               connected = yield decodeJwt(token, handshakeData.headers['user-agent']);
             } catch (err) {
@@ -143,7 +143,7 @@ export default function init(_ref) {
 
         if (!token) return yield next();
 
-        var connected = undefined;
+        var connected = void 0;
         try {
           connected = yield decodeJwt(token, ctx.request.headers['user-agent']);
         } catch (err) {
