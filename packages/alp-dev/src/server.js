@@ -1,7 +1,7 @@
 // const bsReload = require('./bs-reload');
 import argv from 'minimist-argv';
 import { node as nodeDaemon } from 'springbokjs-daemon/src';
-import { clean, watch } from './pob-build';
+import { clean, watch } from './server-build';
 
 clean();
 watch().then((emitter) => {

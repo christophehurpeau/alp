@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 const createBabelOpts = require('pob-babel/lib/babel-options');
 const BabiliCustomPlugin = require('./BabiliCustomWebpackPlugin');
@@ -10,10 +11,8 @@ const dest = process.env.WEBPACK_DEST || 'modern-browsers';
 const modernBrowsers = dest === 'modern-browsers';
 // const modernBrowsers = false;
 
-const babelOptions = createBabelOpts(
-  `webpack${modernBrowsers ? '-modern-browsers' : ''}${!production ? '-dev' : ''}`,
-  true
-);
+const env = `webpack${modernBrowsers ? '-modern-browsers' : ''}${!production ? '-dev' : ''}`;
+const babelOptions = createBabelOpts(env, true);
 
 const resolvePreset = presetName => require.resolve(`babel-preset-${presetName}`);
 const resolvePlugin = pluginName => require.resolve(`babel-plugin-${pluginName}`);
@@ -43,12 +42,14 @@ module.exports = {
       './src/index.browser.js',
     ].filter(Boolean),
   },
+
   output: {
     path: path.resolve('public'),
     publicPath: '/',
     filename: '[name].js',
     pathinfo: !production,
   },
+
   module: {
     // Disable handling of unknown requires
     unknownContextRegExp: /$^/,
@@ -70,28 +71,54 @@ module.exports = {
     // ],
 
     rules: [
+      // JS / JSX RULE
       {
         test: /\.jsx?$/,
         include: path.resolve('src'),
         exclude: /\.server\.jsx?$/,
-        use: [
-          {
-            loader: 'babel',
-            options: {
-              compact: production,
-              minified: production,
-              comments: !production,
-              presets: babelOptions.presets.map(resolveBabel(resolvePreset)),
-              plugins: babelOptions.plugins.map(resolveBabel(resolvePlugin)),
-            },
-          },
-        ],
+        loader: 'babel',
+        options: {
+          compact: production,
+          minified: production,
+          comments: !production,
+          presets: babelOptions.presets.map(resolveBabel(resolvePreset)),
+          plugins: babelOptions.plugins.map(resolveBabel(resolvePlugin)),
+        },
+      },
+      // CSS / STYL RULE
+      {
+        test: /\.css$/,
+        include: path.resolve('src'),
+        loader: ExtractTextPlugin.extract({
+          loader: [require.resolve('css-loader')],
+        }),
+      },
+      {
+        test: /\.styl$/,
+        include: path.resolve('src'),
+        loader: ExtractTextPlugin.extract({
+          loader: [
+            // eslint-disable-next-line prefer-template
+            require.resolve('css-loader') + '?modules&camelCase&importLoaders=1'
+              + '&localIdentName=[name]__[local]___[hash:base64:5]',
+              // + `localIdentName=${production ? : '[path][name]---[local]---[hash:base64:5]'}`,
+            require.resolve('stylus-loader'),
+            // {
+            //   loader: require.resolve('postcss-loader'),
+            //   options: {
+            //     plugins: () => [require('postcss-modules')],
+            //   }
+            // },
+          ],
+        }),
       },
     ].filter(Boolean),
   },
+
   resolveLoader: {
     modules: ['node_modules'],
   },
+
   resolve: {
     alias: { 'socket.io': 'socket.io-client' },
     modules: ['node_modules'],
@@ -118,6 +145,10 @@ module.exports = {
   },
 
   plugins: [
+    new ExtractTextPlugin({
+      filename: 'styles.css',
+      allChunks: true,
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: dest,
       filename: `${dest}.js`,

@@ -1,7 +1,7 @@
 'use strict';
 
-var _pobBuild = require('./pob-build');
+var _serverBuild = require('./server-build');
 
-(0, _pobBuild.clean)();
-(0, _pobBuild.build)();
+(0, _serverBuild.clean)();
+(0, _serverBuild.build)();
 //# sourceMappingURL=build.js.map

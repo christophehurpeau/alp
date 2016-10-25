@@ -1,4 +1,4 @@
-import { clean, build } from './pob-build';
+import { clean, build } from './server-build';
 
 clean();
 build();

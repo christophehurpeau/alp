@@ -6,13 +6,13 @@ var _minimistArgv2 = _interopRequireDefault(_minimistArgv);
 
 var _springbokjsDaemon = require('springbokjs-daemon');
 
-var _pobBuild = require('./pob-build');
+var _serverBuild = require('./server-build');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _pobBuild.clean)(); // const bsReload = require('./bs-reload');
+(0, _serverBuild.clean)(); // const bsReload = require('./bs-reload');
 
-(0, _pobBuild.watch)().then(emitter => {
+(0, _serverBuild.watch)().then(emitter => {
   const daemon = (0, _springbokjsDaemon.node)(['--harmony', '--es_staging', 'lib-node6-dev/index.server.js', '--port', _minimistArgv2.default.proxyPort, '--version', `dev${ Date.now() }`]);
 
   process.on('exit', () => {
