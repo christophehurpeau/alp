@@ -4,7 +4,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 export default function createAction(type, argsNamesOrHandler, data) {
 
-  var action = undefined;
+  var action = void 0;
 
   var typeofSecondArg = typeof argsNamesOrHandler;
 

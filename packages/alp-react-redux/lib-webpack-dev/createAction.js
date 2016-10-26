@@ -12,14 +12,13 @@ export default function createAction(type, argsNamesOrHandler, data) {
 
   _assert(data, _t.maybe(_t.Object), 'data');
 
-  {
-    if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
-      throw new Error('handler should be a function');
-    }
-    if (data) throw new Error('data is deprecated');
+  if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
+    throw new Error('handler should be a function');
   }
+  if (data) throw new Error('data is deprecated');
 
-  var action = undefined;
+
+  var action = void 0;
 
   var typeofSecondArg = typeof argsNamesOrHandler === 'undefined' ? 'undefined' : _typeof(argsNamesOrHandler);
 

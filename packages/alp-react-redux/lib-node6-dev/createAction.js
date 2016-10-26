@@ -23,12 +23,11 @@ function createAction(type, argsNamesOrHandler, data) {
 
   _assert(data, _tcombForked2.default.maybe(_tcombForked2.default.Object), 'data');
 
-  {
-    if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
-      throw new Error('handler should be a function');
-    }
-    if (data) throw new Error('data is deprecated');
+  if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
+    throw new Error('handler should be a function');
   }
+  if (data) throw new Error('data is deprecated');
+
 
   let action;
 

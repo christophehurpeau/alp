@@ -6,7 +6,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 export default function createAction(type, argsNamesOrHandler, data) {
 
-  var action = undefined;
+  var action = void 0;
 
   var typeofSecondArg = typeof argsNamesOrHandler === 'undefined' ? 'undefined' : _typeof(argsNamesOrHandler);
 

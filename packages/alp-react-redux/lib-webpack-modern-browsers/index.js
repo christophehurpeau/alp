@@ -19,7 +19,7 @@ var logger = new Logger('alp.react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-{ name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 38 }, { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 }];
+{ name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 51 }, { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 }];
 
 export default function alpReactRedux(Html) {
   return app => {
@@ -43,12 +43,13 @@ export default function alpReactRedux(Html) {
             // TODO create alp-useragent with getter in context
             var ua = this.context.req.headers['user-agent'];
 
-            for (var agent of agents) {
+            if (agents.some(agent => {
               var res = agent.regexp.exec(ua);
-              if (res && res[1] >= agent.modernMinVersion) {
-                return 'modern-browsers';
-              }
+              return res && res[1] >= agent.modernMinVersion;
+            })) {
+              return 'modern-browsers';
             }
+
             return 'es5';
           },
           initialBrowserContext: this.computeInitialContextForBrowser()

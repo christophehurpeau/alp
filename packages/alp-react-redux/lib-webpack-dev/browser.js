@@ -25,8 +25,8 @@ export { createEmitAction, createEmitPromiseAction } from './websocket';
 var HYDRATE_STATE = 'HYDRATE_STATE';
 var logger = new Logger('alp.react-redux');
 
-var store = undefined;
-var currentModuleDescriptorIdentifier = undefined;
+var store = void 0;
+var currentModuleDescriptorIdentifier = void 0;
 
 export default function alpReactRedux(element) {
   return function (app) {
