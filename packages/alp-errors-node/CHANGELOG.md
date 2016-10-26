@@ -1,3 +1,7 @@
+### v2.2.0
+
+- [`84d2d65`](https://github.com/alpjs/alp-errors-node/commit/84d2d6533f3caebd3d8c23c756bc5923c4081c8a) refactor: pob update and update dependencies (Christophe Hurpeau)
+
 ### v2.1.0
 
 - [`327f641`](https://github.com/alpjs/alp-errors-node/commit/327f641744a07a6259263f6a564855a6e6cab672) support string error (Christophe Hurpeau)
