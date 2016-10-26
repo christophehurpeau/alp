@@ -1,3 +1,7 @@
+### v2.3.0
+
+- [`3390480`](https://github.com/alpjs/alp-translate/commit/339048091a90b27fe67e01a19b03904c5a3baab5) refactor: pob update and update dependencies (Christophe Hurpeau)
+
 ### v2.2.0
 
 - [`eee1d4c`](https://github.com/alpjs/alp-translate/commit/eee1d4cfd63dfd63b8282a11faa34135e8f95c30) chore(package): nightingale-logger@^1.6.0 (Christophe Hurpeau)
