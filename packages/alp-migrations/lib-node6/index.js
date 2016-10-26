@@ -31,10 +31,10 @@ exports.MigrationsManager = _Manager2.default;
 
 exports.default = (() => {
   var _ref = _asyncToGenerator(function* (_ref2) {
-    let app = _ref2.app;
-    let config = _ref2.config;
-    let dirname = _ref2.dirname;
-    let migrationsManager = _ref2.migrationsManager;
+    let app = _ref2.app,
+        config = _ref2.config,
+        dirname = _ref2.dirname,
+        migrationsManager = _ref2.migrationsManager;
 
     if (!config) config = app.config;
     if (!dirname) dirname = `${ app.dirname }/migrations`;
@@ -76,6 +76,7 @@ exports.default = (() => {
     });
 
     try {
+      // eslint-disable-next-line no-restricted-syntax
       for (let migration of migrations) {
         logger.info(`Migration to ${ migration.fileName }`);
         try {

@@ -45,6 +45,7 @@ export default async function migrate({ app, config, dirname, migrationsManager 
   migrations = migrations.sort((a, b) => semver.gt(a.version, b.version));
 
   try {
+    // eslint-disable-next-line no-restricted-syntax
     for (let migration of migrations) {
       logger.info(`Migration to ${migration.fileName}`);
       try {
