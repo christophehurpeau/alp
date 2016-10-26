@@ -16,9 +16,9 @@ exports.default = mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
   findOneByAccountOrEmails(_ref) {
-    let provider = _ref.provider;
-    let accountId = _ref.accountId;
-    let emails = _ref.emails;
+    let provider = _ref.provider,
+        accountId = _ref.accountId,
+        emails = _ref.emails;
 
     const r = this.store.r;
     let filter = r.row('accounts').contains(row => r.and(row('provider').eq(provider), row('accountId').eq(accountId)));

@@ -19,7 +19,7 @@ import Logger from 'nightingale-logger';
 import UserAccountsService from './user/UserAccountsService';
 import { randomHex } from '../utils/generators';
 
-var logger = new Logger('alp-auth.services.authentication');
+var logger = new Logger('alp:auth:authentication');
 
 var GenerateAuthUrlOptions = _t.interface({
   redirectUri: _t.maybe(_t.String),

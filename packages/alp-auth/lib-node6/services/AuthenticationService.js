@@ -23,7 +23,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* eslint camelcase: "off" */
 
 
-const logger = new _nightingaleLogger2.default('alp-auth.services.authentication');
+const logger = new _nightingaleLogger2.default('alp:auth:authentication');
 
 class AuthenticationService extends _events2.default {
 
@@ -56,7 +56,7 @@ class AuthenticationService extends _events2.default {
    * @returns {string}
    */
   generateAuthUrl(strategy) {
-    let options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     logger.debug('generateAuthUrl', { strategy, options });
     const strategyInstance = this.strategies[strategy];
@@ -75,7 +75,7 @@ class AuthenticationService extends _events2.default {
   }
 
   getTokens(strategy) {
-    let options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     logger.debug('getTokens', { strategy, options });
     const strategyInstance = this.strategies[strategy];

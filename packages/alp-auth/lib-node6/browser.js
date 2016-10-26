@@ -22,9 +22,9 @@ var _createAuthController2 = _interopRequireDefault(_createAuthController);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function init(_ref) {
-  let controllers = _ref.controllers;
-  let loginModuleDescriptor = _ref.loginModuleDescriptor;
-  let homeRouterKey = _ref.homeRouterKey;
+  let controllers = _ref.controllers,
+      loginModuleDescriptor = _ref.loginModuleDescriptor,
+      homeRouterKey = _ref.homeRouterKey;
 
   return app => {
     controllers.set('auth', (0, _createAuthController2.default)({

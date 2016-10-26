@@ -63,7 +63,7 @@ exports.rethinkUsersManager = _rethinkUsersManager2.default;
 
 
 const COOKIE_NAME = 'connectedUser';
-const logger = new _nightingaleLogger2.default('alp-auth');
+const logger = new _nightingaleLogger2.default('alp:auth');
 
 function init(_ref) {
   var _assert2 = _assert(_ref, _tcombForked2.default.interface({
@@ -74,19 +74,13 @@ function init(_ref) {
     homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
   }), '{ controllers, usersManager, strategies, loginModuleDescriptor, homeRouterKey }');
 
-  let controllers = _assert2.controllers;
-  let usersManager = _assert2.usersManager;
-  let strategies = _assert2.strategies;
-  let loginModuleDescriptor = _assert2.loginModuleDescriptor;
-  let homeRouterKey = _assert2.homeRouterKey;
+  let controllers = _assert2.controllers,
+      usersManager = _assert2.usersManager,
+      strategies = _assert2.strategies,
+      loginModuleDescriptor = _assert2.loginModuleDescriptor,
+      homeRouterKey = _assert2.homeRouterKey;
 
-  _assert({
-    controllers,
-    usersManager,
-    strategies,
-    loginModuleDescriptor,
-    homeRouterKey
-  }, _tcombForked2.default.interface({
+  _assert(arguments[0], _tcombForked2.default.interface({
     controllers: Map,
     usersManager: _tcombForked2.default.Object,
     strategies: _tcombForked2.default.Object,

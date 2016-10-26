@@ -32,15 +32,11 @@ function init(_ref) {
     homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
   }), '{ controllers, loginModuleDescriptor, homeRouterKey }');
 
-  let controllers = _assert2.controllers;
-  let loginModuleDescriptor = _assert2.loginModuleDescriptor;
-  let homeRouterKey = _assert2.homeRouterKey;
+  let controllers = _assert2.controllers,
+      loginModuleDescriptor = _assert2.loginModuleDescriptor,
+      homeRouterKey = _assert2.homeRouterKey;
 
-  _assert({
-    controllers,
-    loginModuleDescriptor,
-    homeRouterKey
-  }, _tcombForked2.default.interface({
+  _assert(arguments[0], _tcombForked2.default.interface({
     controllers: Map,
     loginModuleDescriptor: _tcombForked2.default.Object,
     homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)

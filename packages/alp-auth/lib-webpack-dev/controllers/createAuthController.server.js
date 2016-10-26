@@ -5,23 +5,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 import AuthenticationService from '../services/AuthenticationService';
 
 export default function createAuthController(_ref) {
-  var usersManager = _ref.usersManager;
-  var authenticationService = _ref.authenticationService;
-  var loginModuleDescriptor = _ref.loginModuleDescriptor;
-  var _ref$homeRouterKey = _ref.homeRouterKey;
-  var homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
+  var usersManager = _ref.usersManager,
+      authenticationService = _ref.authenticationService,
+      loginModuleDescriptor = _ref.loginModuleDescriptor,
+      _ref$homeRouterKey = _ref.homeRouterKey,
+      homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
 
-  _assert({
-    usersManager: usersManager,
-    authenticationService: authenticationService,
-    loginModuleDescriptor: loginModuleDescriptor,
-    homeRouterKey: homeRouterKey
-  }, _t.interface({
+  _assert(arguments[0], _t.interface({
     usersManager: _t.Object,
     authenticationService: AuthenticationService,
     loginModuleDescriptor: _t.Object,
     homeRouterKey: _t.maybe(_t.String)
-  }), '{ usersManager, authenticationService, loginModuleDescriptor, homeRouterKey }');
+  }), '{ usersManager, authenticationService, loginModuleDescriptor, homeRouterKey = \'home\' }');
 
   return {
     login: function login(ctx) {

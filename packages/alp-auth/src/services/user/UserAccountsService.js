@@ -11,7 +11,7 @@ type TokensObject = {
   idToken: string,
 };
 
-const logger = new Logger('alp-auth.services.userAccounts');
+const logger = new Logger('alp:auth:userAccounts');
 
 export default class UserAccountsService extends EventEmitter {
   static strategyToService = {

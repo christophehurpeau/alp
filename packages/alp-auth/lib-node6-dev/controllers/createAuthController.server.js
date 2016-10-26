@@ -25,23 +25,18 @@ function createAuthController(_ref) {
     homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
   }), '{ usersManager, authenticationService, loginModuleDescriptor, homeRouterKey = \'home\' }');
 
-  let usersManager = _assert2.usersManager;
-  let authenticationService = _assert2.authenticationService;
-  let loginModuleDescriptor = _assert2.loginModuleDescriptor;
+  let usersManager = _assert2.usersManager,
+      authenticationService = _assert2.authenticationService,
+      loginModuleDescriptor = _assert2.loginModuleDescriptor;
   var _assert2$homeRouterKe = _assert2.homeRouterKey;
   let homeRouterKey = _assert2$homeRouterKe === undefined ? 'home' : _assert2$homeRouterKe;
 
-  _assert({
-    usersManager,
-    authenticationService,
-    loginModuleDescriptor,
-    homeRouterKey
-  }, _tcombForked2.default.interface({
+  _assert(arguments[0], _tcombForked2.default.interface({
     usersManager: _tcombForked2.default.Object,
     authenticationService: _AuthenticationService2.default,
     loginModuleDescriptor: _tcombForked2.default.Object,
     homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
-  }), '{ usersManager, authenticationService, loginModuleDescriptor, homeRouterKey }');
+  }), '{ usersManager, authenticationService, loginModuleDescriptor, homeRouterKey = \'home\' }');
 
   return {
     login(ctx) {

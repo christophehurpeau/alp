@@ -1,6 +1,6 @@
 import { sign, verify } from 'jsonwebtoken';
 import promiseCallback from 'promise-callback-factory';
-import Logger from 'nightingale-logger';
+import Logger from 'nightingale-logger/src';
 import abstractUsersManager from './models/user/abstractUsersManager';
 import mongoUsersManager from './models/user/mongoUsersManager';
 import rethinkUsersManager from './models/user/rethinkUsersManager';
@@ -12,7 +12,7 @@ export { abstractUsersManager, mongoUsersManager, rethinkUsersManager };
 export { default as routes } from './routes';
 
 const COOKIE_NAME = 'connectedUser';
-const logger = new Logger('alp-auth');
+const logger = new Logger('alp:auth');
 
 export default function init({
   controllers,

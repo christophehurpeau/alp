@@ -7,15 +7,11 @@ export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
   findOneByAccountOrEmails(_ref) {
-    var provider = _ref.provider;
-    var accountId = _ref.accountId;
-    var emails = _ref.emails;
+    var provider = _ref.provider,
+        accountId = _ref.accountId,
+        emails = _ref.emails;
 
-    _assert({
-      provider,
-      accountId,
-      emails
-    }, _t.interface({
+    _assert(arguments[0], _t.interface({
       provider: _t.String,
       accountId: _t.union([_t.String, _t.Number]),
       emails: _t.maybe(_t.list(_t.String))

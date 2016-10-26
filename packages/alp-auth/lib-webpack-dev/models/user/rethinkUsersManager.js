@@ -7,44 +7,38 @@ export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
   findOneByAccountOrEmails: function findOneByAccountOrEmails(_ref) {
-    var provider = _ref.provider;
-    var accountId = _ref.accountId;
-    var emails = _ref.emails;
+    var provider = _ref.provider,
+        accountId = _ref.accountId,
+        emails = _ref.emails;
 
-    _assert({
-      provider: provider,
-      accountId: accountId,
-      emails: emails
-    }, _t.interface({
-      provider: _t.String,
-      accountId: _t.union([_t.String, _t.Number]),
-      emails: _t.maybe(_t.list(_t.String))
-    }), '{ provider, accountId, emails }');
-
-    _assert({
-      provider: provider,
-      accountId: accountId,
-      emails: emails
-    }, _t.interface({
+    _assert(arguments[0], _t.interface({
       provider: _t.String,
       accountId: _t.union([_t.String, _t.Number]),
       emails: _t.maybe(_t.list(_t.String))
     }), '{ provider, accountId, emails }');
 
     return _assert(function () {
-      var r = this.store.r;
-      var filter = r.row('accounts').contains(function (row) {
-        return r.and(row('provider').eq(provider), row('accountId').eq(accountId));
-      });
+      _assert(arguments[0], _t.interface({
+        provider: _t.String,
+        accountId: _t.union([_t.String, _t.Number]),
+        emails: _t.maybe(_t.list(_t.String))
+      }), '{ provider, accountId, emails }');
 
-      if (emails && emails.length) {
-        filter = r.or(filter, r.row('emails').contains(function (row) {
-          return r.expr(emails).contains(row);
-        }));
-      }
+      return _assert(function () {
+        var r = this.store.r;
+        var filter = r.row('accounts').contains(function (row) {
+          return r.and(row('provider').eq(provider), row('accountId').eq(accountId));
+        });
 
-      var query = this.store.query().filter(filter);
-      return this.store.findOne(query);
+        if (emails && emails.length) {
+          filter = r.or(filter, r.row('emails').contains(function (row) {
+            return r.expr(emails).contains(row);
+          }));
+        }
+
+        var query = this.store.query().filter(filter);
+        return this.store.findOne(query);
+      }.apply(this, arguments), _t.Promise, 'return value');
     }.apply(this, arguments), _t.Promise, 'return value');
   },
   updateAccount: function updateAccount(user, account) {

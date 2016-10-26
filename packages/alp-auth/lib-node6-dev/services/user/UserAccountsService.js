@@ -33,7 +33,7 @@ const TokensObject = _tcombForked2.default.interface({
   idToken: _tcombForked2.default.String
 }, 'TokensObject');
 
-const logger = new _nightingaleLogger2.default('alp-auth.services.userAccounts');
+const logger = new _nightingaleLogger2.default('alp:auth:userAccounts');
 
 class UserAccountsService extends _events2.default {
 

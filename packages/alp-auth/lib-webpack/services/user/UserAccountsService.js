@@ -13,7 +13,7 @@ import EventEmitter from 'events';
 import Logger from 'nightingale-logger';
 import userAccountGoogleService from './userAccountGoogleService';
 
-var logger = new Logger('alp-auth.services.userAccounts');
+var logger = new Logger('alp:auth:userAccounts');
 
 var UserAccountsService = function (_EventEmitter) {
   _inherits(UserAccountsService, _EventEmitter);

@@ -15,7 +15,7 @@ var TokensObject = _t.interface({
   idToken: _t.String
 }, 'TokensObject');
 
-var logger = new Logger('alp-auth.services.userAccounts');
+var logger = new Logger('alp:auth:userAccounts');
 
 export default class UserAccountsService extends EventEmitter {
 

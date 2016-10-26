@@ -23,15 +23,11 @@ exports.default = {
       emails: _tcombForked2.default.maybe(_tcombForked2.default.list(_tcombForked2.default.String))
     }), '{ provider, accountId, emails }');
 
-    let provider = _assert2.provider;
-    let accountId = _assert2.accountId;
-    let emails = _assert2.emails;
+    let provider = _assert2.provider,
+        accountId = _assert2.accountId,
+        emails = _assert2.emails;
 
-    _assert({
-      provider,
-      accountId,
-      emails
-    }, _tcombForked2.default.interface({
+    _assert(arguments[0], _tcombForked2.default.interface({
       provider: _tcombForked2.default.String,
       accountId: _tcombForked2.default.union([_tcombForked2.default.String, _tcombForked2.default.Number]),
       emails: _tcombForked2.default.maybe(_tcombForked2.default.list(_tcombForked2.default.String))

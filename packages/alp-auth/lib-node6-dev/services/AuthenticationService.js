@@ -31,7 +31,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* eslint camelcase: "off" */
 
 
-const logger = new _nightingaleLogger2.default('alp-auth.services.authentication');
+const logger = new _nightingaleLogger2.default('alp:auth:authentication');
 
 const GenerateAuthUrlOptions = _tcombForked2.default.interface({
   redirectUri: _tcombForked2.default.maybe(_tcombForked2.default.String),
@@ -84,7 +84,7 @@ class AuthenticationService extends _events2.default {
    * @returns {string}
    */
   generateAuthUrl(strategy) {
-    let options = _assert(arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1], GenerateAuthUrlOptions, 'options');
+    let options = _assert(arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}, GenerateAuthUrlOptions, 'options');
 
     _assert(strategy, _tcombForked2.default.String, 'strategy');
 
@@ -107,7 +107,7 @@ class AuthenticationService extends _events2.default {
   }
 
   getTokens(strategy) {
-    let options = _assert(arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1], GetTokensOptions, 'options');
+    let options = _assert(arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}, GetTokensOptions, 'options');
 
     _assert(strategy, _tcombForked2.default.String, 'strategy');
 

@@ -7,9 +7,9 @@ export default {
   },
 
   findOneByAccountOrEmails(_ref) {
-    var provider = _ref.provider;
-    var accountId = _ref.accountId;
-    var emails = _ref.emails;
+    var provider = _ref.provider,
+        accountId = _ref.accountId,
+        emails = _ref.emails;
 
     throw new Error('Not implemented');
   },

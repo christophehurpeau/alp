@@ -17,7 +17,7 @@ import Logger from 'nightingale-logger';
 
 import { randomHex } from '../utils/generators';
 
-var logger = new Logger('alp-auth.services.authentication');
+var logger = new Logger('alp:auth:authentication');
 
 var AuthenticationService = function (_EventEmitter) {
   _inherits(AuthenticationService, _EventEmitter);

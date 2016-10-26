@@ -6,5 +6,5 @@
   ],
   "react": false,
   "testing": false,
-  "documentation": true
+  "documentation": false
 }

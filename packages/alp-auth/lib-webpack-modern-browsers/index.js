@@ -14,14 +14,14 @@ export { abstractUsersManager, mongoUsersManager, rethinkUsersManager };
 export { default as routes } from './routes';
 
 var COOKIE_NAME = 'connectedUser';
-var logger = new Logger('alp-auth');
+var logger = new Logger('alp:auth');
 
 export default function init(_ref) {
-  var controllers = _ref.controllers;
-  var usersManager = _ref.usersManager;
-  var strategies = _ref.strategies;
-  var loginModuleDescriptor = _ref.loginModuleDescriptor;
-  var homeRouterKey = _ref.homeRouterKey;
+  var controllers = _ref.controllers,
+      usersManager = _ref.usersManager,
+      strategies = _ref.strategies,
+      loginModuleDescriptor = _ref.loginModuleDescriptor,
+      homeRouterKey = _ref.homeRouterKey;
 
   return app => {
     var userAccountsService = new UserAccountsService(usersManager);

@@ -23,7 +23,7 @@ var TokensObject = _t.interface({
   idToken: _t.String
 }, 'TokensObject');
 
-var logger = new Logger('alp-auth.services.userAccounts');
+var logger = new Logger('alp:auth:userAccounts');
 
 var UserAccountsService = function (_EventEmitter) {
   _inherits(UserAccountsService, _EventEmitter);

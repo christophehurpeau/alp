@@ -59,14 +59,14 @@ exports.rethinkUsersManager = _rethinkUsersManager2.default;
 
 
 const COOKIE_NAME = 'connectedUser';
-const logger = new _nightingaleLogger2.default('alp-auth');
+const logger = new _nightingaleLogger2.default('alp:auth');
 
 function init(_ref) {
-  let controllers = _ref.controllers;
-  let usersManager = _ref.usersManager;
-  let strategies = _ref.strategies;
-  let loginModuleDescriptor = _ref.loginModuleDescriptor;
-  let homeRouterKey = _ref.homeRouterKey;
+  let controllers = _ref.controllers,
+      usersManager = _ref.usersManager,
+      strategies = _ref.strategies,
+      loginModuleDescriptor = _ref.loginModuleDescriptor,
+      homeRouterKey = _ref.homeRouterKey;
 
   return app => {
     const userAccountsService = new _UserAccountsService2.default(usersManager);

@@ -5,7 +5,7 @@ import Logger from 'nightingale-logger';
 import UserAccountsService from './user/UserAccountsService';
 import { randomHex } from '../utils/generators';
 
-const logger = new Logger('alp-auth.services.authentication');
+const logger = new Logger('alp:auth:authentication');
 
 type GenerateAuthUrlOptions = {
   redirectUri?: string,

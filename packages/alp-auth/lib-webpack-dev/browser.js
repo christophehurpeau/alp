@@ -4,15 +4,11 @@ import createAuthController from './controllers/createAuthController.browser';
 export { default as routes } from './routes';
 
 export default function init(_ref) {
-  var controllers = _ref.controllers;
-  var loginModuleDescriptor = _ref.loginModuleDescriptor;
-  var homeRouterKey = _ref.homeRouterKey;
+  var controllers = _ref.controllers,
+      loginModuleDescriptor = _ref.loginModuleDescriptor,
+      homeRouterKey = _ref.homeRouterKey;
 
-  _assert({
-    controllers: controllers,
-    loginModuleDescriptor: loginModuleDescriptor,
-    homeRouterKey: homeRouterKey
-  }, _t.interface({
+  _assert(arguments[0], _t.interface({
     controllers: Map,
     loginModuleDescriptor: _t.Object,
     homeRouterKey: _t.maybe(_t.String)

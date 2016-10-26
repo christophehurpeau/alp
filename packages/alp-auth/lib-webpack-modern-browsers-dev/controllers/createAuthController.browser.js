@@ -3,17 +3,14 @@ import _t from 'tcomb-forked';
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 export default function createAuthController(_ref) {
-  var loginModuleDescriptor = _ref.loginModuleDescriptor;
-  var _ref$homeRouterKey = _ref.homeRouterKey;
-  var homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
+  var loginModuleDescriptor = _ref.loginModuleDescriptor,
+      _ref$homeRouterKey = _ref.homeRouterKey,
+      homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
 
-  _assert({
-    loginModuleDescriptor,
-    homeRouterKey
-  }, _t.interface({
+  _assert(arguments[0], _t.interface({
     loginModuleDescriptor: _t.Object,
     homeRouterKey: _t.maybe(_t.String)
-  }), '{ loginModuleDescriptor, homeRouterKey }');
+  }), '{ loginModuleDescriptor, homeRouterKey = \'home\' }');
 
   return {
     login(ctx) {
