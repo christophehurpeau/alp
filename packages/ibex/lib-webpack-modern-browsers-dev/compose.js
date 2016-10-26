@@ -1,5 +1,4 @@
 import _t from 'tcomb-forked';
-/* global PRODUCTION */
 // create lib
 export default function compose(middleware) {
   _assert(middleware, _t.list(_t.Function), 'middleware');
@@ -10,7 +9,7 @@ export default function compose(middleware) {
       if (i <= index) {
         return Promise.reject(new Error('next() called multiple times'));
       }
-      index = i; //defines: #if !PRODUCTION = !false
+      index = i;
 
       var fn = middleware[i];
       if (!fn) throw new Error(`Invalid fn ${ i }`);

@@ -1,4 +1,3 @@
-/* global PRODUCTION */
 // create lib
 export default function compose(middleware) {
   return function (ctx) {
@@ -7,7 +6,7 @@ export default function compose(middleware) {
       if (i <= index) {
         return Promise.reject(new Error(false));
       }
-      ; //defines: #if !PRODUCTION = !true
+      index = i;
 
       var fn = middleware[i];
 

@@ -1,4 +1,3 @@
-/* global PRODUCTION */
 // create lib
 export default function compose(middleware: Array<Function>) {
   return function (ctx) {
@@ -7,7 +6,7 @@ export default function compose(middleware: Array<Function>) {
       if (i <= index) {
         return Promise.reject(new Error(!PRODUCTION && 'next() called multiple times'));
       }
-      index = i; // #if !PRODUCTION
+      index = i;
 
       const fn = middleware[i];
       if (!PRODUCTION && !fn) throw new Error(!PRODUCTION && `Invalid fn ${i}`);

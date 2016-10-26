@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = compose;
-/* global PRODUCTION */
 // create lib
 function compose(middleware) {
   return function (ctx) {
@@ -13,7 +12,7 @@ function compose(middleware) {
       if (i <= index) {
         return Promise.reject(new Error(false));
       }
-      ; //defines: #if !PRODUCTION = !true
+      index = i;
 
       var fn = middleware[i];
 

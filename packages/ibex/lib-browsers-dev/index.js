@@ -121,7 +121,9 @@ var Application = function (_EventEmitter) {
   }, {
     key: 'environment',
     get: function get() {
-      return this.env;
+      return _assert(function () {
+        return this.env;
+      }.apply(this, arguments), _tcombForked2.default.String, 'return value');
     }
   }]);
 

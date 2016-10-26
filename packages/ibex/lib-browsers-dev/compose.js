@@ -11,7 +11,6 @@ var _tcombForked2 = _interopRequireDefault(_tcombForked);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global PRODUCTION */
 // create lib
 function compose(middleware) {
   _assert(middleware, _tcombForked2.default.list(_tcombForked2.default.Function), 'middleware');
@@ -22,7 +21,7 @@ function compose(middleware) {
       if (i <= index) {
         return Promise.reject(new Error('next() called multiple times'));
       }
-      index = i; //defines: #if !PRODUCTION = !false
+      index = i;
 
       var fn = middleware[i];
       if (!fn) throw new Error('Invalid fn ' + i);
