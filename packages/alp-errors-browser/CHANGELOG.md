@@ -1,3 +1,7 @@
+### v0.3.0
+
+- [`b2c0f7f`](https://github.com/alpjs/alp-errors-browser/commit/b2c0f7f813a2c0050ad0bf98a7d336b9548108d4) refactor: pob update and update dependencies (Christophe Hurpeau)
+
 ### v0.2.0
 
 - [`4abe0ef`](https://github.com/alpjs/alp-errors-browser/commit/4abe0efaf096090b40c252a8209a7f6818c53f36) add debugger; to help in dev (Christophe Hurpeau)
