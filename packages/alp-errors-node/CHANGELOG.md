@@ -1,3 +1,7 @@
+### v2.2.1
+
+- [`2d21111`](https://github.com/alpjs/alp-errors-node/commit/2d21111f3dd0df43db7c2ac93d52ad98704ef170) fix: logger key (Christophe Hurpeau)
+
 ### v2.2.0
 
 - [`84d2d65`](https://github.com/alpjs/alp-errors-node/commit/84d2d6533f3caebd3d8c23c756bc5923c4081c8a) refactor: pob update and update dependencies (Christophe Hurpeau)
