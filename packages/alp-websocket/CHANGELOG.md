@@ -1,3 +1,7 @@
+### v3.7.0
+
+- [`6597764`](https://github.com/alpjs/alp-websocket/commit/6597764f322f20359a81334a7f591c0c931bf290) refactor: pob update and update dependencies (Christophe Hurpeau)
+
 ### v3.6.0
 
 - [`c3626b4`](https://github.com/alpjs/alp-websocket/commit/c3626b4d46f33cc73ad1650d7b0b80921b80d043) feat: use app.certpath (Christophe Hurpeau)
