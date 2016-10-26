@@ -1,3 +1,7 @@
+### v5.2.0
+
+- [`1cfbc9e`](https://github.com/alpjs/alp-react-redux/commit/1cfbc9e1c28dfe16cc036a8a54ca5ccf98fda10d) refactor: pob update, eslint, fix chromium version (Christophe Hurpeau)
+
 ### v5.1.0
 
 - [`ba2ecd5`](https://github.com/alpjs/alp-react-redux/commit/ba2ecd512fa76181886016c98be2398b12338136) chore(package): pob-release@^2.2.2 (Christophe Hurpeau)
