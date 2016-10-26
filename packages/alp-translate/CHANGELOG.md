@@ -1,3 +1,7 @@
+### v2.3.1
+
+- [`8760694`](https://github.com/alpjs/alp-translate/commit/8760694ac348dd797c2426d3c457bd842ba71016) fix: logger and main (Christophe Hurpeau)
+
 ### v2.3.0
 
 - [`3390480`](https://github.com/alpjs/alp-translate/commit/339048091a90b27fe67e01a19b03904c5a3baab5) refactor: pob update and update dependencies (Christophe Hurpeau)
