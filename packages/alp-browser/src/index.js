@@ -6,7 +6,7 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import contentLoaded from 'content-loaded';
 import { init as initWebApp, redirect } from 'alauda/src/web-app';
-import Logger from 'nightingale-logger';
+import Logger from 'nightingale-logger/src';
 
 export { Config } from 'alp-config';
 export { default as newController } from 'alp-controller';
