@@ -2,7 +2,7 @@ import semver from 'semver';
 import Logger from 'nightingale-logger/src';
 import readRecursiveDirectory from './readRecursiveDirectory';
 
-const logger = new Logger('alp.migrations');
+const logger = new Logger('alp:migrations');
 
 export MigrationsManager from './Manager';
 
