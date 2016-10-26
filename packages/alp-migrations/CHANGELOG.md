@@ -1,3 +1,7 @@
+### v0.6.0
+
+- [`854ec4e`](https://github.com/alpjs/alp-migrations/commit/854ec4e9925246face4237022c15c48185101bf0) refactor: update dependencies (Christophe Hurpeau)
+
 ### v0.5.0
 
 - [`1b120cc`](https://github.com/alpjs/alp-migrations/commit/1b120cc603607502fa065be85e4bfc6e86cc91a7) chore(package): komet-karma@^0.2.3 (Christophe Hurpeau)
