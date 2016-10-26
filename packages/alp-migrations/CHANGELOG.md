@@ -1,3 +1,7 @@
+### v0.6.1
+
+- [`860a8d0`](https://github.com/alpjs/alp-migrations/commit/860a8d00a7751a01d289c58e8a4a9e198433bd17) fix: logger key (Christophe Hurpeau)
+
 ### v0.6.0
 
 - [`854ec4e`](https://github.com/alpjs/alp-migrations/commit/854ec4e9925246face4237022c15c48185101bf0) refactor: update dependencies (Christophe Hurpeau)
