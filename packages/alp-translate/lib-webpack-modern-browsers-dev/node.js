@@ -1,113 +1,53 @@
+import _t from 'tcomb-forked';
 import Logger from 'nightingale-logger';
 import load from './load';
 
 var logger = new Logger('alp.translate');
 
 export default function alpTranslate(dirname) {
-    dirname = dirname.replace(/\/*$/, '/');
-    return app => {
-        Object.assign(app.context, {
-            t(key, args) {
-                function _t(_id) {
-                    if (!(typeof _id === 'string')) {
-                        throw new TypeError('Function return value violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(_id));
-                    }
+  dirname = dirname.replace(/\/*$/, '/');
+  return app => {
+    Object.assign(app.context, {
+      t(key, args) {
+        _assert(key, _t.String, 'key');
 
-                    return _id;
-                }
+        _assert(args, _t.maybe(_t.Object), 'args');
 
-                if (!(typeof key === 'string')) {
-                    throw new TypeError('Value of argument "key" violates contract.\n\nExpected:\nstring\n\nGot:\n' + _inspect(key));
-                }
+        return _assert(function () {
+          var msg = app.translations.get(this.language).get(key);
+          if (!msg) {
+            logger.warn('invalid msg', { language: this.language, key });
+            return key;
+          }
 
-                if (!(args == null || args instanceof Object)) {
-                    throw new TypeError('Value of argument "args" violates contract.\n\nExpected:\n?Object\n\nGot:\n' + _inspect(args));
-                }
+          return msg.format(args);
+        }.apply(this, arguments), _t.String, 'return value');
+      }
+    });
 
-                var msg = app.translations.get(this.language).get(key);
-                if (!msg) {
-                    logger.warn('invalid msg', { language: this.language, key });
-                    return key;
-                }
-
-                return _t(msg.format(args));
-            }
-        });
-
-        app.translations = new Map();
-        app.config.get('availableLanguages').forEach(language => {
-            var translations = app.config.loadConfigSync(dirname + language);
-            app.translations.set(language, load(translations, language));
-        });
-    };
+    app.translations = new Map();
+    app.config.get('availableLanguages').forEach(language => {
+      var translations = app.config.loadConfigSync(dirname + language);
+      app.translations.set(language, load(translations, language));
+    });
+  };
 }
 
-function _inspect(input, depth) {
-    var maxDepth = 4;
-    var maxKeys = 15;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  }
 
-    if (depth === undefined) {
-        depth = 0;
+  if (_t.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _t.getTypeName(type)]);
+
+      _t.fail(message());
     }
+  } else if (!(x instanceof type)) {
+    _t.fail(message());
+  }
 
-    depth += 1;
-
-    if (input === null) {
-        return 'null';
-    } else if (input === undefined) {
-        return 'void';
-    } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-        return typeof input;
-    } else if (Array.isArray(input)) {
-        if (input.length > 0) {
-            var _ret = function () {
-                if (depth > maxDepth) return {
-                        v: '[...]'
-                    };
-
-                var first = _inspect(input[0], depth);
-
-                if (input.every(item => _inspect(item, depth) === first)) {
-                    return {
-                        v: first.trim() + '[]'
-                    };
-                } else {
-                    return {
-                        v: '[' + input.slice(0, maxKeys).map(item => _inspect(item, depth)).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-                    };
-                }
-            }();
-
-            if (typeof _ret === "object") return _ret.v;
-        } else {
-            return 'Array';
-        }
-    } else {
-        var keys = Object.keys(input);
-
-        if (!keys.length) {
-            if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-                return input.constructor.name;
-            } else {
-                return 'Object';
-            }
-        }
-
-        if (depth > maxDepth) return '{...}';
-        var indent = '  '.repeat(depth - 1);
-        var entries = keys.slice(0, maxKeys).map(key => {
-            return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-        }).join('\n  ' + indent);
-
-        if (keys.length >= maxKeys) {
-            entries += '\n  ' + indent + '...';
-        }
-
-        if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-            return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-        } else {
-            return '{\n  ' + indent + entries + '\n' + indent + '}';
-        }
-    }
+  return x;
 }
 //# sourceMappingURL=node.js.map

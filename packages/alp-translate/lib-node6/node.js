@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = alpTranslate;
 
@@ -18,25 +18,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const logger = new _nightingaleLogger2.default('alp.translate');
 
 function alpTranslate(dirname) {
-    dirname = dirname.replace(/\/*$/, '/');
-    return app => {
-        Object.assign(app.context, {
-            t(key, args) {
-                const msg = app.translations.get(this.language).get(key);
-                if (!msg) {
-                    logger.warn('invalid msg', { language: this.language, key });
-                    return key;
-                }
+  dirname = dirname.replace(/\/*$/, '/');
+  return app => {
+    Object.assign(app.context, {
+      t(key, args) {
+        const msg = app.translations.get(this.language).get(key);
+        if (!msg) {
+          logger.warn('invalid msg', { language: this.language, key });
+          return key;
+        }
 
-                return msg.format(args);
-            }
-        });
+        return msg.format(args);
+      }
+    });
 
-        app.translations = new Map();
-        app.config.get('availableLanguages').forEach(language => {
-            const translations = app.config.loadConfigSync(dirname + language);
-            app.translations.set(language, (0, _load2.default)(translations, language));
-        });
-    };
+    app.translations = new Map();
+    app.config.get('availableLanguages').forEach(language => {
+      const translations = app.config.loadConfigSync(dirname + language);
+      app.translations.set(language, (0, _load2.default)(translations, language));
+    });
+  };
 }
 //# sourceMappingURL=node.js.map
