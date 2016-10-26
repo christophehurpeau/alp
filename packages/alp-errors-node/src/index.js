@@ -1,9 +1,9 @@
 import { STATUS_CODES } from 'http';
 import { parse as parseError } from 'alouette/src';
 import ErrorHtmlRenderer from 'alouette/src/HtmlRenderer';
-import Logger from 'nightingale-logger';
+import Logger from 'nightingale-logger/src';
 
-const logger = new Logger('alp.errors');
+const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer();
 
 export default async function (ctx, next) {
