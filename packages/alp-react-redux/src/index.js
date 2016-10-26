@@ -10,7 +10,7 @@ export createAction from './createAction';
 export createReducer from './createReducer';
 export createLoader from './createLoader';
 
-const logger = new Logger('alp.react-redux');
+const logger = new Logger('alp:react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 const agents = [

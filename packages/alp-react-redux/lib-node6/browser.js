@@ -82,7 +82,7 @@ exports.createLoader = _createLoader3.default;
 
 
 const HYDRATE_STATE = 'HYDRATE_STATE';
-const logger = new _nightingaleLogger2.default('alp.react-redux');
+const logger = new _nightingaleLogger2.default('alp:react-redux');
 
 let store;
 let currentModuleDescriptorIdentifier;

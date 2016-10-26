@@ -65,7 +65,7 @@ exports.createReducer = _createReducer3.default;
 exports.createLoader = _createLoader3.default;
 
 
-const logger = new _nightingaleLogger2.default('alp.react-redux');
+const logger = new _nightingaleLogger2.default('alp:react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.

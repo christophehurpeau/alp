@@ -21,7 +21,7 @@ export { _createLoader as createLoader };
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 var HYDRATE_STATE = 'HYDRATE_STATE';
-var logger = new Logger('alp.react-redux');
+var logger = new Logger('alp:react-redux');
 
 var store = void 0;
 var currentModuleDescriptorIdentifier = void 0;

@@ -1,7 +1,7 @@
 /* global window, PRODUCTION */
 import render, { App as DefaultApp } from 'fody';
 import ReduxApp from 'fody-redux-app';
-import Logger from 'nightingale-logger';
+import Logger from 'nightingale-logger/src';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares-browser';
 import { websocketMiddleware } from './websocket';
@@ -16,7 +16,7 @@ export createLoader from './createLoader';
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 const HYDRATE_STATE = 'HYDRATE_STATE';
-const logger = new Logger('alp.react-redux');
+const logger = new Logger('alp:react-redux');
 
 let store;
 let currentModuleDescriptorIdentifier;

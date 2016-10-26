@@ -15,7 +15,7 @@ import _createLoader from './createLoader';
 export { _createLoader as createLoader };
 
 
-var logger = new Logger('alp.react-redux');
+var logger = new Logger('alp:react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
 var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
