@@ -1,3 +1,8 @@
+### v0.8.0
+
+- [`a533afc`](https://github.com/alpjs/alp-auth/commit/a533afceaa726a95bcd1a6ccf39fe0a56ccecfd0) refactor: update dependencies (Christophe Hurpeau)
+- [`38d715b`](https://github.com/alpjs/alp-auth/commit/38d715ba70c1f859f53d75b54b0a36d2e1f7ec94) refactor: update dependencies (Christophe Hurpeau)
+
 ### v0.7.0
 
 - [`bd144cf`](https://github.com/alpjs/alp-auth/commit/bd144cf208bf97b5521c7e02aeb50c1f8d253e6d) chore(package): komet-karma@^0.2.3 (Christophe Hurpeau)
