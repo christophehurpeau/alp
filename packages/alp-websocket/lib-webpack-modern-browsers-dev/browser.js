@@ -3,8 +3,8 @@ import _t from 'tcomb-forked';
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
-var logger = new Logger('alp.websocket');
-var socket = undefined;
+var logger = new Logger('alp:websocket');
+var socket = void 0;
 var successfulConnection = false;
 var connected = false;
 
@@ -27,8 +27,8 @@ export default function alpWebsocket(app, namespaceName) {
 }
 
 function start(_ref) {
-  var config = _ref.config;
-  var context = _ref.context;
+  var config = _ref.config,
+      context = _ref.context;
   var namespaceName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
   if (socket) {

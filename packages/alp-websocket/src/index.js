@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import socketio from 'socket.io';
 import Logger from 'nightingale-logger/src';
 
-const logger = new Logger('alp.websocket');
+const logger = new Logger('alp:websocket');
 
 let io;
 

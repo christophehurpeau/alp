@@ -21,7 +21,7 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* global location, window, confirm */
-const logger = new _nightingaleLogger2.default('alp.websocket');
+const logger = new _nightingaleLogger2.default('alp:websocket');
 let socket;
 let successfulConnection = false;
 let connected = false;
@@ -45,8 +45,8 @@ function alpWebsocket(app, namespaceName) {
 }
 
 function start(_ref) {
-  let config = _ref.config;
-  let context = _ref.context;
+  let config = _ref.config,
+      context = _ref.context;
   let namespaceName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
   if (socket) {

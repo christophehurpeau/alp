@@ -1,8 +1,8 @@
 /* global location, window, confirm */
 import socketio from 'socket.io-client';
-import Logger from 'nightingale-logger';
+import Logger from 'nightingale-logger/src';
 
-const logger = new Logger('alp.websocket');
+const logger = new Logger('alp:websocket');
 let socket;
 let successfulConnection = false;
 let connected = false;

@@ -2,9 +2,9 @@ import { readFileSync } from 'fs';
 import socketio from 'socket.io';
 import Logger from 'nightingale-logger';
 
-var logger = new Logger('alp.websocket');
+var logger = new Logger('alp:websocket');
 
-var io = undefined;
+var io = void 0;
 
 /**
  * @param {Koa|AlpNodeApp} app
