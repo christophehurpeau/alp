@@ -1,3 +1,7 @@
+### v5.2.1
+
+- [`dbaf59a`](https://github.com/alpjs/alp-react-redux/commit/dbaf59adcc59da3d4d8148af5ac2ac2b1b959cd1) fix: logger key (Christophe Hurpeau)
+
 ### v5.2.0
 
 - [`1cfbc9e`](https://github.com/alpjs/alp-react-redux/commit/1cfbc9e1c28dfe16cc036a8a54ca5ccf98fda10d) refactor: pob update, eslint, fix chromium version (Christophe Hurpeau)
