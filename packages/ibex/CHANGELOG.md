@@ -1,3 +1,7 @@
+### v4.2.0
+
+- [`e67e150`](https://github.com/alpjs/ibex/commit/e67e1508070cd630a9a62639109e94477edfdf2e) refactor: pob update (Christophe Hurpeau)
+
 ### v4.1.0
 
 - [`ce04024`](https://github.com/alpjs/ibex/commit/ce04024edc8f9d299c5ddfa28cfb6ffa2c82899d) refactor: update dependencies (Christophe Hurpeau)
