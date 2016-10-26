@@ -13,7 +13,7 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const logger = new _nightingaleLogger2.default('alp.listen');
+const logger = new _nightingaleLogger2.default('alp:listen');
 
 /**
  * @param {string} dirname for tls server, dirname of the server.key and server.crt

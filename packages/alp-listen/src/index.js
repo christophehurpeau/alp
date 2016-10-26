@@ -1,7 +1,7 @@
 import { chmodSync, unlinkSync, readFileSync } from 'fs';
-import Logger from 'nightingale-logger';
+import Logger from 'nightingale-logger/src';
 
-const logger = new Logger('alp.listen');
+const logger = new Logger('alp:listen');
 
 /**
  * @param {string} dirname for tls server, dirname of the server.key and server.crt
