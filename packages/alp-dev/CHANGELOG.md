@@ -1,3 +1,9 @@
+### v4.0.0
+
+- [`b0b2d17`](https://github.com/alpjs/alp-dev/commit/b0b2d17f85676fc03eea5a1185c4a643e6865c8e) css modules with stylus (Christophe Hurpeau)
+- [`25f07a8`](https://github.com/alpjs/alp-dev/commit/25f07a836529c2f64d594020f89cc32e1bcef7fa) readme (Christophe Hurpeau)
+- [`60b1062`](https://github.com/alpjs/alp-dev/commit/60b1062d906e48ca740f27507a5cfe620502bedf) spawn process for browsersync/webpack (Christophe Hurpeau)
+
 ### v3.2.0
 
 - [`1b84719`](https://github.com/alpjs/alp-dev/commit/1b847194a8f2256f4c9cf76064464e1718bb2dc6) also use babili for es5 (Christophe Hurpeau)
