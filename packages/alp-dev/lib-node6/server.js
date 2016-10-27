@@ -13,7 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _serverBuild.clean)(); // const bsReload = require('./bs-reload');
 
 (0, _serverBuild.watch)().then(emitter => {
-  const daemon = (0, _springbokjsDaemon.node)(['--harmony', '--es_staging', 'lib-node6-dev/index.server.js', '--port', _minimistArgv2.default.proxyPort, '--version', `dev${ Date.now() }`]);
+  const daemon = (0, _springbokjsDaemon.node)(['lib-node6-dev/index.server.js', '--port', _minimistArgv2.default.proxyPort, '--version', `dev${ Date.now() }`]);
 
   process.on('exit', () => {
     if (daemon) {

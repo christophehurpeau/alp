@@ -1,6 +1,5 @@
 // https://gist.github.com/demisx/beef93591edc1521330a
 
-var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var stylus = require('gulp-stylus');
 var ymlConfig = require('./gulp-config');
@@ -52,12 +51,10 @@ function buildConfigBrowser() {
 
 function buildStylus() {
     return gulp.src(['styles/*.styl', '!styles/_*'])
-        .pipe(sourcemaps.init())
         .pipe(stylus({
             'include css': true,
             paths: ['node_modules'],
         }))
-        .pipe(sourcemaps.write('.', { sourceRoot: '/' }))
         .pipe(gulp.dest('public/'));
 }
 

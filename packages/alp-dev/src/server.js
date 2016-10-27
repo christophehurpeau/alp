@@ -6,8 +6,6 @@ import { clean, watch } from './server-build';
 clean();
 watch().then((emitter) => {
   const daemon = nodeDaemon([
-    '--harmony',
-    '--es_staging',
     'lib-node6-dev/index.server.js',
     '--port',
     argv.proxyPort,
