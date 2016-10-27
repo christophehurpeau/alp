@@ -1,8 +1,7 @@
-import MongoStore from 'liwi/mongo';
-import { AbstractManager } from 'liwi';
-
-export default class MigrationsManager extends AbstractManager {
-  store: MongoStore;
+export default class MigrationsManager {
+  constructor(store) {
+    this.store = store;
+  }
 
   findLastVersion() {
     if (this.store.r) {

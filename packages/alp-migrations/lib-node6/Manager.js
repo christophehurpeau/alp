@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _liwi = require('liwi');
-
-class MigrationsManager extends _liwi.AbstractManager {
+class MigrationsManager {
+  constructor(store) {
+    this.store = store;
+  }
 
   findLastVersion() {
     if (this.store.r) {
