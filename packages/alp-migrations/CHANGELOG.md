@@ -1,3 +1,7 @@
+### v0.7.0
+
+- [`6fb2a83`](https://github.com/alpjs/alp-migrations/commit/6fb2a83972bfe769f752548b8f5b8b17138ab2e8) refactor: remove liwi dependency (Christophe Hurpeau)
+
 ### v0.6.1
 
 - [`860a8d0`](https://github.com/alpjs/alp-migrations/commit/860a8d00a7751a01d289c58e8a4a9e198433bd17) fix: logger key (Christophe Hurpeau)
