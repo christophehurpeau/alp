@@ -3,7 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
+exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = undefined;
+
+var _fody = require('fody');
+
+Object.defineProperty(exports, 'Helmet', {
+  enumerable: true,
+  get: function get() {
+    return _fody.Helmet;
+  }
+});
 
 var _redux = require('redux');
 
@@ -24,8 +33,6 @@ Object.defineProperty(exports, 'connect', {
 });
 exports.default = alpReactRedux;
 exports.emitAction = emitAction;
-
-var _fody = require('fody');
 
 var _fody2 = _interopRequireDefault(_fody);
 

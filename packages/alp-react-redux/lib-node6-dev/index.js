@@ -3,7 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
+exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = undefined;
+
+var _fody = require('fody');
+
+Object.defineProperty(exports, 'Helmet', {
+  enumerable: true,
+  get: function get() {
+    return _fody.Helmet;
+  }
+});
 
 var _redux = require('redux');
 
@@ -28,8 +37,6 @@ exports.emitAction = emitAction;
 var _tcombForked = require('tcomb-forked');
 
 var _tcombForked2 = _interopRequireDefault(_tcombForked);
-
-var _fody = require('fody');
 
 var _fody2 = _interopRequireDefault(_fody);
 

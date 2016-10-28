@@ -3,6 +3,7 @@ import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger/src';
 import { createStore } from 'redux/src';
 
+export { Helmet } from 'fody';
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
 export createPureStatelessComponent from 'react-pure-stateless-component';

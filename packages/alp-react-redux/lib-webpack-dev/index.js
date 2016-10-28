@@ -4,6 +4,7 @@ import ReduxApp from 'fody-redux-app';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
 
+export { Helmet } from 'fody';
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
 import _createPureStatelessComponent from 'react-pure-stateless-component';
