@@ -1,3 +1,7 @@
+### v6.0.0-beta.1
+
+- [`ba1d037`](https://github.com/alpjs/alp-react-redux/commit/ba1d03761c2f360b2cc92dd4ea783c5c9ae8144e) feat: helmet (Christophe Hurpeau)
+
 ### v5.2.1
 
 - [`dbaf59a`](https://github.com/alpjs/alp-react-redux/commit/dbaf59adcc59da3d4d8148af5ac2ac2b1b959cd1) fix: logger key (Christophe Hurpeau)
