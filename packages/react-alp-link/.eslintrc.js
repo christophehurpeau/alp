@@ -1,1 +1,1 @@
-exports.extends = 'pob/react-flow';
+exports.extends = 'pob/react';
