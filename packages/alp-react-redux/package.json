@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "fody": "^6.0.0-beta.2",
-    "fody-redux-app": "^5.1.0",
     "nightingale-logger": "^3.0.0-beta.3",
     "react-pure-stateless-component": "0.2.1",
     "react-redux": "^4.4.5",
