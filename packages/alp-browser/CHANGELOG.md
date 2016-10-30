@@ -1,3 +1,7 @@
+### v0.21.0
+
+- [`17d0c63`](https://github.com/alpjs/alp-browser/commit/17d0c63fe3f58fe5f82b24e1716d6fda0d6f5ac4) alp-config@3, default appVersion to window.VERSION (Christophe Hurpeau)
+
 ### v0.20.0
 
 - [`fbcab07`](https://github.com/alpjs/alp-browser/commit/fbcab07adc0a12f93acfe3f2e5be6d504203ad6a) update dependencies (Christophe Hurpeau)
