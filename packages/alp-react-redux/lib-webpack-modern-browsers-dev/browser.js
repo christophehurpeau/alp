@@ -1,12 +1,15 @@
-/* global window, PRODUCTION */
-import render, { App as DefaultApp } from 'fody';
-import ReduxApp from 'fody-redux-app';
+/* global window */
+import render from 'fody';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
+import AlpReactApp from './AlpReactApp';
+import AlpReduxApp from './AlpReduxApp';
 
+export { AlpReactApp, AlpReduxApp };
+export { Helmet } from 'fody';
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
 import _createPureStatelessComponent from 'react-pure-stateless-component';
@@ -29,6 +32,7 @@ var currentModuleDescriptorIdentifier = void 0;
 export default function alpReactRedux(element) {
   return app => {
     var middlewares = [createFunctionMiddleware(app), promiseMiddleware];
+
     if (app.websocket) {
       logger.debug('register websocket redux:action');
       app.websocket.on('redux:action', action => {
@@ -92,11 +96,15 @@ export default function alpReactRedux(element) {
           _this.store = store;
 
           render({
-            context: _this,
+            App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
+            appProps: {
+              store: store,
+              context: _this,
+              moduleDescriptor
+            },
             View: moduleDescriptor.View,
-            data: data,
-            element,
-            App: reducer ? ReduxApp : DefaultApp
+            props: data,
+            element
           });
         }();
 

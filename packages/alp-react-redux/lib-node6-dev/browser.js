@@ -3,7 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createEmitPromiseAction = exports.createEmitAction = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = undefined;
+exports.createEmitPromiseAction = exports.createEmitAction = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
+
+var _fody = require('fody');
+
+Object.defineProperty(exports, 'Helmet', {
+  enumerable: true,
+  get: function get() {
+    return _fody.Helmet;
+  }
+});
 
 var _redux = require('redux');
 
@@ -39,13 +48,7 @@ Object.defineProperty(exports, 'createEmitPromiseAction', {
 });
 exports.default = alpReactRedux;
 
-var _fody = require('fody');
-
 var _fody2 = _interopRequireDefault(_fody);
-
-var _fodyReduxApp = require('fody-redux-app');
-
-var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
 
 var _nightingaleLogger = require('nightingale-logger');
 
@@ -56,6 +59,14 @@ var _middlewaresBrowser = require('./middlewares-browser');
 var _loadingBar2 = require('./loading-bar');
 
 var _loadingBar3 = _interopRequireDefault(_loadingBar2);
+
+var _AlpReactApp = require('./AlpReactApp');
+
+var _AlpReactApp2 = _interopRequireDefault(_AlpReactApp);
+
+var _AlpReduxApp = require('./AlpReduxApp');
+
+var _AlpReduxApp2 = _interopRequireDefault(_AlpReduxApp);
 
 var _reactPureStatelessComponent = require('react-pure-stateless-component');
 
@@ -75,6 +86,9 @@ var _createLoader3 = _interopRequireDefault(_createLoader2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* global window */
+exports.AlpReactApp = _AlpReactApp2.default;
+exports.AlpReduxApp = _AlpReduxApp2.default;
 exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
 exports.createAction = _createAction3.default;
 exports.createReducer = _createReducer3.default;
@@ -90,6 +104,7 @@ let currentModuleDescriptorIdentifier;
 function alpReactRedux(element) {
   return app => {
     const middlewares = [(0, _middlewaresBrowser.createFunctionMiddleware)(app), _middlewaresBrowser.promiseMiddleware];
+
     if (app.websocket) {
       logger.debug('register websocket redux:action');
       app.websocket.on('redux:action', action => {
@@ -148,11 +163,15 @@ function alpReactRedux(element) {
         this.store = store;
 
         (0, _fody2.default)({
-          context: this,
+          App: moduleDescriptor.reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
+          appProps: {
+            store: store,
+            context: this,
+            moduleDescriptor
+          },
           View: moduleDescriptor.View,
-          data: data,
-          element,
-          App: reducer ? _fodyReduxApp2.default : _fody.App
+          props: data,
+          element
         });
       } catch (err) {
         _loadingBar();

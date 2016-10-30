@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = undefined;
+exports.Stylesheet = exports.Script = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = exports.AlpHelmetHtml = undefined;
 
 var _fody = require('fody');
 
@@ -36,13 +36,21 @@ exports.emitAction = emitAction;
 
 var _fody2 = _interopRequireDefault(_fody);
 
-var _fodyReduxApp = require('fody-redux-app');
-
-var _fodyReduxApp2 = _interopRequireDefault(_fodyReduxApp);
-
 var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
+
+var _AlpHelmetHtml = require('./AlpHelmetHtml');
+
+var _AlpHelmetHtml2 = _interopRequireDefault(_AlpHelmetHtml);
+
+var _AlpReactApp = require('./AlpReactApp');
+
+var _AlpReactApp2 = _interopRequireDefault(_AlpReactApp);
+
+var _AlpReduxApp = require('./AlpReduxApp');
+
+var _AlpReduxApp2 = _interopRequireDefault(_AlpReduxApp);
 
 var _reactPureStatelessComponent = require('react-pure-stateless-component');
 
@@ -60,21 +68,36 @@ var _createLoader2 = require('./createLoader');
 
 var _createLoader3 = _interopRequireDefault(_createLoader2);
 
+var _Script2 = require('./helmet/Script');
+
+var _Script3 = _interopRequireDefault(_Script2);
+
+var _Stylesheet2 = require('./helmet/Stylesheet');
+
+var _Stylesheet3 = _interopRequireDefault(_Stylesheet2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+exports.AlpHelmetHtml = _AlpHelmetHtml2.default;
+exports.AlpReactApp = _AlpReactApp2.default;
+exports.AlpReduxApp = _AlpReduxApp2.default;
 exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
 exports.createAction = _createAction3.default;
 exports.createReducer = _createReducer3.default;
 exports.createLoader = _createLoader3.default;
+exports.Script = _Script3.default;
+exports.Stylesheet = _Stylesheet3.default;
 
 
 const logger = new _nightingaleLogger2.default('alp:react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
-const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-{ name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 51 }, { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 }];
+const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
+{ name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
-function alpReactRedux(Html) {
+function alpReactRedux() {
+  let Html = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _AlpHelmetHtml2.default;
+
   return app => {
     app.context.render = function (moduleDescriptor, data, _loaded) {
       logger.debug('render view', { data });
@@ -89,7 +112,10 @@ function alpReactRedux(Html) {
       }
 
       this.body = (0, _fody2.default)({
-        htmlData: {
+        Html,
+        App: moduleDescriptor.reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
+        appProps: {
+          store: this.store,
           context: this,
           moduleDescriptor,
           get scriptName() {
@@ -105,14 +131,11 @@ function alpReactRedux(Html) {
 
             return 'es5';
           },
-          initialBrowserContext: this.computeInitialContextForBrowser()
+          initialBrowserContext: this.computeInitialContextForBrowser(),
+          initialData: moduleDescriptor.reducer ? this.store.getState() : null
         },
-        context: this,
         View: moduleDescriptor.View,
-        data: moduleDescriptor.reducer ? undefined : data,
-        initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
-        Html,
-        App: moduleDescriptor.reducer ? _fodyReduxApp2.default : _fody.App
+        props: moduleDescriptor.reducer ? undefined : data
       });
     };
   };

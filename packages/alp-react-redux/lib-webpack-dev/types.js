@@ -1,11 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
-// import { REACT_ELEMENT_TYPE } from 'react/lib/ReactElement';
-//
-// export type ReactElement = {
-//   $$typeof: REACT_ELEMENT_TYPE,
-// }
-import t from 'tcomb-forked';
-import { isValidElement } from 'react';
+import _t from 'tcomb-forked';
+export { ReactNodeType, ReactElementType } from 'fody/types';
 
-export var ReactElement = t.irreducible('ReactElement', isValidElement);
+export var ModuleDescriptorType = _t.interface({
+  identifier: _t.maybe(_t.String)
+}, 'ModuleDescriptorType');
 //# sourceMappingURL=types.js.map

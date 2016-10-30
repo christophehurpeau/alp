@@ -4,7 +4,7 @@
     "webpack-modern-browsers",
     "webpack"
   ],
-  "react": false,
+  "react": true,
   "testing": false,
   "documentation": false
 }

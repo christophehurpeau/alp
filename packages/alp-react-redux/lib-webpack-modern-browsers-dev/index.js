@@ -1,9 +1,12 @@
 import _t from 'tcomb-forked';
-import render, { App as DefaultApp } from 'fody';
-import ReduxApp from 'fody-redux-app';
+import render from 'fody';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
+import AlpHelmetHtml from './AlpHelmetHtml';
+import AlpReactApp from './AlpReactApp';
+import AlpReduxApp from './AlpReduxApp';
 
+export { AlpHelmetHtml, AlpReactApp, AlpReduxApp };
 export { Helmet } from 'fody';
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
@@ -15,15 +18,21 @@ import _createReducer from './createReducer';
 export { _createReducer as createReducer };
 import _createLoader from './createLoader';
 export { _createLoader as createLoader };
-
+import _Script from './helmet/Script';
+export { _Script as Script };
+import _Stylesheet from './helmet/Stylesheet';
+export { _Stylesheet as Stylesheet };
+throw new Error('Not supposed to be loaded browser-side.');
 
 var logger = new Logger('alp:react-redux');
 
 // https://www.npmjs.com/package/babel-preset-modern-browsers
-var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrome\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-{ name: 'Chromium', regexp: /chromium\/([\d]+)/i, modernMinVersion: 51 }, { name: 'Safari', regexp: /safari.*version\/([\d\w\.\-]+)/i, modernMinVersion: 10 }];
+var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
+{ name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
-export default function alpReactRedux(Html) {
+export default function alpReactRedux() {
+  var Html = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : AlpHelmetHtml;
+
   return app => {
     _assert(app, _t.Object, 'app');
 
@@ -40,7 +49,10 @@ export default function alpReactRedux(Html) {
       }
 
       this.body = render({
-        htmlData: {
+        Html,
+        App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
+        appProps: {
+          store: this.store,
           context: this,
           moduleDescriptor,
           get scriptName() {
@@ -56,14 +68,11 @@ export default function alpReactRedux(Html) {
 
             return 'es5';
           },
-          initialBrowserContext: this.computeInitialContextForBrowser()
+          initialBrowserContext: this.computeInitialContextForBrowser(),
+          initialData: moduleDescriptor.reducer ? this.store.getState() : null
         },
-        context: this,
         View: moduleDescriptor.View,
-        data: moduleDescriptor.reducer ? undefined : data,
-        initialData: moduleDescriptor.reducer ? () => this.store.getState() : () => null,
-        Html,
-        App: moduleDescriptor.reducer ? ReduxApp : DefaultApp
+        props: moduleDescriptor.reducer ? undefined : data
       });
     };
   };

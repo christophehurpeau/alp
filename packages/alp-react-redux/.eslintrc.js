@@ -1,1 +1,5 @@
-exports.extends = 'pob/babel';
+exports.extends = 'pob/react';
+
+exports.rules = {
+  'react/prop-types': 'off',
+};
