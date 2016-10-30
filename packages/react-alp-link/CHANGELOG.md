@@ -1,3 +1,7 @@
+### v0.3.1
+
+- [`e978427`](https://github.com/alpjs/react-alp-link/commit/e9784271b8075465b79df4f87ea10e57442ff408) refactor: pob update (Christophe Hurpeau)
+
 ### v0.3.0
 
 - [`8a9f11a`](https://github.com/alpjs/react-alp-link/commit/8a9f11a2ade8473f95b044461ff3cd511fef8d0e) update dependencies (Christophe Hurpeau)
