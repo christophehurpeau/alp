@@ -1,3 +1,7 @@
+### v6.0.0-beta.2
+
+- [`0a03262`](https://github.com/alpjs/alp-react-redux/commit/0a03262f2bf2c1a20e5295fb44ef66e1892c6d8f) refactor: fody update, fixes (Christophe Hurpeau)
+
 ### v6.0.0-beta.1
 
 - [`ba1d037`](https://github.com/alpjs/alp-react-redux/commit/ba1d03761c2f360b2cc92dd4ea783c5c9ae8144e) feat: helmet (Christophe Hurpeau)
