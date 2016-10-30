@@ -1,3 +1,7 @@
+### v0.21.1
+
+- [`1458daa`](https://github.com/alpjs/alp-browser/commit/1458daa229544eb851284dd86860d3ba5fa07755) fix version type check (Christophe Hurpeau)
+
 ### v0.21.0
 
 - [`17d0c63`](https://github.com/alpjs/alp-browser/commit/17d0c63fe3f58fe5f82b24e1716d6fda0d6f5ac4) alp-config@3, default appVersion to window.VERSION (Christophe Hurpeau)
