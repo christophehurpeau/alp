@@ -1,3 +1,7 @@
+### v3.8.0
+
+- [`4554910`](https://github.com/alpjs/alp-websocket/commit/4554910887fb4344bd59b0497a9a012a99f2d499) refactor: on hello, if version mismatch warn instead of reload (Christophe Hurpeau)
+
 ### v3.7.0
 
 - [`6597764`](https://github.com/alpjs/alp-websocket/commit/6597764f322f20359a81334a7f591c0c931bf290) refactor: pob update and update dependencies (Christophe Hurpeau)
