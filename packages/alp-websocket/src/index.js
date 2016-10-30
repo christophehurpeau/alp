@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { readFileSync } from 'fs';
 import socketio from 'socket.io';
 import Logger from 'nightingale-logger/src';

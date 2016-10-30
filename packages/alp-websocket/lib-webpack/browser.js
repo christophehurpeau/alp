@@ -1,4 +1,5 @@
 /* global location, window, confirm */
+/* eslint-disable no-use-before-define */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
@@ -75,8 +76,10 @@ function start(_ref) {
 
     if (version !== window.VERSION) {
       // eslint-disable-next-line no-alert
-      if (process.env.NODE_ENV !== 'production' || confirm(context.t('newversion'))) {
+      if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) {
         return location.reload(true);
+      } else {
+        console.warn('Version mismatch', { serverVersion: version, clientVersion: window.VERSION });
       }
     }
   });

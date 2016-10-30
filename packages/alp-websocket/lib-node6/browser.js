@@ -17,6 +17,7 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* global location, window, confirm */
+/* eslint-disable no-use-before-define */
 const logger = new _nightingaleLogger2.default('alp:websocket');
 let socket;
 let successfulConnection = false;
@@ -90,8 +91,10 @@ function start(_ref) {
 
     if (version !== window.VERSION) {
       // eslint-disable-next-line no-alert
-      if (process.env.NODE_ENV !== 'production' || confirm(context.t('newversion'))) {
+      if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) {
         return location.reload(true);
+      } else {
+        console.warn('Version mismatch', { serverVersion: version, clientVersion: window.VERSION });
       }
     }
   });
