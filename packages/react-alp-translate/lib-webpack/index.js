@@ -4,20 +4,10 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import { PropTypes } from 'react';
 
-TranslateComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  children: PropTypes.func
-};
-
-TranslateComponent.contextTypes = {
-  context: PropTypes.object.isRequired
-};
-
-export default function TranslateComponent(_ref, _ref2) {
-  var id = _ref.id;
-  var children = _ref.children;
-
-  var props = _objectWithoutProperties(_ref, ['id', 'children']);
+var TranslateComponent = function TranslateComponent(_ref, _ref2) {
+  var id = _ref.id,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ['id', 'children']);
 
   var context = _ref2.context;
 
@@ -32,5 +22,16 @@ export default function TranslateComponent(_ref, _ref2) {
     null,
     translated
   );
-}
+};
+
+TranslateComponent.propTypes = {
+  id: PropTypes.string.isRequired,
+  children: PropTypes.func
+};
+
+TranslateComponent.contextTypes = {
+  context: PropTypes.object.isRequired
+};
+
+export default TranslateComponent;
 //# sourceMappingURL=index.js.map

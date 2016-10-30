@@ -1,4 +1,6 @@
-var _jsxFileName = 'index.jsx';
+var _jsxFileName = 'index.jsx',
+    _this = this;
+
 import React from 'react';
 import _t from 'tcomb-forked';
 
@@ -6,24 +8,14 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import { PropTypes } from 'react';
 
-TranslateComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  children: PropTypes.func
-};
-
-TranslateComponent.contextTypes = {
-  context: PropTypes.object.isRequired
-};
-
 var Props = _t.interface({
   id: _t.String
 }, 'Props');
 
-export default function TranslateComponent(_ref, _ref2) {
-  var id = _ref.id;
-  var children = _ref.children;
-
-  var props = _objectWithoutProperties(_ref, ['id', 'children']);
+var TranslateComponent = function TranslateComponent(_ref, _ref2) {
+  var id = _ref.id,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ['id', 'children']);
 
   var context = _ref2.context;
 
@@ -31,7 +23,7 @@ export default function TranslateComponent(_ref, _ref2) {
     id: id,
     children: children,
     props: props
-  }, Props, '{ id, children, props }');
+  }, Props, '{ id, children, ...props }');
 
   var translated = context.t(id, props);
 
@@ -42,15 +34,26 @@ export default function TranslateComponent(_ref, _ref2) {
   return React.createElement(
     'span',
     {
-      __self: this,
+      __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 17
       }
     },
     translated
   );
-}
+};
+
+TranslateComponent.propTypes = {
+  id: PropTypes.string.isRequired,
+  children: PropTypes.func
+};
+
+TranslateComponent.contextTypes = {
+  context: PropTypes.object.isRequired
+};
+
+export default TranslateComponent;
 
 function _assert(x, type, name) {
   function message() {
