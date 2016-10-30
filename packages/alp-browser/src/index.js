@@ -1,29 +1,31 @@
-import Ibex from 'ibex';
-import config from 'alp-config';
-import errors from 'alp-errors-browser';
-import params from 'alp-params';
-import language from 'alp-language';
-import translate from 'alp-translate';
+/* global window */
+import Ibex from 'ibex/src';
+import config from 'alp-config/src';
+import errors from 'alp-errors-browser/src';
+import params from 'alp-params/src';
+import language from 'alp-language/src';
+import translate from 'alp-translate/src';
 import contentLoaded from 'content-loaded';
 import { init as initWebApp, redirect } from 'alauda/src/web-app';
 import Logger from 'nightingale-logger/src';
 
-export { Config } from 'alp-config';
-export { default as newController } from 'alp-controller';
+export { Config } from 'alp-config/src';
+export { default as newController } from 'alp-controller/src';
 
 const logger = new Logger('alp');
+
+type OptionsType = {
+  version: ?string, // default to window.VERSION
+};
 
 export default class AlpBrowser extends Ibex {
   path: string;
   appVersion: string;
 
-  /**
-   * @param {string} [path='/']
-   * @param {Object} [options]
-   */
-  constructor(path = '/', options = {}) {
+  constructor(path = '/', { version = window.VERSION }: OptionsType = {}) {
     super();
     this.path = path;
+    this.appVersion = window.VERSION;
 
     if (global.initialBrowserContext) {
       this.context.state = global.initialBrowserContext.state;

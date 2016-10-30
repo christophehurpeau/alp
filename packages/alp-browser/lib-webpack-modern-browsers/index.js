@@ -1,5 +1,6 @@
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+/* global window */
 import Ibex from 'ibex';
 import config from 'alp-config';
 import errors from 'alp-errors-browser';
@@ -17,16 +18,16 @@ var logger = new Logger('alp');
 
 export default class AlpBrowser extends Ibex {
 
-  /**
-   * @param {string} [path='/']
-   * @param {Object} [options]
-   */
   constructor() {
     var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/';
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+        _ref$version = _ref.version,
+        version = _ref$version === undefined ? window.VERSION : _ref$version;
 
     super();
     this.path = path;
+    this.appVersion = window.VERSION;
 
     if (global.initialBrowserContext) {
       this.context.state = global.initialBrowserContext.state;

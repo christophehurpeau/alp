@@ -10,6 +10,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/* global window */
 import Ibex from 'ibex';
 import config from 'alp-config';
 import errors from 'alp-errors-browser';
@@ -25,22 +26,28 @@ export { default as newController } from 'alp-controller';
 
 var logger = new Logger('alp');
 
+var OptionsType = _t.interface({
+  version: _t.maybe(_t.String)
+}, 'OptionsType');
+
 var AlpBrowser = function (_Ibex) {
   _inherits(AlpBrowser, _Ibex);
 
-  /**
-   * @param {string} [path='/']
-   * @param {Object} [options]
-   */
   function AlpBrowser() {
     var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/';
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+        _ref$version = _ref.version,
+        version = _ref$version === undefined ? window.VERSION : _ref$version;
+
+    _assert(arguments[1], OptionsType, '{ version = window.VERSION }');
 
     _classCallCheck(this, AlpBrowser);
 
     var _this = _possibleConstructorReturn(this, (AlpBrowser.__proto__ || Object.getPrototypeOf(AlpBrowser)).call(this));
 
     _this.path = path;
+    _this.appVersion = window.VERSION;
 
     if (global.initialBrowserContext) {
       _this.context.state = global.initialBrowserContext.state;
@@ -51,7 +58,7 @@ var AlpBrowser = function (_Ibex) {
   _createClass(AlpBrowser, [{
     key: 'init',
     value: function () {
-      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+      var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -74,7 +81,7 @@ var AlpBrowser = function (_Ibex) {
       }));
 
       function init() {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       }
 
       return init;
