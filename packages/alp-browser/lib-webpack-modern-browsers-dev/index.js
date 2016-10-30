@@ -31,7 +31,9 @@ export default class AlpBrowser extends Ibex {
         _ref$version = _ref.version,
         version = _ref$version === undefined ? window.VERSION : _ref$version;
 
-    _assert(arguments[1], OptionsType, '{ version = window.VERSION }');
+    _assert({
+      version
+    }, OptionsType, '{ version = window.VERSION }');
 
     super();
     this.path = path;

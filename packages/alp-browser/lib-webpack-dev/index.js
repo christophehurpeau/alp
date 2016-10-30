@@ -40,7 +40,9 @@ var AlpBrowser = function (_Ibex) {
         _ref$version = _ref.version,
         version = _ref$version === undefined ? window.VERSION : _ref$version;
 
-    _assert(arguments[1], OptionsType, '{ version = window.VERSION }');
+    _assert({
+      version: version
+    }, OptionsType, '{ version = window.VERSION }');
 
     _classCallCheck(this, AlpBrowser);
 

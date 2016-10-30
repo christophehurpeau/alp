@@ -51,7 +51,7 @@
     "eslint-config-pob": "^8.0.0",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^2.0.1",
-    "pob-babel": "^12.5.3",
+    "pob-babel": "^12.5.5",
     "pob-release": "^2.2.2",
     "tcomb-forked": "^3.4.0"
   }
