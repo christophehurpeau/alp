@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'react-alp-link';
 import GoogleIcon from 'react-icons/lib/fa/google';
 
-export default function LoginButtonsComponent() {
+export default (function () {
   return React.createElement(
     'ul',
     { className: 'list links buttons login-buttons' },
@@ -26,5 +26,5 @@ export default function LoginButtonsComponent() {
       )
     )
   );
-}
+});
 //# sourceMappingURL=LoginButtonsComponent.js.map

@@ -1,24 +1,26 @@
-var _jsxFileName = 'LoginButtonsComponent.jsx';
+var _jsxFileName = 'LoginButtonsComponent.jsx',
+    _this = this;
+
 import React from 'react';
 import Link from 'react-alp-link';
 import GoogleIcon from 'react-icons/lib/fa/google';
 
-export default function LoginButtonsComponent() {
+export default (function () {
   return React.createElement(
     'ul',
-    { className: 'list links buttons login-buttons', __self: this,
+    { className: 'list links buttons login-buttons', __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 7
+        lineNumber: 5
       }
     },
     React.createElement(
       'li',
       {
-        __self: this,
+        __self: _this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 8
+          lineNumber: 6
         }
       },
       React.createElement(
@@ -28,25 +30,25 @@ export default function LoginButtonsComponent() {
           to: 'login',
           params: { strategy: 'google' },
           target: '_self',
-          __self: this,
+          __self: _this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 9
+            lineNumber: 7
           }
         },
-        React.createElement(GoogleIcon, { className: 'icon', __self: this,
+        React.createElement(GoogleIcon, { className: 'icon', __self: _this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 15
+            lineNumber: 13
           }
         }),
         React.createElement(
           'span',
           {
-            __self: this,
+            __self: _this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 16
+              lineNumber: 14
             }
           },
           'Login with Google'
@@ -54,5 +56,5 @@ export default function LoginButtonsComponent() {
       )
     )
   );
-}
+});
 //# sourceMappingURL=LoginButtonsComponent.js.map

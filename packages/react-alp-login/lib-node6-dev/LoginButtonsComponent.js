@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var _jsxFileName = 'LoginButtonsComponent.jsx';
-exports.default = LoginButtonsComponent;
 
 var _react = require('react');
 
@@ -20,56 +19,54 @@ var _google2 = _interopRequireDefault(_google);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function LoginButtonsComponent() {
-  return _react2.default.createElement(
-    'ul',
-    { className: 'list links buttons login-buttons', __self: this,
+exports.default = () => _react2.default.createElement(
+  'ul',
+  { className: 'list links buttons login-buttons', __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    }
+  },
+  _react2.default.createElement(
+    'li',
+    {
+      __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 7
+        lineNumber: 6
       }
     },
     _react2.default.createElement(
-      'li',
+      _reactAlpLink2.default,
       {
-        __self: this,
+        className: 'button flat social-button google-button',
+        to: 'login',
+        params: { strategy: 'google' },
+        target: '_self',
+        __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 8
+          lineNumber: 7
         }
       },
+      _react2.default.createElement(_google2.default, { className: 'icon', __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 13
+        }
+      }),
       _react2.default.createElement(
-        _reactAlpLink2.default,
+        'span',
         {
-          className: 'button flat social-button google-button',
-          to: 'login',
-          params: { strategy: 'google' },
-          target: '_self',
-          __self: this,
+          __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 9
+            lineNumber: 14
           }
         },
-        _react2.default.createElement(_google2.default, { className: 'icon', __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 15
-          }
-        }),
-        _react2.default.createElement(
-          'span',
-          {
-            __self: this,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 16
-            }
-          },
-          'Login with Google'
-        )
+        'Login with Google'
       )
     )
-  );
-}
+  )
+);
 //# sourceMappingURL=LoginButtonsComponent.js.map

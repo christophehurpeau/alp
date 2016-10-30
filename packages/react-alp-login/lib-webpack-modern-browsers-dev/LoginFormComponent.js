@@ -1,42 +1,41 @@
-var _jsxFileName = "LoginFormComponent.jsx";
-import React from 'react';
+var _jsxFileName = "LoginFormComponent.jsx",
+    _this = this;
 
-export default function LoginFormComponent() {
-  return React.createElement(
-    "form",
-    { model: "User", action: "/site/login", __self: this,
+import React from "react";
+export default (() => React.createElement(
+  "form",
+  { model: "User", action: "/site/login", __self: _this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 2
+    }
+  },
+  React.createElement(
+    "fieldset",
+    { legend: "Login", __self: _this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 3
+      }
+    },
+    React.createElement("input", { name: "email", label: "Email", placeholder: "Enter your email", __self: _this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 4
+      }
+    }),
+    React.createElement("input", { name: "pwd", __self: _this,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 5
       }
-    },
-    React.createElement(
-      "fieldset",
-      { legend: "Login", __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 6
-        }
-      },
-      React.createElement("input", { name: "email", label: "Email", placeholder: "Enter your email", __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 7
-        }
-      }),
-      React.createElement("input", { name: "pwd", __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 8
-        }
-      }),
-      React.createElement("submit", { "container-class": "center", __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 9
-        }
-      })
-    )
-  );
-}
+    }),
+    React.createElement("submit", { "container-class": "center", __self: _this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6
+      }
+    })
+  )
+));
 //# sourceMappingURL=LoginFormComponent.js.map
