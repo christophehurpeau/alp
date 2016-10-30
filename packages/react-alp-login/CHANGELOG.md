@@ -1,3 +1,7 @@
+### v0.4.1
+
+- [`6f877ae`](https://github.com/alpjs/react-alp-login/commit/6f877ae5d7b932a2e7313873aedeecf3dc6f375f) refactor: pob update (Christophe Hurpeau)
+
 ### v0.4.0
 
 - [`c663af4`](https://github.com/alpjs/react-alp-login/commit/c663af498ff2123966bd58093924efe43d1d0307) 0.3.0 (Christophe Hurpeau)
