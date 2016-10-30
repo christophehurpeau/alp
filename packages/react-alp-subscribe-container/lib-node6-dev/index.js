@@ -12,8 +12,8 @@ class SubscribeContainerComponent extends _react.Component {
 
   componentDidMount() {
     var _props = this.props;
-    const dispatch = _props.dispatch;
-    const name = _props.name;
+    const dispatch = _props.dispatch,
+          name = _props.name;
     const websocket = this.context.context.app.websocket;
 
     this._handlerConnected = websocket.on('connect', () => {

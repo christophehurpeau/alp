@@ -21,9 +21,9 @@ var SubscribeContainerComponent = function (_Component) {
   _createClass(SubscribeContainerComponent, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _props = this.props;
-      var dispatch = _props.dispatch;
-      var name = _props.name;
+      var _props = this.props,
+          dispatch = _props.dispatch,
+          name = _props.name;
       var websocket = this.context.context.app.websocket;
 
       this._handlerConnected = websocket.on('connect', function () {
