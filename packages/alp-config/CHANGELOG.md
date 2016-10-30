@@ -1,3 +1,8 @@
+### v3.0.0
+
+- [`ffa0118`](https://github.com/alpjs/alp-config/commit/ffa0118715ff5a43d385b1fc6a13380705704c80) remove duplicate npm run build (Christophe Hurpeau)
+- [`c9b6c1f`](https://github.com/alpjs/alp-config/commit/c9b6c1f13d2cfd198eb45b9f5e2017bddc0b6258) refactor: pob update, and set version (Christophe Hurpeau)
+
 ### v2.6.0
 
 - [`9dc83ea`](https://github.com/alpjs/alp-config/commit/9dc83eac8b3de5184c0c76f3007920195abcef4a) remove node5 (Christophe Hurpeau)
