@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.getVersion = getVersion;
 exports.has = has;
@@ -25,43 +25,41 @@ var _stringifyJson2 = _interopRequireDefault(_stringifyJson);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const map = (() => {
-    const config = localStorage.getItem('ibex-config');
-    if (config === null) {
-        return new Map();
-    }
+  const config = localStorage.getItem('ibex-config');
+  if (config === null) {
+    return new Map();
+  }
 
-    return (0, _parseJsonObjectAsMap2.default)(config);
+  return (0, _parseJsonObjectAsMap2.default)(config);
 })(); /* global localStorage */
 
 
-map.forEach(value => {
-    return (0, _deepFreezeEs2.default)(value);
-});
+map.forEach(value => (0, _deepFreezeEs2.default)(value));
 
 function getVersion() {
-    return map.get('version');
+  return map.get('version');
 }
 
 function has(key) {
-    return map.has(key);
+  return map.has(key);
 }
 
 function get(key) {
-    return map.get(key);
+  return map.get(key);
 }
 
 function save() {
-    localStorage.setItem('ibex-config', (0, _stringifyJson2.default)(map));
+  localStorage.setItem('ibex-config', (0, _stringifyJson2.default)(map));
 }
 
 function set(key, value) {
-    map.set(key, value);
-    save();
+  map.set(key, value);
+  save();
 }
 
 function clear(version) {
-    map.clear();
-    map.set('version', version);
-    save();
+  map.clear();
+  map.set('version', version);
+  save();
 }
 //# sourceMappingURL=browserStoredConfig.js.map

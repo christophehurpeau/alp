@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = alpConfig;
 
@@ -21,13 +21,7 @@ function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); } /*
 
 
 function fetchConfig(path) {
-    return fetch(`${ path }.json`).then(res => {
-        return res.text();
-    }).then(text => {
-        return (0, _parseJsonObjectAsMap2.default)(text);
-    }).catch(() => {
-        return false;
-    });
+  return fetch(`${ path }.json`).then(res => res.text()).then(text => (0, _parseJsonObjectAsMap2.default)(text)).catch(() => false);
 }
 
 /**
@@ -35,10 +29,10 @@ function fetchConfig(path) {
  * @returns {Promise|Map}
  */
 function getConfig(path) {
-    if (storedConfig.has(path)) {
-        return storedConfig.get(path);
-    }
-    return fetchConfig(path);
+  if (storedConfig.has(path)) {
+    return storedConfig.get(path);
+  }
+  return fetchConfig(path);
 }
 
 /**
@@ -46,62 +40,55 @@ function getConfig(path) {
  * @returns {Promise|Boolean}
  */
 function existsConfig(path) {
-    if (storedConfig.has(path)) {
-        return storedConfig.get(path) !== false;
-    }
-    return fetchConfig(path);
+  if (storedConfig.has(path)) {
+    return storedConfig.get(path) !== false;
+  }
+  return fetchConfig(path);
 }
 
 const getOrFetchAppConfig = function getOrFetchAppConfig(version, environment, configPath) {
-    if (storedConfig.getVersion() === version && storedConfig.has('_appConfig')) {
-        return Promise.resolve(storedConfig.get('_appConfig'));
-    }
+  if (storedConfig.getVersion() === version && storedConfig.has('_appConfig')) {
+    return Promise.resolve(storedConfig.get('_appConfig'));
+  }
 
-    storedConfig.clear(version);
+  storedConfig.clear(version);
 
-    return Promise.all([getConfig(`${ configPath }common`), environment && getConfig(`${ configPath }environment`), getConfig(`${ configPath }local`)]).then(_ref => {
-        var _ref2 = _toArray(_ref);
+  return Promise.all([getConfig(`${ configPath }common`), environment && getConfig(`${ configPath }environment`), getConfig(`${ configPath }local`)]).then((_ref) => {
+    var _ref2 = _toArray(_ref);
 
-        let config = _ref2[0];
+    let config = _ref2[0],
+        others = _ref2.slice(1);
 
-        let others = _ref2.slice(1);
+    if (!config) config = new Map();
+    config.set('version', version);
 
-        if (!config) config = new Map();
-
-        others.filter(Boolean).forEach(jsonConfig => {
-            jsonConfig.forEach((value, key) => {
-                return config.set(key, value);
-            });
-        });
-
-        storedConfig.set('_appConfig', config);
-
-        return config;
+    others.filter(Boolean).forEach(jsonConfig => {
+      jsonConfig.forEach((value, key) => config.set(key, value));
     });
+
+    storedConfig.set('_appConfig', config);
+
+    return config;
+  });
 };
 
 function alpConfig(configPath) {
-    configPath = configPath.replace(/\/*$/, '/');
-    return function (app) {
-        app.existsConfig = name => {
-            return existsConfig(`${ configPath }${ name }`);
-        };
-        app.loadConfig = name => {
-            return getConfig(`${ configPath }${ name }`);
-        };
+  configPath = configPath.replace(/\/*$/, '/');
+  return function (app) {
+    app.existsConfig = name => existsConfig(`${ configPath }${ name }`);
+    app.loadConfig = name => getConfig(`${ configPath }${ name }`);
 
-        const version = app.appVersion;
+    const version = app.appVersion;
 
-        if (!version) {
-            throw new Error('Missing appVersion');
-        }
+    if (!version) {
+      throw new Error('Missing appVersion');
+    }
 
-        return getOrFetchAppConfig(version, app.environment, configPath).then(config => {
-            app.config = config;
-            app.context.config = config;
-            app.context.production = !!config.get('production');
-            return config;
-        });
-    };
+    return getOrFetchAppConfig(version, app.environment, configPath).then(config => {
+      app.config = config;
+      app.context.config = config;
+      return config;
+    });
+  };
 }
 //# sourceMappingURL=browser.js.map

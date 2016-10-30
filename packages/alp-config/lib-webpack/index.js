@@ -11,169 +11,171 @@ import parseJSON from 'parse-json-object-as-map';
 import { existsSync, readFileSync } from 'fs';
 
 function _existsConfigSync(dirname, name) {
-    return existsSync('' + dirname + name + '.json');
+  return existsSync('' + dirname + name + '.json');
 }
 
 function _loadConfigSync(dirname, name) {
-    var content = readFileSync('' + dirname + name + '.json');
-    return parseJSON(content);
+  var content = readFileSync('' + dirname + name + '.json');
+  return parseJSON(content);
 }
 
 export var Config = function () {
-    function Config(dirname) {
-        _classCallCheck(this, Config);
+  function Config(dirname) {
+    _classCallCheck(this, Config);
 
-        this._map = new Map();
-        this._dirname = dirname.replace(/\/*$/, '/');
+    this._map = new Map();
+    this._dirname = dirname.replace(/\/*$/, '/');
+  }
+
+  _createClass(Config, [{
+    key: 'loadSync',
+    value: function loadSync() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      var env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
+      var _options$argv = options.argv,
+          argvOverrides = _options$argv === undefined ? [] : _options$argv,
+          packageConfig = options.packageConfig,
+          version = options.version;
+
+      this.packageConfig = packageConfig;
+
+      var config = this.loadConfigSync('common');
+      // eslint-disable-next-line no-restricted-syntax
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.loadConfigSync(env)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var _step$value = _slicedToArray(_step.value, 2),
+              key = _step$value[0],
+              value = _step$value[1];
+
+          config.set(key, value);
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      if (this.existsConfigSync('local')) {
+        // eslint-disable-next-line no-restricted-syntax
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+          for (var _iterator2 = this.loadConfigSync('local')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var _step2$value = _slicedToArray(_step2.value, 2),
+                key = _step2$value[0],
+                value = _step2$value[1];
+
+            config.set(key, value);
+          }
+        } catch (err) {
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+              _iterator2.return();
+            }
+          } finally {
+            if (_didIteratorError2) {
+              throw _iteratorError2;
+            }
+          }
+        }
+      }
+
+      if (config.has('version')) {
+        throw new Error('Cannot have "version", in config.');
+      }
+
+      config.set('version', version || argv.version || packageConfig.version);
+
+      var socketPath = argv['socket-path'] || argv.socketPath;
+      if (socketPath) {
+        config.set('socketPath', socketPath);
+      } else if (argv.port) {
+        config.set('port', argv.port);
+        config.delete('socketPath');
+      }
+
+      argvOverrides.forEach(function (key) {
+        var splitted = key.split('.');
+        var value = splitted.length !== 0 && splitted.reduce(function (config, partialKey) {
+          return config && config[partialKey];
+        }, argv);
+        if (value !== undefined) {
+          var last = splitted.pop();
+          var map = splitted.length === 0 ? config : splitted.reduce(function (config, partialKey) {
+            return config.get(partialKey);
+          }, config);
+          map.set(last, value);
+        }
+      });
+
+      return this._map = deepFreeze(config);
     }
+  }, {
+    key: 'get',
+    value: function get(key) {
+      return this._map.get(key);
+    }
+  }, {
+    key: 'existsConfigSync',
+    value: function existsConfigSync(name) {
+      return _existsConfigSync(this._dirname, name);
+    }
+  }, {
+    key: 'loadConfigSync',
+    value: function loadConfigSync(name) {
+      return _loadConfigSync(this._dirname, name);
+    }
+  }]);
 
-    _createClass(Config, [{
-        key: 'loadSync',
-        value: function loadSync() {
-            var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-            var env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
-            var _options$argv = options.argv;
-            var argvOverrides = _options$argv === undefined ? [] : _options$argv;
-            var packageConfig = options.packageConfig;
-            var version = options.version;
-
-            this.packageConfig = packageConfig;
-
-            var config = this.loadConfigSync('common');
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this.loadConfigSync(env)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var _step$value = _slicedToArray(_step.value, 2);
-
-                    var key = _step$value[0];
-                    var value = _step$value[1];
-
-                    config.set(key, value);
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            if (this.existsConfigSync('local')) {
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-                    for (var _iterator2 = this.loadConfigSync('local')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var _step2$value = _slicedToArray(_step2.value, 2);
-
-                        var key = _step2$value[0];
-                        var value = _step2$value[1];
-
-                        config.set(key, value);
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
-            }
-
-            if (!config.has('version')) {
-                config.set('version', version || argv.version || packageConfig.version);
-            }
-
-            var socketPath = argv['socket-path'] || argv.socketPath;
-            if (socketPath) {
-                config.set('socketPath', socketPath);
-            } else if (argv.port) {
-                config.set('port', argv.port);
-                config.delete('socketPath');
-            }
-
-            argvOverrides.forEach(function (key) {
-                var splitted = key.split('.');
-                var value = splitted.length !== 0 && splitted.reduce(function (config, partialKey) {
-                    return config && config[partialKey];
-                }, argv);
-                if (value !== undefined) {
-                    var last = splitted.pop();
-                    var map = splitted.length === 0 ? config : splitted.reduce(function (config, partialKey) {
-                        return config.get(partialKey);
-                    }, config);
-                    map.set(last, value);
-                }
-            });
-
-            return this._map = deepFreeze(config);
-        }
-    }, {
-        key: 'get',
-        value: function get(key) {
-            return this._map.get(key);
-        }
-    }, {
-        key: 'existsConfigSync',
-        value: function existsConfigSync(name) {
-            return _existsConfigSync(this._dirname, name);
-        }
-    }, {
-        key: 'loadConfigSync',
-        value: function loadConfigSync(name) {
-            return _loadConfigSync(this._dirname, name);
-        }
-    }]);
-
-    return Config;
+  return Config;
 }();
 
 export default function alpConfig(dirname) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    return function (app, config) {
-        if (!config) {
-            config = new Config(dirname, options);
-            config.loadSync(options);
-        }
+  return function (app, config) {
+    if (!config) {
+      config = new Config(dirname, options);
+      config.loadSync(options);
+    }
 
-        app.existsConfig = deprecate(function (name) {
-            return config.existsConfigSync(name);
-        }, 'use app.existsConfigSync');
-        app.loadConfig = deprecate(function (name) {
-            return config.loadConfigSync(name);
-        }, 'use app.loadConfigSync');
+    app.existsConfig = deprecate(function (name) {
+      return config.existsConfigSync(name);
+    }, 'use app.existsConfigSync');
+    app.loadConfig = deprecate(function (name) {
+      return config.loadConfigSync(name);
+    }, 'use app.loadConfigSync');
 
-        app.existsConfigSync = function (name) {
-            return config.existsConfigSync(name);
-        };
-        app.loadConfigSync = function (name) {
-            return config.loadConfigSync(name);
-        };
-
-        app.config = config;
-        app.context.config = config;
-
-        return config;
+    app.existsConfigSync = function (name) {
+      return config.existsConfigSync(name);
     };
+    app.loadConfigSync = function (name) {
+      return config.loadConfigSync(name);
+    };
+
+    app.config = config;
+    app.context.config = config;
+
+    return config;
+  };
 }
 //# sourceMappingURL=index.js.map
