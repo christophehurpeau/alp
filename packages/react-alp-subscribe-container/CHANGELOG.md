@@ -1,3 +1,7 @@
+### v0.3.1
+
+- [`755c601`](https://github.com/alpjs/react-alp-subscribe-container/commit/755c6017b144a203f2c1f61746163c0bb4362376) refactor: pob updaate (Christophe Hurpeau)
+
 ### v0.3.0
 
 - [`dc01090`](https://github.com/alpjs/react-alp-subscribe-container/commit/dc01090cbf725a94142fee0db05f14671535a06f) inject dispatch (Christophe Hurpeau)
