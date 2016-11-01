@@ -1,3 +1,7 @@
+### v3.1.0
+
+- [`ad35489`](https://github.com/alpjs/alp-config/commit/ad35489a5e5c4495fb02aaa6931b6dc87b407645) refactor: pob-babel@^12.5.5 (Christophe Hurpeau)
+
 ### v3.0.0
 
 - [`ffa0118`](https://github.com/alpjs/alp-config/commit/ffa0118715ff5a43d385b1fc6a13380705704c80) remove duplicate npm run build (Christophe Hurpeau)
