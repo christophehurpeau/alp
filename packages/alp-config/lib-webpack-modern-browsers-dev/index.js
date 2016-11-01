@@ -136,7 +136,7 @@ export default function alpConfig(dirname) {
 
   _assert(options, ConfigOptions, 'options');
 
-  return function (app, config) {
+  return (app, config) => {
     _assert(config, _t.maybe(Config), 'config');
 
     if (!config) {
@@ -154,7 +154,7 @@ export default function alpConfig(dirname) {
     app.context.config = config;
 
     return config;
-  }.bind(this);
+  };
 }
 
 function _assert(x, type, name) {

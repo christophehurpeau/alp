@@ -216,7 +216,7 @@ export default function alpConfig(dirname) {
     app.context.config = config;
 
     return config;
-  }.bind(this);
+  };
 }
 
 function _assert(x, type, name) {

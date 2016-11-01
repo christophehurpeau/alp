@@ -161,7 +161,7 @@ function alpConfig(dirname) {
 
   _assert(options, ConfigOptions, 'options');
 
-  return function (app, config) {
+  return (app, config) => {
     _assert(config, _tcombForked2.default.maybe(Config), 'config');
 
     if (!config) {
@@ -179,7 +179,7 @@ function alpConfig(dirname) {
     app.context.config = config;
 
     return config;
-  }.bind(this);
+  };
 }
 
 function _assert(x, type, name) {
