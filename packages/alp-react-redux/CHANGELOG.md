@@ -1,3 +1,8 @@
+### v6.0.0-beta.3
+
+- [`995645f`](https://github.com/alpjs/alp-react-redux/commit/995645f1d621af377baa704efc5b8f1d805f4568) refactor: remove fody-redux-app (Christophe Hurpeau)
+- [`0021f59`](https://github.com/alpjs/alp-react-redux/commit/0021f59a0cb1f2c37ef64bb56c5b8260e5d309b9) fix: disable helmet in browser to prevent script reloading (Christophe Hurpeau)
+
 ### v6.0.0-beta.2
 
 - [`0a03262`](https://github.com/alpjs/alp-react-redux/commit/0a03262f2bf2c1a20e5295fb44ef66e1892c6d8f) refactor: fody update, fixes (Christophe Hurpeau)
