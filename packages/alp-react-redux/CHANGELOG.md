@@ -1,3 +1,7 @@
+### v6.0.0-beta.5
+
+- [`f5c9fce`](https://github.com/alpjs/alp-react-redux/commit/f5c9fce92a09c0173e249118a4cd5474d1352843) fix: fix helmet ? (Christophe Hurpeau)
+
 ### v6.0.0-beta.4
 
 - [`ffd15c8`](https://github.com/alpjs/alp-react-redux/commit/ffd15c8f81534fa2bf7da1c8ab0ff51f54882411) fix: fix previous commit (Christophe Hurpeau)
