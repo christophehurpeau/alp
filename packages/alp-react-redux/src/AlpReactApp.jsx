@@ -48,7 +48,10 @@ export default ({
                   `window.initialBrowserContext=${uneval(initialBrowserContext)};`
               ))
             ) },
-            { defer: undefined, src: assetUrl(`/${BROWSER ? window.SCRIPT_NAME : scriptName}.js`, version) },
+            {
+              defer: BROWSER ? undefined : true, // TODO make PR to react-helmet
+              src: assetUrl(`/${BROWSER ? window.SCRIPT_NAME : scriptName}.js`, version),
+            },
           ]}
         />
         {children}

@@ -79,7 +79,10 @@ exports.default = (_ref) => {
         _react2.default.createElement(_fody.Helmet, {
           meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
           link: [{ rel: 'stylesheet', href: (0, _assetUrl2.default)('/index.css', version) }, { rel: 'stylesheet', href: (0, _assetUrl2.default)('/styles.css', version) }],
-          script: [{ src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' }, { innerHTML: `${ moduleIdentifier ? `window.MODULE_IDENTIFIER='${ moduleIdentifier }';` : '' }` + `window.SCRIPT_NAME='${ scriptName }';` + `window.VERSION='${ version }';` + `window.initialData=${ (0, _uneval2.default)(initialData) };` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${ (0, _uneval2.default)(initialBrowserContext) };`) }, { defer: undefined, src: (0, _assetUrl2.default)(`/${ scriptName }.js`, version) }],
+          script: [{ src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' }, { innerHTML: `${ moduleIdentifier ? `window.MODULE_IDENTIFIER='${ moduleIdentifier }';` : '' }` + `window.SCRIPT_NAME='${ scriptName }';` + `window.VERSION='${ version }';` + `window.initialData=${ (0, _uneval2.default)(initialData) };` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${ (0, _uneval2.default)(initialBrowserContext) };`) }, {
+            defer: true, // TODO make PR to react-helmet
+            src: (0, _assetUrl2.default)(`/${ scriptName }.js`, version)
+          }],
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
