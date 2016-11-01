@@ -4,8 +4,10 @@ var _jsxFileName = 'AlpReactApp.jsx',
 import React from 'react';
 import _t from 'tcomb-forked';
 /* eslint-disable prefer-template */
+/* global window */
 import { Helmet, App as DefaultApp } from 'fody';
 
+import assetUrl from './helmet/assetUrl';
 import { ReactNodeType, ModuleDescriptorType } from './types';
 
 var PropsType = _t.interface({
@@ -43,7 +45,7 @@ export default ((_ref) => {
       { context: context, __self: _this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28
+          lineNumber: 29
         }
       },
       React.createElement(
@@ -51,10 +53,19 @@ export default ((_ref) => {
         { className: 'react-app', __self: _this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 29
+            lineNumber: 30
           }
         },
-        null,
+        React.createElement(Helmet, {
+          meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+          link: [{ rel: 'stylesheet', href: assetUrl('/index.css', version) }, { rel: 'stylesheet', href: assetUrl('/styles.css', version) }],
+          script: [{ src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' }, { innerHTML: '' }, { defer: undefined, src: assetUrl(`/${ window.SCRIPT_NAME }.js`, version) }],
+          __self: _this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 31
+          }
+        }),
         children
       )
     );

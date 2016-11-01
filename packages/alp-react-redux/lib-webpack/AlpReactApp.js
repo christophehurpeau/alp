@@ -1,6 +1,9 @@
 import React from 'react';
 /* eslint-disable prefer-template */
+/* global window */
 import { Helmet, App as DefaultApp } from 'fody';
+
+import assetUrl from './helmet/assetUrl';
 
 
 export default (function (_ref) {
@@ -21,7 +24,11 @@ export default (function (_ref) {
     React.createElement(
       'div',
       { className: 'react-app' },
-      null,
+      React.createElement(Helmet, {
+        meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+        link: [{ rel: 'stylesheet', href: assetUrl('/index.css', version) }, { rel: 'stylesheet', href: assetUrl('/styles.css', version) }],
+        script: [{ src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' }, { innerHTML: '' }, { defer: undefined, src: assetUrl('/' + window.SCRIPT_NAME + '.js', version) }]
+      }),
       children
     )
   );
