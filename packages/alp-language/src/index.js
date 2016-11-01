@@ -1,8 +1,8 @@
-import { defineLazyProperty } from 'object-properties';
+import { defineLazyProperty } from 'object-properties/src';
 
 export default function alpLanguage(app) {
   const config = app.context.config;
-  const availableLanguages = config.get('availableLanguages');
+  const availableLanguages: Array<string> = config.get('availableLanguages');
   if (!availableLanguages) {
     throw new Error('Missing config "availableLanguages"');
   }
