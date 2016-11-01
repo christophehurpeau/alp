@@ -27,7 +27,7 @@ export default ({
   return (
     <DefaultApp context={context}>
       <div className="react-app">
-        {!BROWSER ? null : (
+        {BROWSER ? null : (
           <Helmet
             meta={[
               { charset: 'utf-8' },
