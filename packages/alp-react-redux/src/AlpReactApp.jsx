@@ -1,5 +1,4 @@
 /* eslint-disable prefer-template */
-/* global window */
 import { Helmet, App as DefaultApp } from 'fody/src';
 import uneval from './uneval';
 import assetUrl from './helmet/assetUrl';
@@ -28,29 +27,30 @@ export default ({
   return (
     <DefaultApp context={context}>
       <div className="react-app">
-        <Helmet
-          meta={[
-            { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-          ]}
-          link={[
-            { rel: 'stylesheet', href: assetUrl('/index.css', version) },
-            { rel: 'stylesheet', href: assetUrl('/styles.css', version) },
-          ]}
-          script={[
-            { src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' },
-            !BROWSER && { innerHTML: (
-              (`${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}`)
-              + `window.SCRIPT_NAME='${scriptName}';`
-              + `window.VERSION='${version}';`
-              + `window.initialData=${uneval(initialData)};`
-              + (!initialBrowserContext ? '' : (
-                  `window.initialBrowserContext=${uneval(initialBrowserContext)};`
-              ))
-            ) },
-            { defer: '', src: assetUrl(`/${BROWSER ? window.SCRIPT_NAME : scriptName}.js`, version) },
-          ].filter(Boolean)}
-        />
+        {!BROWSER ? null : (
+          <Helmet
+            meta={[
+              { charset: 'utf-8' },
+              { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            ]}
+            link={[
+              { rel: 'stylesheet', href: assetUrl('/index.css', version) },
+              { rel: 'stylesheet', href: assetUrl('/styles.css', version) },
+            ]}
+            script={[
+              { src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' },
+              { innerHTML: (
+                (`${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}`)
+                + `window.VERSION='${version}';`
+                + `window.initialData=${uneval(initialData)};`
+                + (!initialBrowserContext ? '' : (
+                    `window.initialBrowserContext=${uneval(initialBrowserContext)};`
+                ))
+              ) },
+              { defer: '', src: assetUrl(`/${scriptName}.js`, version) },
+            ].filter(Boolean)}
+          />
+        )}
         {children}
       </div>
     </DefaultApp>
