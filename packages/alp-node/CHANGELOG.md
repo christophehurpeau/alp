@@ -1,3 +1,8 @@
+### v0.26.0
+
+- [`d2cd4c5`](https://github.com/alpjs/alp-node/commit/d2cd4c5a1a78315dc082301eef251be12262f4ce) chore(package): remove liwi in devDependencies (Christophe Hurpeau)
+- [`09dacd0`](https://github.com/alpjs/alp-node/commit/09dacd00ca3fa5a3f9bc5e3fae0303c6a4d1477e) chore(package): update dependencies (Christophe Hurpeau)
+
 ### v0.25.0
 
 - [`768bab0`](https://github.com/alpjs/alp-node/commit/768bab0a524f7ff9359382bfbf2feef825dcad64) update dependencies (Christophe Hurpeau)
