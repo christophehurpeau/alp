@@ -1,3 +1,7 @@
+### v6.0.0-beta.4
+
+- [`ffd15c8`](https://github.com/alpjs/alp-react-redux/commit/ffd15c8f81534fa2bf7da1c8ab0ff51f54882411) fix: fix previous commit (Christophe Hurpeau)
+
 ### v6.0.0-beta.3
 
 - [`995645f`](https://github.com/alpjs/alp-react-redux/commit/995645f1d621af377baa704efc5b8f1d805f4568) refactor: remove fody-redux-app (Christophe Hurpeau)
