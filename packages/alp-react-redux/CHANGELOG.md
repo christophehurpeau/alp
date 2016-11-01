@@ -1,3 +1,7 @@
+### v6.0.0-beta.6
+
+- [`2f0a54e`](https://github.com/alpjs/alp-react-redux/commit/2f0a54ec9bb7b204ac7ae033d3575480d4a694a4) fix: fix helmet: true in node and undefined in browser (Christophe Hurpeau)
+
 ### v6.0.0-beta.5
 
 - [`f5c9fce`](https://github.com/alpjs/alp-react-redux/commit/f5c9fce92a09c0173e249118a4cd5474d1352843) fix: fix helmet ? (Christophe Hurpeau)
