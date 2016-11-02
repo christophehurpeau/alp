@@ -1,7 +1,7 @@
 /* global window */
 import render from 'fody/src';
 import Logger from 'nightingale-logger/src';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux/src';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
@@ -10,8 +10,8 @@ import AlpReduxApp from './AlpReduxApp';
 
 export { AlpReactApp, AlpReduxApp };
 export { Helmet } from 'fody/src';
-export { combineReducers } from 'redux';
-export { connect } from 'react-redux';
+export { combineReducers } from 'redux/src';
+export { connect } from 'react-redux/src';
 export createPureStatelessComponent from 'react-pure-stateless-component';
 export createAction from './createAction';
 export createReducer from './createReducer';

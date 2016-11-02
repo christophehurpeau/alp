@@ -6,9 +6,9 @@ import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
 
 export { AlpHelmetHtml, AlpReactApp, AlpReduxApp };
-export { Helmet } from 'fody';
-export { combineReducers } from 'redux';
-export { connect } from 'react-redux';
+export { Helmet } from 'fody/src';
+export { combineReducers } from 'redux/src';
+export { connect } from 'react-redux/src';
 export createPureStatelessComponent from 'react-pure-stateless-component';
 export createAction from './createAction';
 export createReducer from './createReducer';
