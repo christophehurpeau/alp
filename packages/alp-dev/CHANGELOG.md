@@ -1,3 +1,7 @@
+### v4.0.1
+
+- [`9814276`](https://github.com/alpjs/alp-dev/commit/98142761640e9aab2910d79c28ec8485fd7ad4af) update dependencies and stylus css modules (Christophe Hurpeau)
+
 ### v4.0.0
 
 - [`b0b2d17`](https://github.com/alpjs/alp-dev/commit/b0b2d17f85676fc03eea5a1185c4a643e6865c8e) css modules with stylus (Christophe Hurpeau)
