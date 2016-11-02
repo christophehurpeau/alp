@@ -102,7 +102,7 @@ module.exports = {
             require.resolve('css-loader') + '?modules&camelCase&importLoaders=1'
               + '&localIdentName=[name]__[local]___[hash:base64:5]',
               // + `localIdentName=${production ? : '[path][name]---[local]---[hash:base64:5]'}`,
-            require.resolve('stylus-loader'),
+            require.resolve('stylus-loader') + '?paths=node_modules',
             // {
             //   loader: require.resolve('postcss-loader'),
             //   options: {
@@ -188,9 +188,10 @@ module.exports = {
           })),
         ],
         'minify-dead-code-elimination',
+        'minify-flip-comparisons',
         'minify-guarded-expressions',
         'minify-constant-folding',
-        'minify-flip-comparisons',
+        'minify-numeric-literals',
         'minify-simplify',
         'minify-empty-function',
         'transform-member-expression-literals',

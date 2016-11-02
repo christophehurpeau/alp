@@ -28,7 +28,7 @@ module.exports = {
     const fileName = (0, _path.basename)(relative);
     if (fileName.startsWith('_')) return;
     return new Promise((resolve, reject) => {
-      (0, _stylus2.default)(content.toString()).set('filename', src).set('sourcemap', { comment: true }).render((err, css) => {
+      (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', [(0, _path.dirname)(src), 'node_modules']).set('sourcemap', { comment: true }).render((err, css) => {
         if (err) return reject(err);
 
         (0, _postcss2.default)([(0, _postcssModules2.default)({

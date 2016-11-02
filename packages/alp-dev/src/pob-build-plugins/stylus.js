@@ -1,4 +1,4 @@
-import { basename } from 'path';
+import { dirname, basename } from 'path';
 import stylus from 'stylus';
 import postcss from 'postcss';
 import postcssModules from 'postcss-modules';
@@ -14,6 +14,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       stylus(content.toString())
         .set('filename', src)
+        .set('paths', [dirname(src), 'node_modules'])
         .set('sourcemap', { comment: true })
         .render((err, css) => {
           if (err) return reject(err);
