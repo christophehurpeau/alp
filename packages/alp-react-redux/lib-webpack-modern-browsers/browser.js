@@ -14,11 +14,11 @@ export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
 import _createPureStatelessComponent from 'react-pure-stateless-component';
 export { _createPureStatelessComponent as createPureStatelessComponent };
-import _createAction from './createAction';
+import _createAction from './utils/createAction';
 export { _createAction as createAction };
-import _createReducer from './createReducer';
+import _createReducer from './utils/createReducer';
 export { _createReducer as createReducer };
-import _createLoader from './createLoader';
+import _createLoader from './utils/createLoader';
 export { _createLoader as createLoader };
 
 export { createEmitAction, createEmitPromiseAction } from './websocket';

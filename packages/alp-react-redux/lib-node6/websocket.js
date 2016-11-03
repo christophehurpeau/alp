@@ -11,13 +11,13 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
-var _createAction = require('./createAction');
+var _createAction = require('./utils/createAction');
 
 var _createAction2 = _interopRequireDefault(_createAction);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const logger = new _nightingaleLogger2.default('alp.react-redux.websocket');
+const logger = new _nightingaleLogger2.default('alp:react-redux:websocket');
 
 function createEmitAction(type, argsNamesOrHandler) {
   return (0, _createAction2.default)(type, argsNamesOrHandler, { meta: { websocket: true } });

@@ -67,7 +67,7 @@ exports.default = (_ref) => {
         children
       )
     );
-  })(), _types.ReactNodeType, 'return value');
+  })(), _types.ReactElementType, 'return value');
 };
 
 function _assert(x, type, name) {

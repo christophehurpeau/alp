@@ -1,8 +1,8 @@
 import _t from 'tcomb-forked';
 import Logger from 'nightingale-logger';
-import createAction from './createAction';
+import createAction from './utils/createAction';
 
-var logger = new Logger('alp.react-redux.websocket');
+var logger = new Logger('alp:react-redux:websocket');
 
 export function createEmitAction(type, argsNamesOrHandler) {
   _assert(type, _t.String, 'type');

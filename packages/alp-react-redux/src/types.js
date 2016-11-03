@@ -1,4 +1,4 @@
-export { ReactNodeType, ReactElementType } from 'fody/src/types';
+export { ReactNodeType, ReactElementType, LayoutPropsType } from 'fody/src/types';
 
 export type ModuleDescriptorType = {
   identifier: ?string,

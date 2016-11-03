@@ -2,26 +2,21 @@ import _t from 'tcomb-forked';
 import render from 'fody';
 import Logger from 'nightingale-logger';
 import { createStore } from 'redux';
-import AlpHelmetHtml from './AlpHelmetHtml';
+import AlpLayout from './layout/AlpLayout';
 import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
+import { ModuleDescriptorType } from './types';
 
-export { AlpHelmetHtml, AlpReactApp, AlpReduxApp };
+export { AlpReactApp, AlpReduxApp };
 export { Helmet } from 'fody';
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
 import _createPureStatelessComponent from 'react-pure-stateless-component';
 export { _createPureStatelessComponent as createPureStatelessComponent };
-import _createAction from './createAction';
-export { _createAction as createAction };
-import _createReducer from './createReducer';
-export { _createReducer as createReducer };
-import _createLoader from './createLoader';
-export { _createLoader as createLoader };
-import _Script from './helmet/Script';
-export { _Script as Script };
-import _Stylesheet from './helmet/Stylesheet';
-export { _Stylesheet as Stylesheet };
+
+export { createAction, createReducer, createLoader } from './utils';
+export { AlpHtml, AlpLayout, AlpHead, AlpBody } from './layout';
+
 throw new Error('Not supposed to be loaded browser-side.');
 
 var logger = new Logger('alp:react-redux');
@@ -31,13 +26,17 @@ var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, 
 { name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
 export default function alpReactRedux() {
-  var Html = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : AlpHelmetHtml;
+  var Layout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : AlpLayout;
 
   return function (app) {
     _assert(app, _t.Object, 'app');
 
     app.context.render = function (moduleDescriptor, data, _loaded) {
       var _this = this;
+
+      _assert(moduleDescriptor, ModuleDescriptorType, 'moduleDescriptor');
+
+      _assert(data, _t.maybe(_t.Object), 'data');
 
       logger.debug('render view', { data: data });
 
@@ -52,16 +51,17 @@ export default function alpReactRedux() {
         this.store = createStore(moduleDescriptor.reducer, data);
       }
 
+      var version = this.config.get('version');
+      var moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
+
       this.body = render({
-        Html: Html,
-        App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
-        appProps: {
-          store: this.store,
-          context: this,
-          moduleDescriptor: moduleDescriptor,
-          get scriptName() {
+        Layout: Layout,
+        layoutProps: {
+          version: version,
+          moduleIdentifier: moduleIdentifier,
+          scriptName: function () {
             // TODO create alp-useragent with getter in context
-            var ua = this.context.req.headers['user-agent'];
+            var ua = _this.req.headers['user-agent'];
 
             if (agents.some(function (agent) {
               var res = agent.regexp.exec(ua);
@@ -71,10 +71,17 @@ export default function alpReactRedux() {
             }
 
             return 'es5';
-          },
+          }(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleDescriptor.reducer ? this.store.getState() : null
         },
+
+        App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
+        appProps: {
+          store: this.store,
+          context: this
+        },
+
         View: moduleDescriptor.View,
         props: moduleDescriptor.reducer ? undefined : data
       });

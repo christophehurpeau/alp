@@ -1,5 +1,5 @@
 import Logger from 'nightingale-logger/src';
-import createAction from './createAction';
+import createAction from './utils/createAction';
 
 const logger = new Logger('alp:react-redux:websocket');
 

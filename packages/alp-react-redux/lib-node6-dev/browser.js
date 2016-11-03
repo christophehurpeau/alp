@@ -72,15 +72,15 @@ var _reactPureStatelessComponent = require('react-pure-stateless-component');
 
 var _reactPureStatelessComponent2 = _interopRequireDefault(_reactPureStatelessComponent);
 
-var _createAction2 = require('./createAction');
+var _createAction2 = require('./utils/createAction');
 
 var _createAction3 = _interopRequireDefault(_createAction2);
 
-var _createReducer2 = require('./createReducer');
+var _createReducer2 = require('./utils/createReducer');
 
 var _createReducer3 = _interopRequireDefault(_createReducer2);
 
-var _createLoader2 = require('./createLoader');
+var _createLoader2 = require('./utils/createLoader');
 
 var _createLoader3 = _interopRequireDefault(_createLoader2);
 

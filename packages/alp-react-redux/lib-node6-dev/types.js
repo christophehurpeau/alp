@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ModuleDescriptorType = exports.ReactElementType = exports.ReactNodeType = undefined;
+exports.ModuleDescriptorType = exports.LayoutPropsType = exports.ReactElementType = exports.ReactNodeType = undefined;
 
 var _types = require('fody/types');
 
@@ -17,6 +17,12 @@ Object.defineProperty(exports, 'ReactElementType', {
   enumerable: true,
   get: function get() {
     return _types.ReactElementType;
+  }
+});
+Object.defineProperty(exports, 'LayoutPropsType', {
+  enumerable: true,
+  get: function get() {
+    return _types.LayoutPropsType;
   }
 });
 

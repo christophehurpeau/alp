@@ -10,7 +10,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import { Provider } from 'react-redux';
 import AlpReactApp from './AlpReactApp';
-import { ReactNodeType } from './types';
+import { ReactNodeType, ReactElementType } from './types';
 
 var PropsType = _t.interface({
   children: ReactNodeType,
@@ -49,7 +49,7 @@ export default (function (_ref) {
         children
       )
     );
-  }(), ReactNodeType, 'return value');
+  }(), ReactElementType, 'return value');
 });
 
 function _assert(x, type, name) {

@@ -1,7 +1,7 @@
 import Logger from 'nightingale-logger';
-import createAction from './createAction';
+import createAction from './utils/createAction';
 
-var logger = new Logger('alp.react-redux.websocket');
+var logger = new Logger('alp:react-redux:websocket');
 
 export function createEmitAction(type, argsNamesOrHandler) {
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true } });

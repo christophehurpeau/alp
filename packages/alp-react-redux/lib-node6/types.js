@@ -18,4 +18,10 @@ Object.defineProperty(exports, 'ReactElementType', {
     return _types.ReactElementType;
   }
 });
+Object.defineProperty(exports, 'LayoutPropsType', {
+  enumerable: true,
+  get: function get() {
+    return _types.LayoutPropsType;
+  }
+});
 //# sourceMappingURL=types.js.map

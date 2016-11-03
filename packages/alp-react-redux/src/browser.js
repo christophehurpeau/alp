@@ -13,9 +13,9 @@ export { Helmet } from 'fody/src';
 export { combineReducers } from 'redux/src';
 export { connect } from 'react-redux/src';
 export createPureStatelessComponent from 'react-pure-stateless-component';
-export createAction from './createAction';
-export createReducer from './createReducer';
-export createLoader from './createLoader';
+export createAction from './utils/createAction';
+export createReducer from './utils/createReducer';
+export createLoader from './utils/createLoader';
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 const HYDRATE_STATE = 'HYDRATE_STATE';
