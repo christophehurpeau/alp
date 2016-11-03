@@ -1,3 +1,8 @@
+### v6.0.0
+
+- [`1ce867a`](https://github.com/alpjs/alp-react-redux/commit/1ce867a1bfbbf70c7a9a57df9b85e193e8cbbefb) fix: fix logger key and add src in imports (Christophe Hurpeau)
+- [`cc00740`](https://github.com/alpjs/alp-react-redux/commit/cc007407499d5f221296c6c5c50356a1bcf2742d) refactor: fody fixes and layout (Christophe Hurpeau)
+
 ### v6.0.0-beta.6
 
 - [`2f0a54e`](https://github.com/alpjs/alp-react-redux/commit/2f0a54ec9bb7b204ac7ae033d3575480d4a694a4) fix: fix helmet: true in node and undefined in browser (Christophe Hurpeau)
