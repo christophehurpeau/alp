@@ -1,3 +1,7 @@
+### v6.0.1
+
+- [`34c6b3a`](https://github.com/alpjs/alp-react-redux/commit/34c6b3a7408cf27d14b3f0fb72d3cbb5a8fb243d) refactor: child logger websocket (Christophe Hurpeau)
+
 ### v6.0.0
 
 - [`1ce867a`](https://github.com/alpjs/alp-react-redux/commit/1ce867a1bfbbf70c7a9a57df9b85e193e8cbbefb) fix: fix logger key and add src in imports (Christophe Hurpeau)
