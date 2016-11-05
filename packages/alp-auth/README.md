@@ -124,15 +124,9 @@ import T from 'react-alp-translate/src';
         </span>
       ) : (
         <div>
-          <T id="header.login">{t =>
-            <Link
-              to="login"
-              params={{ strategy: 'google' }}
-              target="_self"
-            >
-              {t}
-            </Link>
-        }</T>
+          <T id="header.login">{t => (
+            <Link to="login" params={{ strategy: 'google' }} target="_self">{t}</Link>
+          )}</T>
         </div>
       )
     )}
