@@ -81,6 +81,9 @@ export default function alpReactRedux(Layout = AlpLayout) {
   };
 }
 
+const loggerWebsocket = logger.child('websocket');
+
 export function emitAction(to, action) {
+  loggerWebsocket.debug('emitAction', action);
   to.emit('redux:action', action);
 }

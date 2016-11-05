@@ -106,9 +106,10 @@ function alpReactRedux(element) {
     const middlewares = [(0, _middlewaresBrowser.createFunctionMiddleware)(app), _middlewaresBrowser.promiseMiddleware];
 
     if (app.websocket) {
-      logger.debug('register websocket redux:action');
+      const loggerWebsocket = logger.child('websocket');
+      loggerWebsocket.debug('register websocket redux:action');
       app.websocket.on('redux:action', action => {
-        logger.info('dispatch action from websocket', action);
+        loggerWebsocket.debug('dispatch action from websocket', action);
         if (store) {
           store.dispatch(action);
         }

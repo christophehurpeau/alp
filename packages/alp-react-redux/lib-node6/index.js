@@ -171,7 +171,10 @@ function alpReactRedux() {
   };
 }
 
+const loggerWebsocket = logger.child('websocket');
+
 function emitAction(to, action) {
+  loggerWebsocket.debug('emitAction', action);
   to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map

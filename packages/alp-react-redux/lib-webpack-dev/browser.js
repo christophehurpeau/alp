@@ -36,14 +36,17 @@ export default function alpReactRedux(element) {
     var middlewares = [createFunctionMiddleware(app), promiseMiddleware];
 
     if (app.websocket) {
-      logger.debug('register websocket redux:action');
-      app.websocket.on('redux:action', function (action) {
-        logger.info('dispatch action from websocket', action);
-        if (store) {
-          store.dispatch(action);
-        }
-      });
-      middlewares.push(websocketMiddleware(app));
+      (function () {
+        var loggerWebsocket = logger.child('websocket');
+        loggerWebsocket.debug('register websocket redux:action');
+        app.websocket.on('redux:action', function (action) {
+          loggerWebsocket.debug('dispatch action from websocket', action);
+          if (store) {
+            store.dispatch(action);
+          }
+        });
+        middlewares.push(websocketMiddleware(app));
+      })();
     }
 
     app.context.render = function (moduleDescriptor, data, _loaded, _loadingBar) {
@@ -53,7 +56,7 @@ export default function alpReactRedux(element) {
       logger.debug('render view', { data: data });
 
       try {
-        var _ret = function () {
+        var _ret2 = function () {
           if (!moduleDescriptor.View) {
             throw new Error('View is undefined, class expected');
           }
@@ -114,7 +117,7 @@ export default function alpReactRedux(element) {
           });
         }();
 
-        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+        if ((typeof _ret2 === 'undefined' ? 'undefined' : _typeof(_ret2)) === "object") return _ret2.v;
       } catch (err) {
         _loadingBar();
         throw err;

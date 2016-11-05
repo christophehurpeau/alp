@@ -78,7 +78,10 @@ export default function alpReactRedux() {
   };
 }
 
+var loggerWebsocket = logger.child('websocket');
+
 export function emitAction(to, action) {
+  loggerWebsocket.debug('emitAction', action);
   to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map
