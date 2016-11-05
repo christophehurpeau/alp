@@ -79,56 +79,65 @@ export default function buildRouter(builder) {
 
 ```js
 export const identifier = 'login';
-export { default as View } from './LoginView';
+export View from './LoginView';
 ```
 
 > modules/auth/login/LoginView.js
 
 ```js
-import React, { PropTypes } from 'react';
+import type { ReactNodeType } from 'alp-react-redux/src/types';
+import T from 'react-alp-translate/src';
+import { Helmet } from 'alp-react-redux/src';
+import { LoginButtons } from 'react-alp-login/src';
 import Header from '../components/HeaderComponent';
-import { LoginButtons } from 'react-alp-login';
 
-IndexView.contextTypes = {
-    setTitle: PropTypes.func.isRequired,
-    context: PropTypes.object.isRequired,
-};
+export default (): ReactNodeType => (
+  <div className="login-view">
+    <T id="title">{title => <Helmet title="Login" titleTemplate={`${title} - %s`} />}</T>
+    <Header />
+    <LoginButtons />
+  </div>
+);
 
-export default function IndexView(props, { setTitle, context }) {
-    return (<div>
-        <Helmet
-            title={`${context.t('title')} - ${context.t('login.title')}`}
-        />
-        <Header />
-        <LoginButtons />
-    </div>);
-}
 ```
 
 > modules/common/components/HeaderUserComponent.js
 
 ```js
-import { PropTypes } from 'react';
-import Link from 'react-alp-link';
+import type { ReactNodeType } from 'alp-react-redux/src/types';
+import Link from 'react-alp-link/src';
+import User from 'react-alp-user/src';
+import T from 'react-alp-translate/src';
 
-HeaderUserComponent.contextTypes = {
-    context: PropTypes.object,
-};
-
-export default function HeaderUserComponent(props, { context: { state: { user } } }) {
-    if (user) {
-        return (<div className="dropdown">
-            {user.displayName}
-            <ul className="list links">
-                <li><Link to="default" params={{ action: 'logout' }} target="_self">Logout</Link></li>
-            </ul>
-        </div>);
-    }
-
-    return (<div>
-        <Link to="default" params={{ action: 'login' }}>Login</Link>
-    </div>);
-}
+  <User>
+    {user => (
+      user ? (
+        <span className="dropdown">
+          {user.displayName}
+          <ul className="list links">
+            <li>
+              <T id="header.logout">{t =>
+                <Link to="logout" target="_self">{t}</Link>
+              }</T>
+            </li>
+          </ul>
+        </span>
+      ) : (
+        <div>
+          <T id="header.login">{t =>
+            <Link
+              to="login"
+              params={{ strategy: 'google' }}
+              target="_self"
+            >
+              {t}
+            </Link>
+        }</T>
+        </div>
+      )
+    )}
+  </User>
+);
 ```
 
 
