@@ -1,3 +1,10 @@
+### v0.8.1
+
+- [`f047d7a`](https://github.com/alpjs/alp-auth/commit/f047d7a682979d8cc827b8486158f0fde2e0b51c) Update README.md (Christophe Hurpeau)
+- [`5204590`](https://github.com/alpjs/alp-auth/commit/5204590046fd5f450acff44bbbc44d763a8cc950) Update README.md (Christophe Hurpeau)
+- [`57d7651`](https://github.com/alpjs/alp-auth/commit/57d7651a401e36182ebd360e022dd98372244410) fix: fix for liwi (Christophe Hurpeau)
+- [`1e75f36`](https://github.com/alpjs/alp-auth/commit/1e75f3687d9e0bf12ddc26a844a660f9b24194e9) chore(authors): update AUTHORS (Christophe Hurpeau)
+
 ### v0.8.0
 
 - [`a533afc`](https://github.com/alpjs/alp-auth/commit/a533afceaa726a95bcd1a6ccf39fe0a56ccecfd0) refactor: update dependencies (Christophe Hurpeau)
