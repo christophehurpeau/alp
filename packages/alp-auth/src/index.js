@@ -121,6 +121,7 @@ export default function init({
 
         if (!user) return await next();
 
+        socket.user = user;
         users.set(socket.client.id, user);
 
         socket.on('disconnected', () => users.delete(socket.client.id));

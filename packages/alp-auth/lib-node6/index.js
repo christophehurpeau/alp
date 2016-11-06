@@ -164,6 +164,7 @@ function init(_ref) {
 
           if (!user) return yield next();
 
+          socket.user = user;
           users.set(socket.client.id, user);
 
           socket.on('disconnected', function () {

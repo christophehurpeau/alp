@@ -215,16 +215,17 @@ export default function init(_ref) {
 
                   case 33:
 
+                    socket.user = user;
                     users.set(socket.client.id, user);
 
                     socket.on('disconnected', function () {
                       return users.delete(socket.client.id);
                     });
 
-                    _context2.next = 37;
+                    _context2.next = 38;
                     return next();
 
-                  case 37:
+                  case 38:
                   case 'end':
                     return _context2.stop();
                 }
