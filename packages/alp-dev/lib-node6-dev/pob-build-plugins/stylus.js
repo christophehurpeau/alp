@@ -16,6 +16,8 @@ var _postcssModules2 = _interopRequireDefault(_postcssModules);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+const stylesPath = `styles${ _path.sep }`;
+
 module.exports = {
   extension: 'styl',
   // destExtension: 'css',
@@ -24,11 +26,28 @@ module.exports = {
   transform(content, _ref) {
     let src = _ref.src;
     let relative = _ref.relative;
+    let cwd = _ref.cwd;
 
     const fileName = (0, _path.basename)(relative);
     if (fileName.startsWith('_')) return;
+
+    if (relative.startsWith(stylesPath)) {
+      if (relative.substr(stylesPath.length).includes(_path.sep)) return;
+
+      return new Promise((resolve, reject) => {
+        const style = (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', [(0, _path.join)(cwd, 'node_modules')]).set('sourcemap', { comment: true });
+
+        style.render((err, css) => {
+          if (err) return reject(err);
+
+          resolve({ code: css, map: style.sourcemap });
+        });
+      });
+    }
+
     return new Promise((resolve, reject) => {
-      (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', [(0, _path.dirname)(src), 'node_modules']).set('sourcemap', { comment: true }).render((err, css) => {
+      const stylesPath = (0, _path.join)(cwd, 'src', 'styles');
+      (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', [stylesPath, (0, _path.join)(cwd, 'node_modules')]).set('sourcemap', { comment: true }).render((err, css) => {
         if (err) return reject(err);
 
         (0, _postcss2.default)([(0, _postcssModules2.default)({
@@ -41,14 +60,4 @@ module.exports = {
     });
   }
 };
-
-// const style = stylus(content.toString())
-//   .set('filename', src)
-//   .set('sourcemap', { comment: true });
-//
-// style.render((err, css) => {
-//   if (err) return reject(err);
-//
-//   resolve({ code: css, map: style.sourcemap });
-// });
 //# sourceMappingURL=stylus.js.map

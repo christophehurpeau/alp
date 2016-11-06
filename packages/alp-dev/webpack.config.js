@@ -102,7 +102,7 @@ module.exports = {
             require.resolve('css-loader') + '?modules&camelCase&importLoaders=1'
               + '&localIdentName=[name]__[local]___[hash:base64:5]',
               // + `localIdentName=${production ? : '[path][name]---[local]---[hash:base64:5]'}`,
-            require.resolve('stylus-loader') + '?paths=node_modules',
+            require.resolve('stylus-loader'),
             // {
             //   loader: require.resolve('postcss-loader'),
             //   options: {
@@ -158,6 +158,13 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       debug: !production,
       minimize: production,
+      options: {
+        stylus: {
+          set: {
+            paths: ['src/styles', 'node_modules'],
+          },
+        },
+      },
     }),
     new webpack.DefinePlugin({
       BROWSER: true,
