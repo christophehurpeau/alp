@@ -45,8 +45,8 @@ module.exports = {
               generateScopedName: '[name]__[local]__[hash:base64:5]',
               getJSON(cssFileName, json) {
                 resolve({
-                  code: `module.exports = ${JSON.stringify(json)}`
-                    + `/*\n${css.replace(/\*\//g, '*-/')}*/`,
+                  code: `module.exports = ${JSON.stringify(json)}`,
+                    // + `/*\n${css.replace(/\*\//g, '*-/')}*/`,
                 });
               },
             }),
