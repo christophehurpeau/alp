@@ -1,3 +1,7 @@
+### v4.1.1
+
+- [`dc1e01f`](https://github.com/alpjs/alp-dev/commit/dc1e01f8d725d502329e745313d7ccc48e388d80) fix css modules (Christophe Hurpeau)
+
 ### v4.1.0
 
 - [`ca3c316`](https://github.com/alpjs/alp-dev/commit/ca3c3162ff357f90e92ffadde9af42017e19534a) stylus and paths (Christophe Hurpeau)
