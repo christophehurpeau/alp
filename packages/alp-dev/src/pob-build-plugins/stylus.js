@@ -20,7 +20,7 @@ module.exports = {
       return new Promise((resolve, reject) => {
         const style = stylus(content.toString())
           .set('filename', src)
-          .set('paths', [join(cwd, 'node_modules')])
+          .set('paths', ['node_modules'])
           .set('sourcemap', { comment: true });
 
         style.render((err, css) => {
@@ -35,16 +35,19 @@ module.exports = {
       const stylesPath = join(cwd, 'src', 'styles');
       stylus(content.toString())
         .set('filename', src)
-        .set('paths', [stylesPath, join(cwd, 'node_modules')])
+        .set('paths', [stylesPath, 'node_modules'])
         .set('sourcemap', { comment: true })
         .render((err, css) => {
           if (err) return reject(err);
 
           postcss([
             postcssModules({
-              generateScopedName: '[name]__[local]___[hash:base64:5]',
+              generateScopedName: '[name]__[local]__[hash:base64:5]',
               getJSON(cssFileName, json) {
-                resolve({ code: `module.exports = ${JSON.stringify(json)}` });
+                resolve({
+                  code: `module.exports = ${JSON.stringify(json)}`
+                    + `/*\n${css.replace(/\*\//g, '*-/')}*/`,
+                });
               },
             }),
           ]).process(css, { from: src })

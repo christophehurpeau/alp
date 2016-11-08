@@ -35,7 +35,7 @@ module.exports = {
       if (relative.substr(stylesPath.length).includes(_path.sep)) return;
 
       return new Promise((resolve, reject) => {
-        const style = (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', [(0, _path.join)(cwd, 'node_modules')]).set('sourcemap', { comment: true });
+        const style = (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', ['node_modules']).set('sourcemap', { comment: true });
 
         style.render((err, css) => {
           if (err) return reject(err);
@@ -47,13 +47,15 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       const stylesPath = (0, _path.join)(cwd, 'src', 'styles');
-      (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', [stylesPath, (0, _path.join)(cwd, 'node_modules')]).set('sourcemap', { comment: true }).render((err, css) => {
+      (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', [stylesPath, 'node_modules']).set('sourcemap', { comment: true }).render((err, css) => {
         if (err) return reject(err);
 
         (0, _postcss2.default)([(0, _postcssModules2.default)({
-          generateScopedName: '[name]__[local]___[hash:base64:5]',
+          generateScopedName: '[name]__[local]__[hash:base64:5]',
           getJSON(cssFileName, json) {
-            resolve({ code: `module.exports = ${ JSON.stringify(json) }` });
+            resolve({
+              code: `module.exports = ${ JSON.stringify(json) }` + `/*\n${ css.replace(/\*\//g, '*-/') }*/`
+            });
           }
         })]).process(css, { from: src }).catch(err => reject(err));
       });

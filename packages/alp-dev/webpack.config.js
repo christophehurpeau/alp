@@ -99,10 +99,11 @@ module.exports = {
         loader: ExtractTextPlugin.extract({
           loader: [
             // eslint-disable-next-line prefer-template
-            require.resolve('css-loader') + '?modules&camelCase&importLoaders=1'
-              + '&localIdentName=[name]__[local]___[hash:base64:5]',
+            require.resolve('css-loader') + '?modules&importLoaders=1'
+              + '&localIdentName=[name]__[local]__[hash:base64:5]',
               // + `localIdentName=${production ? : '[path][name]---[local]---[hash:base64:5]'}`,
-            require.resolve('stylus-loader'),
+            // eslint-disable-next-line prefer-template
+            require.resolve('stylus-loader') + '?paths[]=node_modules&paths[]=src/styles',
             // {
             //   loader: require.resolve('postcss-loader'),
             //   options: {
@@ -158,13 +159,14 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       debug: !production,
       minimize: production,
+      /*
+      doing that makes postcss-modules base64 different between server and webpack stylus: {
       options: {
-        stylus: {
           set: {
             paths: ['src/styles', 'node_modules'],
           },
         },
-      },
+      }, */
     }),
     new webpack.DefinePlugin({
       BROWSER: true,
