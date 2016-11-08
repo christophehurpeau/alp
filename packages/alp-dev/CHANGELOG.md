@@ -1,3 +1,7 @@
+### v4.1.2
+
+- [`4502317`](https://github.com/alpjs/alp-dev/commit/45023179ed240cd5dcc27fe388df71495ecf9dc2) remove css modules debug server-side (Christophe Hurpeau)
+
 ### v4.1.1
 
 - [`dc1e01f`](https://github.com/alpjs/alp-dev/commit/dc1e01f8d725d502329e745313d7ccc48e388d80) fix css modules (Christophe Hurpeau)
