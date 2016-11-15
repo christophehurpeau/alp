@@ -1,3 +1,7 @@
+### v4.1.3
+
+- [`3e3a280`](https://github.com/alpjs/alp-dev/commit/3e3a2801fe28ab551493aa875e5d33487a730210) fix require babel-loader (Christophe Hurpeau)
+
 ### v4.1.2
 
 - [`4502317`](https://github.com/alpjs/alp-dev/commit/45023179ed240cd5dcc27fe388df71495ecf9dc2) remove css modules debug server-side (Christophe Hurpeau)
