@@ -76,7 +76,7 @@ module.exports = {
         test: /\.jsx?$/,
         include: path.resolve('src'),
         exclude: /\.server\.jsx?$/,
-        loader: 'babel',
+        loader: require('babel-loader'),
         options: {
           compact: production,
           minified: production,
