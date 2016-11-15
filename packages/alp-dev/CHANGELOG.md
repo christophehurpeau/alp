@@ -1,3 +1,7 @@
+### v4.1.4
+
+- [`09c45f8`](https://github.com/alpjs/alp-dev/commit/09c45f8d6aba55620474c8aa03b00c0d50f133ac) fix require babel-loader (Christophe Hurpeau)
+
 ### v4.1.3
 
 - [`3e3a280`](https://github.com/alpjs/alp-dev/commit/3e3a2801fe28ab551493aa875e5d33487a730210) fix require babel-loader (Christophe Hurpeau)
