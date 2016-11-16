@@ -1,4 +1,7 @@
+import readFile from 'pob-babel/lib/utils/readFile';
+import writeFile from 'pob-babel/lib/utils/writeFile';
 import { basename, join, sep as segmentSeparator } from 'path';
+import glob from 'glob';
 import stylus from 'stylus';
 import postcss from 'postcss';
 import postcssModules from 'postcss-modules';
@@ -18,15 +21,30 @@ module.exports = {
       if (relative.substr(stylesPath.length).includes(segmentSeparator)) return;
 
       return new Promise((resolve, reject) => {
-        const style = stylus(content.toString())
-          .set('filename', src)
-          .set('paths', ['node_modules'])
-          .set('sourcemap', { comment: true });
-
-        style.render((err, css) => {
+        glob('src/styles/!(_)*.styl', (err, matches) => {
           if (err) return reject(err);
 
-          resolve({ code: css, map: style.sourcemap });
+          Promise.all(matches.map((match) => (
+            readFile(match).then((content) => {
+              if (err) return reject(err);
+
+              const style = stylus(content.toString())
+                .set('filename', src)
+                .set('paths', ['node_modules'])
+                .set('sourcemap', { comment: true });
+
+              style.render((err, css) => {
+                if (err) return reject(err);
+
+                const cssPath = `public/${match.slice('src/styles/'.length, -'styl'.length)}css`;
+
+                Promise.all([
+                  writeFile(cssPath, css),
+                  writeFile(`${cssPath}.map`, style.sourcemap),
+                ]).then(resolve).catch(reject);
+              });
+            })
+          ))).then(resolve).catch(reject);
         });
       });
     }

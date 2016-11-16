@@ -1,6 +1,18 @@
 'use strict';
 
+var _readFile = require('pob-babel/lib/utils/readFile');
+
+var _readFile2 = _interopRequireDefault(_readFile);
+
+var _writeFile = require('pob-babel/lib/utils/writeFile');
+
+var _writeFile2 = _interopRequireDefault(_writeFile);
+
 var _path = require('path');
+
+var _glob = require('glob');
+
+var _glob2 = _interopRequireDefault(_glob);
 
 var _stylus = require('stylus');
 
@@ -23,11 +35,7 @@ module.exports = {
   // destExtension: 'css',
   destExtension: 'styl.js',
 
-  transform(content, _ref) {
-    let src = _ref.src;
-    let relative = _ref.relative;
-    let cwd = _ref.cwd;
-
+  transform(content, { src, relative, cwd }) {
     const fileName = (0, _path.basename)(relative);
     if (fileName.startsWith('_')) return;
 
@@ -35,12 +43,22 @@ module.exports = {
       if (relative.substr(stylesPath.length).includes(_path.sep)) return;
 
       return new Promise((resolve, reject) => {
-        const style = (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', ['node_modules']).set('sourcemap', { comment: true });
-
-        style.render((err, css) => {
+        (0, _glob2.default)('src/styles/!(_)*.styl', (err, matches) => {
           if (err) return reject(err);
 
-          resolve({ code: css, map: style.sourcemap });
+          Promise.all(matches.map(match => (0, _readFile2.default)(match).then(content => {
+            if (err) return reject(err);
+
+            const style = (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', ['node_modules']).set('sourcemap', { comment: true });
+
+            style.render((err, css) => {
+              if (err) return reject(err);
+
+              const cssPath = `public/${ match.slice('src/styles/'.length, -'styl'.length) }css`;
+
+              Promise.all([(0, _writeFile2.default)(cssPath, css), (0, _writeFile2.default)(`${ cssPath }.map`, style.sourcemap)]).then(resolve).catch(reject);
+            });
+          }))).then(resolve).catch(reject);
         });
       });
     }

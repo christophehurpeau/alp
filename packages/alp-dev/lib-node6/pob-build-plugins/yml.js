@@ -1,18 +1,25 @@
 'use strict';
 
-const path = require('path');
-const loadConfigFile = require('../utils/loadConfigFile');
+var _writeFile = require('pob-babel/lib/utils/writeFile');
+
+var _writeFile2 = _interopRequireDefault(_writeFile);
+
+var _path = require('path');
+
+var _loadConfigFile = require('../utils/loadConfigFile');
+
+var _loadConfigFile2 = _interopRequireDefault(_loadConfigFile);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = {
   extension: 'yml',
   destExtension: 'json',
 
-  transform(content, _ref) {
-    let src = _ref.src;
+  transform(content, { src }) {
+    let [serverConfig, browserConfig] = (0, _loadConfigFile2.default)(content, (0, _path.dirname)(src));
 
-    let config = loadConfigFile(content, 'server', path.dirname(src));
-
-    return { code: JSON.stringify(config), map: null };
+    return (0, _writeFile2.default)(`public/${ src.slice('src/'.length, -'yml'.length) }json`, JSON.stringify(browserConfig)).then(() => ({ code: JSON.stringify(serverConfig), map: null }));
   }
 };
 //# sourceMappingURL=yml.js.map

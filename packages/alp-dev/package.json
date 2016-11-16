@@ -22,15 +22,13 @@
   },
   "scripts": {
     "build": "pob-build",
-    "build:dev": "pob-build",
     "clean": "rm -Rf docs dist test/node6 coverage",
     "lint": "eslint --ext .js,.jsx --fix -c .eslintrc.yml src/",
     "prepublish": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit || echo",
     "preversion": "npm run lint && npm run build && pob-repository-check-clean",
     "release": "pob-repository-check-clean && pob-release",
     "version": "pob-version",
-    "watch": "pob-watch",
-    "watch:dev": "pob-watch"
+    "watch": "pob-watch"
   },
   "dependencies": {
     "babel-core": "^6.18.2",
@@ -48,15 +46,11 @@
     "eslint-loader": "^1.6.1",
     "eslint-plugin-babel": "^3.3.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
-    "gulp": "gulpjs/gulp#70cde1ee19e4425a2cdc5972e9f820677ece3a0a",
-    "gulp-rename": "^1.2.2",
-    "gulp-stylus": "^2.6.0",
-    "gulp-util": "^3.0.7",
+    "glob": "^7.1.1",
     "js-yaml": "^3.6.1",
     "minimist-argv": "^1.0.0",
-    "nib": "^1.1.2",
     "offline-plugin": "^3.4.2",
-    "pob-babel": "^12.7.2",
+    "pob-babel": "^12.8.0",
     "portscanner": "^1.0.0",
     "postcss": "^5.2.5",
     "postcss-loader": "^1.1.1",
@@ -66,7 +60,6 @@
     "springbokjs-daemon": "^1.4.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
-    "through2": "^2.0.1",
     "webpack": "^2.1.0-beta.27",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.1"
