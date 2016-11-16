@@ -9,7 +9,7 @@ var _alpConfig = require('alp-config');
 
 Object.defineProperty(exports, 'Config', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _alpConfig.Config;
   }
 });

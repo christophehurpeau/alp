@@ -36,24 +36,24 @@
     "alp-params": "^0.3.0",
     "alp-translate": "^2.3.1",
     "findup-sync": "^0.4.3",
-    "koa": "^2.0.0-alpha.3",
+    "koa": "^2.0.0-alpha.7",
     "koa-compress": "^2.0.0",
     "koa-static": "^3.0.0",
-    "nightingale-logger": "^3.0.0-beta.3",
+    "nightingale-logger": "^3.0.1",
     "node-fetch": "^1.6.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
-    "babel-preset-es2015-node6": "^0.3.0",
-    "eslint": "^3.9.1",
-    "eslint-config-airbnb-base": "^9.0.0",
-    "eslint-config-pob": "^8.0.0",
+    "babel-preset-es2015-node6": "^0.4.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-config-pob": "^9.0.1",
     "eslint-plugin-babel": "^3.3.0",
-    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "komet": "^0.1.3",
     "komet-karma": "^0.2.3",
-    "pob-babel": "^12.5.5",
-    "pob-release": "^2.2.2",
+    "pob-babel": "^12.7.1",
+    "pob-release": "^2.3.0",
     "tcomb-forked": "^3.4.0"
   }
 }
