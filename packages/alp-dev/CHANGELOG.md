@@ -1,3 +1,8 @@
+### v5.0.0
+
+- [`2a166ec`](https://github.com/alpjs/alp-dev/commit/2a166ec58436295cb63ee0b867280e7610b731c0) update dependencies (Christophe Hurpeau)
+- [`cdf1067`](https://github.com/alpjs/alp-dev/commit/cdf106779bfd363afee69f746d0c971ac91c5970) remove gulp (Christophe Hurpeau)
+
 ### v4.1.4
 
 - [`09c45f8`](https://github.com/alpjs/alp-dev/commit/09c45f8d6aba55620474c8aa03b00c0d50f133ac) fix require babel-loader (Christophe Hurpeau)
