@@ -14,7 +14,7 @@ clean:
 default:
 	$(BIN)alp-dev
 
-build-prod: check
+build-prod:
 	NODE_ENV=production $(BIN)alp-dev-build-config
 	NODE_ENV=production WEBPACK_DEST=modern-browsers node_modules/.bin/webpack --hide-modules
 	NODE_ENV=production WEBPACK_DEST=es5 node_modules/.bin/webpack --hide-modules
