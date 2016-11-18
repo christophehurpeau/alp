@@ -1,3 +1,7 @@
+### v5.0.2
+
+- [`318ec84`](https://github.com/alpjs/alp-dev/commit/318ec84aa0627282876c66432ca36f92b50ca026) fix build-prod makefile (Christophe Hurpeau)
+
 ### v5.0.1
 
 - [`085d2f8`](https://github.com/alpjs/alp-dev/commit/085d2f817cb95ceb7cfea2e770c82d53e9b9f931) update dependencies (Christophe Hurpeau)
