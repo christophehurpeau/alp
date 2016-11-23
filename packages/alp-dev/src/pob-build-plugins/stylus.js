@@ -30,6 +30,7 @@ module.exports = {
 
               const style = stylus(content.toString())
                 .set('filename', src)
+                .set('include css', true)
                 .set('paths', ['node_modules'])
                 .set('sourcemap', { comment: true });
 
@@ -53,6 +54,7 @@ module.exports = {
       const stylesPath = join(cwd, 'src', 'styles');
       stylus(content.toString())
         .set('filename', src)
+        .set('include css', true)
         .set('paths', [stylesPath, 'node_modules'])
         .set('sourcemap', { comment: true })
         .render((err, css) => {

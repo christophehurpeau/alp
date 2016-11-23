@@ -49,7 +49,7 @@ module.exports = {
           Promise.all(matches.map(match => (0, _readFile2.default)(match).then(content => {
             if (err) return reject(err);
 
-            const style = (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', ['node_modules']).set('sourcemap', { comment: true });
+            const style = (0, _stylus2.default)(content.toString()).set('filename', src).set('include css', true).set('paths', ['node_modules']).set('sourcemap', { comment: true });
 
             style.render((err, css) => {
               if (err) return reject(err);
@@ -65,7 +65,7 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       const stylesPath = (0, _path.join)(cwd, 'src', 'styles');
-      (0, _stylus2.default)(content.toString()).set('filename', src).set('paths', [stylesPath, 'node_modules']).set('sourcemap', { comment: true }).render((err, css) => {
+      (0, _stylus2.default)(content.toString()).set('filename', src).set('include css', true).set('paths', [stylesPath, 'node_modules']).set('sourcemap', { comment: true }).render((err, css) => {
         if (err) return reject(err);
 
         (0, _postcss2.default)([(0, _postcssModules2.default)({
