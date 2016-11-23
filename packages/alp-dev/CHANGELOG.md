@@ -1,3 +1,7 @@
+### v5.0.3
+
+- [`3f6d750`](https://github.com/alpjs/alp-dev/commit/3f6d7504d3efc8e05b14753cbddb59d5f05817e6) stylus missing include css (Christophe Hurpeau)
+
 ### v5.0.2
 
 - [`318ec84`](https://github.com/alpjs/alp-dev/commit/318ec84aa0627282876c66432ca36f92b50ca026) fix build-prod makefile (Christophe Hurpeau)
