@@ -2,7 +2,7 @@ import load from './load';
 
 export default function alpTranslate(dirname) {
   dirname = dirname.replace(/\/*$/, '/');
-  return app => {
+  return function (app) {
     Object.assign(app.context, {
       t(key, args) {
         var msg = app.translations.get(key);
@@ -12,7 +12,9 @@ export default function alpTranslate(dirname) {
     });
 
     var language = app.context.language;
-    return app.loadConfig(dirname + language).then(map => app.translations = load(map, language));
+    return app.loadConfig(dirname + language).then(function (map) {
+      return app.translations = load(map, language);
+    });
   };
 }
 //# sourceMappingURL=browser.js.map

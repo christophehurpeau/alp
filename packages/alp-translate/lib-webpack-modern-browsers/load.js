@@ -4,9 +4,9 @@ export default function load(translations, language) {
   var result = new Map();
 
   (function loadMap(map, prefix) {
-    map.forEach((value, key) => {
+    map.forEach(function (value, key) {
       if (typeof value === 'object') {
-        return loadMap(value, `${ key }.`);
+        return loadMap(value, `${ prefix }${ key }.`);
       }
 
       result.set(`${ prefix }${ key }`, new IntlMessageFormat(value, language));
