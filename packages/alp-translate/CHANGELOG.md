@@ -1,3 +1,7 @@
+### v2.3.2
+
+- [`f6811d7`](https://github.com/alpjs/alp-translate/commit/f6811d7247a93c1cadba90c97f6bd07d7f99c802) fix: fix recursive load translations (Christophe Hurpeau)
+
 ### v2.3.1
 
 - [`8760694`](https://github.com/alpjs/alp-translate/commit/8760694ac348dd797c2426d3c457bd842ba71016) fix: logger and main (Christophe Hurpeau)
