@@ -51,7 +51,7 @@
     "minimist-argv": "^1.0.0",
     "offline-plugin": "^3.4.2",
     "pob-babel": "^12.8.0",
-    "portscanner": "^1.0.0",
+    "portscanner": "^2.1.1",
     "postcss": "^5.2.5",
     "postcss-loader": "^1.1.1",
     "postcss-modules": "^0.5.2",

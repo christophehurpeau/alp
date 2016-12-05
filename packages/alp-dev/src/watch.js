@@ -7,18 +7,8 @@ const startBrowserSyncPort = argv.browserSyncStartPort || 3000;
 const startPort = argv.startPort || 3050;
 
 Promise.all([
-  new Promise((resolve, reject) => (
-    portscanner.findAPortNotInUse(startBrowserSyncPort, startBrowserSyncPort + 50, '127.0.0.1', (err, foundPort) => {
-      if (err) return reject(err);
-      resolve(foundPort);
-    })
-  )),
-  new Promise((resolve, reject) => (
-    portscanner.findAPortNotInUse(startPort, startPort + 50, '127.0.0.1', (err, foundPort) => {
-      if (err) return reject(err);
-      resolve(foundPort);
-    })
-  )),
+  portscanner.findAPortNotInUse(startBrowserSyncPort, startBrowserSyncPort + 50),
+  portscanner.findAPortNotInUse(startPort, startPort + 50),
 ]).then(([browserSyncPort, port]) => {
   nodeDaemon([
     require.resolve('./browser-sync'),
