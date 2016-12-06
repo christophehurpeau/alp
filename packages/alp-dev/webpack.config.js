@@ -123,7 +123,7 @@ module.exports = {
   resolve: {
     alias: { 'socket.io': 'socket.io-client' },
     modules: ['node_modules'],
-    extensions: ['.browser.js', '.js', '.browser.jsx', '.jsx', '.json'],
+    extensions: ['.js', '.jsx'],
     mainFields: [
       modernBrowsers && !production && 'webpack:main-modern-browsers-dev',
       modernBrowsers && 'webpack:main-modern-browsers',
