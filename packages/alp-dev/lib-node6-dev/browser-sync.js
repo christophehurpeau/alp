@@ -28,7 +28,7 @@ const port = argv.port || 3000;
 exports.default = browserSync({
   // options: https://www.browsersync.io/docs/options
   open: argv.open,
-  port: port,
+  port,
   ui: { port: port + 1 },
   notify: 'bottomleft', // https://github.com/BrowserSync/browser-sync/issues/685
   online: false,
