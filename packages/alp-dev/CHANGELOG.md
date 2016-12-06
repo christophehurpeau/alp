@@ -1,3 +1,11 @@
+### v6.0.0
+
+- [`e398e95`](https://github.com/alpjs/alp-dev/commit/e398e950e912fa6f7bfe312e0ba4596906fbedc1) refactor: update portscanner :tada: (Christophe Hurpeau)
+- [`beae62c`](https://github.com/alpjs/alp-dev/commit/beae62c204bbddcd3be272e99d9942e268adf836) webpack remove unused extensions (Christophe Hurpeau)
+- [`ab68a91`](https://github.com/alpjs/alp-dev/commit/ab68a9196c0a78e5d8734182b1204814e448f7c8) refactor: pob update (Christophe Hurpeau)
+- [`747164f`](https://github.com/alpjs/alp-dev/commit/747164f9b1ffce8cb513cf2f11b6ce0182164fd8) chore: update dependencies (Christophe Hurpeau)
+- [`66e4687`](https://github.com/alpjs/alp-dev/commit/66e46872b80b3641083d2101e2bf4e19b8c87308) style: lint (Christophe Hurpeau)
+
 ### v5.0.3
 
 - [`3f6d750`](https://github.com/alpjs/alp-dev/commit/3f6d7504d3efc8e05b14753cbddb59d5f05817e6) stylus missing include css (Christophe Hurpeau)
