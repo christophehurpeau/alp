@@ -34,15 +34,10 @@ const ContextType = _tcombForked2.default.interface({
   })
 }, 'ContextType');
 
-exports.default = (_ref, _ref2) => {
-  var _assert3 = _assert(_ref, PropsType, '{ href, ...props }');
+exports.default = function stylesheetJsx(_ref, { context }) {
+  let { href } = _assert(_ref, PropsType, '{ href, ...props }');
 
-  let href = _assert3.href,
-      props = _objectWithoutProperties(_assert3, ['href']);
-
-  var _assert2 = _assert(_ref2, ContextType, '{ context }');
-
-  let context = _assert2.context;
+  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ href, ...props }'), ['href']);
 
   _assert({
     href,

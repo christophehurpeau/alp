@@ -9,7 +9,7 @@ var _fody = require('fody');
 
 Object.defineProperty(exports, 'Helmet', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _fody.Helmet;
   }
 });
@@ -18,7 +18,7 @@ var _redux = require('redux');
 
 Object.defineProperty(exports, 'combineReducers', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _redux.combineReducers;
   }
 });
@@ -27,7 +27,7 @@ var _reactRedux = require('react-redux');
 
 Object.defineProperty(exports, 'connect', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _reactRedux.connect;
   }
 });
@@ -36,13 +36,13 @@ var _websocket = require('./websocket');
 
 Object.defineProperty(exports, 'createEmitAction', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _websocket.createEmitAction;
   }
 });
 Object.defineProperty(exports, 'createEmitPromiseAction', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _websocket.createEmitPromiseAction;
   }
 });

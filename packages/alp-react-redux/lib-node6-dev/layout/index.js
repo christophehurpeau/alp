@@ -9,7 +9,7 @@ var _fody = require('fody');
 
 Object.defineProperty(exports, 'AlpHtml', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _fody.Html;
   }
 });

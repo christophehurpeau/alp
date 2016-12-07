@@ -5,9 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = uneval;
 /* global PRODUCTION */
-function uneval(obj) {
-  let objects = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Set();
-
+function uneval(obj, objects = new Set()) {
   switch (obj) {
     case null:
       return 'null';

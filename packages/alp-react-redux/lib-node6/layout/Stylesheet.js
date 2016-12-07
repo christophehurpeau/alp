@@ -18,11 +18,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-exports.default = (_ref, _ref2) => {
-  let href = _ref.href,
-      props = _objectWithoutProperties(_ref, ['href']);
+exports.default = function stylesheetJsx(_ref, { context }) {
+  let { href } = _ref;
 
-  let context = _ref2.context;
+  let props = _objectWithoutProperties(_ref, ['href']);
 
   const version = context.config.get('version');
 

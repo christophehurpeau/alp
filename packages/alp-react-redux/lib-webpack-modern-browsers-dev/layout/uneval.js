@@ -1,7 +1,5 @@
 /* global PRODUCTION */
-export default function uneval(obj) {
-  var objects = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Set();
-
+export default function uneval(obj, objects = new Set()) {
   switch (obj) {
     case null:
       return 'null';
@@ -35,7 +33,9 @@ export default function uneval(obj) {
 
   // specialized types
   if (obj instanceof Array) {
-    return `[${ obj.map(o => uneval(o, objects)).join(',') }]`;
+    return `[${ obj.map(function (o) {
+      return uneval(o, objects);
+    }).join(',') }]`;
   }
 
   if (obj instanceof Date) {
@@ -50,6 +50,8 @@ export default function uneval(obj) {
     return `new Map(${ uneval(Array.from(obj)) })`;
   }
 
-  return `{${ Object.keys(obj).map(key => `${ JSON.stringify(key) }:${ uneval(obj[key]) }`).join(',') }}`;
+  return `{${ Object.keys(obj).map(function (key) {
+    return `${ JSON.stringify(key) }:${ uneval(obj[key]) }`;
+  }).join(',') }}`;
 }
 //# sourceMappingURL=uneval.js.map

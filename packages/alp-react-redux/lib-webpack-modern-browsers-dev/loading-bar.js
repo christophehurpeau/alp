@@ -34,15 +34,15 @@ export default function loadingBar() {
   loadingBar.style.display = 'block';
 
   var percent = 20;
-  var first20Timeout = setTimeout(() => {
+  var first20Timeout = setTimeout(function () {
     loadingBarProgress.style.width = '20%';
   }, 100);
 
-  var progressTimer = setInterval(() => {
+  var progressTimer = setInterval(function () {
     loadingBarProgress.style.width = `${ percent = calculatePercent(percent) }%`;
   }, 500);
 
-  return () => {
+  return function () {
     clearTimeout(first20Timeout);
     clearInterval(progressTimer);
     loadingBarProgress.style.width = '100%';
@@ -50,7 +50,7 @@ export default function loadingBar() {
     loadingBar.style.willChange = 'display';
     loading = false;
 
-    setTimeout(() => {
+    setTimeout(function () {
       if (!loading) {
         loadingBar.style.display = 'none';
         loadingBar.style.willChange = '';

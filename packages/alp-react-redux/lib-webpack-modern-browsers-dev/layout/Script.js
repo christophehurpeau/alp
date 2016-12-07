@@ -20,11 +20,10 @@ var ContextType = _t.interface({
   })
 }, 'ContextType');
 
-export default ((_ref, _ref2) => {
-  var src = _ref.src,
-      props = _objectWithoutProperties(_ref, ['src']);
+export default (function scriptJsx(_ref, { context }) {
+  var { src } = _ref;
 
-  var context = _ref2.context;
+  var props = _objectWithoutProperties(_ref, ['src']);
 
   _assert({
     src,

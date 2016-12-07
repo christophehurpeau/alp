@@ -104,7 +104,7 @@ export default function alpReactRedux(element) {
         render({
           App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
           appProps: {
-            store: store,
+            store,
             context: this,
             moduleDescriptor,
           },

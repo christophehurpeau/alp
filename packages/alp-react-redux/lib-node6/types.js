@@ -8,19 +8,19 @@ var _types = require('fody/types');
 
 Object.defineProperty(exports, 'ReactNodeType', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _types.ReactNodeType;
   }
 });
 Object.defineProperty(exports, 'ReactElementType', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _types.ReactElementType;
   }
 });
 Object.defineProperty(exports, 'LayoutPropsType', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _types.LayoutPropsType;
   }
 });

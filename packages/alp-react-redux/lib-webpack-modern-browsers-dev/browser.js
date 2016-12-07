@@ -30,14 +30,14 @@ var store = void 0;
 var currentModuleDescriptorIdentifier = void 0;
 
 export default function alpReactRedux(element) {
-  return app => {
+  return function (app) {
     var middlewares = [createFunctionMiddleware(app), promiseMiddleware];
 
     if (app.websocket) {
       (function () {
         var loggerWebsocket = logger.child('websocket');
         loggerWebsocket.debug('register websocket redux:action');
-        app.websocket.on('redux:action', action => {
+        app.websocket.on('redux:action', function (action) {
           loggerWebsocket.debug('dispatch action from websocket', action);
           if (store) {
             store.dispatch(action);
@@ -64,7 +64,9 @@ export default function alpReactRedux(element) {
 
             // const _state = data;
             return {
-              v: moduleDescriptor.loader(currentState, data).then(data => _this.render(moduleDescriptor, data, true, _loadingBar))
+              v: moduleDescriptor.loader(currentState, data).then(function (data) {
+                return _this.render(moduleDescriptor, data, true, _loadingBar);
+              })
             };
           }
 
@@ -72,17 +74,19 @@ export default function alpReactRedux(element) {
 
           if (!reducer) {
             if (store) {
-              reducer = () => {};
+              reducer = function reducer() {};
               store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
             }
           } else if (store === undefined) {
-            store = createStore((state, action) => {
+            store = createStore(function (state, action) {
               if (action.type === HYDRATE_STATE) {
                 state = action.state;
               }
 
               return reducer(state, action);
-            }, data, compose(applyMiddleware(...middlewares), window.devToolsExtension ? window.devToolsExtension() : f => f));
+            }, data, compose(applyMiddleware(...middlewares), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+              return f;
+            }));
           } else {
             var state = Object.create(null);
 

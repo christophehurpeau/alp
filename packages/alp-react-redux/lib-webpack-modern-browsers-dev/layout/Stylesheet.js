@@ -20,11 +20,10 @@ var ContextType = _t.interface({
   })
 }, 'ContextType');
 
-export default ((_ref, _ref2) => {
-  var href = _ref.href,
-      props = _objectWithoutProperties(_ref, ['href']);
+export default (function stylesheetJsx(_ref, { context }) {
+  var { href } = _ref;
 
-  var context = _ref2.context;
+  var props = _objectWithoutProperties(_ref, ['href']);
 
   _assert({
     href,

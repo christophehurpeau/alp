@@ -9,7 +9,7 @@ var _fody = require('fody');
 
 Object.defineProperty(exports, 'Helmet', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _fody.Helmet;
   }
 });
@@ -18,7 +18,7 @@ var _redux = require('redux');
 
 Object.defineProperty(exports, 'combineReducers', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _redux.combineReducers;
   }
 });
@@ -27,7 +27,7 @@ var _reactRedux = require('react-redux');
 
 Object.defineProperty(exports, 'connect', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _reactRedux.connect;
   }
 });
@@ -36,19 +36,19 @@ var _utils = require('./utils');
 
 Object.defineProperty(exports, 'createAction', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _utils.createAction;
   }
 });
 Object.defineProperty(exports, 'createReducer', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _utils.createReducer;
   }
 });
 Object.defineProperty(exports, 'createLoader', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _utils.createLoader;
   }
 });
@@ -57,25 +57,25 @@ var _layout = require('./layout');
 
 Object.defineProperty(exports, 'AlpHtml', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _layout.AlpHtml;
   }
 });
 Object.defineProperty(exports, 'AlpLayout', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _layout.AlpLayout;
   }
 });
 Object.defineProperty(exports, 'AlpHead', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _layout.AlpHead;
   }
 });
 Object.defineProperty(exports, 'AlpBody', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _layout.AlpBody;
   }
 });
@@ -117,9 +117,7 @@ const logger = new _nightingaleLogger2.default('alp:react-redux');
 const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
 { name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
-function alpReactRedux() {
-  let Layout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _AlpLayout2.default;
-
+function alpReactRedux(Layout = _AlpLayout2.default) {
   return app => {
     app.context.render = function (moduleDescriptor, data, _loaded) {
       logger.debug('render view', { data });

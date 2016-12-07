@@ -1,7 +1,8 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _jsxFileName = 'AlpReduxApp.jsx',
-    _this = this;
+    _this = this,
+    _arguments = arguments;
 
 import React from 'react';
 import _t from 'tcomb-forked';
@@ -17,7 +18,7 @@ var PropsType = _t.interface({
   store: _t.Object
 }, 'PropsType');
 
-export default (function (_ref) {
+export default (function alpReduxAppJsx(_ref) {
   var children = _ref.children,
       store = _ref.store,
       props = _objectWithoutProperties(_ref, ['children', 'store']);
@@ -31,7 +32,7 @@ export default (function (_ref) {
   return _assert(function () {
     return React.createElement(
       Provider,
-      { store: store, __self: _this,
+      { store: store, __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 11
@@ -40,7 +41,7 @@ export default (function (_ref) {
       React.createElement(
         AlpReactApp,
         _extends({}, props, {
-          __self: _this,
+          __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 12
@@ -49,7 +50,7 @@ export default (function (_ref) {
         children
       )
     );
-  }(), ReactElementType, 'return value');
+  }.apply(_this, _arguments), ReactElementType, 'return value');
 });
 
 function _assert(x, type, name) {

@@ -6,10 +6,10 @@ import { Provider } from 'react-redux';
 import AlpReactApp from './AlpReactApp';
 
 
-export default ((_ref) => {
-  var children = _ref.children,
-      store = _ref.store,
-      props = _objectWithoutProperties(_ref, ['children', 'store']);
+export default (function alpReduxAppJsx(_ref) {
+  var { children, store } = _ref;
+
+  var props = _objectWithoutProperties(_ref, ['children', 'store']);
 
   return React.createElement(
     Provider,

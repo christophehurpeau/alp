@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = 'AlpReduxApp.jsx';
+var _jsxFileName = 'AlpReduxApp.jsx',
+    _arguments = arguments;
 
 var _react = require('react');
 
@@ -33,12 +34,10 @@ const PropsType = _tcombForked2.default.interface({
   store: _tcombForked2.default.Object
 }, 'PropsType');
 
-exports.default = (_ref) => {
-  var _assert2 = _assert(_ref, PropsType, '{ children, store, ...props }');
+exports.default = function alpReduxAppJsx(_ref) {
+  let { children, store } = _assert(_ref, PropsType, '{ children, store, ...props }');
 
-  let children = _assert2.children,
-      store = _assert2.store,
-      props = _objectWithoutProperties(_assert2, ['children', 'store']);
+  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ children, store, ...props }'), ['children', 'store']);
 
   _assert({
     children,
@@ -46,10 +45,10 @@ exports.default = (_ref) => {
     props
   }, PropsType, '{ children, store, ...props }');
 
-  return _assert((() => {
+  return _assert(function () {
     return _react2.default.createElement(
       _reactRedux.Provider,
-      { store: store, __self: undefined,
+      { store: store, __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 11
@@ -58,7 +57,7 @@ exports.default = (_ref) => {
       _react2.default.createElement(
         _AlpReactApp2.default,
         _extends({}, props, {
-          __self: undefined,
+          __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 12
@@ -67,7 +66,7 @@ exports.default = (_ref) => {
         children
       )
     );
-  })(), _types.ReactElementType, 'return value');
+  }.apply(undefined, _arguments), _types.ReactElementType, 'return value');
 };
 
 function _assert(x, type, name) {

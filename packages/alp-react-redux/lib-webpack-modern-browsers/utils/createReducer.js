@@ -3,11 +3,13 @@
 export default function createReducer(defaultState, handlers) {
   if (typeof defaultState === 'object') {
     handlers = defaultState;
-    defaultState = () => null;
+    defaultState = function defaultState() {
+      return null;
+    };
   }
 
   var handlerMap = new Map();
-  Object.keys(handlers).forEach(key => {
+  Object.keys(handlers).forEach(function (key) {
     if (typeof key === 'function') {
       handlerMap.set(key.type, handlers[key]);
     } else {
@@ -16,10 +18,7 @@ export default function createReducer(defaultState, handlers) {
   });
   handlers = undefined;
 
-  return function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState();
-    var action = arguments[1];
-
+  return function (state = defaultState(), action) {
     if (action && handlerMap.has(action.type)) {
       return handlerMap.get(action.type)(state, action);
     }

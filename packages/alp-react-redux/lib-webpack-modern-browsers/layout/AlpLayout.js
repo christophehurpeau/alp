@@ -8,10 +8,10 @@ import { Html } from 'fody';
 import AlpHead from './AlpHead';
 import AlpBody from './AlpBody';
 
-export default ((_ref) => {
-  var helmet = _ref.helmet,
-      content = _ref.content,
-      props = _objectWithoutProperties(_ref, ['helmet', 'content']);
+export default (function alpLayoutJsx(_ref) {
+  var { helmet, content } = _ref;
+
+  var props = _objectWithoutProperties(_ref, ['helmet', 'content']);
 
   return React.createElement(
     Html,

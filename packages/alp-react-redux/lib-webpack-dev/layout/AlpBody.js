@@ -1,7 +1,8 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _jsxFileName = 'layout/AlpBody.jsx',
-    _this = this;
+    _this = this,
+    _arguments = arguments;
 
 import React from 'react';
 import _t from 'tcomb-forked';
@@ -15,7 +16,7 @@ var PropsType = _t.interface({
   children: ReactNodeType
 }, 'PropsType');
 
-export default (function (_ref) {
+export default (function alpBodyJsx(_ref) {
   var children = _ref.children,
       props = _objectWithoutProperties(_ref, ['children']);
 
@@ -28,7 +29,7 @@ export default (function (_ref) {
     return React.createElement(
       Body,
       _extends({}, props, {
-        __self: _this,
+        __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 9
@@ -36,13 +37,13 @@ export default (function (_ref) {
       }),
       React.createElement(
         'div',
-        { id: 'loading-bar', className: 'loading-bar', __self: _this,
+        { id: 'loading-bar', className: 'loading-bar', __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 10
           }
         },
-        React.createElement('div', { className: 'progress', __self: _this,
+        React.createElement('div', { className: 'progress', __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 10
@@ -51,7 +52,7 @@ export default (function (_ref) {
       ),
       children
     );
-  }(), ReactElementType, 'return value');
+  }.apply(_this, _arguments), ReactElementType, 'return value');
 });
 
 function _assert(x, type, name) {

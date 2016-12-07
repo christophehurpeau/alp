@@ -5,9 +5,10 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { Body } from 'fody';
 
 
-export default ((_ref) => {
-  var children = _ref.children,
-      props = _objectWithoutProperties(_ref, ['children']);
+export default (function alpBodyJsx(_ref) {
+  var { children } = _ref;
+
+  var props = _objectWithoutProperties(_ref, ['children']);
 
   return React.createElement(
     Body,

@@ -5,7 +5,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { Body } from 'fody';
 
 
-export default (function (_ref) {
+export default (function alpBodyJsx(_ref) {
   var children = _ref.children,
       props = _objectWithoutProperties(_ref, ['children']);
 

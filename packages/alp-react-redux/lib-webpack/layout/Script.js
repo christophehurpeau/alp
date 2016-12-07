@@ -6,11 +6,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import assetUrl from './assetUrl';
 
-export default (function (_ref, _ref2) {
+export default (function scriptJsx(_ref, _ref2) {
+  var context = _ref2.context;
+
   var src = _ref.src,
       props = _objectWithoutProperties(_ref, ['src']);
-
-  var context = _ref2.context;
 
   var version = context.config.get('version');
 

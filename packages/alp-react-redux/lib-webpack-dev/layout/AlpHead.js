@@ -1,7 +1,8 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _jsxFileName = 'layout/AlpHead.jsx',
-    _this = this;
+    _this = this,
+    _arguments = arguments;
 
 import React from 'react';
 import _t from 'tcomb-forked';
@@ -23,7 +24,7 @@ var PropsType = _t.interface({
   initialBrowserContext: _t.maybe(_t.Any)
 }, 'PropsType');
 
-export default (function (_ref) {
+export default (function alpHeadJsx(_ref) {
   var version = _ref.version,
       moduleIdentifier = _ref.moduleIdentifier,
       scriptName = _ref.scriptName,
@@ -46,43 +47,43 @@ export default (function (_ref) {
     return React.createElement(
       Head,
       _extends({}, props, {
-        __self: _this,
+        __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 25
         }
       }),
-      React.createElement('meta', { charSet: 'utf-8', __self: _this,
+      React.createElement('meta', { charSet: 'utf-8', __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 26
         }
       }),
-      React.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1', __self: _this,
+      React.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1', __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 27
         }
       }),
-      React.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic', rel: 'stylesheet', type: 'text/css', __self: _this,
+      React.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic', rel: 'stylesheet', type: 'text/css', __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 28
         }
       }),
-      React.createElement('link', { rel: 'stylesheet', href: assetUrl('/' + (styleName || 'index') + '.css', version), __self: _this,
+      React.createElement('link', { rel: 'stylesheet', href: assetUrl('/' + (styleName || 'index') + '.css', version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 29
         }
       }),
-      React.createElement('link', { rel: 'stylesheet', href: assetUrl('/styles.css', version), __self: _this,
+      React.createElement('link', { rel: 'stylesheet', href: assetUrl('/styles.css', version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 30
         }
       }),
-      React.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill', __self: _this,
+      React.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill', __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 31
@@ -92,20 +93,20 @@ export default (function (_ref) {
         dangerouslySetInnerHTML: {
           __html: '' + (moduleIdentifier ? 'window.MODULE_IDENTIFIER=\'' + moduleIdentifier + '\';' : '') + ('window.VERSION=\'' + version + '\';') + ('window.initialData=' + uneval(initialData) + ';') + (!initialBrowserContext ? '' : 'window.initialBrowserContext=' + uneval(initialBrowserContext) + ';')
         },
-        __self: _this,
+        __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 32
         }
       }),
-      React.createElement('script', { defer: true, src: assetUrl('/' + scriptName + '.js', version), __self: _this,
+      React.createElement('script', { defer: true, src: assetUrl('/' + scriptName + '.js', version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 43
         }
       })
     );
-  }(), ReactElementType, 'return value');
+  }.apply(_this, _arguments), ReactElementType, 'return value');
 });
 
 function _assert(x, type, name) {

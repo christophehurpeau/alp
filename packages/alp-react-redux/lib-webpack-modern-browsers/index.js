@@ -24,16 +24,18 @@ var logger = new Logger('alp:react-redux');
 var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
 { name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
-export default function alpReactRedux() {
-  var Layout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : AlpLayout;
-
-  return app => {
+export default function alpReactRedux(Layout = AlpLayout) {
+  return function (app) {
     app.context.render = function (moduleDescriptor, data, _loaded) {
+      var _this = this;
+
       logger.debug('render view', { data });
 
       if (!_loaded && moduleDescriptor.loader) {
         // const _state = data;
-        return moduleDescriptor.loader(Object.create(null), data).then(data => this.render(moduleDescriptor, data, true));
+        return moduleDescriptor.loader(Object.create(null), data).then(function (data) {
+          return _this.render(moduleDescriptor, data, true);
+        });
       }
 
       if (moduleDescriptor.reducer) {
@@ -48,11 +50,11 @@ export default function alpReactRedux() {
         layoutProps: {
           version,
           moduleIdentifier,
-          scriptName: (() => {
+          scriptName: function () {
             // TODO create alp-useragent with getter in context
-            var ua = this.req.headers['user-agent'];
+            var ua = _this.req.headers['user-agent'];
 
-            if (agents.some(agent => {
+            if (agents.some(function (agent) {
               var res = agent.regexp.exec(ua);
               return res && res[1] >= agent.modernMinVersion;
             })) {
@@ -60,7 +62,7 @@ export default function alpReactRedux() {
             }
 
             return 'es5';
-          })(),
+          }(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleDescriptor.reducer ? this.store.getState() : null
         },

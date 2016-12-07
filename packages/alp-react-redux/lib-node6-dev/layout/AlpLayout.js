@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = 'layout/AlpLayout.jsx';
+var _jsxFileName = 'layout/AlpLayout.jsx',
+    _arguments = arguments;
 
 var _react = require('react');
 
@@ -32,12 +33,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-exports.default = (_ref) => {
-  var _assert2 = _assert(_ref, _types.LayoutPropsType, '{ helmet, content, ...props }');
+exports.default = function alpLayoutJsx(_ref) {
+  let { helmet, content } = _assert(_ref, _types.LayoutPropsType, '{ helmet, content, ...props }');
 
-  let helmet = _assert2.helmet,
-      content = _assert2.content,
-      props = _objectWithoutProperties(_assert2, ['helmet', 'content']);
+  let props = _objectWithoutProperties(_assert(_ref, _types.LayoutPropsType, '{ helmet, content, ...props }'), ['helmet', 'content']);
 
   _assert({
     helmet,
@@ -45,17 +44,17 @@ exports.default = (_ref) => {
     props
   }, _types.LayoutPropsType, '{ helmet, content, ...props }');
 
-  return _assert((() => {
+  return _assert(function () {
     return _react2.default.createElement(
       _fody.Html,
-      { helmet: helmet, __self: undefined,
+      { helmet: helmet, __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 7
         }
       },
       _react2.default.createElement(_AlpHead2.default, _extends({ helmet: helmet }, props, {
-        __self: undefined,
+        __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 8
@@ -64,13 +63,13 @@ exports.default = (_ref) => {
       _react2.default.createElement(
         _AlpBody2.default,
         {
-          __self: undefined,
+          __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 9
           }
         },
-        _react2.default.createElement('div', { id: 'app', dangerouslySetInnerHTML: { __html: content }, __self: undefined,
+        _react2.default.createElement('div', { id: 'app', dangerouslySetInnerHTML: { __html: content }, __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 10
@@ -78,7 +77,7 @@ exports.default = (_ref) => {
         })
       )
     );
-  })(), _types.ReactElementType, 'return value');
+  }.apply(undefined, _arguments), _types.ReactElementType, 'return value');
 };
 
 function _assert(x, type, name) {

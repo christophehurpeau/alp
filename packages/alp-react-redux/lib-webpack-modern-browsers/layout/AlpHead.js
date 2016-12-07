@@ -8,14 +8,17 @@ import { Head } from 'fody';
 import uneval from './uneval';
 import assetUrl from './assetUrl';
 
-export default ((_ref) => {
-  var version = _ref.version,
-      moduleIdentifier = _ref.moduleIdentifier,
-      scriptName = _ref.scriptName,
-      styleName = _ref.styleName,
-      initialData = _ref.initialData,
-      initialBrowserContext = _ref.initialBrowserContext,
-      props = _objectWithoutProperties(_ref, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+export default (function alpHeadJsx(_ref) {
+  var {
+    version,
+    moduleIdentifier,
+    scriptName,
+    styleName,
+    initialData,
+    initialBrowserContext
+  } = _ref;
+
+  var props = _objectWithoutProperties(_ref, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
 
   return React.createElement(
     Head,

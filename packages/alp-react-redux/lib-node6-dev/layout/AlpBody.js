@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = 'layout/AlpBody.jsx';
+var _jsxFileName = 'layout/AlpBody.jsx',
+    _arguments = arguments;
 
 var _react = require('react');
 
@@ -28,22 +29,21 @@ const PropsType = _tcombForked2.default.interface({
   children: _types.ReactNodeType
 }, 'PropsType');
 
-exports.default = (_ref) => {
-  var _assert2 = _assert(_ref, PropsType, '{ children, ...props }');
+exports.default = function alpBodyJsx(_ref) {
+  let { children } = _assert(_ref, PropsType, '{ children, ...props }');
 
-  let children = _assert2.children,
-      props = _objectWithoutProperties(_assert2, ['children']);
+  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ children, ...props }'), ['children']);
 
   _assert({
     children,
     props
   }, PropsType, '{ children, ...props }');
 
-  return _assert((() => {
+  return _assert(function () {
     return _react2.default.createElement(
       _fody.Body,
       _extends({}, props, {
-        __self: undefined,
+        __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 9
@@ -51,13 +51,13 @@ exports.default = (_ref) => {
       }),
       _react2.default.createElement(
         'div',
-        { id: 'loading-bar', className: 'loading-bar', __self: undefined,
+        { id: 'loading-bar', className: 'loading-bar', __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 10
           }
         },
-        _react2.default.createElement('div', { className: 'progress', __self: undefined,
+        _react2.default.createElement('div', { className: 'progress', __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 10
@@ -66,7 +66,7 @@ exports.default = (_ref) => {
       ),
       children
     );
-  })(), _types.ReactElementType, 'return value');
+  }.apply(undefined, _arguments), _types.ReactElementType, 'return value');
 };
 
 function _assert(x, type, name) {

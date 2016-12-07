@@ -9,8 +9,8 @@ export default function createAction(type, argsNamesOrHandler, data) {
   var typeofSecondArg = typeof argsNamesOrHandler;
 
   if (typeofSecondArg === 'function') {
-    action = function action() {
-      return _extends({ type }, data, argsNamesOrHandler(...arguments));
+    action = function action(...args) {
+      return _extends({ type }, data, argsNamesOrHandler(...args));
     };
   } else {
     if (typeofSecondArg === 'string') {
@@ -18,22 +18,24 @@ export default function createAction(type, argsNamesOrHandler, data) {
     }
 
     if (argsNamesOrHandler) {
-      action = function action() {
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
+      action = function action(...args) {
         var action = _extends({ type }, data);
-        args.forEach((value, index) => action[argsNamesOrHandler[index]] = value);
+        args.forEach(function (value, index) {
+          return action[argsNamesOrHandler[index]] = value;
+        });
         return action;
       };
     } else {
-      action = args => _extends({ type }, data, args);
+      action = function action(args) {
+        return _extends({ type }, data, args);
+      };
     }
   }
 
   action.type = type;
-  action.toString = () => type;
+  action.toString = function () {
+    return type;
+  };
 
   return action;
 }

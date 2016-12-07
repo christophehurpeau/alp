@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = 'layout/AlpHead.jsx';
+var _jsxFileName = 'layout/AlpHead.jsx',
+    _arguments = arguments;
 
 var _react = require('react');
 
@@ -42,16 +43,17 @@ const PropsType = _tcombForked2.default.interface({
   initialBrowserContext: _tcombForked2.default.maybe(_tcombForked2.default.Any)
 }, 'PropsType');
 
-exports.default = (_ref) => {
-  var _assert2 = _assert(_ref, PropsType, '{ version, moduleIdentifier, scriptName, styleName, initialData, initialBrowserContext, ...props }');
+exports.default = function alpHeadJsx(_ref) {
+  let {
+    version,
+    moduleIdentifier,
+    scriptName,
+    styleName,
+    initialData,
+    initialBrowserContext
+  } = _assert(_ref, PropsType, '{ version, moduleIdentifier, scriptName, styleName, initialData, initialBrowserContext, ...props }');
 
-  let version = _assert2.version,
-      moduleIdentifier = _assert2.moduleIdentifier,
-      scriptName = _assert2.scriptName,
-      styleName = _assert2.styleName,
-      initialData = _assert2.initialData,
-      initialBrowserContext = _assert2.initialBrowserContext,
-      props = _objectWithoutProperties(_assert2, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ version, moduleIdentifier, scriptName, styleName, initialData, initialBrowserContext, ...props }'), ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
 
   _assert({
     version,
@@ -63,47 +65,47 @@ exports.default = (_ref) => {
     props
   }, PropsType, '{ version, moduleIdentifier, scriptName, styleName, initialData, initialBrowserContext, ...props }');
 
-  return _assert((() => {
+  return _assert(function () {
     return _react2.default.createElement(
       _fody.Head,
       _extends({}, props, {
-        __self: undefined,
+        __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 25
         }
       }),
-      _react2.default.createElement('meta', { charSet: 'utf-8', __self: undefined,
+      _react2.default.createElement('meta', { charSet: 'utf-8', __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 26
         }
       }),
-      _react2.default.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1', __self: undefined,
+      _react2.default.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1', __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 27
         }
       }),
-      _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic', rel: 'stylesheet', type: 'text/css', __self: undefined,
+      _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic', rel: 'stylesheet', type: 'text/css', __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 28
         }
       }),
-      _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)(`/${ styleName || 'index' }.css`, version), __self: undefined,
+      _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)(`/${ styleName || 'index' }.css`, version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 29
         }
       }),
-      _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)('/styles.css', version), __self: undefined,
+      _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)('/styles.css', version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 30
         }
       }),
-      _react2.default.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill', __self: undefined,
+      _react2.default.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill', __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 31
@@ -113,20 +115,20 @@ exports.default = (_ref) => {
         dangerouslySetInnerHTML: {
           __html: `${ moduleIdentifier ? `window.MODULE_IDENTIFIER='${ moduleIdentifier }';` : '' }` + `window.VERSION='${ version }';` + `window.initialData=${ (0, _uneval2.default)(initialData) };` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${ (0, _uneval2.default)(initialBrowserContext) };`)
         },
-        __self: undefined,
+        __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 32
         }
       }),
-      _react2.default.createElement('script', { defer: true, src: (0, _assetUrl2.default)(`/${ scriptName }.js`, version), __self: undefined,
+      _react2.default.createElement('script', { defer: true, src: (0, _assetUrl2.default)(`/${ scriptName }.js`, version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 43
         }
       })
     );
-  })(), _types.ReactElementType, 'return value');
+  }.apply(undefined, _arguments), _types.ReactElementType, 'return value');
 };
 
 function _assert(x, type, name) {

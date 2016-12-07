@@ -22,10 +22,7 @@ function createReducer(defaultState, handlers) {
   });
   handlers = undefined;
 
-  return function () {
-    let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState();
-    let action = arguments[1];
-
+  return (state = defaultState(), action) => {
     if (action && handlerMap.has(action.type)) {
       return handlerMap.get(action.type)(state, action);
     }

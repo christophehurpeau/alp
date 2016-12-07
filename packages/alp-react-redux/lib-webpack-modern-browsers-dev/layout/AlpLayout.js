@@ -1,7 +1,8 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _jsxFileName = 'layout/AlpLayout.jsx',
-    _this = this;
+    _this = this,
+    _arguments = arguments;
 
 import React from 'react';
 import _t from 'tcomb-forked';
@@ -13,10 +14,10 @@ import { Html } from 'fody';
 import AlpHead from './AlpHead';
 import AlpBody from './AlpBody';
 
-export default ((_ref) => {
-  var helmet = _ref.helmet,
-      content = _ref.content,
-      props = _objectWithoutProperties(_ref, ['helmet', 'content']);
+export default (function alpLayoutJsx(_ref) {
+  var { helmet, content } = _ref;
+
+  var props = _objectWithoutProperties(_ref, ['helmet', 'content']);
 
   _assert({
     helmet,
@@ -24,17 +25,17 @@ export default ((_ref) => {
     props
   }, LayoutPropsType, '{ helmet, content, ...props }');
 
-  return _assert((() => {
+  return _assert(function () {
     return React.createElement(
       Html,
-      { helmet: helmet, __self: _this,
+      { helmet: helmet, __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 7
         }
       },
       React.createElement(AlpHead, _extends({ helmet: helmet }, props, {
-        __self: _this,
+        __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 8
@@ -43,13 +44,13 @@ export default ((_ref) => {
       React.createElement(
         AlpBody,
         {
-          __self: _this,
+          __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 9
           }
         },
-        React.createElement('div', { id: 'app', dangerouslySetInnerHTML: { __html: content }, __self: _this,
+        React.createElement('div', { id: 'app', dangerouslySetInnerHTML: { __html: content }, __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 10
@@ -57,7 +58,7 @@ export default ((_ref) => {
         })
       )
     );
-  })(), ReactElementType, 'return value');
+  }.apply(_this, _arguments), ReactElementType, 'return value');
 });
 
 function _assert(x, type, name) {

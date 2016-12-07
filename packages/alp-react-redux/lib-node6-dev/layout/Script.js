@@ -34,15 +34,10 @@ const ContextType = _tcombForked2.default.interface({
   })
 }, 'ContextType');
 
-exports.default = (_ref, _ref2) => {
-  var _assert3 = _assert(_ref, PropsType, '{ src, ...props }');
+exports.default = function scriptJsx(_ref, { context }) {
+  let { src } = _assert(_ref, PropsType, '{ src, ...props }');
 
-  let src = _assert3.src,
-      props = _objectWithoutProperties(_assert3, ['src']);
-
-  var _assert2 = _assert(_ref2, ContextType, '{ context }');
-
-  let context = _assert2.context;
+  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ src, ...props }'), ['src']);
 
   _assert({
     src,

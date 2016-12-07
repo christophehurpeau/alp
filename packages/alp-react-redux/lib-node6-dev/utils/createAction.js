@@ -34,20 +34,14 @@ function createAction(type, argsNamesOrHandler, data) {
   const typeofSecondArg = typeof argsNamesOrHandler;
 
   if (typeofSecondArg === 'function') {
-    action = function action() {
-      return _extends({ type }, data, argsNamesOrHandler(...arguments));
-    };
+    action = (...args) => _extends({ type }, data, argsNamesOrHandler(...args));
   } else {
     if (typeofSecondArg === 'string') {
       argsNamesOrHandler = argsNamesOrHandler.split(',');
     }
 
     if (argsNamesOrHandler) {
-      action = function action() {
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
+      action = (...args) => {
         const action = _extends({ type }, data);
         args.forEach((value, index) => action[argsNamesOrHandler[index]] = value);
         return action;
