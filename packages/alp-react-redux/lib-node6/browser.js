@@ -151,6 +151,9 @@ function alpReactRedux(element) {
           if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
             // keep state
             Object.assign(state, store.getState());
+          } else {
+            // replace reducer
+            store.replaceReducer(reducer);
           }
 
           Object.assign(state, data);
@@ -161,7 +164,7 @@ function alpReactRedux(element) {
         this.store = store;
 
         (0, _fody2.default)({
-          App: moduleDescriptor.reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
+          App: reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
           appProps: {
             store,
             context: this,

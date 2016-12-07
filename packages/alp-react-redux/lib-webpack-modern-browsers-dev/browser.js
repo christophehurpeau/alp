@@ -93,6 +93,9 @@ export default function alpReactRedux(element) {
             if (store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier) {
               // keep state
               Object.assign(state, store.getState());
+            } else {
+              // replace reducer
+              store.replaceReducer(reducer);
             }
 
             Object.assign(state, data);
@@ -103,7 +106,7 @@ export default function alpReactRedux(element) {
           _this.store = store;
 
           render({
-            App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
+            App: reducer ? AlpReduxApp : AlpReactApp,
             appProps: {
               store,
               context: _this,
