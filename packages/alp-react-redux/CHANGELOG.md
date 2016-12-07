@@ -1,3 +1,8 @@
+### v6.0.2
+
+- [`20fda4b`](https://github.com/alpjs/alp-react-redux/commit/20fda4bcc70a084ff62d4a6aece43bfd4e2e5134) refactor: pob update (Christophe Hurpeau)
+- [`c29baba`](https://github.com/alpjs/alp-react-redux/commit/c29babae0d0f1e3304b64570501a04e51c3a312c) fix: state undefined in browser (Christophe Hurpeau)
+
 ### v6.0.1
 
 - [`34c6b3a`](https://github.com/alpjs/alp-react-redux/commit/34c6b3a7408cf27d14b3f0fb72d3cbb5a8fb243d) refactor: child logger websocket (Christophe Hurpeau)
