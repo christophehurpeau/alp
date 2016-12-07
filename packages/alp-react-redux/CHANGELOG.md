@@ -1,3 +1,7 @@
+### v6.0.3
+
+- [`074ffc6`](https://github.com/alpjs/alp-react-redux/commit/074ffc6c2c5a8f424572e36e5a15f15b798af87f) fix: replace reducer (Christophe Hurpeau)
+
 ### v6.0.2
 
 - [`20fda4b`](https://github.com/alpjs/alp-react-redux/commit/20fda4bcc70a084ff62d4a6aece43bfd4e2e5134) refactor: pob update (Christophe Hurpeau)
