@@ -1,3 +1,7 @@
+### v6.0.4
+
+- [`6a4c13e`](https://github.com/alpjs/alp-react-redux/commit/6a4c13ee96d5d17a5005ba5f1699029e60341db5) fix: use unmountComponentAtNode (Christophe Hurpeau)
+
 ### v6.0.3
 
 - [`074ffc6`](https://github.com/alpjs/alp-react-redux/commit/074ffc6c2c5a8f424572e36e5a15f15b798af87f) fix: replace reducer (Christophe Hurpeau)
