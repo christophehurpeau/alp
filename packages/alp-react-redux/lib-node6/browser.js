@@ -152,6 +152,8 @@ function alpReactRedux(element) {
             // keep state
             Object.assign(state, store.getState());
           } else {
+            // destroy actual component
+            (0, _fody.unmountComponentAtNode)(element);
             // replace reducer
             store.replaceReducer(reducer);
           }

@@ -1484,9 +1484,9 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-fody@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/fody/-/fody-6.0.1.tgz#d7b2c6875b6d07adc640b5572ec6c3821a7a40bd"
+fody@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/fody/-/fody-6.1.0.tgz#1e3223317cadd70ac759ff3ce7e880ed8a121657"
   dependencies:
     react-dom "^15.3.2"
     react-helmet "^3.1.0"

@@ -1,7 +1,7 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /* global window */
-import render from 'fody';
+import render, { unmountComponentAtNode } from 'fody';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares-browser';
@@ -96,6 +96,8 @@ export default function alpReactRedux(element) {
               // keep state
               Object.assign(state, store.getState());
             } else {
+              // destroy actual component
+              unmountComponentAtNode(element);
               // replace reducer
               store.replaceReducer(reducer);
             }

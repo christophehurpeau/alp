@@ -1,5 +1,5 @@
 /* global window */
-import render from 'fody';
+import render, { unmountComponentAtNode } from 'fody';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middlewares-browser';
@@ -91,6 +91,8 @@ export default function alpReactRedux(element) {
               // keep state
               Object.assign(state, store.getState());
             } else {
+              // destroy actual component
+              unmountComponentAtNode(element);
               // replace reducer
               store.replaceReducer(reducer);
             }
