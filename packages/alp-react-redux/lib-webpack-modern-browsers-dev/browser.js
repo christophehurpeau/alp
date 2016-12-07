@@ -60,7 +60,7 @@ export default function alpReactRedux(element) {
           }
 
           if (!_loaded && moduleDescriptor.loader) {
-            var currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+            var currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : Object.create(null);
 
             // const _state = data;
             return {
@@ -105,7 +105,7 @@ export default function alpReactRedux(element) {
           render({
             App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
             appProps: {
-              store: store,
+              store,
               context: _this,
               moduleDescriptor
             },

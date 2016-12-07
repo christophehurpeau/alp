@@ -59,7 +59,7 @@ export default function alpReactRedux(element) {
         var _ret2 = function () {
 
           if (!_loaded && moduleDescriptor.loader) {
-            var currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+            var currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : Object.create(null);
 
             // const _state = data;
             return {

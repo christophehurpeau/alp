@@ -127,7 +127,7 @@ function alpReactRedux(element) {
         }
 
         if (!_loaded && moduleDescriptor.loader) {
-          const currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : undefined;
+          const currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : Object.create(null);
 
           // const _state = data;
           return moduleDescriptor.loader(currentState, data).then(data => this.render(moduleDescriptor, data, true, _loadingBar));
@@ -166,7 +166,7 @@ function alpReactRedux(element) {
         (0, _fody2.default)({
           App: moduleDescriptor.reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
           appProps: {
-            store: store,
+            store,
             context: this,
             moduleDescriptor
           },
