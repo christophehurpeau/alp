@@ -1,6 +1,9 @@
-# alp-websocket
+# alp-websocket [![NPM version][npm-image]][npm-url]
 
-Provide a simple access to socket.io
+websocket in alp framework
+
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
 
 ## Server-side
 
@@ -35,3 +38,10 @@ common:
         secure: true
         port: 3001
 ```
+
+[npm-image]: https://img.shields.io/npm/v/alp-websocket.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/alp-websocket
+[daviddm-image]: https://david-dm.org/alpjs/alp-websocket.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/alpjs/alp-websocket
+[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-websocket/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-websocket
