@@ -89,7 +89,7 @@ function emit(...args): Promise {
 
     socket.emit(...args, (error, result) => {
       clearTimeout(resolved);
-      if (error != null) return reject(error);
+      if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
       resolve(result);
     });
   });
