@@ -1,3 +1,7 @@
+<a name="3.10.0"></a>
+# [3.10.0](https://github.com/alpjs/alp-websocket/compare/v3.9.0...v3.10.0) (2016-12-22)
+
+
 <a name="3.9.0"></a>
 # [3.9.0](https://github.com/alpjs/alp-websocket/compare/v3.8.0...v3.9.0) (2016-12-22)
 
