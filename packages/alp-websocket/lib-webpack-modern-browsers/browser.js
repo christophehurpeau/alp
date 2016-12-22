@@ -26,11 +26,7 @@ export default function alpWebsocket(app, namespaceName) {
   return socket;
 }
 
-function start(_ref) {
-  var config = _ref.config,
-      context = _ref.context;
-  var namespaceName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-
+function start({ config, context }, namespaceName = '') {
   if (socket) {
     throw new Error('WebSocket already started');
   }
@@ -55,25 +51,23 @@ function start(_ref) {
     transports: ['websocket']
   });
 
-  socket.on('connect', () => {
+  socket.on('connect', function () {
     logger.success('connected');
     successfulConnection = true;
     connected = true;
   });
 
-  socket.on('reconnect', () => {
+  socket.on('reconnect', function () {
     logger.success('reconnected');
     connected = true;
   });
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', function () {
     logger.warn('disconnected');
     connected = false;
   });
 
-  socket.on('hello', (_ref2) => {
-    var version = _ref2.version;
-
+  socket.on('hello', function ({ version }) {
     if (version !== window.VERSION) {
       // eslint-disable-next-line no-alert
       if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) {
@@ -87,21 +81,17 @@ function start(_ref) {
   return socket;
 }
 
-function emit() {
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
+function emit(...args) {
   logger.debug('emit', { args });
-  return new Promise((resolve, reject) => {
-    var resolved = setTimeout(() => {
+  return new Promise(function (resolve, reject) {
+    var resolved = setTimeout(function () {
       logger.warn('websocket emit timeout', { args });
       reject(new Error('websocket response timeout'));
     }, 10000);
 
-    socket.emit(...args, (error, result) => {
+    socket.emit(...args, function (error, result) {
       clearTimeout(resolved);
-      if (error != null) return reject(error);
+      if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
       resolve(result);
     });
   });
