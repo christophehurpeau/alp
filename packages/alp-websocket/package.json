@@ -44,14 +44,14 @@
     "babel-preset-es2015-node6": "^0.4.0",
     "babel-preset-modern-browsers": "^7.0.0",
     "eslint": "^3.10.2",
-    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-config-airbnb-base": "^11.0.0",
     "eslint-config-pob": "^10.0.1",
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-import": "^2.2.0",
     "komet": "^0.1.4",
     "komet-karma": "^0.2.3",
     "pob-babel": "^12.5.3",
-    "pob-release": "^2.3.0",
+    "pob-release": "^3.0.0",
     "tcomb-forked": "^3.4.0"
   }
 }
