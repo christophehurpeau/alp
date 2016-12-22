@@ -1,3 +1,12 @@
+<a name="3.9.0"></a>
+# [3.9.0](https://github.com/alpjs/alp-websocket/compare/v3.8.0...v3.9.0) (2016-12-22)
+
+
+### Features
+
+* transform error from websocket into Error instance if string ([5504f1e](https://github.com/alpjs/alp-websocket/commit/5504f1e))
+
+
 ### v3.8.0
 
 - [`4554910`](https://github.com/alpjs/alp-websocket/commit/4554910887fb4344bd59b0497a9a012a99f2d499) refactor: on hello, if version mismatch warn instead of reload (Christophe Hurpeau)
