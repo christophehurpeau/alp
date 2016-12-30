@@ -16,8 +16,8 @@ default:
 
 build-prod:
 	NODE_ENV=production $(BIN)alp-dev-build-config
-	NODE_ENV=production WEBPACK_DEST=modern-browsers node_modules/.bin/webpack --hide-modules
-	NODE_ENV=production WEBPACK_DEST=es5 node_modules/.bin/webpack --hide-modules
+	NODE_ENV=production WEBPACK_DEST=modern-browsers $(BIN)webpack --hide-modules
+	NODE_ENV=production WEBPACK_DEST=es5 $(BIN)webpack --hide-modules
 	gzip -fk9 public/modern-browsers.js
 	gzip -fk9 public/es5.js
 	lzma -fke9 --threads 0 public/modern-browsers.js

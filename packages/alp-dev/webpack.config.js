@@ -39,7 +39,7 @@ module.exports = {
       !modernBrowsers && 'babel-regenerator-runtime',
       !production && 'webpack-hot-middleware/client',
       !production && 'react-hot-loader/patch',
-      './src/index.browser.js',
+      './src/index.browser',
     ].filter(Boolean),
   },
 
