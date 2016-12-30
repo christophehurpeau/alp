@@ -1,3 +1,9 @@
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/alpjs/alp-dev/compare/v6.0.0...v6.1.0) (2016-12-30)
+
+upgrade dependencies
+
+
 ### v6.0.0
 
 - [`e398e95`](https://github.com/alpjs/alp-dev/commit/e398e950e912fa6f7bfe312e0ba4596906fbedc1) refactor: update portscanner :tada: (Christophe Hurpeau)
