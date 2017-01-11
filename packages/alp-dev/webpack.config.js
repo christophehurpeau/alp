@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -11,11 +12,16 @@ const dest = process.env.WEBPACK_DEST || 'modern-browsers';
 const modernBrowsers = dest === 'modern-browsers';
 // const modernBrowsers = false;
 
-const env = `webpack${modernBrowsers ? '-modern-browsers' : ''}${!production ? '-dev' : ''}`;
-const babelOptions = createBabelOpts(env, true);
-
 const resolvePreset = presetName => require.resolve(`babel-preset-${presetName}`);
 const resolvePlugin = pluginName => require.resolve(`babel-plugin-${pluginName}`);
+
+const env = `webpack${modernBrowsers ? '-modern-browsers' : ''}${!production ? '-dev' : ''}`;
+const babelOptions = createBabelOpts(
+  env,
+  true,
+  { plugins: [!production && require('react-hot-loader/babel')] }
+);
+
 const resolveBabel = resolve => thing => {
   if (Array.isArray(thing)) return [resolveBabel(resolve)(thing[0])].concat(thing.slice(1));
   if (typeof thing === 'string' && !thing.startsWith('/')) return resolve(thing);
@@ -82,7 +88,7 @@ module.exports = {
           minified: production,
           comments: !production,
           presets: babelOptions.presets.map(resolveBabel(resolvePreset)),
-          plugins: babelOptions.plugins.map(resolveBabel(resolvePlugin)),
+          plugins: babelOptions.plugins,
         },
       },
       // CSS / STYL RULE
@@ -193,7 +199,7 @@ module.exports = {
             ['MODERN_BROWSERS', modernBrowsers],
           ].map(([key, value]) => ({
             identifierName: key,
-            replacement: { type: 'booleanLiteral', value: value },
+            replacement: { type: 'booleanLiteral', value },
           })),
         ],
         'minify-dead-code-elimination',
