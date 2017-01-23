@@ -1,5 +1,6 @@
 /* global PRODUCTION */
-export default function uneval(obj, objects = new Set()) {
+
+function uneval(obj, objects = new Set()) {
   switch (obj) {
     case null:
       return 'null';
@@ -50,3 +51,19 @@ export default function uneval(obj, objects = new Set()) {
 
   return `{${Object.keys(obj).map(key => `${JSON.stringify(key)}:${uneval(obj[key])}`).join(',')}}`;
 }
+
+// https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw
+const UNSAFE_CHARS_REGEXP = /[<>/\u2028\u2029]/g;
+const ESCAPED_CHARS = {
+  '<': '\\u003C',
+  '>': '\\u003E',
+  '/': '\\u002F',
+  '\u2028': '\\u2028',
+  '\u2029': '\\u2029',
+};
+
+const escapeUnsafeChars = (unsafeChar) => ESCAPED_CHARS[unsafeChar];
+
+export default (obj) => (
+  uneval(obj).replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars)
+);
