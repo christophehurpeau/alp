@@ -8,7 +8,7 @@ import { Head } from 'fody';
 import uneval from './uneval';
 import assetUrl from './assetUrl';
 
-export default (function alpHeadJsx(_ref) {
+export default (function (_ref) {
   var version = _ref.version,
       moduleIdentifier = _ref.moduleIdentifier,
       scriptName = _ref.scriptName,

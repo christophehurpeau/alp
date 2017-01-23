@@ -34,7 +34,7 @@ const ContextType = _tcombForked2.default.interface({
   })
 }, 'ContextType');
 
-exports.default = function stylesheetJsx(_ref, { context }) {
+exports.default = function stylesheet(_ref, { context }) {
   let { href } = _assert(_ref, PropsType, '{ href, ...props }');
 
   let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ href, ...props }'), ['href']);
@@ -60,18 +60,18 @@ exports.default = function stylesheetJsx(_ref, { context }) {
 };
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  if (false) {
+    _tcombForked2.default.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_tcombForked2.default.isType(type)) {
+  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
+    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
   }
 
   return x;

@@ -14,7 +14,7 @@ import { Html } from 'fody';
 import AlpHead from './AlpHead';
 import AlpBody from './AlpBody';
 
-export default (function alpLayoutJsx(_ref) {
+export default (function alpLayout(_ref) {
   var helmet = _ref.helmet,
       content = _ref.content,
       props = _objectWithoutProperties(_ref, ['helmet', 'content']);
@@ -62,18 +62,18 @@ export default (function alpLayoutJsx(_ref) {
 });
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  if (false) {
+    _t.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_t.isType(type)) {
+  if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _t.fail(message());
+    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
   }
 
   return x;

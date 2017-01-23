@@ -6,7 +6,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import assetUrl from './assetUrl';
 
-export default (function scriptJsx(_ref, { context }) {
+export default (function (_ref, { context }) {
   var { src } = _ref;
 
   var props = _objectWithoutProperties(_ref, ['src']);

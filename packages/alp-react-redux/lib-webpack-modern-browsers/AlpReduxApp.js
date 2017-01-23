@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import AlpReactApp from './AlpReactApp';
 
 
-export default (function alpReduxAppJsx(_ref) {
+export default (function (_ref) {
   var { children, store } = _ref;
 
   var props = _objectWithoutProperties(_ref, ['children', 'store']);

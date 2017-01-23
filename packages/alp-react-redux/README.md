@@ -1,6 +1,9 @@
-# alp-react-redux
+# alp-react-redux [![NPM version][npm-image]][npm-url]
 
-Render in react and redux with context and layout
+render with react and redux in alp framework
+
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
 
 ## How to install
 
@@ -80,3 +83,10 @@ export default createReducer(() => [], {
     [removeTodo]: (state, { id }) => todos.filter(todo => todo.id !== id),
 });
 ```
+
+[npm-image]: https://img.shields.io/npm/v/alp-react-redux.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/alp-react-redux
+[daviddm-image]: https://david-dm.org/alpjs/alp-react-redux.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/alpjs/alp-react-redux
+[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-react-redux/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-react-redux

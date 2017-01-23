@@ -6,5 +6,6 @@
   ],
   "react": true,
   "testing": false,
-  "documentation": false
+  "documentation": false,
+  "doclets": false
 }

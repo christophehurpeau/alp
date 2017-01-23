@@ -6,7 +6,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import assetUrl from './assetUrl';
 
-export default (function stylesheetJsx(_ref, _ref2) {
+export default (function (_ref, _ref2) {
   var context = _ref2.context;
 
   var href = _ref.href,

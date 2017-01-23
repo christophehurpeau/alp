@@ -8,7 +8,7 @@ import { Html } from 'fody';
 import AlpHead from './AlpHead';
 import AlpBody from './AlpBody';
 
-export default (function alpLayoutJsx(_ref) {
+export default (function (_ref) {
   var helmet = _ref.helmet,
       content = _ref.content,
       props = _objectWithoutProperties(_ref, ['helmet', 'content']);
