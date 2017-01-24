@@ -1,3 +1,21 @@
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/alpjs/alp-react-redux/compare/v6.0.5...v7.0.0) (2017-01-24)
+
+
+### Bug Fixes
+
+* safer uneval ([14b40f2](https://github.com/alpjs/alp-react-redux/commit/14b40f2))
+
+### Features
+
+* add context in store ([3673486](https://github.com/alpjs/alp-react-redux/commit/3673486))
+
+
+### BREAKING CHANGES
+
+* react-redux@5
+
+
 ### v6.0.5
 
 - [`a4a55f7`](https://github.com/alpjs/alp-react-redux/commit/a4a55f7ca843a65316df1aab1ece1a3cad467936) fix: replaceReducer (Christophe Hurpeau)
