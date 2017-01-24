@@ -17,21 +17,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-function createAuthController(_ref) {
-  var _assert2 = _assert(_ref, _tcombForked2.default.interface({
-    usersManager: _tcombForked2.default.Object,
-    authenticationService: _AuthenticationService2.default,
-    loginModuleDescriptor: _tcombForked2.default.Object,
-    homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
-  }), '{ usersManager, authenticationService, loginModuleDescriptor, homeRouterKey = \'home\' }');
-
-  let usersManager = _assert2.usersManager,
-      authenticationService = _assert2.authenticationService,
-      loginModuleDescriptor = _assert2.loginModuleDescriptor;
-  var _assert2$homeRouterKe = _assert2.homeRouterKey;
-  let homeRouterKey = _assert2$homeRouterKe === undefined ? 'home' : _assert2$homeRouterKe;
-
-  _assert(arguments[0], _tcombForked2.default.interface({
+function createAuthController({
+  usersManager,
+  authenticationService,
+  loginModuleDescriptor,
+  homeRouterKey = 'home'
+}) {
+  _assert({
+    usersManager,
+    authenticationService,
+    loginModuleDescriptor,
+    homeRouterKey
+  }, _tcombForked2.default.interface({
     usersManager: _tcombForked2.default.Object,
     authenticationService: _AuthenticationService2.default,
     loginModuleDescriptor: _tcombForked2.default.Object,
@@ -82,18 +79,18 @@ function createAuthController(_ref) {
 }
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  if (false) {
+    _tcombForked2.default.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_tcombForked2.default.isType(type)) {
+  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
+    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
   }
 
   return x;

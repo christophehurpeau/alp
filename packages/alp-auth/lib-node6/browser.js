@@ -9,7 +9,7 @@ var _routes = require('./routes');
 
 Object.defineProperty(exports, 'routes', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _interopRequireDefault(_routes).default;
   }
 });
@@ -21,12 +21,12 @@ var _createAuthController2 = _interopRequireDefault(_createAuthController);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function init(_ref) {
-  let controllers = _ref.controllers,
-      loginModuleDescriptor = _ref.loginModuleDescriptor,
-      homeRouterKey = _ref.homeRouterKey;
-
-  return app => {
+function init({
+  controllers,
+  loginModuleDescriptor,
+  homeRouterKey
+}) {
+  return () => {
     controllers.set('auth', (0, _createAuthController2.default)({
       loginModuleDescriptor,
       homeRouterKey

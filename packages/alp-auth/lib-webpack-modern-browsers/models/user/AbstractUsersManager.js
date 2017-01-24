@@ -6,11 +6,7 @@ export default {
     DELETED: 'deleted'
   },
 
-  findOneByAccountOrEmails(_ref) {
-    var provider = _ref.provider,
-        accountId = _ref.accountId,
-        emails = _ref.emails;
-
+  findOneByAccountOrEmails({ provider, accountId, emails }) {
     throw new Error('Not implemented');
   },
 
@@ -34,13 +30,15 @@ export default {
       status: user.status,
       emails: user.emails,
       emailDomains: user.emailDomains,
-      accounts: user.accounts.map(account => ({
-        provider: account.provider,
-        accountId: account.accountId,
-        name: account.name,
-        status: account.status,
-        profile: account.profile
-      }))
+      accounts: user.accounts.map(function (account) {
+        return {
+          provider: account.provider,
+          accountId: account.accountId,
+          name: account.name,
+          status: account.status,
+          profile: account.profile
+        };
+      })
     };
   }
 };

@@ -110,7 +110,7 @@ export default class UserAccountsService extends EventEmitter {
     ));
 
     if (!account) {
-      account = { provider: strategy, accountId: accountId };
+      account = { provider: strategy, accountId };
       user.accounts.push(account);
     }
 

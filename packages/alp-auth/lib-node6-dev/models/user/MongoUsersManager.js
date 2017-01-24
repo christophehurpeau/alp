@@ -21,18 +21,12 @@ exports.default = mongoUsersManager;
 
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails(_ref) {
-    var _assert2 = _assert(_ref, _tcombForked2.default.interface({
-      provider: _tcombForked2.default.String,
-      accountId: _tcombForked2.default.union([_tcombForked2.default.String, _tcombForked2.default.Number]),
-      emails: _tcombForked2.default.maybe(_tcombForked2.default.list(_tcombForked2.default.String))
-    }), '{ provider, accountId, emails }');
-
-    let provider = _assert2.provider,
-        accountId = _assert2.accountId,
-        emails = _assert2.emails;
-
-    _assert(arguments[0], _tcombForked2.default.interface({
+  findOneByAccountOrEmails({ provider, accountId, emails }) {
+    _assert({
+      provider,
+      accountId,
+      emails
+    }, _tcombForked2.default.interface({
       provider: _tcombForked2.default.String,
       accountId: _tcombForked2.default.union([_tcombForked2.default.String, _tcombForked2.default.Number]),
       emails: _tcombForked2.default.maybe(_tcombForked2.default.list(_tcombForked2.default.String))
@@ -71,18 +65,18 @@ Object.assign(mongoUsersManager, {
 });
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  if (false) {
+    _tcombForked2.default.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_tcombForked2.default.isType(type)) {
+  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
+    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
   }
 
   return x;

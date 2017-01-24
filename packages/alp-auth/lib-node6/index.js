@@ -9,7 +9,7 @@ var _routes = require('./routes');
 
 Object.defineProperty(exports, 'routes', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _interopRequireDefault(_routes).default;
   }
 });
@@ -61,13 +61,13 @@ exports.rethinkUsersManager = _rethinkUsersManager2.default;
 const COOKIE_NAME = 'connectedUser';
 const logger = new _nightingaleLogger2.default('alp:auth');
 
-function init(_ref) {
-  let controllers = _ref.controllers,
-      usersManager = _ref.usersManager,
-      strategies = _ref.strategies,
-      loginModuleDescriptor = _ref.loginModuleDescriptor,
-      homeRouterKey = _ref.homeRouterKey;
-
+function init({
+  controllers,
+  usersManager,
+  strategies,
+  loginModuleDescriptor,
+  homeRouterKey
+}) {
   return app => {
     const userAccountsService = new _UserAccountsService2.default(usersManager);
 
@@ -81,7 +81,7 @@ function init(_ref) {
     }));
 
     app.context.setConnected = (() => {
-      var _ref2 = _asyncToGenerator(function* (connected, user) {
+      var _ref = _asyncToGenerator(function* (connected, user) {
         var _this = this;
 
         logger.debug('setConnected', { connected });
@@ -107,7 +107,7 @@ function init(_ref) {
       });
 
       return function (_x, _x2) {
-        return _ref2.apply(this, arguments);
+        return _ref.apply(this, arguments);
       };
     })();
 
@@ -141,7 +141,7 @@ function init(_ref) {
       app.websocket.users = users;
 
       app.websocket.use((() => {
-        var _ref3 = _asyncToGenerator(function* (socket, next) {
+        var _ref2 = _asyncToGenerator(function* (socket, next) {
           const handshakeData = socket.request;
           const cookies = new Cookies(handshakeData, null, { keys: app.keys });
           let token = cookies.get(COOKIE_NAME);
@@ -175,13 +175,13 @@ function init(_ref) {
         });
 
         return function (_x3, _x4) {
-          return _ref3.apply(this, arguments);
+          return _ref2.apply(this, arguments);
         };
       })());
     }
 
     return (() => {
-      var _ref4 = _asyncToGenerator(function* (ctx, next) {
+      var _ref3 = _asyncToGenerator(function* (ctx, next) {
         let token = ctx.cookies.get(COOKIE_NAME);
         logger.debug('middleware', { token });
 
@@ -213,7 +213,7 @@ function init(_ref) {
       });
 
       return function (_x5, _x6) {
-        return _ref4.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     })();
   };

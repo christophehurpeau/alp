@@ -21,7 +21,9 @@ export default class UserAccountsService extends EventEmitter {
     if (!user || !accountId) {
       return newScope;
     }
-    var account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
+    var account = user.accounts.find(function (account) {
+      return account.provider === strategy && account.accountId === accountId;
+    });
 
     if (!account) {
       throw new Error('Could not found associated account');
@@ -107,7 +109,7 @@ export default class UserAccountsService extends EventEmitter {
       });
 
       if (!account) {
-        account = { provider: strategy, accountId: accountId };
+        account = { provider: strategy, accountId };
         user.accounts.push(account);
       }
 
@@ -147,7 +149,9 @@ export default class UserAccountsService extends EventEmitter {
   }
 
   updateAccount(user, account) {
-    return this.usersManager.updateAccount(user, account).then(() => user);
+    return this.usersManager.updateAccount(user, account).then(function () {
+      return user;
+    });
   }
 }
 UserAccountsService.strategyToService = {

@@ -7,12 +7,12 @@ export default {
     DELETED: 'deleted'
   },
 
-  findOneByAccountOrEmails(_ref) {
-    var provider = _ref.provider,
-        accountId = _ref.accountId,
-        emails = _ref.emails;
-
-    _assert(arguments[0], _t.interface({
+  findOneByAccountOrEmails({ provider, accountId, emails }) {
+    _assert({
+      provider,
+      accountId,
+      emails
+    }, _t.interface({
       provider: _t.String,
       accountId: _t.union([_t.String, _t.Number]),
       emails: _t.maybe(_t.list(_t.String))
@@ -49,30 +49,32 @@ export default {
       status: user.status,
       emails: user.emails,
       emailDomains: user.emailDomains,
-      accounts: user.accounts.map(account => ({
-        provider: account.provider,
-        accountId: account.accountId,
-        name: account.name,
-        status: account.status,
-        profile: account.profile
-      }))
+      accounts: user.accounts.map(function (account) {
+        return {
+          provider: account.provider,
+          accountId: account.accountId,
+          name: account.name,
+          status: account.status,
+          profile: account.profile
+        };
+      })
     };
   }
 };
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  if (false) {
+    _t.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_t.isType(type)) {
+  if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _t.fail(message());
+    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
   }
 
   return x;

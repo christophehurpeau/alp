@@ -18,14 +18,20 @@ export { default as routes } from './routes';
 var COOKIE_NAME = 'connectedUser';
 var logger = new Logger('alp:auth');
 
-export default function init(_ref) {
-  var controllers = _ref.controllers,
-      usersManager = _ref.usersManager,
-      strategies = _ref.strategies,
-      loginModuleDescriptor = _ref.loginModuleDescriptor,
-      homeRouterKey = _ref.homeRouterKey;
-
-  _assert(arguments[0], _t.interface({
+export default function init({
+  controllers,
+  usersManager,
+  strategies,
+  loginModuleDescriptor,
+  homeRouterKey
+}) {
+  _assert({
+    controllers,
+    usersManager,
+    strategies,
+    loginModuleDescriptor,
+    homeRouterKey
+  }, _t.interface({
     controllers: Map,
     usersManager: _t.Object,
     strategies: _t.Object,
@@ -33,7 +39,7 @@ export default function init(_ref) {
     homeRouterKey: _t.maybe(_t.String)
   }), '{ controllers, usersManager, strategies, loginModuleDescriptor, homeRouterKey }');
 
-  return app => {
+  return function (app) {
     var userAccountsService = new UserAccountsService(usersManager);
 
     var authenticationService = new AuthenticationService(app.config, strategies, userAccountsService);
@@ -45,8 +51,8 @@ export default function init(_ref) {
       homeRouterKey
     }));
 
-    app.context.setConnected = (() => {
-      var _ref2 = _asyncToGenerator(function* (connected, user) {
+    app.context.setConnected = function () {
+      var _ref = _asyncToGenerator(function* (connected, user) {
         var _this = this;
 
         _assert(connected, _t.union([_t.Number, _t.String]), 'connected');
@@ -76,9 +82,9 @@ export default function init(_ref) {
       });
 
       return function (_x, _x2) {
-        return _ref2.apply(this, arguments);
+        return _ref.apply(this, arguments);
       };
-    })();
+    }();
 
     app.context.logout = function () {
       delete this.state.connected;
@@ -86,14 +92,14 @@ export default function init(_ref) {
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
     };
 
-    app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
+    app.registerBrowserStateTransformer(function (initialBrowserState, ctx) {
       if (ctx.state.connected) {
         initialBrowserState.connected = ctx.state.connected;
         initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user);
       }
     });
 
-    var decodeJwt = (token, userAgent) => {
+    var decodeJwt = function decodeJwt(token, userAgent) {
       var result = verify(token, app.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
         audience: userAgent
@@ -110,8 +116,8 @@ export default function init(_ref) {
         var users = new Map();
         app.websocket.users = users;
 
-        app.websocket.use((() => {
-          var _ref3 = _asyncToGenerator(function* (socket, next) {
+        app.websocket.use(function () {
+          var _ref2 = _asyncToGenerator(function* (socket, next) {
             var handshakeData = socket.request;
             var cookies = new Cookies(handshakeData, null, { keys: app.keys });
             var token = cookies.get(COOKIE_NAME);
@@ -145,14 +151,14 @@ export default function init(_ref) {
           });
 
           return function (_x3, _x4) {
-            return _ref3.apply(this, arguments);
+            return _ref2.apply(this, arguments);
           };
-        })());
+        }());
       })();
     }
 
-    return (() => {
-      var _ref4 = _asyncToGenerator(function* (ctx, next) {
+    return function () {
+      var _ref3 = _asyncToGenerator(function* (ctx, next) {
         var token = ctx.cookies.get(COOKIE_NAME);
         logger.debug('middleware', { token });
 
@@ -184,25 +190,25 @@ export default function init(_ref) {
       });
 
       return function (_x5, _x6) {
-        return _ref4.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
-    })();
+    }();
   };
 }
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  if (false) {
+    _t.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_t.isType(type)) {
+  if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _t.fail(message());
+    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
   }
 
   return x;

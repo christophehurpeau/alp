@@ -11,7 +11,12 @@ export default function createAuthController(_ref) {
       _ref$homeRouterKey = _ref.homeRouterKey,
       homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
 
-  _assert(arguments[0], _t.interface({
+  _assert({
+    usersManager: usersManager,
+    authenticationService: authenticationService,
+    loginModuleDescriptor: loginModuleDescriptor,
+    homeRouterKey: homeRouterKey
+  }, _t.interface({
     usersManager: _t.Object,
     authenticationService: AuthenticationService,
     loginModuleDescriptor: _t.Object,
@@ -120,18 +125,18 @@ export default function createAuthController(_ref) {
 }
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  if (false) {
+    _t.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_t.isType(type)) {
+  if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _t.fail(message());
+    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
   }
 
   return x;

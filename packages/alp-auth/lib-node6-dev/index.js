@@ -9,7 +9,7 @@ var _routes = require('./routes');
 
 Object.defineProperty(exports, 'routes', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _interopRequireDefault(_routes).default;
   }
 });
@@ -65,22 +65,20 @@ exports.rethinkUsersManager = _rethinkUsersManager2.default;
 const COOKIE_NAME = 'connectedUser';
 const logger = new _nightingaleLogger2.default('alp:auth');
 
-function init(_ref) {
-  var _assert2 = _assert(_ref, _tcombForked2.default.interface({
-    controllers: Map,
-    usersManager: _tcombForked2.default.Object,
-    strategies: _tcombForked2.default.Object,
-    loginModuleDescriptor: _tcombForked2.default.Object,
-    homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
-  }), '{ controllers, usersManager, strategies, loginModuleDescriptor, homeRouterKey }');
-
-  let controllers = _assert2.controllers,
-      usersManager = _assert2.usersManager,
-      strategies = _assert2.strategies,
-      loginModuleDescriptor = _assert2.loginModuleDescriptor,
-      homeRouterKey = _assert2.homeRouterKey;
-
-  _assert(arguments[0], _tcombForked2.default.interface({
+function init({
+  controllers,
+  usersManager,
+  strategies,
+  loginModuleDescriptor,
+  homeRouterKey
+}) {
+  _assert({
+    controllers,
+    usersManager,
+    strategies,
+    loginModuleDescriptor,
+    homeRouterKey
+  }, _tcombForked2.default.interface({
     controllers: Map,
     usersManager: _tcombForked2.default.Object,
     strategies: _tcombForked2.default.Object,
@@ -101,7 +99,7 @@ function init(_ref) {
     }));
 
     app.context.setConnected = (() => {
-      var _ref2 = _asyncToGenerator(function* (connected, user) {
+      var _ref = _asyncToGenerator(function* (connected, user) {
         var _this = this;
 
         _assert(connected, _tcombForked2.default.union([_tcombForked2.default.Number, _tcombForked2.default.String]), 'connected');
@@ -131,7 +129,7 @@ function init(_ref) {
       });
 
       return function (_x, _x2) {
-        return _ref2.apply(this, arguments);
+        return _ref.apply(this, arguments);
       };
     })();
 
@@ -165,7 +163,7 @@ function init(_ref) {
       app.websocket.users = users;
 
       app.websocket.use((() => {
-        var _ref3 = _asyncToGenerator(function* (socket, next) {
+        var _ref2 = _asyncToGenerator(function* (socket, next) {
           const handshakeData = socket.request;
           const cookies = new Cookies(handshakeData, null, { keys: app.keys });
           let token = cookies.get(COOKIE_NAME);
@@ -199,13 +197,13 @@ function init(_ref) {
         });
 
         return function (_x3, _x4) {
-          return _ref3.apply(this, arguments);
+          return _ref2.apply(this, arguments);
         };
       })());
     }
 
     return (() => {
-      var _ref4 = _asyncToGenerator(function* (ctx, next) {
+      var _ref3 = _asyncToGenerator(function* (ctx, next) {
         let token = ctx.cookies.get(COOKIE_NAME);
         logger.debug('middleware', { token });
 
@@ -237,25 +235,25 @@ function init(_ref) {
       });
 
       return function (_x5, _x6) {
-        return _ref4.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     })();
   };
 }
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  if (false) {
+    _tcombForked2.default.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_tcombForked2.default.isType(type)) {
+  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
+    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
   }
 
   return x;

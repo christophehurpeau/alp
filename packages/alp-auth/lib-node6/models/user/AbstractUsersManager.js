@@ -9,11 +9,7 @@ exports.default = {
     DELETED: 'deleted'
   },
 
-  findOneByAccountOrEmails(_ref) {
-    let provider = _ref.provider,
-        accountId = _ref.accountId,
-        emails = _ref.emails;
-
+  findOneByAccountOrEmails({ provider, accountId, emails }) {
     throw new Error('Not implemented');
   },
 

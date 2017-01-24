@@ -15,11 +15,7 @@ exports.default = mongoUsersManager;
 
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails(_ref) {
-    let provider = _ref.provider,
-        accountId = _ref.accountId,
-        emails = _ref.emails;
-
+  findOneByAccountOrEmails({ provider, accountId, emails }) {
     let query = {
       'accounts.provider': provider,
       'accounts.accountId': accountId

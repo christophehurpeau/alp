@@ -123,7 +123,7 @@ class UserAccountsService extends _events2.default {
       });
 
       if (!account) {
-        account = { provider: strategy, accountId: accountId };
+        account = { provider: strategy, accountId };
         user.accounts.push(account);
       }
 

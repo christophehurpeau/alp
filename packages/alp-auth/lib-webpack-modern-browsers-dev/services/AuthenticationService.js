@@ -2,7 +2,7 @@ import _t from 'tcomb-forked';
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-/* eslint camelcase: "off" */
+/* eslint camelcase: 'off', max-lines: 'off' */
 import EventEmitter from 'events';
 import promiseCallback from 'promise-callback-factory';
 import Logger from 'nightingale-logger';
@@ -61,9 +61,7 @@ export default class AuthenticationService extends EventEmitter {
    * to this user/application combination for other scopes
    * @returns {string}
    */
-  generateAuthUrl(strategy) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
+  generateAuthUrl(strategy, options = {}) {
     _assert(strategy, _t.String, 'strategy');
 
     _assert(options, GenerateAuthUrlOptions, 'options');
@@ -84,9 +82,7 @@ export default class AuthenticationService extends EventEmitter {
     }
   }
 
-  getTokens(strategy) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
+  getTokens(strategy, options = {}) {
     _assert(strategy, _t.String, 'strategy');
 
     _assert(options, GetTokensOptions, 'options');
@@ -95,25 +91,27 @@ export default class AuthenticationService extends EventEmitter {
     var strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
-        return promiseCallback(done => {
+        return promiseCallback(function (done) {
           strategyInstance.oauth2.authorizationCode.getToken({
             code: options.code,
             redirect_uri: options.redirectUri
           }, done);
-        }).then(result => result && {
-          accessToken: result.access_token,
-          refreshToken: result.refresh_token,
-          tokenType: result.token_type,
-          expiresIn: result.expires_in,
-          expireDate: (() => {
-            var d = new Date();
-            d.setTime(d.getTime() + result.expires_in * 1000);
-            return d;
-          })(),
-          idToken: result.id_token
-        }
-        // return strategyInstance.accessToken.create(result);
-        );
+        }).then(function (result) {
+          return result && {
+            accessToken: result.access_token,
+            refreshToken: result.refresh_token,
+            tokenType: result.token_type,
+            expiresIn: result.expires_in,
+            expireDate: function () {
+              var d = new Date();
+              d.setTime(d.getTime() + result.expires_in * 1000);
+              return d;
+            }(),
+            idToken: result.id_token
+          }
+          // return strategyInstance.accessToken.create(result);
+          ;
+        });
     }
   }
 
@@ -133,17 +131,19 @@ export default class AuthenticationService extends EventEmitter {
               refresh_token: tokens.refreshToken
             });
             return {
-              v: promiseCallback(done => token.refresh(done)).then(result => {
+              v: promiseCallback(function (done) {
+                return token.refresh(done);
+              }).then(function (result) {
                 var tokens = result.token;
                 return result && {
                   accessToken: tokens.access_token,
                   tokenType: tokens.token_type,
                   expiresIn: tokens.expires_in,
-                  expireDate: (() => {
+                  expireDate: function () {
                     var d = new Date();
                     d.setTime(d.getTime() + tokens.expires_in * 1000);
                     return d;
-                  })(),
+                  }(),
                   idToken: tokens.id_token
                 };
               })
@@ -190,8 +190,8 @@ export default class AuthenticationService extends EventEmitter {
       var scope = _this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
       ctx.cookies.set(`auth_${ strategy }_${ state }`, JSON.stringify({
-        scopeKey: scopeKey,
-        scope: scope,
+        scopeKey,
+        scope,
         isLoginAccess: !scopeKey || scopeKey === 'login'
       }), {
         maxAge: 600000,
@@ -200,8 +200,8 @@ export default class AuthenticationService extends EventEmitter {
       });
       var redirectUri = _this.generateAuthUrl(strategy, {
         redirectUri: _this.redirectUri(ctx, strategy),
-        scope: scope,
-        state: state,
+        scope,
+        state,
         accessType: refreshToken ? 'offline' : 'online'
       });
 
@@ -251,7 +251,7 @@ export default class AuthenticationService extends EventEmitter {
       }
 
       var tokens = yield _this2.getTokens(strategy, {
-        code: code,
+        code,
         redirectUri: _this2.redirectUri(ctx, strategy)
       });
 
@@ -268,37 +268,41 @@ export default class AuthenticationService extends EventEmitter {
   }
 
   refreshAccountTokens(user, account) {
+    var _this3 = this;
+
     if (account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now()) {
       return Promise.resolve(false);
     }
     return this.refreshToken(account.provider, {
       accessToken: account.accessToken,
       refreshToken: account.refreshToken
-    }).then(tokens => {
+    }).then(function (tokens) {
       if (!tokens) {
         // serviceGoogle.updateFields({ accessToken:null, refreshToken:null, status: .OUTDATED });
         return false;
       }
       account.accessToken = tokens.accessToken;
       account.tokenExpireDate = tokens.expireDate;
-      return this.userAccountsService.updateAccount(user, account).then(() => true);
+      return _this3.userAccountsService.updateAccount(user, account).then(function () {
+        return true;
+      });
     });
   }
 }
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+  if (false) {
+    _t.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_t.isType(type)) {
+  if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _t.fail(message());
+    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
   }
 
   return x;

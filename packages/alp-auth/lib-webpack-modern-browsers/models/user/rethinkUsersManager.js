@@ -5,16 +5,16 @@ var mongoUsersManager = Object.create(abstractUsersManager);
 export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails(_ref) {
-    var provider = _ref.provider,
-        accountId = _ref.accountId,
-        emails = _ref.emails;
-
+  findOneByAccountOrEmails({ provider, accountId, emails }) {
     var r = this.store.r;
-    var filter = r.row('accounts').contains(row => r.and(row('provider').eq(provider), row('accountId').eq(accountId)));
+    var filter = r.row('accounts').contains(function (row) {
+      return r.and(row('provider').eq(provider), row('accountId').eq(accountId));
+    });
 
     if (emails && emails.length) {
-      filter = r.or(filter, r.row('emails').contains(row => r.expr(emails).contains(row)));
+      filter = r.or(filter, r.row('emails').contains(function (row) {
+        return r.expr(emails).contains(row);
+      }));
     }
 
     var query = this.store.query().filter(filter);

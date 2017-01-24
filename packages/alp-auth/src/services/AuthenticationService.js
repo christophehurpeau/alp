@@ -1,4 +1,4 @@
-/* eslint camelcase: "off" */
+/* eslint camelcase: 'off', max-lines: 'off' */
 import EventEmitter from 'events';
 import promiseCallback from 'promise-callback-factory';
 import Logger from 'nightingale-logger';
@@ -160,9 +160,9 @@ export default class AuthenticationService extends EventEmitter {
     const scope = this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
     ctx.cookies.set(`auth_${strategy}_${state}`, JSON.stringify({
-      scopeKey: scopeKey,
-      scope: scope,
-      isLoginAccess: isLoginAccess,
+      scopeKey,
+      scope,
+      isLoginAccess,
     }), {
       maxAge: 10 * 60 * 1000,
       httpOnly: true,
@@ -170,8 +170,8 @@ export default class AuthenticationService extends EventEmitter {
     });
     const redirectUri = this.generateAuthUrl(strategy, {
       redirectUri: this.redirectUri(ctx, strategy),
-      scope: scope,
-      state: state,
+      scope,
+      state,
       accessType: refreshToken ? 'offline' : 'online',
     });
 
@@ -213,7 +213,7 @@ export default class AuthenticationService extends EventEmitter {
     }
 
     const tokens = await this.getTokens(strategy, {
-      code: code,
+      code,
       redirectUri: this.redirectUri(ctx, strategy),
     });
 

@@ -35,18 +35,18 @@ function randomHex(size) {
 }
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  if (false) {
+    _tcombForked2.default.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_tcombForked2.default.isType(type)) {
+  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
+    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
   }
 
   return x;

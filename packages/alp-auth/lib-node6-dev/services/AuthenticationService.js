@@ -28,7 +28,7 @@ var _generators = require('../utils/generators');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* eslint camelcase: "off" */
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* eslint camelcase: 'off', max-lines: 'off' */
 
 
 const logger = new _nightingaleLogger2.default('alp:auth:authentication');
@@ -83,9 +83,7 @@ class AuthenticationService extends _events2.default {
    * to this user/application combination for other scopes
    * @returns {string}
    */
-  generateAuthUrl(strategy) {
-    let options = _assert(arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}, GenerateAuthUrlOptions, 'options');
-
+  generateAuthUrl(strategy, options = {}) {
     _assert(strategy, _tcombForked2.default.String, 'strategy');
 
     _assert(options, GenerateAuthUrlOptions, 'options');
@@ -106,9 +104,7 @@ class AuthenticationService extends _events2.default {
     }
   }
 
-  getTokens(strategy) {
-    let options = _assert(arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}, GetTokensOptions, 'options');
-
+  getTokens(strategy, options = {}) {
     _assert(strategy, _tcombForked2.default.String, 'strategy');
 
     _assert(options, GetTokensOptions, 'options');
@@ -206,8 +202,8 @@ class AuthenticationService extends _events2.default {
       const scope = _this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
       ctx.cookies.set(`auth_${ strategy }_${ state }`, JSON.stringify({
-        scopeKey: scopeKey,
-        scope: scope,
+        scopeKey,
+        scope,
         isLoginAccess: !scopeKey || scopeKey === 'login'
       }), {
         maxAge: 600000,
@@ -216,8 +212,8 @@ class AuthenticationService extends _events2.default {
       });
       const redirectUri = _this.generateAuthUrl(strategy, {
         redirectUri: _this.redirectUri(ctx, strategy),
-        scope: scope,
-        state: state,
+        scope,
+        state,
         accessType: refreshToken ? 'offline' : 'online'
       });
 
@@ -267,7 +263,7 @@ class AuthenticationService extends _events2.default {
       }
 
       const tokens = yield _this2.getTokens(strategy, {
-        code: code,
+        code,
         redirectUri: _this2.redirectUri(ctx, strategy)
       });
 
@@ -304,18 +300,18 @@ class AuthenticationService extends _events2.default {
 exports.default = AuthenticationService;
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  if (false) {
+    _tcombForked2.default.fail = function (message) {
+      console.warn(message);
+    };
   }
 
-  if (_tcombForked2.default.isType(type)) {
+  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
+    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
   }
 
   return x;

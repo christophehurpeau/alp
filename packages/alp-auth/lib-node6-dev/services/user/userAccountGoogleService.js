@@ -14,10 +14,10 @@ var _events2 = _interopRequireDefault(_events);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = new (_temp2 = _class = class UserAccountGoogleService extends _events2.default {
-  constructor() {
+  constructor(...args) {
     var _temp;
 
-    return _temp = super(...arguments), this.providerKey = 'google', _temp;
+    return _temp = super(...args), this.providerKey = 'google', _temp;
   }
 
   getProfile(tokens) {

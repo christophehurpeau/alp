@@ -5,11 +5,7 @@ var mongoUsersManager = Object.create(abstractUsersManager);
 export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails(_ref) {
-    var provider = _ref.provider,
-        accountId = _ref.accountId,
-        emails = _ref.emails;
-
+  findOneByAccountOrEmails({ provider, accountId, emails }) {
     var query = {
       'accounts.provider': provider,
       'accounts.accountId': accountId
