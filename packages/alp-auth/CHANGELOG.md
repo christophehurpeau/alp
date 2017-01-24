@@ -1,3 +1,9 @@
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/alpjs/alp-auth/compare/v0.8.1...v0.9.0) (2017-01-24)
+
+upgrade dependencies
+
+
 ### v0.8.1
 
 - [`f047d7a`](https://github.com/alpjs/alp-auth/commit/f047d7a682979d8cc827b8486158f0fde2e0b51c) Update README.md (Christophe Hurpeau)
