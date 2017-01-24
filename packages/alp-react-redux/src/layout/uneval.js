@@ -1,6 +1,6 @@
 /* global PRODUCTION */
 
-function uneval(obj, objects = new Set()) {
+function uneval(obj, keys, objects = new Set()) {
   switch (obj) {
     case null:
       return 'null';
@@ -19,7 +19,7 @@ function uneval(obj, objects = new Set()) {
   switch (typeof obj) {
     case 'function':
       if (!PRODUCTION) console.log(obj);
-      throw new Error(!PRODUCTION && 'Unsupported function.');
+      throw new Error(!PRODUCTION && `Unsupported function "${keys}".`);
     case 'string':
     case 'number':
     case 'boolean':
@@ -34,7 +34,9 @@ function uneval(obj, objects = new Set()) {
 
     // specialized types
   if (obj instanceof Array) {
-    return `[${obj.map(o => uneval(o, objects)).join(',')}]`;
+    return `[${obj.map((o, index) => (
+      uneval(o, !PRODUCTION && `${keys}[${index}]`, objects)
+    )).join(',')}]`;
   }
 
   if (obj instanceof Date) {
@@ -42,14 +44,16 @@ function uneval(obj, objects = new Set()) {
   }
 
   if (obj instanceof Set) {
-    return `new Set(${uneval(Array.from(obj))})`;
+    return `new Set(${uneval(Array.from(obj), keys)})`;
   }
 
   if (obj instanceof Map) {
-    return `new Map(${uneval(Array.from(obj))})`;
+    return `new Map(${uneval(Array.from(obj), keys)})`;
   }
 
-  return `{${Object.keys(obj).map(key => `${JSON.stringify(key)}:${uneval(obj[key])}`).join(',')}}`;
+  return `{${Object.keys(obj).map(key => (
+    `${JSON.stringify(key)}:${uneval(obj[key], !PRODUCTION && `${keys}.${key}`)}`
+  )).join(',')}}`;
 }
 
 // https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw
@@ -65,5 +69,5 @@ const ESCAPED_CHARS = {
 const escapeUnsafeChars = (unsafeChar) => ESCAPED_CHARS[unsafeChar];
 
 export default (obj) => (
-  uneval(obj).replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars)
+  uneval(obj, 'obj').replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars)
 );

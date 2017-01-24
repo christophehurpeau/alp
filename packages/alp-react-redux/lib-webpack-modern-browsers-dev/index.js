@@ -1,10 +1,16 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 import _t from 'tcomb-forked';
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 import render from 'fody';
 import Logger from 'nightingale-logger';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import AlpLayout from './layout/AlpLayout';
 import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
+import * as alpReducers from './reducers';
 import { ModuleDescriptorType } from './types';
 
 export { AlpReactApp, AlpReduxApp };
@@ -25,7 +31,20 @@ var logger = new Logger('alp:react-redux');
 var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
 { name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
-export default function alpReactRedux(Layout = AlpLayout) {
+var OptionsType = _t.interface({
+  Layout: _t.maybe(_t.Any),
+  sharedReducers: _t.maybe(_t.Object)
+}, {
+  name: 'OptionsType',
+  strict: true
+});
+
+export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} } = {}) {
+  _assert({
+    Layout,
+    sharedReducers
+  }, OptionsType, '{ Layout = AlpLayout, sharedReducers = {} }');
+
   return function (app) {
     _assert(app, _t.Object, 'app');
 
@@ -45,12 +64,20 @@ export default function alpReactRedux(Layout = AlpLayout) {
         });
       }
 
-      if (moduleDescriptor.reducer) {
-        this.store = createStore(moduleDescriptor.reducer, data);
+      var moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
+      var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+
+      if (reducer) {
+        this.store = createStore(reducer, _extends({ context: this }, data));
       }
 
       var version = this.config.get('version');
       var moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
+
+      // eslint-disable-next-line no-unused-vars
+      var { context: unusedContext } = moduleHasReducers ? this.store.getState() : {};
+
+      var initialData = _objectWithoutProperties(moduleHasReducers ? this.store.getState() : {}, ['context']);
 
       this.body = render({
         Layout,
@@ -71,17 +98,17 @@ export default function alpReactRedux(Layout = AlpLayout) {
             return 'es5';
           }(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
-          initialData: moduleDescriptor.reducer ? this.store.getState() : null
+          initialData: moduleHasReducers ? initialData : null
         },
 
-        App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
+        App: reducer ? AlpReduxApp : AlpReactApp,
         appProps: {
           store: this.store,
           context: this
         },
 
         View: moduleDescriptor.View,
-        props: moduleDescriptor.reducer ? undefined : data
+        props: moduleHasReducers ? undefined : data
       });
     };
   };

@@ -1,12 +1,15 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 /* global window */
 import render, { unmountComponentAtNode } from 'fody';
 import Logger from 'nightingale-logger';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
 import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
+import * as alpReducers from './reducers';
 
 export { AlpReactApp, AlpReduxApp };
 export { Helmet } from 'fody';
@@ -31,6 +34,11 @@ var currentModuleDescriptorIdentifier = void 0;
 
 var createHydratableReducer = function createHydratableReducer(reducer) {
   return function (state, action) {
+    // ignore redux init
+    if (action.type === '@@redux/INIT') {
+      return;
+    }
+
     if (action.type === HYDRATE_STATE) {
       state = action.state;
     }
@@ -40,6 +48,10 @@ var createHydratableReducer = function createHydratableReducer(reducer) {
 };
 
 export default function alpReactRedux(element) {
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref$sharedReducers = _ref.sharedReducers,
+      sharedReducers = _ref$sharedReducers === undefined ? {} : _ref$sharedReducers;
+
   return function (app) {
     var middleware = [createFunctionMiddleware(app), promiseMiddleware];
 
@@ -74,7 +86,8 @@ export default function alpReactRedux(element) {
           });
         }
 
-        var reducer = moduleDescriptor.reducer;
+        var moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
+        var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
         if (!reducer) {
           if (store) {
@@ -83,7 +96,7 @@ export default function alpReactRedux(element) {
           }
         } else if (store === undefined) {
           var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-          store = createStore(createHydratableReducer(reducer), data, composeEnhancers(applyMiddleware.apply(undefined, middleware)));
+          store = createStore(createHydratableReducer(reducer), Object.assign(Object.create(null), { context: this }, data), composeEnhancers(applyMiddleware.apply(undefined, middleware)));
         } else {
           var state = Object.create(null);
           var isSameModule = currentModuleDescriptorIdentifier === moduleDescriptor.identifier;
@@ -97,10 +110,12 @@ export default function alpReactRedux(element) {
               unmountComponentAtNode(element);
               // replace reducer
               store.replaceReducer(createHydratableReducer(reducer));
+              // add initial context
+              state.context = this;
             }
           }
 
-          Object.assign(state, data);
+          if (moduleHasReducers) Object.assign(state, data);
           store.dispatch({ type: HYDRATE_STATE, state: state });
         }
 
@@ -118,7 +133,7 @@ export default function alpReactRedux(element) {
             moduleDescriptor: moduleDescriptor
           },
           View: moduleDescriptor.View,
-          props: data,
+          props: moduleHasReducers ? undefined : data,
           element: element
         });
       } catch (err) {

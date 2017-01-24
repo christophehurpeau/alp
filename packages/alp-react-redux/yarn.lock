@@ -1414,9 +1414,9 @@ eslint-config-airbnb@^14.0.0:
   dependencies:
     eslint-config-airbnb-base "^11.0.1"
 
-eslint-config-pob@^10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-pob/-/eslint-config-pob-10.0.1.tgz#e878486c58beee051d94dee7c3d7f404e22f9381"
+eslint-config-pob@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-pob/-/eslint-config-pob-11.0.0.tgz#6b30fc1fa874f5c0b7a5c48e6034d0bb63e4436b"
 
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"

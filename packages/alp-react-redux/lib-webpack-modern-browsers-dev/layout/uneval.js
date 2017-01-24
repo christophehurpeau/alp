@@ -1,5 +1,6 @@
 /* global PRODUCTION */
-export default function uneval(obj, objects = new Set()) {
+
+function uneval(obj, keys, objects = new Set()) {
   switch (obj) {
     case null:
       return 'null';
@@ -18,7 +19,7 @@ export default function uneval(obj, objects = new Set()) {
   switch (typeof obj) {
     case 'function':
       console.log(obj);
-      throw new Error('Unsupported function.');
+      throw new Error(`Unsupported function "${ keys }".`);
     case 'string':
     case 'number':
     case 'boolean':
@@ -33,8 +34,8 @@ export default function uneval(obj, objects = new Set()) {
 
   // specialized types
   if (obj instanceof Array) {
-    return `[${ obj.map(function (o) {
-      return uneval(o, objects);
+    return `[${ obj.map(function (o, index) {
+      return uneval(o, `${ keys }[${ index }]`, objects);
     }).join(',') }]`;
   }
 
@@ -43,15 +44,33 @@ export default function uneval(obj, objects = new Set()) {
   }
 
   if (obj instanceof Set) {
-    return `new Set(${ uneval(Array.from(obj)) })`;
+    return `new Set(${ uneval(Array.from(obj), keys) })`;
   }
 
   if (obj instanceof Map) {
-    return `new Map(${ uneval(Array.from(obj)) })`;
+    return `new Map(${ uneval(Array.from(obj), keys) })`;
   }
 
   return `{${ Object.keys(obj).map(function (key) {
-    return `${ JSON.stringify(key) }:${ uneval(obj[key]) }`;
+    return `${ JSON.stringify(key) }:${ uneval(obj[key], `${ keys }.${ key }`) }`;
   }).join(',') }}`;
 }
+
+// https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw
+var UNSAFE_CHARS_REGEXP = /[<>/\u2028\u2029]/g;
+var ESCAPED_CHARS = {
+  '<': '\\u003C',
+  '>': '\\u003E',
+  '/': '\\u002F',
+  '\u2028': '\\u2028',
+  '\u2029': '\\u2029'
+};
+
+var escapeUnsafeChars = function escapeUnsafeChars(unsafeChar) {
+  return ESCAPED_CHARS[unsafeChar];
+};
+
+export default (function uneval0(obj) {
+  return uneval(obj, 'obj').replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
+});
 //# sourceMappingURL=uneval.js.map

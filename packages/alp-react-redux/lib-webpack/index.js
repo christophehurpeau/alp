@@ -1,9 +1,14 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 import render from 'fody';
 import Logger from 'nightingale-logger';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import AlpLayout from './layout/AlpLayout';
 import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
+import * as alpReducers from './reducers';
 
 
 export { AlpReactApp, AlpReduxApp };
@@ -25,7 +30,11 @@ var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, 
 { name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
 export default function alpReactRedux() {
-  var Layout = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : AlpLayout;
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$Layout = _ref.Layout,
+      Layout = _ref$Layout === undefined ? AlpLayout : _ref$Layout,
+      _ref$sharedReducers = _ref.sharedReducers,
+      sharedReducers = _ref$sharedReducers === undefined ? {} : _ref$sharedReducers;
 
   return function (app) {
     app.context.render = function (moduleDescriptor, data, _loaded) {
@@ -40,12 +49,21 @@ export default function alpReactRedux() {
         });
       }
 
-      if (moduleDescriptor.reducer) {
-        this.store = createStore(moduleDescriptor.reducer, data);
+      var moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
+      var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+
+      if (reducer) {
+        this.store = createStore(reducer, _extends({ context: this }, data));
       }
 
       var version = this.config.get('version');
       var moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
+
+      // eslint-disable-next-line no-unused-vars
+
+      var _ref2 = moduleHasReducers ? this.store.getState() : {},
+          unusedContext = _ref2.context,
+          initialData = _objectWithoutProperties(_ref2, ['context']);
 
       this.body = render({
         Layout: Layout,
@@ -66,17 +84,17 @@ export default function alpReactRedux() {
             return 'es5';
           }(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
-          initialData: moduleDescriptor.reducer ? this.store.getState() : null
+          initialData: moduleHasReducers ? initialData : null
         },
 
-        App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
+        App: reducer ? AlpReduxApp : AlpReactApp,
         appProps: {
           store: this.store,
           context: this
         },
 
         View: moduleDescriptor.View,
-        props: moduleDescriptor.reducer ? undefined : data
+        props: moduleHasReducers ? undefined : data
       });
     };
   };

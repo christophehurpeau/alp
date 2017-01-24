@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AlpBody = exports.AlpHead = exports.AlpLayout = exports.AlpHtml = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _fody = require('fody');
 
 Object.defineProperty(exports, 'Helmet', {
@@ -100,11 +102,19 @@ var _AlpReduxApp = require('./AlpReduxApp');
 
 var _AlpReduxApp2 = _interopRequireDefault(_AlpReduxApp);
 
+var _reducers = require('./reducers');
+
+var alpReducers = _interopRequireWildcard(_reducers);
+
 var _reactPureStatelessComponent = require('react-pure-stateless-component');
 
 var _reactPureStatelessComponent2 = _interopRequireDefault(_reactPureStatelessComponent);
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 exports.AlpReactApp = _AlpReactApp2.default;
 exports.AlpReduxApp = _AlpReduxApp2.default;
@@ -117,7 +127,7 @@ const logger = new _nightingaleLogger2.default('alp:react-redux');
 const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
 { name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
-function alpReactRedux(Layout = _AlpLayout2.default) {
+function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {}) {
   return app => {
     app.context.render = function (moduleDescriptor, data, _loaded) {
       logger.debug('render view', { data });
@@ -127,12 +137,20 @@ function alpReactRedux(Layout = _AlpLayout2.default) {
         return moduleDescriptor.loader(Object.create(null), data).then(data => this.render(moduleDescriptor, data, true));
       }
 
-      if (moduleDescriptor.reducer) {
-        this.store = (0, _redux.createStore)(moduleDescriptor.reducer, data);
+      const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
+      const reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : (0, _redux.combineReducers)(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+
+      if (reducer) {
+        this.store = (0, _redux.createStore)(reducer, _extends({ context: this }, data));
       }
 
       const version = this.config.get('version');
       const moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
+
+      // eslint-disable-next-line no-unused-vars
+      const { context: unusedContext } = moduleHasReducers ? this.store.getState() : {};
+
+      const initialData = _objectWithoutProperties(moduleHasReducers ? this.store.getState() : {}, ['context']);
 
       this.body = (0, _fody2.default)({
         Layout,
@@ -153,17 +171,17 @@ function alpReactRedux(Layout = _AlpLayout2.default) {
             return 'es5';
           })(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
-          initialData: moduleDescriptor.reducer ? this.store.getState() : null
+          initialData: moduleHasReducers ? initialData : null
         },
 
-        App: moduleDescriptor.reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
+        App: reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
         appProps: {
           store: this.store,
           context: this
         },
 
         View: moduleDescriptor.View,
-        props: moduleDescriptor.reducer ? undefined : data
+        props: moduleHasReducers ? undefined : data
       });
     };
   };

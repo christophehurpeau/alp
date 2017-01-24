@@ -1,12 +1,13 @@
 /* global window */
 import render, { unmountComponentAtNode } from 'fody/src';
 import Logger from 'nightingale-logger/src';
-import { createStore, applyMiddleware, compose } from 'redux/src';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux/src';
 import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
 import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
+import * as alpReducers from './reducers';
 
 export { AlpReactApp, AlpReduxApp };
 export { Helmet } from 'fody/src';
@@ -26,6 +27,11 @@ let currentModuleDescriptorIdentifier;
 
 const createHydratableReducer = (reducer: Function) => (
   (state, action) => {
+    // ignore redux init
+    if (action.type === '@@redux/INIT') {
+      return;
+    }
+
     if (action.type === HYDRATE_STATE) {
       state = action.state;
     }
@@ -34,7 +40,11 @@ const createHydratableReducer = (reducer: Function) => (
   }
 );
 
-export default function alpReactRedux(element) {
+type OptionsType = {|
+  sharedReducers: ?Object,
+|}
+
+export default function alpReactRedux(element, { sharedReducers = {} }: OptionsType = {}) {
   return (app) => {
     const middleware = [
       createFunctionMiddleware(app),
@@ -73,7 +83,11 @@ export default function alpReactRedux(element) {
           ));
         }
 
-        let reducer = moduleDescriptor.reducer;
+        const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
+        let reducer = moduleDescriptor.reducer ?
+          moduleDescriptor.reducer : (
+            combineReducers({ ...moduleDescriptor.reducers, ...alpReducers, ...sharedReducers })
+          );
 
         if (!reducer) {
           if (store) {
@@ -84,7 +98,7 @@ export default function alpReactRedux(element) {
           const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
           store = createStore(
             createHydratableReducer(reducer),
-            data,
+            Object.assign(Object.create(null), { context: this }, data),
             composeEnhancers(applyMiddleware(...middleware)),
           );
         } else {
@@ -100,10 +114,12 @@ export default function alpReactRedux(element) {
               unmountComponentAtNode(element);
               // replace reducer
               store.replaceReducer(createHydratableReducer(reducer));
+              // add initial context
+              state.context = this;
             }
           }
 
-          Object.assign(state, data);
+          if (moduleHasReducers) Object.assign(state, data);
           store.dispatch({ type: HYDRATE_STATE, state });
         }
 
@@ -121,7 +137,7 @@ export default function alpReactRedux(element) {
             moduleDescriptor,
           },
           View: moduleDescriptor.View,
-          props: data,
+          props: moduleHasReducers ? undefined : data,
           element,
         });
       } catch (err) {

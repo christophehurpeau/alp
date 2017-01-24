@@ -1,9 +1,10 @@
 import render from 'fody/src';
 import Logger from 'nightingale-logger/src';
-import { createStore } from 'redux/src';
+import { createStore, combineReducers } from 'redux/src';
 import AlpLayout from './layout/AlpLayout';
 import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
+import * as alpReducers from './reducers';
 import type { ModuleDescriptorType } from './types';
 
 export { AlpReactApp, AlpReduxApp };
@@ -26,7 +27,14 @@ const agents = [
   { name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 },
 ];
 
-export default function alpReactRedux(Layout = AlpLayout) {
+type OptionsType = {|
+  Layout: ?any,
+  sharedReducers: ?Object,
+|}
+
+export default function alpReactRedux(
+  { Layout = AlpLayout, sharedReducers = {} }: OptionsType = {}
+) {
   return (app: Object) => {
     app.context.render = function (moduleDescriptor: ModuleDescriptorType, data: ?Object, _loaded) {
       logger.debug('render view', { data });
@@ -38,13 +46,21 @@ export default function alpReactRedux(Layout = AlpLayout) {
         ));
       }
 
-      if (moduleDescriptor.reducer) {
-        this.store = createStore(moduleDescriptor.reducer, data);
+      const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
+      const reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : (
+          combineReducers({ ...moduleDescriptor.reducers, ...alpReducers, ...sharedReducers })
+        );
+
+      if (reducer) {
+        this.store = createStore(reducer, { context: this, ...data });
       }
 
       const version: string = this.config.get('version');
       const moduleIdentifier: ?string = moduleDescriptor && moduleDescriptor.identifier;
 
+      // eslint-disable-next-line no-unused-vars
+      const { context: unusedContext, ...initialData } =
+        moduleHasReducers ? this.store.getState() : {};
 
       this.body = render({
         Layout,
@@ -65,17 +81,17 @@ export default function alpReactRedux(Layout = AlpLayout) {
             return 'es5';
           })(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
-          initialData: moduleDescriptor.reducer ? this.store.getState() : null,
+          initialData: moduleHasReducers ? initialData : null,
         },
 
-        App: moduleDescriptor.reducer ? AlpReduxApp : AlpReactApp,
+        App: reducer ? AlpReduxApp : AlpReactApp,
         appProps: {
           store: this.store,
           context: this,
         },
 
         View: moduleDescriptor.View,
-        props: moduleDescriptor.reducer ? undefined : data,
+        props: moduleHasReducers ? undefined : data,
       });
     };
   };
