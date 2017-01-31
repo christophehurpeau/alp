@@ -70,6 +70,9 @@ export class Config {
       } else if (argv.port) {
         config.set('port', argv.port);
         config.delete('socketPath');
+      } else if (process.env.PORT) {
+        config.set('port', Number(process.env.PORT));
+        config.delete('socketPath');
       }
 
       argvOverrides.forEach(function (key) {

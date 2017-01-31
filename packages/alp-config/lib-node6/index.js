@@ -70,6 +70,9 @@ class Config {
     } else if (_minimistArgv2.default.port) {
       config.set('port', _minimistArgv2.default.port);
       config.delete('socketPath');
+    } else if (process.env.PORT) {
+      config.set('port', Number(process.env.PORT));
+      config.delete('socketPath');
     }
 
     argvOverrides.forEach(key => {
