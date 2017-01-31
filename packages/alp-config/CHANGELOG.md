@@ -1,3 +1,12 @@
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/alpjs/alp-config/compare/v3.1.0...v3.2.0) (2017-01-31)
+
+
+### Features
+
+* process.env.port ([f96eeb8](https://github.com/alpjs/alp-config/commit/f96eeb8))
+
+
 ### v3.1.0
 
 - [`ad35489`](https://github.com/alpjs/alp-config/commit/ad35489a5e5c4495fb02aaa6931b6dc87b407645) refactor: pob-babel@^12.5.5 (Christophe Hurpeau)
