@@ -7,11 +7,10 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import assetUrl from './assetUrl';
 
 export default (function (_ref, { context }) {
-  var { src } = _ref;
+  let { src } = _ref,
+      props = _objectWithoutProperties(_ref, ['src']);
 
-  var props = _objectWithoutProperties(_ref, ['src']);
-
-  var version = context.config.get('version');
+  const version = context.config.get('version');
 
   return React.createElement('script', _extends({ src: assetUrl(src, version) }, props));
 });

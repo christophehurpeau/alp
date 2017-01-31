@@ -4,6 +4,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import render from 'fody';
 import Logger from 'nightingale-logger';
+import isModernBrowser from 'modern-browsers';
 import { createStore, combineReducers } from 'redux';
 import AlpLayout from './layout/AlpLayout';
 import AlpReactApp from './AlpReactApp';
@@ -24,10 +25,6 @@ export { AlpHtml, AlpLayout, AlpHead, AlpBody } from './layout';
 throw new Error('Not supposed to be loaded browser-side.');
 
 var logger = new Logger('alp:react-redux');
-
-// https://www.npmjs.com/package/babel-preset-modern-browsers
-var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-{ name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
 export default function alpReactRedux() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
@@ -73,15 +70,7 @@ export default function alpReactRedux() {
           scriptName: function () {
             // TODO create alp-useragent with getter in context
             var ua = _this.req.headers['user-agent'];
-
-            if (agents.some(function (agent) {
-              var res = agent.regexp.exec(ua);
-              return res && res[1] >= agent.modernMinVersion;
-            })) {
-              return 'modern-browsers';
-            }
-
-            return 'es5';
+            return isModernBrowser(ua) ? 'modern-browsers' : 'es5';
           }(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleHasReducers ? initialData : null

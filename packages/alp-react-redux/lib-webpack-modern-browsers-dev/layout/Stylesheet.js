@@ -10,20 +10,20 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import assetUrl from './assetUrl';
 
-var PropsType = _t.interface({
+const PropsType = _t.interface({
   href: _t.String
 }, 'PropsType');
 
-var ContextType = _t.interface({
+const ContextType = _t.interface({
   context: _t.interface({
     config: Map
   })
 }, 'ContextType');
 
 export default (function stylesheet(_ref, { context }) {
-  var { href } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['href']);
+  let _assert2 = _assert(_ref, PropsType, '{ href, ...props }'),
+      { href } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['href']);
 
   _assert({
     href,
@@ -34,7 +34,7 @@ export default (function stylesheet(_ref, { context }) {
     context
   }, ContextType, '{ context }');
 
-  var version = context.config.get('version');
+  const version = _assert(context.config.get('version'), _t.String, 'version');
 
   return React.createElement('link', _extends({ rel: 'stylesheet', href: assetUrl(href, version) }, props, {
     __self: _this,
@@ -46,12 +46,6 @@ export default (function stylesheet(_ref, { context }) {
 });
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

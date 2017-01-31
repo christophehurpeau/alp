@@ -4,6 +4,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import render from 'fody';
 import Logger from 'nightingale-logger';
+import isModernBrowser from 'modern-browsers';
 import { createStore, combineReducers } from 'redux';
 import AlpLayout from './layout/AlpLayout';
 import AlpReactApp from './AlpReactApp';
@@ -23,11 +24,7 @@ export { AlpHtml, AlpLayout, AlpHead, AlpBody } from './layout';
 
 throw new Error('Not supposed to be loaded browser-side.');
 
-var logger = new Logger('alp:react-redux');
-
-// https://www.npmjs.com/package/babel-preset-modern-browsers
-var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-{ name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
+const logger = new Logger('alp:react-redux');
 
 export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} } = {}) {
   return function (app) {
@@ -43,20 +40,20 @@ export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} 
         });
       }
 
-      var moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-      var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+      const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
+      const reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
       if (reducer) {
         this.store = createStore(reducer, _extends({ context: this }, data));
       }
 
-      var version = this.config.get('version');
-      var moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
+      const version = this.config.get('version');
+      const moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
 
       // eslint-disable-next-line no-unused-vars
-      var { context: unusedContext } = moduleHasReducers ? this.store.getState() : {};
-
-      var initialData = _objectWithoutProperties(moduleHasReducers ? this.store.getState() : {}, ['context']);
+      const _ref = moduleHasReducers ? this.store.getState() : {},
+            { context: unusedContext } = _ref,
+            initialData = _objectWithoutProperties(_ref, ['context']);
 
       this.body = render({
         Layout,
@@ -65,16 +62,8 @@ export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} 
           moduleIdentifier,
           scriptName: function () {
             // TODO create alp-useragent with getter in context
-            var ua = _this.req.headers['user-agent'];
-
-            if (agents.some(function (agent) {
-              var res = agent.regexp.exec(ua);
-              return res && res[1] >= agent.modernMinVersion;
-            })) {
-              return 'modern-browsers';
-            }
-
-            return 'es5';
+            const ua = _this.req.headers['user-agent'];
+            return isModernBrowser(ua) ? 'modern-browsers' : 'es5';
           }(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleHasReducers ? initialData : null
@@ -93,7 +82,7 @@ export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} 
   };
 }
 
-var loggerWebsocket = logger.child('websocket');
+const loggerWebsocket = logger.child('websocket');
 
 export function emitAction(to, action) {
   loggerWebsocket.debug('emitAction', action);

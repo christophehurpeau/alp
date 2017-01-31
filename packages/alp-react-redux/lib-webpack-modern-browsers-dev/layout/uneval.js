@@ -19,7 +19,7 @@ function uneval(obj, keys, objects = new Set()) {
   switch (typeof obj) {
     case 'function':
       console.log(obj);
-      throw new Error(`Unsupported function "${ keys }".`);
+      throw new Error(`Unsupported function "${keys}".`);
     case 'string':
     case 'number':
     case 'boolean':
@@ -34,31 +34,31 @@ function uneval(obj, keys, objects = new Set()) {
 
   // specialized types
   if (obj instanceof Array) {
-    return `[${ obj.map(function (o, index) {
-      return uneval(o, `${ keys }[${ index }]`, objects);
-    }).join(',') }]`;
+    return `[${obj.map(function (o, index) {
+      return uneval(o, `${keys}[${index}]`, objects);
+    }).join(',')}]`;
   }
 
   if (obj instanceof Date) {
-    return `new Date(${ obj.getTime() })`;
+    return `new Date(${obj.getTime()})`;
   }
 
   if (obj instanceof Set) {
-    return `new Set(${ uneval(Array.from(obj), keys) })`;
+    return `new Set(${uneval(Array.from(obj), keys)})`;
   }
 
   if (obj instanceof Map) {
-    return `new Map(${ uneval(Array.from(obj), keys) })`;
+    return `new Map(${uneval(Array.from(obj), keys)})`;
   }
 
-  return `{${ Object.keys(obj).map(function (key) {
-    return `${ JSON.stringify(key) }:${ uneval(obj[key], `${ keys }.${ key }`) }`;
-  }).join(',') }}`;
+  return `{${Object.keys(obj).map(function (key) {
+    return `${JSON.stringify(key)}:${uneval(obj[key], `${keys}.${key}`)}`;
+  }).join(',')}}`;
 }
 
 // https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw
-var UNSAFE_CHARS_REGEXP = /[<>/\u2028\u2029]/g;
-var ESCAPED_CHARS = {
+const UNSAFE_CHARS_REGEXP = /[<>/\u2028\u2029]/g;
+const ESCAPED_CHARS = {
   '<': '\\u003C',
   '>': '\\u003E',
   '/': '\\u002F',
@@ -66,7 +66,7 @@ var ESCAPED_CHARS = {
   '\u2029': '\\u2029'
 };
 
-var escapeUnsafeChars = function escapeUnsafeChars(unsafeChar) {
+const escapeUnsafeChars = function escapeUnsafeChars(unsafeChar) {
   return ESCAPED_CHARS[unsafeChar];
 };
 

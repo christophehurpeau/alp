@@ -35,9 +35,9 @@ const PropsType = _tcombForked2.default.interface({
 }, 'PropsType');
 
 exports.default = function alpReduxApp(_ref) {
-  let { children, store } = _assert(_ref, PropsType, '{ children, store, ...props }');
-
-  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ children, store, ...props }'), ['children', 'store']);
+  let _assert2 = _assert(_ref, PropsType, '{ children, store, ...props }'),
+      { children, store } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['children', 'store']);
 
   _assert({
     children,
@@ -70,12 +70,6 @@ exports.default = function alpReduxApp(_ref) {
 };
 
 function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);

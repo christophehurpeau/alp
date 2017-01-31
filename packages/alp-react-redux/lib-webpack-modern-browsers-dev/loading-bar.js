@@ -22,24 +22,24 @@ function calculatePercent(percent) {
   }
 }
 
-var loading = null;
+let loading = null;
 export default function loadingBar() {
   if (loading) throw new Error('Already loading');
   loading = true;
 
-  var loadingBar = document.getElementById('loading-bar');
-  var loadingBarProgress = loadingBar.firstElementChild;
+  const loadingBar = document.getElementById('loading-bar');
+  const loadingBarProgress = loadingBar.firstElementChild;
   loadingBarProgress.style.width = '1%';
   loadingBarProgress.style.willChange = 'width';
   loadingBar.style.display = 'block';
 
-  var percent = 20;
-  var first20Timeout = setTimeout(function () {
+  let percent = 20;
+  const first20Timeout = setTimeout(function () {
     loadingBarProgress.style.width = '20%';
   }, 100);
 
-  var progressTimer = setInterval(function () {
-    loadingBarProgress.style.width = `${ percent = calculatePercent(percent) }%`;
+  const progressTimer = setInterval(function () {
+    loadingBarProgress.style.width = `${percent = calculatePercent(percent)}%`;
   }, 500);
 
   return function () {

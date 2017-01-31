@@ -34,9 +34,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 exports.default = function alpLayout(_ref) {
-  let { helmet, content } = _assert(_ref, _types.LayoutPropsType, '{ helmet, content, ...props }');
-
-  let props = _objectWithoutProperties(_assert(_ref, _types.LayoutPropsType, '{ helmet, content, ...props }'), ['helmet', 'content']);
+  let _assert2 = _assert(_ref, _types.LayoutPropsType, '{ helmet, content, ...props }'),
+      { helmet, content } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['helmet', 'content']);
 
   _assert({
     helmet,
@@ -81,12 +81,6 @@ exports.default = function alpLayout(_ref) {
 };
 
 function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);

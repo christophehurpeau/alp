@@ -6,9 +6,8 @@ import { Body } from 'fody';
 
 
 export default (function (_ref) {
-  var { children } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['children']);
+  let { children } = _ref,
+      props = _objectWithoutProperties(_ref, ['children']);
 
   return React.createElement(
     Body,

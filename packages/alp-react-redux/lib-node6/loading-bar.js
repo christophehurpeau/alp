@@ -45,7 +45,7 @@ function loadingBar() {
   }, 100);
 
   const progressTimer = setInterval(() => {
-    loadingBarProgress.style.width = `${ percent = calculatePercent(percent) }%`;
+    loadingBarProgress.style.width = `${percent = calculatePercent(percent)}%`;
   }, 500);
 
   return () => {

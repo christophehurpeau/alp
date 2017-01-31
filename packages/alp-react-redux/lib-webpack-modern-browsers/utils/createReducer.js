@@ -8,7 +8,7 @@ export default function createReducer(defaultState, handlers) {
     };
   }
 
-  var handlerMap = new Map();
+  const handlerMap = new Map();
   Object.keys(handlers).forEach(function (key) {
     if (typeof key === 'function') {
       handlerMap.set(key.type, handlers[key]);

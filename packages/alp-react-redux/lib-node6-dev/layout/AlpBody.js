@@ -30,9 +30,9 @@ const PropsType = _tcombForked2.default.interface({
 }, 'PropsType');
 
 exports.default = function alpBody(_ref) {
-  let { children } = _assert(_ref, PropsType, '{ children, ...props }');
-
-  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ children, ...props }'), ['children']);
+  let _assert2 = _assert(_ref, PropsType, '{ children, ...props }'),
+      { children } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['children']);
 
   _assert({
     children,
@@ -70,12 +70,6 @@ exports.default = function alpBody(_ref) {
 };
 
 function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);

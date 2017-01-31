@@ -12,14 +12,14 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { Body } from 'fody';
 import { ReactElementType, ReactNodeType } from '../types';
 
-var PropsType = _t.interface({
+const PropsType = _t.interface({
   children: ReactNodeType
 }, 'PropsType');
 
 export default (function alpBody(_ref) {
-  var { children } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['children']);
+  let _assert2 = _assert(_ref, PropsType, '{ children, ...props }'),
+      { children } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['children']);
 
   _assert({
     children,
@@ -57,12 +57,6 @@ export default (function alpBody(_ref) {
 });
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

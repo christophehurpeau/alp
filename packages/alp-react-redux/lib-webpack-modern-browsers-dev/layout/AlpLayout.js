@@ -15,9 +15,9 @@ import AlpHead from './AlpHead';
 import AlpBody from './AlpBody';
 
 export default (function alpLayout(_ref) {
-  var { helmet, content } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['helmet', 'content']);
+  let _assert2 = _assert(_ref, LayoutPropsType, '{ helmet, content, ...props }'),
+      { helmet, content } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['helmet', 'content']);
 
   _assert({
     helmet,
@@ -62,12 +62,6 @@ export default (function alpLayout(_ref) {
 });
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

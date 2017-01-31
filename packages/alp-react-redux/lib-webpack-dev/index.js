@@ -6,6 +6,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import render from 'fody';
 import Logger from 'nightingale-logger';
+import isModernBrowser from 'modern-browsers';
 import { createStore, combineReducers } from 'redux';
 import AlpLayout from './layout/AlpLayout';
 import AlpReactApp from './AlpReactApp';
@@ -26,10 +27,6 @@ export { AlpHtml, AlpLayout, AlpHead, AlpBody } from './layout';
 throw new Error('Not supposed to be loaded browser-side.');
 
 var logger = new Logger('alp:react-redux');
-
-// https://www.npmjs.com/package/babel-preset-modern-browsers
-var agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-{ name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
 var OptionsType = _t.interface({
   Layout: _t.maybe(_t.Any),
@@ -94,15 +91,7 @@ export default function alpReactRedux() {
           scriptName: function () {
             // TODO create alp-useragent with getter in context
             var ua = _this.req.headers['user-agent'];
-
-            if (agents.some(function (agent) {
-              var res = agent.regexp.exec(ua);
-              return res && res[1] >= agent.modernMinVersion;
-            })) {
-              return 'modern-browsers';
-            }
-
-            return 'es5';
+            return isModernBrowser(ua) ? 'modern-browsers' : 'es5';
           }(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleHasReducers ? initialData : null
@@ -129,12 +118,6 @@ export function emitAction(to, action) {
 }
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

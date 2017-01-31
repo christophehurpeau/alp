@@ -62,12 +62,6 @@ function createAction(type, argsNamesOrHandler, data) {
 }
 
 function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);

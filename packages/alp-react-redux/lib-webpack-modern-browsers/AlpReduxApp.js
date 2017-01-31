@@ -7,9 +7,8 @@ import AlpReactApp from './AlpReactApp';
 
 
 export default (function (_ref) {
-  var { children, store } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['children', 'store']);
+  let { children, store } = _ref,
+      props = _objectWithoutProperties(_ref, ['children', 'store']);
 
   return React.createElement(
     Provider,

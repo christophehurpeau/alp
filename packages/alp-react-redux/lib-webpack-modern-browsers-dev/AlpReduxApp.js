@@ -13,15 +13,15 @@ import { Provider } from 'react-redux';
 import AlpReactApp from './AlpReactApp';
 import { ReactNodeType, ReactElementType } from './types';
 
-var PropsType = _t.interface({
+const PropsType = _t.interface({
   children: ReactNodeType,
   store: _t.Object
 }, 'PropsType');
 
 export default (function alpReduxApp(_ref) {
-  var { children, store } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['children', 'store']);
+  let _assert2 = _assert(_ref, PropsType, '{ children, store, ...props }'),
+      { children, store } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['children', 'store']);
 
   _assert({
     children,
@@ -54,12 +54,6 @@ export default (function alpReduxApp(_ref) {
 });
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

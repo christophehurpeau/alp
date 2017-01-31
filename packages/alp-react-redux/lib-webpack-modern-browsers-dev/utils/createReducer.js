@@ -13,11 +13,11 @@ export default function createReducer(defaultState, handlers) {
     };
   }
 
-  var handlerMap = new Map();
+  const handlerMap = new Map();
   Object.keys(handlers).forEach(function (key) {
     if (typeof key === 'function') {
       if (typeof key.type !== 'string') {
-        throw new Error(`Invalid handler key: "${ key.name }"`);
+        throw new Error(`Invalid handler key: "${key.name}"`);
       }
       handlerMap.set(key.type, handlers[key]);
     } else {
@@ -36,12 +36,6 @@ export default function createReducer(defaultState, handlers) {
 }
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

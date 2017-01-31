@@ -19,9 +19,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 exports.default = (_ref) => {
-  let { children, store } = _ref;
-
-  let props = _objectWithoutProperties(_ref, ['children', 'store']);
+  let { children, store } = _ref,
+      props = _objectWithoutProperties(_ref, ['children', 'store']);
 
   return _react2.default.createElement(
     _reactRedux.Provider,

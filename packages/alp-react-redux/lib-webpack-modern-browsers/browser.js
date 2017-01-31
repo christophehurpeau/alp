@@ -26,13 +26,13 @@ export { _createLoader as createLoader };
 
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
-var HYDRATE_STATE = 'HYDRATE_STATE';
-var logger = new Logger('alp:react-redux');
+const HYDRATE_STATE = 'HYDRATE_STATE';
+const logger = new Logger('alp:react-redux');
 
-var store = void 0;
-var currentModuleDescriptorIdentifier = void 0;
+let store;
+let currentModuleDescriptorIdentifier;
 
-var createHydratableReducer = function createHydratableReducer(reducer) {
+const createHydratableReducer = function createHydratableReducer(reducer) {
   return function (state, action) {
     // ignore redux init
     if (action.type === '@@redux/INIT') {
@@ -49,20 +49,18 @@ var createHydratableReducer = function createHydratableReducer(reducer) {
 
 export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
   return function (app) {
-    var middleware = [createFunctionMiddleware(app), promiseMiddleware];
+    const middleware = [createFunctionMiddleware(app), promiseMiddleware];
 
     if (app.websocket) {
-      (function () {
-        var loggerWebsocket = logger.child('websocket');
-        loggerWebsocket.debug('register websocket redux:action');
-        app.websocket.on('redux:action', function (action) {
-          loggerWebsocket.debug('dispatch action from websocket', action);
-          if (store) {
-            store.dispatch(action);
-          }
-        });
-        middleware.push(websocketMiddleware(app));
-      })();
+      const loggerWebsocket = logger.child('websocket');
+      loggerWebsocket.debug('register websocket redux:action');
+      app.websocket.on('redux:action', function (action) {
+        loggerWebsocket.debug('dispatch action from websocket', action);
+        if (store) {
+          store.dispatch(action);
+        }
+      });
+      middleware.push(websocketMiddleware(app));
     }
 
     app.context.render = function (moduleDescriptor, data, _loaded, _loadingBar) {
@@ -74,7 +72,7 @@ export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
       try {
 
         if (!_loaded && moduleDescriptor.loader) {
-          var currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : Object.create(null);
+          const currentState = store && currentModuleDescriptorIdentifier === moduleDescriptor.identifier ? store.getState() : Object.create(null);
 
           // const _state = data;
           return moduleDescriptor.loader(currentState, data).then(function (data) {
@@ -82,8 +80,8 @@ export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
           });
         }
 
-        var moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-        var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+        const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
+        let reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
         if (!reducer) {
           if (store) {
@@ -91,11 +89,11 @@ export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
             store.dispatch({ type: HYDRATE_STATE, state: Object.create(null) });
           }
         } else if (store === undefined) {
-          var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+          const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
           store = createStore(createHydratableReducer(reducer), Object.assign(Object.create(null), { context: this }, data), composeEnhancers(applyMiddleware(...middleware)));
         } else {
-          var state = Object.create(null);
-          var isSameModule = currentModuleDescriptorIdentifier === moduleDescriptor.identifier;
+          const state = Object.create(null);
+          const isSameModule = currentModuleDescriptorIdentifier === moduleDescriptor.identifier;
 
           if (store) {
             if (isSameModule) {

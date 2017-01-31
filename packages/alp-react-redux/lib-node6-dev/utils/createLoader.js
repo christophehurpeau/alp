@@ -22,7 +22,7 @@ function createLoader(handlers) {
     const keys = Object.keys(data);
     return Promise.all(keys.map(key => {
       const handler = handlerMap.get(key);
-      if (!handler) throw new Error(`Missing handler for "${ key }".`);
+      if (!handler) throw new Error(`Missing handler for "${key}".`);
       return handler(state, data[key]);
     })).then(results => {
       const data = Object.create(null);
@@ -35,12 +35,6 @@ function createLoader(handlers) {
 }
 
 function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);

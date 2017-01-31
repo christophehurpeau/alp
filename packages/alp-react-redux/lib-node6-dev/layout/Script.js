@@ -35,9 +35,9 @@ const ContextType = _tcombForked2.default.interface({
 }, 'ContextType');
 
 exports.default = function script(_ref, { context }) {
-  let { src } = _assert(_ref, PropsType, '{ src, ...props }');
-
-  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ src, ...props }'), ['src']);
+  let _assert2 = _assert(_ref, PropsType, '{ src, ...props }'),
+      { src } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['src']);
 
   _assert({
     src,
@@ -60,12 +60,6 @@ exports.default = function script(_ref, { context }) {
 };
 
 function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);

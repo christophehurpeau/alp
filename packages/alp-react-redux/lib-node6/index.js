@@ -90,6 +90,10 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
+var _modernBrowsers = require('modern-browsers');
+
+var _modernBrowsers2 = _interopRequireDefault(_modernBrowsers);
+
 var _AlpLayout = require('./layout/AlpLayout');
 
 var _AlpLayout2 = _interopRequireDefault(_AlpLayout);
@@ -123,10 +127,6 @@ exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
 
 const logger = new _nightingaleLogger2.default('alp:react-redux');
 
-// https://www.npmjs.com/package/babel-preset-modern-browsers
-const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-{ name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
-
 function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {}) {
   return app => {
     app.context.render = function (moduleDescriptor, data, _loaded) {
@@ -148,9 +148,9 @@ function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {
       const moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
 
       // eslint-disable-next-line no-unused-vars
-      const { context: unusedContext } = moduleHasReducers ? this.store.getState() : {};
-
-      const initialData = _objectWithoutProperties(moduleHasReducers ? this.store.getState() : {}, ['context']);
+      const _ref = moduleHasReducers ? this.store.getState() : {},
+            { context: unusedContext } = _ref,
+            initialData = _objectWithoutProperties(_ref, ['context']);
 
       this.body = (0, _fody2.default)({
         Layout,
@@ -160,15 +160,7 @@ function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {
           scriptName: (() => {
             // TODO create alp-useragent with getter in context
             const ua = this.req.headers['user-agent'];
-
-            if (agents.some(agent => {
-              const res = agent.regexp.exec(ua);
-              return res && res[1] >= agent.modernMinVersion;
-            })) {
-              return 'modern-browsers';
-            }
-
-            return 'es5';
+            return (0, _modernBrowsers2.default)(ua) ? 'modern-browsers' : 'es5';
           })(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleHasReducers ? initialData : null

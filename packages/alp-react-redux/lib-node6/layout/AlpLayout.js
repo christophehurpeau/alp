@@ -25,9 +25,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 exports.default = (_ref) => {
-  let { helmet, content } = _ref;
-
-  let props = _objectWithoutProperties(_ref, ['helmet', 'content']);
+  let { helmet, content } = _ref,
+      props = _objectWithoutProperties(_ref, ['helmet', 'content']);
 
   return _react2.default.createElement(
     _fody.Html,

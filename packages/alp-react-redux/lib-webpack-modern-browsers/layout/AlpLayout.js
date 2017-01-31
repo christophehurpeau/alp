@@ -9,9 +9,8 @@ import AlpHead from './AlpHead';
 import AlpBody from './AlpBody';
 
 export default (function (_ref) {
-  var { helmet, content } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['helmet', 'content']);
+  let { helmet, content } = _ref,
+      props = _objectWithoutProperties(_ref, ['helmet', 'content']);
 
   return React.createElement(
     Html,

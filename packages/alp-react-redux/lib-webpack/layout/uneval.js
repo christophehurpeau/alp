@@ -37,7 +37,7 @@ function uneval(obj, keys) {
 
   // specialized types
   if (obj instanceof Array) {
-    return '[' + obj.map(function (o, index) {
+    return '[' + obj.map(function (o) {
       return uneval(o, false, objects);
     }).join(',') + ']';
   }

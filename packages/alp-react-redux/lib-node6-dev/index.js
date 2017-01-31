@@ -94,6 +94,10 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
+var _modernBrowsers = require('modern-browsers');
+
+var _modernBrowsers2 = _interopRequireDefault(_modernBrowsers);
+
 var _AlpLayout = require('./layout/AlpLayout');
 
 var _AlpLayout2 = _interopRequireDefault(_AlpLayout);
@@ -128,10 +132,6 @@ exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
 
 
 const logger = new _nightingaleLogger2.default('alp:react-redux');
-
-// https://www.npmjs.com/package/babel-preset-modern-browsers
-const agents = [{ name: 'Edge', regexp: /edge\/([\d]+)/i, modernMinVersion: 14 }, { name: 'Firefox', regexp: /firefox\/([\d]+)/i, modernMinVersion: 47 }, { name: 'Chrome', regexp: /chrom(?:e|ium)\/([\d]+)/i, modernMinVersion: 51 }, // also works for opera.
-{ name: 'Safari', regexp: /version\/([\d\w.-]+).*safari/i, modernMinVersion: 10 }];
 
 const OptionsType = _tcombForked2.default.interface({
   Layout: _tcombForked2.default.maybe(_tcombForked2.default.Any),
@@ -173,9 +173,9 @@ function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {
       const moduleIdentifier = _assert(moduleDescriptor && moduleDescriptor.identifier, _tcombForked2.default.maybe(_tcombForked2.default.String), 'moduleIdentifier');
 
       // eslint-disable-next-line no-unused-vars
-      const { context: unusedContext } = moduleHasReducers ? this.store.getState() : {};
-
-      const initialData = _objectWithoutProperties(moduleHasReducers ? this.store.getState() : {}, ['context']);
+      const _ref = moduleHasReducers ? this.store.getState() : {},
+            { context: unusedContext } = _ref,
+            initialData = _objectWithoutProperties(_ref, ['context']);
 
       this.body = (0, _fody2.default)({
         Layout,
@@ -185,15 +185,7 @@ function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {
           scriptName: (() => {
             // TODO create alp-useragent with getter in context
             const ua = this.req.headers['user-agent'];
-
-            if (agents.some(agent => {
-              const res = agent.regexp.exec(ua);
-              return res && res[1] >= agent.modernMinVersion;
-            })) {
-              return 'modern-browsers';
-            }
-
-            return 'es5';
+            return (0, _modernBrowsers2.default)(ua) ? 'modern-browsers' : 'es5';
           })(),
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleHasReducers ? initialData : null
@@ -220,12 +212,6 @@ function emitAction(to, action) {
 }
 
 function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);

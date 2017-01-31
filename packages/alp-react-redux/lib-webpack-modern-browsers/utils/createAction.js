@@ -4,9 +4,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 export default function createAction(type, argsNamesOrHandler, data) {
 
-  var action = void 0;
+  let action;
 
-  var typeofSecondArg = typeof argsNamesOrHandler;
+  const typeofSecondArg = typeof argsNamesOrHandler;
 
   if (typeofSecondArg === 'function') {
     action = function action(...args) {
@@ -19,7 +19,7 @@ export default function createAction(type, argsNamesOrHandler, data) {
 
     if (argsNamesOrHandler) {
       action = function action(...args) {
-        var action = _extends({ type }, data);
+        const action = _extends({ type }, data);
         args.forEach(function (value, index) {
           return action[argsNamesOrHandler[index]] = value;
         });

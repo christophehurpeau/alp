@@ -2,7 +2,7 @@ import _t from 'tcomb-forked';
 import Logger from 'nightingale-logger';
 import createAction from './utils/createAction';
 
-var logger = new Logger('alp:react-redux:websocket');
+const logger = new Logger('alp:react-redux:websocket');
 
 export function createEmitAction(type, argsNamesOrHandler) {
   _assert(type, _t.String, 'type');
@@ -20,7 +20,7 @@ export function createEmitPromiseAction(type, argsNamesOrHandler) {
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
 }
 
-export var websocketMiddleware = function websocketMiddleware(app) {
+export const websocketMiddleware = function websocketMiddleware(app) {
   return function (store) {
     return function (next) {
       return function (action) {
@@ -33,7 +33,7 @@ export var websocketMiddleware = function websocketMiddleware(app) {
           return;
         }
 
-        var resolved = setTimeout(function () {
+        const resolved = setTimeout(function () {
           logger.warn('websocket emit timeout', { action });
           // eslint-disable-next-line no-console
           console.log('alp.react-redux websocket emit timeout', action);
@@ -51,12 +51,6 @@ export var websocketMiddleware = function websocketMiddleware(app) {
 };
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

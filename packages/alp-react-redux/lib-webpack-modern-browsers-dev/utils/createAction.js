@@ -16,9 +16,9 @@ export default function createAction(type, argsNamesOrHandler, data) {
   if (data) throw new Error('data is deprecated');
 
 
-  var action = void 0;
+  let action;
 
-  var typeofSecondArg = typeof argsNamesOrHandler;
+  const typeofSecondArg = typeof argsNamesOrHandler;
 
   if (typeofSecondArg === 'function') {
     action = function action(...args) {
@@ -31,7 +31,7 @@ export default function createAction(type, argsNamesOrHandler, data) {
 
     if (argsNamesOrHandler) {
       action = function action(...args) {
-        var action = _extends({ type }, data);
+        const action = _extends({ type }, data);
         args.forEach(function (value, index) {
           return action[argsNamesOrHandler[index]] = value;
         });
@@ -55,12 +55,6 @@ export default function createAction(type, argsNamesOrHandler, data) {
 }
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

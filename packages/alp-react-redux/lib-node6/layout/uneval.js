@@ -38,22 +38,22 @@ function uneval(obj, keys, objects = new Set()) {
 
   // specialized types
   if (obj instanceof Array) {
-    return `[${ obj.map((o, index) => uneval(o, false, objects)).join(',') }]`;
+    return `[${obj.map(o => uneval(o, false, objects)).join(',')}]`;
   }
 
   if (obj instanceof Date) {
-    return `new Date(${ obj.getTime() })`;
+    return `new Date(${obj.getTime()})`;
   }
 
   if (obj instanceof Set) {
-    return `new Set(${ uneval(Array.from(obj), keys) })`;
+    return `new Set(${uneval(Array.from(obj), keys)})`;
   }
 
   if (obj instanceof Map) {
-    return `new Map(${ uneval(Array.from(obj), keys) })`;
+    return `new Map(${uneval(Array.from(obj), keys)})`;
   }
 
-  return `{${ Object.keys(obj).map(key => `${ JSON.stringify(key) }:${ uneval(obj[key], false) }`).join(',') }}`;
+  return `{${Object.keys(obj).map(key => `${JSON.stringify(key)}:${uneval(obj[key], false)}`).join(',')}}`;
 }
 
 // https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw

@@ -1,4 +1,4 @@
-export var promiseMiddleware = function promiseMiddleware(store) {
+export const promiseMiddleware = function promiseMiddleware(store) {
   return function (next) {
     return function (action) {
       if (typeof action.then !== 'function') {
@@ -10,7 +10,7 @@ export var promiseMiddleware = function promiseMiddleware(store) {
   };
 };
 
-export var createFunctionMiddleware = function createFunctionMiddleware(app) {
+export const createFunctionMiddleware = function createFunctionMiddleware(app) {
   return function (store) {
     return function (next) {
       return function (action) {

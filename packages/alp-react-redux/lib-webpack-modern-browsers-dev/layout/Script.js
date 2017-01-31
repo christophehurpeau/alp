@@ -10,20 +10,20 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import assetUrl from './assetUrl';
 
-var PropsType = _t.interface({
+const PropsType = _t.interface({
   src: _t.String
 }, 'PropsType');
 
-var ContextType = _t.interface({
+const ContextType = _t.interface({
   context: _t.interface({
     config: Map
   })
 }, 'ContextType');
 
 export default (function script(_ref, { context }) {
-  var { src } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['src']);
+  let _assert2 = _assert(_ref, PropsType, '{ src, ...props }'),
+      { src } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['src']);
 
   _assert({
     src,
@@ -34,7 +34,7 @@ export default (function script(_ref, { context }) {
     context
   }, ContextType, '{ context }');
 
-  var version = context.config.get('version');
+  const version = _assert(context.config.get('version'), _t.String, 'version');
 
   return React.createElement('script', _extends({ src: assetUrl(src, version) }, props, {
     __self: _this,
@@ -46,12 +46,6 @@ export default (function script(_ref, { context }) {
 });
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

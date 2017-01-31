@@ -44,16 +44,16 @@ const PropsType = _tcombForked2.default.interface({
 }, 'PropsType');
 
 exports.default = function alpHead(_ref) {
-  let {
+  let _assert2 = _assert(_ref, PropsType, '{ version, moduleIdentifier, scriptName, styleName, initialData, initialBrowserContext, ...props }'),
+      {
     version,
     moduleIdentifier,
     scriptName,
     styleName,
     initialData,
     initialBrowserContext
-  } = _assert(_ref, PropsType, '{ version, moduleIdentifier, scriptName, styleName, initialData, initialBrowserContext, ...props }');
-
-  let props = _objectWithoutProperties(_assert(_ref, PropsType, '{ version, moduleIdentifier, scriptName, styleName, initialData, initialBrowserContext, ...props }'), ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+  } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
 
   _assert({
     version,
@@ -93,7 +93,7 @@ exports.default = function alpHead(_ref) {
           lineNumber: 28
         }
       }),
-      _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)(`/${ styleName || 'index' }.css`, version), __self: this,
+      _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)(`/${styleName || 'index'}.css`, version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 29
@@ -113,7 +113,7 @@ exports.default = function alpHead(_ref) {
       }),
       _react2.default.createElement('script', {
         dangerouslySetInnerHTML: {
-          __html: `${ moduleIdentifier ? `window.MODULE_IDENTIFIER='${ moduleIdentifier }';` : '' }` + `window.VERSION='${ version }';` + `window.initialData=${ (0, _uneval2.default)(initialData) };` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${ (0, _uneval2.default)(initialBrowserContext) };`)
+          __html: `${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}` + `window.VERSION='${version}';` + `window.initialData=${(0, _uneval2.default)(initialData)};` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${(0, _uneval2.default)(initialBrowserContext)};`)
         },
         __self: this,
         __source: {
@@ -121,7 +121,7 @@ exports.default = function alpHead(_ref) {
           lineNumber: 32
         }
       }),
-      _react2.default.createElement('script', { defer: true, src: (0, _assetUrl2.default)(`/${ scriptName }.js`, version), __self: this,
+      _react2.default.createElement('script', { defer: true, src: (0, _assetUrl2.default)(`/${scriptName}.js`, version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 43
@@ -132,12 +132,6 @@ exports.default = function alpHead(_ref) {
 };
 
 function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);

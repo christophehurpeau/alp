@@ -1,7 +1,7 @@
 import Logger from 'nightingale-logger';
 import createAction from './utils/createAction';
 
-var logger = new Logger('alp:react-redux:websocket');
+const logger = new Logger('alp:react-redux:websocket');
 
 export function createEmitAction(type, argsNamesOrHandler) {
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true } });
@@ -11,7 +11,7 @@ export function createEmitPromiseAction(type, argsNamesOrHandler) {
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
 }
 
-export var websocketMiddleware = function websocketMiddleware(app) {
+export const websocketMiddleware = function websocketMiddleware(app) {
   return function (store) {
     return function (next) {
       return function (action) {
@@ -24,7 +24,7 @@ export var websocketMiddleware = function websocketMiddleware(app) {
           return;
         }
 
-        var resolved = setTimeout(function () {
+        const resolved = setTimeout(function () {
           logger.warn('websocket emit timeout', { action });
           // eslint-disable-next-line no-console
           console.log('alp.react-redux websocket emit timeout', action);

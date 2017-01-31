@@ -15,7 +15,7 @@ import { ReactElementType } from '../types';
 import uneval from './uneval';
 import assetUrl from './assetUrl';
 
-var PropsType = _t.interface({
+const PropsType = _t.interface({
   version: _t.String,
   moduleIdentifier: _t.maybe(_t.String),
   scriptName: _t.String,
@@ -25,16 +25,16 @@ var PropsType = _t.interface({
 }, 'PropsType');
 
 export default (function alpHead(_ref) {
-  var {
+  let _assert2 = _assert(_ref, PropsType, '{ version, moduleIdentifier, scriptName, styleName, initialData, initialBrowserContext, ...props }'),
+      {
     version,
     moduleIdentifier,
     scriptName,
     styleName,
     initialData,
     initialBrowserContext
-  } = _ref;
-
-  var props = _objectWithoutProperties(_ref, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+  } = _assert2,
+      props = _objectWithoutProperties(_assert2, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
 
   _assert({
     version,
@@ -74,7 +74,7 @@ export default (function alpHead(_ref) {
           lineNumber: 28
         }
       }),
-      React.createElement('link', { rel: 'stylesheet', href: assetUrl(`/${ styleName || 'index' }.css`, version), __self: this,
+      React.createElement('link', { rel: 'stylesheet', href: assetUrl(`/${styleName || 'index'}.css`, version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 29
@@ -94,7 +94,7 @@ export default (function alpHead(_ref) {
       }),
       React.createElement('script', {
         dangerouslySetInnerHTML: {
-          __html: `${ moduleIdentifier ? `window.MODULE_IDENTIFIER='${ moduleIdentifier }';` : '' }` + `window.VERSION='${ version }';` + `window.initialData=${ uneval(initialData) };` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${ uneval(initialBrowserContext) };`)
+          __html: `${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}` + `window.VERSION='${version}';` + `window.initialData=${uneval(initialData)};` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${uneval(initialBrowserContext)};`)
         },
         __self: this,
         __source: {
@@ -102,7 +102,7 @@ export default (function alpHead(_ref) {
           lineNumber: 32
         }
       }),
-      React.createElement('script', { defer: true, src: assetUrl(`/${ scriptName }.js`, version), __self: this,
+      React.createElement('script', { defer: true, src: assetUrl(`/${scriptName}.js`, version), __self: this,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 43
@@ -113,12 +113,6 @@ export default (function alpHead(_ref) {
 });
 
 function _assert(x, type, name) {
-  if (false) {
-    _t.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
   if (_t.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _t.getTypeName(type)]);

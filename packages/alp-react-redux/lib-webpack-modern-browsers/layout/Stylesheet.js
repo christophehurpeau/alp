@@ -7,11 +7,10 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import assetUrl from './assetUrl';
 
 export default (function (_ref, { context }) {
-  var { href } = _ref;
+  let { href } = _ref,
+      props = _objectWithoutProperties(_ref, ['href']);
 
-  var props = _objectWithoutProperties(_ref, ['href']);
-
-  var version = context.config.get('version');
+  const version = context.config.get('version');
 
   return React.createElement('link', _extends({ rel: 'stylesheet', href: assetUrl(href, version) }, props));
 });
