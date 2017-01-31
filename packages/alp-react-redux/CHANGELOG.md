@@ -1,3 +1,12 @@
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/alpjs/alp-react-redux/compare/v7.0.0...v7.1.0) (2017-01-31)
+
+
+### Features
+
+* use modern-browsers ([f2f6c71](https://github.com/alpjs/alp-react-redux/commit/f2f6c71))
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/alpjs/alp-react-redux/compare/v6.0.5...v7.0.0) (2017-01-24)
 
