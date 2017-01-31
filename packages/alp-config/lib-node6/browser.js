@@ -17,11 +17,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); } /* global fetch */
-
-
+/* global fetch */
 function fetchConfig(path) {
-  return fetch(`${ path }.json`).then(res => res.text()).then(text => (0, _parseJsonObjectAsMap2.default)(text)).catch(() => false);
+  return fetch(`${path}.json`).then(res => res.text()).then(text => (0, _parseJsonObjectAsMap2.default)(text)).catch(() => false);
 }
 
 /**
@@ -46,19 +44,14 @@ function existsConfig(path) {
   return fetchConfig(path);
 }
 
-const getOrFetchAppConfig = function getOrFetchAppConfig(version, environment, configPath) {
+const getOrFetchAppConfig = function (version, environment, configPath) {
   if (storedConfig.getVersion() === version && storedConfig.has('_appConfig')) {
     return Promise.resolve(storedConfig.get('_appConfig'));
   }
 
   storedConfig.clear(version);
 
-  return Promise.all([getConfig(`${ configPath }common`), environment && getConfig(`${ configPath }environment`), getConfig(`${ configPath }local`)]).then((_ref) => {
-    var _ref2 = _toArray(_ref);
-
-    let config = _ref2[0],
-        others = _ref2.slice(1);
-
+  return Promise.all([getConfig(`${configPath}common`), environment && getConfig(`${configPath}environment`), getConfig(`${configPath}local`)]).then(([config, ...others]) => {
     if (!config) config = new Map();
     config.set('version', version);
 
@@ -75,8 +68,8 @@ const getOrFetchAppConfig = function getOrFetchAppConfig(version, environment, c
 function alpConfig(configPath) {
   configPath = configPath.replace(/\/*$/, '/');
   return function (app) {
-    app.existsConfig = name => existsConfig(`${ configPath }${ name }`);
-    app.loadConfig = name => getConfig(`${ configPath }${ name }`);
+    app.existsConfig = name => existsConfig(`${configPath}${name}`);
+    app.loadConfig = name => getConfig(`${configPath}${name}`);
 
     const version = app.appVersion;
 

@@ -1,4 +1,9 @@
-# alp-config
+# alp-config [![NPM version][npm-image]][npm-url]
+
+config in alp framework
+
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
 
 ## In your app
 
@@ -43,3 +48,10 @@ import config from './config';
 
 const app = new Alp({ config });
 ```
+
+[npm-image]: https://img.shields.io/npm/v/alp-config.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/alp-config
+[daviddm-image]: https://david-dm.org/alpjs/alp-config.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/alpjs/alp-config
+[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-config/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-config

@@ -4,9 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Config = undefined;
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 exports.default = alpConfig;
 
 var _tcombForked = require('tcomb-forked');
@@ -36,7 +33,7 @@ function _existsConfigSync(dirname, name) {
 
   _assert(name, _tcombForked2.default.String, 'name');
 
-  return (0, _fs.existsSync)(`${ dirname }${ name }.json`);
+  return (0, _fs.existsSync)(`${dirname}${name}.json`);
 }
 
 function _loadConfigSync(dirname, name) {
@@ -44,7 +41,7 @@ function _loadConfigSync(dirname, name) {
 
   _assert(name, _tcombForked2.default.String, 'name');
 
-  let content = (0, _fs.readFileSync)(`${ dirname }${ name }.json`);
+  let content = (0, _fs.readFileSync)(`${dirname}${name}.json`);
   return (0, _parseJsonObjectAsMap2.default)(content);
 }
 
@@ -63,39 +60,23 @@ class Config {
     this._dirname = dirname.replace(/\/*$/, '/');
   }
 
-  loadSync() {
-    let options = _assert(arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}, ConfigOptions, 'options');
-
+  loadSync(options = {}) {
     _assert(options, ConfigOptions, 'options');
 
     return _assert(function () {
       const env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
-      var _options$argv = options.argv;
-      const argvOverrides = _options$argv === undefined ? [] : _options$argv,
-            packageConfig = options.packageConfig,
-            version = options.version;
-
+      const { argv: argvOverrides = [], packageConfig, version } = options;
       this.packageConfig = packageConfig;
 
       const config = this.loadConfigSync('common');
       // eslint-disable-next-line no-restricted-syntax
-      for (let _ref of this.loadConfigSync(env)) {
-        var _ref2 = _slicedToArray(_ref, 2);
-
-        let key = _ref2[0];
-        let value = _ref2[1];
-
+      for (let [key, value] of this.loadConfigSync(env)) {
         config.set(key, value);
       }
 
       if (this.existsConfigSync('local')) {
         // eslint-disable-next-line no-restricted-syntax
-        for (let _ref3 of this.loadConfigSync('local')) {
-          var _ref4 = _slicedToArray(_ref3, 2);
-
-          let key = _ref4[0];
-          let value = _ref4[1];
-
+        for (let [key, value] of this.loadConfigSync('local')) {
           config.set(key, value);
         }
       }
@@ -154,9 +135,7 @@ class Config {
 }
 
 exports.Config = Config;
-function alpConfig(dirname) {
-  let options = _assert(arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}, ConfigOptions, 'options');
-
+function alpConfig(dirname, options = {}) {
   _assert(dirname, _tcombForked2.default.maybe(_tcombForked2.default.String), 'dirname');
 
   _assert(options, ConfigOptions, 'options');
@@ -183,18 +162,12 @@ function alpConfig(dirname) {
 }
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
-  }
-
-  if (_tcombForked2.default.isType(type)) {
+  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
+    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
   }
 
   return x;

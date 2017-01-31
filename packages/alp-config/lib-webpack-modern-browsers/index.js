@@ -1,5 +1,3 @@
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 import { deprecate } from 'util';
 import argv from 'minimist-argv';
 import deepFreeze from 'deep-freeze-es6';
@@ -7,11 +5,11 @@ import parseJSON from 'parse-json-object-as-map';
 import { existsSync, readFileSync } from 'fs';
 
 function _existsConfigSync(dirname, name) {
-  return existsSync(`${ dirname }${ name }.json`);
+  return existsSync(`${dirname}${name}.json`);
 }
 
 function _loadConfigSync(dirname, name) {
-  var content = readFileSync(`${ dirname }${ name }.json`);
+  let content = readFileSync(`${dirname}${name}.json`);
   return parseJSON(content);
 }
 
@@ -22,37 +20,21 @@ export class Config {
     this._dirname = dirname.replace(/\/*$/, '/');
   }
 
-  loadSync() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    var env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
-    var _options$argv = options.argv,
-        argvOverrides = _options$argv === undefined ? [] : _options$argv,
-        packageConfig = options.packageConfig,
-        version = options.version;
-
+  loadSync(options = {}) {
+    const env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
+    const { argv: argvOverrides = [], packageConfig, version } = options;
     this.packageConfig = packageConfig;
 
-    var config = this.loadConfigSync('common');
+    const config = this.loadConfigSync('common');
     // eslint-disable-next-line no-restricted-syntax
-    for (var _ref of this.loadConfigSync(env)) {
-      var _ref2 = _slicedToArray(_ref, 2);
-
-      var key = _ref2[0];
-      var value = _ref2[1];
-
+    for (let [key, value] of this.loadConfigSync(env)) {
       config.set(key, value);
     }
 
     if (this.existsConfigSync('local')) {
       // eslint-disable-next-line no-restricted-syntax
-      for (var _ref3 of this.loadConfigSync('local')) {
-        var _ref4 = _slicedToArray(_ref3, 2);
-
-        var _key = _ref4[0];
-        var _value = _ref4[1];
-
-        config.set(_key, _value);
+      for (let [key, value] of this.loadConfigSync('local')) {
+        config.set(key, value);
       }
     }
 
@@ -62,7 +44,7 @@ export class Config {
 
     config.set('version', version || argv.version || packageConfig.version);
 
-    var socketPath = argv['socket-path'] || argv.socketPath;
+    let socketPath = argv['socket-path'] || argv.socketPath;
     if (socketPath) {
       config.set('socketPath', socketPath);
     } else if (argv.port) {
@@ -70,12 +52,16 @@ export class Config {
       config.delete('socketPath');
     }
 
-    argvOverrides.forEach(key => {
-      var splitted = key.split('.');
-      var value = splitted.length !== 0 && splitted.reduce((config, partialKey) => config && config[partialKey], argv);
+    argvOverrides.forEach(function (key) {
+      const splitted = key.split('.');
+      const value = splitted.length !== 0 && splitted.reduce(function (config, partialKey) {
+        return config && config[partialKey];
+      }, argv);
       if (value !== undefined) {
-        var last = splitted.pop();
-        var map = splitted.length === 0 ? config : splitted.reduce((config, partialKey) => config.get(partialKey), config);
+        const last = splitted.pop();
+        const map = splitted.length === 0 ? config : splitted.reduce(function (config, partialKey) {
+          return config.get(partialKey);
+        }, config);
         map.set(last, value);
       }
     });
@@ -96,20 +82,26 @@ export class Config {
   }
 }
 
-export default function alpConfig(dirname) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-  return (app, config) => {
+export default function alpConfig(dirname, options = {}) {
+  return function (app, config) {
     if (!config) {
       config = new Config(dirname, options);
       config.loadSync(options);
     }
 
-    app.existsConfig = deprecate(name => config.existsConfigSync(name), 'use app.existsConfigSync');
-    app.loadConfig = deprecate(name => config.loadConfigSync(name), 'use app.loadConfigSync');
+    app.existsConfig = deprecate(function (name) {
+      return config.existsConfigSync(name);
+    }, 'use app.existsConfigSync');
+    app.loadConfig = deprecate(function (name) {
+      return config.loadConfigSync(name);
+    }, 'use app.loadConfigSync');
 
-    app.existsConfigSync = name => config.existsConfigSync(name);
-    app.loadConfigSync = name => config.loadConfigSync(name);
+    app.existsConfigSync = function (name) {
+      return config.existsConfigSync(name);
+    };
+    app.loadConfigSync = function (name) {
+      return config.loadConfigSync(name);
+    };
 
     app.config = config;
     app.context.config = config;
