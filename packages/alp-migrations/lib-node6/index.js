@@ -30,16 +30,11 @@ const logger = new _nightingaleLogger2.default('alp:migrations');
 exports.MigrationsManager = _Manager2.default;
 
 exports.default = (() => {
-  var _ref = _asyncToGenerator(function* (_ref2) {
-    let app = _ref2.app,
-        config = _ref2.config,
-        dirname = _ref2.dirname,
-        migrationsManager = _ref2.migrationsManager;
-
+  var _ref = _asyncToGenerator(function* ({ app, config, dirname, migrationsManager }) {
     if (!config) config = app.config;
-    if (!dirname) dirname = `${ app.dirname }/migrations`;
+    if (!dirname) dirname = `${app.dirname}/migrations`;
 
-    const unhandledRejectionHandler = function unhandledRejectionHandler(err) {
+    const unhandledRejectionHandler = function (err) {
       logger.error('unhandledRejection', { err });
       process.exit(1);
     };
@@ -58,7 +53,7 @@ exports.default = (() => {
         return;
       }
 
-      let version = /([\d\.]+)(_.*|\.js)$/.exec(fileName);
+      let version = /([\d.]+)(_.*|\.js)$/.exec(fileName);
 
       if (!version || !version[1]) {
         return;
@@ -68,7 +63,7 @@ exports.default = (() => {
 
       if (currentVersion && _semver2.default.lte(version, currentVersion)) return;
 
-      migrations.push({ version: version, fileName: fileName });
+      migrations.push({ version, fileName });
     });
 
     migrations = migrations.sort(function (a, b) {
@@ -78,19 +73,20 @@ exports.default = (() => {
     try {
       // eslint-disable-next-line no-restricted-syntax
       for (let migration of migrations) {
-        logger.info(`Migration to ${ migration.fileName }`);
+        logger.info(`Migration to ${migration.fileName}`);
         try {
-          // eslint-disable-next-line global-require, import/no-dynamic-require
-          yield require(`${ dirname }/${ migration.fileName }`).default();
+          // eslint-disable-next-line global-require, import/no-dynamic-require, no-await-in-loop
+          yield require(`${dirname}/${migration.fileName}`).default();
         } catch (err) {
-          logger.error(`Migration to ${ migration.version } Failed !`);
+          logger.error(`Migration to ${migration.version} Failed !`);
           throw err;
         }
 
-        logger.success(`Migration to ${ migration.fileName } done !`);
+        logger.success(`Migration to ${migration.fileName} done !`);
 
         // only add to db if migration version <= package version
-        if (!_semver2.default.gt(migration.version, packageVersion)) {
+        if (_semver2.default.lte(migration.version, packageVersion)) {
+          // eslint-disable-next-line no-await-in-loop
           yield migrationsManager.addMigrationDone(migration);
         }
       }
@@ -102,10 +98,8 @@ exports.default = (() => {
     process.removeListener('unhandledRejection', unhandledRejectionHandler);
   });
 
-  function migrate(_x) {
+  return function migrate() {
     return _ref.apply(this, arguments);
-  }
-
-  return migrate;
+  };
 })();
 //# sourceMappingURL=index.js.map

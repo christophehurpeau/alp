@@ -6,7 +6,10 @@ export default class MigrationsManager {
   findLastVersion() {
     if (this.store.r) {
       return this.store.findOne(
-        this.store.table().getField('version'),
+        this.store
+          .table()
+          .orderBy(this.store.r.desc('version'))
+          .getField('version'),
       );
     } else {
       return this.store.findOne({}, { created: -1 })

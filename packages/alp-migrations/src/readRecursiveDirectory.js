@@ -19,9 +19,9 @@ export default function readRecursiveDirectory(directory, callback) {
             try {
               Promise.resolve(callback({
                 filename: file,
-                path: path,
                 basedir: directory,
-                stat: stat,
+                path,
+                stat,
               }))
                 .then(resolve)
                 .catch(reject);

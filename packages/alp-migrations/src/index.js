@@ -29,7 +29,7 @@ export default async function migrate({ app, config, dirname, migrationsManager 
       return;
     }
 
-    let version = /([\d\.]+)(_.*|\.js)$/.exec(fileName);
+    let version = /([\d.]+)(_.*|\.js)$/.exec(fileName);
 
     if (!version || !version[1]) {
       return;
@@ -39,7 +39,7 @@ export default async function migrate({ app, config, dirname, migrationsManager 
 
     if (currentVersion && semver.lte(version, currentVersion)) return;
 
-    migrations.push({ version: version, fileName: fileName });
+    migrations.push({ version, fileName });
   });
 
   migrations = migrations.sort((a, b) => semver.gt(a.version, b.version));
@@ -49,7 +49,7 @@ export default async function migrate({ app, config, dirname, migrationsManager 
     for (let migration of migrations) {
       logger.info(`Migration to ${migration.fileName}`);
       try {
-        // eslint-disable-next-line global-require, import/no-dynamic-require
+        // eslint-disable-next-line global-require, import/no-dynamic-require, no-await-in-loop
         await require(`${dirname}/${migration.fileName}`).default();
       } catch (err) {
         logger.error(`Migration to ${migration.version} Failed !`);
@@ -59,7 +59,8 @@ export default async function migrate({ app, config, dirname, migrationsManager 
       logger.success(`Migration to ${migration.fileName} done !`);
 
       // only add to db if migration version <= package version
-      if (!semver.gt(migration.version, packageVersion)) {
+      if (semver.lte(migration.version, packageVersion)) {
+        // eslint-disable-next-line no-await-in-loop
         await migrationsManager.addMigrationDone(migration);
       }
     }

@@ -13,7 +13,7 @@ function readRecursiveDirectory(directory, callback) {
       if (err) return reject(err);
 
       Promise.all(files.map(file => {
-        const path = `${ directory }/${ file }`;
+        const path = `${directory}/${file}`;
         return new Promise((resolve, reject) => {
           (0, _fs.stat)(path, (err, stat) => {
             if (err) return reject(err);
@@ -24,9 +24,9 @@ function readRecursiveDirectory(directory, callback) {
             try {
               Promise.resolve(callback({
                 filename: file,
-                path: path,
                 basedir: directory,
-                stat: stat
+                path,
+                stat
               })).then(resolve).catch(reject);
             } catch (err) {
               return reject(err);
