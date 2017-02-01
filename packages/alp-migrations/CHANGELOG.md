@@ -1,3 +1,12 @@
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/alpjs/alp-migrations/compare/v0.7.0...v0.7.1) (2017-02-01)
+
+
+### Bug Fixes
+
+* upgrade pob and fix order version rethinkdb ([7e38308](https://github.com/alpjs/alp-migrations/commit/7e38308))
+
+
 ### v0.7.0
 
 - [`6fb2a83`](https://github.com/alpjs/alp-migrations/commit/6fb2a83972bfe769f752548b8f5b8b17138ab2e8) refactor: remove liwi dependency (Christophe Hurpeau)
