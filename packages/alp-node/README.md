@@ -1,8 +1,17 @@
-# alp-node
+# alp-node [![NPM version][npm-image]][npm-url]
 
-Framework based on koa 2.
-Alp requires node v5 or higher
+framework based on koa 2
 
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+
+## Install
+
+```bash
+npm install --save alp-node
+```
+
+## Usage
 
 ```js
 import Alp from 'alp-node';
@@ -10,6 +19,12 @@ import Alp from 'alp-node';
 const app = new Alp();
 app.servePublic();
 app.catchErrors();
-app.useRouter();
 app.listen();
 ```
+
+[npm-image]: https://img.shields.io/npm/v/alp-node.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/alp-node
+[daviddm-image]: https://david-dm.org/alpjs/alp-node.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/alpjs/alp-node
+[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-node/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-node

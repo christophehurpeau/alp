@@ -76,14 +76,14 @@ const logger = new _nightingaleLogger2.default('alp');
 const appDirname = exports.appDirname = _path2.default.dirname(process.argv[1]);
 
 const packagePath = (0, _findupSync2.default)('package.json', { cwd: appDirname });
-if (!packagePath) throw new Error(`Could not find package.json: "${ packagePath }"`);
+if (!packagePath) throw new Error(`Could not find package.json: "${packagePath}"`);
 const packageDirname = exports.packageDirname = _path2.default.dirname(packagePath);
 
 logger.debug('init', { appDirname, packageDirname });
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
 const packageConfig = exports.packageConfig = require(packagePath);
-const config = exports.config = new _alpConfig.Config(`${ appDirname }/config/`);
+const config = exports.config = new _alpConfig.Config(`${appDirname}/config/`);
 config.loadSync({ packageConfig });
 
 class Alp extends _koa2.default {
@@ -96,9 +96,7 @@ class Alp extends _koa2.default {
    * @param {Config} [options.config] alp-config object
    * @param {Array} [options.argv] deprecated, list of overridable config by argv
    */
-  constructor() {
-    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
+  constructor(options = {}) {
     super();
     if (options.packageDirname) {
       throw new Error('options.packageDirname is deprecated');
@@ -121,8 +119,8 @@ class Alp extends _koa2.default {
       enumerable: false
     });
 
-    this.certPath = options.certPath || `${ this.packageDirname }/config/cert`;
-    this.publicPath = options.publicPath || `${ this.packageDirname }/public/`;
+    this.certPath = options.certPath || `${this.packageDirname}/config/cert`;
+    this.publicPath = options.publicPath || `${this.packageDirname}/public/`;
 
     (0, _alpConfig2.default)()(this, config);
 

@@ -34,7 +34,6 @@ export default class Alp extends Koa {
   dirname: string;
   packageDirname: string;
   browserStateTransformers: Array<Function>;
-  config;
 
   /**
    * @param {Object} [options]
