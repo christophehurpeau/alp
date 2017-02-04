@@ -1,3 +1,12 @@
+<a name="0.28.0"></a>
+# [0.28.0](https://github.com/alpjs/alp-node/compare/v0.27.0...v0.28.0) (2017-02-04)
+
+
+### Features
+
+* upgrade dependencies ([aa88937](https://github.com/alpjs/alp-node/commit/aa88937))
+
+
 ### v0.27.0
 
 - [`6cc0cd0`](https://github.com/alpjs/alp-node/commit/6cc0cd05f36dc426a64e4e5cb903374f4a33fb77) chore(package): update dependencies (Christophe Hurpeau)
