@@ -1,6 +1,7 @@
 {
   "envs": [
-    "node6"
+    "node6",
+    "webpack-node6"
   ],
   "react": false,
   "testing": false,

@@ -17,8 +17,8 @@
     "url": "https://github.com/alpjs/alp-node/issues"
   },
   "main": "lib/index.js",
-  "webpack:node": "./lib-node6/index.js",
-  "webpack:node-dev": "./lib-node6-dev/index.js",
+  "webpack:node": "./lib-webpack-node6/index.js",
+  "webpack:node-dev": "./lib-webpack-node6-dev/index.js",
   "scripts": {
     "build": "pob-build",
     "clean": "rm -Rf docs dist test/node6 coverage",
@@ -55,8 +55,8 @@
     "eslint-plugin-import": "^2.2.0",
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
-    "pob-babel": "^13.0.0",
-    "pob-release": "^3.0.0",
+    "pob-babel": "^14.1.0",
+    "pob-release": "^3.1.0",
     "tcomb-forked": "^3.4.0"
   }
 }
