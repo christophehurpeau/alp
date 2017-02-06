@@ -1,3 +1,12 @@
+<a name="0.29.0"></a>
+# [0.29.0](https://github.com/alpjs/alp-node/compare/v0.28.0...v0.29.0) (2017-02-06)
+
+
+### Features
+
+* pob-babel@14.1 and webpack node6 ([bf7d8f2](https://github.com/alpjs/alp-node/commit/bf7d8f2))
+
+
 <a name="0.28.0"></a>
 # [0.28.0](https://github.com/alpjs/alp-node/compare/v0.27.0...v0.28.0) (2017-02-04)
 
