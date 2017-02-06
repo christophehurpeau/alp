@@ -117,11 +117,6 @@ const createHydratableReducer = reducer => {
   _assert(reducer, _tcombForked2.default.Function, 'reducer');
 
   return (state, action) => {
-    // ignore redux init
-    if (action.type === '@@redux/INIT') {
-      return;
-    }
-
     if (action.type === HYDRATE_STATE) {
       state = action.state;
     }

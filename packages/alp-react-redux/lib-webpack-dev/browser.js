@@ -37,11 +37,6 @@ var createHydratableReducer = function createHydratableReducer(reducer) {
   _assert(reducer, _t.Function, 'reducer');
 
   return function (state, action) {
-    // ignore redux init
-    if (action.type === '@@redux/INIT') {
-      return;
-    }
-
     if (action.type === HYDRATE_STATE) {
       state = action.state;
     }

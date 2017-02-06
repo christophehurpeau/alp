@@ -27,11 +27,6 @@ let currentModuleDescriptorIdentifier;
 
 const createHydratableReducer = (reducer: Function) => (
   (state, action) => {
-    // ignore redux init
-    if (action.type === '@@redux/INIT') {
-      return;
-    }
-
     if (action.type === HYDRATE_STATE) {
       state = action.state;
     }
