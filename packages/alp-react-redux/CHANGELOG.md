@@ -1,3 +1,12 @@
+<a name="7.1.1"></a>
+## [7.1.1](https://github.com/alpjs/alp-react-redux/compare/v7.1.0...v7.1.1) (2017-02-06)
+
+
+### Bug Fixes
+
+* stop ignoring redux init ([a26bdb0](https://github.com/alpjs/alp-react-redux/commit/a26bdb0))
+
+
 <a name="7.1.0"></a>
 # [7.1.0](https://github.com/alpjs/alp-react-redux/compare/v7.0.0...v7.1.0) (2017-01-31)
 
