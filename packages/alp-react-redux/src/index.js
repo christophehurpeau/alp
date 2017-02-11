@@ -13,7 +13,7 @@ export { Helmet } from 'fody/src';
 export { combineReducers } from 'redux/src';
 export { connect } from 'react-redux/src';
 export createPureStatelessComponent from 'react-pure-stateless-component';
-export { createAction, createReducer, createLoader } from './utils';
+export { createAction, createReducer, createLoader, classNames } from './utils';
 export { AlpHtml, AlpLayout, AlpHead, AlpBody } from './layout';
 
 if (BROWSER) throw new Error('Not supposed to be loaded browser-side.');

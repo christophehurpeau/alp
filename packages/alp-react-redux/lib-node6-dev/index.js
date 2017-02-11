@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AlpBody = exports.AlpHead = exports.AlpLayout = exports.AlpHtml = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
+exports.AlpBody = exports.AlpHead = exports.AlpLayout = exports.AlpHtml = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -52,6 +52,12 @@ Object.defineProperty(exports, 'createLoader', {
   enumerable: true,
   get: function () {
     return _utils.createLoader;
+  }
+});
+Object.defineProperty(exports, 'classNames', {
+  enumerable: true,
+  get: function () {
+    return _utils.classNames;
   }
 });
 

@@ -21,7 +21,7 @@ export { connect } from 'react-redux';
 import _createPureStatelessComponent from 'react-pure-stateless-component';
 export { _createPureStatelessComponent as createPureStatelessComponent };
 
-export { createAction, createReducer, createLoader } from './utils';
+export { createAction, createReducer, createLoader, classNames } from './utils';
 export { AlpHtml, AlpLayout, AlpHead, AlpBody } from './layout';
 
 throw new Error('Not supposed to be loaded browser-side.');
