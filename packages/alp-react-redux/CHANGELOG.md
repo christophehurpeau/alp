@@ -1,3 +1,12 @@
+<a name="7.2.0"></a>
+# [7.2.0](https://github.com/alpjs/alp-react-redux/compare/v7.1.1...v7.2.0) (2017-02-11)
+
+
+### Features
+
+* add utils/classNames ([041ffe3](https://github.com/alpjs/alp-react-redux/commit/041ffe3))
+
+
 <a name="7.1.1"></a>
 ## [7.1.1](https://github.com/alpjs/alp-react-redux/compare/v7.1.0...v7.1.1) (2017-02-06)
 
