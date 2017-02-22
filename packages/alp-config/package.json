@@ -15,8 +15,8 @@
   "main": "./index.js",
   "webpack:main": "./lib-webpack/browser.js",
   "webpack:main-dev": "./lib-webpack-dev/browser.js",
-  "webpack:node": "./lib-node6/index.js",
-  "webpack:node-dev": "./lib-node6-dev/index.js",
+  "webpack:node": "./lib-webpack-node6/index.js",
+  "webpack:node-dev": "./lib-webpack-node6-dev/index.js",
   "webpack:main-modern-browsers": "./lib-webpack-modern-browsers/browser.js",
   "webpack:main-modern-browsers-dev": "./lib-webpack-modern-browsers-dev/browser.js",
   "scripts": {
@@ -41,15 +41,15 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-es2015-node6": "^0.4.0",
     "babel-preset-modern-browsers": "^8.0.0",
-    "eslint": "^3.12.2",
-    "eslint-config-airbnb-base": "^11.0.0",
-    "eslint-config-pob": "^11.0.0",
+    "eslint": "^3.16.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-config-pob": "^11.1.0",
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-import": "^2.2.0",
     "komet": "^0.1.4",
-    "komet-karma": "^0.2.3",
-    "pob-babel": "^13.0.0",
-    "pob-release": "^3.0.0",
+    "komet-karma": "^0.2.5",
+    "pob-babel": "^14.1.0",
+    "pob-release": "^3.1.0",
     "tcomb-forked": "^3.4.0"
   }
 }
