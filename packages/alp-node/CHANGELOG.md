@@ -1,3 +1,12 @@
+<a name="0.31.0"></a>
+# [0.31.0](https://github.com/alpjs/alp-node/compare/v0.30.0...v0.31.0) (2017-02-27)
+
+
+### Features
+
+* look for build config ([7fc2862](https://github.com/alpjs/alp-node/commit/7fc2862))
+
+
 <a name="0.30.0"></a>
 # [0.30.0](https://github.com/alpjs/alp-node/compare/v0.29.0...v0.30.0) (2017-02-27)
 
