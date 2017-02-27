@@ -81,16 +81,12 @@ export class Config {
       config.delete('socketPath');
     }
 
-    argvOverrides.forEach(function (key) {
+    argvOverrides.forEach(key => {
       const splitted = key.split('.');
-      const value = splitted.length !== 0 && splitted.reduce(function (config, partialKey) {
-        return config && config[partialKey];
-      }, argv);
+      const value = splitted.length !== 0 && splitted.reduce((config, partialKey) => config && config[partialKey], argv);
       if (value !== undefined) {
         const last = splitted.pop();
-        const map = splitted.length === 0 ? config : splitted.reduce(function (config, partialKey) {
-          return config.get(partialKey);
-        }, config);
+        const map = splitted.length === 0 ? config : splitted.reduce((config, partialKey) => config.get(partialKey), config);
         map.set(last, value);
       }
     });
@@ -135,7 +131,7 @@ export default function alpConfig(dirname, options = {}) {
   t.param('dirname', _dirnameType4).assert(dirname);
   t.param('options', ConfigOptions).assert(options);
 
-  return function (app, config) {
+  return (app, config) => {
     let _configType = t.nullable(t.ref(Config));
 
     t.param('config', _configType).assert(config);
@@ -145,19 +141,11 @@ export default function alpConfig(dirname, options = {}) {
       config.loadSync(options);
     }
 
-    app.existsConfig = deprecate(function (name) {
-      return config.existsConfigSync(name);
-    }, 'use app.existsConfigSync');
-    app.loadConfig = deprecate(function (name) {
-      return config.loadConfigSync(name);
-    }, 'use app.loadConfigSync');
+    app.existsConfig = deprecate(name => config.existsConfigSync(name), 'use app.existsConfigSync');
+    app.loadConfig = deprecate(name => config.loadConfigSync(name), 'use app.loadConfigSync');
 
-    app.existsConfigSync = function (name) {
-      return config.existsConfigSync(name);
-    };
-    app.loadConfigSync = function (name) {
-      return config.loadConfigSync(name);
-    };
+    app.existsConfigSync = name => config.existsConfigSync(name);
+    app.loadConfigSync = name => config.loadConfigSync(name);
 
     app.config = config;
     app.context.config = config;

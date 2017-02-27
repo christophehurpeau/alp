@@ -2,8 +2,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-import _t from 'tcomb-forked';
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 import { deprecate } from 'util';
@@ -12,34 +10,40 @@ import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
 import { existsSync, readFileSync } from 'fs';
 
+import t from 'flow-runtime';
 function _existsConfigSync(dirname, name) {
-  _assert(dirname, _t.String, 'dirname');
+  var _dirnameType = t.string();
 
-  _assert(name, _t.String, 'name');
+  var _nameType = t.string();
+
+  t.param('dirname', _dirnameType).assert(dirname);
+  t.param('name', _nameType).assert(name);
 
   return existsSync('' + dirname + name + '.json');
 }
 
 function _loadConfigSync(dirname, name) {
-  _assert(dirname, _t.String, 'dirname');
+  var _dirnameType2 = t.string();
 
-  _assert(name, _t.String, 'name');
+  var _nameType2 = t.string();
+
+  t.param('dirname', _dirnameType2).assert(dirname);
+  t.param('name', _nameType2).assert(name);
 
   var content = readFileSync('' + dirname + name + '.json');
   return parseJSON(content);
 }
 
-var ConfigOptions = _t.interface({
-  argv: _t.maybe(_t.list(_t.String)),
-  packageConfig: _t.maybe(_t.Object),
-  version: _t.maybe(_t.String)
-}, 'ConfigOptions');
+var ConfigOptions = t.type('ConfigOptions', t.object(t.property('argv', t.array(t.string()), true), t.property('packageConfig', t.object(), true), t.property('version', t.string(), true)));
+
 
 export var Config = function () {
   function Config(dirname) {
-    _assert(dirname, _t.String, 'dirname');
-
     _classCallCheck(this, Config);
+
+    var _dirnameType3 = t.string();
+
+    t.param('dirname', _dirnameType3).assert(dirname);
 
     this._map = new Map();
     this._dirname = dirname.replace(/\/*$/, '/');
@@ -50,136 +54,142 @@ export var Config = function () {
     value: function loadSync() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-      _assert(options, ConfigOptions, 'options');
+      var _returnType = t.return(t.ref('Map'));
 
-      return _assert(function () {
-        var env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
-        var _options$argv = options.argv,
-            argvOverrides = _options$argv === undefined ? [] : _options$argv,
-            packageConfig = options.packageConfig,
-            version = options.version;
+      t.param('options', ConfigOptions).assert(options);
 
-        this.packageConfig = packageConfig;
+      var env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
+      var _options$argv = options.argv,
+          argvOverrides = _options$argv === undefined ? [] : _options$argv,
+          packageConfig = options.packageConfig,
+          version = options.version;
 
-        var config = this.loadConfigSync('common');
+      this.packageConfig = packageConfig;
+
+      var config = this.loadConfigSync('common');
+      // eslint-disable-next-line no-restricted-syntax
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.loadConfigSync(env)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var _step$value = _slicedToArray(_step.value, 2),
+              key = _step$value[0],
+              value = _step$value[1];
+
+          config.set(key, value);
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      if (this.existsConfigSync('local')) {
         // eslint-disable-next-line no-restricted-syntax
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
 
         try {
-          for (var _iterator = this.loadConfigSync(env)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var _step$value = _slicedToArray(_step.value, 2),
-                key = _step$value[0],
-                value = _step$value[1];
+          for (var _iterator2 = this.loadConfigSync('local')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var _step2$value = _slicedToArray(_step2.value, 2),
+                key = _step2$value[0],
+                value = _step2$value[1];
 
             config.set(key, value);
           }
         } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-              _iterator.return();
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+              _iterator2.return();
             }
           } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
+            if (_didIteratorError2) {
+              throw _iteratorError2;
             }
           }
         }
+      }
 
-        if (this.existsConfigSync('local')) {
-          // eslint-disable-next-line no-restricted-syntax
-          var _iteratorNormalCompletion2 = true;
-          var _didIteratorError2 = false;
-          var _iteratorError2 = undefined;
+      if (config.has('version')) {
+        throw new Error('Cannot have "version", in config.');
+      }
 
-          try {
-            for (var _iterator2 = this.loadConfigSync('local')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-              var _step2$value = _slicedToArray(_step2.value, 2),
-                  key = _step2$value[0],
-                  value = _step2$value[1];
+      config.set('version', version || argv.version || packageConfig.version);
 
-              config.set(key, value);
-            }
-          } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                _iterator2.return();
-              }
-            } finally {
-              if (_didIteratorError2) {
-                throw _iteratorError2;
-              }
-            }
-          }
+      var socketPath = argv['socket-path'] || argv.socketPath;
+      if (socketPath) {
+        config.set('socketPath', socketPath);
+      } else if (argv.port) {
+        config.set('port', argv.port);
+        config.delete('socketPath');
+      } else if (process.env.PORT) {
+        config.set('port', Number(process.env.PORT));
+        config.delete('socketPath');
+      }
+
+      argvOverrides.forEach(function (key) {
+        var splitted = key.split('.');
+        var value = splitted.length !== 0 && splitted.reduce(function (config, partialKey) {
+          return config && config[partialKey];
+        }, argv);
+        if (value !== undefined) {
+          var last = splitted.pop();
+          var map = splitted.length === 0 ? config : splitted.reduce(function (config, partialKey) {
+            return config.get(partialKey);
+          }, config);
+          map.set(last, value);
         }
+      });
 
-        if (config.has('version')) {
-          throw new Error('Cannot have "version", in config.');
-        }
-
-        config.set('version', version || argv.version || packageConfig.version);
-
-        var socketPath = argv['socket-path'] || argv.socketPath;
-        if (socketPath) {
-          config.set('socketPath', socketPath);
-        } else if (argv.port) {
-          config.set('port', argv.port);
-          config.delete('socketPath');
-        } else if (process.env.PORT) {
-          config.set('port', Number(process.env.PORT));
-          config.delete('socketPath');
-        }
-
-        argvOverrides.forEach(function (key) {
-          var splitted = key.split('.');
-          var value = splitted.length !== 0 && splitted.reduce(function (config, partialKey) {
-            return config && config[partialKey];
-          }, argv);
-          if (value !== undefined) {
-            var last = splitted.pop();
-            var map = splitted.length === 0 ? config : splitted.reduce(function (config, partialKey) {
-              return config.get(partialKey);
-            }, config);
-            map.set(last, value);
-          }
-        });
-
-        return this._map = deepFreeze(config);
-      }.apply(this, arguments), Map, 'return value');
+      return _returnType.assert(this._map = deepFreeze(config));
     }
   }, {
     key: 'get',
     value: function get(key) {
-      _assert(key, _t.String, 'key');
+      var _keyType = t.string();
 
-      return _assert(function () {
-        return this._map.get(key);
-      }.apply(this, arguments), _t.Any, 'return value');
+      var _returnType2 = t.return(t.any());
+
+      t.param('key', _keyType).assert(key);
+
+      return _returnType2.assert(this._map.get(key));
     }
   }, {
     key: 'existsConfigSync',
     value: function existsConfigSync(name) {
-      _assert(name, _t.String, 'name');
+      var _nameType3 = t.string();
 
-      return _assert(function () {
-        return _existsConfigSync(this._dirname, name);
-      }.apply(this, arguments), _t.Boolean, 'return value');
+      var _returnType3 = t.return(t.boolean());
+
+      t.param('name', _nameType3).assert(name);
+
+      return _returnType3.assert(_existsConfigSync(this._dirname, name));
     }
   }, {
     key: 'loadConfigSync',
     value: function loadConfigSync(name) {
-      _assert(name, _t.String, 'name');
+      var _nameType4 = t.string();
 
-      return _assert(function () {
-        return _loadConfigSync(this._dirname, name);
-      }.apply(this, arguments), Map, 'return value');
+      var _returnType4 = t.return(t.ref('Map'));
+
+      t.param('name', _nameType4).assert(name);
+
+      return _returnType4.assert(_loadConfigSync(this._dirname, name));
     }
   }]);
 
@@ -189,15 +199,18 @@ export var Config = function () {
 export default function alpConfig(dirname) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  _assert(dirname, _t.maybe(_t.String), 'dirname');
+  var _dirnameType4 = t.nullable(t.string());
 
-  _assert(options, ConfigOptions, 'options');
+  t.param('dirname', _dirnameType4).assert(dirname);
+  t.param('options', ConfigOptions).assert(options);
 
   return function (app, config) {
-    _assert(config, _t.maybe(Config), 'config');
+    var _configType = t.nullable(t.ref(Config));
+
+    t.param('config', _configType).assert(config);
 
     if (!config) {
-      config = new Config(dirname, options);
+      config = _configType.assert(new Config(dirname, options));
       config.loadSync(options);
     }
 
@@ -220,17 +233,5 @@ export default function alpConfig(dirname) {
 
     return config;
   };
-}
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=index.js.map
