@@ -1,4 +1,3 @@
-import _t from 'tcomb-forked';
 import { deprecate } from 'util';
 import Koa from 'koa';
 import compress from 'koa-compress';
@@ -13,6 +12,7 @@ import Logger from 'nightingale-logger';
 import findUp from 'findup-sync';
 import path from 'path';
 
+import t from 'flow-runtime';
 export { Config } from 'alp-config';
 import _newController from 'alp-controller';
 export { _newController as newController };
@@ -93,13 +93,17 @@ export default class Alp extends Koa {
   }
 
   registerBrowserContextTransformer(transformer) {
-    _assert(transformer, _t.Function, 'transformer');
+    let _transformerType = t.function();
+
+    t.param('transformer', _transformerType).assert(transformer);
 
     this.browserContextTransformers.push(transformer);
   }
 
   registerBrowserStateTransformer(transformer) {
-    _assert(transformer, _t.Function, 'transformer');
+    let _transformerType2 = t.function();
+
+    t.param('transformer', _transformerType2).assert(transformer);
 
     this.browserStateTransformers.push(transformer);
   }
@@ -144,21 +148,11 @@ export default class Alp extends Koa {
   }
 
   start(fn) {
-    _assert(fn, _t.Function, 'fn');
+    let _fnType = t.function();
+
+    t.param('fn', _fnType).assert(fn);
 
     fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
-}
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=index.js.map

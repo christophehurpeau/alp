@@ -14,10 +14,6 @@ Object.defineProperty(exports, 'Config', {
   }
 });
 
-var _tcombForked = require('tcomb-forked');
-
-var _tcombForked2 = _interopRequireDefault(_tcombForked);
-
 var _util = require('util');
 
 var _koa = require('koa');
@@ -65,6 +61,10 @@ var _findupSync2 = _interopRequireDefault(_findupSync);
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
+
+var _flowRuntime = require('flow-runtime');
+
+var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 var _alpController = require('alp-controller');
 
@@ -150,13 +150,17 @@ class Alp extends _koa2.default {
   }
 
   registerBrowserContextTransformer(transformer) {
-    _assert(transformer, _tcombForked2.default.Function, 'transformer');
+    let _transformerType = _flowRuntime2.default.function();
+
+    _flowRuntime2.default.param('transformer', _transformerType).assert(transformer);
 
     this.browserContextTransformers.push(transformer);
   }
 
   registerBrowserStateTransformer(transformer) {
-    _assert(transformer, _tcombForked2.default.Function, 'transformer');
+    let _transformerType2 = _flowRuntime2.default.function();
+
+    _flowRuntime2.default.param('transformer', _transformerType2).assert(transformer);
 
     this.browserStateTransformers.push(transformer);
   }
@@ -201,22 +205,12 @@ class Alp extends _koa2.default {
   }
 
   start(fn) {
-    _assert(fn, _tcombForked2.default.Function, 'fn');
+    let _fnType = _flowRuntime2.default.function();
+
+    _flowRuntime2.default.param('fn', _fnType).assert(fn);
 
     fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
 }
 exports.default = Alp;
-
-function _assert(x, type, name) {
-  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
-  }
-
-  return x;
-}
 //# sourceMappingURL=index.js.map
