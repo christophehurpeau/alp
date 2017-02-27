@@ -1,3 +1,9 @@
+<a name="3.3.0"></a>
+# [3.3.0](https://github.com/alpjs/alp-config/compare/v3.2.0...v3.3.0) (2017-02-27)
+
+node 7
+
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/alpjs/alp-config/compare/v3.1.0...v3.2.0) (2017-01-31)
 
