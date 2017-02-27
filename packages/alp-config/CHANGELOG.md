@@ -1,3 +1,12 @@
+<a name="3.3.1"></a>
+## [3.3.1](https://github.com/alpjs/alp-config/compare/v3.3.0...v3.3.1) (2017-02-27)
+
+
+### Bug Fixes
+
+* flow-runtime map parameters ([f72c12a](https://github.com/alpjs/alp-config/commit/f72c12a))
+
+
 <a name="3.3.0"></a>
 # [3.3.0](https://github.com/alpjs/alp-config/compare/v3.2.0...v3.3.0) (2017-02-27)
 
