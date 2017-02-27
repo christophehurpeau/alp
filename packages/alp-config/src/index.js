@@ -13,14 +13,14 @@ function _loadConfigSync(dirname: string, name: string) {
   return parseJSON(content);
 }
 
-type ConfigOptions = {
-    argv?: Array<string>,
-    packageConfig?: Object,
-    version?: string,
-}
+type ConfigOptions = {|
+    argv: ?Array<string>,
+    packageConfig: ?Object,
+    version: ?string,
+|}
 
 export class Config {
-  _map: Map;
+  _map: Map<string, any>;
   _dirname: string;
   packageConfig: Object;
 
@@ -29,7 +29,7 @@ export class Config {
     this._dirname = dirname.replace(/\/*$/, '/');
   }
 
-  loadSync(options: ConfigOptions = {}): Map {
+  loadSync(options: ConfigOptions = {}): Map<string, any> {
     const env = process.env.CONFIG_ENV || process.env.NODE_ENV || 'development';
     const { argv: argvOverrides = [], packageConfig, version } = options;
     this.packageConfig = packageConfig;
@@ -87,7 +87,7 @@ export class Config {
     return _existsConfigSync(this._dirname, name);
   }
 
-  loadConfigSync(name: string): Map {
+  loadConfigSync(name: string): Map<string, any> {
     return _loadConfigSync(this._dirname, name);
   }
 }
@@ -95,7 +95,7 @@ export class Config {
 export default function alpConfig(dirname: ?string, options: ConfigOptions = {}) {
   return (app, config: ?Config) => {
     if (!config) {
-      config = new Config(dirname, options);
+      config = new Config(dirname);
       config.loadSync(options);
     }
 

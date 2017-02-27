@@ -88,7 +88,7 @@ export class Config {
 export default function alpConfig(dirname, options = {}) {
   return function (app, config) {
     if (!config) {
-      config = new Config(dirname, options);
+      config = new Config(dirname);
       config.loadSync(options);
     }
 

@@ -53,7 +53,7 @@ function _loadConfigSync(dirname, name) {
   return (0, _parseJsonObjectAsMap2.default)(content);
 }
 
-const ConfigOptions = _flowRuntime2.default.type('ConfigOptions', _flowRuntime2.default.object(_flowRuntime2.default.property('argv', _flowRuntime2.default.array(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('packageConfig', _flowRuntime2.default.object(), true), _flowRuntime2.default.property('version', _flowRuntime2.default.string(), true)));
+const ConfigOptions = _flowRuntime2.default.type('ConfigOptions', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('argv', _flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.string()))), _flowRuntime2.default.property('packageConfig', _flowRuntime2.default.nullable(_flowRuntime2.default.object())), _flowRuntime2.default.property('version', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))));
 
 class Config {
 
@@ -67,7 +67,7 @@ class Config {
   }
 
   loadSync(options = {}) {
-    const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref('Map'));
+    const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any()));
 
     _flowRuntime2.default.param('options', ConfigOptions).assert(options);
 
@@ -141,7 +141,7 @@ class Config {
   loadConfigSync(name) {
     let _nameType4 = _flowRuntime2.default.string();
 
-    const _returnType4 = _flowRuntime2.default.return(_flowRuntime2.default.ref('Map'));
+    const _returnType4 = _flowRuntime2.default.return(_flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any()));
 
     _flowRuntime2.default.param('name', _nameType4).assert(name);
 
@@ -163,7 +163,7 @@ function alpConfig(dirname, options = {}) {
     _flowRuntime2.default.param('config', _configType).assert(config);
 
     if (!config) {
-      config = _configType.assert(new Config(dirname, options));
+      config = _configType.assert(new Config(dirname));
       config.loadSync(options);
     }
 

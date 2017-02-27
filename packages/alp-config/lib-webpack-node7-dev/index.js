@@ -28,7 +28,7 @@ function _loadConfigSync(dirname, name) {
   return parseJSON(content);
 }
 
-const ConfigOptions = t.type('ConfigOptions', t.object(t.property('argv', t.array(t.string()), true), t.property('packageConfig', t.object(), true), t.property('version', t.string(), true)));
+const ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string()))), t.property('packageConfig', t.nullable(t.object())), t.property('version', t.nullable(t.string()))));
 
 
 export class Config {
@@ -43,7 +43,7 @@ export class Config {
   }
 
   loadSync(options = {}) {
-    const _returnType = t.return(t.ref('Map'));
+    const _returnType = t.return(t.ref('Map', t.string(), t.any()));
 
     t.param('options', ConfigOptions).assert(options);
 
@@ -117,7 +117,7 @@ export class Config {
   loadConfigSync(name) {
     let _nameType4 = t.string();
 
-    const _returnType4 = t.return(t.ref('Map'));
+    const _returnType4 = t.return(t.ref('Map', t.string(), t.any()));
 
     t.param('name', _nameType4).assert(name);
 
@@ -137,7 +137,7 @@ export default function alpConfig(dirname, options = {}) {
     t.param('config', _configType).assert(config);
 
     if (!config) {
-      config = _configType.assert(new Config(dirname, options));
+      config = _configType.assert(new Config(dirname));
       config.loadSync(options);
     }
 

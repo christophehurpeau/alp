@@ -157,7 +157,7 @@ export default function alpConfig(dirname) {
 
   return function (app, config) {
     if (!config) {
-      config = new Config(dirname, options);
+      config = new Config(dirname);
       config.loadSync(options);
     }
 

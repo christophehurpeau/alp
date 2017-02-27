@@ -34,7 +34,7 @@ function _loadConfigSync(dirname, name) {
   return parseJSON(content);
 }
 
-var ConfigOptions = t.type('ConfigOptions', t.object(t.property('argv', t.array(t.string()), true), t.property('packageConfig', t.object(), true), t.property('version', t.string(), true)));
+var ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string()))), t.property('packageConfig', t.nullable(t.object())), t.property('version', t.nullable(t.string()))));
 
 
 export var Config = function () {
@@ -54,7 +54,7 @@ export var Config = function () {
     value: function loadSync() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-      var _returnType = t.return(t.ref('Map'));
+      var _returnType = t.return(t.ref('Map', t.string(), t.any()));
 
       t.param('options', ConfigOptions).assert(options);
 
@@ -185,7 +185,7 @@ export var Config = function () {
     value: function loadConfigSync(name) {
       var _nameType4 = t.string();
 
-      var _returnType4 = t.return(t.ref('Map'));
+      var _returnType4 = t.return(t.ref('Map', t.string(), t.any()));
 
       t.param('name', _nameType4).assert(name);
 
@@ -210,7 +210,7 @@ export default function alpConfig(dirname) {
     t.param('config', _configType).assert(config);
 
     if (!config) {
-      config = _configType.assert(new Config(dirname, options));
+      config = _configType.assert(new Config(dirname));
       config.loadSync(options);
     }
 

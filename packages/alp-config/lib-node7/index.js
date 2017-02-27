@@ -105,7 +105,7 @@ exports.Config = Config;
 function alpConfig(dirname, options = {}) {
   return (app, config) => {
     if (!config) {
-      config = new Config(dirname, options);
+      config = new Config(dirname);
       config.loadSync(options);
     }
 
