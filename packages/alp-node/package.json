@@ -34,7 +34,7 @@
     "watch": "pob-watch"
   },
   "dependencies": {
-    "alp-config": "^3.2.0",
+    "alp-config": "^3.3.1",
     "alp-controller": "^0.1.0",
     "alp-errors-node": "^2.2.1",
     "alp-language": "^1.5.0",
@@ -42,7 +42,8 @@
     "alp-params": "^0.3.0",
     "alp-translate": "^2.3.1",
     "findup-sync": "^0.4.3",
-    "koa": "^2.0.0-alpha.7",
+    "flow-runtime": "^0.6.1",
+    "koa": "^2.0.1",
     "koa-compress": "^2.0.0",
     "koa-static": "^3.0.0",
     "nightingale-logger": "^3.0.1",
@@ -51,15 +52,14 @@
   "devDependencies": {
     "babel-eslint": "^7.1.0",
     "babel-preset-latest-node": "^0.1.0",
-    "eslint": "^3.15.0",
-    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb-base": "^11.1.0",
     "eslint-config-pob": "^11.1.0",
-    "eslint-plugin-babel": "^4.0.0",
+    "eslint-plugin-babel": "^4.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "flow-runtime": "^0.6.0",
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
-    "pob-babel": "^16.0.0",
+    "pob-babel": "^16.1.0",
     "pob-release": "^3.1.0"
   }
 }

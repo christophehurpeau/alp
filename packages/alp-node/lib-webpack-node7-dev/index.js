@@ -1,3 +1,5 @@
+import { existsSync } from 'fs';
+import path from 'path';
 import { deprecate } from 'util';
 import Koa from 'koa';
 import compress from 'koa-compress';
@@ -10,7 +12,6 @@ import translate from 'alp-translate';
 import _listen from 'alp-listen';
 import Logger from 'nightingale-logger';
 import findUp from 'findup-sync';
-import path from 'path';
 
 import t from 'flow-runtime';
 export { Config } from 'alp-config';
@@ -30,7 +31,10 @@ logger.debug('init', { appDirname, packageDirname });
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
 export const packageConfig = require(packagePath);
-export const config = new Config(`${appDirname}/config/`);
+
+const buildedConfigPath = `${appDirname}/build/config/`;
+const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
+export const config = new Config(configPath);
 config.loadSync({ packageConfig });
 
 export default class Alp extends Koa {

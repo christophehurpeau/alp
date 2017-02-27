@@ -14,6 +14,12 @@ Object.defineProperty(exports, 'Config', {
   }
 });
 
+var _fs = require('fs');
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 var _util = require('util');
 
 var _koa = require('koa');
@@ -58,10 +64,6 @@ var _findupSync = require('findup-sync');
 
 var _findupSync2 = _interopRequireDefault(_findupSync);
 
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
 var _alpController = require('alp-controller');
 
 var _alpController2 = _interopRequireDefault(_alpController);
@@ -83,7 +85,10 @@ logger.debug('init', { appDirname, packageDirname });
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
 const packageConfig = exports.packageConfig = require(packagePath);
-const config = exports.config = new _alpConfig.Config(`${appDirname}/config/`);
+
+const buildedConfigPath = `${appDirname}/build/config/`;
+const configPath = (0, _fs.existsSync)(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
+const config = exports.config = new _alpConfig.Config(configPath);
 config.loadSync({ packageConfig });
 
 class Alp extends _koa2.default {
