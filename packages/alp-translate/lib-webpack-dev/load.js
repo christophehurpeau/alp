@@ -1,12 +1,15 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-import _t from 'tcomb-forked';
 import IntlMessageFormat from 'intl-messageformat';
 
+import t from 'flow-runtime';
 export default function load(translations, language) {
-  _assert(translations, Map, 'translations');
+  var _translationsType = t.ref('Map');
 
-  _assert(language, _t.String, 'language');
+  var _languageType = t.string();
+
+  t.param('translations', _translationsType).assert(translations);
+  t.param('language', _languageType).assert(language);
 
   var result = new Map();
 
@@ -21,23 +24,5 @@ export default function load(translations, language) {
   })(translations, '');
 
   return result;
-}
-
-function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
-  }
-
-  if (_t.isType(type)) {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail(message());
-  }
-
-  return x;
 }
 //# sourceMappingURL=load.js.map

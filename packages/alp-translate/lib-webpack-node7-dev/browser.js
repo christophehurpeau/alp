@@ -3,7 +3,7 @@ import load from './load';
 import _t from 'flow-runtime';
 export default function alpTranslate(dirname) {
   dirname = dirname.replace(/\/*$/, '/');
-  return function (app) {
+  return app => {
     Object.assign(app.context, {
       t(key, args) {
         let _keyType = _t.string();
@@ -23,9 +23,7 @@ export default function alpTranslate(dirname) {
     });
 
     const language = app.context.language;
-    return app.loadConfig(dirname + language).then(function (map) {
-      return app.translations = load(map, language);
-    });
+    return app.loadConfig(dirname + language).then(map => app.translations = load(map, language));
   };
 }
 //# sourceMappingURL=browser.js.map

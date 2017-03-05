@@ -1,41 +1,26 @@
-import _t from 'tcomb-forked';
 import IntlMessageFormat from 'intl-messageformat';
 
+import t from 'flow-runtime';
 export default function load(translations, language) {
-  _assert(translations, Map, 'translations');
+  let _translationsType = t.ref('Map');
 
-  _assert(language, _t.String, 'language');
+  let _languageType = t.string();
 
-  var result = new Map();
+  t.param('translations', _translationsType).assert(translations);
+  t.param('language', _languageType).assert(language);
+
+  const result = new Map();
 
   (function loadMap(map, prefix) {
     map.forEach(function (value, key) {
       if (typeof value === 'object') {
-        return loadMap(value, `${ prefix }${ key }.`);
+        return loadMap(value, `${prefix}${key}.`);
       }
 
-      result.set(`${ prefix }${ key }`, new IntlMessageFormat(value, language));
+      result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
     });
   })(translations, '');
 
   return result;
-}
-
-function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
-  }
-
-  if (_t.isType(type)) {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail(message());
-  }
-
-  return x;
 }
 //# sourceMappingURL=load.js.map

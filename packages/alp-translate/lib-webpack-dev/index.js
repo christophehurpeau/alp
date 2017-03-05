@@ -1,7 +1,7 @@
-import _t from 'tcomb-forked';
 import Logger from 'nightingale-logger';
 import load from './load';
 
+import _t from 'flow-runtime';
 var logger = new Logger('alp:translate');
 
 export default function alpTranslate(dirname) {
@@ -9,25 +9,23 @@ export default function alpTranslate(dirname) {
   return function (app) {
     Object.assign(app.context, {
       t: function t(key, args) {
-        _assert(key, _t.String, 'key');
+        var _keyType = _t.string();
 
-        _assert(args, _t.maybe(_t.Object), 'args');
+        var _argsType = _t.nullable(_t.object());
 
-        return _assert(function () {
-          _assert(key, _t.String, 'key');
+        var _returnType = _t.return(_t.string());
 
-          _assert(args, _t.maybe(_t.Object), 'args');
+        _t.param('key', _keyType).assert(key);
 
-          return _assert(function () {
-            var msg = app.translations.get(this.language).get(key);
-            if (!msg) {
-              logger.warn('invalid msg', { language: this.language, key: key });
-              return key;
-            }
+        _t.param('args', _argsType).assert(args);
 
-            return msg.format(args);
-          }.apply(this, arguments), _t.String, 'return value');
-        }.apply(this, arguments), _t.String, 'return value');
+        var msg = app.translations.get(this.language).get(key);
+        if (!msg) {
+          logger.warn('invalid msg', { language: this.language, key: key });
+          return _returnType.assert(key);
+        }
+
+        return _returnType.assert(msg.format(args));
       }
     });
 
@@ -37,23 +35,5 @@ export default function alpTranslate(dirname) {
       app.translations.set(language, load(translations, language));
     });
   };
-}
-
-function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
-  }
-
-  if (_t.isType(type)) {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail(message());
-  }
-
-  return x;
 }
 //# sourceMappingURL=index.js.map

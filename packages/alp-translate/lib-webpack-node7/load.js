@@ -4,7 +4,7 @@ export default function load(translations, language) {
   const result = new Map();
 
   (function loadMap(map, prefix) {
-    map.forEach(function (value, key) {
+    map.forEach((value, key) => {
       if (typeof value === 'object') {
         return loadMap(value, `${prefix}${key}.`);
       }

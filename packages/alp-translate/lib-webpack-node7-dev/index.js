@@ -6,7 +6,7 @@ const logger = new Logger('alp:translate');
 
 export default function alpTranslate(dirname) {
   dirname = dirname.replace(/\/*$/, '/');
-  return function (app) {
+  return app => {
     Object.assign(app.context, {
       t(key, args) {
         let _keyType = _t.string();
@@ -30,7 +30,7 @@ export default function alpTranslate(dirname) {
     });
 
     app.translations = new Map();
-    app.config.get('availableLanguages').forEach(function (language) {
+    app.config.get('availableLanguages').forEach(language => {
       const translations = app.config.loadConfigSync(dirname + language);
       app.translations.set(language, load(translations, language));
     });

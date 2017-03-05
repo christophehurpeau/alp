@@ -1,10 +1,19 @@
-# alp-translate
+# alp-translate [![NPM version][npm-image]][npm-url]
 
-`config/locales/en.yml`
+Translation in alp framework
+
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+`config/locales/en.yml`Translation in alp framework
+
+## Config
+
+> config/locales/en.yml
 
 ```yaml
 common:
-    'Hello %s!': "Hello %s!"
+  'Hello %s!': "Hello %s!"
+
 ```
 
 ### With Koa
@@ -27,3 +36,10 @@ translate('locales')(app);
 ```
 
 #### .t(key, ...args)
+
+[npm-image]: https://img.shields.io/npm/v/alp-translate.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/alp-translate
+[daviddm-image]: https://david-dm.org/alpjs/alp-translate.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/alpjs/alp-translate
+[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-translate/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-translate
