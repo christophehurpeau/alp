@@ -1,3 +1,12 @@
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/alpjs/alp-language/compare/v1.5.0...v1.6.0) (2017-03-05)
+
+
+### Features
+
+* pob update ([6012750](https://github.com/alpjs/alp-language/commit/6012750))
+
+
 ### v1.5.0
 
 - [`bdf900c`](https://github.com/alpjs/alp-language/commit/bdf900ccd508d2f37e1f8a4e36f54bd0fb7b6d8d) refactor: pob update (Christophe Hurpeau)
