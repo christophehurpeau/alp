@@ -1,3 +1,12 @@
+<a name="7.3.0"></a>
+# [7.3.0](https://github.com/alpjs/alp-react-redux/compare/v7.2.0...v7.3.0) (2017-03-05)
+
+
+### Features
+
+* pob upgrade ([da74e83](https://github.com/alpjs/alp-react-redux/commit/da74e83))
+
+
 <a name="7.2.0"></a>
 # [7.2.0](https://github.com/alpjs/alp-react-redux/compare/v7.1.1...v7.2.0) (2017-02-11)
 
