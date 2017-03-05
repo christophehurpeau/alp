@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createEmitPromiseAction = exports.createEmitAction = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
+exports.createEmitPromiseAction = exports.createEmitAction = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
 
 var _fody = require('fody');
 
@@ -29,6 +29,33 @@ Object.defineProperty(exports, 'connect', {
   enumerable: true,
   get: function () {
     return _reactRedux.connect;
+  }
+});
+
+var _utils = require('./utils');
+
+Object.defineProperty(exports, 'createAction', {
+  enumerable: true,
+  get: function () {
+    return _utils.createAction;
+  }
+});
+Object.defineProperty(exports, 'createReducer', {
+  enumerable: true,
+  get: function () {
+    return _utils.createReducer;
+  }
+});
+Object.defineProperty(exports, 'createLoader', {
+  enumerable: true,
+  get: function () {
+    return _utils.createLoader;
+  }
+});
+Object.defineProperty(exports, 'classNames', {
+  enumerable: true,
+  get: function () {
+    return _utils.classNames;
   }
 });
 
@@ -76,18 +103,6 @@ var _reactPureStatelessComponent = require('react-pure-stateless-component');
 
 var _reactPureStatelessComponent2 = _interopRequireDefault(_reactPureStatelessComponent);
 
-var _createAction2 = require('./utils/createAction');
-
-var _createAction3 = _interopRequireDefault(_createAction2);
-
-var _createReducer2 = require('./utils/createReducer');
-
-var _createReducer3 = _interopRequireDefault(_createReducer2);
-
-var _createLoader2 = require('./utils/createLoader');
-
-var _createLoader3 = _interopRequireDefault(_createLoader2);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -96,9 +111,6 @@ exports.AlpReactApp = _AlpReactApp2.default;
 exports.AlpReduxApp = _AlpReduxApp2.default; /* global window */
 
 exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
-exports.createAction = _createAction3.default;
-exports.createReducer = _createReducer3.default;
-exports.createLoader = _createLoader3.default;
 
 
 const HYDRATE_STATE = 'HYDRATE_STATE';
