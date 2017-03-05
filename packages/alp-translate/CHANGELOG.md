@@ -1,3 +1,12 @@
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/alpjs/alp-translate/compare/v2.3.2...v2.4.0) (2017-03-05)
+
+
+### Features
+
+* pob upgrade ([c0224eb](https://github.com/alpjs/alp-translate/commit/c0224eb))
+
+
 ### v2.3.2
 
 - [`f6811d7`](https://github.com/alpjs/alp-translate/commit/f6811d7247a93c1cadba90c97f6bd07d7f99c802) fix: fix recursive load translations (Christophe Hurpeau)
