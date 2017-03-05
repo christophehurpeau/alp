@@ -4,7 +4,6 @@ Translation in alp framework
 
 [![Dependency ci Status][dependencyci-image]][dependencyci-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
-`config/locales/en.yml`Translation in alp framework
 
 ## Config
 

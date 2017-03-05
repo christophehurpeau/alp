@@ -5,7 +5,11 @@ import _t from 'flow-runtime';
 const logger = new Logger('alp:translate');
 
 export default function alpTranslate(dirname) {
-  dirname = dirname.replace(/\/*$/, '/');
+  let _dirnameType = _t.string();
+
+  _t.param('dirname', _dirnameType).assert(dirname);
+
+  dirname = _dirnameType.assert(dirname.replace(/\/*$/, '/'));
   return function (app) {
     Object.assign(app.context, {
       t(key, args) {

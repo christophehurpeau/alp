@@ -2,7 +2,7 @@ import IntlMessageFormat from 'intl-messageformat';
 
 import t from 'flow-runtime';
 export default function load(translations, language) {
-  let _translationsType = t.ref('Map');
+  let _translationsType = t.ref('Map', t.string(), t.any());
 
   let _languageType = t.string();
 

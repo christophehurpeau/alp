@@ -22,7 +22,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const logger = new _nightingaleLogger2.default('alp:translate');
 
 function alpTranslate(dirname) {
-  dirname = dirname.replace(/\/*$/, '/');
+  let _dirnameType = _flowRuntime2.default.string();
+
+  _flowRuntime2.default.param('dirname', _dirnameType).assert(dirname);
+
+  dirname = _dirnameType.assert(dirname.replace(/\/*$/, '/'));
   return app => {
     Object.assign(app.context, {
       t(key, args) {

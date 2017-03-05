@@ -16,7 +16,11 @@ var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function alpTranslate(dirname) {
-  dirname = dirname.replace(/\/*$/, '/');
+  let _dirnameType = _flowRuntime2.default.string();
+
+  _flowRuntime2.default.param('dirname', _dirnameType).assert(dirname);
+
+  dirname = _dirnameType.assert(dirname.replace(/\/*$/, '/'));
   return app => {
     Object.assign(app.context, {
       t(key, args) {

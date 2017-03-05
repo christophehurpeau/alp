@@ -1,6 +1,6 @@
 import IntlMessageFormat from 'intl-messageformat';
 
-export default function load(translations: Map, language: string) {
+export default function load(translations: Map<string, any>, language: string) {
   const result = new Map();
 
   (function loadMap(map, prefix) {

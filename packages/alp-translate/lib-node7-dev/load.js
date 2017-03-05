@@ -16,7 +16,7 @@ var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function load(translations, language) {
-  let _translationsType = _flowRuntime2.default.ref('Map');
+  let _translationsType = _flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any());
 
   let _languageType = _flowRuntime2.default.string();
 

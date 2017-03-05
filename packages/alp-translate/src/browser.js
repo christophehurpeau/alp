@@ -1,6 +1,6 @@
 import load from './load';
 
-export default function alpTranslate(dirname) {
+export default function alpTranslate(dirname: string) {
   dirname = dirname.replace(/\/*$/, '/');
   return app => {
     Object.assign(app.context, {
