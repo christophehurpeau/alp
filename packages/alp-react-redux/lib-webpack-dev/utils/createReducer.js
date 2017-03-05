@@ -1,18 +1,21 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-import _t from 'tcomb-forked';
+import t from 'flow-runtime';
 /* global PRODUCTION */
 
 export default function createReducer(defaultState, handlers) {
-  _assert(defaultState, _t.union([_t.Function, _t.Object]), 'defaultState');
+  var _defaultStateType = t.union(t.function(), t.object());
 
-  _assert(handlers, _t.maybe(_t.Object), 'handlers');
+  var _handlersType = t.nullable(t.object());
+
+  t.param('defaultState', _defaultStateType).assert(defaultState);
+  t.param('handlers', _handlersType).assert(handlers);
 
   if ((typeof defaultState === 'undefined' ? 'undefined' : _typeof(defaultState)) === 'object') {
-    handlers = defaultState;
-    defaultState = function defaultState() {
+    handlers = _handlersType.assert(defaultState);
+    defaultState = _defaultStateType.assert(function () {
       return null;
-    };
+    });
   }
 
   var handlerMap = new Map();
@@ -26,7 +29,7 @@ export default function createReducer(defaultState, handlers) {
       handlerMap.set(key, handlers[key]);
     }
   });
-  handlers = undefined;
+  handlers = _handlersType.assert(undefined);
 
   return function () {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState();
@@ -38,17 +41,5 @@ export default function createReducer(defaultState, handlers) {
 
     return state;
   };
-}
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=createReducer.js.map

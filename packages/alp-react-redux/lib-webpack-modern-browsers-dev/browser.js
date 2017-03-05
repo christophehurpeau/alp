@@ -1,6 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-import _t from 'tcomb-forked';
 /* global window */
 import render, { unmountComponentAtNode } from 'fody';
 import Logger from 'nightingale-logger';
@@ -12,6 +9,7 @@ import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
 import * as alpReducers from './reducers';
 
+import t from 'flow-runtime';
 export { AlpReactApp, AlpReduxApp };
 export { Helmet } from 'fody';
 export { combineReducers } from 'redux';
@@ -34,8 +32,9 @@ let store;
 let currentModuleDescriptorIdentifier;
 
 const createHydratableReducer = function createHydratableReducer(reducer) {
-  _assert(reducer, _t.Function, 'reducer');
+  let _reducerType = t.function();
 
+  t.param('reducer', _reducerType).assert(reducer);
   return function (state, action) {
     if (action.type === HYDRATE_STATE) {
       state = action.state;
@@ -45,17 +44,13 @@ const createHydratableReducer = function createHydratableReducer(reducer) {
   };
 };
 
-const OptionsType = _t.interface({
-  sharedReducers: _t.maybe(_t.Object)
-}, {
-  name: 'OptionsType',
-  strict: true
-});
+const OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReducers', t.nullable(t.object()))));
+
 
 export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
-  _assert({
-    sharedReducers
-  }, OptionsType, '{ sharedReducers = {} }');
+  if (arguments[1] !== undefined) {
+    t.param('arguments[1]', OptionsType).assert(arguments[1]);
+  }
 
   return function (app) {
     const middleware = [createFunctionMiddleware(app), promiseMiddleware];
@@ -93,7 +88,7 @@ export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
         }
 
         const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-        let reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+        let reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(Object.assign({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
         if (!reducer) {
           if (store) {
@@ -150,17 +145,5 @@ export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
       _loadingBar();
     };
   };
-}
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=browser.js.map

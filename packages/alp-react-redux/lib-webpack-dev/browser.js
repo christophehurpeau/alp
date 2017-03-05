@@ -1,6 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-import _t from 'tcomb-forked';
 /* global window */
 import render, { unmountComponentAtNode } from 'fody';
 import Logger from 'nightingale-logger';
@@ -12,6 +9,7 @@ import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
 import * as alpReducers from './reducers';
 
+import t from 'flow-runtime';
 export { AlpReactApp, AlpReduxApp };
 export { Helmet } from 'fody';
 export { combineReducers } from 'redux';
@@ -34,8 +32,9 @@ var store = void 0;
 var currentModuleDescriptorIdentifier = void 0;
 
 var createHydratableReducer = function createHydratableReducer(reducer) {
-  _assert(reducer, _t.Function, 'reducer');
+  var _reducerType = t.function();
 
+  t.param('reducer', _reducerType).assert(reducer);
   return function (state, action) {
     if (action.type === HYDRATE_STATE) {
       state = action.state;
@@ -45,37 +44,31 @@ var createHydratableReducer = function createHydratableReducer(reducer) {
   };
 };
 
-var OptionsType = _t.interface({
-  sharedReducers: _t.maybe(_t.Object)
-}, {
-  name: 'OptionsType',
-  strict: true
-});
+var OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReducers', t.nullable(t.object()))));
+
 
 export default function alpReactRedux(element) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       _ref$sharedReducers = _ref.sharedReducers,
       sharedReducers = _ref$sharedReducers === undefined ? {} : _ref$sharedReducers;
 
-  _assert({
-    sharedReducers: sharedReducers
-  }, OptionsType, '{ sharedReducers = {} }');
+  if (arguments[1] !== undefined) {
+    t.param('arguments[1]', OptionsType).assert(arguments[1]);
+  }
 
   return function (app) {
     var middleware = [createFunctionMiddleware(app), promiseMiddleware];
 
     if (app.websocket) {
-      (function () {
-        var loggerWebsocket = logger.child('websocket');
-        loggerWebsocket.debug('register websocket redux:action');
-        app.websocket.on('redux:action', function (action) {
-          loggerWebsocket.debug('dispatch action from websocket', action);
-          if (store) {
-            store.dispatch(action);
-          }
-        });
-        middleware.push(websocketMiddleware(app));
-      })();
+      var loggerWebsocket = logger.child('websocket');
+      loggerWebsocket.debug('register websocket redux:action');
+      app.websocket.on('redux:action', function (action) {
+        loggerWebsocket.debug('dispatch action from websocket', action);
+        if (store) {
+          store.dispatch(action);
+        }
+      });
+      middleware.push(websocketMiddleware(app));
     }
 
     app.context.render = function (moduleDescriptor, data, _loaded, _loadingBar) {
@@ -99,7 +92,7 @@ export default function alpReactRedux(element) {
         }
 
         var moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-        var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+        var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(Object.assign({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
         if (!reducer) {
           if (store) {
@@ -156,17 +149,5 @@ export default function alpReactRedux(element) {
       _loadingBar();
     };
   };
-}
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=browser.js.map

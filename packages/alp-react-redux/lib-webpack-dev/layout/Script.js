@@ -4,21 +4,15 @@ var _jsxFileName = 'layout/Script.jsx',
     _this = this;
 
 import React from 'react';
-import _t from 'tcomb-forked';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 import assetUrl from './assetUrl';
 
-var PropsType = _t.interface({
-  src: _t.String
-}, 'PropsType');
+import t from 'flow-runtime';
+var PropsType = t.type('PropsType', t.object(t.property('src', t.string())));
+var ContextType = t.type('ContextType', t.object(t.property('context', t.object(t.property('config', t.ref('Map'))))));
 
-var ContextType = _t.interface({
-  context: _t.interface({
-    config: Map
-  })
-}, 'ContextType');
 
 export default (function script(_ref, _ref2) {
   var context = _ref2.context;
@@ -26,16 +20,10 @@ export default (function script(_ref, _ref2) {
   var src = _ref.src,
       props = _objectWithoutProperties(_ref, ['src']);
 
-  _assert({
-    src: src,
-    props: props
-  }, PropsType, '{ src, ...props }');
+  t.param('arguments[0]', PropsType).assert(arguments[0]);
+  t.param('arguments[1]', ContextType).assert(arguments[1]);
 
-  _assert({
-    context: context
-  }, ContextType, '{ context }');
-
-  var version = context.config.get('version');
+  var version = t.string().assert(context.config.get('version'));
 
   return React.createElement('script', _extends({ src: assetUrl(src, version) }, props, {
     __self: _this,
@@ -45,16 +33,4 @@ export default (function script(_ref, _ref2) {
     }
   }));
 });
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
-}
 //# sourceMappingURL=Script.js.map

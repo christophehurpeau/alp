@@ -1,5 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 /* global window */
 import render, { unmountComponentAtNode } from 'fody';
 import Logger from 'nightingale-logger';
@@ -51,17 +49,15 @@ export default function alpReactRedux(element) {
     var middleware = [createFunctionMiddleware(app), promiseMiddleware];
 
     if (app.websocket) {
-      (function () {
-        var loggerWebsocket = logger.child('websocket');
-        loggerWebsocket.debug('register websocket redux:action');
-        app.websocket.on('redux:action', function (action) {
-          loggerWebsocket.debug('dispatch action from websocket', action);
-          if (store) {
-            store.dispatch(action);
-          }
-        });
-        middleware.push(websocketMiddleware(app));
-      })();
+      var loggerWebsocket = logger.child('websocket');
+      loggerWebsocket.debug('register websocket redux:action');
+      app.websocket.on('redux:action', function (action) {
+        loggerWebsocket.debug('dispatch action from websocket', action);
+        if (store) {
+          store.dispatch(action);
+        }
+      });
+      middleware.push(websocketMiddleware(app));
     }
 
     app.context.render = function (moduleDescriptor, data, _loaded, _loadingBar) {
@@ -82,7 +78,7 @@ export default function alpReactRedux(element) {
         }
 
         var moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-        var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+        var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(Object.assign({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
         if (!reducer) {
           if (store) {

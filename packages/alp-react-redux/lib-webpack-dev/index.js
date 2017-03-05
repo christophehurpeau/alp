@@ -1,7 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-import _t from 'tcomb-forked';
-
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 import render from 'fody';
@@ -12,8 +8,12 @@ import AlpLayout from './layout/AlpLayout';
 import AlpReactApp from './AlpReactApp';
 import AlpReduxApp from './AlpReduxApp';
 import * as alpReducers from './reducers';
-import { ModuleDescriptorType } from './types';
+import { ModuleDescriptorType as _ModuleDescriptorType } from './types';
 
+import t from 'flow-runtime';
+var ModuleDescriptorType = t.tdz(function () {
+  return _ModuleDescriptorType;
+});
 export { AlpReactApp, AlpReduxApp };
 export { Helmet } from 'fody';
 export { combineReducers } from 'redux';
@@ -28,13 +28,8 @@ throw new Error('Not supposed to be loaded browser-side.');
 
 var logger = new Logger('alp:react-redux');
 
-var OptionsType = _t.interface({
-  Layout: _t.maybe(_t.Any),
-  sharedReducers: _t.maybe(_t.Object)
-}, {
-  name: 'OptionsType',
-  strict: true
-});
+var OptionsType = t.type('OptionsType', t.exactObject(t.property('Layout', t.nullable(t.any())), t.property('sharedReducers', t.nullable(t.object()))));
+
 
 export default function alpReactRedux() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
@@ -43,20 +38,24 @@ export default function alpReactRedux() {
       _ref$sharedReducers = _ref.sharedReducers,
       sharedReducers = _ref$sharedReducers === undefined ? {} : _ref$sharedReducers;
 
-  _assert({
-    Layout: Layout,
-    sharedReducers: sharedReducers
-  }, OptionsType, '{ Layout = AlpLayout, sharedReducers = {} }');
+  if (arguments[0] !== undefined) {
+    t.param('arguments[0]', OptionsType).assert(arguments[0]);
+  }
 
   return function (app) {
-    _assert(app, _t.Object, 'app');
+    var _appType = t.object();
+
+    t.param('app', _appType).assert(app);
 
     app.context.render = function (moduleDescriptor, data, _loaded) {
       var _this = this;
 
-      _assert(moduleDescriptor, ModuleDescriptorType, 'moduleDescriptor');
+      var _moduleDescriptorType = t.ref(ModuleDescriptorType);
 
-      _assert(data, _t.maybe(_t.Object), 'data');
+      var _dataType = t.nullable(t.object());
+
+      t.param('moduleDescriptor', _moduleDescriptorType).assert(moduleDescriptor);
+      t.param('data', _dataType).assert(data);
 
       logger.debug('render view', { data: data });
 
@@ -68,14 +67,14 @@ export default function alpReactRedux() {
       }
 
       var moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-      var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+      var reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(Object.assign({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
       if (reducer) {
-        this.store = createStore(reducer, _extends({ context: this }, data));
+        this.store = createStore(reducer, Object.assign({ context: this }, data));
       }
 
-      var version = this.config.get('version');
-      var moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
+      var version = t.string().assert(this.config.get('version'));
+      var moduleIdentifier = t.nullable(t.string()).assert(moduleDescriptor && moduleDescriptor.identifier);
 
       // eslint-disable-next-line no-unused-vars
 
@@ -115,17 +114,5 @@ var loggerWebsocket = logger.child('websocket');
 export function emitAction(to, action) {
   loggerWebsocket.debug('emitAction', action);
   to.emit('redux:action', action);
-}
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=index.js.map

@@ -1,5 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 /* global window */
 import render, { unmountComponentAtNode } from 'fody';
 import Logger from 'nightingale-logger';
@@ -76,7 +74,7 @@ export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
         }
 
         const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-        let reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+        let reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(Object.assign({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
         if (!reducer) {
           if (store) {

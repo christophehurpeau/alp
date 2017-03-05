@@ -1,12 +1,14 @@
-import _t from "tcomb-forked";
+import t from "flow-runtime";
 /* global PRODUCTION */
 export default function createLoader(handlers) {
-  _assert(handlers, _t.maybe(_t.Object), "handlers");
+  let _handlersType = t.nullable(t.object());
+
+  t.param("handlers", _handlersType).assert(handlers);
 
   const handlerMap = new Map(Object.keys(handlers).map(function (key) {
     return [key, handlers[key]];
   }));
-  handlers = undefined;
+  handlers = _handlersType.assert(undefined);
 
   return function (state, data) {
     const keys = Object.keys(data);
@@ -22,17 +24,5 @@ export default function createLoader(handlers) {
       return data;
     });
   };
-}
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=createLoader.js.map

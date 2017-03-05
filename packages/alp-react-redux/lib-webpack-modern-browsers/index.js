@@ -1,5 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 import render from 'fody';
@@ -41,10 +39,10 @@ export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} 
       }
 
       const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-      const reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(_extends({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
+      const reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(Object.assign({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
 
       if (reducer) {
-        this.store = createStore(reducer, _extends({ context: this }, data));
+        this.store = createStore(reducer, Object.assign({ context: this }, data));
       }
 
       const version = this.config.get('version');

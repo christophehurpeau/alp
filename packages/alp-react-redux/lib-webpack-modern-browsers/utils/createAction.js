@@ -1,5 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 /* global PRODUCTION */
 
 export default function createAction(type, argsNamesOrHandler, data) {
@@ -10,7 +8,7 @@ export default function createAction(type, argsNamesOrHandler, data) {
 
   if (typeofSecondArg === 'function') {
     action = function action(...args) {
-      return _extends({ type }, data, argsNamesOrHandler(...args));
+      return Object.assign({ type }, data, argsNamesOrHandler(...args));
     };
   } else {
     if (typeofSecondArg === 'string') {
@@ -19,7 +17,7 @@ export default function createAction(type, argsNamesOrHandler, data) {
 
     if (argsNamesOrHandler) {
       action = function action(...args) {
-        const action = _extends({ type }, data);
+        const action = Object.assign({ type }, data);
         args.forEach(function (value, index) {
           return action[argsNamesOrHandler[index]] = value;
         });
@@ -27,7 +25,7 @@ export default function createAction(type, argsNamesOrHandler, data) {
       };
     } else {
       action = function action(args) {
-        return _extends({ type }, data, args);
+        return Object.assign({ type }, data, args);
       };
     }
   }

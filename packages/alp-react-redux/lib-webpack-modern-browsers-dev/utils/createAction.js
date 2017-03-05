@@ -1,14 +1,16 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-import _t from 'tcomb-forked';
+import t from 'flow-runtime';
 /* global PRODUCTION */
 
 export default function createAction(type, argsNamesOrHandler, data) {
-  _assert(type, _t.String, 'type');
+  let _typeType = t.string();
 
-  _assert(argsNamesOrHandler, _t.union([_t.maybe(_t.list(_t.String)), _t.String, _t.Function]), 'argsNamesOrHandler');
+  let _argsNamesOrHandlerType = t.union(t.nullable(t.array(t.string())), t.string(), t.function());
 
-  _assert(data, _t.maybe(_t.Object), 'data');
+  let _dataType = t.nullable(t.object());
+
+  t.param('type', _typeType).assert(type);
+  t.param('argsNamesOrHandler', _argsNamesOrHandlerType).assert(argsNamesOrHandler);
+  t.param('data', _dataType).assert(data);
 
   if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
     throw new Error('handler should be a function');
@@ -22,16 +24,16 @@ export default function createAction(type, argsNamesOrHandler, data) {
 
   if (typeofSecondArg === 'function') {
     action = function action(...args) {
-      return _extends({ type }, data, argsNamesOrHandler(...args));
+      return Object.assign({ type }, data, argsNamesOrHandler(...args));
     };
   } else {
     if (typeofSecondArg === 'string') {
-      argsNamesOrHandler = argsNamesOrHandler.split(',');
+      argsNamesOrHandler = _argsNamesOrHandlerType.assert(argsNamesOrHandler.split(','));
     }
 
     if (argsNamesOrHandler) {
       action = function action(...args) {
-        const action = _extends({ type }, data);
+        const action = Object.assign({ type }, data);
         args.forEach(function (value, index) {
           return action[argsNamesOrHandler[index]] = value;
         });
@@ -39,9 +41,10 @@ export default function createAction(type, argsNamesOrHandler, data) {
       };
     } else {
       action = function action(args) {
-        _assert(args, _t.maybe(_t.Object), 'args');
+        let _argsType = t.nullable(t.object());
 
-        return _extends({ type }, data, args);
+        t.param('args', _argsType).assert(args);
+        return Object.assign({ type }, data, args);
       };
     }
   }
@@ -52,17 +55,5 @@ export default function createAction(type, argsNamesOrHandler, data) {
   };
 
   return action;
-}
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=createAction.js.map

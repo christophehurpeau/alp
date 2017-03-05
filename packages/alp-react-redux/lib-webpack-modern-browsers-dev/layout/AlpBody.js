@@ -1,70 +1,57 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _jsxFileName = 'layout/AlpBody.jsx',
-    _this = this,
-    _arguments = arguments;
+    _this = this;
 
 import React from 'react';
-import _t from 'tcomb-forked';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 import { Body } from 'fody';
-import { ReactElementType, ReactNodeType } from '../types';
+import { ReactElementType as _ReactElementType, ReactNodeType as _ReactNodeType } from '../types';
 
-const PropsType = _t.interface({
-  children: ReactNodeType
-}, 'PropsType');
+import t from 'flow-runtime';
+const ReactElementType = t.tdz(function () {
+  return _ReactElementType;
+});
+const ReactNodeType = t.tdz(function () {
+  return _ReactNodeType;
+});
+const PropsType = t.type('PropsType', t.object(t.property('children', t.ref(ReactNodeType))));
+
 
 export default (function alpBody(_ref) {
-  let _assert2 = _assert(_ref, PropsType, '{ children, ...props }'),
-      { children } = _assert2,
-      props = _objectWithoutProperties(_assert2, ['children']);
+  let { children } = _ref,
+      props = _objectWithoutProperties(_ref, ['children']);
 
-  _assert({
-    children,
-    props
-  }, PropsType, '{ children, ...props }');
+  const _returnType = t.return(t.ref(ReactElementType));
 
-  return _assert(function () {
-    return React.createElement(
-      Body,
-      _extends({}, props, {
-        __self: this,
+  t.param('arguments[0]', PropsType).assert(arguments[0]);
+  return _returnType.assert(React.createElement(
+    Body,
+    _extends({}, props, {
+      __self: _this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 9
+      }
+    }),
+    React.createElement(
+      'div',
+      { id: 'loading-bar', className: 'loading-bar', __self: _this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 9
+          lineNumber: 10
         }
-      }),
-      React.createElement(
-        'div',
-        { id: 'loading-bar', className: 'loading-bar', __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 10
-          }
-        },
-        React.createElement('div', { className: 'progress', __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 10
-          }
-        })
-      ),
-      children
-    );
-  }.apply(_this, _arguments), ReactElementType, 'return value');
+      },
+      React.createElement('div', { className: 'progress', __self: _this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10
+        }
+      })
+    ),
+    children
+  ));
 });
-
-function _assert(x, type, name) {
-  if (_t.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail('Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')');
-  }
-
-  return x;
-}
 //# sourceMappingURL=AlpBody.js.map
