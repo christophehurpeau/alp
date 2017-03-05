@@ -14,11 +14,15 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
+var _flowRuntime = require('flow-runtime');
+
+var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global location, window, confirm */
+const logger = new _nightingaleLogger2.default('alp:websocket'); /* global location, window, confirm */
 /* eslint-disable no-use-before-define */
-const logger = new _nightingaleLogger2.default('alp:websocket');
+
 let socket;
 let successfulConnection = false;
 let connected = false;
@@ -59,7 +63,7 @@ function start({ config, context }, namespaceName = '') {
   const secure = webSocketConfig.get('secure');
   const port = webSocketConfig.get('port');
 
-  socket = (0, _socket2.default)(`http${ secure ? 's' : '' }://${ location.hostname }:${ port }/${ namespaceName }`, {
+  socket = (0, _socket2.default)(`http${secure ? 's' : ''}://${location.hostname}:${port}/${namespaceName}`, {
     reconnectionDelay: 500,
     reconnectionDelayMax: 2500,
     timeout: 4000,
@@ -97,8 +101,10 @@ function start({ config, context }, namespaceName = '') {
 }
 
 function emit(...args) {
+  const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref('Promise'));
+
   logger.debug('emit', { args });
-  return new Promise((resolve, reject) => {
+  return _returnType.assert(new Promise((resolve, reject) => {
     const resolved = setTimeout(() => {
       logger.warn('websocket emit timeout', { args });
       reject(new Error('websocket response timeout'));
@@ -109,7 +115,7 @@ function emit(...args) {
       if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
       resolve(result);
     });
-  });
+  }));
 }
 
 function on(type, handler) {

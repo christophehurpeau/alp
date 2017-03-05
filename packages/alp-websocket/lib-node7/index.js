@@ -40,7 +40,7 @@ function close() {
 }
 
 function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
-  socket.on(`subscribe:${ name }`, callback => {
+  socket.on(`subscribe:${name}`, callback => {
     logger.info('join', { name });
     socket.join(name);
 
@@ -51,7 +51,7 @@ function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
     }
   });
 
-  socket.on(`unsubscribe:${ name }`, callback => {
+  socket.on(`unsubscribe:${name}`, callback => {
     logger.info('leave', { name });
     socket.leave(name);
 
@@ -89,8 +89,8 @@ function start(config, dirname) {
     }
 
     return createServer({
-      key: (0, _fs.readFileSync)(`${ dirname }/server.key`),
-      cert: (0, _fs.readFileSync)(`${ dirname }/server.crt`)
+      key: (0, _fs.readFileSync)(`${dirname}/server.key`),
+      cert: (0, _fs.readFileSync)(`${dirname}/server.crt`)
     });
   })();
 

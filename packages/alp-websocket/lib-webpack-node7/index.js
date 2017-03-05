@@ -23,7 +23,7 @@ export function close() {
 }
 
 export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
-  socket.on(`subscribe:${name}`, function (callback) {
+  socket.on(`subscribe:${name}`, callback => {
     logger.info('join', { name });
     socket.join(name);
 
@@ -34,7 +34,7 @@ export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscri
     }
   });
 
-  socket.on(`unsubscribe:${name}`, function (callback) {
+  socket.on(`unsubscribe:${name}`, callback => {
     logger.info('leave', { name });
     socket.leave(name);
 
@@ -66,7 +66,7 @@ function start(config, dirname) {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const createServer = require(secure ? 'https' : 'http').createServer;
 
-  const server = function () {
+  const server = (() => {
     if (!secure) {
       return createServer();
     }
@@ -75,32 +75,24 @@ function start(config, dirname) {
       key: readFileSync(`${dirname}/server.key`),
       cert: readFileSync(`${dirname}/server.crt`)
     });
-  }();
+  })();
 
   logger.info('Starting', { port });
-  server.listen(port, function () {
-    return logger.info('Listening', { port });
-  });
-  server.on('error', function (err) {
-    return logger.error(err);
-  });
+  server.listen(port, () => logger.info('Listening', { port }));
+  server.on('error', err => logger.error(err));
   io = socketio(server);
 
-  io.on('connection', function (socket) {
+  io.on('connection', socket => {
     logger.debug('connected', { id: socket.id });
     socket.emit('hello', { version: config.get('version') });
 
-    socket.on('error', function (err) {
-      return logger.error(err);
-    });
-    socket.on('disconnect', function () {
+    socket.on('error', err => logger.error(err));
+    socket.on('disconnect', () => {
       logger.debug('disconnected', { id: socket.id });
     });
   });
 
-  io.on('error', function (err) {
-    return logger.error(err);
-  });
+  io.on('error', err => logger.error(err));
 
   return io;
 }

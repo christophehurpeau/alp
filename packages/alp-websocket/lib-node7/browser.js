@@ -6,10 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.websocket = undefined;
 exports.default = alpWebsocket;
 
-var _tcombForked = require('tcomb-forked');
-
-var _tcombForked2 = _interopRequireDefault(_tcombForked);
-
 var _socket = require('socket.io-client');
 
 var _socket2 = _interopRequireDefault(_socket);
@@ -63,7 +59,7 @@ function start({ config, context }, namespaceName = '') {
   const secure = webSocketConfig.get('secure');
   const port = webSocketConfig.get('port');
 
-  socket = (0, _socket2.default)(`http${ secure ? 's' : '' }://${ location.hostname }:${ port }/${ namespaceName }`, {
+  socket = (0, _socket2.default)(`http${secure ? 's' : ''}://${location.hostname}:${port}/${namespaceName}`, {
     reconnectionDelay: 500,
     reconnectionDelayMax: 2500,
     timeout: 4000,
@@ -101,21 +97,19 @@ function start({ config, context }, namespaceName = '') {
 }
 
 function emit(...args) {
-  return _assert(function () {
-    logger.debug('emit', { args });
-    return new Promise((resolve, reject) => {
-      const resolved = setTimeout(() => {
-        logger.warn('websocket emit timeout', { args });
-        reject(new Error('websocket response timeout'));
-      }, 10000);
+  logger.debug('emit', { args });
+  return new Promise((resolve, reject) => {
+    const resolved = setTimeout(() => {
+      logger.warn('websocket emit timeout', { args });
+      reject(new Error('websocket response timeout'));
+    }, 10000);
 
-      socket.emit(...args, (error, result) => {
-        clearTimeout(resolved);
-        if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
-        resolve(result);
-      });
+    socket.emit(...args, (error, result) => {
+      clearTimeout(resolved);
+      if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
+      resolve(result);
     });
-  }.apply(this, arguments), _tcombForked2.default.Promise, 'return value');
+  });
 }
 
 function on(type, handler) {
@@ -134,23 +128,5 @@ function isConnected() {
 
 function isDisconnected() {
   return successfulConnection && !isConnected();
-}
-
-function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
-  }
-
-  if (_tcombForked2.default.isType(type)) {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
-    }
-  } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
-  }
-
-  return x;
 }
 //# sourceMappingURL=browser.js.map

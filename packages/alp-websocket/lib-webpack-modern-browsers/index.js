@@ -3,9 +3,9 @@ import { readFileSync } from 'fs';
 import socketio from 'socket.io';
 import Logger from 'nightingale-logger';
 
-var logger = new Logger('alp:websocket');
+const logger = new Logger('alp:websocket');
 
-var io = void 0;
+let io;
 
 /**
  * @param {Koa|AlpNodeApp} app
@@ -23,7 +23,7 @@ export function close() {
 }
 
 export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
-  socket.on(`subscribe:${ name }`, function (callback) {
+  socket.on(`subscribe:${name}`, function (callback) {
     logger.info('join', { name });
     socket.join(name);
 
@@ -34,7 +34,7 @@ export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscri
     }
   });
 
-  socket.on(`unsubscribe:${ name }`, function (callback) {
+  socket.on(`unsubscribe:${name}`, function (callback) {
     logger.info('leave', { name });
     socket.leave(name);
 
@@ -51,7 +51,7 @@ function start(config, dirname) {
     throw new Error('Already started');
   }
 
-  var webSocketConfig = config.get('webSocket') || config.get('websocket');
+  const webSocketConfig = config.get('webSocket') || config.get('websocket');
 
   if (!webSocketConfig) {
     throw new Error('Missing config webSocket');
@@ -61,19 +61,19 @@ function start(config, dirname) {
     throw new Error('Missing config webSocket.port');
   }
 
-  var secure = webSocketConfig.get('secure');
-  var port = webSocketConfig.get('port');
+  const secure = webSocketConfig.get('secure');
+  const port = webSocketConfig.get('port');
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  var createServer = require(secure ? 'https' : 'http').createServer;
+  const createServer = require(secure ? 'https' : 'http').createServer;
 
-  var server = function () {
+  const server = function () {
     if (!secure) {
       return createServer();
     }
 
     return createServer({
-      key: readFileSync(`${ dirname }/server.key`),
-      cert: readFileSync(`${ dirname }/server.crt`)
+      key: readFileSync(`${dirname}/server.key`),
+      cert: readFileSync(`${dirname}/server.crt`)
     });
   }();
 

@@ -3,7 +3,6 @@
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
-import _t from 'flow-runtime';
 const logger = new Logger('alp:websocket');
 let socket;
 let successfulConnection = false;
@@ -52,23 +51,23 @@ function start({ config, context }, namespaceName = '') {
     transports: ['websocket']
   });
 
-  socket.on('connect', function () {
+  socket.on('connect', () => {
     logger.success('connected');
     successfulConnection = true;
     connected = true;
   });
 
-  socket.on('reconnect', function () {
+  socket.on('reconnect', () => {
     logger.success('reconnected');
     connected = true;
   });
 
-  socket.on('disconnect', function () {
+  socket.on('disconnect', () => {
     logger.warn('disconnected');
     connected = false;
   });
 
-  socket.on('hello', function ({ version }) {
+  socket.on('hello', ({ version }) => {
     if (version !== window.VERSION) {
       // eslint-disable-next-line no-alert
       if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) {
@@ -83,21 +82,19 @@ function start({ config, context }, namespaceName = '') {
 }
 
 function emit(...args) {
-  const _returnType = _t.return(_t.ref('Promise'));
-
   logger.debug('emit', { args });
-  return _returnType.assert(new Promise(function (resolve, reject) {
-    const resolved = setTimeout(function () {
+  return new Promise((resolve, reject) => {
+    const resolved = setTimeout(() => {
       logger.warn('websocket emit timeout', { args });
       reject(new Error('websocket response timeout'));
     }, 10000);
 
-    socket.emit(...args, function (error, result) {
+    socket.emit(...args, (error, result) => {
       clearTimeout(resolved);
       if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
       resolve(result);
     });
-  }));
+  });
 }
 
 function on(type, handler) {

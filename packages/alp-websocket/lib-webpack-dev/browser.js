@@ -1,9 +1,9 @@
-import _t from 'tcomb-forked';
 /* global location, window, confirm */
 /* eslint-disable no-use-before-define */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
+import _t from 'flow-runtime';
 var logger = new Logger('alp:websocket');
 var socket = void 0;
 var successfulConnection = false;
@@ -93,23 +93,23 @@ function emit() {
     args[_key] = arguments[_key];
   }
 
-  return _assert(function () {
-    logger.debug('emit', { args: args });
-    return new Promise(function (resolve, reject) {
-      var _socket;
+  var _returnType = _t.return(_t.ref('Promise'));
 
-      var resolved = setTimeout(function () {
-        logger.warn('websocket emit timeout', { args: args });
-        reject(new Error('websocket response timeout'));
-      }, 10000);
+  logger.debug('emit', { args: args });
+  return _returnType.assert(new Promise(function (resolve, reject) {
+    var _socket;
 
-      (_socket = socket).emit.apply(_socket, args.concat([function (error, result) {
-        clearTimeout(resolved);
-        if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
-        resolve(result);
-      }]));
-    });
-  }.apply(this, arguments), _t.Promise, 'return value');
+    var resolved = setTimeout(function () {
+      logger.warn('websocket emit timeout', { args: args });
+      reject(new Error('websocket response timeout'));
+    }, 10000);
+
+    (_socket = socket).emit.apply(_socket, args.concat([function (error, result) {
+      clearTimeout(resolved);
+      if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
+      resolve(result);
+    }]));
+  }));
 }
 
 function on(type, handler) {
@@ -128,23 +128,5 @@ function isConnected() {
 
 function isDisconnected() {
   return successfulConnection && !isConnected();
-}
-
-function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
-  }
-
-  if (_t.isType(type)) {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail(message());
-  }
-
-  return x;
 }
 //# sourceMappingURL=browser.js.map

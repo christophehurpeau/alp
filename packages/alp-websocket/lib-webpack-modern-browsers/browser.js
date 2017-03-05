@@ -3,12 +3,12 @@
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
-var logger = new Logger('alp:websocket');
-var socket = void 0;
-var successfulConnection = false;
-var connected = false;
+const logger = new Logger('alp:websocket');
+let socket;
+let successfulConnection = false;
+let connected = false;
 
-export var websocket = {
+export const websocket = {
   get connected() {
     return connected;
   },
@@ -31,7 +31,7 @@ function start({ config, context }, namespaceName = '') {
     throw new Error('WebSocket already started');
   }
 
-  var webSocketConfig = config.get('webSocket') || config.get('websocket');
+  const webSocketConfig = config.get('webSocket') || config.get('websocket');
 
   if (!webSocketConfig) {
     throw new Error('Missing config webSocket');
@@ -41,10 +41,10 @@ function start({ config, context }, namespaceName = '') {
     throw new Error('Missing config webSocket.port');
   }
 
-  var secure = webSocketConfig.get('secure');
-  var port = webSocketConfig.get('port');
+  const secure = webSocketConfig.get('secure');
+  const port = webSocketConfig.get('port');
 
-  socket = socketio(`http${ secure ? 's' : '' }://${ location.hostname }:${ port }/${ namespaceName }`, {
+  socket = socketio(`http${secure ? 's' : ''}://${location.hostname}:${port}/${namespaceName}`, {
     reconnectionDelay: 500,
     reconnectionDelayMax: 2500,
     timeout: 4000,
@@ -84,7 +84,7 @@ function start({ config, context }, namespaceName = '') {
 function emit(...args) {
   logger.debug('emit', { args });
   return new Promise(function (resolve, reject) {
-    var resolved = setTimeout(function () {
+    const resolved = setTimeout(function () {
       logger.warn('websocket emit timeout', { args });
       reject(new Error('websocket response timeout'));
     }, 10000);
