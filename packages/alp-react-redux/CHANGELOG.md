@@ -1,3 +1,12 @@
+<a name="7.3.2"></a>
+## [7.3.2](https://github.com/alpjs/alp-react-redux/compare/v7.3.1...v7.3.2) (2017-03-05)
+
+
+### Bug Fixes
+
+* missing classNames in browser export ([7a07984](https://github.com/alpjs/alp-react-redux/commit/7a07984))
+
+
 <a name="7.3.1"></a>
 ## [7.3.1](https://github.com/alpjs/alp-react-redux/compare/v7.3.0...v7.3.1) (2017-03-05)
 
