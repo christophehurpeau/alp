@@ -13,7 +13,7 @@ function _loadConfigSync(dirname, name) {
   return parseJSON(content);
 }
 
-export class Config {
+export let Config = class {
 
   constructor(dirname) {
     this._map = new Map();
@@ -83,7 +83,7 @@ export class Config {
   loadConfigSync(name) {
     return _loadConfigSync(this._dirname, name);
   }
-}
+};
 
 export default function alpConfig(dirname, options = {}) {
   return function (app, config) {

@@ -33,7 +33,7 @@ function _loadConfigSync(dirname, name) {
   return (0, _parseJsonObjectAsMap2.default)(content);
 }
 
-class Config {
+let Config = exports.Config = class {
 
   constructor(dirname) {
     this._map = new Map();
@@ -99,9 +99,7 @@ class Config {
   loadConfigSync(name) {
     return _loadConfigSync(this._dirname, name);
   }
-}
-
-exports.Config = Config;
+};
 function alpConfig(dirname, options = {}) {
   return (app, config) => {
     if (!config) {

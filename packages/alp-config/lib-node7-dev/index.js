@@ -4,6 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Config = undefined;
+
+var _dec, _dec2, _dec3, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
+
 exports.default = alpConfig;
 
 var _util = require('util');
@@ -27,6 +30,49 @@ var _flowRuntime = require('flow-runtime');
 var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['keys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['defineProperty'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper() {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
 
 function _existsConfigSync(dirname, name) {
   let _dirnameType = _flowRuntime2.default.string();
@@ -55,9 +101,15 @@ function _loadConfigSync(dirname, name) {
 
 const ConfigOptions = _flowRuntime2.default.type('ConfigOptions', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('argv', _flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.string()))), _flowRuntime2.default.property('packageConfig', _flowRuntime2.default.nullable(_flowRuntime2.default.object())), _flowRuntime2.default.property('version', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))));
 
-class Config {
+let Config = exports.Config = (_dec = _flowRuntime2.default.decorate(_flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any())), _dec2 = _flowRuntime2.default.decorate(_flowRuntime2.default.string()), _dec3 = _flowRuntime2.default.decorate(_flowRuntime2.default.object()), (_class = class {
 
   constructor(dirname) {
+    _initDefineProp(this, '_map', _descriptor, this);
+
+    _initDefineProp(this, '_dirname', _descriptor2, this);
+
+    _initDefineProp(this, 'packageConfig', _descriptor3, this);
+
     let _dirnameType3 = _flowRuntime2.default.string();
 
     _flowRuntime2.default.param('dirname', _dirnameType3).assert(dirname);
@@ -147,9 +199,16 @@ class Config {
 
     return _returnType4.assert(_loadConfigSync(this._dirname, name));
   }
-}
-
-exports.Config = Config;
+}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, '_map', [_dec], {
+  enumerable: true,
+  initializer: null
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, '_dirname', [_dec2], {
+  enumerable: true,
+  initializer: null
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'packageConfig', [_dec3], {
+  enumerable: true,
+  initializer: null
+})), _class));
 function alpConfig(dirname, options = {}) {
   let _dirnameType4 = _flowRuntime2.default.nullable(_flowRuntime2.default.string());
 

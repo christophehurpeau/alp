@@ -8,5 +8,9 @@
   "react": false,
   "testing": false,
   "documentation": false,
-  "doclets": false
+  "doclets": false,
+  "entries": [
+    "index"
+  ],
+  "flow": false
 }
