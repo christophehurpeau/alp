@@ -1,3 +1,12 @@
+<a name="3.11.0"></a>
+# [3.11.0](https://github.com/alpjs/alp-websocket/compare/v3.10.0...v3.11.0) (2017-03-05)
+
+
+### Features
+
+* pob upgrade ([0038c84](https://github.com/alpjs/alp-websocket/commit/0038c84))
+
+
 <a name="3.10.0"></a>
 # [3.10.0](https://github.com/alpjs/alp-websocket/compare/v3.9.0...v3.10.0) (2016-12-22)
 
