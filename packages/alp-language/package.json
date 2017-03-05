@@ -50,7 +50,7 @@
     "eslint-plugin-import": "^2.2.0",
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
-    "pob-babel": "^16.2.3",
+    "pob-babel": "^16.3.0",
     "pob-release": "^3.1.0"
   }
 }
