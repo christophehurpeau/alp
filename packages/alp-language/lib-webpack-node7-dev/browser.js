@@ -8,7 +8,7 @@ export default function alpLanguage(app) {
 
   app.context.firstAcceptedLanguage = navigator.languages[0] || availableLanguages[0];
 
-  const languageFound = navigator.languages.some(function (language) {
+  const languageFound = navigator.languages.some(language => {
     const languageCode = language.split('-')[0].toLowerCase();
     if (availableLanguages.indexOf(languageCode) !== -1) {
       app.context.language = languageCode;

@@ -1,4 +1,9 @@
-# alp-language
+# alp-language [![NPM version][npm-image]][npm-url]
+
+language context in alp framework
+
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
 
 ## Config file
 
@@ -40,3 +45,10 @@ First accepted language in the header / in `navigator.languages` contained in `a
 ### firstAcceptedLanguage: string
 
 The first accepted language in the header / in `navigator.languages` regardless of `availableLanguages`. Can be a locale. Usefull for date/time/...
+
+[npm-image]: https://img.shields.io/npm/v/alp-language.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/alp-language
+[daviddm-image]: https://david-dm.org/alpjs/alp-language.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/alpjs/alp-language
+[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-language/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-language

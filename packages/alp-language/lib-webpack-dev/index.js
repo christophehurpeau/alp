@@ -1,8 +1,9 @@
 import { defineLazyProperty } from 'object-properties';
 
+import t from 'flow-runtime';
 export default function alpLanguage(app) {
   var config = app.context.config;
-  var availableLanguages = config.get('availableLanguages');
+  var availableLanguages = t.array(t.string()).assert(config.get('availableLanguages'));
   if (!availableLanguages) {
     throw new Error('Missing config "availableLanguages"');
   }
