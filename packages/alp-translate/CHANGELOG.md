@@ -1,3 +1,12 @@
+<a name="2.4.1"></a>
+## [2.4.1](https://github.com/alpjs/alp-translate/compare/v2.4.0...v2.4.1) (2017-03-05)
+
+
+### Bug Fixes
+
+* flowtype ([44764f9](https://github.com/alpjs/alp-translate/commit/44764f9))
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/alpjs/alp-translate/compare/v2.3.2...v2.4.0) (2017-03-05)
 
