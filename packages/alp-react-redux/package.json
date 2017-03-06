@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "flow-runtime": "^0.7.0",
-    "fody": "^6.2.0",
+    "fody": "^7.0.0",
     "modern-browsers": "^0.1.0",
     "nightingale-logger": "^3.2.0",
     "react-pure-stateless-component": "0.2.1",
