@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createAuthController;
 
-var _tcombForked = require('tcomb-forked');
+var _flowRuntime = require('flow-runtime');
 
-var _tcombForked2 = _interopRequireDefault(_tcombForked);
+var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17,13 +17,7 @@ function createAuthController({
   loginModuleDescriptor,
   homeRouterKey = 'home'
 }) {
-  _assert({
-    loginModuleDescriptor,
-    homeRouterKey
-  }, _tcombForked2.default.interface({
-    loginModuleDescriptor: _tcombForked2.default.Object,
-    homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
-  }), '{ loginModuleDescriptor, homeRouterKey = \'home\' }');
+  _flowRuntime2.default.param('arguments[0]', _flowRuntime2.default.object(_flowRuntime2.default.property('loginModuleDescriptor', _flowRuntime2.default.object()), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string())))).assert(arguments[0]);
 
   return {
     login(ctx) {
@@ -36,23 +30,5 @@ function createAuthController({
       })();
     }
   };
-}
-
-function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
-  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=createAuthController.browser.js.map

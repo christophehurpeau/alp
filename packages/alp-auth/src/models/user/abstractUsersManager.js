@@ -20,11 +20,11 @@ export default {
     return this.store.findByKey(connected);
   },
 
-  insertOne(user): Promise {
+  insertOne(user): Promise<any> {
     return this.store.insertOne(user);
   },
 
-  updateOne(user): Promise {
+  updateOne(user): Promise<any> {
     return this.store.updateOne(user);
   },
 

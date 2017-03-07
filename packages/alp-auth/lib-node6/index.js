@@ -106,7 +106,7 @@ function init({
         });
       });
 
-      return function (_x, _x2) {
+      return function () {
         return _ref.apply(this, arguments);
       };
     })();
@@ -174,7 +174,7 @@ function init({
           yield next();
         });
 
-        return function (_x3, _x4) {
+        return function () {
           return _ref2.apply(this, arguments);
         };
       })());
@@ -212,7 +212,7 @@ function init({
         yield next();
       });
 
-      return function (_x5, _x6) {
+      return function () {
         return _ref3.apply(this, arguments);
       };
     })();

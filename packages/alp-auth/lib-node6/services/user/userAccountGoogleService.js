@@ -13,7 +13,7 @@ var _events2 = _interopRequireDefault(_events);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = new (_temp2 = _class = class UserAccountGoogleService extends _events2.default {
+exports.default = new (_temp2 = _class = class extends _events2.default {
   constructor(...args) {
     var _temp;
 
@@ -21,7 +21,7 @@ exports.default = new (_temp2 = _class = class UserAccountGoogleService extends 
   }
 
   getProfile(tokens) {
-    return fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${ tokens.accessToken }`).then(response => response.json());
+    return fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`).then(response => response.json());
   }
 
   isAccount(account, profile) {

@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
 
-var _tcombForked = require('tcomb-forked');
+var _dec, _dec2, _dec3, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3; /* eslint camelcase: 'off', max-lines: 'off' */
 
-var _tcombForked2 = _interopRequireDefault(_tcombForked);
 
 var _events = require('events');
 
@@ -26,37 +26,84 @@ var _UserAccountsService2 = _interopRequireDefault(_UserAccountsService);
 
 var _generators = require('../utils/generators');
 
+var _flowRuntime = require('flow-runtime');
+
+var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* eslint camelcase: 'off', max-lines: 'off' */
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['keys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['defineProperty'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper() {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
 
 const logger = new _nightingaleLogger2.default('alp:auth:authentication');
 
-const GenerateAuthUrlOptions = _tcombForked2.default.interface({
-  redirectUri: _tcombForked2.default.maybe(_tcombForked2.default.String),
-  scope: _tcombForked2.default.maybe(_tcombForked2.default.String),
-  state: _tcombForked2.default.maybe(_tcombForked2.default.String),
-  grantType: _tcombForked2.default.maybe(_tcombForked2.default.String),
-  accessType: _tcombForked2.default.maybe(_tcombForked2.default.String),
-  prompt: _tcombForked2.default.maybe(_tcombForked2.default.String),
-  loginHint: _tcombForked2.default.maybe(_tcombForked2.default.String),
-  includeGrantedScopes: _tcombForked2.default.maybe(_tcombForked2.default.Boolean)
-}, 'GenerateAuthUrlOptions');
+const GenerateAuthUrlOptionsType = _flowRuntime2.default.type('GenerateAuthUrlOptionsType', _flowRuntime2.default.object(_flowRuntime2.default.property('redirectUri', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('scope', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('state', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('grantType', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('accessType', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('prompt', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('loginHint', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('includeGrantedScopes', _flowRuntime2.default.boolean(), true)));
 
-const GetTokensOptions = _tcombForked2.default.interface({
-  code: _tcombForked2.default.String,
-  redirectUri: _tcombForked2.default.String
-}, 'GetTokensOptions');
+const GetTokensOptionsType = _flowRuntime2.default.type('GetTokensOptionsType', _flowRuntime2.default.object(_flowRuntime2.default.property('code', _flowRuntime2.default.string()), _flowRuntime2.default.property('redirectUri', _flowRuntime2.default.string())));
 
-class AuthenticationService extends _events2.default {
+let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2.default.object()), _dec2 = _flowRuntime2.default.decorate(_flowRuntime2.default.object()), _dec3 = _flowRuntime2.default.decorate(function () {
+  return _flowRuntime2.default.ref(_UserAccountsService2.default);
+}), (_class = class extends _events2.default {
 
   constructor(config, strategies, userAccountsService) {
-    _assert(strategies, _tcombForked2.default.Object, 'strategies');
+    let _strategiesType = _flowRuntime2.default.object();
 
-    _assert(userAccountsService, _UserAccountsService2.default, 'userAccountsService');
+    let _userAccountsServiceType = _flowRuntime2.default.ref(_UserAccountsService2.default);
+
+    _flowRuntime2.default.param('strategies', _strategiesType).assert(strategies);
+
+    _flowRuntime2.default.param('userAccountsService', _userAccountsServiceType).assert(userAccountsService);
 
     super();
+
+    _initDefineProp(this, 'config', _descriptor, this);
+
+    _initDefineProp(this, 'strategies', _descriptor2, this);
+
+    _initDefineProp(this, 'userAccountsService', _descriptor3, this);
+
     this.config = config;
     this.strategies = strategies;
     this.userAccountsService = userAccountsService;
@@ -84,9 +131,11 @@ class AuthenticationService extends _events2.default {
    * @returns {string}
    */
   generateAuthUrl(strategy, options = {}) {
-    _assert(strategy, _tcombForked2.default.String, 'strategy');
+    let _strategyType = _flowRuntime2.default.string();
 
-    _assert(options, GenerateAuthUrlOptions, 'options');
+    _flowRuntime2.default.param('strategy', _strategyType).assert(strategy);
+
+    _flowRuntime2.default.param('options', GenerateAuthUrlOptionsType).assert(options);
 
     logger.debug('generateAuthUrl', { strategy, options });
     const strategyInstance = this.strategies[strategy];
@@ -105,9 +154,11 @@ class AuthenticationService extends _events2.default {
   }
 
   getTokens(strategy, options = {}) {
-    _assert(strategy, _tcombForked2.default.String, 'strategy');
+    let _strategyType2 = _flowRuntime2.default.string();
 
-    _assert(options, GetTokensOptions, 'options');
+    _flowRuntime2.default.param('strategy', _strategyType2).assert(strategy);
+
+    _flowRuntime2.default.param('options', GetTokensOptionsType).assert(options);
 
     logger.debug('getTokens', { strategy, options });
     const strategyInstance = this.strategies[strategy];
@@ -136,7 +187,9 @@ class AuthenticationService extends _events2.default {
   }
 
   refreshToken(strategy, tokens) {
-    _assert(strategy, _tcombForked2.default.String, 'strategy');
+    let _strategyType3 = _flowRuntime2.default.string();
+
+    _flowRuntime2.default.param('strategy', _strategyType3).assert(strategy);
 
     logger.debug('refreshToken', { strategy });
     if (!tokens.refreshToken) {
@@ -168,10 +221,12 @@ class AuthenticationService extends _events2.default {
   }
 
   redirectUri(ctx, strategy) {
-    _assert(strategy, _tcombForked2.default.String, 'strategy');
+    let _strategyType4 = _flowRuntime2.default.string();
 
-    const host = `http${ this.config.get('allowHttps') ? 's' : '' }://${ ctx.request.host }`;
-    return `${ host }${ ctx.urlGenerator('loginResponse', { strategy }) }`;
+    _flowRuntime2.default.param('strategy', _strategyType4).assert(strategy);
+
+    const host = `http${this.config.get('allowHttps') ? 's' : ''}://${ctx.request.host}`;
+    return `${host}${ctx.urlGenerator('loginResponse', { strategy })}`;
   }
 
   /**
@@ -188,20 +243,28 @@ class AuthenticationService extends _events2.default {
     var _this = this;
 
     return _asyncToGenerator(function* () {
-      _assert(ctx, _tcombForked2.default.Object, 'ctx');
+      let _ctxType = _flowRuntime2.default.object();
 
-      _assert(strategy, _tcombForked2.default.String, 'strategy');
+      let _strategyType5 = _flowRuntime2.default.string();
 
-      _assert(refreshToken, _tcombForked2.default.maybe(_tcombForked2.default.String), 'refreshToken');
+      let _refreshTokenType = _flowRuntime2.default.nullable(_flowRuntime2.default.string());
 
-      _assert(scopeKey, _tcombForked2.default.maybe(_tcombForked2.default.String), 'scopeKey');
+      let _scopeKeyType = _flowRuntime2.default.nullable(_flowRuntime2.default.string());
+
+      _flowRuntime2.default.param('ctx', _ctxType).assert(ctx);
+
+      _flowRuntime2.default.param('strategy', _strategyType5).assert(strategy);
+
+      _flowRuntime2.default.param('refreshToken', _refreshTokenType).assert(refreshToken);
+
+      _flowRuntime2.default.param('scopeKey', _scopeKeyType).assert(scopeKey);
 
       logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
       const state = yield (0, _generators.randomHex)(8);
 
       const scope = _this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
-      ctx.cookies.set(`auth_${ strategy }_${ state }`, JSON.stringify({
+      ctx.cookies.set(`auth_${strategy}_${state}`, JSON.stringify({
         scopeKey,
         scope,
         isLoginAccess: !scopeKey || scopeKey === 'login'
@@ -231,9 +294,13 @@ class AuthenticationService extends _events2.default {
     var _this2 = this;
 
     return _asyncToGenerator(function* () {
-      _assert(strategy, _tcombForked2.default.String, 'strategy');
+      let _strategyType6 = _flowRuntime2.default.string();
 
-      _assert(isConnected, _tcombForked2.default.maybe(_tcombForked2.default.Boolean), 'isConnected');
+      let _isConnectedType = _flowRuntime2.default.nullable(_flowRuntime2.default.boolean());
+
+      _flowRuntime2.default.param('strategy', _strategyType6).assert(strategy);
+
+      _flowRuntime2.default.param('isConnected', _isConnectedType).assert(isConnected);
 
       if (ctx.query.error) {
         const error = new Error(ctx.query.error);
@@ -244,7 +311,7 @@ class AuthenticationService extends _events2.default {
 
       const code = ctx.query.code;
       const state = ctx.query.state;
-      const cookieName = `auth_${ strategy }_${ state }`;
+      const cookieName = `auth_${strategy}_${state}`;
       let cookie = ctx.cookies.get(cookieName);
       ctx.cookies.set(cookieName, '', { expires: new Date(1) });
       if (!cookie) {
@@ -296,24 +363,15 @@ class AuthenticationService extends _events2.default {
       return this.userAccountsService.updateAccount(user, account).then(() => true);
     });
   }
-}
+}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'config', [_dec], {
+  enumerable: true,
+  initializer: null
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'strategies', [_dec2], {
+  enumerable: true,
+  initializer: null
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'userAccountsService', [_dec3], {
+  enumerable: true,
+  initializer: null
+})), _class));
 exports.default = AuthenticationService;
-
-function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
-  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
-  }
-
-  return x;
-}
 //# sourceMappingURL=AuthenticationService.js.map

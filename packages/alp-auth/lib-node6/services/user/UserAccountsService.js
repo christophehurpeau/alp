@@ -3,6 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
+
+var _class, _temp; /* global fetch */
+
 
 var _events = require('events');
 
@@ -18,12 +22,11 @@ var _userAccountGoogleService2 = _interopRequireDefault(_userAccountGoogleServic
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* global fetch */
-
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 const logger = new _nightingaleLogger2.default('alp:auth:userAccounts');
 
-class UserAccountsService extends _events2.default {
+let UserAccountsService = (_temp = _class = class extends _events2.default {
 
   constructor(usersManager) {
     super();
@@ -90,7 +93,7 @@ class UserAccountsService extends _events2.default {
 
       const profile = yield service.getProfile(tokens);
 
-      const plusProfile = yield fetch(`https://www.googleapis.com/plus/v1/people/me?access_token=${ tokens.accessToken }`).then(function (response) {
+      const plusProfile = yield fetch(`https://www.googleapis.com/plus/v1/people/me?access_token=${tokens.accessToken}`).then(function (response) {
         return response.json();
       });
 
@@ -165,9 +168,8 @@ class UserAccountsService extends _events2.default {
   updateAccount(user, account) {
     return this.usersManager.updateAccount(user, account).then(() => user);
   }
-}
-exports.default = UserAccountsService;
-UserAccountsService.strategyToService = {
+}, _class.strategyToService = {
   google: _userAccountGoogleService2.default
-};
+}, _temp);
+exports.default = UserAccountsService;
 //# sourceMappingURL=UserAccountsService.js.map

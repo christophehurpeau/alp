@@ -15,10 +15,6 @@ Object.defineProperty(exports, 'routes', {
 });
 exports.default = init;
 
-var _tcombForked = require('tcomb-forked');
-
-var _tcombForked2 = _interopRequireDefault(_tcombForked);
-
 var _jsonwebtoken = require('jsonwebtoken');
 
 var _promiseCallbackFactory = require('promise-callback-factory');
@@ -53,6 +49,10 @@ var _createAuthController = require('./controllers/createAuthController.server')
 
 var _createAuthController2 = _interopRequireDefault(_createAuthController);
 
+var _flowRuntime = require('flow-runtime');
+
+var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -72,19 +72,7 @@ function init({
   loginModuleDescriptor,
   homeRouterKey
 }) {
-  _assert({
-    controllers,
-    usersManager,
-    strategies,
-    loginModuleDescriptor,
-    homeRouterKey
-  }, _tcombForked2.default.interface({
-    controllers: Map,
-    usersManager: _tcombForked2.default.Object,
-    strategies: _tcombForked2.default.Object,
-    loginModuleDescriptor: _tcombForked2.default.Object,
-    homeRouterKey: _tcombForked2.default.maybe(_tcombForked2.default.String)
-  }), '{ controllers, usersManager, strategies, loginModuleDescriptor, homeRouterKey }');
+  _flowRuntime2.default.param('arguments[0]', _flowRuntime2.default.object(_flowRuntime2.default.property('controllers', _flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any())), _flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('strategies', _flowRuntime2.default.object()), _flowRuntime2.default.property('loginModuleDescriptor', _flowRuntime2.default.object()), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string())))).assert(arguments[0]);
 
   return app => {
     const userAccountsService = new _UserAccountsService2.default(usersManager);
@@ -102,9 +90,13 @@ function init({
       var _ref = _asyncToGenerator(function* (connected, user) {
         var _this = this;
 
-        _assert(connected, _tcombForked2.default.union([_tcombForked2.default.Number, _tcombForked2.default.String]), 'connected');
+        let _connectedType = _flowRuntime2.default.union(_flowRuntime2.default.number(), _flowRuntime2.default.string());
 
-        _assert(user, _tcombForked2.default.Object, 'user');
+        let _userType = _flowRuntime2.default.object();
+
+        _flowRuntime2.default.param('connected', _connectedType).assert(connected);
+
+        _flowRuntime2.default.param('user', _userType).assert(user);
 
         logger.debug('setConnected', { connected });
         if (!connected) {
@@ -128,7 +120,7 @@ function init({
         });
       });
 
-      return function (_x, _x2) {
+      return function () {
         return _ref.apply(this, arguments);
       };
     })();
@@ -196,7 +188,7 @@ function init({
           yield next();
         });
 
-        return function (_x3, _x4) {
+        return function () {
           return _ref2.apply(this, arguments);
         };
       })());
@@ -234,28 +226,10 @@ function init({
         yield next();
       });
 
-      return function (_x5, _x6) {
+      return function () {
         return _ref3.apply(this, arguments);
       };
     })();
   };
-}
-
-function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
-  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
-  }
-
-  return x;
 }
 //# sourceMappingURL=index.js.map

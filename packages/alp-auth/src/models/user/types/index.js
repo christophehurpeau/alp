@@ -12,7 +12,7 @@ export type AccountType = {
   tokenExpireDate: Date,
   refreshToken?: string,
   profile?: Object,
-  scope: string[],
+  scope: Array<string>,
 };
 
 export type UserType = {

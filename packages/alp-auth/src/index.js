@@ -21,7 +21,7 @@ export default function init({
   loginModuleDescriptor,
   homeRouterKey,
 }: {
-  controllers: Map,
+  controllers: Map<string, any>,
   usersManager: Object,
   strategies: Object,
   loginModuleDescriptor: Object,

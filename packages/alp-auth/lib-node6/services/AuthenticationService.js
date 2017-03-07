@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
 
 var _events = require('events');
 
@@ -25,7 +26,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 const logger = new _nightingaleLogger2.default('alp:auth:authentication');
 
-class AuthenticationService extends _events2.default {
+let AuthenticationService = class extends _events2.default {
 
   constructor(config, strategies, userAccountsService) {
     super();
@@ -130,8 +131,8 @@ class AuthenticationService extends _events2.default {
   }
 
   redirectUri(ctx, strategy) {
-    const host = `http${ this.config.get('allowHttps') ? 's' : '' }://${ ctx.request.host }`;
-    return `${ host }${ ctx.urlGenerator('loginResponse', { strategy }) }`;
+    const host = `http${this.config.get('allowHttps') ? 's' : ''}://${ctx.request.host}`;
+    return `${host}${ctx.urlGenerator('loginResponse', { strategy })}`;
   }
 
   /**
@@ -153,7 +154,7 @@ class AuthenticationService extends _events2.default {
 
       const scope = _this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
-      ctx.cookies.set(`auth_${ strategy }_${ state }`, JSON.stringify({
+      ctx.cookies.set(`auth_${strategy}_${state}`, JSON.stringify({
         scopeKey,
         scope,
         isLoginAccess: !scopeKey || scopeKey === 'login'
@@ -192,7 +193,7 @@ class AuthenticationService extends _events2.default {
 
       const code = ctx.query.code;
       const state = ctx.query.state;
-      const cookieName = `auth_${ strategy }_${ state }`;
+      const cookieName = `auth_${strategy}_${state}`;
       let cookie = ctx.cookies.get(cookieName);
       ctx.cookies.set(cookieName, '', { expires: new Date(1) });
       if (!cookie) {
@@ -244,6 +245,6 @@ class AuthenticationService extends _events2.default {
       return this.userAccountsService.updateAccount(user, account).then(() => true);
     });
   }
-}
+};
 exports.default = AuthenticationService;
 //# sourceMappingURL=AuthenticationService.js.map

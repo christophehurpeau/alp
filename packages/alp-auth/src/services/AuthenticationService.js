@@ -7,7 +7,7 @@ import { randomHex } from '../utils/generators';
 
 const logger = new Logger('alp:auth:authentication');
 
-type GenerateAuthUrlOptions = {
+type GenerateAuthUrlOptionsType = {
   redirectUri?: string,
   scope?: string,
   state?: string,
@@ -18,7 +18,7 @@ type GenerateAuthUrlOptions = {
   includeGrantedScopes?: boolean,
 }
 
-type GetTokensOptions = {
+type GetTokensOptionsType = {
   code: string,
   redirectUri: string,
 }
@@ -56,7 +56,7 @@ export default class AuthenticationService extends EventEmitter {
    * to this user/application combination for other scopes
    * @returns {string}
    */
-  generateAuthUrl(strategy: string, options: GenerateAuthUrlOptions = {}) {
+  generateAuthUrl(strategy: string, options: GenerateAuthUrlOptionsType = {}) {
     logger.debug('generateAuthUrl', { strategy, options });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
@@ -73,7 +73,7 @@ export default class AuthenticationService extends EventEmitter {
     }
   }
 
-  getTokens(strategy: string, options: GetTokensOptions = {}) {
+  getTokens(strategy: string, options: GetTokensOptionsType = {}) {
     logger.debug('getTokens', { strategy, options });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {

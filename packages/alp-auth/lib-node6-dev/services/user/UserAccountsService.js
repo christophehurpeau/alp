@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
 
-var _tcombForked = require('tcomb-forked');
+var _class, _temp; /* global fetch */
 
-var _tcombForked2 = _interopRequireDefault(_tcombForked);
 
 var _events = require('events');
 
@@ -20,22 +20,19 @@ var _userAccountGoogleService = require('./userAccountGoogleService');
 
 var _userAccountGoogleService2 = _interopRequireDefault(_userAccountGoogleService);
 
+var _flowRuntime = require('flow-runtime');
+
+var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /* global fetch */
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-
-const TokensObject = _tcombForked2.default.interface({
-  accessToken: _tcombForked2.default.String,
-  refreshToken: _tcombForked2.default.maybe(_tcombForked2.default.String),
-  expireDate: Date,
-  tokenType: _tcombForked2.default.String,
-  idToken: _tcombForked2.default.String
-}, 'TokensObject');
+const TokensObject = _flowRuntime2.default.type('TokensObject', _flowRuntime2.default.object(_flowRuntime2.default.property('accessToken', _flowRuntime2.default.string()), _flowRuntime2.default.property('refreshToken', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('expireDate', _flowRuntime2.default.ref('Date')), _flowRuntime2.default.property('tokenType', _flowRuntime2.default.string()), _flowRuntime2.default.property('idToken', _flowRuntime2.default.string())));
 
 const logger = new _nightingaleLogger2.default('alp:auth:userAccounts');
 
-class UserAccountsService extends _events2.default {
+let UserAccountsService = (_temp = _class = class extends _events2.default {
 
   constructor(usersManager) {
     super();
@@ -43,9 +40,13 @@ class UserAccountsService extends _events2.default {
   }
 
   getScope(strategy, scopeKey, user, accountId) {
-    _assert(strategy, _tcombForked2.default.String, 'strategy');
+    let _strategyType = _flowRuntime2.default.string();
 
-    _assert(scopeKey, _tcombForked2.default.String, 'scopeKey');
+    let _scopeKeyType = _flowRuntime2.default.string();
+
+    _flowRuntime2.default.param('strategy', _strategyType).assert(strategy);
+
+    _flowRuntime2.default.param('scopeKey', _scopeKeyType).assert(scopeKey);
 
     logger.debug('getScope', { strategy, userId: user && user._id });
     const service = this.constructor.strategyToService[strategy];
@@ -98,11 +99,15 @@ class UserAccountsService extends _events2.default {
     var _this2 = this;
 
     return _asyncToGenerator(function* () {
-      _assert(strategy, _tcombForked2.default.String, 'strategy');
+      let _strategyType2 = _flowRuntime2.default.string();
 
-      _assert(tokens, TokensObject, 'tokens');
+      let _scopeType = _flowRuntime2.default.string();
 
-      _assert(scope, _tcombForked2.default.String, 'scope');
+      _flowRuntime2.default.param('strategy', _strategyType2).assert(strategy);
+
+      _flowRuntime2.default.param('tokens', TokensObject).assert(tokens);
+
+      _flowRuntime2.default.param('scope', _scopeType).assert(scope);
 
       if (strategy !== 'google') {
         throw new Error('Not supported at the moment');
@@ -112,7 +117,7 @@ class UserAccountsService extends _events2.default {
 
       const profile = yield service.getProfile(tokens);
 
-      const plusProfile = yield fetch(`https://www.googleapis.com/plus/v1/people/me?access_token=${ tokens.accessToken }`).then(function (response) {
+      const plusProfile = yield fetch(`https://www.googleapis.com/plus/v1/people/me?access_token=${tokens.accessToken}`).then(function (response) {
         return response.json();
       });
 
@@ -178,7 +183,7 @@ class UserAccountsService extends _events2.default {
         return domains.add(email.split('@', 2)[1]);
       }, new Set()));
 
-      const keyPath = _assert(_this2.usersManager.store.keyPath, _tcombForked2.default.String, 'keyPath');
+      const keyPath = _flowRuntime2.default.string().assert(_this2.usersManager.store.keyPath);
       yield _this2.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);
       return user;
     })();
@@ -187,27 +192,8 @@ class UserAccountsService extends _events2.default {
   updateAccount(user, account) {
     return this.usersManager.updateAccount(user, account).then(() => user);
   }
-}
-exports.default = UserAccountsService;
-UserAccountsService.strategyToService = {
+}, _class.strategyToService = {
   google: _userAccountGoogleService2.default
-};
-
-function _assert(x, type, name) {
-  if (false) {
-    _tcombForked2.default.fail = function (message) {
-      console.warn(message);
-    };
-  }
-
-  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-    }
-  } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
-  }
-
-  return x;
-}
+}, _temp);
+exports.default = UserAccountsService;
 //# sourceMappingURL=UserAccountsService.js.map
