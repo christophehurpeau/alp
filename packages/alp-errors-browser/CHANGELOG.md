@@ -1,3 +1,12 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/alpjs/alp-errors-browser/compare/v0.3.0...v0.4.0) (2017-03-07)
+
+
+### Features
+
+* use error-html ([71a801d](https://github.com/alpjs/alp-errors-browser/commit/71a801d))
+
+
 ### v0.3.0
 
 - [`b2c0f7f`](https://github.com/alpjs/alp-errors-browser/commit/b2c0f7f813a2c0050ad0bf98a7d336b9548108d4) refactor: pob update and update dependencies (Christophe Hurpeau)
