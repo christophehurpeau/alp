@@ -1,3 +1,7 @@
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/alpjs/alp-auth/compare/v0.9.0...v0.10.0) (2017-03-07)
+
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/alpjs/alp-auth/compare/v0.8.1...v0.9.0) (2017-01-24)
 
