@@ -1,3 +1,12 @@
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/alpjs/alp-errors-node/compare/v2.2.1...v2.3.0) (2017-03-07)
+
+
+### Features
+
+* use error-html ([779907e](https://github.com/alpjs/alp-errors-node/commit/779907e))
+
+
 ### v2.2.1
 
 - [`2d21111`](https://github.com/alpjs/alp-errors-node/commit/2d21111f3dd0df43db7c2ac93d52ad98704ef170) fix: logger key (Christophe Hurpeau)
