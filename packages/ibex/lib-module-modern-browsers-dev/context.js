@@ -1,6 +1,6 @@
 import delegate from 'delegates';
 
-var proto = {};
+const proto = {};
 
 delegate(proto, 'response').access('body').method('redirect');
 

@@ -10,6 +10,30 @@ import response from './response';
 
 const logger = new Logger('ibex');
 
+function respond(ctx) {
+  // allow bypassing
+  if (ctx.respond === false) {
+    return;
+  }
+
+  let body = ctx.body;
+  if (body == null) return;
+
+  // const code = ctx.status;
+
+  if (typeof body === 'string') {
+    document.body.innerHTML = body;
+    return;
+  }
+
+  if (body.nodeType) {
+    document.body.innerHTML = '';
+    document.body.appendChild(body);
+  }
+
+  throw new Error('Invalid body result');
+}
+
 export default class Application extends EventEmitter {
   middleware: Array<Function>;
   context: Object;
@@ -52,6 +76,7 @@ export default class Application extends EventEmitter {
     const context = Object.create(this.context);
     context.request = Object.create(request);
     context.response = Object.create(response);
+    // eslint-disable-next-line no-multi-assign
     context.request.app = context.response.app = this;
     return context;
   }
@@ -68,28 +93,4 @@ export default class Application extends EventEmitter {
       .then(() => respond(context))
       .catch(err => this.emit('error', err));
   }
-}
-
-function respond(ctx) {
-  // allow bypassing
-  if (ctx.respond === false) {
-    return;
-  }
-
-  let body = ctx.body;
-  if (body == null) return;
-
-  // const code = ctx.status;
-
-  if (typeof body === 'string') {
-    document.body.innerHTML = body;
-    return;
-  }
-
-  if (body.nodeType) {
-    document.body.innerHTML = '';
-    document.body.appendChild(body);
-  }
-
-  throw new Error('Invalid body result');
 }

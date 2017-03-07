@@ -1,7 +1,5 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-import _t from 'tcomb-forked';
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -19,96 +17,6 @@ import request from './request';
 import response from './response';
 
 var logger = new Logger('ibex');
-
-var Application = function (_EventEmitter) {
-  _inherits(Application, _EventEmitter);
-
-  function Application() {
-    _classCallCheck(this, Application);
-
-    var _this = _possibleConstructorReturn(this, (Application.__proto__ || Object.getPrototypeOf(Application)).call(this));
-
-    _this.middleware = [];
-    _this.context = Object.create(context);
-    _this.context.app = _this;
-    _this.context.state = {};
-    return _this;
-  }
-
-  _createClass(Application, [{
-    key: 'use',
-    value: function use(fn) {
-      _assert(fn, _t.Function, 'fn');
-
-      logger.debug('use', { name: fn.name || '-' });
-      this.middleware.push(fn);
-      return this;
-    }
-  }, {
-    key: 'onerror',
-    value: function onerror(e) {
-      _assert(e, _t.Any, 'e');
-
-      logger.error(e);
-    }
-  }, {
-    key: 'run',
-    value: function run(url) {
-      _assert(url, _t.Any, 'url');
-
-      if (!this.listeners('error').length) {
-        this.on('error', this.onerror);
-      }
-
-      this.callback = compose(this.middleware);
-
-      if (url) {
-        this.load(url);
-      }
-    }
-  }, {
-    key: 'createContext',
-    value: function createContext() {
-      var context = Object.create(this.context);
-      context.request = Object.create(request);
-      context.response = Object.create(response);
-      context.request.app = context.response.app = this;
-      return context;
-    }
-  }, {
-    key: 'load',
-    value: function load(url) {
-      var _this2 = this;
-
-      _assert(url, _t.String, 'url');
-
-      logger.debug('load', { url: url });
-
-      if (url.startsWith('?')) {
-        url = window.location.pathname + url;
-      }
-
-      var context = this.createContext();
-      return this.callback(context).then(function () {
-        return respond(context);
-      }).catch(function (err) {
-        return _this2.emit('error', err);
-      });
-    }
-  }, {
-    key: 'environment',
-    get: function get() {
-      return _assert(function () {
-        return this.env;
-      }.apply(this, arguments), _t.String, 'return value');
-    }
-  }]);
-
-  return Application;
-}(EventEmitter);
-
-export default Application;
-
 
 function respond(ctx) {
   // allow bypassing
@@ -134,21 +42,83 @@ function respond(ctx) {
   throw new Error('Invalid body result');
 }
 
-function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
+var Application = function (_EventEmitter) {
+  _inherits(Application, _EventEmitter);
+
+  function Application() {
+    _classCallCheck(this, Application);
+
+    var _this = _possibleConstructorReturn(this, (Application.__proto__ || Object.getPrototypeOf(Application)).call(this));
+
+    _this.middleware = [];
+    _this.context = Object.create(context);
+    _this.context.app = _this;
+    _this.context.state = {};
+    return _this;
   }
 
-  if (_t.isType(type)) {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
+  _createClass(Application, [{
+    key: 'use',
+    value: function use(fn) {
+      logger.debug('use', { name: fn.name || '-' });
+      this.middleware.push(fn);
+      return this;
     }
-  } else if (!(x instanceof type)) {
-    _t.fail(message());
-  }
+  }, {
+    key: 'onerror',
+    value: function onerror(e) {
+      logger.error(e);
+    }
+  }, {
+    key: 'run',
+    value: function run(url) {
+      if (!this.listeners('error').length) {
+        this.on('error', this.onerror);
+      }
 
-  return x;
-}
+      this.callback = compose(this.middleware);
+
+      if (url) {
+        this.load(url);
+      }
+    }
+  }, {
+    key: 'createContext',
+    value: function createContext() {
+      var context = Object.create(this.context);
+      context.request = Object.create(request);
+      context.response = Object.create(response);
+      // eslint-disable-next-line no-multi-assign
+      context.request.app = context.response.app = this;
+      return context;
+    }
+  }, {
+    key: 'load',
+    value: function load(url) {
+      var _this2 = this;
+
+      logger.debug('load', { url: url });
+
+      if (url.startsWith('?')) {
+        url = window.location.pathname + url;
+      }
+
+      var context = this.createContext();
+      return this.callback(context).then(function () {
+        return respond(context);
+      }).catch(function (err) {
+        return _this2.emit('error', err);
+      });
+    }
+  }, {
+    key: 'environment',
+    get: function get() {
+      return this.env;
+    }
+  }]);
+
+  return Application;
+}(EventEmitter);
+
+export { Application as default };
 //# sourceMappingURL=index.js.map

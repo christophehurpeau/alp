@@ -1,6 +1,11 @@
-# ibex
+# ibex [![NPM version][npm-image]][npm-url]
 
-Framework for browser, with the same API than koa 2.
+Framework for browser, with the same API than koa 2
+
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+
+## Usage
 
 ```js
 import Ibex from 'ibex';
@@ -40,3 +45,10 @@ app.use(...);
 - request.protocol [location.protocol](https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol)
 - request.search [location.search](https://developer.mozilla.org/en-US/docs/Web/API/Location/search)
 - request.searchParams [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
+
+[npm-image]: https://img.shields.io/npm/v/ibex.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/ibex
+[daviddm-image]: https://david-dm.org/alpjs/ibex.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/alpjs/ibex
+[dependencyci-image]: https://dependencyci.com/github/alpjs/ibex/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/ibex

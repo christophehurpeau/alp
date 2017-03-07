@@ -1,19 +1,18 @@
 // create lib
-export default function compose(middleware) {
+export default function compose(middlewares) {
   return function (ctx) {
-    var index = -1;
+    let index = -1;
     return function dispatch(i) {
       if (i <= index) {
         return Promise.reject(new Error(false));
       }
       index = i;
 
-      var fn = middleware[i];
+      const fn = middlewares[i];
 
-
-      var called = false;
+      let called = false;
       try {
-        return Promise.resolve(fn.call(ctx, ctx, () => {
+        return Promise.resolve(fn.call(ctx, ctx, function () {
           if (called) throw new Error(false);
           called = true;
           return dispatch(i + 1);

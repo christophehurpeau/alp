@@ -8,9 +8,33 @@ import context from './context';
 import request from './request';
 import response from './response';
 
-var logger = new Logger('ibex');
+const logger = new Logger('ibex');
 
-export default class Application extends EventEmitter {
+function respond(ctx) {
+  // allow bypassing
+  if (ctx.respond === false) {
+    return;
+  }
+
+  let body = ctx.body;
+  if (body == null) return;
+
+  // const code = ctx.status;
+
+  if (typeof body === 'string') {
+    document.body.innerHTML = body;
+    return;
+  }
+
+  if (body.nodeType) {
+    document.body.innerHTML = '';
+    document.body.appendChild(body);
+  }
+
+  throw new Error('Invalid body result');
+}
+
+let Application = class extends EventEmitter {
 
   constructor() {
     super();
@@ -47,46 +71,30 @@ export default class Application extends EventEmitter {
   }
 
   createContext() {
-    var context = Object.create(this.context);
+    const context = Object.create(this.context);
     context.request = Object.create(request);
     context.response = Object.create(response);
+    // eslint-disable-next-line no-multi-assign
     context.request.app = context.response.app = this;
     return context;
   }
 
   load(url) {
+    var _this = this;
+
     logger.debug('load', { url });
 
     if (url.startsWith('?')) {
       url = window.location.pathname + url;
     }
 
-    var context = this.createContext();
-    return this.callback(context).then(() => respond(context)).catch(err => this.emit('error', err));
+    const context = this.createContext();
+    return this.callback(context).then(function () {
+      return respond(context);
+    }).catch(function (err) {
+      return _this.emit('error', err);
+    });
   }
-}
-
-function respond(ctx) {
-  // allow bypassing
-  if (ctx.respond === false) {
-    return;
-  }
-
-  var body = ctx.body;
-  if (body == null) return;
-
-  // const code = ctx.status;
-
-  if (typeof body === 'string') {
-    document.body.innerHTML = body;
-    return;
-  }
-
-  if (body.nodeType) {
-    document.body.innerHTML = '';
-    document.body.appendChild(body);
-  }
-
-  throw new Error('Invalid body result');
-}
+};
+export { Application as default };
 //# sourceMappingURL=index.js.map

@@ -5,15 +5,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = compose;
 
-var _tcombForked = require('tcomb-forked');
+var _flowRuntime = require('flow-runtime');
 
-var _tcombForked2 = _interopRequireDefault(_tcombForked);
+var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // create lib
-function compose(middleware) {
-  _assert(middleware, _tcombForked2.default.list(_tcombForked2.default.Function), 'middleware');
+function compose(middlewares) {
+  var _middlewaresType = _flowRuntime2.default.array(_flowRuntime2.default.function());
+
+  _flowRuntime2.default.param('middlewares', _middlewaresType).assert(middlewares);
 
   return function (ctx) {
     var index = -1;
@@ -23,8 +25,7 @@ function compose(middleware) {
       }
       index = i;
 
-      var fn = middleware[i];
-      if (!fn) throw new Error('Invalid fn ' + i);
+      var fn = middlewares[i];
 
       var called = false;
       try {
@@ -38,23 +39,5 @@ function compose(middleware) {
       }
     }(0);
   };
-}
-
-function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
-  }
-
-  if (_tcombForked2.default.isType(type)) {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
-    }
-  } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
-  }
-
-  return x;
 }
 //# sourceMappingURL=compose.js.map

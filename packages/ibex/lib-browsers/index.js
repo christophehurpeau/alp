@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -38,6 +39,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* global window, document */
 
 var logger = new _nightingaleLogger2.default('ibex');
+
+function respond(ctx) {
+  // allow bypassing
+  if (ctx.respond === false) {
+    return;
+  }
+
+  var body = ctx.body;
+  if (body == null) return;
+
+  // const code = ctx.status;
+
+  if (typeof body === 'string') {
+    document.body.innerHTML = body;
+    return;
+  }
+
+  if (body.nodeType) {
+    document.body.innerHTML = '';
+    document.body.appendChild(body);
+  }
+
+  throw new Error('Invalid body result');
+}
 
 var Application = function (_EventEmitter) {
   _inherits(Application, _EventEmitter);
@@ -85,6 +110,7 @@ var Application = function (_EventEmitter) {
       var context = Object.create(this.context);
       context.request = Object.create(_request2.default);
       context.response = Object.create(_response2.default);
+      // eslint-disable-next-line no-multi-assign
       context.request.app = context.response.app = this;
       return context;
     }
@@ -117,29 +143,4 @@ var Application = function (_EventEmitter) {
 }(_events.EventEmitter);
 
 exports.default = Application;
-
-
-function respond(ctx) {
-  // allow bypassing
-  if (ctx.respond === false) {
-    return;
-  }
-
-  var body = ctx.body;
-  if (body == null) return;
-
-  // const code = ctx.status;
-
-  if (typeof body === 'string') {
-    document.body.innerHTML = body;
-    return;
-  }
-
-  if (body.nodeType) {
-    document.body.innerHTML = '';
-    document.body.appendChild(body);
-  }
-
-  throw new Error('Invalid body result');
-}
 //# sourceMappingURL=index.js.map

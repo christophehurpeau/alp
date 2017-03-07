@@ -1,5 +1,5 @@
 // create lib
-export default function compose(middleware: Array<Function>) {
+export default function compose(middlewares: Array<Function>) {
   return function (ctx) {
     let index = -1;
     return (function dispatch(i) {
@@ -8,8 +8,7 @@ export default function compose(middleware: Array<Function>) {
       }
       index = i;
 
-      const fn = middleware[i];
-      if (!PRODUCTION && !fn) throw new Error(!PRODUCTION && `Invalid fn ${i}`);
+      const fn = middlewares[i];
 
       let called = false;
       try {

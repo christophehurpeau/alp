@@ -1,11 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = compose;
 // create lib
-function compose(middlewares) {
+export default function compose(middlewares) {
   return function (ctx) {
     var index = -1;
     return function dispatch(i) {
