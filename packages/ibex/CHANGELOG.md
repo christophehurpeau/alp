@@ -1,3 +1,12 @@
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/alpjs/ibex/compare/v4.2.0...v4.3.0) (2017-03-07)
+
+
+### Features
+
+* pob upgrade ([059f24c](https://github.com/alpjs/ibex/commit/059f24c))
+
+
 ### v4.2.0
 
 - [`e67e150`](https://github.com/alpjs/ibex/commit/e67e1508070cd630a9a62639109e94477edfdf2e) refactor: pob update (Christophe Hurpeau)
