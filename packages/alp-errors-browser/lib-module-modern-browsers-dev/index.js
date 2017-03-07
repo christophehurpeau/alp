@@ -1,12 +1,12 @@
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-// import ErrorHtmlRenderer from 'alouette/lib/HtmlRenderer';
+import ErrorHtmlRenderer from 'error-html';
 import Logger from 'nightingale-logger';
 
-var logger = new Logger('alp:errors');
-// const errorHtmlRenderer = new ErrorHtmlRenderer();
+const logger = new Logger('alp:errors');
+const errorHtmlRenderer = new ErrorHtmlRenderer();
 
-export default (() => {
+export default (function () {
   var _ref = _asyncToGenerator(function* (ctx, next) {
     try {
       yield next();
@@ -19,15 +19,12 @@ export default (() => {
       ctx.status = err.status || 500;
 
       logger.error(err);
-      if (err.expose) {
-        ctx.body = err.message;
-      } else {
-        throw err;
-      }
+
+      ctx.body = errorHtmlRenderer.render(err);
     }
   });
 
-  return function (_x, _x2) {
+  return function index() {
     return _ref.apply(this, arguments);
   };
 })();

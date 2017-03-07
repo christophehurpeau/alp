@@ -2,8 +2,8 @@
 
 display errors in alp framework
 
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
-
 
 ## Install
 
@@ -25,3 +25,5 @@ app.use(alpErrorsBrowser);
 [npm-url]: https://npmjs.org/package/alp-errors-browser
 [daviddm-image]: https://david-dm.org/alpjs/alp-errors-browser.svg?style=flat-square
 [daviddm-url]: https://david-dm.org/alpjs/alp-errors-browser
+[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-errors-browser/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-errors-browser

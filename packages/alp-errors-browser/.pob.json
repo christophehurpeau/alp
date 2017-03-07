@@ -1,9 +1,15 @@
 {
   "envs": [
-    "webpack-modern-browsers",
-    "webpack"
+    "module-modern-browsers",
+    "module",
+    "browsers"
   ],
   "react": false,
   "documentation": false,
-  "testing": false
+  "testing": false,
+  "entries": [
+    "index"
+  ],
+  "flow": false,
+  "doclets": false
 }

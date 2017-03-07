@@ -1,12 +1,25 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _errorHtml = require('error-html');
+
+var _errorHtml2 = _interopRequireDefault(_errorHtml);
+
+var _nightingaleLogger = require('nightingale-logger');
+
+var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-// import ErrorHtmlRenderer from 'alouette/lib/HtmlRenderer';
-import Logger from 'nightingale-logger';
+var logger = new _nightingaleLogger2.default('alp:errors');
+var errorHtmlRenderer = new _errorHtml2.default();
 
-var logger = new Logger('alp:errors');
-// const errorHtmlRenderer = new ErrorHtmlRenderer();
-
-export default (function () {
+exports.default = function () {
   var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx, next) {
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -53,8 +66,8 @@ export default (function () {
     }, _callee, this, [[0, 5]]);
   }));
 
-  return function (_x, _x2) {
+  return function () {
     return _ref.apply(this, arguments);
   };
-})();
+}();
 //# sourceMappingURL=index.js.map
