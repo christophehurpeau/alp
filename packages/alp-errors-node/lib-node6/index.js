@@ -6,11 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _http = require('http');
 
-var _alouette = require('alouette');
+var _errorHtml = require('error-html');
 
-var _HtmlRenderer = require('alouette/HtmlRenderer');
-
-var _HtmlRenderer2 = _interopRequireDefault(_HtmlRenderer);
+var _errorHtml2 = _interopRequireDefault(_errorHtml);
 
 var _nightingaleLogger = require('nightingale-logger');
 
@@ -21,7 +19,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 const logger = new _nightingaleLogger2.default('alp:errors');
-const errorHtmlRenderer = new _HtmlRenderer2.default();
+const errorHtmlRenderer = new _errorHtml2.default({
+  appPath: process.cwd()
+});
 
 exports.default = (() => {
   var _ref = _asyncToGenerator(function* (ctx, next) {
@@ -64,8 +64,7 @@ exports.default = (() => {
         case 'html':
           ctx.type = 'text/html';
           if (process.env.NODE_ENV !== 'production') {
-            const parsedError = (0, _alouette.parse)(err);
-            ctx.body = errorHtmlRenderer.render(parsedError);
+            ctx.body = errorHtmlRenderer.render(err);
           } else if (err.expose) {
             ctx.body = err.message;
           } else {
@@ -77,7 +76,7 @@ exports.default = (() => {
     }
   });
 
-  return function (_x, _x2) {
+  return function () {
     return _ref.apply(this, arguments);
   };
 })();

@@ -1,13 +1,27 @@
-import { STATUS_CODES } from 'http';
-import ErrorHtmlRenderer from 'error-html';
-import Logger from 'nightingale-logger/src';
+'use strict';
 
-const logger = new Logger('alp:errors');
-const errorHtmlRenderer = new ErrorHtmlRenderer({
-  appPath: process.cwd(),
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
 
-export default async function (ctx, next) {
+var _http = require('http');
+
+var _errorHtml = require('error-html');
+
+var _errorHtml2 = _interopRequireDefault(_errorHtml);
+
+var _nightingaleLogger = require('nightingale-logger');
+
+var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const logger = new _nightingaleLogger2.default('alp:errors');
+const errorHtmlRenderer = new _errorHtml2.default({
+  appPath: process.cwd()
+});
+
+exports.default = async function index(ctx, next) {
   try {
     await next();
   } catch (err) {
@@ -39,7 +53,7 @@ export default async function (ctx, next) {
         } else if (err.expose) {
           ctx.body = { error: err.message };
         } else {
-          ctx.body = { error: STATUS_CODES[ctx.status] };
+          ctx.body = { error: _http.STATUS_CODES[ctx.status] };
         }
 
         break;
@@ -57,4 +71,5 @@ export default async function (ctx, next) {
         break;
     }
   }
-}
+};
+//# sourceMappingURL=index.js.map

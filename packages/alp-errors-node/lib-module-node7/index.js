@@ -1,13 +1,13 @@
 import { STATUS_CODES } from 'http';
 import ErrorHtmlRenderer from 'error-html';
-import Logger from 'nightingale-logger/src';
+import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer({
-  appPath: process.cwd(),
+  appPath: process.cwd()
 });
 
-export default async function (ctx, next) {
+export default (async function (ctx, next) {
   try {
     await next();
   } catch (err) {
@@ -57,4 +57,5 @@ export default async function (ctx, next) {
         break;
     }
   }
-}
+});
+//# sourceMappingURL=index.js.map
