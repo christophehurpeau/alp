@@ -1,3 +1,17 @@
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/alpjs/alp-react-redux/compare/v7.3.3...v8.0.0) (2017-03-09)
+
+
+### Features
+
+* pob upgrade, modern-browsers upgrade, ynnub ([8bce895](https://github.com/alpjs/alp-react-redux/commit/8bce895))
+
+
+### BREAKING CHANGES
+
+* ynnub
+
+
 <a name="7.3.3"></a>
 ## [7.3.3](https://github.com/alpjs/alp-react-redux/compare/v7.3.2...v7.3.3) (2017-03-06)
 
