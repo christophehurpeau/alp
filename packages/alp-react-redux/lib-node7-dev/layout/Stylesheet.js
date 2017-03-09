@@ -26,7 +26,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('href', _flowRuntime2.default.string())));
 
-const ContextType = _flowRuntime2.default.type('ContextType', _flowRuntime2.default.object(_flowRuntime2.default.property('context', _flowRuntime2.default.object(_flowRuntime2.default.property('config', _flowRuntime2.default.ref('Map'))))));
+const ContextType = _flowRuntime2.default.type('ContextType', _flowRuntime2.default.object(_flowRuntime2.default.property('context', _flowRuntime2.default.object(_flowRuntime2.default.property('config', _flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any()))))));
 
 exports.default = function stylesheet(_ref, { context }) {
   let { href } = _ref,

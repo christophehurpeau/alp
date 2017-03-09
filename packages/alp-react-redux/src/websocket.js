@@ -3,13 +3,15 @@ import createAction from './utils/createAction';
 
 const logger = new Logger('alp:react-redux:websocket');
 
-export function createEmitAction(type: string, argsNamesOrHandler: ?Array<string>|string|Function) {
+type ArgsNamesOfHandlerType = Array<string> | string | Function;
+
+export function createEmitAction(type: string, argsNamesOrHandler: ?ArgsNamesOfHandlerType) {
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true } });
 }
 
 export function createEmitPromiseAction(
   type: string,
-  argsNamesOrHandler: ?Array<string>|string|Function,
+  argsNamesOrHandler: ?Array<string> | string | Function,
 ) {
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
 }

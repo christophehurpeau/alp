@@ -1,6 +1,6 @@
 /* global PRODUCTION */
 
-export default function createReducer(defaultState: Function|Object, handlers: ?Object) {
+export default function createReducer(defaultState: Function | Object, handlers: ?Object) {
   if (typeof defaultState === 'object') {
     handlers = defaultState;
     defaultState = () => null;

@@ -1,4 +1,4 @@
-exports.extends = 'pob/react';
+exports.extends = 'pob/react-flow';
 
 exports.rules = {
   'react/prop-types': 'off',

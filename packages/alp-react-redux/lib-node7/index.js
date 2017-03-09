@@ -156,16 +156,16 @@ function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {
             { context: unusedContext } = _ref,
             initialData = _objectWithoutProperties(_ref, ['context']);
 
+      // TODO create alp-useragent with getter in context
+      const ua = this.req.headers['user-agent'];
+      const name = (0, _modernBrowsers2.default)(ua) ? 'modern-browsers' : 'es5';
       this.body = (0, _fody2.default)({
         Layout,
         layoutProps: {
           version,
           moduleIdentifier,
-          scriptName: (() => {
-            // TODO create alp-useragent with getter in context
-            const ua = this.req.headers['user-agent'];
-            return (0, _modernBrowsers2.default)(ua) ? 'modern-browsers' : 'es5';
-          })(),
+          scriptName: name,
+          styleName: name,
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleHasReducers ? initialData : null
         },

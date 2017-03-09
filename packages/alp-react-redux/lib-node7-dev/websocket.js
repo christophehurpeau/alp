@@ -23,10 +23,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const logger = new _nightingaleLogger2.default('alp:react-redux:websocket');
 
+const ArgsNamesOfHandlerType = _flowRuntime2.default.type('ArgsNamesOfHandlerType', _flowRuntime2.default.union(_flowRuntime2.default.array(_flowRuntime2.default.string()), _flowRuntime2.default.string(), _flowRuntime2.default.function()));
+
 function createEmitAction(type, argsNamesOrHandler) {
   let _typeType = _flowRuntime2.default.string();
 
-  let _argsNamesOrHandlerType = _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.string())), _flowRuntime2.default.string(), _flowRuntime2.default.function());
+  let _argsNamesOrHandlerType = _flowRuntime2.default.nullable(ArgsNamesOfHandlerType);
 
   _flowRuntime2.default.param('type', _typeType).assert(type);
 

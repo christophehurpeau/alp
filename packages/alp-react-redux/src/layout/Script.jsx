@@ -6,8 +6,8 @@ type PropsType = {
 
 type ContextType = {
   context: {
-    config: Map
-  }
+    config: Map<string, any>,
+  },
 };
 
 export default ({ src, ...props }: PropsType, { context }: ContextType) => {

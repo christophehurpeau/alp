@@ -39,9 +39,8 @@ exports.default = (_ref) => {
     props,
     _react2.default.createElement('meta', { charSet: 'utf-8' }),
     _react2.default.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
-    _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic', rel: 'stylesheet', type: 'text/css' }),
+    _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,400italic', rel: 'stylesheet', type: 'text/css' }),
     _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)(`/${styleName || 'index'}.css`, version) }),
-    _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)('/styles.css', version) }),
     _react2.default.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' }),
     _react2.default.createElement('script', {
       dangerouslySetInnerHTML: {

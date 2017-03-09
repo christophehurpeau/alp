@@ -73,7 +73,7 @@ exports.default = function alpHead(_ref) {
         lineNumber: 27
       }
     }),
-    _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100,500italic,400italic,700italic', rel: 'stylesheet', type: 'text/css', __self: undefined,
+    _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,400italic', rel: 'stylesheet', type: 'text/css', __self: undefined,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 28
@@ -85,16 +85,10 @@ exports.default = function alpHead(_ref) {
         lineNumber: 29
       }
     }),
-    _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)('/styles.css', version), __self: undefined,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 30
-      }
-    }),
     _react2.default.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill', __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 30
       }
     }),
     _react2.default.createElement('script', {
@@ -104,13 +98,13 @@ exports.default = function alpHead(_ref) {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 31
       }
     }),
     _react2.default.createElement('script', { defer: true, src: (0, _assetUrl2.default)(`/${scriptName}.js`, version), __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 42
       }
     })
   ));

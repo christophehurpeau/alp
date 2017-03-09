@@ -35,7 +35,7 @@ const createHydratableReducer = (reducer: Function) => (
 
 type OptionsType = {|
   sharedReducers: ?Object,
-|}
+|};
 
 export default function alpReactRedux(element, { sharedReducers = {} }: OptionsType = {}) {
   return (app) => {

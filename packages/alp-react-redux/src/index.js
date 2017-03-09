@@ -23,7 +23,7 @@ const logger = new Logger('alp:react-redux');
 type OptionsType = {|
   Layout: ?any,
   sharedReducers: ?Object,
-|}
+|};
 
 export default function alpReactRedux(
   { Layout = AlpLayout, sharedReducers = {} }: OptionsType = {}
@@ -55,16 +55,16 @@ export default function alpReactRedux(
       const { context: unusedContext, ...initialData } =
         moduleHasReducers ? this.store.getState() : {};
 
+      // TODO create alp-useragent with getter in context
+      const ua = this.req.headers['user-agent'];
+      const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
       this.body = render({
         Layout,
         layoutProps: {
           version,
           moduleIdentifier,
-          scriptName: (() => {
-            // TODO create alp-useragent with getter in context
-            const ua = this.req.headers['user-agent'];
-            return isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-          })(),
+          scriptName: name,
+          styleName: name,
           initialBrowserContext: this.computeInitialContextForBrowser(),
           initialData: moduleHasReducers ? initialData : null,
         },

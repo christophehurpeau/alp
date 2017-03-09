@@ -1,9 +1,9 @@
 /* global PRODUCTION */
 
 export default function createAction(
-    type:string,
-    argsNamesOrHandler:?Array<string>|string|Function,
-    data:?Object,
+    type: string,
+    argsNamesOrHandler: ?Array<string> | string | Function,
+    data: ?Object,
 ) {
   if (!PRODUCTION) {
     if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
