@@ -1,3 +1,12 @@
+<a name="3.11.1"></a>
+## [3.11.1](https://github.com/alpjs/alp-websocket/compare/v3.11.0...v3.11.1) (2017-04-01)
+
+
+### Bug Fixes
+
+* flow-runtime missing Promise return type ([502ab83](https://github.com/alpjs/alp-websocket/commit/502ab83))
+
+
 <a name="3.11.0"></a>
 # [3.11.0](https://github.com/alpjs/alp-websocket/compare/v3.10.0...v3.11.0) (2017-03-05)
 
