@@ -1,4 +1,3 @@
-/* global location, window, confirm */
 /* eslint-disable no-use-before-define */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
@@ -93,10 +92,10 @@ function emit() {
     args[_key] = arguments[_key];
   }
 
-  var _returnType = _t.return(_t.ref('Promise'));
+  var _returnType = _t.return(_t.any());
 
   logger.debug('emit', { args: args });
-  return _returnType.assert(new Promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     var _socket;
 
     var resolved = setTimeout(function () {
@@ -109,7 +108,9 @@ function emit() {
       if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
       resolve(result);
     }]));
-  }));
+  }).then(function (_arg) {
+    return _returnType.assert(_arg);
+  });
 }
 
 function on(type, handler) {

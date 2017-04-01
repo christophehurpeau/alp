@@ -1,4 +1,3 @@
-/* global location, window, confirm */
 /* eslint-disable no-use-before-define */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
@@ -83,10 +82,10 @@ function start({ config, context }, namespaceName = '') {
 }
 
 function emit(...args) {
-  const _returnType = _t.return(_t.ref('Promise'));
+  const _returnType = _t.return(_t.any());
 
   logger.debug('emit', { args });
-  return _returnType.assert(new Promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     const resolved = setTimeout(function () {
       logger.warn('websocket emit timeout', { args });
       reject(new Error('websocket response timeout'));
@@ -97,7 +96,9 @@ function emit(...args) {
       if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
       resolve(result);
     });
-  }));
+  }).then(function (_arg) {
+    return _returnType.assert(_arg);
+  });
 }
 
 function on(type, handler) {

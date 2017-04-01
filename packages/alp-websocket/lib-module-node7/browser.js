@@ -1,4 +1,3 @@
-/* global location, window, confirm */
 /* eslint-disable no-use-before-define */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';

@@ -16,7 +16,6 @@ var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global location, window, confirm */
 /* eslint-disable no-use-before-define */
 const logger = new _nightingaleLogger2.default('alp:websocket');
 let socket;

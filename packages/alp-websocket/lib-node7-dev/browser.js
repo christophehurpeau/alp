@@ -20,8 +20,7 @@ var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const logger = new _nightingaleLogger2.default('alp:websocket'); /* global location, window, confirm */
-/* eslint-disable no-use-before-define */
+const logger = new _nightingaleLogger2.default('alp:websocket'); /* eslint-disable no-use-before-define */
 
 let socket;
 let successfulConnection = false;
@@ -101,10 +100,10 @@ function start({ config, context }, namespaceName = '') {
 }
 
 function emit(...args) {
-  const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref('Promise'));
+  const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.any());
 
   logger.debug('emit', { args });
-  return _returnType.assert(new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const resolved = setTimeout(() => {
       logger.warn('websocket emit timeout', { args });
       reject(new Error('websocket response timeout'));
@@ -115,7 +114,7 @@ function emit(...args) {
       if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
       resolve(result);
     });
-  }));
+  }).then(_arg => _returnType.assert(_arg));
 }
 
 function on(type, handler) {
