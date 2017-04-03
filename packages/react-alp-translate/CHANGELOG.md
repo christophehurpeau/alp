@@ -1,3 +1,7 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/alpjs/react-alp-translate/compare/v0.3.1...v0.4.0) (2017-04-03)
+
+
 ### v0.3.1
 
 - [`5f88d10`](https://github.com/alpjs/react-alp-translate/commit/5f88d106885e715affc0aae3fc988c1017aa17e7) refactor: pob update (Christophe Hurpeau)
