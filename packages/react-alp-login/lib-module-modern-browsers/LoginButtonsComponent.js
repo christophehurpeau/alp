@@ -1,18 +1,20 @@
 import React from 'react';
 import Link from 'react-alp-link';
 import GoogleIcon from 'react-icons/lib/fa/google';
+import List from 'ynnub/components/List';
+import FlatButton from 'ynnub/components/FlatButton';
 
 export default (function () {
   return React.createElement(
-    'ul',
-    { className: 'list links buttons login-buttons' },
+    List,
+    { links: true },
     React.createElement(
       'li',
       null,
       React.createElement(
         Link,
         {
-          className: 'button flat social-button google-button',
+          tagName: FlatButton,
           to: 'login',
           params: { strategy: 'google' },
           target: '_self'

@@ -2,7 +2,7 @@ var _jsxFileName = "LoginFormComponent.jsx",
     _this = this;
 
 import React from "react";
-export default (function () {
+export default (function loginFormComponent() {
   return React.createElement(
     "form",
     { model: "User", action: "/site/login", __self: _this,

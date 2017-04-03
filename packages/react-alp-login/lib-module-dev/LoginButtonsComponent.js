@@ -4,14 +4,16 @@ var _jsxFileName = 'LoginButtonsComponent.jsx',
 import React from 'react';
 import Link from 'react-alp-link';
 import GoogleIcon from 'react-icons/lib/fa/google';
+import List from 'ynnub/components/List';
+import FlatButton from 'ynnub/components/FlatButton';
 
-export default (function () {
+export default (function loginButtonsComponent() {
   return React.createElement(
-    'ul',
-    { className: 'list links buttons login-buttons', __self: _this,
+    List,
+    { links: true, __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 5
+        lineNumber: 7
       }
     },
     React.createElement(
@@ -20,26 +22,26 @@ export default (function () {
         __self: _this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 6
+          lineNumber: 8
         }
       },
       React.createElement(
         Link,
         {
-          className: 'button flat social-button google-button',
+          tagName: FlatButton,
           to: 'login',
           params: { strategy: 'google' },
           target: '_self',
           __self: _this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 7
+            lineNumber: 9
           }
         },
         React.createElement(GoogleIcon, { className: 'icon', __self: _this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 13
+            lineNumber: 15
           }
         }),
         React.createElement(
@@ -48,7 +50,7 @@ export default (function () {
             __self: _this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 14
+              lineNumber: 16
             }
           },
           'Login with Google'
