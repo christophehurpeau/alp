@@ -1,3 +1,12 @@
+<a name="0.22.0"></a>
+# [0.22.0](https://github.com/alpjs/alp-browser/compare/v0.21.1...v0.22.0) (2017-04-03)
+
+
+### Features
+
+* upgrade dependencies ([94668a1](https://github.com/alpjs/alp-browser/commit/94668a1))
+
+
 ### v0.21.1
 
 - [`1458daa`](https://github.com/alpjs/alp-browser/commit/1458daa229544eb851284dd86860d3ba5fa07755) fix version type check (Christophe Hurpeau)
