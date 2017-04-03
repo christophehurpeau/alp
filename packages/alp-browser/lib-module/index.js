@@ -1,7 +1,5 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-import _t from 'tcomb-forked';
-
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26,10 +24,6 @@ export { default as newController } from 'alp-controller';
 
 var logger = new Logger('alp');
 
-var OptionsType = _t.interface({
-  version: _t.maybe(_t.String)
-}, 'OptionsType');
-
 var AlpBrowser = function (_Ibex) {
   _inherits(AlpBrowser, _Ibex);
 
@@ -39,10 +33,6 @@ var AlpBrowser = function (_Ibex) {
     var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
         _ref$version = _ref.version,
         version = _ref$version === undefined ? window.VERSION : _ref$version;
-
-    _assert({
-      version: version
-    }, OptionsType, '{ version = window.VERSION }');
 
     _classCallCheck(this, AlpBrowser);
 
@@ -82,11 +72,9 @@ var AlpBrowser = function (_Ibex) {
         }, _callee, this);
       }));
 
-      function init() {
+      return function init() {
         return _ref2.apply(this, arguments);
-      }
-
-      return init;
+      };
     }()
   }, {
     key: 'catchErrors',
@@ -114,8 +102,6 @@ var AlpBrowser = function (_Ibex) {
   }, {
     key: 'start',
     value: function start(fn) {
-      _assert(fn, _t.Function, 'fn');
-
       fn().then(function () {
         return logger.success('started');
       }).catch(function (err) {
@@ -132,23 +118,5 @@ var AlpBrowser = function (_Ibex) {
   return AlpBrowser;
 }(Ibex);
 
-export default AlpBrowser;
-
-function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _t.stringify(x) + ' supplied to ' + name + ' (expected a ' + _t.getTypeName(type) + ')';
-  }
-
-  if (_t.isType(type)) {
-    if (!type.is(x)) {
-      type(x, [name + ': ' + _t.getTypeName(type)]);
-
-      _t.fail(message());
-    }
-  } else if (!(x instanceof type)) {
-    _t.fail(message());
-  }
-
-  return x;
-}
+export { AlpBrowser as default };
 //# sourceMappingURL=index.js.map
