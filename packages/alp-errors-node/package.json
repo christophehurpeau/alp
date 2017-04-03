@@ -30,20 +30,21 @@
     "watch": "pob-watch"
   },
   "dependencies": {
-    "error-html": "^0.1.0",
-    "nightingale-logger": "^3.3.0"
+    "error-html": "^0.2.2",
+    "flow-runtime": "^0.10.0",
+    "nightingale-logger": "^3.4.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.0",
-    "babel-preset-latest-node": "^0.1.0",
-    "eslint": "^3.17.0",
-    "eslint-config-airbnb-base": "^11.1.1",
+    "babel-eslint": "^7.2.1",
+    "babel-preset-latest-node": "^0.2.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.2",
     "eslint-config-pob": "^11.1.0",
-    "eslint-plugin-babel": "^4.1.0",
+    "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-import": "^2.2.0",
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
-    "pob-babel": "^17.0.1",
+    "pob-babel": "^17.2.0",
     "pob-release": "^3.1.0"
   }
 }
