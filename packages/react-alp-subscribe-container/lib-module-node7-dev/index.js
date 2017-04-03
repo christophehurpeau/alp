@@ -1,16 +1,15 @@
+var _class, _temp;
+
 import { PropTypes, Component } from 'react';
 import { connect } from 'alp-react-redux';
 
-class SubscribeContainerComponent extends Component {
+let SubscribeContainerComponent = (_temp = _class = class extends Component {
 
   componentDidMount() {
-    var _props = this.props,
-        dispatch = _props.dispatch,
-        name = _props.name;
-    var websocket = this.context.context.app.websocket;
-
+    const { dispatch, name } = this.props;
+    const { context: { app: { websocket } } } = this.context;
     this._handlerConnected = websocket.on('connect', () => {
-      websocket.emit(`subscribe:${ name }`).then(action => action && dispatch(action));
+      websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action));
     });
     if (websocket.isConnected()) {
       this._handlerConnected();
@@ -18,12 +17,11 @@ class SubscribeContainerComponent extends Component {
   }
 
   componentWillUnmount() {
-    var name = this.props.name;
-    var context = this.context.context;
-
-    var websocket = context.app.websocket;
+    const { name } = this.props;
+    const { context } = this.context;
+    const websocket = context.app.websocket;
     if (websocket.isConnected()) {
-      websocket.emit(`unsubscribe:${ name }`);
+      websocket.emit(`unsubscribe:${name}`);
     }
 
     websocket.off('connect', this._handlerConnected);
@@ -32,15 +30,14 @@ class SubscribeContainerComponent extends Component {
   render() {
     return this.props.children;
   }
-}
-
-SubscribeContainerComponent.propTypes = {
+}, _class.propTypes = {
   dispatch: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   children: PropTypes.node
-};
-SubscribeContainerComponent.contextTypes = {
+}, _class.contextTypes = {
   context: PropTypes.object
-};
+}, _temp);
+
+
 export default connect()(SubscribeContainerComponent);
 //# sourceMappingURL=index.js.map

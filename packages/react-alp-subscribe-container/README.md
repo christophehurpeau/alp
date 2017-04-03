@@ -1,13 +1,9 @@
-# react-alp-subscribe-container [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# react-alp-subscribe-container [![NPM version][npm-image]][npm-url]
 
-react container to subscribe on mount and unsubscribe on unmount on an event in websocket
+react subscribe-container, works with alp-websocket
 
-example: `myname` will emit `subscribe:myname` and `unsubscribe:myname`.
-
-`subscribe:myname`'s callback can return an action.
-
- [![Dependency Status][daviddm-image]][daviddm-url]
-
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
 
 ## Install
 
@@ -30,5 +26,7 @@ export function MyComponent({ dispatch }) {
 
 [npm-image]: https://img.shields.io/npm/v/react-alp-subscribe-container.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/react-alp-subscribe-container
-[daviddm-image]: https://david-dm.org/alpjs/react-alp-subscribe-container.svg?theme=shields.io
+[daviddm-image]: https://david-dm.org/alpjs/react-alp-subscribe-container.svg?style=flat-square
 [daviddm-url]: https://david-dm.org/alpjs/react-alp-subscribe-container
+[dependencyci-image]: https://dependencyci.com/github/alpjs/react-alp-subscribe-container/badge?style=flat-square
+[dependencyci-url]: https://dependencyci.com/github/alpjs/react-alp-subscribe-container
