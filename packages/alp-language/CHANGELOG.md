@@ -1,3 +1,7 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/alpjs/alp-language/compare/v1.6.0...v1.7.0) (2017-04-03)
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/alpjs/alp-language/compare/v1.5.0...v1.6.0) (2017-03-05)
 
