@@ -1,3 +1,12 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/alpjs/react-alp-login/compare/v0.4.1...v0.5.0) (2017-04-03)
+
+
+### Features
+
+* upgrade ([d5917c2](https://github.com/alpjs/react-alp-login/commit/d5917c2))
+
+
 ### v0.4.1
 
 - [`6f877ae`](https://github.com/alpjs/react-alp-login/commit/6f877ae5d7b932a2e7313873aedeecf3dc6f375f) refactor: pob update (Christophe Hurpeau)
