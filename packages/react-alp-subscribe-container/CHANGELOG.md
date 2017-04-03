@@ -1,3 +1,7 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/alpjs/react-alp-subscribe-container/compare/v0.3.1...v0.4.0) (2017-04-03)
+
+
 ### v0.3.1
 
 - [`755c601`](https://github.com/alpjs/react-alp-subscribe-container/commit/755c6017b144a203f2c1f61746163c0bb4362376) refactor: pob updaate (Christophe Hurpeau)
