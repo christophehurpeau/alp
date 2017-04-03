@@ -4,14 +4,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import { PropTypes } from 'react';
 
-var TranslateComponent = (_ref, _ref2) => {
-  var id = _ref.id,
-      children = _ref.children,
+const TranslateComponent = function TranslateComponent(_ref, { context }) {
+  let { id, children } = _ref,
       props = _objectWithoutProperties(_ref, ['id', 'children']);
 
-  var context = _ref2.context;
-
-  var translated = context.t(id, props);
+  const translated = context.t(id, props);
 
   if (children) {
     return children(translated);
@@ -22,11 +19,6 @@ var TranslateComponent = (_ref, _ref2) => {
     null,
     translated
   );
-};
-
-TranslateComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  children: PropTypes.func
 };
 
 TranslateComponent.contextTypes = {

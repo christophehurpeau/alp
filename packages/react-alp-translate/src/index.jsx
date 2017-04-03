@@ -1,11 +1,14 @@
 import { PropTypes } from 'react';
 
-type Props = {
+type ChildrenCallbackType = (translated: string) => void;
+
+type PropsType = {
   id: string,
+  children: ?ChildrenCallbackType,
 };
 
 const TranslateComponent = (
-  { id, children, ...props }: Props,
+  { id, children, ...props }: PropsType,
   { context },
 ) => {
   const translated = context.t(id, props);
@@ -15,11 +18,6 @@ const TranslateComponent = (
   }
 
   return <span>{translated}</span>;
-};
-
-TranslateComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  children: PropTypes.func,
 };
 
 TranslateComponent.contextTypes = {
