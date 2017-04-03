@@ -1,9 +1,10 @@
-/* eslint-disable react/forbid-prop-types */
 import { PropTypes } from 'react';
 
 type PropsType = {
+  tagName: ?string,
   to: string,
   params: ?Object,
+  children: ?any,
 };
 
 type ContextType = {
@@ -13,17 +14,11 @@ type ContextType = {
 };
 
 const LinkComponent = (
-  { to = 'default', params, children, ...props }: PropsType,
+  { tagName: TagName = 'a', to = 'default', params, children, ...props }: PropsType,
   { context: ctx }: ContextType,
 ) => (
-  <a href={ctx.urlGenerator(to, params)} {...props}>{children}</a>
+  <TagName href={ctx.urlGenerator(to, params)} {...props}>{children}</TagName>
 );
-
-LinkComponent.propTypes = {
-  to: PropTypes.string.isRequired,
-  params: PropTypes.object,
-  children: PropTypes.node,
-};
 
 LinkComponent.contextTypes = {
   context: PropTypes.shape({
