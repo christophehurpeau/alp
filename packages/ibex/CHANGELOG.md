@@ -1,3 +1,7 @@
+<a name="4.4.0"></a>
+# [4.4.0](https://github.com/alpjs/ibex/compare/v4.3.0...v4.4.0) (2017-04-03)
+
+
 <a name="4.3.0"></a>
 # [4.3.0](https://github.com/alpjs/ibex/compare/v4.2.0...v4.3.0) (2017-03-07)
 
