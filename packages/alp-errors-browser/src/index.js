@@ -1,4 +1,4 @@
-import ErrorHtmlRenderer from 'error-html';
+import ErrorHtmlRenderer from 'error-html/src';
 import Logger from 'nightingale-logger/src';
 
 const logger = new Logger('alp:errors');
