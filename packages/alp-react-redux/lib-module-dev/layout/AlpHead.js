@@ -20,18 +20,18 @@ var ReactElementType = t.tdz(function () {
 var PropsType = t.type('PropsType', t.object(t.property('version', t.string()), t.property('moduleIdentifier', t.nullable(t.string())), t.property('scriptName', t.string()), t.property('styleName', t.nullable(t.string())), t.property('initialData', t.nullable(t.any())), t.property('initialBrowserContext', t.nullable(t.any()))));
 
 
-export default (function alpHead(_ref) {
-  var version = _ref.version,
-      moduleIdentifier = _ref.moduleIdentifier,
-      scriptName = _ref.scriptName,
-      styleName = _ref.styleName,
-      initialData = _ref.initialData,
-      initialBrowserContext = _ref.initialBrowserContext,
-      props = _objectWithoutProperties(_ref, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
-
+export default (function alpHead(_arg) {
   var _returnType = t.return(t.ref(ReactElementType));
 
-  t.param('arguments[0]', PropsType).assert(arguments[0]);
+  var _PropsType$assert = PropsType.assert(_arg),
+      version = _PropsType$assert.version,
+      moduleIdentifier = _PropsType$assert.moduleIdentifier,
+      scriptName = _PropsType$assert.scriptName,
+      styleName = _PropsType$assert.styleName,
+      initialData = _PropsType$assert.initialData,
+      initialBrowserContext = _PropsType$assert.initialBrowserContext,
+      props = _objectWithoutProperties(_PropsType$assert, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+
   return _returnType.assert(React.createElement(
     Head,
     _extends({}, props, {

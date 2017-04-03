@@ -43,13 +43,11 @@ var OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReducers
 
 
 export default function alpReactRedux(element) {
-  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      _ref$sharedReducers = _ref.sharedReducers,
-      sharedReducers = _ref$sharedReducers === undefined ? {} : _ref$sharedReducers;
+  var _arg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  if (arguments[1] !== undefined) {
-    t.param('arguments[1]', OptionsType).assert(arguments[1]);
-  }
+  var _OptionsType$assert = OptionsType.assert(_arg),
+      _OptionsType$assert$s = _OptionsType$assert.sharedReducers,
+      sharedReducers = _OptionsType$assert$s === undefined ? {} : _OptionsType$assert$s;
 
   return function (app) {
     var middleware = [createFunctionMiddleware(app), promiseMiddleware];

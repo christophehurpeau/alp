@@ -20,13 +20,13 @@ var ReactNodeType = t.tdz(function () {
 var PropsType = t.type('PropsType', t.object(t.property('children', t.ref(ReactNodeType))));
 
 
-export default (function alpBody(_ref) {
-  var children = _ref.children,
-      props = _objectWithoutProperties(_ref, ['children']);
-
+export default (function alpBody(_arg) {
   var _returnType = t.return(t.ref(ReactElementType));
 
-  t.param('arguments[0]', PropsType).assert(arguments[0]);
+  var _PropsType$assert = PropsType.assert(_arg),
+      children = _PropsType$assert.children,
+      props = _objectWithoutProperties(_PropsType$assert, ['children']);
+
   return _returnType.assert(React.createElement(
     Body,
     _extends({}, props, {

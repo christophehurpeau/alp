@@ -32,15 +32,13 @@ var OptionsType = t.type('OptionsType', t.exactObject(t.property('Layout', t.nul
 
 
 export default function alpReactRedux() {
-  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref$Layout = _ref.Layout,
-      Layout = _ref$Layout === undefined ? AlpLayout : _ref$Layout,
-      _ref$sharedReducers = _ref.sharedReducers,
-      sharedReducers = _ref$sharedReducers === undefined ? {} : _ref$sharedReducers;
+  var _arg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  if (arguments[0] !== undefined) {
-    t.param('arguments[0]', OptionsType).assert(arguments[0]);
-  }
+  var _OptionsType$assert = OptionsType.assert(_arg),
+      _OptionsType$assert$L = _OptionsType$assert.Layout,
+      Layout = _OptionsType$assert$L === undefined ? AlpLayout : _OptionsType$assert$L,
+      _OptionsType$assert$s = _OptionsType$assert.sharedReducers,
+      sharedReducers = _OptionsType$assert$s === undefined ? {} : _OptionsType$assert$s;
 
   return function (app) {
     var _appType = t.object();
@@ -78,9 +76,9 @@ export default function alpReactRedux() {
 
       // eslint-disable-next-line no-unused-vars
 
-      var _ref2 = moduleHasReducers ? this.store.getState() : {},
-          unusedContext = _ref2.context,
-          initialData = _objectWithoutProperties(_ref2, ['context']);
+      var _ref = moduleHasReducers ? this.store.getState() : {},
+          unusedContext = _ref.context,
+          initialData = _objectWithoutProperties(_ref, ['context']);
 
       // TODO create alp-useragent with getter in context
 

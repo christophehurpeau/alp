@@ -141,10 +141,8 @@ const logger = new _nightingaleLogger2.default('alp:react-redux');
 
 const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('Layout', _flowRuntime2.default.nullable(_flowRuntime2.default.any())), _flowRuntime2.default.property('sharedReducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object()))));
 
-function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {}) {
-  if (arguments[0] !== undefined) {
-    _flowRuntime2.default.param('arguments[0]', OptionsType).assert(arguments[0]);
-  }
+function alpReactRedux(_arg = {}) {
+  let { Layout = _AlpLayout2.default, sharedReducers = {} } = OptionsType.assert(_arg);
 
   return app => {
     let _appType = _flowRuntime2.default.object();

@@ -1,40 +1,15 @@
-/* global PRODUCTION */
 
-export default function createAction(type, argsNamesOrHandler, data) {
 
-  let action;
-
-  const typeofSecondArg = typeof argsNamesOrHandler;
-
-  if (typeofSecondArg === 'function') {
-    action = function action(...args) {
-      return Object.assign({ type }, data, argsNamesOrHandler(...args));
-    };
-  } else {
-    if (typeofSecondArg === 'string') {
-      argsNamesOrHandler = argsNamesOrHandler.split(',');
-    }
-
-    if (argsNamesOrHandler) {
-      action = function action(...args) {
-        const action = Object.assign({ type }, data);
-        args.forEach(function (value, index) {
-          return action[argsNamesOrHandler[index]] = value;
-        });
-        return action;
-      };
-    } else {
-      action = function action(args) {
-        return Object.assign({ type }, data, args);
-      };
-    }
-  }
-
+export default (function (type, handler) {
+  const action = !handler ? function () {
+    return { type };
+  } : function (...args) {
+    return Object.assign({ type }, handler(...args));
+  };
   action.type = type;
   action.toString = function () {
     return type;
   };
-
   return action;
-}
+}); // eslint-disable-next-line flowtype/no-weak-types
 //# sourceMappingURL=createAction.js.map

@@ -36,13 +36,12 @@ const LayoutPropsType = _flowRuntime2.default.tdz(() => _types.LayoutPropsType);
 
 const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType);
 
-exports.default = function alpLayout(_ref) {
-  let { helmet, content } = _ref,
-      props = _objectWithoutProperties(_ref, ['helmet', 'content']);
-
+exports.default = function alpLayout(_arg) {
   const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
 
-  _flowRuntime2.default.param('arguments[0]', _flowRuntime2.default.ref(LayoutPropsType)).assert(arguments[0]);
+  let _t$ref$assert = _flowRuntime2.default.ref(LayoutPropsType).assert(_arg),
+      { helmet, content } = _t$ref$assert,
+      props = _objectWithoutProperties(_t$ref$assert, ['helmet', 'content']);
 
   return _returnType.assert(_react2.default.createElement(
     _fody.Html,

@@ -14,14 +14,13 @@ var PropsType = t.type('PropsType', t.object(t.property('href', t.string())));
 var ContextType = t.type('ContextType', t.object(t.property('context', t.object(t.property('config', t.ref('Map', t.string(), t.any()))))));
 
 
-export default (function stylesheet(_ref, _ref2) {
-  var context = _ref2.context;
+export default (function stylesheet(_arg, _arg2) {
+  var _PropsType$assert = PropsType.assert(_arg),
+      href = _PropsType$assert.href,
+      props = _objectWithoutProperties(_PropsType$assert, ['href']);
 
-  var href = _ref.href,
-      props = _objectWithoutProperties(_ref, ['href']);
-
-  t.param('arguments[0]', PropsType).assert(arguments[0]);
-  t.param('arguments[1]', ContextType).assert(arguments[1]);
+  var _ContextType$assert = ContextType.assert(_arg2),
+      context = _ContextType$assert.context;
 
   var version = t.string().assert(context.config.get('version'));
 

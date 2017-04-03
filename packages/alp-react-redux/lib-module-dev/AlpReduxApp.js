@@ -21,14 +21,14 @@ var ReactElementType = t.tdz(function () {
 var PropsType = t.type('PropsType', t.object(t.property('children', t.ref(ReactNodeType)), t.property('store', t.object())));
 
 
-export default (function alpReduxApp(_ref) {
-  var children = _ref.children,
-      store = _ref.store,
-      props = _objectWithoutProperties(_ref, ['children', 'store']);
-
+export default (function alpReduxApp(_arg) {
   var _returnType = t.return(t.ref(ReactElementType));
 
-  t.param('arguments[0]', PropsType).assert(arguments[0]);
+  var _PropsType$assert = PropsType.assert(_arg),
+      children = _PropsType$assert.children,
+      store = _PropsType$assert.store,
+      props = _objectWithoutProperties(_PropsType$assert, ['children', 'store']);
+
   return _returnType.assert(React.createElement(
     Provider,
     { store: store, __self: _this,

@@ -34,13 +34,12 @@ const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType
 
 const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('children', _flowRuntime2.default.ref(ReactNodeType)), _flowRuntime2.default.property('store', _flowRuntime2.default.object())));
 
-exports.default = function alpReduxApp(_ref) {
-  let { children, store } = _ref,
-      props = _objectWithoutProperties(_ref, ['children', 'store']);
-
+exports.default = function alpReduxApp(_arg) {
   const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
 
-  _flowRuntime2.default.param('arguments[0]', PropsType).assert(arguments[0]);
+  let _PropsType$assert = PropsType.assert(_arg),
+      { children, store } = _PropsType$assert,
+      props = _objectWithoutProperties(_PropsType$assert, ['children', 'store']);
 
   return _returnType.assert(_react2.default.createElement(
     _reactRedux.Provider,

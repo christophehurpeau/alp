@@ -31,10 +31,8 @@ const logger = new Logger('alp:react-redux');
 const OptionsType = t.type('OptionsType', t.exactObject(t.property('Layout', t.nullable(t.any())), t.property('sharedReducers', t.nullable(t.object()))));
 
 
-export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} } = {}) {
-  if (arguments[0] !== undefined) {
-    t.param('arguments[0]', OptionsType).assert(arguments[0]);
-  }
+export default function alpReactRedux(_arg = {}) {
+  let { Layout = AlpLayout, sharedReducers = {} } = OptionsType.assert(_arg);
 
   return function (app) {
     let _appType = t.object();

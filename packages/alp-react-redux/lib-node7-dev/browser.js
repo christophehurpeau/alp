@@ -139,10 +139,8 @@ const createHydratableReducer = reducer => {
 
 const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('sharedReducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object()))));
 
-function alpReactRedux(element, { sharedReducers = {} } = {}) {
-  if (arguments[1] !== undefined) {
-    _flowRuntime2.default.param('arguments[1]', OptionsType).assert(arguments[1]);
-  }
+function alpReactRedux(element, _arg = {}) {
+  let { sharedReducers = {} } = OptionsType.assert(_arg);
 
   return app => {
     const middleware = [(0, _middlewareBrowser.createFunctionMiddleware)(app), _middlewareBrowser.promiseMiddleware];

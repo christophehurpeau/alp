@@ -42,10 +42,8 @@ const createHydratableReducer = function createHydratableReducer(reducer) {
 const OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReducers', t.nullable(t.object()))));
 
 
-export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
-  if (arguments[1] !== undefined) {
-    t.param('arguments[1]', OptionsType).assert(arguments[1]);
-  }
+export default function alpReactRedux(element, _arg = {}) {
+  let { sharedReducers = {} } = OptionsType.assert(_arg);
 
   return function (app) {
     const middleware = [createFunctionMiddleware(app), promiseMiddleware];

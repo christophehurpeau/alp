@@ -18,20 +18,20 @@ const ReactElementType = t.tdz(() => _ReactElementType);
 const PropsType = t.type('PropsType', t.object(t.property('version', t.string()), t.property('moduleIdentifier', t.nullable(t.string())), t.property('scriptName', t.string()), t.property('styleName', t.nullable(t.string())), t.property('initialData', t.nullable(t.any())), t.property('initialBrowserContext', t.nullable(t.any()))));
 
 
-export default (function alpHead(_ref) {
-  let {
+export default (function alpHead(_arg) {
+  const _returnType = t.return(t.ref(ReactElementType));
+
+  let _PropsType$assert = PropsType.assert(_arg),
+      {
     version,
     moduleIdentifier,
     scriptName,
     styleName,
     initialData,
     initialBrowserContext
-  } = _ref,
-      props = _objectWithoutProperties(_ref, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+  } = _PropsType$assert,
+      props = _objectWithoutProperties(_PropsType$assert, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
 
-  const _returnType = t.return(t.ref(ReactElementType));
-
-  t.param('arguments[0]', PropsType).assert(arguments[0]);
   return _returnType.assert(React.createElement(
     Head,
     _extends({}, props, {

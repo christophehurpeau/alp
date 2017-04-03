@@ -19,14 +19,14 @@ var LayoutPropsType = t.tdz(function () {
 var ReactElementType = t.tdz(function () {
   return _ReactElementType;
 });
-export default (function alpLayout(_ref) {
-  var helmet = _ref.helmet,
-      content = _ref.content,
-      props = _objectWithoutProperties(_ref, ['helmet', 'content']);
-
+export default (function alpLayout(_arg) {
   var _returnType = t.return(t.ref(ReactElementType));
 
-  t.param('arguments[0]', t.ref(LayoutPropsType)).assert(arguments[0]);
+  var _t$ref$assert = t.ref(LayoutPropsType).assert(_arg),
+      helmet = _t$ref$assert.helmet,
+      content = _t$ref$assert.content,
+      props = _objectWithoutProperties(_t$ref$assert, ['helmet', 'content']);
+
   return _returnType.assert(React.createElement(
     Html,
     { helmet: helmet, __self: _this,

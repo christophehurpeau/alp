@@ -28,13 +28,12 @@ const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.
 
 const ContextType = _flowRuntime2.default.type('ContextType', _flowRuntime2.default.object(_flowRuntime2.default.property('context', _flowRuntime2.default.object(_flowRuntime2.default.property('config', _flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any()))))));
 
-exports.default = function stylesheet(_ref, { context }) {
-  let { href } = _ref,
-      props = _objectWithoutProperties(_ref, ['href']);
+exports.default = function stylesheet(_arg, _arg2) {
+  let _PropsType$assert = PropsType.assert(_arg),
+      { href } = _PropsType$assert,
+      props = _objectWithoutProperties(_PropsType$assert, ['href']);
 
-  _flowRuntime2.default.param('arguments[0]', PropsType).assert(arguments[0]);
-
-  _flowRuntime2.default.param('arguments[1]', ContextType).assert(arguments[1]);
+  let { context } = ContextType.assert(_arg2);
 
   const version = _flowRuntime2.default.string().assert(context.config.get('version'));
 

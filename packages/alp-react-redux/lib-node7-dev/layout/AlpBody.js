@@ -30,13 +30,12 @@ const ReactNodeType = _flowRuntime2.default.tdz(() => _types.ReactNodeType);
 
 const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('children', _flowRuntime2.default.ref(ReactNodeType))));
 
-exports.default = function alpBody(_ref) {
-  let { children } = _ref,
-      props = _objectWithoutProperties(_ref, ['children']);
-
+exports.default = function alpBody(_arg) {
   const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
 
-  _flowRuntime2.default.param('arguments[0]', PropsType).assert(arguments[0]);
+  let _PropsType$assert = PropsType.assert(_arg),
+      { children } = _PropsType$assert,
+      props = _objectWithoutProperties(_PropsType$assert, ['children']);
 
   return _returnType.assert(_react2.default.createElement(
     _fody.Body,

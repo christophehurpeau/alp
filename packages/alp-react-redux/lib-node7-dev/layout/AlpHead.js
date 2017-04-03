@@ -37,20 +37,19 @@ const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType
 
 const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('version', _flowRuntime2.default.string()), _flowRuntime2.default.property('moduleIdentifier', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.string()), _flowRuntime2.default.property('styleName', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('initialData', _flowRuntime2.default.nullable(_flowRuntime2.default.any())), _flowRuntime2.default.property('initialBrowserContext', _flowRuntime2.default.nullable(_flowRuntime2.default.any()))));
 
-exports.default = function alpHead(_ref) {
-  let {
+exports.default = function alpHead(_arg) {
+  const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
+
+  let _PropsType$assert = PropsType.assert(_arg),
+      {
     version,
     moduleIdentifier,
     scriptName,
     styleName,
     initialData,
     initialBrowserContext
-  } = _ref,
-      props = _objectWithoutProperties(_ref, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
-
-  const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
-
-  _flowRuntime2.default.param('arguments[0]', PropsType).assert(arguments[0]);
+  } = _PropsType$assert,
+      props = _objectWithoutProperties(_PropsType$assert, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
 
   return _returnType.assert(_react2.default.createElement(
     _fody.Head,

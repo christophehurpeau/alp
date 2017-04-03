@@ -1,68 +1,30 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = createAction;
 
-var _flowRuntime = require('flow-runtime');
+var _flowRuntime = require("flow-runtime");
 
 var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global PRODUCTION */
+// eslint-disable-next-line flowtype/no-weak-types
+const HandlerType = _flowRuntime2.default.type("HandlerType", _flowRuntime2.default.function(_flowRuntime2.default.rest("args", _flowRuntime2.default.array(_flowRuntime2.default.any())), _flowRuntime2.default.return(_flowRuntime2.default.object())));
 
-function createAction(type, argsNamesOrHandler, data) {
+exports.default = function createAction(type, handler) {
   let _typeType = _flowRuntime2.default.string();
 
-  let _argsNamesOrHandlerType = _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.string())), _flowRuntime2.default.string(), _flowRuntime2.default.function());
+  let _handlerType = _flowRuntime2.default.nullable(HandlerType);
 
-  let _dataType = _flowRuntime2.default.nullable(_flowRuntime2.default.object());
+  _flowRuntime2.default.param("type", _typeType).assert(type);
 
-  _flowRuntime2.default.param('type', _typeType).assert(type);
+  _flowRuntime2.default.param("handler", _handlerType).assert(handler);
 
-  _flowRuntime2.default.param('argsNamesOrHandler', _argsNamesOrHandlerType).assert(argsNamesOrHandler);
-
-  _flowRuntime2.default.param('data', _dataType).assert(data);
-
-  if (argsNamesOrHandler && typeof argsNamesOrHandler !== 'function') {
-    throw new Error('handler should be a function');
-  }
-  if (data) throw new Error('data is deprecated');
-
-
-  let action;
-
-  const typeofSecondArg = typeof argsNamesOrHandler;
-
-  if (typeofSecondArg === 'function') {
-    action = (...args) => Object.assign({ type }, data, argsNamesOrHandler(...args));
-  } else {
-    if (typeofSecondArg === 'string') {
-      argsNamesOrHandler = _argsNamesOrHandlerType.assert(argsNamesOrHandler.split(','));
-    }
-
-    if (argsNamesOrHandler) {
-      action = (...args) => {
-        const action = Object.assign({ type }, data);
-        args.forEach((value, index) => action[argsNamesOrHandler[index]] = value);
-        return action;
-      };
-    } else {
-      action = args => {
-        let _argsType = _flowRuntime2.default.nullable(_flowRuntime2.default.object());
-
-        _flowRuntime2.default.param('args', _argsType).assert(args);
-
-        return Object.assign({ type }, data, args);
-      };
-    }
-  }
-
+  const action = !handler ? () => ({ type }) : (...args) => Object.assign({ type }, handler(...args));
   action.type = type;
   action.toString = () => type;
-
   return action;
-}
+};
 //# sourceMappingURL=createAction.js.map
