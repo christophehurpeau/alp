@@ -1,3 +1,12 @@
+<a name="8.1.0"></a>
+# [8.1.0](https://github.com/alpjs/alp-react-redux/compare/v8.0.0...v8.1.0) (2017-04-03)
+
+
+### Features
+
+* pob upgrade, remove unsupported actions ([01a7a26](https://github.com/alpjs/alp-react-redux/commit/01a7a26))
+
+
 <a name="8.0.0"></a>
 # [8.0.0](https://github.com/alpjs/alp-react-redux/compare/v7.3.3...v8.0.0) (2017-03-09)
 
