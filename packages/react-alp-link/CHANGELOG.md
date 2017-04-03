@@ -1,3 +1,12 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/alpjs/react-alp-link/compare/v0.3.1...v0.4.0) (2017-04-03)
+
+
+### Features
+
+* upgrade ([88b0260](https://github.com/alpjs/react-alp-link/commit/88b0260))
+
+
 ### v0.3.1
 
 - [`e978427`](https://github.com/alpjs/react-alp-link/commit/e9784271b8075465b79df4f87ea10e57442ff408) refactor: pob update (Christophe Hurpeau)
