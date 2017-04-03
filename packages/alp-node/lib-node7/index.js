@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.config = exports.packageConfig = exports.packageDirname = exports.appDirname = exports.newController = exports.Config = undefined;
+exports.default = exports.config = exports.packageConfig = exports.packageDirname = exports.appDirname = exports.newController = exports.Config = undefined;
 
 var _alpConfig = require('alp-config');
 
@@ -91,7 +91,7 @@ const configPath = (0, _fs.existsSync)(buildedConfigPath) ? buildedConfigPath : 
 const config = exports.config = new _alpConfig.Config(configPath);
 config.loadSync({ packageConfig });
 
-class Alp extends _koa2.default {
+let Alp = class extends _koa2.default {
 
   /**
    * @param {Object} [options]
@@ -200,6 +200,6 @@ class Alp extends _koa2.default {
   start(fn) {
     fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
-}
+};
 exports.default = Alp;
 //# sourceMappingURL=index.js.map

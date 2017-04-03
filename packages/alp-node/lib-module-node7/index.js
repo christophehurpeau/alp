@@ -36,7 +36,7 @@ const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDir
 export const config = new Config(configPath);
 config.loadSync({ packageConfig });
 
-export default class Alp extends Koa {
+let Alp = class extends Koa {
 
   /**
    * @param {Object} [options]
@@ -145,5 +145,6 @@ export default class Alp extends Koa {
   start(fn) {
     fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
-}
+};
+export { Alp as default };
 //# sourceMappingURL=index.js.map

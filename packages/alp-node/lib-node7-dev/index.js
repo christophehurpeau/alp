@@ -3,7 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.config = exports.packageConfig = exports.packageDirname = exports.appDirname = exports.newController = exports.Config = undefined;
+exports.default = exports.config = exports.packageConfig = exports.packageDirname = exports.appDirname = exports.newController = exports.Config = undefined;
+
+var _dec, _dec2, _dec3, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
 
 var _alpConfig = require('alp-config');
 
@@ -74,6 +76,49 @@ var _alpController2 = _interopRequireDefault(_alpController);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['keys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['defineProperty'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper() {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
+
 exports.newController = _alpController2.default;
 
 
@@ -95,7 +140,7 @@ const configPath = (0, _fs.existsSync)(buildedConfigPath) ? buildedConfigPath : 
 const config = exports.config = new _alpConfig.Config(configPath);
 config.loadSync({ packageConfig });
 
-class Alp extends _koa2.default {
+let Alp = (_dec = _flowRuntime2.default.decorate(_flowRuntime2.default.string()), _dec2 = _flowRuntime2.default.decorate(_flowRuntime2.default.string()), _dec3 = _flowRuntime2.default.decorate(_flowRuntime2.default.array(_flowRuntime2.default.function())), (_class = class extends _koa2.default {
 
   /**
    * @param {Object} [options]
@@ -107,6 +152,13 @@ class Alp extends _koa2.default {
    */
   constructor(options = {}) {
     super();
+
+    _initDefineProp(this, 'dirname', _descriptor, this);
+
+    _initDefineProp(this, 'packageDirname', _descriptor2, this);
+
+    _initDefineProp(this, 'browserStateTransformers', _descriptor3, this);
+
     if (options.packageDirname) {
       throw new Error('options.packageDirname is deprecated');
     }
@@ -216,6 +268,15 @@ class Alp extends _koa2.default {
 
     fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
-}
+}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'dirname', [_dec], {
+  enumerable: true,
+  initializer: null
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'packageDirname', [_dec2], {
+  enumerable: true,
+  initializer: null
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'browserStateTransformers', [_dec3], {
+  enumerable: true,
+  initializer: null
+})), _class));
 exports.default = Alp;
 //# sourceMappingURL=index.js.map

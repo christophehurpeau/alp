@@ -1,10 +1,14 @@
 {
   "envs": [
     "node7",
-    "webpack-node7"
+    "module-node7"
   ],
   "react": false,
   "testing": false,
   "documentation": false,
-  "doclets": false
+  "doclets": false,
+  "entries": [
+    "index"
+  ],
+  "flow": false
 }
