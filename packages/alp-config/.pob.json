@@ -1,9 +1,9 @@
 {
   "envs": [
     "node7",
-    "webpack-modern-browsers",
-    "webpack",
-    "webpack-node7"
+    "module-modern-browsers",
+    "module",
+    "module-node7"
   ],
   "react": false,
   "testing": false,
