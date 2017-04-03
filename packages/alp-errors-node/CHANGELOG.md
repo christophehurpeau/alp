@@ -1,3 +1,7 @@
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/alpjs/alp-errors-node/compare/v2.3.0...v2.4.0) (2017-04-03)
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/alpjs/alp-errors-node/compare/v2.2.1...v2.3.0) (2017-03-07)
 
