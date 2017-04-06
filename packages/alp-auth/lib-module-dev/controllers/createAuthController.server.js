@@ -3,17 +3,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 import AuthenticationService from '../services/AuthenticationService';
 
 import t from 'flow-runtime';
-export default function createAuthController(_ref) {
-  var usersManager = _ref.usersManager,
-      authenticationService = _ref.authenticationService,
-      loginModuleDescriptor = _ref.loginModuleDescriptor,
-      _ref$homeRouterKey = _ref.homeRouterKey,
-      homeRouterKey = _ref$homeRouterKey === undefined ? 'home' : _ref$homeRouterKey;
-  t.param('arguments[0]', t.object(t.property('usersManager', t.object()), t.property('authenticationService', t.ref(AuthenticationService)), t.property('loginModuleDescriptor', t.object()), t.property('homeRouterKey', t.nullable(t.string())))).assert(arguments[0]);
+export default function createAuthController(_arg) {
+  var _t$object$assert = t.object(t.property('usersManager', t.object()), t.property('authenticationService', t.ref(AuthenticationService)), t.property('loginModuleDescriptor', t.object()), t.property('homeRouterKey', t.nullable(t.string()))).assert(_arg),
+      usersManager = _t$object$assert.usersManager,
+      authenticationService = _t$object$assert.authenticationService,
+      loginModuleDescriptor = _t$object$assert.loginModuleDescriptor,
+      _t$object$assert$home = _t$object$assert.homeRouterKey,
+      homeRouterKey = _t$object$assert$home === undefined ? 'home' : _t$object$assert$home;
 
   return {
     login: function () {
-      var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx) {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx) {
         var strategy;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -49,11 +49,11 @@ export default function createAuthController(_ref) {
       }));
 
       return function login() {
-        return _ref2.apply(this, arguments);
+        return _ref.apply(this, arguments);
       };
     }(),
     loginResponse: function () {
-      var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx) {
+      var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx) {
         var strategy, connectedUser, keyPath;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -90,11 +90,11 @@ export default function createAuthController(_ref) {
       }));
 
       return function loginResponse() {
-        return _ref3.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }(),
     logout: function () {
-      var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(ctx) {
+      var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(ctx) {
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -112,7 +112,7 @@ export default function createAuthController(_ref) {
       }));
 
       return function logout() {
-        return _ref4.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     }()
   };

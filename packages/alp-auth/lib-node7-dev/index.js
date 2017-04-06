@@ -63,14 +63,14 @@ exports.rethinkUsersManager = _rethinkUsersManager2.default;
 const COOKIE_NAME = 'connectedUser';
 const logger = new _nightingaleLogger2.default('alp:auth');
 
-function init({
-  controllers,
-  usersManager,
-  strategies,
-  loginModuleDescriptor,
-  homeRouterKey
-}) {
-  _flowRuntime2.default.param('arguments[0]', _flowRuntime2.default.object(_flowRuntime2.default.property('controllers', _flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any())), _flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('strategies', _flowRuntime2.default.object()), _flowRuntime2.default.property('loginModuleDescriptor', _flowRuntime2.default.object()), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string())))).assert(arguments[0]);
+function init(_arg) {
+  let {
+    controllers,
+    usersManager,
+    strategies,
+    loginModuleDescriptor,
+    homeRouterKey
+  } = _flowRuntime2.default.object(_flowRuntime2.default.property('controllers', _flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any())), _flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('strategies', _flowRuntime2.default.object()), _flowRuntime2.default.property('loginModuleDescriptor', _flowRuntime2.default.object()), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))).assert(_arg);
 
   return app => {
     const userAccountsService = new _UserAccountsService2.default(usersManager);

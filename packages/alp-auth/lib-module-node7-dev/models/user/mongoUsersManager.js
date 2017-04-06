@@ -8,10 +8,10 @@ const mongoUsersManager = Object.create(abstractUsersManager);
 export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails({ provider, accountId, emails }) {
-    const _returnType = t.return(t.ref('Promise', t.nullable(t.ref(UserType))));
+  findOneByAccountOrEmails(_arg) {
+    const _returnType = t.return(t.nullable(t.ref(UserType)));
 
-    t.param('arguments[0]', t.object(t.property('provider', t.string()), t.property('accountId', t.union(t.string(), t.number())), t.property('emails', t.nullable(t.array(t.string()))))).assert(arguments[0]);
+    let { provider, accountId, emails } = t.object(t.property('provider', t.string()), t.property('accountId', t.union(t.string(), t.number())), t.property('emails', t.nullable(t.array(t.string())))).assert(_arg);
 
     let query = {
       'accounts.provider': provider,
@@ -26,7 +26,7 @@ Object.assign(mongoUsersManager, {
       };
     }
 
-    return _returnType.assert(this.store.findOne(query));
+    return this.store.findOne(query).then(_arg2 => _returnType.assert(_arg2));
   },
 
   updateAccount(user, account) {

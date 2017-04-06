@@ -15,14 +15,14 @@ export { default as routes } from './routes';
 const COOKIE_NAME = 'connectedUser';
 const logger = new Logger('alp:auth');
 
-export default function init({
-  controllers,
-  usersManager,
-  strategies,
-  loginModuleDescriptor,
-  homeRouterKey
-}) {
-  t.param('arguments[0]', t.object(t.property('controllers', t.ref('Map', t.string(), t.any())), t.property('usersManager', t.object()), t.property('strategies', t.object()), t.property('loginModuleDescriptor', t.object()), t.property('homeRouterKey', t.nullable(t.string())))).assert(arguments[0]);
+export default function init(_arg) {
+  let {
+    controllers,
+    usersManager,
+    strategies,
+    loginModuleDescriptor,
+    homeRouterKey
+  } = t.object(t.property('controllers', t.ref('Map', t.string(), t.any())), t.property('usersManager', t.object()), t.property('strategies', t.object()), t.property('loginModuleDescriptor', t.object()), t.property('homeRouterKey', t.nullable(t.string()))).assert(_arg);
 
   return app => {
     const userAccountsService = new UserAccountsService(usersManager);

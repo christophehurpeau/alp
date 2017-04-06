@@ -21,20 +21,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function randomBase64(size) {
   let _sizeType = _flowRuntime2.default.number();
 
-  const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref('Promise', _flowRuntime2.default.string()));
+  const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.string());
 
   _flowRuntime2.default.param('size', _sizeType).assert(size);
 
-  return _returnType.assert((0, _promiseCallbackFactory2.default)(done => (0, _crypto.randomBytes)(size, done)).then(buffer => buffer.toString('base64')));
+  return (0, _promiseCallbackFactory2.default)(done => (0, _crypto.randomBytes)(size, done)).then(buffer => buffer.toString('base64')).then(_arg => _returnType.assert(_arg));
 }
 
 function randomHex(size) {
   let _sizeType2 = _flowRuntime2.default.number();
 
-  const _returnType2 = _flowRuntime2.default.return(_flowRuntime2.default.ref('Promise', _flowRuntime2.default.string()));
+  const _returnType2 = _flowRuntime2.default.return(_flowRuntime2.default.string());
 
   _flowRuntime2.default.param('size', _sizeType2).assert(size);
 
-  return _returnType2.assert((0, _promiseCallbackFactory2.default)(done => (0, _crypto.randomBytes)(size, done)).then(buffer => buffer.toString('hex')));
+  return (0, _promiseCallbackFactory2.default)(done => (0, _crypto.randomBytes)(size, done)).then(buffer => buffer.toString('hex')).then(_arg2 => _returnType2.assert(_arg2));
 }
 //# sourceMappingURL=generators.js.map

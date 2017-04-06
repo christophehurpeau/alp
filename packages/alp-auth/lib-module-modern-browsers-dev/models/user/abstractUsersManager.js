@@ -10,29 +10,35 @@ export default {
     DELETED: 'deleted'
   },
 
-  findOneByAccountOrEmails({ provider, accountId, emails }) {
-    t.return(t.ref('Promise', t.nullable(t.ref(UserType))));
-    t.param('arguments[0]', t.object(t.property('provider', t.string()), t.property('accountId', t.union(t.string(), t.number())), t.property('emails', t.nullable(t.array(t.string()))))).assert(arguments[0]);
+  findOneByAccountOrEmails(_arg) {
+    t.return(t.nullable(t.ref(UserType)));
+    let { provider, accountId, emails } = t.object(t.property('provider', t.string()), t.property('accountId', t.union(t.string(), t.number())), t.property('emails', t.nullable(t.array(t.string())))).assert(_arg);
 
     throw new Error('Not implemented');
   },
 
   findConnected(connected) {
-    const _returnType2 = t.return(t.ref('Promise', t.nullable(t.ref(UserType))));
+    const _returnType2 = t.return(t.nullable(t.ref(UserType)));
 
-    return _returnType2.assert(this.store.findByKey(connected));
+    return this.store.findByKey(connected).then(function (_arg2) {
+      return _returnType2.assert(_arg2);
+    });
   },
 
   insertOne(user) {
-    const _returnType3 = t.return(t.ref('Promise', t.any()));
+    const _returnType3 = t.return(t.any());
 
-    return _returnType3.assert(this.store.insertOne(user));
+    return this.store.insertOne(user).then(function (_arg3) {
+      return _returnType3.assert(_arg3);
+    });
   },
 
   updateOne(user) {
-    const _returnType4 = t.return(t.ref('Promise', t.any()));
+    const _returnType4 = t.return(t.any());
 
-    return _returnType4.assert(this.store.updateOne(user));
+    return this.store.updateOne(user).then(function (_arg4) {
+      return _returnType4.assert(_arg4);
+    });
   },
 
   transformForBrowser(user) {

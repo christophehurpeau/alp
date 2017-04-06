@@ -5,20 +5,20 @@ import t from 'flow-runtime';
 export function randomBase64(size) {
   let _sizeType = t.number();
 
-  const _returnType = t.return(t.ref('Promise', t.string()));
+  const _returnType = t.return(t.string());
 
   t.param('size', _sizeType).assert(size);
 
-  return _returnType.assert(promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('base64')));
+  return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('base64')).then(_arg => _returnType.assert(_arg));
 }
 
 export function randomHex(size) {
   let _sizeType2 = t.number();
 
-  const _returnType2 = t.return(t.ref('Promise', t.string()));
+  const _returnType2 = t.return(t.string());
 
   t.param('size', _sizeType2).assert(size);
 
-  return _returnType2.assert(promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('hex')));
+  return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('hex')).then(_arg2 => _returnType2.assert(_arg2));
 }
 //# sourceMappingURL=generators.js.map

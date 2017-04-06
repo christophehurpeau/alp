@@ -25,10 +25,10 @@ exports.default = mongoUsersManager;
 
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails({ provider, accountId, emails }) {
-    const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref('Promise', _flowRuntime2.default.nullable(_flowRuntime2.default.ref(UserType))));
+  findOneByAccountOrEmails(_arg) {
+    const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.nullable(_flowRuntime2.default.ref(UserType)));
 
-    _flowRuntime2.default.param('arguments[0]', _flowRuntime2.default.object(_flowRuntime2.default.property('provider', _flowRuntime2.default.string()), _flowRuntime2.default.property('accountId', _flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.number())), _flowRuntime2.default.property('emails', _flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.string()))))).assert(arguments[0]);
+    let { provider, accountId, emails } = _flowRuntime2.default.object(_flowRuntime2.default.property('provider', _flowRuntime2.default.string()), _flowRuntime2.default.property('accountId', _flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.number())), _flowRuntime2.default.property('emails', _flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.string())))).assert(_arg);
 
     let query = {
       'accounts.provider': provider,
@@ -43,7 +43,7 @@ Object.assign(mongoUsersManager, {
       };
     }
 
-    return _returnType.assert(this.store.findOne(query));
+    return this.store.findOne(query).then(_arg2 => _returnType.assert(_arg2));
   },
 
   updateAccount(user, account) {

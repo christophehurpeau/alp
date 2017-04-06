@@ -1,13 +1,13 @@
 import AuthenticationService from '../services/AuthenticationService';
 
 import t from 'flow-runtime';
-export default function createAuthController({
-  usersManager,
-  authenticationService,
-  loginModuleDescriptor,
-  homeRouterKey = 'home'
-}) {
-  t.param('arguments[0]', t.object(t.property('usersManager', t.object()), t.property('authenticationService', t.ref(AuthenticationService)), t.property('loginModuleDescriptor', t.object()), t.property('homeRouterKey', t.nullable(t.string())))).assert(arguments[0]);
+export default function createAuthController(_arg) {
+  let {
+    usersManager,
+    authenticationService,
+    loginModuleDescriptor,
+    homeRouterKey = 'home'
+  } = t.object(t.property('usersManager', t.object()), t.property('authenticationService', t.ref(AuthenticationService)), t.property('loginModuleDescriptor', t.object()), t.property('homeRouterKey', t.nullable(t.string()))).assert(_arg);
 
   return {
     async login(ctx) {

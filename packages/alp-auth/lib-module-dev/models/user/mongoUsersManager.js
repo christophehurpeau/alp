@@ -14,14 +14,13 @@ var mongoUsersManager = Object.create(abstractUsersManager);
 export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails: function findOneByAccountOrEmails(_ref) {
-    var provider = _ref.provider,
-        accountId = _ref.accountId,
-        emails = _ref.emails;
+  findOneByAccountOrEmails: function findOneByAccountOrEmails(_arg) {
+    var _returnType = t.return(t.nullable(t.ref(UserType)));
 
-    var _returnType = t.return(t.ref('Promise', t.nullable(t.ref(UserType))));
-
-    t.param('arguments[0]', t.object(t.property('provider', t.string()), t.property('accountId', t.union(t.string(), t.number())), t.property('emails', t.nullable(t.array(t.string()))))).assert(arguments[0]);
+    var _t$object$assert = t.object(t.property('provider', t.string()), t.property('accountId', t.union(t.string(), t.number())), t.property('emails', t.nullable(t.array(t.string())))).assert(_arg),
+        provider = _t$object$assert.provider,
+        accountId = _t$object$assert.accountId,
+        emails = _t$object$assert.emails;
 
     var query = {
       'accounts.provider': provider,
@@ -36,7 +35,9 @@ Object.assign(mongoUsersManager, {
       };
     }
 
-    return _returnType.assert(this.store.findOne(query));
+    return this.store.findOne(query).then(function (_arg2) {
+      return _returnType.assert(_arg2);
+    });
   },
   updateAccount: function updateAccount(user, account) {
     var _userType = t.ref(UserType);

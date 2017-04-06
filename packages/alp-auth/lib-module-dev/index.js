@@ -17,15 +17,15 @@ export { default as routes } from './routes';
 var COOKIE_NAME = 'connectedUser';
 var logger = new Logger('alp:auth');
 
-export default function init(_ref) {
+export default function init(_arg) {
   var _this2 = this;
 
-  var controllers = _ref.controllers,
-      usersManager = _ref.usersManager,
-      strategies = _ref.strategies,
-      loginModuleDescriptor = _ref.loginModuleDescriptor,
-      homeRouterKey = _ref.homeRouterKey;
-  t.param('arguments[0]', t.object(t.property('controllers', t.ref('Map', t.string(), t.any())), t.property('usersManager', t.object()), t.property('strategies', t.object()), t.property('loginModuleDescriptor', t.object()), t.property('homeRouterKey', t.nullable(t.string())))).assert(arguments[0]);
+  var _t$object$assert = t.object(t.property('controllers', t.ref('Map', t.string(), t.any())), t.property('usersManager', t.object()), t.property('strategies', t.object()), t.property('loginModuleDescriptor', t.object()), t.property('homeRouterKey', t.nullable(t.string()))).assert(_arg),
+      controllers = _t$object$assert.controllers,
+      usersManager = _t$object$assert.usersManager,
+      strategies = _t$object$assert.strategies,
+      loginModuleDescriptor = _t$object$assert.loginModuleDescriptor,
+      homeRouterKey = _t$object$assert.homeRouterKey;
 
   return function (app) {
     var userAccountsService = new UserAccountsService(usersManager);
@@ -40,7 +40,7 @@ export default function init(_ref) {
     }));
 
     app.context.setConnected = function () {
-      var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(connected, user) {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(connected, user) {
         var _this = this;
 
         var _connectedType, _userType, token;
@@ -95,7 +95,7 @@ export default function init(_ref) {
       }));
 
       return function () {
-        return _ref2.apply(this, arguments);
+        return _ref.apply(this, arguments);
       };
     }();
 
@@ -129,7 +129,7 @@ export default function init(_ref) {
       app.websocket.users = users;
 
       app.websocket.use(function () {
-        var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(socket, next) {
+        var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(socket, next) {
           var handshakeData, cookies, token, connected, user;
           return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
@@ -227,13 +227,13 @@ export default function init(_ref) {
         }));
 
         return function () {
-          return _ref3.apply(this, arguments);
+          return _ref2.apply(this, arguments);
         };
       }());
     }
 
     return function () {
-      var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(ctx, next) {
+      var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(ctx, next) {
         var token, connected, user;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
@@ -327,7 +327,7 @@ export default function init(_ref) {
       }));
 
       return function () {
-        return _ref4.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     }();
   };

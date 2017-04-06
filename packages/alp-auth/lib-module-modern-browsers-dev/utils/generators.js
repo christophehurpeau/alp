@@ -5,28 +5,32 @@ import t from 'flow-runtime';
 export function randomBase64(size) {
   let _sizeType = t.number();
 
-  const _returnType = t.return(t.ref('Promise', t.string()));
+  const _returnType = t.return(t.string());
 
   t.param('size', _sizeType).assert(size);
 
-  return _returnType.assert(promiseCallback(function (done) {
+  return promiseCallback(function (done) {
     return randomBytes(size, done);
   }).then(function (buffer) {
     return buffer.toString('base64');
-  }));
+  }).then(function (_arg) {
+    return _returnType.assert(_arg);
+  });
 }
 
 export function randomHex(size) {
   let _sizeType2 = t.number();
 
-  const _returnType2 = t.return(t.ref('Promise', t.string()));
+  const _returnType2 = t.return(t.string());
 
   t.param('size', _sizeType2).assert(size);
 
-  return _returnType2.assert(promiseCallback(function (done) {
+  return promiseCallback(function (done) {
     return randomBytes(size, done);
   }).then(function (buffer) {
     return buffer.toString('hex');
-  }));
+  }).then(function (_arg2) {
+    return _returnType2.assert(_arg2);
+  });
 }
 //# sourceMappingURL=generators.js.map
