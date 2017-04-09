@@ -1,3 +1,12 @@
+<a name="8.0.0-beta3"></a>
+# [8.0.0-beta3](https://github.com/alpjs/alp-dev/compare/v8.0.0-beta2...v8.0.0-beta3) (2017-04-09)
+
+
+### Bug Fixes
+
+* alp-dev-build ([1f37aed](https://github.com/alpjs/alp-dev/commit/1f37aed))
+
+
 <a name="8.0.0-beta2"></a>
 # [8.0.0-beta2](https://github.com/alpjs/alp-dev/compare/v7.0.0...v8.0.0-beta2) (2017-04-09)
 
