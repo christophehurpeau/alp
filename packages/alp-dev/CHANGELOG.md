@@ -1,3 +1,16 @@
+<a name="8.0.0-beta2"></a>
+# [8.0.0-beta2](https://github.com/alpjs/alp-dev/compare/v7.0.0...v8.0.0-beta2) (2017-04-09)
+
+
+### Bug Fixes
+
+* watch ([db3f259](https://github.com/alpjs/alp-dev/commit/db3f259))
+
+### Features
+
+* use pobpack-browser and pobpack-node ([f3ccc5c](https://github.com/alpjs/alp-dev/commit/f3ccc5c))
+
+
 <a name="8.0.0-beta1"></a>
 # [8.0.0-beta1](https://github.com/alpjs/alp-dev/compare/v7.0.0...v8.0.0-beta1) (2017-04-09)
 
