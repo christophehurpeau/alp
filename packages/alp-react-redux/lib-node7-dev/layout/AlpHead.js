@@ -90,20 +90,20 @@ exports.default = function alpHead(_arg) {
         lineNumber: 30
       }
     }),
-    _react2.default.createElement('script', {
+    scriptName === false ? null : _react2.default.createElement('script', {
       dangerouslySetInnerHTML: {
         __html: `${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}` + `window.VERSION='${version}';` + `window.initialData=${(0, _uneval2.default)(initialData)};` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${(0, _uneval2.default)(initialBrowserContext)};`)
       },
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 32
       }
     }),
-    _react2.default.createElement('script', { defer: true, src: (0, _assetUrl2.default)(`/${scriptName}.js`, version), __self: undefined,
+    scriptName === false ? null : _react2.default.createElement('script', { defer: true, src: (0, _assetUrl2.default)(`/${scriptName}.js`, version), __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 44
       }
     })
   ));

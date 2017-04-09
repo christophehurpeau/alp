@@ -27,12 +27,12 @@ export default (function (_ref) {
     React.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,400italic', rel: 'stylesheet', type: 'text/css' }),
     React.createElement('link', { rel: 'stylesheet', href: assetUrl(`/${styleName || 'index'}.css`, version) }),
     React.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' }),
-    React.createElement('script', {
+    scriptName === false ? null : React.createElement('script', {
       dangerouslySetInnerHTML: {
         __html: `${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}` + `window.VERSION='${version}';` + `window.initialData=${uneval(initialData)};` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${uneval(initialBrowserContext)};`)
       }
     }),
-    React.createElement('script', { defer: true, src: assetUrl(`/${scriptName}.js`, version) })
+    scriptName === false ? null : React.createElement('script', { defer: true, src: assetUrl(`/${scriptName}.js`, version) })
   );
 });
 //# sourceMappingURL=AlpHead.js.map

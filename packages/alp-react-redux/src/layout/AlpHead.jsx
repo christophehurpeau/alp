@@ -28,17 +28,19 @@ export default ({
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href={assetUrl(`/${styleName || 'index'}.css`, version)} />
     <script defer src="https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill" />
-    <script
-      dangerouslySetInnerHTML={{
-        __html:
-          (`${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}`)
-          + `window.VERSION='${version}';`
-          + `window.initialData=${uneval(initialData)};`
-          + (!initialBrowserContext ? '' : (
-              `window.initialBrowserContext=${uneval(initialBrowserContext)};`
-          )),
-      }}
-    />
-    <script defer src={assetUrl(`/${scriptName}.js`, version)} />
+    {scriptName === false ? null : (
+      <script
+        dangerouslySetInnerHTML={{
+          __html:
+            (`${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}`)
+            + `window.VERSION='${version}';`
+            + `window.initialData=${uneval(initialData)};`
+            + (!initialBrowserContext ? '' : (
+                `window.initialBrowserContext=${uneval(initialBrowserContext)};`
+            )),
+        }}
+      />
+    )}
+    {scriptName === false ? null : <script defer src={assetUrl(`/${scriptName}.js`, version)} />}
   </Head>
 );

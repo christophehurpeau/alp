@@ -71,20 +71,20 @@ export default (function alpHead(_arg) {
         lineNumber: 30
       }
     }),
-    React.createElement('script', {
+    scriptName === false ? null : React.createElement('script', {
       dangerouslySetInnerHTML: {
         __html: '' + (moduleIdentifier ? 'window.MODULE_IDENTIFIER=\'' + moduleIdentifier + '\';' : '') + ('window.VERSION=\'' + version + '\';') + ('window.initialData=' + uneval(initialData) + ';') + (!initialBrowserContext ? '' : 'window.initialBrowserContext=' + uneval(initialBrowserContext) + ';')
       },
       __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 32
       }
     }),
-    React.createElement('script', { defer: true, src: assetUrl('/' + scriptName + '.js', version), __self: _this,
+    scriptName === false ? null : React.createElement('script', { defer: true, src: assetUrl('/' + scriptName + '.js', version), __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 44
       }
     })
   ));
