@@ -13,7 +13,7 @@ export default (() => React.createElement(
     React.createElement(
       Link,
       {
-        tagName: FlatButton,
+        as: FlatButton,
         to: 'login',
         params: { strategy: 'google' },
         target: '_self'

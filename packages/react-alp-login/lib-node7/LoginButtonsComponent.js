@@ -35,7 +35,7 @@ exports.default = () => _react2.default.createElement(
     _react2.default.createElement(
       _reactAlpLink2.default,
       {
-        tagName: _FlatButton2.default,
+        as: _FlatButton2.default,
         to: 'login',
         params: { strategy: 'google' },
         target: '_self'

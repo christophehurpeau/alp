@@ -7,7 +7,7 @@ export default () => (
   <List links>
     <li>
       <Link
-        tagName={FlatButton}
+        as={FlatButton}
         to="login"
         params={{ strategy: 'google' }}
         target="_self"
