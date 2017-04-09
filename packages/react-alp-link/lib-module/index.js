@@ -6,19 +6,20 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import { PropTypes } from 'react';
 
+
 var LinkComponent = function LinkComponent(_ref, _ref2) {
   var ctx = _ref2.context;
 
-  var _ref$tagName = _ref.tagName,
-      TagName = _ref$tagName === undefined ? 'a' : _ref$tagName,
+  var _ref$as = _ref.as,
+      Type = _ref$as === undefined ? 'a' : _ref$as,
       _ref$to = _ref.to,
       to = _ref$to === undefined ? 'default' : _ref$to,
       params = _ref.params,
       children = _ref.children,
-      props = _objectWithoutProperties(_ref, ['tagName', 'to', 'params', 'children']);
+      props = _objectWithoutProperties(_ref, ['as', 'to', 'params', 'children']);
 
   return React.createElement(
-    TagName,
+    Type,
     _extends({ href: ctx.urlGenerator(to, params) }, props),
     children
   );

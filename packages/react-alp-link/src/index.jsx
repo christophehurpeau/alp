@@ -1,7 +1,8 @@
 import { PropTypes } from 'react';
+import type { TagNameOrReactComponentType } from 'alp-react-redux/src/types';
 
 type PropsType = {
-  tagName: ?string,
+  as: ?TagNameOrReactComponentType,
   to: string,
   params: ?Object,
   children: ?any,
@@ -10,15 +11,16 @@ type PropsType = {
 type ContextType = {
   context: {
     urlGenerator: Function,
-  }
+  },
 };
 
 const LinkComponent = (
-  { tagName: TagName = 'a', to = 'default', params, children, ...props }: PropsType,
+  { as: Type = 'a', to = 'default', params, children, ...props }: PropsType,
   { context: ctx }: ContextType,
-) => (
-  <TagName href={ctx.urlGenerator(to, params)} {...props}>{children}</TagName>
-);
+) => {
+  if (!PRODUCTION && props.tagName) throw new Error('`tagName` is deprecated, use `as` instead');
+  return <Type href={ctx.urlGenerator(to, params)} {...props}>{children}</Type>;
+};
 
 LinkComponent.contextTypes = {
   context: PropTypes.shape({
