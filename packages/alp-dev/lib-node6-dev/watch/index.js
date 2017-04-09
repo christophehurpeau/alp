@@ -41,12 +41,12 @@ Promise.all([_portscanner2.default.findAPortNotInUse(startProxyPort, startProxyP
 
   (0, _springbokjsDaemon2.default)({
     autoRestart: true,
-    args: [`${__dirname}/watch/node`, '--port', port]
+    args: [require.resolve('./node'), '--port', port]
   }).start();
 
   (0, _springbokjsDaemon2.default)({
     autoRestart: true,
-    args: [`${__dirname}/watch/browser`, '--port', port, '--proxy-port', proxyPort]
+    args: [require.resolve('./browser'), '--port', port, '--proxy-port', proxyPort]
   }).start();
 }).catch(err => console.log(err.stack));
 //# sourceMappingURL=index.js.map

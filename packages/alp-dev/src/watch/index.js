@@ -24,7 +24,7 @@ Promise.all([
   createChild({
     autoRestart: true,
     args: [
-      `${__dirname}/watch/node`,
+      require.resolve('./node'),
       '--port',
       port,
     ],
@@ -33,7 +33,7 @@ Promise.all([
   createChild({
     autoRestart: true,
     args: [
-      `${__dirname}/watch/browser`,
+      require.resolve('./browser'),
       '--port',
       port,
       '--proxy-port',
