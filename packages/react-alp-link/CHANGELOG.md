@@ -1,3 +1,17 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/alpjs/react-alp-link/compare/v0.4.0...v0.5.0) (2017-04-09)
+
+
+### Features
+
+* as ([146f473](https://github.com/alpjs/react-alp-link/commit/146f473))
+
+
+### BREAKING CHANGES
+
+* use as instead of tagName
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/alpjs/react-alp-link/compare/v0.3.1...v0.4.0) (2017-04-03)
 
