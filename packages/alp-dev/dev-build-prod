@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+NODE_ENV=production $(BIN)_alp-dev-build
+NODE_ENV=production WEBPACK_DEST=modern-browsers $(BIN)webpack --hide-modules
+NODE_ENV=production WEBPACK_DEST=es5 $(BIN)webpack --hide-modules
+gzip -fk9 public/modern-browsers.js
+gzip -fk9 public/es5.js
+lzma -fke9 --threads 0 public/modern-browsers.js
+lzma -fke9 --threads 0 public/es5.js
+# bro --input public/modern-browsers.js --output public/modern-browsers.js.bro
+# bro --input public/es5.js --output public/es5.js.bro

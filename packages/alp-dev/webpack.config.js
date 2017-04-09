@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 const createBabelOpts = require('pob-babel/lib/babel-options');
 const BabiliCustomPlugin = require('./BabiliCustomWebpackPlugin');
+const { createModuleRule, createExtractPlugin } = require('turaco-styl/webpack-config');
 
 const production = process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production';
 const dest = process.env.WEBPACK_DEST || 'modern-browsers';
@@ -36,21 +37,22 @@ const modulesList = (() => {
   }
 })();
 
+const publicPath = path.resolve('public');
+
 module.exports = {
   devtool: production ? undefined : 'cheap-source-map',
-  bail: true,
 
   entry: {
     [dest]: [
       !modernBrowsers && 'babel-regenerator-runtime',
-      !production && 'webpack-hot-middleware/client',
+      !production && 'webpack-hot-middleware/client?reload=true',
       !production && 'react-hot-loader/patch',
       './src/index.browser',
     ].filter(Boolean),
   },
 
   output: {
-    path: path.resolve('public'),
+    path: publicPath,
     publicPath: '/',
     filename: '[name].js',
     pathinfo: !production,
@@ -77,6 +79,9 @@ module.exports = {
     // ],
 
     rules: [
+      // Disable require.ensure as it's not a standard language feature.
+      { parser: { requireEnsure: false } },
+
       // JS / JSX RULE
       {
         test: /\.jsx?$/,
@@ -89,9 +94,11 @@ module.exports = {
           comments: !production,
           presets: babelOptions.presets.map(resolveBabel(resolvePreset)),
           plugins: babelOptions.plugins,
+          sourceRoot: process.cwd(),
         },
       },
-      // CSS / STYL RULE
+
+      // CSS RULE
       {
         test: /\.css$/,
         include: path.resolve('src'),
@@ -99,26 +106,22 @@ module.exports = {
           loader: [require.resolve('css-loader')],
         }),
       },
+
+      // IMG RULE
       {
-        test: /\.styl$/,
-        include: path.resolve('src'),
-        loader: ExtractTextPlugin.extract({
-          loader: [
-            // eslint-disable-next-line prefer-template
-            require.resolve('css-loader') + '?modules&importLoaders=1'
-              + '&localIdentName=[name]__[local]__[hash:base64:5]',
-              // + `localIdentName=${production ? : '[path][name]---[local]---[hash:base64:5]'}`,
-            // eslint-disable-next-line prefer-template
-            require.resolve('stylus-loader') + '?paths[]=node_modules&paths[]=src/styles',
-            // {
-            //   loader: require.resolve('postcss-loader'),
-            //   options: {
-            //     plugins: () => [require('postcss-modules')],
-            //   }
-            // },
-          ],
-        }),
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        loader: `url-loader?limit=1000&name=${path.join(publicPath, '[hash].[ext]')}`,
       },
+
+      // SCSS RULE
+      createModuleRule(ExtractTextPlugin, {
+        production,
+        publicPath: path.resolve('public'),
+        themeFile: './src/theme.scss',
+        plugins: [
+          require('autoprefixer'),
+        ].filter(Boolean),
+      }),
     ].filter(Boolean),
   },
 
@@ -152,10 +155,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin({
-      filename: 'styles.css',
-      allChunks: true,
-    }),
+    createExtractPlugin(ExtractTextPlugin, { filename: 'styles.css' }),
     new webpack.optimize.CommonsChunkPlugin({
       name: dest,
       filename: `${dest}.js`,
@@ -185,23 +185,11 @@ module.exports = {
       },
     }),
     !production && new webpack.HotModuleReplacementPlugin(),
+    !production && new webpack.NamedModulesPlugin(),
     !production && new webpack.NoErrorsPlugin(),
     production && new BabiliCustomPlugin({
       comments: false,
       plugins: [
-        [
-          'minify-replace',
-          [
-            ['BROWSER', true],
-            ['SERVER', false],
-            ['NODEJS', false],
-            ['PRODUCTION', production],
-            ['MODERN_BROWSERS', modernBrowsers],
-          ].map(([key, value]) => ({
-            identifierName: key,
-            replacement: { type: 'booleanLiteral', value },
-          })),
-        ],
         'minify-dead-code-elimination',
         'minify-flip-comparisons',
         'minify-guarded-expressions',

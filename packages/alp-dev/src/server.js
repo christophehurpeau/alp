@@ -1,6 +1,6 @@
 // const bsReload = require('./bs-reload');
 import { node as nodeDaemon } from 'springbokjs-daemon/src';
-import { watch } from './server-build';
+import { watch } from './config-build';
 
 export default function watchServer(port) {
   return watch().then((emitter) => {
