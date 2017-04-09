@@ -1,3 +1,13 @@
+<a name="8.2.0"></a>
+# [8.2.0](https://github.com/alpjs/alp-react-redux/compare/v8.1.0...v8.2.0) (2017-04-09)
+
+
+### Features
+
+* scriptName can be false ([9d78697](https://github.com/alpjs/alp-react-redux/commit/9d78697))
+* type TagNameOrReactComponentType ([71e1c7b](https://github.com/alpjs/alp-react-redux/commit/71e1c7b))
+
+
 <a name="8.1.0"></a>
 # [8.1.0](https://github.com/alpjs/alp-react-redux/compare/v8.0.0...v8.1.0) (2017-04-03)
 
