@@ -18,6 +18,30 @@ Object.defineProperty(exports, 'ReactElementType', {
     return _types.ReactElementType;
   }
 });
+Object.defineProperty(exports, 'TagNameType', {
+  enumerable: true,
+  get: function () {
+    return _types.TagNameType;
+  }
+});
+Object.defineProperty(exports, 'ReactClassComponentType', {
+  enumerable: true,
+  get: function () {
+    return _types.ReactClassComponentType;
+  }
+});
+Object.defineProperty(exports, 'ReactStatelessComponentType', {
+  enumerable: true,
+  get: function () {
+    return _types.ReactStatelessComponentType;
+  }
+});
+Object.defineProperty(exports, 'TagNameOrReactComponentType', {
+  enumerable: true,
+  get: function () {
+    return _types.TagNameOrReactComponentType;
+  }
+});
 Object.defineProperty(exports, 'LayoutPropsType', {
   enumerable: true,
   get: function () {

@@ -1,2 +1,2 @@
-export { ReactNodeType, ReactElementType, LayoutPropsType } from 'fody/types';
+export { ReactNodeType, ReactElementType, TagNameType, ReactClassComponentType, ReactStatelessComponentType, TagNameOrReactComponentType, LayoutPropsType } from 'fody/types';
 //# sourceMappingURL=types.js.map
