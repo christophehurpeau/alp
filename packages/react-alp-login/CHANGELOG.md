@@ -1,3 +1,12 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/alpjs/react-alp-login/compare/v0.5.0...v0.6.0) (2017-04-09)
+
+
+### Features
+
+* react-alp-link@0.5.0 ([f804050](https://github.com/alpjs/react-alp-login/commit/f804050))
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/alpjs/react-alp-login/compare/v0.4.1...v0.5.0) (2017-04-03)
 
