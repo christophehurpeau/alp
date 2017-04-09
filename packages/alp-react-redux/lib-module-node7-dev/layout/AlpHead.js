@@ -15,7 +15,7 @@ import assetUrl from './assetUrl';
 
 import t from 'flow-runtime';
 const ReactElementType = t.tdz(() => _ReactElementType);
-const PropsType = t.type('PropsType', t.object(t.property('version', t.string()), t.property('moduleIdentifier', t.nullable(t.string())), t.property('scriptName', t.string()), t.property('styleName', t.nullable(t.string())), t.property('initialData', t.nullable(t.any())), t.property('initialBrowserContext', t.nullable(t.any()))));
+const PropsType = t.type('PropsType', t.object(t.property('version', t.string()), t.property('moduleIdentifier', t.nullable(t.string())), t.property('scriptName', t.union(t.string(), t.boolean(false))), t.property('styleName', t.nullable(t.string())), t.property('initialData', t.nullable(t.any())), t.property('initialBrowserContext', t.nullable(t.any()))));
 
 
 export default (function alpHead(_arg) {

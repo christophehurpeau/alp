@@ -7,7 +7,7 @@ import assetUrl from './assetUrl';
 type PropsType = {
   version: string,
   moduleIdentifier: ?string,
-  scriptName: string,
+  scriptName: string | false,
   styleName: ?string,
   initialData: ?any,
   initialBrowserContext: ?any,

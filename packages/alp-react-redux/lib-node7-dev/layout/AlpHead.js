@@ -35,7 +35,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType);
 
-const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('version', _flowRuntime2.default.string()), _flowRuntime2.default.property('moduleIdentifier', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.string()), _flowRuntime2.default.property('styleName', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('initialData', _flowRuntime2.default.nullable(_flowRuntime2.default.any())), _flowRuntime2.default.property('initialBrowserContext', _flowRuntime2.default.nullable(_flowRuntime2.default.any()))));
+const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('version', _flowRuntime2.default.string()), _flowRuntime2.default.property('moduleIdentifier', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('styleName', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('initialData', _flowRuntime2.default.nullable(_flowRuntime2.default.any())), _flowRuntime2.default.property('initialBrowserContext', _flowRuntime2.default.nullable(_flowRuntime2.default.any()))));
 
 exports.default = function alpHead(_arg) {
   const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
