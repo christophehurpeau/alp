@@ -6,16 +6,18 @@ import { clean, build } from '../config-build';
 execSync(`rm -Rf ${pathResolve('public')}/* ${pathResolve('build')}/*`);
 
 clean();
-build();
 
 Promise.all([
-  './node',
-  './modern-browser',
-  './older-browser',
-].map(path => {
-  const instance = execa('node', [require.resolve(path)]);
-  instance.stdout.pipe(process.stdout);
-  return instance;
-})).then(() => {
+  build(),
+  ...[
+    './node',
+    './modern-browser',
+    './older-browser',
+  ].map(path => {
+    const instance = execa('node', [require.resolve(path)]);
+    instance.stdout.pipe(process.stdout);
+    return instance;
+  }),
+]).then(() => {
   console.log('done !');
 });
