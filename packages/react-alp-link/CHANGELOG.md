@@ -1,3 +1,12 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/alpjs/react-alp-link/compare/v0.5.0...v0.6.0) (2017-04-22)
+
+
+### Features
+
+* prop-types ([1a02d55](https://github.com/alpjs/react-alp-link/commit/1a02d55))
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/alpjs/react-alp-link/compare/v0.4.0...v0.5.0) (2017-04-09)
 
