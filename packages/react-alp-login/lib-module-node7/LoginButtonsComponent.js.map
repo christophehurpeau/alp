@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/LoginButtonsComponent.jsx"],"names":["List"],"mappings":";AAAA,OAAOA,IAAP,MAAiB,uBAAjB;;AAEA,gBAAe,MACb;AAAC,MAAD;AAAA,IAAM,WAAN;AACE;AADF,CADF","file":"LoginButtonsComponent.jsx","sourcesContent":["import List from 'ynnub/components/List';\n\nexport default () => (\n  <List links>\n    <li>\n\n    </li>\n  </List>\n);\n"]}
