@@ -7,7 +7,7 @@ import React from 'react';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import { TagNameOrReactComponentType as _TagNameOrReactComponentType } from 'alp-react-redux/types';
 
 import t from 'flow-runtime';

@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import type { TagNameOrReactComponentType } from 'alp-react-redux/src/types';
 
 type PropsType = {

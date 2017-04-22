@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _types = require('alp-react-redux/types');
 
 var _flowRuntime = require('flow-runtime');
@@ -50,8 +54,8 @@ const LinkComponent = (_arg, _arg2) => {
 };
 
 LinkComponent.contextTypes = {
-  context: _react.PropTypes.shape({
-    urlGenerator: _react.PropTypes.func
+  context: _propTypes2.default.shape({
+    urlGenerator: _propTypes2.default.func
   })
 };
 
