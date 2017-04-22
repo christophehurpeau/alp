@@ -1,3 +1,7 @@
+<a name="0.6.4"></a>
+## [0.6.4](https://github.com/alpjs/react-alp-login/compare/v0.6.3...v0.6.4) (2017-04-22)
+
+
 <a name="0.6.3"></a>
 ## [0.6.3](https://github.com/alpjs/react-alp-login/compare/v0.6.2...v0.6.3) (2017-04-22)
 
