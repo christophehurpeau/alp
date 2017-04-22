@@ -1,3 +1,17 @@
+<a name="9.0.0"></a>
+# [9.0.0](https://github.com/alpjs/alp-react-redux/compare/v8.2.1...v9.0.0) (2017-04-22)
+
+
+### Features
+
+* AlpHead can have children ([171af42](https://github.com/alpjs/alp-react-redux/commit/171af42))
+
+
+### BREAKING CHANGES
+
+* remove roboto font
+
+
 <a name="8.2.1"></a>
 ## [8.2.1](https://github.com/alpjs/alp-react-redux/compare/v8.2.0...v8.2.1) (2017-04-09)
 
