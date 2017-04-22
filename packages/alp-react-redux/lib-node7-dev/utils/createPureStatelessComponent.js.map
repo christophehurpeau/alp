@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/utils/createPureStatelessComponent.js"],"names":["Component"],"mappings":";;;;;;AAAA;;kBAEe,sCAACA,SAAD;AAAA,SAAe,yBAAQ,IAAR,EAAcA,SAAd,CAAf;AAAA,C","file":"createPureStatelessComponent.js","sourcesContent":["import { connect } from 'react-redux';\n\nexport default (Component) => connect(null)(Component);\n"]}

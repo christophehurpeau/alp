@@ -1,35 +1,57 @@
+import React from 'react';
+
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-import render from 'fody';
+import { renderToString } from 'react-dom/server';
+import Helmet from 'react-helmet';
 import Logger from 'nightingale-logger';
 import isModernBrowser from 'modern-browsers';
 import { createStore, combineReducers } from 'redux';
-import AlpLayout from './layout/AlpLayout';
-import AlpReactApp from './AlpReactApp';
-import AlpReduxApp from './AlpReduxApp';
+import htmlLayout from './layout/htmlLayout';
+import AlpReactApp from './layout/AlpReactApp';
+import AlpReduxApp from './layout/AlpReduxApp';
 import * as alpReducers from './reducers';
 
 
-export { AlpReactApp, AlpReduxApp };
-export { Helmet } from 'fody';
+export { AlpReactApp, AlpReduxApp, Helmet };
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
-import _createPureStatelessComponent from 'react-pure-stateless-component';
-export { _createPureStatelessComponent as createPureStatelessComponent };
-
-export { createAction, createReducer, createLoader, classNames } from './utils';
-export { AlpHtml, AlpLayout, AlpHead, AlpBody } from './layout';
+export { createAction, createReducer, createLoader, classNames, createPureStatelessComponent } from './utils';
 
 throw new Error('Not supposed to be loaded browser-side.');
 
 var logger = new Logger('alp:react-redux');
 
+var renderToStringApp = function renderToStringApp(App, appProps, View, props) {
+  var app = React.createElement(
+    App,
+    appProps,
+    React.createElement(View, props)
+  );
+  return renderToString(app);
+};
+
+var renderHtml = function renderHtml(_ref) {
+  var App = _ref.App,
+      appProps = _ref.appProps,
+      View = _ref.View,
+      props = _ref.props,
+      layoutOptions = _ref.layoutOptions;
+
+  var content = renderToStringApp(App, appProps, View, props);
+  var helmet = Helmet.renderStatic();
+  return '<!doctype html>\n' + htmlLayout(helmet, content, layoutOptions);
+};
+
 export default function alpReactRedux() {
-  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref$Layout = _ref.Layout,
-      Layout = _ref$Layout === undefined ? AlpLayout : _ref$Layout,
-      _ref$sharedReducers = _ref.sharedReducers,
-      sharedReducers = _ref$sharedReducers === undefined ? {} : _ref$sharedReducers;
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      layoutBody = _ref2.layoutBody,
+      appHOC = _ref2.appHOC,
+      _ref2$sharedReducers = _ref2.sharedReducers,
+      sharedReducers = _ref2$sharedReducers === undefined ? {} : _ref2$sharedReducers;
+
+  var AlpReactAppLayout = appHOC ? appHOC(AlpReactApp) : AlpReactApp;
+  var AlpReduxAppLayout = appHOC ? appHOC(AlpReduxApp) : AlpReduxApp;
 
   return function (app) {
     app.context.render = function (moduleDescriptor, data, _loaded) {
@@ -56,18 +78,19 @@ export default function alpReactRedux() {
 
       // eslint-disable-next-line no-unused-vars
 
-      var _ref2 = moduleHasReducers ? this.store.getState() : {},
-          unusedContext = _ref2.context,
-          initialData = _objectWithoutProperties(_ref2, ['context']);
+      var _ref3 = moduleHasReducers ? this.store.getState() : {},
+          unusedContext = _ref3.context,
+          initialData = _objectWithoutProperties(_ref3, ['context']);
 
       // TODO create alp-useragent with getter in context
 
 
       var ua = this.req.headers['user-agent'];
       var name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-      this.body = render({
-        Layout: Layout,
-        layoutProps: {
+
+      this.body = renderHtml({
+        layoutOptions: {
+          layoutBody: layoutBody,
           version: version,
           moduleIdentifier: moduleIdentifier,
           scriptName: name,
@@ -76,7 +99,7 @@ export default function alpReactRedux() {
           initialData: moduleHasReducers ? initialData : null
         },
 
-        App: reducer ? AlpReduxApp : AlpReactApp,
+        App: reducer ? AlpReduxAppLayout : AlpReactAppLayout,
         appProps: {
           store: this.store,
           context: this

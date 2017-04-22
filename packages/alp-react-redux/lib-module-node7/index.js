@@ -1,28 +1,44 @@
+import React from 'react';
+
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-import render from 'fody';
+import { renderToString } from 'react-dom/server';
+import Helmet from 'react-helmet';
 import Logger from 'nightingale-logger';
 import isModernBrowser from 'modern-browsers';
 import { createStore, combineReducers } from 'redux';
-import AlpLayout from './layout/AlpLayout';
-import AlpReactApp from './AlpReactApp';
-import AlpReduxApp from './AlpReduxApp';
+import htmlLayout from './layout/htmlLayout';
+import AlpReactApp from './layout/AlpReactApp';
+import AlpReduxApp from './layout/AlpReduxApp';
 import * as alpReducers from './reducers';
 
 
-export { AlpReactApp, AlpReduxApp };
-export { Helmet } from 'fody';
+export { AlpReactApp, AlpReduxApp, Helmet };
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
-import _createPureStatelessComponent from 'react-pure-stateless-component';
-export { _createPureStatelessComponent as createPureStatelessComponent };
-
-export { createAction, createReducer, createLoader, classNames } from './utils';
-export { AlpHtml, AlpLayout, AlpHead, AlpBody } from './layout';
+export { createAction, createReducer, createLoader, classNames, createPureStatelessComponent } from './utils';
 
 const logger = new Logger('alp:react-redux');
 
-export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} } = {}) {
+const renderToStringApp = (App, appProps, View, props) => {
+  const app = React.createElement(
+    App,
+    appProps,
+    React.createElement(View, props)
+  );
+  return renderToString(app);
+};
+
+const renderHtml = ({ App, appProps, View, props, layoutOptions }) => {
+  const content = renderToStringApp(App, appProps, View, props);
+  const helmet = Helmet.renderStatic();
+  return `<!doctype html>\n${htmlLayout(helmet, content, layoutOptions)}`;
+};
+
+export default function alpReactRedux({ layoutBody, appHOC, sharedReducers = {} } = {}) {
+  const AlpReactAppLayout = appHOC ? appHOC(AlpReactApp) : AlpReactApp;
+  const AlpReduxAppLayout = appHOC ? appHOC(AlpReduxApp) : AlpReduxApp;
+
   return app => {
     app.context.render = function (moduleDescriptor, data, _loaded) {
       logger.debug('render view', { data });
@@ -50,9 +66,10 @@ export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} 
       // TODO create alp-useragent with getter in context
       const ua = this.req.headers['user-agent'];
       const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-      this.body = render({
-        Layout,
-        layoutProps: {
+
+      this.body = renderHtml({
+        layoutOptions: {
+          layoutBody,
           version,
           moduleIdentifier,
           scriptName: name,
@@ -61,7 +78,7 @@ export default function alpReactRedux({ Layout = AlpLayout, sharedReducers = {} 
           initialData: moduleHasReducers ? initialData : null
         },
 
-        App: reducer ? AlpReduxApp : AlpReactApp,
+        App: reducer ? AlpReduxAppLayout : AlpReactAppLayout,
         appProps: {
           store: this.store,
           context: this

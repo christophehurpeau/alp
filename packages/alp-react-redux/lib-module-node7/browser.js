@@ -1,22 +1,22 @@
-/* global window */
-import render, { unmountComponentAtNode } from 'fody';
+import React from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
-import AlpReactApp from './AlpReactApp';
-import AlpReduxApp from './AlpReduxApp';
+import AlpReactApp from './layout/AlpReactApp';
+import AlpReduxApp from './layout/AlpReduxApp';
 import * as alpReducers from './reducers';
 
+
 export { AlpReactApp, AlpReduxApp };
-export { Helmet } from 'fody';
+import _Helmet from 'react-helmet';
+export { _Helmet as Helmet };
+
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
-import _createPureStatelessComponent from 'react-pure-stateless-component';
-export { _createPureStatelessComponent as createPureStatelessComponent };
-
-export { createAction, createReducer, createLoader, classNames } from './utils';
+export { createAction, createReducer, createLoader, createPureStatelessComponent, classNames } from './utils';
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 const HYDRATE_STATE = 'HYDRATE_STATE';
@@ -24,6 +24,15 @@ const logger = new Logger('alp:react-redux');
 
 let store;
 let currentModuleDescriptorIdentifier;
+
+const renderApp = ({ App, appProps, View, props, element }) => {
+  let app = React.createElement(
+    App,
+    appProps,
+    React.createElement(View, props)
+  );
+  return render(app, element);
+};
 
 const createHydratableReducer = reducer => (state, action) => {
   if (action.type === HYDRATE_STATE) {
@@ -33,7 +42,12 @@ const createHydratableReducer = reducer => (state, action) => {
   return reducer(state, action);
 };
 
-export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
+const getReactAppElement = () => document.getElementById('react-app');
+
+export default function alpReactRedux({ appHOC, sharedReducers = {} } = {}) {
+  const AlpReactAppLayout = appHOC ? appHOC(AlpReactApp) : AlpReactApp;
+  const AlpReduxAppLayout = appHOC ? appHOC(AlpReduxApp) : AlpReduxApp;
+
   return app => {
     const middleware = [createFunctionMiddleware(app), promiseMiddleware];
 
@@ -83,7 +97,7 @@ export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
               Object.assign(state, store.getState());
             } else {
               // destroy current component
-              unmountComponentAtNode(element);
+              unmountComponentAtNode(getReactAppElement());
               // replace reducer
               store.replaceReducer(createHydratableReducer(reducer));
               // add initial context
@@ -101,16 +115,16 @@ export default function alpReactRedux(element, { sharedReducers = {} } = {}) {
           this.store = store;
         }
 
-        render({
-          App: reducer ? AlpReduxApp : AlpReactApp,
+        renderApp({
+          element: getReactAppElement(),
+          App: reducer ? AlpReduxAppLayout : AlpReactAppLayout,
           appProps: {
             store,
             context: this,
             moduleDescriptor
           },
           View: moduleDescriptor.View,
-          props: moduleHasReducers ? undefined : data,
-          element
+          props: moduleHasReducers ? undefined : data
         });
       } catch (err) {
         _loadingBar();

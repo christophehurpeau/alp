@@ -1,23 +1,31 @@
-/* global window */
-import render, { unmountComponentAtNode } from 'fody';
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _jsxFileName = 'browser.jsx',
+    _this = this;
+
+import React from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
-import AlpReactApp from './AlpReactApp';
-import AlpReduxApp from './AlpReduxApp';
+import AlpReactApp from './layout/AlpReactApp';
+import AlpReduxApp from './layout/AlpReduxApp';
 import * as alpReducers from './reducers';
+import { ReactComponentType as _ReactComponentType } from './types';
 
 import t from 'flow-runtime';
+var ReactComponentType = t.tdz(function () {
+  return _ReactComponentType;
+});
 export { AlpReactApp, AlpReduxApp };
-export { Helmet } from 'fody';
+import _Helmet from 'react-helmet';
+export { _Helmet as Helmet };
+
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
-import _createPureStatelessComponent from 'react-pure-stateless-component';
-export { _createPureStatelessComponent as createPureStatelessComponent };
-
-export { createAction, createReducer, createLoader, classNames } from './utils';
+export { createAction, createReducer, createLoader, createPureStatelessComponent, classNames } from './utils';
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 var HYDRATE_STATE = 'HYDRATE_STATE';
@@ -25,6 +33,37 @@ var logger = new Logger('alp:react-redux');
 
 var store = void 0;
 var currentModuleDescriptorIdentifier = void 0;
+
+var AppOptionsType = t.type('AppOptionsType', t.exactObject(t.property('element', t.any()), t.property('App', t.ref(ReactComponentType)), t.property('appProps', t.object()), t.property('View', t.ref(ReactComponentType)), t.property('props', t.nullable(t.object()))));
+
+
+var renderApp = function renderApp(_arg) {
+  var _AppOptionsType$asser = AppOptionsType.assert(_arg),
+      App = _AppOptionsType$asser.App,
+      appProps = _AppOptionsType$asser.appProps,
+      View = _AppOptionsType$asser.View,
+      props = _AppOptionsType$asser.props,
+      element = _AppOptionsType$asser.element;
+
+  var app = React.createElement(
+    App,
+    _extends({}, appProps, {
+      __self: _this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 34
+      }
+    }),
+    React.createElement(View, _extends({}, props, {
+      __self: _this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 34
+      }
+    }))
+  );
+  return render(app, element);
+};
 
 var createHydratableReducer = function createHydratableReducer(reducer) {
   var _reducerType = t.function();
@@ -39,15 +78,23 @@ var createHydratableReducer = function createHydratableReducer(reducer) {
   };
 };
 
-var OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReducers', t.nullable(t.object()))));
+var OptionsType = t.type('OptionsType', t.exactObject(t.property('appHOC', t.nullable(t.function())), t.property('sharedReducers', t.nullable(t.object()))));
 
 
-export default function alpReactRedux(element) {
-  var _arg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+var getReactAppElement = function getReactAppElement() {
+  return document.getElementById('react-app');
+};
 
-  var _OptionsType$assert = OptionsType.assert(_arg),
-      _OptionsType$assert$s = _OptionsType$assert.sharedReducers,
-      sharedReducers = _OptionsType$assert$s === undefined ? {} : _OptionsType$assert$s;
+export default function alpReactRedux() {
+  var _arg2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var _t$nullable$assert = t.nullable(OptionsType).assert(_arg2),
+      appHOC = _t$nullable$assert.appHOC,
+      _t$nullable$assert$sh = _t$nullable$assert.sharedReducers,
+      sharedReducers = _t$nullable$assert$sh === undefined ? {} : _t$nullable$assert$sh;
+
+  var AlpReactAppLayout = appHOC ? appHOC(AlpReactApp) : AlpReactApp;
+  var AlpReduxAppLayout = appHOC ? appHOC(AlpReduxApp) : AlpReduxApp;
 
   return function (app) {
     var middleware = [createFunctionMiddleware(app), promiseMiddleware];
@@ -65,7 +112,7 @@ export default function alpReactRedux(element) {
     }
 
     app.context.render = function (moduleDescriptor, data, _loaded, _loadingBar) {
-      var _this = this;
+      var _this2 = this;
 
       if (!_loadingBar) _loadingBar = loadingBar();
       logger.debug('render view', { data: data });
@@ -80,7 +127,7 @@ export default function alpReactRedux(element) {
 
           // const _state = data;
           return moduleDescriptor.loader(currentState, data).then(function (data) {
-            return _this.render(moduleDescriptor, data, true, _loadingBar);
+            return _this2.render(moduleDescriptor, data, true, _loadingBar);
           });
         }
 
@@ -105,7 +152,7 @@ export default function alpReactRedux(element) {
               Object.assign(state, store.getState());
             } else {
               // destroy current component
-              unmountComponentAtNode(element);
+              unmountComponentAtNode(getReactAppElement());
               // replace reducer
               store.replaceReducer(createHydratableReducer(reducer));
               // add initial context
@@ -123,16 +170,16 @@ export default function alpReactRedux(element) {
           this.store = store;
         }
 
-        render({
-          App: reducer ? AlpReduxApp : AlpReactApp,
+        renderApp({
+          element: getReactAppElement(),
+          App: reducer ? AlpReduxAppLayout : AlpReactAppLayout,
           appProps: {
             store: store,
             context: this,
             moduleDescriptor: moduleDescriptor
           },
           View: moduleDescriptor.View,
-          props: moduleHasReducers ? undefined : data,
-          element: element
+          props: moduleHasReducers ? undefined : data
         });
       } catch (err) {
         _loadingBar();

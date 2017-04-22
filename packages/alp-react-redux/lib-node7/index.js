@@ -3,16 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AlpBody = exports.AlpHead = exports.AlpLayout = exports.AlpHtml = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
-
-var _fody = require('fody');
-
-Object.defineProperty(exports, 'Helmet', {
-  enumerable: true,
-  get: function () {
-    return _fody.Helmet;
-  }
-});
+exports.createPureStatelessComponent = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
 
 var _redux = require('redux');
 
@@ -58,37 +49,24 @@ Object.defineProperty(exports, 'classNames', {
     return _utils.classNames;
   }
 });
-
-var _layout = require('./layout');
-
-Object.defineProperty(exports, 'AlpHtml', {
+Object.defineProperty(exports, 'createPureStatelessComponent', {
   enumerable: true,
   get: function () {
-    return _layout.AlpHtml;
-  }
-});
-Object.defineProperty(exports, 'AlpLayout', {
-  enumerable: true,
-  get: function () {
-    return _layout.AlpLayout;
-  }
-});
-Object.defineProperty(exports, 'AlpHead', {
-  enumerable: true,
-  get: function () {
-    return _layout.AlpHead;
-  }
-});
-Object.defineProperty(exports, 'AlpBody', {
-  enumerable: true,
-  get: function () {
-    return _layout.AlpBody;
+    return _utils.createPureStatelessComponent;
   }
 });
 exports.default = alpReactRedux;
 exports.emitAction = emitAction;
 
-var _fody2 = _interopRequireDefault(_fody);
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = require('react-dom/server');
+
+var _reactHelmet = require('react-helmet');
+
+var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
 var _nightingaleLogger = require('nightingale-logger');
 
@@ -98,25 +76,21 @@ var _modernBrowsers = require('modern-browsers');
 
 var _modernBrowsers2 = _interopRequireDefault(_modernBrowsers);
 
-var _AlpLayout = require('./layout/AlpLayout');
+var _htmlLayout = require('./layout/htmlLayout');
 
-var _AlpLayout2 = _interopRequireDefault(_AlpLayout);
+var _htmlLayout2 = _interopRequireDefault(_htmlLayout);
 
-var _AlpReactApp = require('./AlpReactApp');
+var _AlpReactApp = require('./layout/AlpReactApp');
 
 var _AlpReactApp2 = _interopRequireDefault(_AlpReactApp);
 
-var _AlpReduxApp = require('./AlpReduxApp');
+var _AlpReduxApp = require('./layout/AlpReduxApp');
 
 var _AlpReduxApp2 = _interopRequireDefault(_AlpReduxApp);
 
 var _reducers = require('./reducers');
 
 var alpReducers = _interopRequireWildcard(_reducers);
-
-var _reactPureStatelessComponent = require('react-pure-stateless-component');
-
-var _reactPureStatelessComponent2 = _interopRequireDefault(_reactPureStatelessComponent);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -126,12 +100,30 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 exports.AlpReactApp = _AlpReactApp2.default;
 exports.AlpReduxApp = _AlpReduxApp2.default;
-exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
+exports.Helmet = _reactHelmet2.default;
 
 
 const logger = new _nightingaleLogger2.default('alp:react-redux');
 
-function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {}) {
+const renderToStringApp = (App, appProps, View, props) => {
+  const app = _react2.default.createElement(
+    App,
+    appProps,
+    _react2.default.createElement(View, props)
+  );
+  return (0, _server.renderToString)(app);
+};
+
+const renderHtml = ({ App, appProps, View, props, layoutOptions }) => {
+  const content = renderToStringApp(App, appProps, View, props);
+  const helmet = _reactHelmet2.default.renderStatic();
+  return `<!doctype html>\n${(0, _htmlLayout2.default)(helmet, content, layoutOptions)}`;
+};
+
+function alpReactRedux({ layoutBody, appHOC, sharedReducers = {} } = {}) {
+  const AlpReactAppLayout = appHOC ? appHOC(_AlpReactApp2.default) : _AlpReactApp2.default;
+  const AlpReduxAppLayout = appHOC ? appHOC(_AlpReduxApp2.default) : _AlpReduxApp2.default;
+
   return app => {
     app.context.render = function (moduleDescriptor, data, _loaded) {
       logger.debug('render view', { data });
@@ -159,9 +151,10 @@ function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {
       // TODO create alp-useragent with getter in context
       const ua = this.req.headers['user-agent'];
       const name = (0, _modernBrowsers2.default)(ua) ? 'modern-browsers' : 'es5';
-      this.body = (0, _fody2.default)({
-        Layout,
-        layoutProps: {
+
+      this.body = renderHtml({
+        layoutOptions: {
+          layoutBody,
           version,
           moduleIdentifier,
           scriptName: name,
@@ -170,7 +163,7 @@ function alpReactRedux({ Layout = _AlpLayout2.default, sharedReducers = {} } = {
           initialData: moduleHasReducers ? initialData : null
         },
 
-        App: reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
+        App: reducer ? AlpReduxAppLayout : AlpReactAppLayout,
         appProps: {
           store: this.store,
           context: this

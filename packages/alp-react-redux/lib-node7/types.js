@@ -3,49 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.ReactNodeType = exports.ReactElementType = undefined;
 
-var _types = require('fody/types');
+var _flowRuntime = require('flow-runtime');
 
-Object.defineProperty(exports, 'ReactNodeType', {
-  enumerable: true,
-  get: function () {
-    return _types.ReactNodeType;
-  }
+var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
+
+var _react = require('react');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const ReactElementType = exports.ReactElementType = _flowRuntime2.default.refinement(_flowRuntime2.default.object(), input => {
+  if (!(0, _react.isValidElement)(input)) return 'not a valid react element';
 });
-Object.defineProperty(exports, 'ReactElementType', {
-  enumerable: true,
-  get: function () {
-    return _types.ReactElementType;
-  }
-});
-Object.defineProperty(exports, 'TagNameType', {
-  enumerable: true,
-  get: function () {
-    return _types.TagNameType;
-  }
-});
-Object.defineProperty(exports, 'ReactClassComponentType', {
-  enumerable: true,
-  get: function () {
-    return _types.ReactClassComponentType;
-  }
-});
-Object.defineProperty(exports, 'ReactStatelessComponentType', {
-  enumerable: true,
-  get: function () {
-    return _types.ReactStatelessComponentType;
-  }
-});
-Object.defineProperty(exports, 'TagNameOrReactComponentType', {
-  enumerable: true,
-  get: function () {
-    return _types.TagNameOrReactComponentType;
-  }
-});
-Object.defineProperty(exports, 'LayoutPropsType', {
-  enumerable: true,
-  get: function () {
-    return _types.LayoutPropsType;
-  }
-});
+
+const ReactNodeType = exports.ReactNodeType = _flowRuntime2.default.type('React$Node', ReactNodeType => _flowRuntime2.default.union(_flowRuntime2.default.null(), _flowRuntime2.default.void(), _flowRuntime2.default.string(), _flowRuntime2.default.number(), ReactElementType, _flowRuntime2.default.array(ReactNodeType)));
 //# sourceMappingURL=types.js.map

@@ -1,22 +1,22 @@
-/* global window */
-import render, { unmountComponentAtNode } from 'fody';
+import React from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
 import Logger from 'nightingale-logger';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
 import { websocketMiddleware } from './websocket';
 import loadingBar from './loading-bar';
-import AlpReactApp from './AlpReactApp';
-import AlpReduxApp from './AlpReduxApp';
+import AlpReactApp from './layout/AlpReactApp';
+import AlpReduxApp from './layout/AlpReduxApp';
 import * as alpReducers from './reducers';
 
+
 export { AlpReactApp, AlpReduxApp };
-export { Helmet } from 'fody';
+import _Helmet from 'react-helmet';
+export { _Helmet as Helmet };
+
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
-import _createPureStatelessComponent from 'react-pure-stateless-component';
-export { _createPureStatelessComponent as createPureStatelessComponent };
-
-export { createAction, createReducer, createLoader, classNames } from './utils';
+export { createAction, createReducer, createLoader, createPureStatelessComponent, classNames } from './utils';
 export { createEmitAction, createEmitPromiseAction } from './websocket';
 
 var HYDRATE_STATE = 'HYDRATE_STATE';
@@ -24,6 +24,21 @@ var logger = new Logger('alp:react-redux');
 
 var store = void 0;
 var currentModuleDescriptorIdentifier = void 0;
+
+var renderApp = function renderApp(_ref) {
+  var App = _ref.App,
+      appProps = _ref.appProps,
+      View = _ref.View,
+      props = _ref.props,
+      element = _ref.element;
+
+  var app = React.createElement(
+    App,
+    appProps,
+    React.createElement(View, props)
+  );
+  return render(app, element);
+};
 
 var createHydratableReducer = function createHydratableReducer(reducer) {
   return function (state, action) {
@@ -35,10 +50,18 @@ var createHydratableReducer = function createHydratableReducer(reducer) {
   };
 };
 
-export default function alpReactRedux(element) {
-  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      _ref$sharedReducers = _ref.sharedReducers,
-      sharedReducers = _ref$sharedReducers === undefined ? {} : _ref$sharedReducers;
+var getReactAppElement = function getReactAppElement() {
+  return document.getElementById('react-app');
+};
+
+export default function alpReactRedux() {
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      appHOC = _ref2.appHOC,
+      _ref2$sharedReducers = _ref2.sharedReducers,
+      sharedReducers = _ref2$sharedReducers === undefined ? {} : _ref2$sharedReducers;
+
+  var AlpReactAppLayout = appHOC ? appHOC(AlpReactApp) : AlpReactApp;
+  var AlpReduxAppLayout = appHOC ? appHOC(AlpReduxApp) : AlpReduxApp;
 
   return function (app) {
     var middleware = [createFunctionMiddleware(app), promiseMiddleware];
@@ -93,7 +116,7 @@ export default function alpReactRedux(element) {
               Object.assign(state, store.getState());
             } else {
               // destroy current component
-              unmountComponentAtNode(element);
+              unmountComponentAtNode(getReactAppElement());
               // replace reducer
               store.replaceReducer(createHydratableReducer(reducer));
               // add initial context
@@ -111,16 +134,16 @@ export default function alpReactRedux(element) {
           this.store = store;
         }
 
-        render({
-          App: reducer ? AlpReduxApp : AlpReactApp,
+        renderApp({
+          element: getReactAppElement(),
+          App: reducer ? AlpReduxAppLayout : AlpReactAppLayout,
           appProps: {
             store: store,
             context: this,
             moduleDescriptor: moduleDescriptor
           },
           View: moduleDescriptor.View,
-          props: moduleHasReducers ? undefined : data,
-          element: element
+          props: moduleHasReducers ? undefined : data
         });
       } catch (err) {
         _loadingBar();

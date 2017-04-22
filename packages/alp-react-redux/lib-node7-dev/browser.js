@@ -3,16 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createEmitPromiseAction = exports.createEmitAction = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.createPureStatelessComponent = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
+exports.createEmitPromiseAction = exports.createEmitAction = exports.classNames = exports.createPureStatelessComponent = exports.createLoader = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = exports.Helmet = exports.AlpReduxApp = exports.AlpReactApp = undefined;
 
-var _fody = require('fody');
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-Object.defineProperty(exports, 'Helmet', {
-  enumerable: true,
-  get: function () {
-    return _fody.Helmet;
-  }
-});
+var _jsxFileName = 'browser.jsx';
 
 var _redux = require('redux');
 
@@ -52,6 +47,12 @@ Object.defineProperty(exports, 'createLoader', {
     return _utils.createLoader;
   }
 });
+Object.defineProperty(exports, 'createPureStatelessComponent', {
+  enumerable: true,
+  get: function () {
+    return _utils.createPureStatelessComponent;
+  }
+});
 Object.defineProperty(exports, 'classNames', {
   enumerable: true,
   get: function () {
@@ -75,7 +76,11 @@ Object.defineProperty(exports, 'createEmitPromiseAction', {
 });
 exports.default = alpReactRedux;
 
-var _fody2 = _interopRequireDefault(_fody);
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
 
 var _nightingaleLogger = require('nightingale-logger');
 
@@ -87,11 +92,11 @@ var _loadingBar2 = require('./loading-bar');
 
 var _loadingBar3 = _interopRequireDefault(_loadingBar2);
 
-var _AlpReactApp = require('./AlpReactApp');
+var _AlpReactApp = require('./layout/AlpReactApp');
 
 var _AlpReactApp2 = _interopRequireDefault(_AlpReactApp);
 
-var _AlpReduxApp = require('./AlpReduxApp');
+var _AlpReduxApp = require('./layout/AlpReduxApp');
 
 var _AlpReduxApp2 = _interopRequireDefault(_AlpReduxApp);
 
@@ -99,22 +104,25 @@ var _reducers = require('./reducers');
 
 var alpReducers = _interopRequireWildcard(_reducers);
 
+var _types = require('./types');
+
 var _flowRuntime = require('flow-runtime');
 
 var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
-var _reactPureStatelessComponent = require('react-pure-stateless-component');
+var _reactHelmet = require('react-helmet');
 
-var _reactPureStatelessComponent2 = _interopRequireDefault(_reactPureStatelessComponent);
+var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global window */
+const ReactComponentType = _flowRuntime2.default.tdz(() => _types.ReactComponentType);
+
 exports.AlpReactApp = _AlpReactApp2.default;
 exports.AlpReduxApp = _AlpReduxApp2.default;
-exports.createPureStatelessComponent = _reactPureStatelessComponent2.default;
+exports.Helmet = _reactHelmet2.default;
 
 
 const HYDRATE_STATE = 'HYDRATE_STATE';
@@ -122,6 +130,31 @@ const logger = new _nightingaleLogger2.default('alp:react-redux');
 
 let store;
 let currentModuleDescriptorIdentifier;
+
+const AppOptionsType = _flowRuntime2.default.type('AppOptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('element', _flowRuntime2.default.any()), _flowRuntime2.default.property('App', _flowRuntime2.default.ref(ReactComponentType)), _flowRuntime2.default.property('appProps', _flowRuntime2.default.object()), _flowRuntime2.default.property('View', _flowRuntime2.default.ref(ReactComponentType)), _flowRuntime2.default.property('props', _flowRuntime2.default.nullable(_flowRuntime2.default.object()))));
+
+const renderApp = _arg => {
+  let { App, appProps, View, props, element } = AppOptionsType.assert(_arg);
+
+  let app = _react2.default.createElement(
+    App,
+    _extends({}, appProps, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 34
+      }
+    }),
+    _react2.default.createElement(View, _extends({}, props, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 34
+      }
+    }))
+  );
+  return (0, _reactDom.render)(app, element);
+};
 
 const createHydratableReducer = reducer => {
   let _reducerType = _flowRuntime2.default.function();
@@ -137,10 +170,15 @@ const createHydratableReducer = reducer => {
   };
 };
 
-const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('sharedReducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object()))));
+const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('appHOC', _flowRuntime2.default.nullable(_flowRuntime2.default.function())), _flowRuntime2.default.property('sharedReducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object()))));
 
-function alpReactRedux(element, _arg = {}) {
-  let { sharedReducers = {} } = OptionsType.assert(_arg);
+const getReactAppElement = () => document.getElementById('react-app');
+
+function alpReactRedux(_arg2 = {}) {
+  let { appHOC, sharedReducers = {} } = _flowRuntime2.default.nullable(OptionsType).assert(_arg2);
+
+  const AlpReactAppLayout = appHOC ? appHOC(_AlpReactApp2.default) : _AlpReactApp2.default;
+  const AlpReduxAppLayout = appHOC ? appHOC(_AlpReduxApp2.default) : _AlpReduxApp2.default;
 
   return app => {
     const middleware = [(0, _middlewareBrowser.createFunctionMiddleware)(app), _middlewareBrowser.promiseMiddleware];
@@ -194,7 +232,7 @@ function alpReactRedux(element, _arg = {}) {
               Object.assign(state, store.getState());
             } else {
               // destroy current component
-              (0, _fody.unmountComponentAtNode)(element);
+              (0, _reactDom.unmountComponentAtNode)(getReactAppElement());
               // replace reducer
               store.replaceReducer(createHydratableReducer(reducer));
               // add initial context
@@ -212,16 +250,16 @@ function alpReactRedux(element, _arg = {}) {
           this.store = store;
         }
 
-        (0, _fody2.default)({
-          App: reducer ? _AlpReduxApp2.default : _AlpReactApp2.default,
+        renderApp({
+          element: getReactAppElement(),
+          App: reducer ? AlpReduxAppLayout : AlpReactAppLayout,
           appProps: {
             store,
             context: this,
             moduleDescriptor
           },
           View: moduleDescriptor.View,
-          props: moduleHasReducers ? undefined : data,
-          element
+          props: moduleHasReducers ? undefined : data
         });
       } catch (err) {
         _loadingBar();

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/AlpReactApp.jsx"],"names":[],"mappings":";;;;;;AACA;;6BADA","file":"AlpReactApp.jsx","sourcesContent":["/* eslint-disable prefer-template */\nimport { App as DefaultApp } from 'fody/src';\n\nexport default DefaultApp;\n"]}
