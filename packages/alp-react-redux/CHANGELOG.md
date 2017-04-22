@@ -1,3 +1,20 @@
+<a name="10.0.0"></a>
+# [10.0.0](https://github.com/alpjs/alp-react-redux/compare/v9.0.0...v10.0.0) (2017-04-22)
+
+
+### Features
+
+* big rewrite, remove fody ([e232691](https://github.com/alpjs/alp-react-redux/commit/e232691))
+
+
+### BREAKING CHANGES
+
+* S:
+
+- changed layout
+- changed API
+
+
 <a name="9.0.0"></a>
 # [9.0.0](https://github.com/alpjs/alp-react-redux/compare/v8.2.1...v9.0.0) (2017-04-22)
 
