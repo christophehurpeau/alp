@@ -1,3 +1,12 @@
+<a name="0.6.2"></a>
+## [0.6.2](https://github.com/alpjs/react-alp-login/compare/v0.6.1...v0.6.2) (2017-04-22)
+
+
+### Bug Fixes
+
+* use icon button ([7209cde](https://github.com/alpjs/react-alp-login/commit/7209cde))
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/alpjs/react-alp-login/compare/v0.6.0...v0.6.1) (2017-04-22)
 
