@@ -69,12 +69,12 @@
     "pob-babel": "^17.2.0",
     "pob-release": "^3.1.0",
     "react": "^15.5.4",
-    "react-alp-link": "^0.5.0",
+    "react-alp-link": "^0.6.0",
     "ynnub": "^0.2.5"
   },
   "peerDependencies": {
     "react": "^15.3.2",
-    "react-alp-link": ">= 0.5.0",
+    "react-alp-link": ">= 0.6.0",
     "ynnub": ">= 0.2.5"
   }
 }
