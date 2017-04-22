@@ -17,6 +17,24 @@
   "module:node-dev": "./lib-module-node7-dev/index.js",
   "module:modern-browsers": "./lib-module-modern-browsers/index.js",
   "module:modern-browsers-dev": "./lib-module-modern-browsers-dev/index.js",
+  "module:aliases-node": {
+    "./LoginButtonGoogle.js": "./lib-module-node7/LoginButtonGoogle.js"
+  },
+  "module:aliases-node-dev": {
+    "./LoginButtonGoogle.js": "./lib-module-node7-dev/LoginButtonGoogle.js"
+  },
+  "module:aliases-browser": {
+    "./LoginButtonGoogle.js": "./lib-module/LoginButtonGoogle.js"
+  },
+  "module:aliases-browser-dev": {
+    "./LoginButtonGoogle.js": "./lib-module-dev/LoginButtonGoogle.js"
+  },
+  "module:aliases-modern-browsers": {
+    "./LoginButtonGoogle.js": "./lib-module-modern-browsers/LoginButtonGoogle.js"
+  },
+  "module:aliases-modern-browsers-dev": {
+    "./LoginButtonGoogle.js": "./lib-module-modern-browsers-dev/LoginButtonGoogle.js"
+  },
   "scripts": {
     "build": "pob-build",
     "clean": "rm -Rf docs dist test/node6 coverage",

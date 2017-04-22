@@ -1,2 +1,2 @@
-export LoginButtons from './LoginButtonsComponent';
-export LoginForm from './LoginFormComponent';
+export LoginButtons from './LoginButtons';
+export LoginForm from './LoginForm';

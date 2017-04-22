@@ -10,7 +10,8 @@
   "testing": false,
   "documentation": false,
   "entries": [
-    "index"
+    "index",
+    "LoginButtonGoogle"
   ],
   "flow": true,
   "doclets": false
