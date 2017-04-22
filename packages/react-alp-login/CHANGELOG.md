@@ -1,3 +1,12 @@
+<a name="0.6.3"></a>
+## [0.6.3](https://github.com/alpjs/react-alp-login/compare/v0.6.2...v0.6.3) (2017-04-22)
+
+
+### Features
+
+* LoginButtonGoogle ([6a456ae](https://github.com/alpjs/react-alp-login/commit/6a456ae))
+
+
 <a name="0.6.2"></a>
 ## [0.6.2](https://github.com/alpjs/react-alp-login/compare/v0.6.1...v0.6.2) (2017-04-22)
 
