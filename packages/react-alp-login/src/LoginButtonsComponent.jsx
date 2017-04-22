@@ -11,11 +11,9 @@ export default () => (
         to="login"
         params={{ strategy: 'google' }}
         target="_self"
-      >
-        <GoogleIcon className="icon" />
-        {' '}
-        <span>Login with Google</span>
-      </Link>
+        icon={<GoogleIcon className="icon" />}
+        label="Login with Google"
+      />
     </li>
   </List>
 );

@@ -32,22 +32,14 @@ exports.default = () => _react2.default.createElement(
   _react2.default.createElement(
     'li',
     null,
-    _react2.default.createElement(
-      _reactAlpLink2.default,
-      {
-        as: _FlatButton2.default,
-        to: 'login',
-        params: { strategy: 'google' },
-        target: '_self'
-      },
-      _react2.default.createElement(_google2.default, { className: 'icon' }),
-      ' ',
-      _react2.default.createElement(
-        'span',
-        null,
-        'Login with Google'
-      )
-    )
+    _react2.default.createElement(_reactAlpLink2.default, {
+      as: _FlatButton2.default,
+      to: 'login',
+      params: { strategy: 'google' },
+      target: '_self',
+      icon: _react2.default.createElement(_google2.default, { className: 'icon' }),
+      label: 'Login with Google'
+    })
   )
 );
 //# sourceMappingURL=LoginButtonsComponent.js.map

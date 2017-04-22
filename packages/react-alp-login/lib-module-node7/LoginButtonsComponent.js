@@ -10,22 +10,14 @@ export default (() => React.createElement(
   React.createElement(
     'li',
     null,
-    React.createElement(
-      Link,
-      {
-        as: FlatButton,
-        to: 'login',
-        params: { strategy: 'google' },
-        target: '_self'
-      },
-      React.createElement(GoogleIcon, { className: 'icon' }),
-      ' ',
-      React.createElement(
-        'span',
-        null,
-        'Login with Google'
-      )
-    )
+    React.createElement(Link, {
+      as: FlatButton,
+      to: 'login',
+      params: { strategy: 'google' },
+      target: '_self',
+      icon: React.createElement(GoogleIcon, { className: 'icon' }),
+      label: 'Login with Google'
+    })
   )
 ));
 //# sourceMappingURL=LoginButtonsComponent.js.map

@@ -25,38 +25,24 @@ export default (function loginButtonsComponent() {
           lineNumber: 8
         }
       },
-      React.createElement(
-        Link,
-        {
-          as: FlatButton,
-          to: 'login',
-          params: { strategy: 'google' },
-          target: '_self',
-          __self: _this,
+      React.createElement(Link, {
+        as: FlatButton,
+        to: 'login',
+        params: { strategy: 'google' },
+        target: '_self',
+        icon: React.createElement(GoogleIcon, { className: 'icon', __self: _this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 9
-          }
-        },
-        React.createElement(GoogleIcon, { className: 'icon', __self: _this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 15
+            lineNumber: 14
           }
         }),
-        ' ',
-        React.createElement(
-          'span',
-          {
-            __self: _this,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 17
-            }
-          },
-          'Login with Google'
-        )
-      )
+        label: 'Login with Google',
+        __self: _this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 9
+        }
+      })
     )
   );
 });

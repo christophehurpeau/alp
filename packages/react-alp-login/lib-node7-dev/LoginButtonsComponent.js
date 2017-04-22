@@ -45,38 +45,24 @@ exports.default = function loginButtonsComponent() {
           lineNumber: 8
         }
       },
-      _react2.default.createElement(
-        _reactAlpLink2.default,
-        {
-          as: _FlatButton2.default,
-          to: 'login',
-          params: { strategy: 'google' },
-          target: '_self',
-          __self: undefined,
+      _react2.default.createElement(_reactAlpLink2.default, {
+        as: _FlatButton2.default,
+        to: 'login',
+        params: { strategy: 'google' },
+        target: '_self',
+        icon: _react2.default.createElement(_google2.default, { className: 'icon', __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 9
-          }
-        },
-        _react2.default.createElement(_google2.default, { className: 'icon', __self: undefined,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 15
+            lineNumber: 14
           }
         }),
-        ' ',
-        _react2.default.createElement(
-          'span',
-          {
-            __self: undefined,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 17
-            }
-          },
-          'Login with Google'
-        )
-      )
+        label: 'Login with Google',
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 9
+        }
+      })
     )
   );
 };
