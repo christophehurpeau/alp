@@ -13,6 +13,7 @@ export default () => (
         target="_self"
       >
         <GoogleIcon className="icon" />
+        {' '}
         <span>Login with Google</span>
       </Link>
     </li>

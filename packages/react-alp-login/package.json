@@ -52,11 +52,11 @@
     "pob-release": "^3.1.0",
     "react": "^15.3.2",
     "react-alp-link": "^0.3.1",
-    "ynnub": "^0.1.0"
+    "ynnub": "^0.2.3"
   },
   "peerDependencies": {
     "react": "^15.3.2",
     "react-alp-link": ">= 0.5.0",
-    "ynnub": ">= 0.1.0"
+    "ynnub": ">= 0.2.3"
   }
 }

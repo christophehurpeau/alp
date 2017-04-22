@@ -19,6 +19,7 @@ export default (() => React.createElement(
         target: '_self'
       },
       React.createElement(GoogleIcon, { className: 'icon' }),
+      ' ',
       React.createElement(
         'span',
         null,

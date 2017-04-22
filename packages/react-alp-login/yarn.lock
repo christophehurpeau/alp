@@ -1805,10 +1805,6 @@ flow-runtime@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/flow-runtime/-/flow-runtime-0.10.0.tgz#20a70432fb20e8bba43769078c7a17d99dd1acab"
 
-flow-runtime@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/flow-runtime/-/flow-runtime-0.8.0.tgz#8dd6e10897e336d4bc99ed5ee42397ebcb3417cd"
-
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -3723,8 +3719,8 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-ynnub@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ynnub/-/ynnub-0.1.0.tgz#0d5dd3f7e1a343fe032c953d5963854d695a4664"
+ynnub@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/ynnub/-/ynnub-0.2.3.tgz#be374af54eab60b0b644c4299d6be04625f881f8"
   dependencies:
-    flow-runtime "^0.8.0"
+    flow-runtime "^0.10.0"

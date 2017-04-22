@@ -20,6 +20,7 @@ export default (function () {
           target: '_self'
         },
         React.createElement(GoogleIcon, { className: 'icon' }),
+        ' ',
         React.createElement(
           'span',
           null,

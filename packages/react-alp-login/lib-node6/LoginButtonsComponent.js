@@ -41,6 +41,7 @@ exports.default = () => _react2.default.createElement(
         target: '_self'
       },
       _react2.default.createElement(_google2.default, { className: 'icon' }),
+      ' ',
       _react2.default.createElement(
         'span',
         null,

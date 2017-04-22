@@ -44,13 +44,14 @@ export default (function loginButtonsComponent() {
             lineNumber: 15
           }
         }),
+        ' ',
         React.createElement(
           'span',
           {
             __self: _this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 16
+              lineNumber: 17
             }
           },
           'Login with Google'
