@@ -9,7 +9,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 /* eslint-disable prefer-template */
 import { Head } from 'fody';
-import { ReactElementType as _ReactElementType } from '../types';
+import { ReactElementType as _ReactElementType, ReactNodeType as _ReactNodeType } from '../types';
 import uneval from './uneval';
 import assetUrl from './assetUrl';
 
@@ -17,20 +17,26 @@ import t from 'flow-runtime';
 var ReactElementType = t.tdz(function () {
   return _ReactElementType;
 });
-var PropsType = t.type('PropsType', t.object(t.property('version', t.string()), t.property('moduleIdentifier', t.nullable(t.string())), t.property('scriptName', t.union(t.string(), t.boolean(false))), t.property('styleName', t.nullable(t.string())), t.property('initialData', t.nullable(t.any())), t.property('initialBrowserContext', t.nullable(t.any()))));
+var ReactNodeType = t.tdz(function () {
+  return _ReactNodeType;
+});
+var PropsType = t.type('PropsType', t.object(t.property('children', t.nullable(t.ref(ReactNodeType))), t.property('version', t.string()), t.property('moduleIdentifier', t.nullable(t.string())), t.property('scriptName', t.union(t.string(), t.boolean(false))), t.property('styleName', t.nullable(t.string())), t.property('initialData', t.nullable(t.any())), t.property('initialBrowserContext', t.nullable(t.any()))));
 
 
 export default (function alpHead(_arg) {
   var _returnType = t.return(t.ref(ReactElementType));
 
   var _PropsType$assert = PropsType.assert(_arg),
+      children = _PropsType$assert.children,
       version = _PropsType$assert.version,
       moduleIdentifier = _PropsType$assert.moduleIdentifier,
       scriptName = _PropsType$assert.scriptName,
       styleName = _PropsType$assert.styleName,
       initialData = _PropsType$assert.initialData,
       initialBrowserContext = _PropsType$assert.initialBrowserContext,
-      props = _objectWithoutProperties(_PropsType$assert, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+      _PropsType$assert$pol = _PropsType$assert.polyfillFeatures,
+      polyfillFeatures = _PropsType$assert$pol === undefined ? 'default,es6,es7,localStorage,fetch,Intl' : _PropsType$assert$pol,
+      props = _objectWithoutProperties(_PropsType$assert, ['children', 'version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext', 'polyfillFeatures']);
 
   return _returnType.assert(React.createElement(
     Head,
@@ -38,37 +44,31 @@ export default (function alpHead(_arg) {
       __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 28
       }
     }),
     React.createElement('meta', { charSet: 'utf-8', __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 29
       }
     }),
     React.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1', __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
-      }
-    }),
-    React.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,400italic', rel: 'stylesheet', type: 'text/css', __self: _this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 28
+        lineNumber: 30
       }
     }),
     React.createElement('link', { rel: 'stylesheet', href: assetUrl('/' + (styleName || 'index') + '.css', version), __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 29
+        lineNumber: 31
       }
     }),
-    React.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill', __self: _this,
+    polyfillFeatures && React.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=' + polyfillFeatures + '&unknown=polyfill', __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 30
+        lineNumber: 32
       }
     }),
     scriptName === false ? null : React.createElement('script', {
@@ -78,15 +78,16 @@ export default (function alpHead(_arg) {
       __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 34
       }
     }),
     scriptName === false ? null : React.createElement('script', { defer: true, src: assetUrl('/' + scriptName + '.js', version), __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 46
       }
-    })
+    }),
+    children
   ));
 });
 //# sourceMappingURL=AlpHead.js.map

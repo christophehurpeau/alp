@@ -10,29 +10,31 @@ import assetUrl from './assetUrl';
 
 export default (function (_ref) {
   let {
+    children,
     version,
     moduleIdentifier,
     scriptName,
     styleName,
     initialData,
-    initialBrowserContext
+    initialBrowserContext,
+    polyfillFeatures = 'default,es6,es7,localStorage,fetch,Intl'
   } = _ref,
-      props = _objectWithoutProperties(_ref, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+      props = _objectWithoutProperties(_ref, ['children', 'version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext', 'polyfillFeatures']);
 
   return React.createElement(
     Head,
     props,
     React.createElement('meta', { charSet: 'utf-8' }),
     React.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
-    React.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,400italic', rel: 'stylesheet', type: 'text/css' }),
     React.createElement('link', { rel: 'stylesheet', href: assetUrl(`/${styleName || 'index'}.css`, version) }),
-    React.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill' }),
+    polyfillFeatures && React.createElement('script', { defer: true, src: `https://polyfill.io/v2/polyfill.min.js?features=${polyfillFeatures}&unknown=polyfill` }),
     scriptName === false ? null : React.createElement('script', {
       dangerouslySetInnerHTML: {
         __html: `${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}` + `window.VERSION='${version}';` + `window.initialData=${uneval(initialData)};` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${uneval(initialBrowserContext)};`)
       }
     }),
-    scriptName === false ? null : React.createElement('script', { defer: true, src: assetUrl(`/${scriptName}.js`, version) })
+    scriptName === false ? null : React.createElement('script', { defer: true, src: assetUrl(`/${scriptName}.js`, version) }),
+    children
   );
 });
 //# sourceMappingURL=AlpHead.js.map

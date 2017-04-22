@@ -35,21 +35,25 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType);
 
-const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('version', _flowRuntime2.default.string()), _flowRuntime2.default.property('moduleIdentifier', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('styleName', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('initialData', _flowRuntime2.default.nullable(_flowRuntime2.default.any())), _flowRuntime2.default.property('initialBrowserContext', _flowRuntime2.default.nullable(_flowRuntime2.default.any()))));
+const ReactNodeType = _flowRuntime2.default.tdz(() => _types.ReactNodeType);
+
+const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('children', _flowRuntime2.default.nullable(_flowRuntime2.default.ref(ReactNodeType))), _flowRuntime2.default.property('version', _flowRuntime2.default.string()), _flowRuntime2.default.property('moduleIdentifier', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('styleName', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('initialData', _flowRuntime2.default.nullable(_flowRuntime2.default.any())), _flowRuntime2.default.property('initialBrowserContext', _flowRuntime2.default.nullable(_flowRuntime2.default.any()))));
 
 exports.default = function alpHead(_arg) {
   const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
 
   let _PropsType$assert = PropsType.assert(_arg),
       {
+    children,
     version,
     moduleIdentifier,
     scriptName,
     styleName,
     initialData,
-    initialBrowserContext
+    initialBrowserContext,
+    polyfillFeatures = 'default,es6,es7,localStorage,fetch,Intl'
   } = _PropsType$assert,
-      props = _objectWithoutProperties(_PropsType$assert, ['version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext']);
+      props = _objectWithoutProperties(_PropsType$assert, ['children', 'version', 'moduleIdentifier', 'scriptName', 'styleName', 'initialData', 'initialBrowserContext', 'polyfillFeatures']);
 
   return _returnType.assert(_react2.default.createElement(
     _fody.Head,
@@ -57,37 +61,31 @@ exports.default = function alpHead(_arg) {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 28
       }
     }),
     _react2.default.createElement('meta', { charSet: 'utf-8', __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 29
       }
     }),
     _react2.default.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1', __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
-      }
-    }),
-    _react2.default.createElement('link', { href: 'https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,400italic', rel: 'stylesheet', type: 'text/css', __self: undefined,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 28
+        lineNumber: 30
       }
     }),
     _react2.default.createElement('link', { rel: 'stylesheet', href: (0, _assetUrl2.default)(`/${styleName || 'index'}.css`, version), __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 29
+        lineNumber: 31
       }
     }),
-    _react2.default.createElement('script', { defer: true, src: 'https://polyfill.io/v2/polyfill.min.js?features=default,es6,localStorage,fetch,Intl&unknown=polyfill', __self: undefined,
+    polyfillFeatures && _react2.default.createElement('script', { defer: true, src: `https://polyfill.io/v2/polyfill.min.js?features=${polyfillFeatures}&unknown=polyfill`, __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 30
+        lineNumber: 32
       }
     }),
     scriptName === false ? null : _react2.default.createElement('script', {
@@ -97,15 +95,16 @@ exports.default = function alpHead(_arg) {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 34
       }
     }),
     scriptName === false ? null : _react2.default.createElement('script', { defer: true, src: (0, _assetUrl2.default)(`/${scriptName}.js`, version), __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 46
       }
-    })
+    }),
+    children
   ));
 };
 //# sourceMappingURL=AlpHead.js.map
