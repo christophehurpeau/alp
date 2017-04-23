@@ -122,8 +122,8 @@ let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 
       enumerable: false
     });
 
-    this.certPath = options.certPath || `${this.packageDirname}/config/cert`;
-    this.publicPath = options.publicPath || `${this.packageDirname}/public/`;
+    this.certPath = options.certPath || `${packageDirname}/config/cert`;
+    this.publicPath = options.publicPath || `${packageDirname}/public/`;
 
     _config()(this, config);
 

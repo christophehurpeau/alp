@@ -180,8 +180,8 @@ let Alp = (_dec = _flowRuntime2.default.decorate(_flowRuntime2.default.string())
       enumerable: false
     });
 
-    this.certPath = options.certPath || `${this.packageDirname}/config/cert`;
-    this.publicPath = options.publicPath || `${this.packageDirname}/public/`;
+    this.certPath = options.certPath || `${packageDirname}/config/cert`;
+    this.publicPath = options.publicPath || `${packageDirname}/public/`;
 
     (0, _alpConfig2.default)()(this, config);
 

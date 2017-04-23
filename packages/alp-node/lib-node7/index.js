@@ -124,8 +124,8 @@ let Alp = class extends _koa2.default {
       enumerable: false
     });
 
-    this.certPath = options.certPath || `${this.packageDirname}/config/cert`;
-    this.publicPath = options.publicPath || `${this.packageDirname}/public/`;
+    this.certPath = options.certPath || `${packageDirname}/config/cert`;
+    this.publicPath = options.publicPath || `${packageDirname}/public/`;
 
     (0, _alpConfig2.default)()(this, config);
 

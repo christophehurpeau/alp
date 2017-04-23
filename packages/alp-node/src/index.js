@@ -70,8 +70,8 @@ export default class Alp extends Koa {
       enumerable: false,
     });
 
-    this.certPath = options.certPath || `${this.packageDirname}/config/cert`;
-    this.publicPath = options.publicPath || `${this.packageDirname}/public/`;
+    this.certPath = options.certPath || `${packageDirname}/config/cert`;
+    this.publicPath = options.publicPath || `${packageDirname}/public/`;
 
     _config()(this, config);
 
