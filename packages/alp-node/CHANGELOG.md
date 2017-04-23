@@ -1,3 +1,12 @@
+<a name="0.32.1"></a>
+## [0.32.1](https://github.com/alpjs/alp-node/compare/v0.32.0...v0.32.1) (2017-04-23)
+
+
+### Bug Fixes
+
+* call deprecated packageDirname ([503ab1e](https://github.com/alpjs/alp-node/commit/503ab1e))
+
+
 <a name="0.32.0"></a>
 # [0.32.0](https://github.com/alpjs/alp-node/compare/v0.31.0...v0.32.0) (2017-04-03)
 
