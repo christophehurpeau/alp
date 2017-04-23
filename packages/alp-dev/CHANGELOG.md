@@ -1,3 +1,7 @@
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/alpjs/alp-dev/compare/v8.0.0-beta4...v8.0.0) (2017-04-23)
+
+
 <a name="8.0.0-beta4"></a>
 # [8.0.0-beta4](https://github.com/alpjs/alp-dev/compare/v8.0.0-beta2...v8.0.0-beta4) (2017-04-22)
 
