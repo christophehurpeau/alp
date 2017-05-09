@@ -48,10 +48,12 @@
     "komet-karma": "^0.2.5",
     "pob-babel": "^17.2.0",
     "pob-release": "^3.1.0",
+    "prop-types": "^15.5.8",
     "react": "^15.5.4"
   },
   "peerDependencies": {
     "alp-react-redux": "*",
-    "react": "^15.3.2"
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4"
   }
 }

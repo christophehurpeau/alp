@@ -8,6 +8,10 @@ var _dec, _desc, _value, _class, _descriptor, _class2, _temp2;
 
 var _react = require('react');
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _alpReactRedux = require('alp-react-redux');
 
 var _nightingaleLogger = require('nightingale-logger');
@@ -129,13 +133,13 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
     return this.props.children;
   }
 }, _class2.propTypes = {
-  dispatch: _react.PropTypes.func.isRequired,
-  name: _react.PropTypes.string.isRequired,
-  children: _react.PropTypes.node,
-  visibleTimeout: _react.PropTypes.number
+  dispatch: _propTypes2.default.func.isRequired,
+  name: _propTypes2.default.string.isRequired,
+  children: _propTypes2.default.node,
+  visibleTimeout: _propTypes2.default.number
 }, _class2.defaultProps = {
   visibleTimeout: 120000 }, _class2.contextTypes = {
-  context: _react.PropTypes.object
+  context: _propTypes2.default.object
 }, _temp2), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
   enumerable: true,
   initializer: function () {

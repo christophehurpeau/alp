@@ -51,7 +51,8 @@ function _initializerWarningHelper() {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { PropTypes, Component } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'alp-react-redux';
 import Logger from 'nightingale-logger';
 

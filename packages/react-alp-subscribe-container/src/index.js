@@ -1,4 +1,5 @@
-import { PropTypes, Component } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'alp-react-redux';
 import Logger from 'nightingale-logger';
 
