@@ -1,1 +1,2 @@
-exports.extends = 'pob/babel';
+exports.extends = 'pob/flow';
+exports.env = { browser: true };
