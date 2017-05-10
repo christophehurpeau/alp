@@ -1,3 +1,12 @@
+<a name="3.11.2"></a>
+## [3.11.2](https://github.com/alpjs/alp-websocket/compare/v3.11.1...v3.11.2) (2017-05-10)
+
+
+### Bug Fixes
+
+* call callback on unsubscribe when socket disconnects ([dab8f45](https://github.com/alpjs/alp-websocket/commit/dab8f45))
+
+
 <a name="3.11.1"></a>
 ## [3.11.1](https://github.com/alpjs/alp-websocket/compare/v3.11.0...v3.11.1) (2017-04-01)
 
