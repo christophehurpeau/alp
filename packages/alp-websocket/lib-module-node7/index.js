@@ -23,6 +23,7 @@ export function close() {
 }
 
 export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
+  const diconnect = callbackOnUnsubscribe && (() => callbackOnUnsubscribe());
   socket.on(`subscribe:${name}`, callback => {
     logger.info('join', { name });
     socket.join(name);
@@ -32,11 +33,14 @@ export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscri
     } else {
       callback(null);
     }
+
+    if (diconnect) socket.on('disconnect', diconnect);
   });
 
   socket.on(`unsubscribe:${name}`, callback => {
     logger.info('leave', { name });
     socket.leave(name);
+    if (diconnect) socket.removeListener('disconnect', diconnect);
 
     if (callbackOnUnsubscribe) {
       callback(null, callbackOnUnsubscribe());
