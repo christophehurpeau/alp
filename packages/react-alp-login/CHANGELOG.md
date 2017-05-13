@@ -1,3 +1,17 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/alpjs/react-alp-login/compare/v0.6.4...v0.7.0) (2017-05-13)
+
+
+### Features
+
+* react-icons peerDependency ([880b8f9](https://github.com/alpjs/react-alp-login/commit/880b8f9))
+
+
+### BREAKING CHANGES
+
+* requires react-icons
+
+
 <a name="0.6.4"></a>
 ## [0.6.4](https://github.com/alpjs/react-alp-login/compare/v0.6.3...v0.6.4) (2017-04-22)
 
