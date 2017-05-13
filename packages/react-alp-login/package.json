@@ -47,8 +47,7 @@
     "watch": "pob-watch"
   },
   "dependencies": {
-    "flow-runtime": "^0.10.0",
-    "react-icons": "^2.2.1"
+    "flow-runtime": "^0.10.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.1",
@@ -66,15 +65,17 @@
     "eslint-plugin-react": "^6.10.3",
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
-    "pob-babel": "^17.2.0",
+    "pob-babel": "^17.3.0",
     "pob-release": "^3.1.0",
     "react": "^15.5.4",
     "react-alp-link": "^0.6.0",
-    "ynnub": "^0.2.5"
+    "react-icons": "^2.2.5",
+    "ynnub": "^0.2.10"
   },
   "peerDependencies": {
     "react": "^15.3.2",
     "react-alp-link": ">= 0.6.0",
+    "react-icons": "^2.2.1",
     "ynnub": ">= 0.2.5"
   }
 }
