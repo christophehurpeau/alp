@@ -1,8 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 let MigrationsManager = class {
   constructor(store) {
     this.store = store;
@@ -20,5 +15,5 @@ let MigrationsManager = class {
     return this.store.insertOne(migration);
   }
 };
-exports.default = MigrationsManager;
+export { MigrationsManager as default };
 //# sourceMappingURL=Manager.js.map

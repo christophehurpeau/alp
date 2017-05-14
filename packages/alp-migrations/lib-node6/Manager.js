@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-class MigrationsManager {
+let MigrationsManager = class {
   constructor(store) {
     this.store = store;
   }
@@ -19,6 +19,6 @@ class MigrationsManager {
   addMigrationDone(migration) {
     return this.store.insertOne(migration);
   }
-}
+};
 exports.default = MigrationsManager;
 //# sourceMappingURL=Manager.js.map
