@@ -5,7 +5,7 @@ let MigrationsManager = class {
 
   findLastVersion() {
     if (this.store.r) {
-      return this.store.findOne(this.store.table().orderBy(this.store.r.desc('version')).getField('version'));
+      return this.store.findValue('version', this.store.table().orderBy(this.store.r.desc('version')));
     } else {
       return this.store.findOne({}, { created: -1 }).then(row => row && row.version);
     }

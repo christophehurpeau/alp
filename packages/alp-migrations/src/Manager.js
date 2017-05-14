@@ -5,11 +5,11 @@ export default class MigrationsManager {
 
   findLastVersion() {
     if (this.store.r) {
-      return this.store.findOne(
+      return this.store.findValue(
+        'version',
         this.store
           .table()
-          .orderBy(this.store.r.desc('version'))
-          .getField('version'),
+          .orderBy(this.store.r.desc('version')),
       );
     } else {
       return this.store.findOne({}, { created: -1 })

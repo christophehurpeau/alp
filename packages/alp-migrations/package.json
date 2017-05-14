@@ -43,6 +43,6 @@
     "pob-release": "^3.1.0"
   },
   "peerDependencies": {
-    "liwi": "*"
+    "liwi": ">=0.15.1"
   }
 }
