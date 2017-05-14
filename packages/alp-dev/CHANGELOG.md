@@ -1,3 +1,12 @@
+<a name="8.1.0"></a>
+# [8.1.0](https://github.com/alpjs/alp-dev/compare/v8.0.0...v8.1.0) (2017-05-14)
+
+
+### Features
+
+* update dependencies ([3fe08e4](https://github.com/alpjs/alp-dev/commit/3fe08e4))
+
+
 <a name="8.0.0"></a>
 # [8.0.0](https://github.com/alpjs/alp-dev/compare/v8.0.0-beta4...v8.0.0) (2017-04-23)
 
