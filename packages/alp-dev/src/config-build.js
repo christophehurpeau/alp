@@ -9,7 +9,7 @@ export const clean = () => {
 };
 
 export const build = (src = './src/config') => (
-  Promise.all(glob.sync(join(src, '**/*.yml')).map((filename) => (
+  Promise.all(glob.sync(join(src, '**/*.yml')).map(filename => (
     readFile(filename).then((content) => {
       const [serverConfig, browserConfig] = loadConfigFile(
         content,

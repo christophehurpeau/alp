@@ -13,7 +13,7 @@ Promise.all([
     './node',
     './modern-browser',
     './older-browser',
-  ].map(path => {
+  ].map((path) => {
     const instance = execa('node', [require.resolve(path)]);
     instance.stdout.pipe(process.stdout);
     return instance;

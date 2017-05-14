@@ -1,11 +1,11 @@
 import { createAppBrowserCompiler, MODERN, ALL, runDevServer as runDevServerPobpack } from 'pobpack-browser/src';
 import createPobpackConfig from './createPobpackConfig';
 
-export const createModernBrowserCompiler = (production) => (
+export const createModernBrowserCompiler = production => (
   createAppBrowserCompiler(MODERN, createPobpackConfig('modern-browser', production))
 );
 
-export const createOlderBrowserCompiler = (production) => (
+export const createOlderBrowserCompiler = production => (
   createAppBrowserCompiler(ALL, createPobpackConfig('browser', production))
 );
 
