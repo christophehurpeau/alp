@@ -1,3 +1,12 @@
+<a name="3.11.3"></a>
+## [3.11.3](https://github.com/alpjs/alp-websocket/compare/v3.11.2...v3.11.3) (2017-05-15)
+
+
+### Bug Fixes
+
+* revert socket.io to 1.7.3 ([9ecdbc4](https://github.com/alpjs/alp-websocket/commit/9ecdbc4))
+
+
 <a name="3.11.2"></a>
 ## [3.11.2](https://github.com/alpjs/alp-websocket/compare/v3.11.1...v3.11.2) (2017-05-10)
 
