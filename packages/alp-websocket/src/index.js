@@ -24,7 +24,7 @@ export function close() {
 
 export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
   const diconnect = callbackOnUnsubscribe && (() => callbackOnUnsubscribe());
-  socket.on(`subscribe:${name}`, callback => {
+  socket.on(`subscribe:${name}`, (callback) => {
     logger.info('join', { name });
     socket.join(name);
 
@@ -37,7 +37,7 @@ export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscri
     if (diconnect) socket.on('disconnect', diconnect);
   });
 
-  socket.on(`unsubscribe:${name}`, callback => {
+  socket.on(`unsubscribe:${name}`, (callback) => {
     logger.info('leave', { name });
     socket.leave(name);
     if (diconnect) socket.removeListener('disconnect', diconnect);
@@ -86,7 +86,7 @@ function start(config, dirname) {
   server.on('error', err => logger.error(err));
   io = socketio(server);
 
-  io.on('connection', socket => {
+  io.on('connection', (socket) => {
     logger.debug('connected', { id: socket.id });
     socket.emit('hello', { version: config.get('version') });
 
