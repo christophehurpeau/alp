@@ -48,13 +48,13 @@
     "babel-preset-latest-node": "^0.2.2",
     "babel-preset-modern-browsers": "^9.0.2",
     "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "^11.1.3",
-    "eslint-config-pob": "^11.1.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-config-pob": "^12.0.0",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-import": "^2.2.0",
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
-    "pob-babel": "^17.2.0",
+    "pob-babel": "^17.3.0",
     "pob-release": "^3.1.0"
   }
 }
