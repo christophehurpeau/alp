@@ -28,3 +28,6 @@ export type ModuleDescriptorType = {|
   reducers: ?Object,
   loader: ?Function,
 |};
+
+export type ReduxActionType = { type: string };
+export type ReduxDispatchType = (action: ReduxActionType) => ReduxActionType | any;

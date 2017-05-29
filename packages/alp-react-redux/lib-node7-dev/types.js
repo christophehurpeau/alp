@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ModuleDescriptorType = exports.TagNameOrReactComponentType = exports.ReactComponentType = exports.ReactStatelessComponentType = exports.ReactClassComponentType = exports.TagNameType = exports.ReactNodeType = exports.ReactElementType = undefined;
+exports.ReduxDispatchType = exports.ReduxActionType = exports.ModuleDescriptorType = exports.TagNameOrReactComponentType = exports.ReactComponentType = exports.ReactStatelessComponentType = exports.ReactClassComponentType = exports.TagNameType = exports.ReactNodeType = exports.ReactElementType = undefined;
 
 var _flowRuntime = require('flow-runtime');
 
@@ -30,4 +30,8 @@ const ReactComponentType = exports.ReactComponentType = _flowRuntime2.default.ty
 const TagNameOrReactComponentType = exports.TagNameOrReactComponentType = _flowRuntime2.default.type('TagNameOrReactComponentType', _flowRuntime2.default.union(TagNameType, ReactComponentType));
 
 const ModuleDescriptorType = exports.ModuleDescriptorType = _flowRuntime2.default.type('ModuleDescriptorType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('identifier', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('View', _flowRuntime2.default.any()), _flowRuntime2.default.property('reducer', _flowRuntime2.default.nullable(_flowRuntime2.default.function())), _flowRuntime2.default.property('reducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object())), _flowRuntime2.default.property('loader', _flowRuntime2.default.nullable(_flowRuntime2.default.function()))));
+
+const ReduxActionType = exports.ReduxActionType = _flowRuntime2.default.type('ReduxActionType', _flowRuntime2.default.object(_flowRuntime2.default.property('type', _flowRuntime2.default.string())));
+
+const ReduxDispatchType = exports.ReduxDispatchType = _flowRuntime2.default.type('ReduxDispatchType', _flowRuntime2.default.function(_flowRuntime2.default.param('action', ReduxActionType), _flowRuntime2.default.return(_flowRuntime2.default.union(ReduxActionType, _flowRuntime2.default.any()))));
 //# sourceMappingURL=types.js.map
