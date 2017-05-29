@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import AlpReactApp from './AlpReactApp';
-import type { ReactNodeType, ReactElementType } from '../types';
+import type { ReactNodeType, ReactElementType } from '../../types';
 
 type PropsType = {
   children: ReactNodeType,

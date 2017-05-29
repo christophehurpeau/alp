@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/html-has-lang, prefer-template */
 import assetUrl from './assetUrl';
 import uneval from './uneval';
-import type { ReactElementType } from '../types';
+import type { ReactElementType } from '../../types';
 
 type HelmetDataAttributeType = {
   toString(): string,

@@ -1,20 +1,20 @@
 import { render, unmountComponentAtNode } from 'react-dom';
 import Logger from 'nightingale-logger/src';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux/src';
-import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
-import { websocketMiddleware } from './websocket';
-import loadingBar from './loading-bar';
+import { promiseMiddleware, createFunctionMiddleware } from '../middleware-browser';
+import { websocketMiddleware } from '../websocket';
+import loadingBar from '../loading-bar';
 import AlpReactApp from './layout/AlpReactApp';
 import AlpReduxApp from './layout/AlpReduxApp';
 import * as alpReducers from './reducers';
-import type { ReactComponentType } from './types';
+import type { ReactComponentType } from '../types';
 
 export { AlpReactApp, AlpReduxApp };
 export Helmet from 'react-helmet';
 export { combineReducers } from 'redux/src';
 export { connect } from 'react-redux/src';
-export { createAction, createReducer, createLoader, createPureStatelessComponent, classNames } from './utils';
-export { createEmitAction, createEmitPromiseAction } from './websocket';
+export { createAction, createReducer, createLoader, createPureStatelessComponent, classNames } from '../utils/index';
+export { createEmitAction, createEmitPromiseAction } from '../websocket';
 
 const HYDRATE_STATE = 'HYDRATE_STATE';
 const logger = new Logger('alp:react-redux');

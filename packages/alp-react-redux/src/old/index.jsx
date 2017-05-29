@@ -4,15 +4,15 @@ import Logger from 'nightingale-logger/src';
 import isModernBrowser from 'modern-browsers';
 import { createStore, combineReducers } from 'redux/src';
 import htmlLayout, { type LayoutOptionsType } from './layout/htmlLayout';
-import AlpReactApp from './layout/AlpReactApp';
-import AlpReduxApp from './layout/AlpReduxApp';
-import * as alpReducers from './reducers';
-import type { ReactComponentType, ModuleDescriptorType } from './types';
+import AlpReactApp from './old/layout/AlpReactApp';
+import AlpReduxApp from './old/layout/AlpReduxApp';
+import * as alpReducers from './reducers/index';
+import type { ReactComponentType, ModuleDescriptorType } from '../types';
 
 export { AlpReactApp, AlpReduxApp, Helmet };
 export { combineReducers } from 'redux/src';
 export { connect } from 'react-redux/src';
-export { createAction, createReducer, createLoader, classNames, createPureStatelessComponent } from './utils';
+export { createAction, createReducer, createLoader, classNames, createPureStatelessComponent } from '../utils/index';
 
 if (BROWSER) throw new Error('Not supposed to be loaded browser-side.');
 

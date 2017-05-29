@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import type { ReactNodeType } from '../types';
+import type { ReactNodeType } from '../../types';
 
 type PropsType = {|
   children: ?ReactNodeType,
