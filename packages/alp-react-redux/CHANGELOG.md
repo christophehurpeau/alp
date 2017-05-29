@@ -1,3 +1,12 @@
+<a name="10.1.0"></a>
+# [10.1.0](https://github.com/alpjs/alp-react-redux/compare/v10.0.0...v10.1.0) (2017-05-29)
+
+
+### Features
+
+* type ReduxDispatchType ([bc697a5](https://github.com/alpjs/alp-react-redux/commit/bc697a5))
+
+
 <a name="10.0.0"></a>
 # [10.0.0](https://github.com/alpjs/alp-react-redux/compare/v9.0.0...v10.0.0) (2017-04-22)
 
