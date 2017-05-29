@@ -65,7 +65,7 @@ export default function alpReactRedux({ appHOC, sharedReducers = {} }: ?OptionsT
     if (app.websocket) {
       const loggerWebsocket = logger.child('websocket');
       loggerWebsocket.debug('register websocket redux:action');
-      app.websocket.on('redux:action', action => {
+      app.websocket.on('redux:action', (action) => {
         loggerWebsocket.debug('dispatch action from websocket', action);
         if (store) {
           store.dispatch(action);

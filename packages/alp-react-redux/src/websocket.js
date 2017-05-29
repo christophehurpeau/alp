@@ -16,7 +16,7 @@ export function createEmitPromiseAction(
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
 }
 
-export const websocketMiddleware = app => store => next => action => {
+export const websocketMiddleware = app => store => next => (action) => {
   if (!action.meta || !action.meta.websocket) {
     return next(action);
   }

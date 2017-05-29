@@ -7,7 +7,7 @@ export default function createReducer(defaultState: Function | Object, handlers:
   }
 
   const handlerMap = new Map();
-  Object.keys(handlers).forEach(key => {
+  Object.keys(handlers).forEach((key) => {
     if (typeof key === 'function') {
       if (!PRODUCTION && typeof key.type !== 'string') {
         throw new Error(`Invalid handler key: "${key.name}"`);

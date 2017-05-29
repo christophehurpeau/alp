@@ -66,8 +66,8 @@ const ESCAPED_CHARS = {
   '\u2029': '\\u2029',
 };
 
-const escapeUnsafeChars = (unsafeChar) => ESCAPED_CHARS[unsafeChar];
+const escapeUnsafeChars = unsafeChar => ESCAPED_CHARS[unsafeChar];
 
-export default (obj) => (
+export default obj => (
   uneval(obj, 'obj').replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars)
 );
