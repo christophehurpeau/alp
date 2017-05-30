@@ -1,3 +1,12 @@
+<a name="10.1.1"></a>
+## [10.1.1](https://github.com/alpjs/alp-react-redux/compare/v10.1.0...v10.1.1) (2017-05-30)
+
+
+### Bug Fixes
+
+* remove dispatch in createPureStatelessComponent ([25c849d](https://github.com/alpjs/alp-react-redux/commit/25c849d))
+
+
 <a name="10.1.0"></a>
 # [10.1.0](https://github.com/alpjs/alp-react-redux/compare/v10.0.0...v10.1.0) (2017-05-29)
 
