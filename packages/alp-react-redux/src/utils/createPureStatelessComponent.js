@@ -1,3 +1,6 @@
 import { connect } from 'react-redux';
 
-export default Component => connect(null)(Component);
+// mergeProps: remove dispatch from dispatchProps (and perf !)
+const mergeProps = (stateProps, dispatchProps, ownProps) => ownProps;
+
+export default Component => connect(null, null, mergeProps)(Component);
