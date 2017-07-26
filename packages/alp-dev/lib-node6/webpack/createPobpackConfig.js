@@ -70,7 +70,6 @@ exports.default = (target, production = false) => ({
     // eslint-disable-next-line no-nested-ternary
     key: target === 'node' ? 'index' : target === 'browser' ? 'es5' : 'modern-browsers',
     path: target === 'node' ? 'index.server.js' : 'index.browser.js'
-
   }],
 
   resolveLoaderModules: [_path2.default.join(__dirname, '../..', 'node_modules'), 'node_modules'],
@@ -137,34 +136,31 @@ exports.default = (target, production = false) => ({
   }],
 
   plugins: [(0, _webpackConfig.createExtractPlugin)(_extractTextWebpackPlugin2.default, {
-    // disable: target === 'node',
+    disable: target === 'node',
     filename: `${target === 'browser' ? 'es5' : 'modern-browsers'}.css`
   }), target !== 'node' && production && new _babiliWebpackPlugin2.default({
-    comments: false,
-    evaluate: true, // babel-plugin-minify-constant-folding
-    deadcode: true, // babel-plugin-minify-dead-code-elimination
-    infinity: false, // babel-plugin-minify-infinity
-    mangle: true, // babel-plugin-minify-mangle-names
-    numericLiterals: true, // babel-plugin-minify-numeric-literals
-    replace: false, // babel-plugin-minify-replace
-    simplify: true, // babel-plugin-minify-simplify
-    mergeVars: false, // babel-plugin-transform-merge-sibling-variables
-    booleans: false, // babel-plugin-transform-minify-booleans
-    regexpConstructors: true, // babel-plugin-transform-regexp-constructors
-    removeConsole: false, // babel-plugin-transform-remove-console
-    removeDebugger: true, // babel-plugin-transform-remove-debugger
-    removeUndefined: true, // babel-plugin-transform-remove-undefined
-    undefinedToVoid: false, // babel-plugin-transform-undefined-to-void
-    unsafe: {
-      flipComparisons: true,
-      simplifyComparisons: true,
-      guards: true,
-      typeConstructors: true
-    },
-    properties: {
-      memberExpressions: true,
-      propertyLiterals: true
-    }
+    booleans: true,
+    builtIns: false,
+    consecutiveAdds: true,
+    deadcode: true,
+    evaluate: true,
+    flipComparisons: true,
+    guards: true,
+    infinity: false,
+    mangle: true,
+    memberExpressions: true,
+    mergeVars: false,
+    numericLiterals: true,
+    propertyLiterals: true,
+    regexpConstructors: true,
+    removeConsole: false,
+    removeDebugger: true,
+    removeUndefined: true,
+    replace: false,
+    simplify: true,
+    simplifyComparisons: true,
+    typeConstructors: true,
+    undefinedToVoid: false
   }), target === 'browser' && production && new _webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false

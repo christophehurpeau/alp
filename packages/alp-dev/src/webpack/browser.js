@@ -13,8 +13,9 @@ export const runDevServer = (compiler, port: number, proxyPort: number) => (
   runDevServerPobpack(compiler, {
     port: proxyPort,
     https: false,
-    overlay: true,
+
     // contentBase: false,
+
     headers: {
       // avoid errors in console
       'Access-Control-Expose-Headers': 'SourceMap,X-SourceMap',

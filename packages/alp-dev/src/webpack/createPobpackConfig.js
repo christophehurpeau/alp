@@ -19,10 +19,7 @@ export default (target: TargetType, production: boolean = false) => ({
   env: process.env.NODE_ENV,
   hmr: !production,
 
-  includeModules: [
-    'ynnub',
-    'react-alp-login',
-  ],
+  includeModules: ['ynnub', 'react-alp-login'],
 
   paths: {
     build: target === 'node' ? 'build' : 'public',
@@ -31,9 +28,8 @@ export default (target: TargetType, production: boolean = false) => ({
   entries: [
     {
       // eslint-disable-next-line no-nested-ternary
-      key: target === 'node' ? 'index' : (target === 'browser' ? 'es5' : 'modern-browsers'),
+      key: target === 'node' ? 'index' : target === 'browser' ? 'es5' : 'modern-browsers',
       path: target === 'node' ? 'index.server.js' : 'index.browser.js',
-
     },
   ],
 
@@ -50,39 +46,51 @@ export default (target: TargetType, production: boolean = false) => ({
       // add stage-1 to stage-3 features
       presetPobStages,
       // pob preset: flow, import `src`, export default function name, replacements
-      [presetPob, {
-        production,
-        replacements: {
-          BROWSER: target !== 'node',
-          NODEJS: target === 'node',
-          SERVER: target === 'node',
-          MODERN_BROWSERS: target === 'modern-browser',
+      [
+        presetPob,
+        {
+          production,
+          replacements: {
+            BROWSER: target !== 'node',
+            NODEJS: target === 'node',
+            SERVER: target === 'node',
+            MODERN_BROWSERS: target === 'modern-browser',
+          },
         },
-      }],
+      ],
       // optimizations: remove dead-code
       presetBabiliOptimizations,
       // flow runtime
       !production && {
-        plugins: [[pluginFlowRuntime, {
-          assert: true,
-          annotate: false,
-        }]],
+        plugins: [
+          [
+            pluginFlowRuntime,
+            {
+              assert: true,
+              annotate: false,
+            },
+          ],
+        ],
       },
       // discard unused imports (like production-only or node-only imports)
       { plugins: [pluginDiscardModuleReference] },
       // transpile for browser
       target === 'modern-browser' && [presetModernBrowsers, { modules: false }],
-      target === 'browser' && [presetEnv, {
-        modules: false,
-        useBuiltIns: true,
-        targets: [
-          '>1%',
-          'not ie < 9', // react doesn't support ie < 9
-        ],
-      }],
-    ].reverse().filter(Boolean),
-    plugins: [
-    ],
+      target === 'browser' && [
+        presetEnv,
+        {
+          modules: false,
+          useBuiltIns: true,
+          targets: [
+            '>1%',
+            'not ie < 9', // react doesn't support ie < 9
+          ],
+        },
+      ],
+    ]
+      .reverse()
+      .filter(Boolean),
+    plugins: [],
   },
 
   moduleRules: [
@@ -90,9 +98,7 @@ export default (target: TargetType, production: boolean = false) => ({
     createModuleRule(ExtractTextPlugin, {
       production,
       themeFile: './src/theme.scss',
-      plugins: [
-        autoprefixer,
-      ],
+      plugins: [autoprefixer],
     }),
 
     // IMG RULE
@@ -111,44 +117,45 @@ export default (target: TargetType, production: boolean = false) => ({
 
   plugins: [
     createExtractPlugin(ExtractTextPlugin, {
-      // disable: target === 'node',
+      disable: target === 'node',
       filename: `${target === 'browser' ? 'es5' : 'modern-browsers'}.css`,
     }),
 
-    target !== 'node' && production && new BabiliPlugin({
-      comments: false,
-      evaluate: true, // babel-plugin-minify-constant-folding
-      deadcode: true, // babel-plugin-minify-dead-code-elimination
-      infinity: false, // babel-plugin-minify-infinity
-      mangle: true, // babel-plugin-minify-mangle-names
-      numericLiterals: true, // babel-plugin-minify-numeric-literals
-      replace: false, // babel-plugin-minify-replace
-      simplify: true, // babel-plugin-minify-simplify
-      mergeVars: false, // babel-plugin-transform-merge-sibling-variables
-      booleans: false, // babel-plugin-transform-minify-booleans
-      regexpConstructors: true, // babel-plugin-transform-regexp-constructors
-      removeConsole: false, // babel-plugin-transform-remove-console
-      removeDebugger: true, // babel-plugin-transform-remove-debugger
-      removeUndefined: true, // babel-plugin-transform-remove-undefined
-      undefinedToVoid: false, // babel-plugin-transform-undefined-to-void
-      unsafe: {
+    target !== 'node' &&
+      production &&
+      new BabiliPlugin({
+        booleans: true,
+        builtIns: false,
+        consecutiveAdds: true,
+        deadcode: true,
+        evaluate: true,
         flipComparisons: true,
-        simplifyComparisons: true,
         guards: true,
-        typeConstructors: true,
-      },
-      properties: {
+        infinity: false,
+        mangle: true,
         memberExpressions: true,
+        mergeVars: false,
+        numericLiterals: true,
         propertyLiterals: true,
-      },
-    }),
+        regexpConstructors: true,
+        removeConsole: false,
+        removeDebugger: true,
+        removeUndefined: true,
+        replace: false,
+        simplify: true,
+        simplifyComparisons: true,
+        typeConstructors: true,
+        undefinedToVoid: false,
+      }),
 
-    target === 'browser' && production && new optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-      sourceMap: !production,
-    }),
+    target === 'browser' &&
+      production &&
+      new optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+        },
+        sourceMap: !production,
+      }),
     // TODO https://github.com/NekR/offline-plugin
   ].filter(Boolean),
 

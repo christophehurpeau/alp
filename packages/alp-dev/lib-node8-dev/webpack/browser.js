@@ -33,8 +33,9 @@ const runDevServer = exports.runDevServer = (compiler, port, proxyPort) => {
   return (0, _pobpackBrowser.runDevServer)(compiler, {
     port: proxyPort,
     https: false,
-    overlay: true,
+
     // contentBase: false,
+
     headers: {
       'Access-Control-Expose-Headers': 'SourceMap,X-SourceMap'
     },
