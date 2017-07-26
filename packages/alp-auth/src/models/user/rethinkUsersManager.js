@@ -5,24 +5,22 @@ const mongoUsersManager = Object.create(abstractUsersManager);
 export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails(
-    { provider, accountId, emails }: {
-      provider: string,
-      accountId: string|number,
-      emails: ?Array<string>,
-    },
-  ): Promise<?UserType> {
+  findOneByAccountOrEmails({
+    provider,
+    accountId,
+    emails,
+  }: {
+    provider: string,
+    accountId: string | number,
+    emails: ?Array<string>,
+  }): Promise<?UserType> {
     const r = this.store.r;
-    let filter = r.row('accounts').contains(row => r.and(
-      row('provider').eq(provider),
-      row('accountId').eq(accountId),
-    ));
+    let filter = r
+      .row('accounts')
+      .contains(row => r.and(row('provider').eq(provider), row('accountId').eq(accountId)));
 
     if (emails && emails.length) {
-      filter = r.or(
-        filter,
-        r.row('emails').contains(row => r.expr(emails).contains(row)),
-      );
+      filter = r.or(filter, r.row('emails').contains(row => r.expr(emails).contains(row)));
     }
 
     let query = this.store.query().filter(filter);

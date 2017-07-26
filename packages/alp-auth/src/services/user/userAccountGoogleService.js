@@ -9,8 +9,9 @@ export default new class UserAccountGoogleService extends EventEmitter {
   providerKey = 'google';
 
   getProfile(tokens) {
-    return fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`)
-            .then((response) => response.json());
+    return fetch(
+      `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`,
+    ).then(response => response.json());
   }
 
   isAccount(account, profile) {
@@ -33,7 +34,7 @@ export default new class UserAccountGoogleService extends EventEmitter {
     }
 
     if (plusProfile.emails) {
-      plusProfile.emails.forEach((email) => {
+      plusProfile.emails.forEach(email => {
         if (emails.indexOf(email.value) === -1) {
           emails.push(email.value);
         }
@@ -59,7 +60,8 @@ export default new class UserAccountGoogleService extends EventEmitter {
   }
 
   getScope(oldScope, newScope) {
-    return !oldScope ? newScope.split(' ') : oldScope.concat(newScope.split(' '))
-            .filter((item, i, ar) => ar.indexOf(item) === i);
+    return !oldScope
+      ? newScope.split(' ')
+      : oldScope.concat(newScope.split(' ')).filter((item, i, ar) => ar.indexOf(item) === i);
   }
 }();

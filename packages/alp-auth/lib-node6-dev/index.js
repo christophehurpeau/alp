@@ -3,16 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.routes = exports.rethinkUsersManager = exports.mongoUsersManager = exports.abstractUsersManager = undefined;
-
-var _routes = require('./routes');
-
-Object.defineProperty(exports, 'routes', {
-  enumerable: true,
-  get: function () {
-    return _interopRequireDefault(_routes).default;
-  }
-});
+exports.rethinkUsersManager = exports.mongoUsersManager = exports.abstractUsersManager = undefined;
 exports.default = init;
 
 var _jsonwebtoken = require('jsonwebtoken');
@@ -45,7 +36,7 @@ var _UserAccountsService = require('./services/user/UserAccountsService');
 
 var _UserAccountsService2 = _interopRequireDefault(_UserAccountsService);
 
-var _createAuthController = require('./controllers/createAuthController.server');
+var _createAuthController = require('./createAuthController');
 
 var _createAuthController2 = _interopRequireDefault(_createAuthController);
 
@@ -67,24 +58,21 @@ const logger = new _nightingaleLogger2.default('alp:auth');
 
 function init(_arg) {
   let {
-    controllers,
     usersManager,
     strategies,
-    loginModuleDescriptor,
     homeRouterKey
-  } = _flowRuntime2.default.object(_flowRuntime2.default.property('controllers', _flowRuntime2.default.ref('Map', _flowRuntime2.default.string(), _flowRuntime2.default.any())), _flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('strategies', _flowRuntime2.default.object()), _flowRuntime2.default.property('loginModuleDescriptor', _flowRuntime2.default.object()), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))).assert(_arg);
+  } = _flowRuntime2.default.object(_flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('strategies', _flowRuntime2.default.object()), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))).assert(_arg);
 
   return app => {
     const userAccountsService = new _UserAccountsService2.default(usersManager);
 
     const authenticationService = new _AuthenticationService2.default(app.config, strategies, userAccountsService);
 
-    controllers.set('auth', (0, _createAuthController2.default)({
+    const controller = (0, _createAuthController2.default)({
       usersManager,
       authenticationService,
-      loginModuleDescriptor,
       homeRouterKey
-    }));
+    });
 
     app.context.setConnected = (() => {
       var _ref = _asyncToGenerator(function* (connected, user) {
@@ -133,7 +121,7 @@ function init(_arg) {
 
     app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
       if (ctx.state.connected) {
-        initialBrowserState.connected = ctx.state.connected;
+        initialBrowserState.connected = ctx.state.connected || null;
         initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user);
       }
     });
@@ -161,22 +149,22 @@ function init(_arg) {
           let token = cookies.get(COOKIE_NAME);
           logger.debug('middleware websocket', { token });
 
-          if (!token) return yield next();
+          if (!token) return next();
 
           let connected;
           try {
             connected = yield decodeJwt(token, handshakeData.headers['user-agent']);
           } catch (err) {
             logger.info('failed to verify authentication', { err });
-            return yield next();
+            return next();
           }
           logger.debug('middleware websocket', { connected });
 
-          if (!connected) return yield next();
+          if (!connected) return next();
 
           const user = yield usersManager.findConnected(connected);
 
-          if (!user) return yield next();
+          if (!user) return next();
 
           socket.user = user;
           users.set(socket.client.id, user);
@@ -194,42 +182,52 @@ function init(_arg) {
       })());
     }
 
-    return (() => {
-      var _ref3 = _asyncToGenerator(function* (ctx, next) {
-        let token = ctx.cookies.get(COOKIE_NAME);
-        logger.debug('middleware', { token });
+    return {
+      routes: {
+        login: ['/login/:strategy', segment => {
+          segment.add('/response', controller.loginResponse, 'loginResponse');
+          segment.defaultRoute(controller.login, 'login');
+        }],
+        logout: ['/logout', controller.logout]
+      },
 
-        if (!token) return yield next();
+      middleware: (() => {
+        var _ref3 = _asyncToGenerator(function* (ctx, next) {
+          let token = ctx.cookies.get(COOKIE_NAME);
+          logger.debug('middleware', { token });
 
-        let connected;
-        try {
-          connected = yield decodeJwt(token, ctx.request.headers['user-agent']);
-        } catch (err) {
-          logger.info('failed to verify authentification', { err });
-          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-          return yield next();
-        }
-        logger.debug('middleware', { connected });
+          if (!token) return next();
 
-        if (!connected) return yield next();
+          let connected;
+          try {
+            connected = yield decodeJwt(token, ctx.request.headers['user-agent']);
+          } catch (err) {
+            logger.info('failed to verify authentification', { err });
+            ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+            return next();
+          }
+          logger.debug('middleware', { connected });
 
-        const user = yield usersManager.findConnected(connected);
+          if (!connected) return next();
 
-        if (!user) {
-          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-          return yield next();
-        }
+          const user = yield usersManager.findConnected(connected);
 
-        ctx.state.connected = connected;
-        ctx.state.user = user;
+          if (!user) {
+            ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+            return next();
+          }
 
-        yield next();
-      });
+          ctx.state.connected = connected;
+          ctx.state.user = user;
 
-      return function () {
-        return _ref3.apply(this, arguments);
-      };
-    })();
+          yield next();
+        });
+
+        return function middleware() {
+          return _ref3.apply(this, arguments);
+        };
+      })()
+    };
   };
 }
 //# sourceMappingURL=index.js.map

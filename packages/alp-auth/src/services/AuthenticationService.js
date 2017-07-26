@@ -16,12 +16,12 @@ type GenerateAuthUrlOptionsType = {
   prompt?: string,
   loginHint?: string,
   includeGrantedScopes?: boolean,
-}
+};
 
 type GetTokensOptionsType = {
   code: string,
   redirectUri: string,
-}
+};
 
 export default class AuthenticationService extends EventEmitter {
   config: Object;
@@ -78,26 +78,30 @@ export default class AuthenticationService extends EventEmitter {
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
-        return promiseCallback((done) => {
-          strategyInstance.oauth2.authorizationCode.getToken({
-            code: options.code,
-            redirect_uri: options.redirectUri,
-          }, done);
-        }).then(result => (
-          result && {
-            accessToken: result.access_token,
-            refreshToken: result.refresh_token,
-            tokenType: result.token_type,
-            expiresIn: result.expires_in,
-            expireDate: (() => {
-              const d = new Date();
-              d.setTime(d.getTime() + (result.expires_in * 1000));
-              return d;
-            })(),
-            idToken: result.id_token,
-          }
+        return promiseCallback(done => {
+          strategyInstance.oauth2.authorizationCode.getToken(
+            {
+              code: options.code,
+              redirect_uri: options.redirectUri,
+            },
+            done,
+          );
+        }).then(
+          result =>
+            result && {
+              accessToken: result.access_token,
+              refreshToken: result.refresh_token,
+              tokenType: result.token_type,
+              expiresIn: result.expires_in,
+              expireDate: (() => {
+                const d = new Date();
+                d.setTime(d.getTime() + result.expires_in * 1000);
+                return d;
+              })(),
+              idToken: result.id_token,
+            },
           // return strategyInstance.accessToken.create(result);
-      ));
+        );
     }
   }
 
@@ -112,21 +116,22 @@ export default class AuthenticationService extends EventEmitter {
         const token = strategyInstance.oauth2.accessToken.create({
           refresh_token: tokens.refreshToken,
         });
-        return promiseCallback(done => token.refresh(done))
-          .then((result) => {
-            const tokens = result.token;
-            return result && {
+        return promiseCallback(done => token.refresh(done)).then(result => {
+          const tokens = result.token;
+          return (
+            result && {
               accessToken: tokens.access_token,
               tokenType: tokens.token_type,
               expiresIn: tokens.expires_in,
               expireDate: (() => {
                 const d = new Date();
-                d.setTime(d.getTime() + (tokens.expires_in * 1000));
+                d.setTime(d.getTime() + tokens.expires_in * 1000);
                 return d;
               })(),
               idToken: tokens.id_token,
-            };
-          });
+            }
+          );
+        });
       }
     }
   }
@@ -147,9 +152,9 @@ export default class AuthenticationService extends EventEmitter {
    * @returns {*}
    */
   async redirectAuthUrl(
-    ctx:Object,
-    strategy:string,
-    refreshToken:?string,
+    ctx: Object,
+    strategy: string,
+    refreshToken: ?string,
     scopeKey: ?string,
     user,
     accountId,
@@ -159,15 +164,19 @@ export default class AuthenticationService extends EventEmitter {
     const isLoginAccess = !scopeKey || scopeKey === 'login';
     const scope = this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
 
-    ctx.cookies.set(`auth_${strategy}_${state}`, JSON.stringify({
-      scopeKey,
-      scope,
-      isLoginAccess,
-    }), {
-      maxAge: 10 * 60 * 1000,
-      httpOnly: true,
-      secure: this.config.get('allowHttps'),
-    });
+    ctx.cookies.set(
+      `auth_${strategy}_${state}`,
+      JSON.stringify({
+        scopeKey,
+        scope,
+        isLoginAccess,
+      }),
+      {
+        maxAge: 10 * 60 * 1000,
+        httpOnly: true,
+        secure: this.config.get('allowHttps'),
+      },
+    );
     const redirectUri = this.generateAuthUrl(strategy, {
       redirectUri: this.redirectUri(ctx, strategy),
       scope,
@@ -175,7 +184,7 @@ export default class AuthenticationService extends EventEmitter {
       accessType: refreshToken ? 'offline' : 'online',
     });
 
-    return await ctx.redirect(redirectUri);
+    return ctx.redirect(redirectUri);
   }
 
   /**
@@ -246,7 +255,7 @@ export default class AuthenticationService extends EventEmitter {
     return this.refreshToken(account.provider, {
       accessToken: account.accessToken,
       refreshToken: account.refreshToken,
-    }).then((tokens) => {
+    }).then(tokens => {
       if (!tokens) {
         // serviceGoogle.updateFields({ accessToken:null, refreshToken:null, status: .OUTDATED });
         return false;

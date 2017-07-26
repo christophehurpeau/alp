@@ -5,13 +5,15 @@ const mongoUsersManager = Object.create(abstractUsersManager);
 export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
-  findOneByAccountOrEmails(
-    { provider, accountId, emails }: {
-      provider: string,
-      accountId: string|number,
-      emails: ?Array<string>,
-    },
-  ): Promise<?UserType> {
+  findOneByAccountOrEmails({
+    provider,
+    accountId,
+    emails,
+  }: {
+    provider: string,
+    accountId: string | number,
+    emails: ?Array<string>,
+  }): Promise<?UserType> {
     let query = {
       'accounts.provider': provider,
       'accounts.accountId': accountId,

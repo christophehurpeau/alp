@@ -280,7 +280,7 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
         accessType: refreshToken ? 'offline' : 'online'
       });
 
-      return yield ctx.redirect(redirectUri);
+      return ctx.redirect(redirectUri);
     })();
   }
 

@@ -6,25 +6,20 @@ import mongoUsersManager from './models/user/mongoUsersManager';
 import rethinkUsersManager from './models/user/rethinkUsersManager';
 import AuthenticationService from './services/AuthenticationService';
 import UserAccountsService from './services/user/UserAccountsService';
-import createAuthController from './controllers/createAuthController.server';
+import createAuthController from './createAuthController';
 
 export { abstractUsersManager, mongoUsersManager, rethinkUsersManager };
-export { default as routes } from './routes';
 
 const COOKIE_NAME = 'connectedUser';
 const logger = new Logger('alp:auth');
 
 export default function init({
-  controllers,
   usersManager,
   strategies,
-  loginModuleDescriptor,
   homeRouterKey,
 }: {
-  controllers: Map<string, any>,
   usersManager: Object,
   strategies: Object,
-  loginModuleDescriptor: Object,
   homeRouterKey: ?string,
 }) {
   return app => {
@@ -36,14 +31,13 @@ export default function init({
       userAccountsService,
     );
 
-    controllers.set('auth', createAuthController({
+    const controller = createAuthController({
       usersManager,
       authenticationService,
-      loginModuleDescriptor,
       homeRouterKey,
-    }));
+    });
 
-    app.context.setConnected = async function (connected: number|string, user: Object) {
+    app.context.setConnected = async function(connected: number | string, user: Object) {
       logger.debug('setConnected', { connected });
       if (!connected) {
         throw new Error('Illegal value for setConnected');
@@ -52,16 +46,18 @@ export default function init({
       this.state.connected = connected;
       this.state.user = user;
 
-      const token = await promiseCallback(done => sign(
-        { connected, time: Date.now() },
-        this.config.get('authentication').get('secretKey'),
-        {
-          algorithm: 'HS512',
-          audience: this.request.headers['user-agent'],
-          expiresIn: '30 days',
-        },
-        done,
-      ));
+      const token = await promiseCallback(done =>
+        sign(
+          { connected, time: Date.now() },
+          this.config.get('authentication').get('secretKey'),
+          {
+            algorithm: 'HS512',
+            audience: this.request.headers['user-agent'],
+            expiresIn: '30 days',
+          },
+          done,
+        ),
+      );
 
       this.cookies.set(COOKIE_NAME, token, {
         httpOnly: true,
@@ -69,7 +65,7 @@ export default function init({
       });
     };
 
-    app.context.logout = function () {
+    app.context.logout = function() {
       delete this.state.connected;
       delete this.state.user;
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
@@ -77,7 +73,7 @@ export default function init({
 
     app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
       if (ctx.state.connected) {
-        initialBrowserState.connected = ctx.state.connected;
+        initialBrowserState.connected = ctx.state.connected || null;
         initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user);
       }
     });
@@ -104,22 +100,22 @@ export default function init({
         let token = cookies.get(COOKIE_NAME);
         logger.debug('middleware websocket', { token });
 
-        if (!token) return await next();
+        if (!token) return next();
 
         let connected;
         try {
           connected = await decodeJwt(token, handshakeData.headers['user-agent']);
         } catch (err) {
           logger.info('failed to verify authentication', { err });
-          return await next();
+          return next();
         }
         logger.debug('middleware websocket', { connected });
 
-        if (!connected) return await next();
+        if (!connected) return next();
 
         const user = await usersManager.findConnected(connected);
 
-        if (!user) return await next();
+        if (!user) return next();
 
         socket.user = user;
         users.set(socket.client.id, user);
@@ -130,35 +126,48 @@ export default function init({
       });
     }
 
-    return async (ctx, next) => {
-      let token = ctx.cookies.get(COOKIE_NAME);
-      logger.debug('middleware', { token });
+    return {
+      routes: {
+        login: [
+          '/login/:strategy',
+          segment => {
+            segment.add('/response', controller.loginResponse, 'loginResponse');
+            segment.defaultRoute(controller.login, 'login');
+          },
+        ],
+        logout: ['/logout', controller.logout],
+      },
 
-      if (!token) return await next();
+      middleware: async (ctx, next) => {
+        let token = ctx.cookies.get(COOKIE_NAME);
+        logger.debug('middleware', { token });
 
-      let connected;
-      try {
-        connected = await decodeJwt(token, ctx.request.headers['user-agent']);
-      } catch (err) {
-        logger.info('failed to verify authentification', { err });
-        ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-        return await next();
-      }
-      logger.debug('middleware', { connected });
+        if (!token) return next();
 
-      if (!connected) return await next();
+        let connected;
+        try {
+          connected = await decodeJwt(token, ctx.request.headers['user-agent']);
+        } catch (err) {
+          logger.info('failed to verify authentification', { err });
+          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+          return next();
+        }
+        logger.debug('middleware', { connected });
 
-      const user = await usersManager.findConnected(connected);
+        if (!connected) return next();
 
-      if (!user) {
-        ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-        return await next();
-      }
+        const user = await usersManager.findConnected(connected);
 
-      ctx.state.connected = connected;
-      ctx.state.user = user;
+        if (!user) {
+          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+          return next();
+        }
 
-      await next();
+        ctx.state.connected = connected;
+        ctx.state.user = user;
+
+        await next();
+      },
     };
   };
 }

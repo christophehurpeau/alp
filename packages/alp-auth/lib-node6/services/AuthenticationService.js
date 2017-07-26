@@ -170,7 +170,7 @@ let AuthenticationService = class extends _events2.default {
         accessType: refreshToken ? 'offline' : 'online'
       });
 
-      return yield ctx.redirect(redirectUri);
+      return ctx.redirect(redirectUri);
     })();
   }
 

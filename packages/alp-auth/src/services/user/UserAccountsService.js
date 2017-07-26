@@ -30,8 +30,9 @@ export default class UserAccountsService extends EventEmitter {
     if (!user || !accountId) {
       return newScope;
     }
-    const account = user.accounts
-      .find(account => account.provider === strategy && account.accountId === accountId);
+    const account = user.accounts.find(
+      account => account.provider === strategy && account.accountId === accountId,
+    );
 
     if (!account) {
       throw new Error('Could not found associated account');
@@ -42,8 +43,9 @@ export default class UserAccountsService extends EventEmitter {
   async update(user, strategy, tokens, scope, subservice) {
     const service = this.constructor.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
-    const account = user.accounts
-            .find(account => account.provider === strategy && service.isAccount(account, profile));
+    const account = user.accounts.find(
+      account => account.provider === strategy && service.isAccount(account, profile),
+    );
     if (!account) {
       // TODO check if already exists in other user => merge
       // TODO else add a new account in this user
@@ -78,10 +80,9 @@ export default class UserAccountsService extends EventEmitter {
 
     const plusProfile = await fetch(
       `https://www.googleapis.com/plus/v1/people/me?access_token=${tokens.accessToken}`,
-    ).then((response) => response.json());
+    ).then(response => response.json());
 
     const emails = service.getEmails(profile, plusProfile);
-
 
     let user = await this.usersManager.findOneByAccountOrEmails({
       provider: service.providerKey,
@@ -105,9 +106,9 @@ export default class UserAccountsService extends EventEmitter {
 
     const accountId = service.getId(profile);
 
-    let account = user.accounts.find(account => (
-      account.provider === strategy && account.accountId === accountId
-    ));
+    let account = user.accounts.find(
+      account => account.provider === strategy && account.accountId === accountId,
+    );
 
     if (!account) {
       account = { provider: strategy, accountId };
@@ -133,16 +134,15 @@ export default class UserAccountsService extends EventEmitter {
 
     if (!user.emails) user.emails = [];
     const userEmails = user.emails;
-    emails.forEach((email) => {
+    emails.forEach(email => {
       if (!userEmails.includes(email)) {
         userEmails.push(email);
       }
     });
 
-    user.emailDomains = Array.from(user.emails.reduce(
-      (domains, email) => domains.add(email.split('@', 2)[1]),
-      new Set(),
-    ));
+    user.emailDomains = Array.from(
+      user.emails.reduce((domains, email) => domains.add(email.split('@', 2)[1]), new Set()),
+    );
 
     const keyPath: string = this.usersManager.store.keyPath;
     await this.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);
