@@ -1,3 +1,17 @@
+<a name="0.33.0"></a>
+# [0.33.0](https://github.com/alpjs/alp-node/compare/v0.32.1...v0.33.0) (2017-07-26)
+
+
+### Features
+
+* node 8 ([66d3155](https://github.com/alpjs/alp-node/commit/66d3155))
+
+
+### BREAKING CHANGES
+
+* upgrade to node 8
+
+
 <a name="0.32.1"></a>
 ## [0.32.1](https://github.com/alpjs/alp-node/compare/v0.32.0...v0.32.1) (2017-04-23)
 
