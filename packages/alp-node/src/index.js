@@ -85,18 +85,18 @@ export default class Alp extends Koa {
     this.browserContextTransformers = [
       (initialBrowserContext, context) => {
         initialBrowserContext.state = Object.create(null);
-        this.browserStateTransformers.forEach(transformer => (
-          transformer(initialBrowserContext.state, context)
-        ));
+        this.browserStateTransformers.forEach(transformer =>
+          transformer(initialBrowserContext.state, context),
+        );
       },
     ];
 
-    this.context.computeInitialContextForBrowser = function () {
+    this.context.computeInitialContextForBrowser = function() {
       const initialBrowserContext = Object.create(null);
 
-      this.app.browserContextTransformers.forEach(transformer => (
-        transformer(initialBrowserContext, this)
-      ));
+      this.app.browserContextTransformers.forEach(transformer =>
+        transformer(initialBrowserContext, this),
+      );
 
       return initialBrowserContext;
     };
@@ -133,12 +133,10 @@ export default class Alp extends Koa {
   }
 
   listen() {
-    return _listen(this.certPath)(this)
-      .then(server => this._server = server)
-      .catch((err) => {
-        logger.error(err);
-        throw err;
-      });
+    return _listen(this.certPath)(this).then(server => (this._server = server)).catch(err => {
+      logger.error(err);
+      throw err;
+    });
   }
 
   /**
@@ -152,8 +150,6 @@ export default class Alp extends Koa {
   }
 
   start(fn: Function) {
-    fn()
-      .then(() => logger.success('started'))
-      .catch(err => logger.error('start fail', { err }));
+    fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
 }
