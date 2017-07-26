@@ -1,3 +1,12 @@
+<a name="11.0.0"></a>
+# [11.0.0](https://github.com/alpjs/alp-react-redux/compare/v10.1.1...v11.0.0) (2017-07-26)
+
+
+### Features
+
+* breaking changes and refacto ([9d405bf](https://github.com/alpjs/alp-react-redux/commit/9d405bf))
+
+
 <a name="10.1.1"></a>
 ## [10.1.1](https://github.com/alpjs/alp-react-redux/compare/v10.1.0...v10.1.1) (2017-05-30)
 
