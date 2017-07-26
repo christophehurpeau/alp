@@ -12,7 +12,7 @@ function random() {
  */
 function calculatePercent(percent) {
   if (percent < 60) {
-    return percent + (random() * 10) + 20;
+    return percent + random() * 10 + 20;
   } else if (percent < 80) {
     return percent + random() + 0.5;
   } else if (percent < 95) {
@@ -39,7 +39,7 @@ export default function loadingBar() {
   }, 100);
 
   const progressTimer = setInterval(() => {
-    loadingBarProgress.style.width = `${percent = calculatePercent(percent)}%`;
+    loadingBarProgress.style.width = `${(percent = calculatePercent(percent))}%`;
   }, 500);
 
   return () => {

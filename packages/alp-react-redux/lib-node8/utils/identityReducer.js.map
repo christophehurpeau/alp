@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/utils/identityReducer.js"],"names":["state"],"mappings":";;;;;;kBAAe,CAACA,QAAQ,IAAT,KAAkBA,K","file":"identityReducer.js","sourcesContent":["export default (state = null) => state;\n"]}

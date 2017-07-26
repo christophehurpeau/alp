@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/reducers/index.js"],"names":["context","state"],"mappings":"AAAA,OAAO,MAAMA,UAAU,CAACC,UAAD,KAAgBA,KAAhC","file":"index.js","sourcesContent":["export const context = (state = {}) => state;\n"]}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module/AlpModule.jsx"],"names":["children"],"mappings":";;AAMA,gBAAe,CAAC,EAAEA,QAAF,EAAD,KAA+CA,QAA9D","file":"AlpModule.jsx","sourcesContent":["import type { ReactNodeType, ReactElementType } from '../types';\n\ntype PropsType = {|\n  children: ReactNodeType,\n|};\n\nexport default ({ children }: PropsType): ReactElementType => children;\n"]}

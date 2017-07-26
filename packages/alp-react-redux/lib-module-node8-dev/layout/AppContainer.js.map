@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/layout/AppContainer.jsx"],"names":["children"],"mappings":";;;;AAAA,gBAAe,sBAAC,EAAEA,QAAF,EAAD;AAAA,SACb;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AACGA;AADH,GADa;AAAA,CAAf","file":"AppContainer.jsx","sourcesContent":["export default ({ children }) =>\n  <div>\n    {children}\n  </div>;\n"]}

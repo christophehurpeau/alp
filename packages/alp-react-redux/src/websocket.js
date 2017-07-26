@@ -16,7 +16,7 @@ export function createEmitPromiseAction(
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
 }
 
-export const websocketMiddleware = app => store => next => (action) => {
+export const websocketMiddleware = app => store => next => action => {
   if (!action.meta || !action.meta.websocket) {
     return next(action);
   }
@@ -32,7 +32,7 @@ export const websocketMiddleware = app => store => next => (action) => {
     console.log('alp.react-redux websocket emit timeout', action);
   }, 10000);
 
-  app.websocket.emit(action.type, action, (action) => {
+  app.websocket.emit(action.type, action, action => {
     clearTimeout(resolved);
     if (action) {
       store.dispatch(action);

@@ -1,101 +1,68 @@
 import React from 'react';
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 import Logger from 'nightingale-logger';
 import isModernBrowser from 'modern-browsers';
-import { createStore, combineReducers } from 'redux';
 import htmlLayout from './layout/htmlLayout';
-import AlpReactApp from './layout/AlpReactApp';
-import AlpReduxApp from './layout/AlpReduxApp';
-import * as alpReducers from './reducers';
+import createAlpAppWrapper from './createAlpAppWrapper';
+import createServerStore from './store/createServerStore';
+import createModuleStoreReducer from './store/createModuleStoreReducer';
 
-
-export { AlpReactApp, AlpReduxApp, Helmet };
+export { Helmet };
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
-export { createAction, createReducer, createLoader, classNames, createPureStatelessComponent } from './utils';
+export { createAction, createReducer, createLoader, classNames, createPureStatelessComponent, identityReducer } from './utils/index';
+import _AlpModule from './module/AlpModule';
+export { _AlpModule as AlpModule };
+import _AlpReduxModule from './module/AlpReduxModuleServer';
+export { _AlpReduxModule as AlpReduxModule };
+import _Body from './layout/Body';
+export { _Body as Body };
+import _AppContainer from './layout/AppContainer';
+export { _AppContainer as AppContainer };
 
-throw new Error('Not supposed to be loaded browser-side.');
 
 const logger = new Logger('alp:react-redux');
 
-const renderToStringApp = function renderToStringApp(App, appProps, View, props) {
-  const app = React.createElement(
-    App,
-    appProps,
-    React.createElement(View, props)
-  );
-  return renderToString(app);
-};
-
-const renderHtml = function renderHtml({ App, appProps, View, props, layoutOptions }) {
-  const content = renderToStringApp(App, appProps, View, props);
+const renderHtml = function renderHtml(App, options) {
+  const content = renderToString(React.createElement(App));
   const helmet = Helmet.renderStatic();
-  return `<!doctype html>\n${htmlLayout(helmet, content, layoutOptions)}`;
+  return htmlLayout(helmet, content, options);
 };
 
-export default function alpReactRedux({ layoutBody, appHOC, sharedReducers = {} } = {}) {
-  const AlpReactAppLayout = appHOC ? appHOC(AlpReactApp) : AlpReactApp;
-  const AlpReduxAppLayout = appHOC ? appHOC(AlpReduxApp) : AlpReduxApp;
-
-  return function (app) {
-    app.context.render = function (moduleDescriptor, data, _loaded) {
-      var _this = this;
-
-      logger.debug('render view', { data });
-
-      if (!_loaded && moduleDescriptor.loader) {
-        // const _state = data;
-        return moduleDescriptor.loader(Object.create(null), data).then(function (data) {
-          return _this.render(moduleDescriptor, data, true);
-        });
-      }
-
-      const moduleHasReducers = !!(moduleDescriptor.reducer || moduleDescriptor.reducers);
-      const reducer = moduleDescriptor.reducer ? moduleDescriptor.reducer : combineReducers(Object.assign({}, moduleDescriptor.reducers, alpReducers, sharedReducers));
-
-      if (reducer) {
-        this.store = createStore(reducer, Object.assign({ context: this }, data));
-      }
-
-      const version = this.config.get('version');
-      const moduleIdentifier = moduleDescriptor && moduleDescriptor.identifier;
-
-      // eslint-disable-next-line no-unused-vars
-      const _ref = moduleHasReducers ? this.store.getState() : {},
-            { context: unusedContext } = _ref,
-            initialData = _objectWithoutProperties(_ref, ['context']);
-
-      // TODO create alp-useragent with getter in context
-      const ua = this.req.headers['user-agent'];
-      const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-
-      this.body = renderHtml({
-        layoutOptions: {
-          layoutBody,
-          version,
-          moduleIdentifier,
-          scriptName: name,
-          styleName: name,
-          initialBrowserContext: this.computeInitialContextForBrowser(),
-          initialData: moduleHasReducers ? initialData : null
-        },
-
-        App: reducer ? AlpReduxAppLayout : AlpReactAppLayout,
-        appProps: {
-          store: this.store,
-          context: this
-        },
-
-        View: moduleDescriptor.View,
-        props: moduleHasReducers ? undefined : data
-      });
+export default (function (App, options = {}) {
+  return function (ctx) {
+    const version = ctx.config.get('version');
+    // TODO create alp-useragent with getter in context
+    const ua = ctx.req.headers['user-agent'];
+    const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+    ctx.urlGenerator = function () {
+      return null;
     };
+
+    const moduleStoreReducer = createModuleStoreReducer();
+    const store = createServerStore(ctx, moduleStoreReducer.reducer, {
+      sharedReducers: options.sharedReducers
+    });
+
+    const WrappedApp = createAlpAppWrapper(App, {
+      context: ctx,
+      app: ctx.app,
+      store,
+      setModuleReducers: function setModuleReducers(reducers) {
+        return moduleStoreReducer.set(store, reducers);
+      }
+    });
+
+    ctx.body = renderHtml(WrappedApp, {
+      version,
+      scriptName: options.scriptName !== undefined ? options.scriptName : name,
+      styleName: options.styleName !== undefined ? options.styleName : name,
+      polyfillFeatures: options.polyfillFeatures,
+      initialData: store.getState()
+    });
   };
-}
+});
 
 const loggerWebsocket = logger.child('websocket');
 

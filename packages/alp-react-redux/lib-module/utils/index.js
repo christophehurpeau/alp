@@ -8,4 +8,6 @@ import _createPureStatelessComponent from './createPureStatelessComponent';
 export { _createPureStatelessComponent as createPureStatelessComponent };
 import _classNames from './classNames';
 export { _classNames as classNames };
+import _identityReducer from './identityReducer';
+export { _identityReducer as identityReducer };
 //# sourceMappingURL=index.js.map

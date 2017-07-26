@@ -11,20 +11,13 @@ const HelmetDataAttributeType = t.type('HelmetDataAttributeType', t.object(t.pro
 const HelmetDataType = t.type('HelmetDataType', t.object(t.property('htmlAttributes', HelmetDataAttributeType), t.property('title', HelmetDataAttributeType), t.property('base', HelmetDataAttributeType), t.property('meta', HelmetDataAttributeType), t.property('link', HelmetDataAttributeType), t.property('script', HelmetDataAttributeType), t.property('style', HelmetDataAttributeType)));
 
 
-export const LayoutOptionsType = t.type('LayoutOptionsType', t.exactObject(t.property('layoutBody', t.nullable(t.function())), t.property('version', t.string()), t.property('moduleIdentifier', t.nullable(t.string())), t.property('scriptName', t.union(t.string(), t.boolean(false))), t.property('styleName', t.nullable(t.string())), t.property('initialData', t.nullable(t.any())), t.property('initialBrowserContext', t.nullable(t.any())), t.property('polyfillFeatures', t.nullable(t.string()))));
-
-const wrapContent = function wrapContent(content) {
-  return `<div id="react-app">${content}</div>`;
-};
+export const LayoutOptionsType = t.type('LayoutOptionsType', t.exactObject(t.property('layoutBody', t.nullable(t.function())), t.property('version', t.string()), t.property('scriptName', t.union(t.string(), t.boolean(false))), t.property('styleName', t.union(t.string(), t.boolean(false))), t.property('initialData', t.nullable(t.any())), t.property('polyfillFeatures', t.nullable(t.string()))));
 
 export default (function htmlLayout(helmet, content, {
-  layoutBody,
   version,
-  moduleIdentifier,
   scriptName,
   styleName,
   initialData,
-  initialBrowserContext,
   polyfillFeatures = 'default,es6,es7,localStorage,fetch,Intl'
 }) {
   let _contentType = t.string();
@@ -44,11 +37,11 @@ export default (function htmlLayout(helmet, content, {
     ${helmet.style.toString()}
     ${polyfillFeatures && `<script defer src="${`https://polyfill.io/v2/polyfill.min.js?features=${polyfillFeatures}&unknown=polyfill`}"></script>`}
     ${helmet.script.toString()}
-    ${scriptName === false ? null : `<script>${`${moduleIdentifier ? `window.MODULE_IDENTIFIER='${moduleIdentifier}';` : ''}` + `window.VERSION='${version}';` + `window.initialData=${uneval(initialData)};` + (!initialBrowserContext ? '' : `window.initialBrowserContext=${uneval(initialBrowserContext)};`)}</script>`}
+    ${scriptName === false ? null : `<script>${`window.VERSION='${version}';window.__INITIAL_DATA__=${uneval(initialData)};`}</script>`}
     ${scriptName === false ? null : `<script defer src="${assetUrl(`/${scriptName}.js`, version)}"></script>`}
   </head>
   <body ${helmet.bodyAttributes.toString()}>
-    ${layoutBody ? layoutBody(wrapContent(content)) : wrapContent(content)}
+    <div id="react-app">${content}</div>
   </body>
 </html>`);
 });
