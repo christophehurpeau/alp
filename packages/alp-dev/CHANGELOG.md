@@ -1,3 +1,17 @@
+<a name="9.0.0"></a>
+# [9.0.0](https://github.com/alpjs/alp-dev/compare/v8.1.0...v9.0.0) (2017-07-26)
+
+
+### Features
+
+* webpack 3, BrowserAppContainer ([6de8d4f](https://github.com/alpjs/alp-dev/commit/6de8d4f))
+
+
+### BREAKING CHANGES
+
+* webpack 3
+
+
 <a name="8.1.0"></a>
 # [8.1.0](https://github.com/alpjs/alp-dev/compare/v8.0.0...v8.1.0) (2017-05-14)
 
