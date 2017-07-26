@@ -1,3 +1,12 @@
+<a name="3.12.0"></a>
+# [3.12.0](https://github.com/alpjs/alp-websocket/compare/v3.11.3...v3.12.0) (2017-07-26)
+
+
+### Features
+
+* alp reducer websocket state ([2e2baad](https://github.com/alpjs/alp-websocket/commit/2e2baad))
+
+
 <a name="3.11.3"></a>
 ## [3.11.3](https://github.com/alpjs/alp-websocket/compare/v3.11.2...v3.11.3) (2017-05-15)
 
