@@ -19,14 +19,25 @@ export const websocket = {
   isDisconnected
 };
 
+const WEBSOCKET_ONLINE_STATE_ACTION_TYPE = 'alp:websocket/online';
+
 export default function alpWebsocket(app, namespaceName) {
+  if (!app.alpReducers) app.alpReducers = {}; // TODO remove in next major
+  app.alpReducers.websocket = function (state, action) {
+    if (!state) state = connected ? 'connected' : 'disconnected';
+    if (action.type === WEBSOCKET_ONLINE_STATE_ACTION_TYPE) return action.state;
+    return state;
+  };
+
   start(app, namespaceName);
   app.websocket = websocket;
   websocket.socket = socket;
   return socket;
 }
 
-function start({ config, context }, namespaceName = '') {
+function start(app, namespaceName = '') {
+  const { config, context } = app;
+
   if (socket) {
     throw new Error('WebSocket already started');
   }
@@ -55,16 +66,25 @@ function start({ config, context }, namespaceName = '') {
     logger.success('connected');
     successfulConnection = true;
     connected = true;
+    if (app.store) {
+      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'connected' });
+    }
   });
 
   socket.on('reconnect', function () {
     logger.success('reconnected');
     connected = true;
+    if (app.store) {
+      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'connected' });
+    }
   });
 
   socket.on('disconnect', function () {
     logger.warn('disconnected');
     connected = false;
+    if (app.store) {
+      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'disconnected' });
+    }
   });
 
   socket.on('hello', function ({ version }) {
