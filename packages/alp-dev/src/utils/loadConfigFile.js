@@ -18,8 +18,8 @@ module.exports = function loadConfigFile(content, dirname) {
         [
           { config: serverConfig, include: includeServerConfig },
           { config: browserConfig, include: includeBrowserConfig },
-        ].forEach(({ config, include }) => (
-          Object.keys(include).forEach((key) => {
+        ].forEach(({ config, include }) =>
+          Object.keys(include).forEach(key => {
             if (!(key in config)) {
               config[key] = include[key];
               return;
@@ -31,8 +31,8 @@ module.exports = function loadConfigFile(content, dirname) {
             } else {
               throw new Error(`Unexpected override "${key}", filename = ${includePaths[key]}`);
             }
-          })
-        ));
+          }),
+        );
       });
   }
 

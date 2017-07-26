@@ -16,28 +16,20 @@ Promise.all([
   portscanner.findAPortNotInUse(startProxyPort, startProxyPort + 49),
   portscanner.findAPortNotInUse(startAppPort, startAppPort + 49),
   configBuild.build(),
-]).then(([proxyPort, port]) => {
-  if (proxyPort === port) {
-    throw new Error(`"proxyPort" and "port" cannot have the same value: ${port}`);
-  }
+])
+  .then(([proxyPort, port]) => {
+    if (proxyPort === port) {
+      throw new Error(`"proxyPort" and "port" cannot have the same value: ${port}`);
+    }
 
-  createChild({
-    autoRestart: true,
-    args: [
-      require.resolve('./node'),
-      '--port',
-      port,
-    ],
-  }).start();
+    createChild({
+      autoRestart: true,
+      args: [require.resolve('./node'), '--port', port],
+    }).start();
 
-  createChild({
-    autoRestart: true,
-    args: [
-      require.resolve('./browser'),
-      '--port',
-      port,
-      '--proxy-port',
-      proxyPort,
-    ],
-  }).start();
-}).catch(err => console.log(err.stack));
+    createChild({
+      autoRestart: true,
+      args: [require.resolve('./browser'), '--port', port, '--proxy-port', proxyPort],
+    }).start();
+  })
+  .catch(err => console.log(err.stack));

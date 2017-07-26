@@ -3,7 +3,7 @@ import { node as nodeDaemon } from 'springbokjs-daemon/src';
 import { watch } from './config-build';
 
 export default function watchServer(port) {
-  return watch().then((emitter) => {
+  return watch().then(emitter => {
     const daemon = nodeDaemon([
       'lib-node6-dev/index.server.js',
       '--port',
