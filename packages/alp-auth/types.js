@@ -1,1 +1,1 @@
-module.exports = require('./lib-node7-dev/models/user/types');
+module.exports = require('./lib-node8-dev/models/user/types');
