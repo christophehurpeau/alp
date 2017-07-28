@@ -1,3 +1,12 @@
+<a name="0.11.1"></a>
+## [0.11.1](https://github.com/alpjs/alp-auth/compare/v0.11.0...v0.11.1) (2017-07-28)
+
+
+### Bug Fixes
+
+* types require ([ef9b7d8](https://github.com/alpjs/alp-auth/commit/ef9b7d8))
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/alpjs/alp-auth/compare/v0.10.1...v0.11.0) (2017-07-26)
 
