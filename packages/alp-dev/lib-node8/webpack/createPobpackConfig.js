@@ -136,8 +136,9 @@ exports.default = (target, production = false) => ({
   }],
 
   plugins: [(0, _webpackConfig.createExtractPlugin)(_extractTextWebpackPlugin2.default, {
-    disable: target === 'node',
-    filename: `${target === 'browser' ? 'es5' : 'modern-browsers'}.css`
+    // disable: target === 'node',
+    // eslint-disable-next-line no-nested-ternary
+    filename: `${target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
   }), target !== 'node' && production && new _babiliWebpackPlugin2.default({
     booleans: true,
     builtIns: false,
