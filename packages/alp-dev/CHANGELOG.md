@@ -1,3 +1,12 @@
+<a name="9.0.1"></a>
+## [9.0.1](https://github.com/alpjs/alp-dev/compare/v9.0.0...v9.0.1) (2017-08-13)
+
+
+### Bug Fixes
+
+* css server side ([0455a88](https://github.com/alpjs/alp-dev/commit/0455a88))
+
+
 <a name="9.0.0"></a>
 # [9.0.0](https://github.com/alpjs/alp-dev/compare/v8.1.0...v9.0.0) (2017-07-26)
 
