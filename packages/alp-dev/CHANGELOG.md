@@ -1,3 +1,12 @@
+<a name="10.0.0"></a>
+# [10.0.0](https://github.com/alpjs/alp-dev/compare/v9.0.1...v10.0.0) (2017-08-15)
+
+
+### Features
+
+* update dependencies ([02c9a86](https://github.com/alpjs/alp-dev/commit/02c9a86))
+
+
 <a name="9.0.1"></a>
 ## [9.0.1](https://github.com/alpjs/alp-dev/compare/v9.0.0...v9.0.1) (2017-08-13)
 
