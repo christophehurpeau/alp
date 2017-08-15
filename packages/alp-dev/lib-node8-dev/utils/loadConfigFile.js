@@ -8,8 +8,8 @@ module.exports = function loadConfigFile(content, dirname) {
   let data = saveLoadYml(content) || {};
 
   const config = data.shared || data.common || {};
-  const serverConfig = Object.assign({}, config, data.server);
-  const browserConfig = Object.assign({}, config, data.browser);
+  const serverConfig = { ...config, ...data.server };
+  const browserConfig = { ...config, ...data.browser };
 
   if (data.include) {
     const includePaths = data.include.map(includePath => path.resolve(dirname, includePath));

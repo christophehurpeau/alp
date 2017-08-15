@@ -26,9 +26,9 @@ var _babelPresetEnv2 = _interopRequireDefault(_babelPresetEnv);
 
 var _babelPresetModernBrowsers = require('babel-preset-modern-browsers');
 
-var _babelPresetBabiliOptimizations = require('babel-preset-babili-optimizations');
+var _babelPresetOptimizations = require('babel-preset-optimizations');
 
-var _babelPresetBabiliOptimizations2 = _interopRequireDefault(_babelPresetBabiliOptimizations);
+var _babelPresetOptimizations2 = _interopRequireDefault(_babelPresetOptimizations);
 
 var _babelPluginDiscardModuleReferences = require('babel-plugin-discard-module-references');
 
@@ -79,11 +79,24 @@ exports.default = (target, production = false) => ({
     comments: !(target !== 'node' && production),
 
     // preset order is last to first, so we reverse it for clarity.
-    presets: [
-    // add react preset with jsx
-    [_babelPresetPobReact2.default, { production }],
-    // add stage-1 to stage-3 features
-    _babelPresetPobStages2.default,
+    presets: [target === 'browser' && [_babelPresetEnv2.default, {
+      modules: false,
+      useBuiltIns: true,
+      targets: ['>1%', 'not ie < 9']
+    }],
+    // transpile for browser
+    target === 'modern-browser' && [_babelPresetModernBrowsers.buildPreset, { modules: false }],
+    // discard unused imports (like production-only or node-only imports)
+    { plugins: [_babelPluginDiscardModuleReferences2.default] },
+    // flow runtime
+    !production && {
+      plugins: [[_babelPluginFlowRuntime2.default, {
+        assert: true,
+        annotate: false
+      }]]
+    },
+    // optimizations: remove dead-code
+    _babelPresetOptimizations2.default,
     // pob preset: flow, import `src`, export default function name, replacements
     [_babelPresetPob2.default, {
       production,
@@ -94,23 +107,10 @@ exports.default = (target, production = false) => ({
         MODERN_BROWSERS: target === 'modern-browser'
       }
     }],
-    // optimizations: remove dead-code
-    _babelPresetBabiliOptimizations2.default,
-    // flow runtime
-    !production && {
-      plugins: [[_babelPluginFlowRuntime2.default, {
-        assert: true,
-        annotate: false
-      }]]
-    },
-    // discard unused imports (like production-only or node-only imports)
-    { plugins: [_babelPluginDiscardModuleReferences2.default] },
-    // transpile for browser
-    target === 'modern-browser' && [_babelPresetModernBrowsers.buildPreset, { modules: false }], target === 'browser' && [_babelPresetEnv2.default, {
-      modules: false,
-      useBuiltIns: true,
-      targets: ['>1%', 'not ie < 9']
-    }]].reverse().filter(Boolean),
+    // add stage-1 to stage-3 features
+    _babelPresetPobStages2.default,
+    // add react preset with jsx
+    [_babelPresetPobReact2.default, { production }]].filter(Boolean),
     plugins: []
   },
 

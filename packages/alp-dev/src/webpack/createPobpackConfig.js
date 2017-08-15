@@ -4,7 +4,7 @@ import presetPobReact from 'babel-preset-pob-react';
 import presetPobStages from 'babel-preset-pob-stages';
 import presetEnv from 'babel-preset-env';
 import { buildPreset as presetModernBrowsers } from 'babel-preset-modern-browsers';
-import presetBabiliOptimizations from 'babel-preset-babili-optimizations';
+import presetOptimizations from 'babel-preset-optimizations';
 import pluginDiscardModuleReference from 'babel-plugin-discard-module-references';
 import pluginFlowRuntime from 'babel-plugin-flow-runtime';
 import { createModuleRule, createExtractPlugin } from 'ynnub/webpack-config';
@@ -59,7 +59,7 @@ export default (target: TargetType, production: boolean = false) => ({
         },
       ],
       // optimizations: remove dead-code
-      presetBabiliOptimizations,
+      presetOptimizations,
       // flow runtime
       !production && {
         plugins: [

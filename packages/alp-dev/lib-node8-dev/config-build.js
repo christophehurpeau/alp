@@ -13,7 +13,7 @@ const clean = exports.clean = () => {};
 
 const build = exports.build = (src = './src/config') => Promise.all(glob.sync(join(src, '**/*.yml')).map(filename => readFile(filename).then(content => {
   const [serverConfig, browserConfig] = loadConfigFile(content, dirname(filename));
-  const destFile = `${filename.slice('src/'.length, -'yml'.length)}json`;
+  const destFile = `${filename.slice(4, -3)}json`;
 
   return Promise.all([writeFile(`build/${destFile}`, JSON.stringify(serverConfig)), writeFile(`public/${destFile}`, JSON.stringify(browserConfig))]);
 })));
