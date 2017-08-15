@@ -2323,9 +2323,9 @@ eslint-config-airbnb-base@^11.3.1:
   dependencies:
     eslint-restricted-globals "^0.1.1"
 
-eslint-config-pob@^14.1.2:
-  version "14.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-pob/-/eslint-config-pob-14.1.2.tgz#954db50e2a1aba4641619ef93b046d22ad5fac20"
+eslint-config-pob@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-pob/-/eslint-config-pob-15.0.0.tgz#7809503e13cdbc29ac5bc1ccb90eae2e65ff83f4"
 
 eslint-config-prettier@^2.3.0:
   version "2.3.0"
