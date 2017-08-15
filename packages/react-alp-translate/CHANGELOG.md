@@ -1,3 +1,12 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/alpjs/react-alp-translate/compare/v0.4.0...v0.5.0) (2017-08-15)
+
+
+### Features
+
+* as prop ([fed646c](https://github.com/alpjs/react-alp-translate/commit/fed646c))
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/alpjs/react-alp-translate/compare/v0.3.1...v0.4.0) (2017-04-03)
 
