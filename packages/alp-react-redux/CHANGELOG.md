@@ -1,3 +1,17 @@
+<a name="12.0.0"></a>
+# [12.0.0](https://github.com/alpjs/alp-react-redux/compare/v11.0.0...v12.0.0) (2017-08-15)
+
+
+### Features
+
+* react 16 and fix modules ([dad5b20](https://github.com/alpjs/alp-react-redux/commit/dad5b20))
+
+
+### BREAKING CHANGES
+
+* react 16
+
+
 <a name="11.0.0"></a>
 # [11.0.0](https://github.com/alpjs/alp-react-redux/compare/v10.1.1...v11.0.0) (2017-07-26)
 
