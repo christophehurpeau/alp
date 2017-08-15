@@ -527,9 +527,9 @@ babel-plugin-discard-module-references@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-discard-module-references/-/babel-plugin-discard-module-references-1.1.2.tgz#898007cbeb472cef76ef11e1af485b41d4241747"
 
-babel-plugin-flow-runtime@^0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-runtime/-/babel-plugin-flow-runtime-0.11.1.tgz#5bccef681c75a126d6c81db3560dabf075e19d22"
+babel-plugin-flow-runtime@0.10.0, babel-plugin-flow-runtime@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-flow-runtime/-/babel-plugin-flow-runtime-0.10.0.tgz#de60b8c64ce0eec6b13663a129d79ec46b97cb2d"
   dependencies:
     babel-generator "^6.21.0"
     babel-traverse "^6.20.0"
@@ -2765,7 +2765,7 @@ flow-config-parser@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/flow-config-parser/-/flow-config-parser-0.3.0.tgz#704916efba88cd2518ab4d8f933079571276138f"
 
-flow-runtime@^0.10.0:
+flow-runtime@0.10.0, flow-runtime@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/flow-runtime/-/flow-runtime-0.10.0.tgz#20a70432fb20e8bba43769078c7a17d99dd1acab"
 
@@ -4728,13 +4728,13 @@ pluralize@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-4.0.0.tgz#59b708c1c0190a2f692f1c7618c446b052fd1762"
 
-pob-babel@^18.0.3:
-  version "18.0.3"
-  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-18.0.3.tgz#e5fda38bb2763e4da893737d02af31feebddb697"
+pob-babel@^18.0.4:
+  version "18.0.4"
+  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-18.0.4.tgz#9be4f56b72efa5a0be79f885224a8f6ab8688b41"
   dependencies:
     babel-core "^6.25.0"
     babel-plugin-discard-module-references "^1.1.2"
-    babel-plugin-flow-runtime "^0.11.1"
+    babel-plugin-flow-runtime "^0.10.0"
     babel-preset-optimizations "^1.0.1"
     babel-preset-pob "^0.5.0"
     babel-preset-pob-stages "^0.2.2"
