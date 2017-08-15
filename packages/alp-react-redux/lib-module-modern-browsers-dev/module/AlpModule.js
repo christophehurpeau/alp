@@ -1,3 +1,6 @@
+var _class, _temp;
+
+import { Component } from 'react';
 import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType } from '../types';
 
 import t from 'flow-runtime';
@@ -8,12 +11,17 @@ const ReactElementType = t.tdz(function () {
   return _ReactElementType;
 });
 const PropsType = t.type('PropsType', t.exactObject(t.property('children', t.ref(ReactNodeType))));
+let AlpModule = (_temp = _class = class extends Component {
 
+  render() {
+    const _returnType = t.return(t.ref(ReactElementType));
 
-export default (function alpModule(_arg) {
-  const _returnType = t.return(t.ref(ReactElementType));
+    if (this.props.reducers) {
+      throw new Error('You have reducers, probably want to use AlpReduxModule.');
+    }
 
-  let { children } = PropsType.assert(_arg);
-  return _returnType.assert(children);
-});
+    return _returnType.assert(this.props.children);
+  }
+}, _class.propTypes = t.propTypes(PropsType), _temp);
+export { AlpModule as default };
 //# sourceMappingURL=AlpModule.js.map

@@ -1,5 +1,5 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import AlpModule from './AlpModule';
 import type { ReactNodeType, ReactElementType } from '../types';
 
 type PropsType = {|
@@ -7,7 +7,7 @@ type PropsType = {|
   children: ReactNodeType,
 |};
 
-export default class AlpReduxModule extends Component {
+export default class AlpReduxModule extends AlpModule {
   props: PropsType;
 
   static contextTypes = {
@@ -16,16 +16,30 @@ export default class AlpReduxModule extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.context.setModuleReducers(props.reducers);
+    this.state = {
+      loading: this.setModuleReducers(props.reducers),
+    };
+  }
+
+  setModuleReducers(reducers) {
+    if (!this.context.setModuleReducers) return false; // pre render
+    const result = this.context.setModuleReducers(reducers);
+    if (result === false) return false;
+    result.then(() => {
+      this.setState({ loading: false });
+    });
+    return true;
   }
 
   componentWillReceiveProps(nextProps: PropTypes) {
     if (nextProps.reducers !== this.props.reducers) {
-      this.context.setModuleReducers(nextProps.reducers);
+      this.setState({
+        loading: this.setModuleReducers(nextProps.reducers),
+      });
     }
   }
 
-  render(): ReactElementType {
-    return this.props.children;
+  render(): ReactElementType | null {
+    return this.state.loading ? null : this.props.children;
   }
 }

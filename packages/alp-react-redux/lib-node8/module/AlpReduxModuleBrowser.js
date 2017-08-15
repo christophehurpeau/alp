@@ -7,29 +7,45 @@ exports.default = undefined;
 
 var _class, _temp;
 
-var _react = require('react');
-
 var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _AlpModule = require('./AlpModule');
+
+var _AlpModule2 = _interopRequireDefault(_AlpModule);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let AlpReduxModule = (_temp = _class = class extends _react.Component {
+let AlpReduxModule = (_temp = _class = class extends _AlpModule2.default {
 
   constructor(props, context) {
     super(props, context);
-    this.context.setModuleReducers(props.reducers);
+    this.state = {
+      loading: this.setModuleReducers(props.reducers)
+    };
+  }
+
+  setModuleReducers(reducers) {
+    if (!this.context.setModuleReducers) return false; // pre render
+    const result = this.context.setModuleReducers(reducers);
+    if (result === false) return false;
+    result.then(() => {
+      this.setState({ loading: false });
+    });
+    return true;
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.reducers !== this.props.reducers) {
-      this.context.setModuleReducers(nextProps.reducers);
+      this.setState({
+        loading: this.setModuleReducers(nextProps.reducers)
+      });
     }
   }
 
   render() {
-    return this.props.children;
+    return this.state.loading ? null : this.props.children;
   }
 }, _class.contextTypes = {
   setModuleReducers: _propTypes2.default.func.isRequired

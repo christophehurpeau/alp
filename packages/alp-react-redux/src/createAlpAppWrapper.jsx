@@ -1,30 +1,24 @@
-import BrowserAppContainer from 'alp-dev/BrowserAppContainer';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import type { ReactNodeType, ReactComponentType } from './types';
+import type { ReactNodeType, ReactElementType } from './types';
 
 type PropsType = {||};
 
-export default (App: ReactComponentType, context: Object) =>
+export default (app: ReactElementType, context: Object) =>
   class AlpAppWrapper extends Component {
+    props: PropsType;
+
     static childContextTypes = {
       context: PropTypes.object.isRequired,
-      app: PropTypes.object.isRequired,
       store: PropTypes.object.isRequired,
-      setModuleReducers: PropTypes.func.isRequired,
+      setModuleReducers: PropTypes.func,
     };
 
     getChildContext(): Object {
       return context;
     }
 
-    props: PropsType;
-
     render(): ReactNodeType {
-      return PRODUCTION
-        ? <App />
-        : <BrowserAppContainer>
-            <App />
-          </BrowserAppContainer>;
+      return app;
     }
   };

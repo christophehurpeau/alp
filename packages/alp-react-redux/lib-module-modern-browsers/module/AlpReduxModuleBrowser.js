@@ -1,22 +1,38 @@
 var _class, _temp;
 
-import { Component } from 'react';
 import PropTypes from 'prop-types';
-let AlpReduxModule = (_temp = _class = class extends Component {
+import AlpModule from './AlpModule';
+let AlpReduxModule = (_temp = _class = class extends AlpModule {
 
   constructor(props, context) {
     super(props, context);
-    this.context.setModuleReducers(props.reducers);
+    this.state = {
+      loading: this.setModuleReducers(props.reducers)
+    };
+  }
+
+  setModuleReducers(reducers) {
+    var _this = this;
+
+    if (!this.context.setModuleReducers) return false; // pre render
+    const result = this.context.setModuleReducers(reducers);
+    if (result === false) return false;
+    result.then(function () {
+      _this.setState({ loading: false });
+    });
+    return true;
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.reducers !== this.props.reducers) {
-      this.context.setModuleReducers(nextProps.reducers);
+      this.setState({
+        loading: this.setModuleReducers(nextProps.reducers)
+      });
     }
   }
 
   render() {
-    return this.props.children;
+    return this.state.loading ? null : this.props.children;
   }
 }, _class.contextTypes = {
   setModuleReducers: PropTypes.func.isRequired

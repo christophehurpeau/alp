@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var _jsxFileName = "layout/AppContainer.jsx";
 
 var _react = require("react");
 
@@ -14,13 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function appContainer({ children }) {
   return _react2.default.createElement(
     "div",
-    {
-      __self: undefined,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 2
-      }
-    },
+    null,
     children
   );
 };

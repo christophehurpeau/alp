@@ -1,3 +1,5 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 import t from "flow-runtime";
 // eslint-disable-next-line flowtype/no-weak-types
 var HandlerType = t.type("HandlerType", t.function(t.rest("args", t.array(t.any())), t.return(t.object())));
@@ -14,7 +16,7 @@ export default (function createAction(type, handler) {
   var action = !handler ? function () {
     return { type: type };
   } : function () {
-    return Object.assign({ type: type }, handler.apply(undefined, arguments));
+    return _extends({ type: type }, handler.apply(undefined, arguments));
   };
   action.type = type;
   action.toString = function () {

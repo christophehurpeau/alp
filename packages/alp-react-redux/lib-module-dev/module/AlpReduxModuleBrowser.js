@@ -8,8 +8,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import AlpModule from './AlpModule';
 import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType } from '../types';
 
 import t from 'flow-runtime';
@@ -20,19 +20,34 @@ var ReactElementType = t.tdz(function () {
   return _ReactElementType;
 });
 var PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.object(t.indexer('key', t.string(), t.any()))), t.property('children', t.ref(ReactNodeType))));
-var AlpReduxModule = (_temp = _class = function (_Component) {
-  _inherits(AlpReduxModule, _Component);
+var AlpReduxModule = (_temp = _class = function (_AlpModule) {
+  _inherits(AlpReduxModule, _AlpModule);
 
   function AlpReduxModule(props, context) {
     _classCallCheck(this, AlpReduxModule);
 
     var _this = _possibleConstructorReturn(this, (AlpReduxModule.__proto__ || Object.getPrototypeOf(AlpReduxModule)).call(this, props, context));
 
-    _this.context.setModuleReducers(props.reducers);
+    _this.state = {
+      loading: _this.setModuleReducers(props.reducers)
+    };
     return _this;
   }
 
   _createClass(AlpReduxModule, [{
+    key: 'setModuleReducers',
+    value: function setModuleReducers(reducers) {
+      var _this2 = this;
+
+      if (!this.context.setModuleReducers) return false; // pre render
+      var result = this.context.setModuleReducers(reducers);
+      if (result === false) return false;
+      result.then(function () {
+        _this2.setState({ loading: false });
+      });
+      return true;
+    }
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       var _nextPropsType = t.ref(PropTypes);
@@ -40,20 +55,22 @@ var AlpReduxModule = (_temp = _class = function (_Component) {
       t.param('nextProps', _nextPropsType).assert(nextProps);
 
       if (nextProps.reducers !== this.props.reducers) {
-        this.context.setModuleReducers(nextProps.reducers);
+        this.setState({
+          loading: this.setModuleReducers(nextProps.reducers)
+        });
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _returnType = t.return(t.ref(ReactElementType));
+      var _returnType = t.return(t.union(t.ref(ReactElementType), t.null()));
 
-      return _returnType.assert(this.props.children);
+      return _returnType.assert(this.state.loading ? null : this.props.children);
     }
   }]);
 
   return AlpReduxModule;
-}(Component), _class.propTypes = t.propTypes(PropsType), _class.contextTypes = {
+}(AlpModule), _class.contextTypes = {
   setModuleReducers: PropTypes.func.isRequired
 }, _temp);
 export { AlpReduxModule as default };

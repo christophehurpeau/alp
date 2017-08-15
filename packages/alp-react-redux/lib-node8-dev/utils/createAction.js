@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _flowRuntime = require("flow-runtime");
 
 var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
@@ -22,7 +24,7 @@ exports.default = function createAction(type, handler) {
 
   _flowRuntime2.default.param("handler", _handlerType).assert(handler);
 
-  const action = !handler ? () => ({ type }) : (...args) => Object.assign({ type }, handler(...args));
+  const action = !handler ? () => ({ type }) : (...args) => _extends({ type }, handler(...args));
   action.type = type;
   action.toString = () => type;
   return action;

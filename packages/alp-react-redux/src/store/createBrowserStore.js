@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux/src';
 import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
+import identityReducer from '../utils/identityReducer';
 
-export default (app, moduleReducer, { middlewares, sharedReducers }) => {
+export default (app, ctx, moduleReducer, { middlewares, sharedReducers }) => {
   const rootReducer = combineReducers({
     ...app.alpReducers,
     ...sharedReducers,
+    ctx: identityReducer,
     module: moduleReducer,
   });
 
@@ -14,7 +16,7 @@ export default (app, moduleReducer, { middlewares, sharedReducers }) => {
 
   return createStore(
     rootReducer,
-    window.__INITIAL_DATA__,
+    { ctx, ...window.__INITIAL_DATA__ },
     composeEnhancers(applyMiddleware(...middlewares)),
   );
 };

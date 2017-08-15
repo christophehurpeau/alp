@@ -1,11 +1,14 @@
+
 import React from 'react';
 import { render } from 'react-dom';
 import Helmet from 'react-helmet';
+import reactTreeWalker from 'react-tree-walker';
 import Logger from 'nightingale-logger';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createBrowserStore from './store/createBrowserStore';
-import createModuleStoreReducer from './store/createModuleStoreReducer';
+import createBrowserModuleStoreReducer from './store/createBrowserModuleStoreReducer';
 import { websocketMiddleware } from './websocket';
+import createModuleVisitor from './module/createModuleVisitor';
 
 export { Helmet };
 export { combineReducers } from 'redux';
@@ -13,7 +16,7 @@ export { connect } from 'react-redux';
 export { createAction, createReducer, createLoader, classNames, createPureStatelessComponent, identityReducer } from './utils/index';
 import _AlpModule from './module/AlpModule';
 export { _AlpModule as AlpModule };
-import _AlpReduxModule from './module/AlpReduxModuleServer';
+import _AlpReduxModule from './module/AlpReduxModuleBrowser';
 export { _AlpReduxModule as AlpReduxModule };
 import _Body from './layout/Body';
 export { _Body as Body };
@@ -27,14 +30,61 @@ const renderApp = function renderApp(App) {
   return render(React.createElement(App), document.getElementById('react-app'));
 };
 
-export default (function (app, { sharedReducers } = {}) {
-  const moduleStoreReducer = createModuleStoreReducer();
-  const store = createBrowserStore(app, moduleStoreReducer.reducer, {
-    sharedReducers,
-    middlewares: [app.websocket && websocketMiddleware(app)].filter(Boolean)
-  });
+export default (async function (app, App, { sharedReducers } = {}) {
+  const ctx = app.createContext();
+  let store;
+  let moduleStoreReducer;
 
-  app.store = store;
+  const createStore = function createStore(ctx, moduleReducers) {
+    moduleStoreReducer = createBrowserModuleStoreReducer(moduleReducers);
+    const store = createBrowserStore(app, ctx, moduleStoreReducer.reducer, {
+      sharedReducers,
+      middlewares: [app.websocket && websocketMiddleware(app)].filter(Boolean)
+    });
+    app.store = store;
+    return store;
+  };
+
+  const preRender = async function preRender(app) {
+    const moduleVisitor = createModuleVisitor();
+
+    const PreRenderWrappedApp = createAlpAppWrapper(app, {
+      context: ctx,
+      store: { getState: function getState() {
+          return { ctx };
+        } }
+    });
+    await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+
+    return moduleVisitor.getReducers();
+  };
+
+  const render = async function render(App) {
+    let app = React.createElement(App);
+
+
+    const moduleReducers = await preRender(app);
+
+    // in DEV
+    // eslint-disable-next-line no-lonely-if
+    if (!store) {
+      store = createStore(ctx, moduleReducers);
+    } else {
+      moduleStoreReducer.setReducers(moduleReducers);
+    }
+
+
+    const WrappedApp = createAlpAppWrapper(app, {
+      context: ctx,
+      store,
+      setModuleReducers: function setModuleReducers(reducers) {
+        return moduleStoreReducer.set(store, reducers);
+      }
+    });
+
+    renderApp(WrappedApp);
+    logger.success('rendered');
+  };
 
   if (app.websocket) {
     const loggerWebsocket = logger.child('websocket');
@@ -47,23 +97,8 @@ export default (function (app, { sharedReducers } = {}) {
     });
   }
 
-  const ctx = app.createContext();
-  ctx.urlGenerator = function () {
-    return null;
-  };
+  await render(App);
 
-  return function (App) {
-    const WrappedApp = createAlpAppWrapper(App, {
-      context: ctx,
-      app,
-      store,
-      setModuleReducers: function setModuleReducers(reducers) {
-        return moduleStoreReducer.set(store, reducers);
-      }
-    });
-
-    renderApp(WrappedApp);
-    logger.success('rendered');
-  };
+  return render;
 });
 //# sourceMappingURL=browser.js.map

@@ -1,12 +1,13 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
+import reactTreeWalker from 'react-tree-walker';
 import Logger from 'nightingale-logger/src';
 import isModernBrowser from 'modern-browsers';
 import htmlLayout from './layout/htmlLayout';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createServerStore from './store/createServerStore';
-import createModuleStoreReducer from './store/createModuleStoreReducer';
+import createModuleVisitor from './module/createModuleVisitor';
 
 export { Helmet };
 export { combineReducers } from 'redux/src';
@@ -26,8 +27,8 @@ export AppContainer from './layout/AppContainer';
 
 const logger = new Logger('alp:react-redux');
 
-const renderHtml = (App, options) => {
-  const content = renderToString(React.createElement(App));
+const renderHtml = (app, options) => {
+  const content = renderToString(app);
   const helmet = Helmet.renderStatic();
   return htmlLayout(helmet, content, options);
 };
@@ -39,31 +40,32 @@ type OptionsType = {|
   polyfillFeatures: ?string,
 |};
 
-export default (App, options: ?OptionsType = {}) => ctx => {
+export default (App, options: ?OptionsType = {}) => async ctx => {
   const version: string = ctx.config.get('version');
   // TODO create alp-useragent with getter in context
   const ua = ctx.req.headers['user-agent'];
   const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-  ctx.urlGenerator = () => null;
 
-  const moduleStoreReducer = createModuleStoreReducer();
-  const store = createServerStore(ctx, moduleStoreReducer.reducer, {
+  const app = React.createElement(App);
+  const moduleVisitor = createModuleVisitor();
+  const preRenderStore = { getState: () => ({ ctx }) };
+  const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: preRenderStore });
+  await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+
+  const store = createServerStore(ctx, moduleVisitor.getReducers(), {
     sharedReducers: options.sharedReducers,
   });
 
-  const WrappedApp = createAlpAppWrapper(App, {
-    context: ctx,
-    app: ctx.app,
-    store,
-    setModuleReducers: reducers => moduleStoreReducer.set(store, reducers),
-  });
+  const WrappedApp = createAlpAppWrapper(app, { context: ctx, store });
 
-  ctx.body = renderHtml(WrappedApp, {
+  // eslint-disable-next-line no-unused-vars
+  const { ctx: removeCtxFromInitialData, ...initialData } = store.getState();
+  ctx.body = await renderHtml(React.createElement(WrappedApp), {
     version,
     scriptName: options.scriptName !== undefined ? options.scriptName : name,
     styleName: options.styleName !== undefined ? options.styleName : name,
     polyfillFeatures: options.polyfillFeatures,
-    initialData: store.getState(),
+    initialData,
   });
 };
 

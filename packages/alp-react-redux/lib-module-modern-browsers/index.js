@@ -1,12 +1,15 @@
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
+import reactTreeWalker from 'react-tree-walker';
 import Logger from 'nightingale-logger';
 import isModernBrowser from 'modern-browsers';
 import htmlLayout from './layout/htmlLayout';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createServerStore from './store/createServerStore';
-import createModuleStoreReducer from './store/createModuleStoreReducer';
+import createModuleVisitor from './module/createModuleVisitor';
 
 export { Helmet };
 export { combineReducers } from 'redux';
@@ -24,42 +27,43 @@ export { _AppContainer as AppContainer };
 
 const logger = new Logger('alp:react-redux');
 
-const renderHtml = function renderHtml(App, options) {
-  const content = renderToString(React.createElement(App));
+const renderHtml = function renderHtml(app, options) {
+  const content = renderToString(app);
   const helmet = Helmet.renderStatic();
   return htmlLayout(helmet, content, options);
 };
 
 export default (function (App, options = {}) {
-  return function (ctx) {
+  return async function (ctx) {
     const version = ctx.config.get('version');
     // TODO create alp-useragent with getter in context
     const ua = ctx.req.headers['user-agent'];
     const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-    ctx.urlGenerator = function () {
-      return null;
-    };
 
-    const moduleStoreReducer = createModuleStoreReducer();
-    const store = createServerStore(ctx, moduleStoreReducer.reducer, {
+    const app = React.createElement(App);
+    const moduleVisitor = createModuleVisitor();
+
+    const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: { getState: function getState() {
+          return { ctx };
+        } } });
+    await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+
+    const store = createServerStore(ctx, moduleVisitor.getReducers(), {
       sharedReducers: options.sharedReducers
     });
 
-    const WrappedApp = createAlpAppWrapper(App, {
-      context: ctx,
-      app: ctx.app,
-      store,
-      setModuleReducers: function setModuleReducers(reducers) {
-        return moduleStoreReducer.set(store, reducers);
-      }
-    });
+    const WrappedApp = createAlpAppWrapper(app, { context: ctx, store });
 
-    ctx.body = renderHtml(WrappedApp, {
+    // eslint-disable-next-line no-unused-vars
+    const _store$getState = store.getState(),
+          { ctx: removeCtxFromInitialData } = _store$getState,
+          initialData = _objectWithoutProperties(_store$getState, ['ctx']);
+    ctx.body = await renderHtml(React.createElement(WrappedApp), {
       version,
       scriptName: options.scriptName !== undefined ? options.scriptName : name,
       styleName: options.styleName !== undefined ? options.styleName : name,
       polyfillFeatures: options.polyfillFeatures,
-      initialData: store.getState()
+      initialData
     });
   };
 });

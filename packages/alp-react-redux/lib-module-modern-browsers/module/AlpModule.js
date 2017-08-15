@@ -1,6 +1,9 @@
+import { Component } from 'react';
+let AlpModule = class extends Component {
 
-
-export default (function ({ children }) {
-  return children;
-});
+  render() {
+    return this.props.children;
+  }
+};
+export { AlpModule as default };
 //# sourceMappingURL=AlpModule.js.map
