@@ -1,3 +1,16 @@
+<a name="10.2.0"></a>
+# [10.2.0](https://github.com/alpjs/alp-dev/compare/v10.0.0...v10.2.0) (2017-08-15)
+
+
+### Bug Fixes
+
+* config and dependencies ([d5635e6](https://github.com/alpjs/alp-dev/commit/d5635e6))
+
+### Features
+
+* babel-preset-modern-browsers@10.0.0 ([80134a8](https://github.com/alpjs/alp-dev/commit/80134a8))
+
+
 <a name="10.0.0"></a>
 # [10.0.0](https://github.com/alpjs/alp-dev/compare/v9.0.1...v10.0.0) (2017-08-15)
 
