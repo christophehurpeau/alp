@@ -4,11 +4,12 @@ type ChildrenCallbackType = (translated: string) => void;
 
 type PropsType = {
   id: string,
+  as: string,
   children: ?ChildrenCallbackType,
 };
 
 const TranslateComponent = (
-  { id, children, ...props }: PropsType,
+  { id, as: AsType = 'span', children, ...props }: PropsType,
   { context },
 ) => {
   const translated = context.t(id, props);
@@ -17,7 +18,7 @@ const TranslateComponent = (
     return children(translated);
   }
 
-  return <span>{translated}</span>;
+  return <AsType>{translated}</AsType>;
 };
 
 TranslateComponent.contextTypes = {

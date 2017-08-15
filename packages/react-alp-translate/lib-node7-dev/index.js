@@ -19,12 +19,12 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 const ChildrenCallbackType = _flowRuntime2.default.type('ChildrenCallbackType', _flowRuntime2.default.function(_flowRuntime2.default.param('translated', _flowRuntime2.default.string()), _flowRuntime2.default.return(_flowRuntime2.default.void())));
 
-const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('id', _flowRuntime2.default.string()), _flowRuntime2.default.property('children', _flowRuntime2.default.nullable(ChildrenCallbackType))));
+const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('id', _flowRuntime2.default.string()), _flowRuntime2.default.property('as', _flowRuntime2.default.string()), _flowRuntime2.default.property('children', _flowRuntime2.default.nullable(ChildrenCallbackType))));
 
 const TranslateComponent = (_arg, _arg2) => {
   let _PropsType$assert = PropsType.assert(_arg),
-      { id, children } = _PropsType$assert,
-      props = _objectWithoutProperties(_PropsType$assert, ['id', 'children']);
+      { id, as: AsType = 'span', children } = _PropsType$assert,
+      props = _objectWithoutProperties(_PropsType$assert, ['id', 'as', 'children']);
 
   let { context } = _arg2;
 
@@ -35,12 +35,12 @@ const TranslateComponent = (_arg, _arg2) => {
   }
 
   return _react2.default.createElement(
-    'span',
+    AsType,
     {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 21
       }
     },
     translated

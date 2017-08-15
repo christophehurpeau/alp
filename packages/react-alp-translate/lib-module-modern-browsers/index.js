@@ -5,8 +5,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { PropTypes } from 'react';
 
 const TranslateComponent = function TranslateComponent(_ref, { context }) {
-  let { id, children } = _ref,
-      props = _objectWithoutProperties(_ref, ['id', 'children']);
+  let { id, as: AsType = 'span', children } = _ref,
+      props = _objectWithoutProperties(_ref, ['id', 'as', 'children']);
 
   const translated = context.t(id, props);
 
@@ -15,7 +15,7 @@ const TranslateComponent = function TranslateComponent(_ref, { context }) {
   }
 
   return React.createElement(
-    'span',
+    AsType,
     null,
     translated
   );

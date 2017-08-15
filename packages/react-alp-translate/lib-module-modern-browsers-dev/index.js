@@ -11,12 +11,12 @@ import _t from 'flow-runtime';
 
 const ChildrenCallbackType = _t.type('ChildrenCallbackType', _t.function(_t.param('translated', _t.string()), _t.return(_t.void())));
 
-const PropsType = _t.type('PropsType', _t.object(_t.property('id', _t.string()), _t.property('children', _t.nullable(ChildrenCallbackType))));
+const PropsType = _t.type('PropsType', _t.object(_t.property('id', _t.string()), _t.property('as', _t.string()), _t.property('children', _t.nullable(ChildrenCallbackType))));
 
 const TranslateComponent = function TranslateComponent(_arg, _arg2) {
   let _PropsType$assert = PropsType.assert(_arg),
-      { id, children } = _PropsType$assert,
-      props = _objectWithoutProperties(_PropsType$assert, ['id', 'children']);
+      { id, as: AsType = 'span', children } = _PropsType$assert,
+      props = _objectWithoutProperties(_PropsType$assert, ['id', 'as', 'children']);
 
   let { context } = _arg2;
 
@@ -27,12 +27,12 @@ const TranslateComponent = function TranslateComponent(_arg, _arg2) {
   }
 
   return React.createElement(
-    'span',
+    AsType,
     {
       __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 20
+        lineNumber: 21
       }
     },
     translated

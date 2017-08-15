@@ -8,8 +8,10 @@ var TranslateComponent = function TranslateComponent(_ref, _ref2) {
   var context = _ref2.context;
 
   var id = _ref.id,
+      _ref$as = _ref.as,
+      AsType = _ref$as === undefined ? 'span' : _ref$as,
       children = _ref.children,
-      props = _objectWithoutProperties(_ref, ['id', 'children']);
+      props = _objectWithoutProperties(_ref, ['id', 'as', 'children']);
 
   var translated = context.t(id, props);
 
@@ -18,7 +20,7 @@ var TranslateComponent = function TranslateComponent(_ref, _ref2) {
   }
 
   return React.createElement(
-    'span',
+    AsType,
     null,
     translated
   );
