@@ -3,11 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var _jsxFileName = 'index.jsx';
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _flowRuntime = require('flow-runtime');
 
@@ -19,7 +22,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 const ChildrenCallbackType = _flowRuntime2.default.type('ChildrenCallbackType', _flowRuntime2.default.function(_flowRuntime2.default.param('translated', _flowRuntime2.default.string()), _flowRuntime2.default.return(_flowRuntime2.default.void())));
 
-const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.object(_flowRuntime2.default.property('id', _flowRuntime2.default.string()), _flowRuntime2.default.property('as', _flowRuntime2.default.string()), _flowRuntime2.default.property('children', _flowRuntime2.default.nullable(ChildrenCallbackType))));
+const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('id', _flowRuntime2.default.string()), _flowRuntime2.default.property('as', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('children', _flowRuntime2.default.nullable(ChildrenCallbackType)), _flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any())));
 
 const TranslateComponent = (_arg, _arg2) => {
   let _PropsType$assert = PropsType.assert(_arg),
@@ -36,19 +39,13 @@ const TranslateComponent = (_arg, _arg2) => {
 
   return _react2.default.createElement(
     AsType,
-    {
-      __self: undefined,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 21
-      }
-    },
+    null,
     translated
   );
 };
 
 TranslateComponent.contextTypes = {
-  context: _react.PropTypes.object.isRequired
+  context: _propTypes2.default.object.isRequired
 };
 
 exports.default = TranslateComponent;

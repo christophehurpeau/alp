@@ -1,17 +1,14 @@
-var _jsxFileName = 'index.jsx',
-    _this = this;
-
 import React from 'react';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 import _t from 'flow-runtime';
 
 var ChildrenCallbackType = _t.type('ChildrenCallbackType', _t.function(_t.param('translated', _t.string()), _t.return(_t.void())));
 
-var PropsType = _t.type('PropsType', _t.object(_t.property('id', _t.string()), _t.property('as', _t.string()), _t.property('children', _t.nullable(ChildrenCallbackType))));
+var PropsType = _t.type('PropsType', _t.exactObject(_t.property('id', _t.string()), _t.property('as', _t.nullable(_t.string())), _t.property('children', _t.nullable(ChildrenCallbackType)), _t.indexer('key', _t.string(), _t.any())));
 
 var TranslateComponent = function TranslateComponent(_arg, _arg2) {
   var _PropsType$assert = PropsType.assert(_arg),
@@ -31,13 +28,7 @@ var TranslateComponent = function TranslateComponent(_arg, _arg2) {
 
   return React.createElement(
     AsType,
-    {
-      __self: _this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 21
-      }
-    },
+    null,
     translated
   );
 };
