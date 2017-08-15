@@ -4,6 +4,7 @@ import presetPobReact from 'babel-preset-pob-react';
 import presetPobStages from 'babel-preset-pob-stages';
 import presetEnv from 'babel-preset-env';
 import { buildPreset as presetModernBrowsers } from 'babel-preset-modern-browsers';
+import presetLatestNode from 'babel-preset-latest-node';
 import presetOptimizations from 'babel-preset-optimizations';
 import pluginDiscardModuleReference from 'babel-plugin-discard-module-references';
 import pluginFlowRuntime from 'babel-plugin-flow-runtime';
@@ -85,6 +86,14 @@ export default (target: TargetType, production: boolean = false) => ({
             '>1%',
             'not ie < 9', // react doesn't support ie < 9
           ],
+        },
+      ],
+
+      target === 'node' && [
+        presetLatestNode,
+        {
+          modules: false,
+          target: 8.3,
         },
       ],
     ]

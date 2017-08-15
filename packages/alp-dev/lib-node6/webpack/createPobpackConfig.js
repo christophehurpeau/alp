@@ -26,6 +26,10 @@ var _babelPresetEnv2 = _interopRequireDefault(_babelPresetEnv);
 
 var _babelPresetModernBrowsers = require('babel-preset-modern-browsers');
 
+var _babelPresetLatestNode = require('babel-preset-latest-node');
+
+var _babelPresetLatestNode2 = _interopRequireDefault(_babelPresetLatestNode);
+
 var _babelPresetOptimizations = require('babel-preset-optimizations');
 
 var _babelPresetOptimizations2 = _interopRequireDefault(_babelPresetOptimizations);
@@ -79,7 +83,10 @@ exports.default = (target, production = false) => ({
     comments: !(target !== 'node' && production),
 
     // preset order is last to first, so we reverse it for clarity.
-    presets: [target === 'browser' && [_babelPresetEnv2.default, {
+    presets: [target === 'node' && [_babelPresetLatestNode2.default, {
+      modules: false,
+      target: 8.3
+    }], target === 'browser' && [_babelPresetEnv2.default, {
       modules: false,
       useBuiltIns: true,
       targets: ['>1%', 'not ie < 9']

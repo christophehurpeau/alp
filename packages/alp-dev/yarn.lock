@@ -739,7 +739,7 @@ babel-plugin-transform-es2015-computed-properties@^6.22.0:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-plugin-transform-es2015-destructuring@^6.22.0, babel-plugin-transform-es2015-destructuring@^6.23.0:
+babel-plugin-transform-es2015-destructuring@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-destructuring/-/babel-plugin-transform-es2015-destructuring-6.23.0.tgz#997bb1f1ab967f682d2b0876fe358d60e765c56d"
   dependencies:
@@ -752,7 +752,7 @@ babel-plugin-transform-es2015-duplicate-keys@^6.22.0:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-plugin-transform-es2015-for-of@^6.22.0, babel-plugin-transform-es2015-for-of@^6.23.0:
+babel-plugin-transform-es2015-for-of@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-for-of/-/babel-plugin-transform-es2015-for-of-6.23.0.tgz#f47c95b2b613df1d3ecc2fdb7573623c75248691"
   dependencies:
@@ -812,7 +812,7 @@ babel-plugin-transform-es2015-object-super@^6.22.0:
     babel-helper-replace-supers "^6.24.1"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-es2015-parameters@^6.22.0, babel-plugin-transform-es2015-parameters@^6.23.0:
+babel-plugin-transform-es2015-parameters@^6.23.0:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-parameters/-/babel-plugin-transform-es2015-parameters-6.24.1.tgz#57ac351ab49caf14a97cd13b09f66fdf0a625f2b"
   dependencies:
@@ -1073,19 +1073,17 @@ babel-preset-latest-node@^0.4.0:
     babel-plugin-transform-exponentiation-operator "^6.24.1"
     babel-plugin-transform-object-rest-spread "^6.23.0"
 
-babel-preset-modern-browsers@^9.0.2:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/babel-preset-modern-browsers/-/babel-preset-modern-browsers-9.0.2.tgz#fd8be096220b20ce231fc7fc659d2fec486cfe04"
+babel-preset-modern-browsers@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-modern-browsers/-/babel-preset-modern-browsers-10.0.0.tgz#21d1d88743e0aa460572bf057a4bdae10f601d17"
   dependencies:
     babel-plugin-check-es2015-constants "^6.22.0"
+    babel-plugin-syntax-object-rest-spread "^6.13.0"
     babel-plugin-syntax-trailing-function-commas "^6.22.0"
-    babel-plugin-transform-async-to-generator "^6.22.0"
     babel-plugin-transform-es2015-arrow-functions "^6.22.0"
-    babel-plugin-transform-es2015-destructuring "^6.22.0"
-    babel-plugin-transform-es2015-for-of "^6.22.0"
     babel-plugin-transform-es2015-function-name "^6.22.0"
     babel-plugin-transform-es2015-modules-commonjs "^6.22.0"
-    babel-plugin-transform-es2015-parameters "^6.22.0"
+    babel-plugin-transform-object-rest-spread "^6.23.0"
 
 babel-preset-optimizations@^1.0.1:
   version "1.0.1"
@@ -1096,22 +1094,23 @@ babel-preset-optimizations@^1.0.1:
     babel-plugin-minify-guarded-expressions "^0.2.0"
     babel-plugin-transform-inline-consecutive-adds "^0.2.0"
 
-babel-preset-pob-react@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/babel-preset-pob-react/-/babel-preset-pob-react-0.2.3.tgz#329afb1e9a740ffea506cc33438b5d57e01e555d"
+babel-preset-pob-react@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/babel-preset-pob-react/-/babel-preset-pob-react-0.2.4.tgz#58f1e2291f7b242c26cbff4db2b6a6f5afa02612"
   dependencies:
     babel-plugin-react-require "^3.0.0"
     babel-plugin-transform-react-jsx-self "^6.22.0"
     babel-plugin-transform-react-jsx-source "^6.22.0"
     babel-preset-react "^6.24.1"
 
-babel-preset-pob-stages@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-pob-stages/-/babel-preset-pob-stages-0.2.0.tgz#5dddcdc474bcf697891f4eaff5298f30318df31b"
+babel-preset-pob-stages@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/babel-preset-pob-stages/-/babel-preset-pob-stages-0.2.2.tgz#d98dcc9132842f56fcb355955e8b5ad010138fd7"
   dependencies:
     babel-plugin-transform-class-properties "^6.24.1"
     babel-plugin-transform-decorators-legacy "^1.3.4"
     babel-plugin-transform-export-extensions "^6.22.0"
+    babel-plugin-transform-object-rest-spread "^6.23.0"
 
 babel-preset-pob@^0.5.0:
   version "0.5.0"
@@ -4729,16 +4728,16 @@ pluralize@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-4.0.0.tgz#59b708c1c0190a2f692f1c7618c446b052fd1762"
 
-pob-babel@^18.0.0:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-18.0.1.tgz#2089395fd01d499ea4d8f5405b461eea5835bede"
+pob-babel@^18.0.3:
+  version "18.0.3"
+  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-18.0.3.tgz#e5fda38bb2763e4da893737d02af31feebddb697"
   dependencies:
     babel-core "^6.25.0"
     babel-plugin-discard-module-references "^1.1.2"
     babel-plugin-flow-runtime "^0.11.1"
     babel-preset-optimizations "^1.0.1"
     babel-preset-pob "^0.5.0"
-    babel-preset-pob-stages "^0.2.0"
+    babel-preset-pob-stages "^0.2.2"
     babel-register "^6.24.1"
     chokidar "^1.7.0"
     fs-readdir-recursive "^1.0.0"

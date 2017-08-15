@@ -17,11 +17,9 @@ const resolvePreset = presetName => require.resolve(`babel-preset-${presetName}`
 const resolvePlugin = pluginName => require.resolve(`babel-plugin-${pluginName}`);
 
 const env = `webpack${modernBrowsers ? '-modern-browsers' : ''}${!production ? '-dev' : ''}`;
-const babelOptions = createBabelOpts(
-  env,
-  true,
-  { plugins: [!production && require('react-hot-loader/babel')] }
-);
+const babelOptions = createBabelOpts(env, true, {
+  // plugins: [!production && require('react-hot-loader/babel')],
+});
 
 const resolveBabel = resolve => thing => {
   if (Array.isArray(thing)) return [resolveBabel(resolve)(thing[0])].concat(thing.slice(1));
@@ -72,7 +70,6 @@ module.exports = {
     wrappedContextCritical: false,
     wrappedContextRecursive: false,
 
-
     // preLoaders: [
     // { test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/ },
     // { test: /\.jsx?$/, loader: 'source-map', exclude: /react-hot-loader/ }
@@ -118,9 +115,7 @@ module.exports = {
         production,
         publicPath: path.resolve('public'),
         themeFile: './src/theme.scss',
-        plugins: [
-          require('autoprefixer'),
-        ].filter(Boolean),
+        plugins: [require('autoprefixer')].filter(Boolean),
       }),
     ].filter(Boolean),
   },
@@ -187,29 +182,32 @@ module.exports = {
     !production && new webpack.HotModuleReplacementPlugin(),
     !production && new webpack.NamedModulesPlugin(),
     !production && new webpack.NoErrorsPlugin(),
-    production && new BabiliCustomPlugin({
-      comments: false,
-      plugins: [
-        'minify-dead-code-elimination',
-        'minify-flip-comparisons',
-        'minify-guarded-expressions',
-        'minify-constant-folding',
-        'minify-numeric-literals',
-        'minify-simplify',
-        'minify-empty-function',
-        'transform-member-expression-literals',
-        'transform-merge-sibling-variables',
-        'transform-property-literals',
-        'transform-remove-debugger',
-        'minify-mangle-names',
-      ].map(resolveBabel(resolvePlugin)),
-    }),
-    production && !modernBrowsers && new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-      sourceMap: !production,
-    }),
+    production &&
+      new BabiliCustomPlugin({
+        comments: false,
+        plugins: [
+          'minify-dead-code-elimination',
+          'minify-flip-comparisons',
+          'minify-guarded-expressions',
+          'minify-constant-folding',
+          'minify-numeric-literals',
+          'minify-simplify',
+          'minify-empty-function',
+          'transform-member-expression-literals',
+          'transform-merge-sibling-variables',
+          'transform-property-literals',
+          'transform-remove-debugger',
+          'minify-mangle-names',
+        ].map(resolveBabel(resolvePlugin)),
+      }),
+    production &&
+      !modernBrowsers &&
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+        },
+        sourceMap: !production,
+      }),
     // TODO https://github.com/NekR/offline-plugin
   ].filter(Boolean),
 };
