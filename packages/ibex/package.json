@@ -1,6 +1,6 @@
 {
   "name": "ibex",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "Framework for browser, with the same API than koa 2",
   "keywords": [
     "alp"

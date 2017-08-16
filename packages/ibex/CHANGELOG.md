@@ -1,3 +1,12 @@
+<a name="4.5.0"></a>
+# [4.5.0](https://github.com/alpjs/ibex/compare/v4.4.0...v4.5.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies ([70cafd6](https://github.com/alpjs/ibex/commit/70cafd6))
+
+
 <a name="4.4.0"></a>
 # [4.4.0](https://github.com/alpjs/ibex/compare/v4.3.0...v4.4.0) (2017-04-03)
 
