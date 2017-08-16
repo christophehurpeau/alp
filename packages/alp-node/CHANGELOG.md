@@ -1,3 +1,12 @@
+<a name="0.34.0"></a>
+# [0.34.0](https://github.com/alpjs/alp-node/compare/v0.33.0...v0.34.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies, remove alp-controller ([6648362](https://github.com/alpjs/alp-node/commit/6648362))
+
+
 <a name="0.33.0"></a>
 # [0.33.0](https://github.com/alpjs/alp-node/compare/v0.32.1...v0.33.0) (2017-07-26)
 
