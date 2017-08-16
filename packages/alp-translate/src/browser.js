@@ -12,7 +12,6 @@ export default function alpTranslate(dirname: string) {
     });
 
     const language = app.context.language;
-    return app.loadConfig(dirname + language)
-            .then(map => app.translations = load(map, language));
+    return app.loadConfig(dirname + language).then(map => (app.translations = load(map, language)));
   };
 }

@@ -4,22 +4,13 @@ import load from './load';
 const logger = new Logger('alp:translate');
 
 export default function alpTranslate(dirname) {
-  dirname = dirname.replace(/\/*$/, '/');
-  return function (app) {
+  return dirname = dirname.replace(/\/*$/, '/'), function (app) {
     Object.assign(app.context, {
       t(key, args) {
         const msg = app.translations.get(this.language).get(key);
-        if (!msg) {
-          logger.warn('invalid msg', { language: this.language, key });
-          return key;
-        }
-
-        return msg.format(args);
+        return msg ? msg.format(args) : (logger.warn('invalid msg', { language: this.language, key }), key);
       }
-    });
-
-    app.translations = new Map();
-    app.config.get('availableLanguages').forEach(function (language) {
+    }), app.translations = new Map(), app.config.get('availableLanguages').forEach(function (language) {
       const translations = app.config.loadConfigSync(dirname + language);
       app.translations.set(language, load(translations, language));
     });

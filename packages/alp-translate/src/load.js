@@ -11,7 +11,7 @@ export default function load(translations: Map<string, any>, language: string) {
 
       result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
     });
-  }(translations, ''));
+  })(translations, '');
 
   return result;
 }
