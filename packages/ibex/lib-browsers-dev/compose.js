@@ -15,15 +15,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function compose(middlewares) {
   var _middlewaresType = _flowRuntime2.default.array(_flowRuntime2.default.function());
 
-  _flowRuntime2.default.param('middlewares', _middlewaresType).assert(middlewares);
-
-  return function (ctx) {
+  return _flowRuntime2.default.param('middlewares', _middlewaresType).assert(middlewares), function (ctx) {
     var index = -1;
     return function dispatch(i) {
-      if (i <= index) {
-        return Promise.reject(new Error('next() called multiple times'));
-      }
+      if (i <= index) return Promise.reject(new Error('next() called multiple times'));
       index = i;
+
 
       var fn = middlewares[i];
 
@@ -31,8 +28,8 @@ function compose(middlewares) {
       try {
         return Promise.resolve(fn.call(ctx, ctx, function () {
           if (called) throw new Error('Cannot call next() more than once.');
-          called = true;
-          return dispatch(i + 1);
+
+          return called = true, dispatch(i + 1);
         }));
       } catch (e) {
         return Promise.reject(e);

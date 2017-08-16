@@ -3,15 +3,12 @@ import t from 'flow-runtime';
 export default function compose(middlewares) {
   var _middlewaresType = t.array(t.function());
 
-  t.param('middlewares', _middlewaresType).assert(middlewares);
-
-  return function (ctx) {
+  return t.param('middlewares', _middlewaresType).assert(middlewares), function (ctx) {
     var index = -1;
     return function dispatch(i) {
-      if (i <= index) {
-        return Promise.reject(new Error('next() called multiple times'));
-      }
+      if (i <= index) return Promise.reject(new Error('next() called multiple times'));
       index = i;
+
 
       var fn = middlewares[i];
 
@@ -19,8 +16,8 @@ export default function compose(middlewares) {
       try {
         return Promise.resolve(fn.call(ctx, ctx, function () {
           if (called) throw new Error('Cannot call next() more than once.');
-          called = true;
-          return dispatch(i + 1);
+
+          return called = true, dispatch(i + 1);
         }));
       } catch (e) {
         return Promise.reject(e);

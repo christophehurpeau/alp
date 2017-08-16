@@ -12,9 +12,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var proto = {};
 
-(0, _delegates2.default)(proto, 'response').access('body').method('redirect');
-
-(0, _delegates2.default)(proto, 'request').getter('host').getter('hostname').getter('href').getter('origin').getter('path').getter('protocol').getter('query').getter('url').getter('search').getter('searchParams');
-
+(0, _delegates2.default)(proto, 'response').access('body').method('redirect'), (0, _delegates2.default)(proto, 'request').getter('host').getter('hostname').getter('href').getter('origin').getter('path').getter('protocol').getter('query').getter('url').getter('search').getter('searchParams');
 exports.default = proto;
 //# sourceMappingURL=context.js.map

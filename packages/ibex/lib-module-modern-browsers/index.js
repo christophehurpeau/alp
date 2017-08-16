@@ -12,36 +12,25 @@ const logger = new Logger('ibex');
 
 function respond(ctx) {
   // allow bypassing
-  if (ctx.respond === false) {
-    return;
-  }
 
-  let body = ctx.body;
-  if (body == null) return;
 
   // const code = ctx.status;
 
-  if (typeof body === 'string') {
-    document.body.innerHTML = body;
-    return;
-  }
+  if (ctx.respond !== false) {
 
-  if (body.nodeType) {
-    document.body.innerHTML = '';
-    document.body.appendChild(body);
-  }
+      let body = ctx.body;
+      if (body != null) {
+          if (typeof body === 'string') return void (document.body.innerHTML = body);
 
-  throw new Error('Invalid body result');
+          throw body.nodeType && (document.body.innerHTML = '', document.body.appendChild(body)), new Error('Invalid body result');
+        }
+    }
 }
 
 let Application = class extends EventEmitter {
 
   constructor() {
-    super();
-    this.middleware = [];
-    this.context = Object.create(context);
-    this.context.app = this;
-    this.context.state = {};
+    super(), this.middleware = [], this.context = Object.create(context), this.context.app = this, this.context.state = {};
   }
 
   get environment() {
@@ -49,9 +38,7 @@ let Application = class extends EventEmitter {
   }
 
   use(fn) {
-    logger.debug('use', { name: fn.name || '-' });
-    this.middleware.push(fn);
-    return this;
+    return logger.debug('use', { name: fn.name || '-' }), this.middleware.push(fn), this;
   }
 
   onerror(e) {
@@ -59,34 +46,20 @@ let Application = class extends EventEmitter {
   }
 
   run(url) {
-    if (!this.listeners('error').length) {
-      this.on('error', this.onerror);
-    }
-
-    this.callback = compose(this.middleware);
-
-    if (url) {
-      this.load(url);
-    }
+    this.listeners('error').length || this.on('error', this.onerror), this.callback = compose(this.middleware), url && this.load(url);
   }
 
   createContext() {
     const context = Object.create(this.context);
-    context.request = Object.create(request);
-    context.response = Object.create(response);
-    // eslint-disable-next-line no-multi-assign
-    context.request.app = context.response.app = this;
-    return context;
+
+    return context.request = Object.create(request), context.response = Object.create(response), context.request.app = context.response.app = this, context;
   }
 
   load(url) {
     var _this = this;
 
-    logger.debug('load', { url });
+    logger.debug('load', { url }), url.startsWith('?') && (url = window.location.pathname + url);
 
-    if (url.startsWith('?')) {
-      url = window.location.pathname + url;
-    }
 
     const context = this.createContext();
     return this.callback(context).then(function () {
