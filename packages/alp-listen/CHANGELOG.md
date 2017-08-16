@@ -1,3 +1,12 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/alpjs/alp-listen/compare/v1.3.1...v1.4.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies ([dde8f09](https://github.com/alpjs/alp-listen/commit/dde8f09))
+
+
 ### v1.3.1
 
 - [`0c2b9ee`](https://github.com/alpjs/alp-listen/commit/0c2b9ee0e013cec79d00ab11e1d4a90261cf081c) refactor: logger key (Christophe Hurpeau)
