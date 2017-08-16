@@ -1,3 +1,12 @@
+<a name="3.13.0"></a>
+# [3.13.0](https://github.com/alpjs/alp-websocket/compare/v3.12.0...v3.13.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies, change websocket state ([84f93ef](https://github.com/alpjs/alp-websocket/commit/84f93ef))
+
+
 <a name="3.12.0"></a>
 # [3.12.0](https://github.com/alpjs/alp-websocket/compare/v3.11.3...v3.12.0) (2017-07-26)
 
