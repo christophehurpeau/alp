@@ -48,7 +48,6 @@
     ]
   },
   "dependencies": {
-    "alauda": "^2.7.0",
     "alp-config": "^3.5.0",
     "alp-language": "^1.8.0",
     "alp-translate": "^2.6.0",

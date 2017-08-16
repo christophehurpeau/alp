@@ -51,13 +51,6 @@ ajv@^5.2.0:
     json-schema-traverse "^0.3.0"
     json-stable-stringify "^1.0.1"
 
-alauda@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/alauda/-/alauda-2.7.0.tgz#aeea4b2d4be3506f762a5c26b699cdd7d7e85385"
-  dependencies:
-    flow-runtime "0.10.0"
-    nightingale-logger "^3.4.0"
-
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/align-text/-/align-text-0.1.4.tgz#0cd90a561093f35d0a99256c22b7069433fad117"
