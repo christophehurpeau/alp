@@ -22,8 +22,6 @@ const AccountType = _flowRuntime2.default.tdz(() => _index.AccountType);
 
 const mongoUsersManager = Object.create(_abstractUsersManager2.default);
 exports.default = mongoUsersManager;
-
-
 Object.assign(mongoUsersManager, {
   findOneByAccountOrEmails(_arg) {
     const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.nullable(_flowRuntime2.default.ref(UserType)));
@@ -37,9 +35,8 @@ Object.assign(mongoUsersManager, {
     const r = this.store.r;
     let filter = r.row('accounts').contains(row => r.and(row('provider').eq(provider), row('accountId').eq(accountId)));
 
-    if (emails && emails.length) {
-      filter = r.or(filter, r.row('emails').contains(row => r.expr(emails).contains(row)));
-    }
+    emails && emails.length && (filter = r.or(filter, r.row('emails').contains(row => r.expr(emails).contains(row))));
+
 
     let query = this.store.query().filter(filter);
     return this.store.findOne(query).then(_arg2 => _returnType.assert(_arg2));
@@ -50,14 +47,10 @@ Object.assign(mongoUsersManager, {
 
     let _accountType = _flowRuntime2.default.ref(AccountType);
 
-    _flowRuntime2.default.param('user', _userType).assert(user);
-
-    _flowRuntime2.default.param('account', _accountType).assert(account);
+    _flowRuntime2.default.param('user', _userType).assert(user), _flowRuntime2.default.param('account', _accountType).assert(account);
 
     let accountIndex = user.accounts.indexOf(account);
-    if (accountIndex === -1) {
-      throw new Error('Invalid account');
-    }
+    if (accountIndex === -1) throw new Error('Invalid account');
 
     return this.store.partialUpdateOne(user, {
       accounts: this.store.r.row('accounts').changeAt(accountIndex, account)

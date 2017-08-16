@@ -30,23 +30,20 @@ function createAuthController(_arg) {
     },
 
     async loginResponse(ctx) {
-      if (ctx.state.connected) {
-        ctx.redirect(ctx.urlGenerator(homeRouterKey));
-      }
+      ctx.state.connected && ctx.redirect(ctx.urlGenerator(homeRouterKey));
+
 
       const strategy = ctx.namedParam('strategy');
       ctx.assert(strategy);
 
+
       const connectedUser = await authenticationService.accessResponse(ctx, strategy);
       const keyPath = _flowRuntime2.default.string().assert(usersManager.store.keyPath);
-      await ctx.setConnected(connectedUser[keyPath], connectedUser);
-      ctx.state.connected = connectedUser;
-      await ctx.redirect(ctx.urlGenerator(homeRouterKey));
+      await ctx.setConnected(connectedUser[keyPath], connectedUser), ctx.state.connected = connectedUser, await ctx.redirect(ctx.urlGenerator(homeRouterKey));
     },
 
     async logout(ctx) {
-      ctx.logout();
-      await ctx.redirect(ctx.urlGenerator(homeRouterKey));
+      ctx.logout(), await ctx.redirect(ctx.urlGenerator(homeRouterKey));
     }
   };
 }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+exports.default = void 0;
 
 var _events = require('events');
 
@@ -27,10 +27,7 @@ const logger = new _nightingaleLogger2.default('alp:auth:authentication');
 let AuthenticationService = class extends _events2.default {
 
   constructor(config, strategies, userAccountsService) {
-    super();
-    this.config = config;
-    this.strategies = strategies;
-    this.userAccountsService = userAccountsService;
+    super(), this.config = config, this.strategies = strategies, this.userAccountsService = userAccountsService;
   }
 
   /**
@@ -56,6 +53,7 @@ let AuthenticationService = class extends _events2.default {
    */
   generateAuthUrl(strategy, options = {}) {
     logger.debug('generateAuthUrl', { strategy, options });
+
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -73,6 +71,7 @@ let AuthenticationService = class extends _events2.default {
 
   getTokens(strategy, options = {}) {
     logger.debug('getTokens', { strategy, options });
+
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -88,8 +87,8 @@ let AuthenticationService = class extends _events2.default {
           expiresIn: result.expires_in,
           expireDate: (() => {
             const d = new Date();
-            d.setTime(d.getTime() + result.expires_in * 1000);
-            return d;
+
+            return d.setTime(d.getTime() + result.expires_in * 1000), d;
           })(),
           idToken: result.id_token
         }
@@ -99,10 +98,7 @@ let AuthenticationService = class extends _events2.default {
   }
 
   refreshToken(strategy, tokens) {
-    logger.debug('refreshToken', { strategy });
-    if (!tokens.refreshToken) {
-      throw new Error('Missing refresh token');
-    }
+    if (logger.debug('refreshToken', { strategy }), !tokens.refreshToken) throw new Error('Missing refresh token');
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -118,8 +114,8 @@ let AuthenticationService = class extends _events2.default {
               expiresIn: tokens.expires_in,
               expireDate: (() => {
                 const d = new Date();
-                d.setTime(d.getTime() + tokens.expires_in * 1000);
-                return d;
+
+                return d.setTime(d.getTime() + tokens.expires_in * 1000), d;
               })(),
               idToken: tokens.id_token
             };
@@ -145,6 +141,7 @@ let AuthenticationService = class extends _events2.default {
    */
   async redirectAuthUrl(ctx, strategy, refreshToken, scopeKey, user, accountId) {
     logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
+
     const state = await (0, _generators.randomHex)(8);
 
     const scope = this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
@@ -158,6 +155,7 @@ let AuthenticationService = class extends _events2.default {
       httpOnly: true,
       secure: this.config.get('allowHttps')
     });
+
     const redirectUri = this.generateAuthUrl(strategy, {
       redirectUri: this.redirectUri(ctx, strategy),
       scope,
@@ -177,30 +175,20 @@ let AuthenticationService = class extends _events2.default {
   async accessResponse(ctx, strategy, isConnected) {
     if (ctx.query.error) {
       const error = new Error(ctx.query.error);
-      error.status = 403;
-      error.expose = true;
-      throw error;
+
+      throw error.status = 403, error.expose = true, error;
     }
 
     const code = ctx.query.code;
     const state = ctx.query.state;
     const cookieName = `auth_${strategy}_${state}`;
     let cookie = ctx.cookies.get(cookieName);
-    ctx.cookies.set(cookieName, '', { expires: new Date(1) });
-    if (!cookie) {
-      throw new Error('No cookie for this state');
-    }
 
-    cookie = JSON.parse(cookie);
-    if (!cookie || !cookie.scope) {
-      throw new Error('Unexpected cookie value');
-    }
+    if (ctx.cookies.set(cookieName, '', { expires: new Date(1) }), !cookie) throw new Error('No cookie for this state');
 
-    if (!cookie.isLoginAccess) {
-      if (!isConnected) {
-        throw new Error('You are not connected');
-      }
-    }
+    if (cookie = JSON.parse(cookie), !cookie || !cookie.scope) throw new Error('Unexpected cookie value');
+
+    if (!cookie.isLoginAccess && !isConnected) throw new Error('You are not connected');
 
     const tokens = await this.getTokens(strategy, {
       code,
@@ -213,27 +201,17 @@ let AuthenticationService = class extends _events2.default {
     }
 
     ctx.cookies.set(cookieName, '', { expires: new Date(1) });
+
     const connectedUser = ctx.state.connected;
-    await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
-    return connectedUser;
+
+    return await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey), connectedUser;
   }
 
   refreshAccountTokens(user, account) {
-    if (account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now()) {
-      return Promise.resolve(false);
-    }
-    return this.refreshToken(account.provider, {
+    return account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now() ? Promise.resolve(false) : this.refreshToken(account.provider, {
       accessToken: account.accessToken,
       refreshToken: account.refreshToken
-    }).then(tokens => {
-      if (!tokens) {
-        // serviceGoogle.updateFields({ accessToken:null, refreshToken:null, status: .OUTDATED });
-        return false;
-      }
-      account.accessToken = tokens.accessToken;
-      account.tokenExpireDate = tokens.expireDate;
-      return this.userAccountsService.updateAccount(user, account).then(() => true);
-    });
+    }).then(tokens => !!tokens && (account.accessToken = tokens.accessToken, account.tokenExpireDate = tokens.expireDate, this.userAccountsService.updateAccount(user, account).then(() => true)));
   }
 };
 exports.default = AuthenticationService;

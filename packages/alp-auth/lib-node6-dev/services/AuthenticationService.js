@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+exports.default = void 0;
 
 var _dec, _dec2, _dec3, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3; /* eslint camelcase: 'off', max-lines: 'off' */
 
@@ -32,11 +32,10 @@ var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { return void reject(error); } return info.done ? void resolve(value) : Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } return step("next"); }); }; }
 
 function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
+  descriptor && Object.defineProperty(target, property, {
     enumerable: descriptor.enumerable,
     configurable: descriptor.configurable,
     writable: descriptor.writable,
@@ -46,31 +45,11 @@ function _initDefineProp(target, property, descriptor, context) {
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
-  Object['keys'](descriptor).forEach(function (key) {
+  return Object['keys'](descriptor).forEach(function (key) {
     desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+  }), desc.enumerable = !!desc.enumerable, desc.configurable = !!desc.configurable, ('value' in desc || desc.initializer) && (desc.writable = true), desc = decorators.slice().reverse().reduce(function (desc, decorator) {
     return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['defineProperty'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
+  }, desc), context && desc.initializer !== void 0 && (desc.value = desc.initializer ? desc.initializer.call(context) : void 0, desc.initializer = void 0), desc.initializer === void 0 && (Object['defineProperty'](target, property, desc), desc = null), desc;
 }
 
 function _initializerWarningHelper() {
@@ -85,28 +64,14 @@ const GetTokensOptionsType = _flowRuntime2.default.type('GetTokensOptionsType', 
 
 let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2.default.object()), _dec2 = _flowRuntime2.default.decorate(_flowRuntime2.default.object()), _dec3 = _flowRuntime2.default.decorate(function () {
   return _flowRuntime2.default.ref(_UserAccountsService2.default);
-}), (_class = class extends _events2.default {
+}), _class = class extends _events2.default {
 
   constructor(config, strategies, userAccountsService) {
     let _strategiesType = _flowRuntime2.default.object();
 
     let _userAccountsServiceType = _flowRuntime2.default.ref(_UserAccountsService2.default);
 
-    _flowRuntime2.default.param('strategies', _strategiesType).assert(strategies);
-
-    _flowRuntime2.default.param('userAccountsService', _userAccountsServiceType).assert(userAccountsService);
-
-    super();
-
-    _initDefineProp(this, 'config', _descriptor, this);
-
-    _initDefineProp(this, 'strategies', _descriptor2, this);
-
-    _initDefineProp(this, 'userAccountsService', _descriptor3, this);
-
-    this.config = config;
-    this.strategies = strategies;
-    this.userAccountsService = userAccountsService;
+    _flowRuntime2.default.param('strategies', _strategiesType).assert(strategies), _flowRuntime2.default.param('userAccountsService', _userAccountsServiceType).assert(userAccountsService), super(), _initDefineProp(this, 'config', _descriptor, this), _initDefineProp(this, 'strategies', _descriptor2, this), _initDefineProp(this, 'userAccountsService', _descriptor3, this), this.config = config, this.strategies = strategies, this.userAccountsService = userAccountsService;
   }
 
   /**
@@ -133,11 +98,8 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
   generateAuthUrl(strategy, options = {}) {
     let _strategyType = _flowRuntime2.default.string();
 
-    _flowRuntime2.default.param('strategy', _strategyType).assert(strategy);
+    _flowRuntime2.default.param('strategy', _strategyType).assert(strategy), _flowRuntime2.default.param('options', GenerateAuthUrlOptionsType).assert(options), logger.debug('generateAuthUrl', { strategy, options });
 
-    _flowRuntime2.default.param('options', GenerateAuthUrlOptionsType).assert(options);
-
-    logger.debug('generateAuthUrl', { strategy, options });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -156,11 +118,8 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
   getTokens(strategy, options = {}) {
     let _strategyType2 = _flowRuntime2.default.string();
 
-    _flowRuntime2.default.param('strategy', _strategyType2).assert(strategy);
+    _flowRuntime2.default.param('strategy', _strategyType2).assert(strategy), _flowRuntime2.default.param('options', GetTokensOptionsType).assert(options), logger.debug('getTokens', { strategy, options });
 
-    _flowRuntime2.default.param('options', GetTokensOptionsType).assert(options);
-
-    logger.debug('getTokens', { strategy, options });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -176,8 +135,8 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
           expiresIn: result.expires_in,
           expireDate: (() => {
             const d = new Date();
-            d.setTime(d.getTime() + result.expires_in * 1000);
-            return d;
+
+            return d.setTime(d.getTime() + result.expires_in * 1000), d;
           })(),
           idToken: result.id_token
         }
@@ -189,12 +148,7 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
   refreshToken(strategy, tokens) {
     let _strategyType3 = _flowRuntime2.default.string();
 
-    _flowRuntime2.default.param('strategy', _strategyType3).assert(strategy);
-
-    logger.debug('refreshToken', { strategy });
-    if (!tokens.refreshToken) {
-      throw new Error('Missing refresh token');
-    }
+    if (_flowRuntime2.default.param('strategy', _strategyType3).assert(strategy), logger.debug('refreshToken', { strategy }), !tokens.refreshToken) throw new Error('Missing refresh token');
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -210,8 +164,8 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
               expiresIn: tokens.expires_in,
               expireDate: (() => {
                 const d = new Date();
-                d.setTime(d.getTime() + tokens.expires_in * 1000);
-                return d;
+
+                return d.setTime(d.getTime() + tokens.expires_in * 1000), d;
               })(),
               idToken: tokens.id_token
             };
@@ -251,15 +205,8 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
 
       let _scopeKeyType = _flowRuntime2.default.nullable(_flowRuntime2.default.string());
 
-      _flowRuntime2.default.param('ctx', _ctxType).assert(ctx);
+      _flowRuntime2.default.param('ctx', _ctxType).assert(ctx), _flowRuntime2.default.param('strategy', _strategyType5).assert(strategy), _flowRuntime2.default.param('refreshToken', _refreshTokenType).assert(refreshToken), _flowRuntime2.default.param('scopeKey', _scopeKeyType).assert(scopeKey), logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
 
-      _flowRuntime2.default.param('strategy', _strategyType5).assert(strategy);
-
-      _flowRuntime2.default.param('refreshToken', _refreshTokenType).assert(refreshToken);
-
-      _flowRuntime2.default.param('scopeKey', _scopeKeyType).assert(scopeKey);
-
-      logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
       const state = yield (0, _generators.randomHex)(8);
 
       const scope = _this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
@@ -273,6 +220,7 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
         httpOnly: true,
         secure: _this.config.get('allowHttps')
       });
+
       const redirectUri = _this.generateAuthUrl(strategy, {
         redirectUri: _this.redirectUri(ctx, strategy),
         scope,
@@ -298,36 +246,22 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
 
       let _isConnectedType = _flowRuntime2.default.nullable(_flowRuntime2.default.boolean());
 
-      _flowRuntime2.default.param('strategy', _strategyType6).assert(strategy);
-
-      _flowRuntime2.default.param('isConnected', _isConnectedType).assert(isConnected);
-
-      if (ctx.query.error) {
+      if (_flowRuntime2.default.param('strategy', _strategyType6).assert(strategy), _flowRuntime2.default.param('isConnected', _isConnectedType).assert(isConnected), ctx.query.error) {
         const error = new Error(ctx.query.error);
-        error.status = 403;
-        error.expose = true;
-        throw error;
+
+        throw error.status = 403, error.expose = true, error;
       }
 
       const code = ctx.query.code;
       const state = ctx.query.state;
       const cookieName = `auth_${strategy}_${state}`;
       let cookie = ctx.cookies.get(cookieName);
-      ctx.cookies.set(cookieName, '', { expires: new Date(1) });
-      if (!cookie) {
-        throw new Error('No cookie for this state');
-      }
 
-      cookie = JSON.parse(cookie);
-      if (!cookie || !cookie.scope) {
-        throw new Error('Unexpected cookie value');
-      }
+      if (ctx.cookies.set(cookieName, '', { expires: new Date(1) }), !cookie) throw new Error('No cookie for this state');
 
-      if (!cookie.isLoginAccess) {
-        if (!isConnected) {
-          throw new Error('You are not connected');
-        }
-      }
+      if (cookie = JSON.parse(cookie), !cookie || !cookie.scope) throw new Error('Unexpected cookie value');
+
+      if (!cookie.isLoginAccess && !isConnected) throw new Error('You are not connected');
 
       const tokens = yield _this2.getTokens(strategy, {
         code,
@@ -340,30 +274,20 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
       }
 
       ctx.cookies.set(cookieName, '', { expires: new Date(1) });
+
       const connectedUser = ctx.state.connected;
-      yield _this2.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
-      return connectedUser;
+
+      return yield _this2.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey), connectedUser;
     })();
   }
 
   refreshAccountTokens(user, account) {
-    if (account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now()) {
-      return Promise.resolve(false);
-    }
-    return this.refreshToken(account.provider, {
+    return account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now() ? Promise.resolve(false) : this.refreshToken(account.provider, {
       accessToken: account.accessToken,
       refreshToken: account.refreshToken
-    }).then(tokens => {
-      if (!tokens) {
-        // serviceGoogle.updateFields({ accessToken:null, refreshToken:null, status: .OUTDATED });
-        return false;
-      }
-      account.accessToken = tokens.accessToken;
-      account.tokenExpireDate = tokens.expireDate;
-      return this.userAccountsService.updateAccount(user, account).then(() => true);
-    });
+    }).then(tokens => !!tokens && (account.accessToken = tokens.accessToken, account.tokenExpireDate = tokens.expireDate, this.userAccountsService.updateAccount(user, account).then(() => true)));
   }
-}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'config', [_dec], {
+}, _descriptor = _applyDecoratedDescriptor(_class.prototype, 'config', [_dec], {
   enumerable: true,
   initializer: null
 }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'strategies', [_dec2], {
@@ -372,6 +296,6 @@ let AuthenticationService = (_dec = _flowRuntime2.default.decorate(_flowRuntime2
 }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'userAccountsService', [_dec3], {
   enumerable: true,
   initializer: null
-})), _class));
+}), _class);
 exports.default = AuthenticationService;
 //# sourceMappingURL=AuthenticationService.js.map

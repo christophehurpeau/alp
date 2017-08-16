@@ -1,8 +1,7 @@
 var _dec, _dec2, _dec3, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
 
 function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
+  descriptor && Object.defineProperty(target, property, {
     enumerable: descriptor.enumerable,
     configurable: descriptor.configurable,
     writable: descriptor.writable,
@@ -12,31 +11,11 @@ function _initDefineProp(target, property, descriptor, context) {
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
-  Object['keys'](descriptor).forEach(function (key) {
+  return Object['keys'](descriptor).forEach(function (key) {
     desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+  }), desc.enumerable = !!desc.enumerable, desc.configurable = !!desc.configurable, ('value' in desc || desc.initializer) && (desc.writable = true), desc = decorators.slice().reverse().reduce(function (desc, decorator) {
     return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['defineProperty'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
+  }, desc), context && desc.initializer !== void 0 && (desc.value = desc.initializer ? desc.initializer.call(context) : void 0, desc.initializer = void 0), desc.initializer === void 0 && (Object['defineProperty'](target, property, desc), desc = null), desc;
 }
 
 function _initializerWarningHelper() {
@@ -57,27 +36,14 @@ const GenerateAuthUrlOptionsType = t.type('GenerateAuthUrlOptionsType', t.object
 const GetTokensOptionsType = t.type('GetTokensOptionsType', t.object(t.property('code', t.string()), t.property('redirectUri', t.string())));
 let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t.object()), _dec3 = t.decorate(function () {
   return t.ref(UserAccountsService);
-}), (_class = class extends EventEmitter {
+}), _class = class extends EventEmitter {
 
   constructor(config, strategies, userAccountsService) {
     let _strategiesType = t.object();
 
     let _userAccountsServiceType = t.ref(UserAccountsService);
 
-    t.param('strategies', _strategiesType).assert(strategies);
-    t.param('userAccountsService', _userAccountsServiceType).assert(userAccountsService);
-
-    super();
-
-    _initDefineProp(this, 'config', _descriptor, this);
-
-    _initDefineProp(this, 'strategies', _descriptor2, this);
-
-    _initDefineProp(this, 'userAccountsService', _descriptor3, this);
-
-    this.config = config;
-    this.strategies = strategies;
-    this.userAccountsService = userAccountsService;
+    t.param('strategies', _strategiesType).assert(strategies), t.param('userAccountsService', _userAccountsServiceType).assert(userAccountsService), super(), _initDefineProp(this, 'config', _descriptor, this), _initDefineProp(this, 'strategies', _descriptor2, this), _initDefineProp(this, 'userAccountsService', _descriptor3, this), this.config = config, this.strategies = strategies, this.userAccountsService = userAccountsService;
   }
 
   /**
@@ -104,10 +70,8 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
   generateAuthUrl(strategy, options = {}) {
     let _strategyType = t.string();
 
-    t.param('strategy', _strategyType).assert(strategy);
-    t.param('options', GenerateAuthUrlOptionsType).assert(options);
+    t.param('strategy', _strategyType).assert(strategy), t.param('options', GenerateAuthUrlOptionsType).assert(options), logger.debug('generateAuthUrl', { strategy, options });
 
-    logger.debug('generateAuthUrl', { strategy, options });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -126,10 +90,8 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
   getTokens(strategy, options = {}) {
     let _strategyType2 = t.string();
 
-    t.param('strategy', _strategyType2).assert(strategy);
-    t.param('options', GetTokensOptionsType).assert(options);
+    t.param('strategy', _strategyType2).assert(strategy), t.param('options', GetTokensOptionsType).assert(options), logger.debug('getTokens', { strategy, options });
 
-    logger.debug('getTokens', { strategy, options });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -145,8 +107,8 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
           expiresIn: result.expires_in,
           expireDate: (() => {
             const d = new Date();
-            d.setTime(d.getTime() + result.expires_in * 1000);
-            return d;
+
+            return d.setTime(d.getTime() + result.expires_in * 1000), d;
           })(),
           idToken: result.id_token
         }
@@ -158,12 +120,7 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
   refreshToken(strategy, tokens) {
     let _strategyType3 = t.string();
 
-    t.param('strategy', _strategyType3).assert(strategy);
-
-    logger.debug('refreshToken', { strategy });
-    if (!tokens.refreshToken) {
-      throw new Error('Missing refresh token');
-    }
+    if (t.param('strategy', _strategyType3).assert(strategy), logger.debug('refreshToken', { strategy }), !tokens.refreshToken) throw new Error('Missing refresh token');
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
@@ -179,8 +136,8 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
               expiresIn: tokens.expires_in,
               expireDate: (() => {
                 const d = new Date();
-                d.setTime(d.getTime() + tokens.expires_in * 1000);
-                return d;
+
+                return d.setTime(d.getTime() + tokens.expires_in * 1000), d;
               })(),
               idToken: tokens.id_token
             };
@@ -217,12 +174,8 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
 
     let _scopeKeyType = t.nullable(t.string());
 
-    t.param('ctx', _ctxType).assert(ctx);
-    t.param('strategy', _strategyType5).assert(strategy);
-    t.param('refreshToken', _refreshTokenType).assert(refreshToken);
-    t.param('scopeKey', _scopeKeyType).assert(scopeKey);
+    t.param('ctx', _ctxType).assert(ctx), t.param('strategy', _strategyType5).assert(strategy), t.param('refreshToken', _refreshTokenType).assert(refreshToken), t.param('scopeKey', _scopeKeyType).assert(scopeKey), logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
 
-    logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
     const state = await randomHex(8);
 
     const scope = this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
@@ -236,6 +189,7 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
       httpOnly: true,
       secure: this.config.get('allowHttps')
     });
+
     const redirectUri = this.generateAuthUrl(strategy, {
       redirectUri: this.redirectUri(ctx, strategy),
       scope,
@@ -257,35 +211,22 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
 
     let _isConnectedType = t.nullable(t.boolean());
 
-    t.param('strategy', _strategyType6).assert(strategy);
-    t.param('isConnected', _isConnectedType).assert(isConnected);
-
-    if (ctx.query.error) {
+    if (t.param('strategy', _strategyType6).assert(strategy), t.param('isConnected', _isConnectedType).assert(isConnected), ctx.query.error) {
       const error = new Error(ctx.query.error);
-      error.status = 403;
-      error.expose = true;
-      throw error;
+
+      throw error.status = 403, error.expose = true, error;
     }
 
     const code = ctx.query.code;
     const state = ctx.query.state;
     const cookieName = `auth_${strategy}_${state}`;
     let cookie = ctx.cookies.get(cookieName);
-    ctx.cookies.set(cookieName, '', { expires: new Date(1) });
-    if (!cookie) {
-      throw new Error('No cookie for this state');
-    }
 
-    cookie = JSON.parse(cookie);
-    if (!cookie || !cookie.scope) {
-      throw new Error('Unexpected cookie value');
-    }
+    if (ctx.cookies.set(cookieName, '', { expires: new Date(1) }), !cookie) throw new Error('No cookie for this state');
 
-    if (!cookie.isLoginAccess) {
-      if (!isConnected) {
-        throw new Error('You are not connected');
-      }
-    }
+    if (cookie = JSON.parse(cookie), !cookie || !cookie.scope) throw new Error('Unexpected cookie value');
+
+    if (!cookie.isLoginAccess && !isConnected) throw new Error('You are not connected');
 
     const tokens = await this.getTokens(strategy, {
       code,
@@ -298,29 +239,19 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
     }
 
     ctx.cookies.set(cookieName, '', { expires: new Date(1) });
+
     const connectedUser = ctx.state.connected;
-    await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
-    return connectedUser;
+
+    return await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey), connectedUser;
   }
 
   refreshAccountTokens(user, account) {
-    if (account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now()) {
-      return Promise.resolve(false);
-    }
-    return this.refreshToken(account.provider, {
+    return account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now() ? Promise.resolve(false) : this.refreshToken(account.provider, {
       accessToken: account.accessToken,
       refreshToken: account.refreshToken
-    }).then(tokens => {
-      if (!tokens) {
-        // serviceGoogle.updateFields({ accessToken:null, refreshToken:null, status: .OUTDATED });
-        return false;
-      }
-      account.accessToken = tokens.accessToken;
-      account.tokenExpireDate = tokens.expireDate;
-      return this.userAccountsService.updateAccount(user, account).then(() => true);
-    });
+    }).then(tokens => !!tokens && (account.accessToken = tokens.accessToken, account.tokenExpireDate = tokens.expireDate, this.userAccountsService.updateAccount(user, account).then(() => true)));
   }
-}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'config', [_dec], {
+}, _descriptor = _applyDecoratedDescriptor(_class.prototype, 'config', [_dec], {
   enumerable: true,
   initializer: null
 }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'strategies', [_dec2], {
@@ -329,6 +260,6 @@ let AuthenticationService = (_dec = t.decorate(t.object()), _dec2 = t.decorate(t
 }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'userAccountsService', [_dec3], {
   enumerable: true,
   initializer: null
-})), _class));
+}), _class);
 export { AuthenticationService as default };
 //# sourceMappingURL=AuthenticationService.js.map

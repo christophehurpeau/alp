@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+exports.default = void 0;
 
 var _class, _temp; /* global fetch */
 
@@ -22,29 +22,25 @@ var _userAccountGoogleService2 = _interopRequireDefault(_userAccountGoogleServic
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { return void reject(error); } return info.done ? void resolve(value) : Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } return step("next"); }); }; }
 
 const logger = new _nightingaleLogger2.default('alp:auth:userAccounts');
 
 let UserAccountsService = (_temp = _class = class extends _events2.default {
 
   constructor(usersManager) {
-    super();
-    this.usersManager = usersManager;
+    super(), this.usersManager = usersManager;
   }
 
   getScope(strategy, scopeKey, user, accountId) {
     logger.debug('getScope', { strategy, userId: user && user._id });
+
     const service = this.constructor.strategyToService[strategy];
     const newScope = service.constructor.scopeKeyToScope[scopeKey];
-    if (!user || !accountId) {
-      return newScope;
-    }
+    if (!user || !accountId) return newScope;
     const account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
 
-    if (!account) {
-      throw new Error('Could not found associated account');
-    }
+    if (!account) throw new Error('Could not found associated account');
     return service.getScope(account.scope, newScope).join(' ');
   }
 
@@ -57,27 +53,12 @@ let UserAccountsService = (_temp = _class = class extends _events2.default {
       const account = user.accounts.find(function (account) {
         return account.provider === strategy && service.isAccount(account, profile);
       });
-      if (!account) {
+      if (!account)
         // TODO check if already exists in other user => merge
         // TODO else add a new account in this user
         throw new Error('Could not found associated account');
-      }
-      account.status = 'valid';
-      account.accessToken = tokens.accessToken;
-      if (tokens.refreshToken) {
-        account.refreshToken = tokens.refreshToken;
-      }
-      if (tokens.expireDate) {
-        account.tokenExpireDate = tokens.expireDate;
-      }
-      account.scope = service.getScope(account.scope, scope);
-      account.subservices = account.subservices || [];
-      if (subservice && account.subservices.indexOf(subservice) === -1) {
-        account.subservices.push(subservice);
-      }
 
-      yield _this.usersManager.update(user);
-      return user;
+      return account.status = 'valid', account.accessToken = tokens.accessToken, tokens.refreshToken && (account.refreshToken = tokens.refreshToken), tokens.expireDate && (account.tokenExpireDate = tokens.expireDate), account.scope = service.getScope(account.scope, scope), account.subservices = account.subservices || [], subservice && account.subservices.indexOf(subservice) === -1 && account.subservices.push(subservice), yield _this.usersManager.update(user), user;
     })();
   }
 
@@ -85,9 +66,7 @@ let UserAccountsService = (_temp = _class = class extends _events2.default {
     var _this2 = this;
 
     return _asyncToGenerator(function* () {
-      if (strategy !== 'google') {
-        throw new Error('Not supported at the moment');
-      }
+      if (strategy !== 'google') throw new Error('Not supported at the moment');
 
       const service = _this2.constructor.strategyToService[strategy];
 
@@ -105,19 +84,12 @@ let UserAccountsService = (_temp = _class = class extends _events2.default {
         emails
       });
 
-      logger.info('create user', { emails, user });
-
-      if (!user) {
-        user = {};
-      }
-
-      Object.assign(user, {
+      logger.info('create user', { emails, user }), user || (user = {}), Object.assign(user, {
         displayName: service.getDisplayName(profile),
         fullName: service.getFullName(profile),
         status: _this2.usersManager.STATUSES.VALIDATED
-      });
+      }), user.accounts || (user.accounts = []);
 
-      if (!user.accounts) user.accounts = [];
 
       const accountId = service.getId(profile);
 
@@ -125,43 +97,19 @@ let UserAccountsService = (_temp = _class = class extends _events2.default {
         return account.provider === strategy && account.accountId === accountId;
       });
 
-      if (!account) {
-        account = { provider: strategy, accountId };
-        user.accounts.push(account);
-      }
+      account || (account = { provider: strategy, accountId }, user.accounts.push(account)), account.name = service.getAccountName(profile), account.status = 'valid', account.profile = profile, account.accessToken = tokens.accessToken, tokens.refreshToken && (account.refreshToken = tokens.refreshToken), tokens.expireDate && (account.tokenExpireDate = tokens.expireDate), account.scope = service.getScope(account.scope, scope), account.subservices || (account.subservices = []), subservice && !account.subservices.includes(subservice) && account.subservices.push(subservice), user.emails || (user.emails = []);
 
-      account.name = service.getAccountName(profile);
-      account.status = 'valid';
-      account.profile = profile;
-      account.accessToken = tokens.accessToken;
-      if (tokens.refreshToken) {
-        account.refreshToken = tokens.refreshToken;
-      }
-      if (tokens.expireDate) {
-        account.tokenExpireDate = tokens.expireDate;
-      }
-      account.scope = service.getScope(account.scope, scope);
-
-      if (!account.subservices) account.subservices = [];
-      if (subservice && !account.subservices.includes(subservice)) {
-        account.subservices.push(subservice);
-      }
-
-      if (!user.emails) user.emails = [];
       const userEmails = user.emails;
       emails.forEach(function (email) {
-        if (!userEmails.includes(email)) {
-          userEmails.push(email);
-        }
-      });
-
-      user.emailDomains = Array.from(user.emails.reduce(function (domains, email) {
+        userEmails.includes(email) || userEmails.push(email);
+      }), user.emailDomains = Array.from(user.emails.reduce(function (domains, email) {
         return domains.add(email.split('@', 2)[1]);
       }, new Set()));
 
+
       const keyPath = _this2.usersManager.store.keyPath;
-      yield _this2.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);
-      return user;
+
+      return yield _this2.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user), user;
     })();
   }
 

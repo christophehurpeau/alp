@@ -37,16 +37,10 @@ export default function init(_arg) {
 
       let _userType = t.object();
 
-      t.param('connected', _connectedType).assert(connected);
-      t.param('user', _userType).assert(user);
+      if (t.param('connected', _connectedType).assert(connected), t.param('user', _userType).assert(user), logger.debug('setConnected', { connected }), !connected) throw new Error('Illegal value for setConnected');
 
-      logger.debug('setConnected', { connected });
-      if (!connected) {
-        throw new Error('Illegal value for setConnected');
-      }
+      this.state.connected = connected, this.state.user = user;
 
-      this.state.connected = connected;
-      this.state.user = user;
 
       const token = await promiseCallback(done => sign({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
@@ -58,20 +52,12 @@ export default function init(_arg) {
         httpOnly: true,
         secure: this.config.get('allowHttps')
       });
-    };
-
-    app.context.logout = function () {
-      delete this.state.connected;
-      delete this.state.user;
-      this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-    };
-
-    app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
-      if (ctx.state.connected) {
-        initialBrowserState.connected = ctx.state.connected || null;
-        initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user);
-      }
+    }, app.context.logout = function () {
+      delete this.state.connected, delete this.state.user, this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+    }, app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
+      ctx.state.connected && (initialBrowserState.connected = ctx.state.connected || null, initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user));
     });
+
 
     const decodeJwt = (token, userAgent) => {
       const result = verify(token, app.config.get('authentication').get('secretKey'), {
@@ -83,82 +69,62 @@ export default function init(_arg) {
 
     if (app.websocket) {
       logger.debug('app has websocket');
+
       // eslint-disable-next-line global-require
       const Cookies = require('cookies');
 
       const users = new Map();
-      app.websocket.users = users;
-
-      app.websocket.use(async (socket, next) => {
+      app.websocket.users = users, app.websocket.use(async (socket, next) => {
         const handshakeData = socket.request;
         const cookies = new Cookies(handshakeData, null, { keys: app.keys });
         let token = cookies.get(COOKIE_NAME);
-        logger.debug('middleware websocket', { token });
 
-        if (!token) return next();
+
+        if (logger.debug('middleware websocket', { token }), !token) return next();
 
         let connected;
         try {
           connected = await decodeJwt(token, handshakeData.headers['user-agent']);
         } catch (err) {
-          logger.info('failed to verify authentication', { err });
-          return next();
+          return logger.info('failed to verify authentication', { err }), next();
         }
-        logger.debug('middleware websocket', { connected });
 
-        if (!connected) return next();
+
+        if (logger.debug('middleware websocket', { connected }), !connected) return next();
 
         const user = await usersManager.findConnected(connected);
 
-        if (!user) return next();
-
-        socket.user = user;
-        users.set(socket.client.id, user);
-
-        socket.on('disconnected', () => users.delete(socket.client.id));
-
-        await next();
+        return user ? void (socket.user = user, users.set(socket.client.id, user), socket.on('disconnected', () => users.delete(socket.client.id)), await next()) : next();
       });
     }
 
     return {
       routes: {
         login: ['/login/:strategy', segment => {
-          segment.add('/response', controller.loginResponse, 'loginResponse');
-          segment.defaultRoute(controller.login, 'login');
+          segment.add('/response', controller.loginResponse, 'loginResponse'), segment.defaultRoute(controller.login, 'login');
         }],
         logout: ['/logout', controller.logout]
       },
 
       middleware: async (ctx, next) => {
         let token = ctx.cookies.get(COOKIE_NAME);
-        logger.debug('middleware', { token });
 
-        if (!token) return next();
+
+        if (logger.debug('middleware', { token }), !token) return next();
 
         let connected;
         try {
           connected = await decodeJwt(token, ctx.request.headers['user-agent']);
         } catch (err) {
-          logger.info('failed to verify authentification', { err });
-          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-          return next();
+          return logger.info('failed to verify authentification', { err }), ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) }), next();
         }
-        logger.debug('middleware', { connected });
 
-        if (!connected) return next();
+
+        if (logger.debug('middleware', { connected }), !connected) return next();
 
         const user = await usersManager.findConnected(connected);
 
-        if (!user) {
-          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-          return next();
-        }
-
-        ctx.state.connected = connected;
-        ctx.state.user = user;
-
-        await next();
+        return user ? void (ctx.state.connected = connected, ctx.state.user = user, await next()) : (ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) }), next());
       }
     };
   };
