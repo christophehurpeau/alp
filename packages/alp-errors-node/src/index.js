@@ -7,7 +7,7 @@ const errorHtmlRenderer = new ErrorHtmlRenderer({
   appPath: process.cwd(),
 });
 
-export default async function (ctx, next) {
+export default async (ctx, next) => {
   try {
     await next();
   } catch (err) {
@@ -57,4 +57,4 @@ export default async function (ctx, next) {
         break;
     }
   }
-}
+};
