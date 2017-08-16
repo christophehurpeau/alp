@@ -14,11 +14,19 @@
     "url": "https://github.com/alpjs/alp-router/issues"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=6.5.0"
   },
   "main": "index.js",
+  "module": "./lib-module/index.js",
+  "module-dev": "./lib-module-dev/index.js",
+  "browser": "./lib-browsers/index.js",
+  "browser-dev": "./lib-browsers-dev/index.js",
   "module:node": "./lib-module-node8/index.js",
   "module:node-dev": "./lib-module-node8-dev/index.js",
+  "module:browser": "./lib-module/index.js",
+  "module:browser-dev": "./lib-module-dev/index.js",
+  "module:modern-browsers": "./lib-module-modern-browsers/index.js",
+  "module:modern-browsers-dev": "./lib-module-modern-browsers-dev/index.js",
   "scripts": {
     "build": "pob-build",
     "clean": "rm -Rf docs dist test/node6 coverage",
@@ -48,16 +56,18 @@
     ]
   },
   "dependencies": {
-    "flow-runtime": "^0.10.0"
+    "flow-runtime": "0.10.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "babel-preset-latest-node": "^0.3.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-latest-node": "^0.4.0",
+    "babel-preset-modern-browsers": "^10.0.0",
     "eslint": "^4.3.0",
     "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-config-pob": "^14.1.2",
+    "eslint-config-pob": "^15.0.0",
     "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-flowtype": "^2.35.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-prettier": "^2.1.2",
@@ -65,7 +75,7 @@
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
     "lint-staged": "^4.0.2",
-    "pob-babel": "^17.6.0",
+    "pob-babel": "^18.1.0",
     "pob-release": "^3.1.0",
     "prettier": "^1.5.3"
   },

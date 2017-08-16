@@ -1,7 +1,9 @@
 import { RouterType as _RouterType } from 'router-segments';
 
 import t from 'flow-runtime';
-const RouterType = t.tdz(() => _RouterType);
+const RouterType = t.tdz(function () {
+  return _RouterType;
+});
 const AppType = t.type('AppType', t.any());
 const ReturnType = t.type('ReturnType', t.function(t.param('app', AppType), t.return(t.function(t.param('ctx', t.object()), t.return(t.ref('Promise', t.void()))))));
 
@@ -11,7 +13,7 @@ export default function alpRouter(router) {
 
   const _returnType = t.return(ReturnType);
 
-  return t.param('router', _routerType).assert(router), _returnType.assert(app => {
+  return t.param('router', _routerType).assert(router), _returnType.assert(function (app) {
 
     return t.param('app', AppType).assert(app), app.router = router, app.context.urlGenerator = function (routeKey, params) {
       let _routeKeyType = t.string();
@@ -29,7 +31,7 @@ export default function alpRouter(router) {
       const _returnType3 = t.return(t.any());
 
       return t.param('to', _toType).assert(to), t.param('params', _paramsType2).assert(params), _returnType3.assert(this.redirect(router.toLocalizedPath(this.language, to, params)));
-    }, ctx => {
+    }, function (ctx) {
       let _ctxType = t.object();
 
       t.param('ctx', _ctxType).assert(ctx);

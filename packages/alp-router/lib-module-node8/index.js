@@ -1,29 +1,16 @@
 
 
 export default function alpRouter(router) {
-  return app => {
-    app.router = router;
+  return app => (app.router = router, app.context.urlGenerator = function (routeKey, params) {
+    return router.toLocalizedPath(this.language, routeKey, params);
+  }, app.context.redirectTo = function (to, params) {
+    return this.redirect(router.toLocalizedPath(this.language, to, params));
+  }, ctx => {
+    let routeMatch = router.find(ctx.path, ctx.language);
 
-    app.context.urlGenerator = function (routeKey, params) {
-      return router.toLocalizedPath(this.language, routeKey, params);
-    };
+    if (!routeMatch) throw ctx.status = 404, new Error(`Route not found: ${ctx.path}`);
 
-    app.context.redirectTo = function (to, params) {
-      return this.redirect(router.toLocalizedPath(this.language, to, params));
-    };
-
-    return ctx => {
-      let routeMatch = router.find(ctx.path, ctx.language);
-
-      if (!routeMatch) {
-        ctx.status = 404;
-        throw new Error(`Route not found: ${ctx.path}`);
-      }
-
-      ctx.route = routeMatch;
-
-      return routeMatch.ref(ctx);
-    };
-  };
+    return ctx.route = routeMatch, routeMatch.ref(ctx);
+  });
 }
 //# sourceMappingURL=index.js.map
