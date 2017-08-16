@@ -1,8 +1,7 @@
 var _dec, _dec2, _dec3, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
 
 function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
+  descriptor && Object.defineProperty(target, property, {
     enumerable: descriptor.enumerable,
     configurable: descriptor.configurable,
     writable: descriptor.writable,
@@ -12,31 +11,11 @@ function _initDefineProp(target, property, descriptor, context) {
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
-  Object['keys'](descriptor).forEach(function (key) {
+  return Object['keys'](descriptor).forEach(function (key) {
     desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+  }), desc.enumerable = !!desc.enumerable, desc.configurable = !!desc.configurable, ('value' in desc || desc.initializer) && (desc.writable = true), desc = decorators.slice().reverse().reduce(function (desc, decorator) {
     return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['defineProperty'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
+  }, desc), context && desc.initializer !== void 0 && (desc.value = desc.initializer ? desc.initializer.call(context) : void 0, desc.initializer = void 0), desc.initializer === void 0 && (Object['defineProperty'](target, property, desc), desc = null), desc;
 }
 
 function _initializerWarningHelper() {
@@ -60,9 +39,6 @@ import findUp from 'findup-sync';
 
 import t from 'flow-runtime';
 export { Config } from 'alp-config';
-import _newController from 'alp-controller';
-export { _newController as newController };
-
 
 const logger = new Logger('alp');
 
@@ -74,6 +50,7 @@ export const packageDirname = path.dirname(packagePath);
 
 logger.debug('init', { appDirname, packageDirname });
 
+
 // eslint-disable-next-line import/no-dynamic-require, global-require
 export const packageConfig = require(packagePath);
 
@@ -81,8 +58,7 @@ const buildedConfigPath = `${appDirname}/build/config/`;
 const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
 export const config = new Config(configPath);
 config.loadSync({ packageConfig });
-
-let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 = t.decorate(t.array(t.function())), (_class = class extends Koa {
+let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 = t.decorate(t.array(t.function())), _class = class extends Koa {
 
   /**
    * @param {Object} [options]
@@ -93,93 +69,49 @@ let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 
    * @param {Array} [options.argv] deprecated, list of overridable config by argv
    */
   constructor(options = {}) {
-    super();
+    if (super(), _initDefineProp(this, 'dirname', _descriptor, this), _initDefineProp(this, 'packageDirname', _descriptor2, this), _initDefineProp(this, 'browserStateTransformers', _descriptor3, this), options.packageDirname) throw new Error('options.packageDirname is deprecated');
+    if (options.config) throw new Error('options.config is deprecated');
+    if (options.srcDirname) throw new Error('options.srcDirname is deprecated');
+    if (options.dirname) throw new Error('options.dirname is deprecated');
 
-    _initDefineProp(this, 'dirname', _descriptor, this);
-
-    _initDefineProp(this, 'packageDirname', _descriptor2, this);
-
-    _initDefineProp(this, 'browserStateTransformers', _descriptor3, this);
-
-    if (options.packageDirname) {
-      throw new Error('options.packageDirname is deprecated');
-    }
-    if (options.config) {
-      throw new Error('options.config is deprecated');
-    }
-    if (options.srcDirname) {
-      throw new Error('options.srcDirname is deprecated');
-    }
-    if (options.dirname) {
-      throw new Error('options.dirname is deprecated');
-    }
-
-    this.dirname = path.normalize(appDirname);
-
-    Object.defineProperty(this, 'packageDirname', {
+    this.dirname = path.normalize(appDirname), Object.defineProperty(this, 'packageDirname', {
       get: deprecate(() => packageDirname, 'packageDirname'),
       configurable: false,
       enumerable: false
-    });
-
-    this.certPath = options.certPath || `${packageDirname}/config/cert`;
-    this.publicPath = options.publicPath || `${packageDirname}/public/`;
-
-    _config()(this, config);
-
-    params(this);
-    language(this);
-    translate('locales')(this);
-
-    this.use(compress());
-
-    this.browserStateTransformers = [];
-    this.browserContextTransformers = [(initialBrowserContext, context) => {
-      initialBrowserContext.state = Object.create(null);
-      this.browserStateTransformers.forEach(transformer => transformer(initialBrowserContext.state, context));
-    }];
-
-    this.context.computeInitialContextForBrowser = function () {
+    }), this.certPath = options.certPath || `${packageDirname}/config/cert`, this.publicPath = options.publicPath || `${packageDirname}/public/`, _config()(this, config), params(this), language(this), translate('locales')(this), this.use(compress()), this.browserStateTransformers = [], this.browserContextTransformers = [(initialBrowserContext, context) => {
+      initialBrowserContext.state = Object.create(null), this.browserStateTransformers.forEach(transformer => transformer(initialBrowserContext.state, context));
+    }], this.context.computeInitialContextForBrowser = function () {
       const initialBrowserContext = Object.create(null);
 
-      this.app.browserContextTransformers.forEach(transformer => transformer(initialBrowserContext, this));
-
-      return initialBrowserContext;
+      return this.app.browserContextTransformers.forEach(transformer => transformer(initialBrowserContext, this)), initialBrowserContext;
     };
   }
 
   registerBrowserContextTransformer(transformer) {
     let _transformerType = t.function();
 
-    t.param('transformer', _transformerType).assert(transformer);
-
-    this.browserContextTransformers.push(transformer);
+    t.param('transformer', _transformerType).assert(transformer), this.browserContextTransformers.push(transformer);
   }
 
   registerBrowserStateTransformer(transformer) {
     let _transformerType2 = t.function();
 
-    t.param('transformer', _transformerType2).assert(transformer);
-
-    this.browserStateTransformers.push(transformer);
+    t.param('transformer', _transformerType2).assert(transformer), this.browserStateTransformers.push(transformer);
   }
 
   registerBrowserStateTransformers(transformer) {
-    deprecate(() => () => null, 'breaking: use registerBrowserStateTransformer instead')();
-    this.browserStateTransformers.push(transformer);
+    deprecate(() => () => null, 'breaking: use registerBrowserStateTransformer instead')(), this.browserStateTransformers.push(transformer);
   }
 
   get environment() {
-    deprecate(() => () => null, 'app.environment, use app.env instead')();
-    return this.env;
+    return deprecate(() => () => null, 'app.environment, use app.env instead')(), this.env;
   }
 
   get production() {
-    deprecate(() => () => null, 'app.production, use global.PRODUCTION instead')();
-    return this.env === 'prod' || this.env === 'production';
+    return deprecate(() => () => null, 'app.production, use global.PRODUCTION instead')(), this.env === 'prod' || this.env === 'production';
   }
   servePublic() {
-    this.use(serve(this.publicPath)); // static files
+    this.use(serve(this.publicPath));
   }
 
   catchErrors() {
@@ -188,8 +120,7 @@ let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 
 
   listen() {
     return _listen(this.certPath)(this).then(server => this._server = server).catch(err => {
-      logger.error(err);
-      throw err;
+      throw logger.error(err), err;
     });
   }
 
@@ -197,20 +128,15 @@ let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 
    * Close server and emit close event
    */
   close() {
-    if (this._server) {
-      this._server.close();
-      this.emit('close');
-    }
+    this._server && (this._server.close(), this.emit('close'));
   }
 
   start(fn) {
     let _fnType = t.function();
 
-    t.param('fn', _fnType).assert(fn);
-
-    fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
+    t.param('fn', _fnType).assert(fn), fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
-}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'dirname', [_dec], {
+}, _descriptor = _applyDecoratedDescriptor(_class.prototype, 'dirname', [_dec], {
   enumerable: true,
   initializer: null
 }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'packageDirname', [_dec2], {
@@ -219,6 +145,6 @@ let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 
 }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'browserStateTransformers', [_dec3], {
   enumerable: true,
   initializer: null
-})), _class));
+}), _class);
 export { Alp as default };
 //# sourceMappingURL=index.js.map

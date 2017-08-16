@@ -14,7 +14,6 @@ import Logger from 'nightingale-logger/src';
 import findUp from 'findup-sync';
 
 export { Config } from 'alp-config';
-export newController from 'alp-controller';
 
 const logger = new Logger('alp');
 
