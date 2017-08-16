@@ -4,9 +4,9 @@ import * as storedConfig from './browserStoredConfig';
 
 function fetchConfig(path) {
   return fetch(`${path}.json`)
-        .then(res => res.text())
-        .then(text => parseJSON(text))
-        .catch(() => false);
+    .then(res => res.text())
+    .then(text => parseJSON(text))
+    .catch(() => false);
 }
 
 /**
@@ -31,7 +31,7 @@ function existsConfig(path) {
   return fetchConfig(path);
 }
 
-const getOrFetchAppConfig = function (version, environment, configPath) {
+const getOrFetchAppConfig = function(version, environment, configPath) {
   if (storedConfig.getVersion() === version && storedConfig.has('_appConfig')) {
     return Promise.resolve(storedConfig.get('_appConfig'));
   }
@@ -58,9 +58,9 @@ const getOrFetchAppConfig = function (version, environment, configPath) {
 
 export default function alpConfig(configPath) {
   configPath = configPath.replace(/\/*$/, '/');
-  return function (app) {
-    app.existsConfig = (name) => existsConfig(`${configPath}${name}`);
-    app.loadConfig = (name) => getConfig(`${configPath}${name}`);
+  return function(app) {
+    app.existsConfig = name => existsConfig(`${configPath}${name}`);
+    app.loadConfig = name => getConfig(`${configPath}${name}`);
 
     const version = app.appVersion;
 

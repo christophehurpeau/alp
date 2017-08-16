@@ -19,10 +19,7 @@ function fetchConfig(path) {
  * @returns {Promise|Map}
  */
 function getConfig(path) {
-  if (storedConfig.has(path)) {
-    return storedConfig.get(path);
-  }
-  return fetchConfig(path);
+  return storedConfig.has(path) ? storedConfig.get(path) : fetchConfig(path);
 }
 
 /**
@@ -30,59 +27,38 @@ function getConfig(path) {
  * @returns {Promise|Boolean}
  */
 function existsConfig(path) {
-  if (storedConfig.has(path)) {
-    return storedConfig.get(path) !== false;
-  }
-  return fetchConfig(path);
+  return storedConfig.has(path) ? storedConfig.get(path) !== false : fetchConfig(path);
 }
 
 var getOrFetchAppConfig = function getOrFetchAppConfig(version, environment, configPath) {
-  if (storedConfig.getVersion() === version && storedConfig.has('_appConfig')) {
-    return Promise.resolve(storedConfig.get('_appConfig'));
-  }
-
-  storedConfig.clear(version);
-
-  return Promise.all([getConfig(configPath + 'common'), environment && getConfig(configPath + 'environment'), getConfig(configPath + 'local')]).then(function (_ref) {
+  return storedConfig.getVersion() === version && storedConfig.has('_appConfig') ? Promise.resolve(storedConfig.get('_appConfig')) : (storedConfig.clear(version), Promise.all([getConfig(configPath + 'common'), environment && getConfig(configPath + 'environment'), getConfig(configPath + 'local')]).then(function (_ref) {
     var _ref2 = _toArray(_ref),
         config = _ref2[0],
         others = _ref2.slice(1);
 
-    if (!config) config = new Map();
-    config.set('version', version);
-
-    others.filter(Boolean).forEach(function (jsonConfig) {
+    return config || (config = new Map()), config.set('version', version), others.filter(Boolean).forEach(function (jsonConfig) {
       jsonConfig.forEach(function (value, key) {
         return config.set(key, value);
       });
-    });
-
-    storedConfig.set('_appConfig', config);
-
-    return config;
-  });
+    }), storedConfig.set('_appConfig', config), config;
+  }));
 };
 
 export default function alpConfig(configPath) {
-  configPath = configPath.replace(/\/*$/, '/');
-  return function (app) {
+  return configPath = configPath.replace(/\/*$/, '/'), function (app) {
     app.existsConfig = function (name) {
       return existsConfig('' + configPath + name);
-    };
-    app.loadConfig = function (name) {
+    }, app.loadConfig = function (name) {
       return getConfig('' + configPath + name);
     };
 
+
     var version = app.appVersion;
 
-    if (!version) {
-      throw new Error('Missing appVersion');
-    }
+    if (!version) throw new Error('Missing appVersion');
 
     return getOrFetchAppConfig(version, app.environment, configPath).then(function (config) {
-      app.config = config;
-      app.context.config = config;
-      return config;
+      return app.config = config, app.context.config = config, config;
     });
   };
 }

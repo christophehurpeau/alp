@@ -3,14 +3,12 @@ import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
 import stringify from 'stringify-json';
 
-var map = function () {
-  var config = localStorage.getItem('ibex-config');
+const map = (() => {
+  const config = localStorage.getItem('ibex-config');
   return config === null ? new Map() : parseJSON(config);
-}();
+})();
 
-map.forEach(function (value) {
-  return deepFreeze(value);
-});
+map.forEach(value => deepFreeze(value));
 
 
 export function getVersion() {

@@ -2,8 +2,8 @@
 
 config in alp framework
 
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
 
 ## In your app
 

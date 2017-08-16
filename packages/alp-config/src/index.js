@@ -14,10 +14,10 @@ function _loadConfigSync(dirname: string, name: string) {
 }
 
 type ConfigOptions = {|
-    argv: ?Array<string>,
-    packageConfig: ?Object,
-    version: ?string,
-|}
+  argv: ?Array<string>,
+  packageConfig: ?Object,
+  version: ?string,
+|};
 
 export class Config {
   _map: Map<string, any>;
@@ -66,17 +66,20 @@ export class Config {
 
     argvOverrides.forEach(key => {
       const splitted = key.split('.');
-      const value = splitted.length !== 0
-                && splitted.reduce((config, partialKey) => config && config[partialKey], argv);
+      const value =
+        splitted.length !== 0 &&
+        splitted.reduce((config, partialKey) => config && config[partialKey], argv);
       if (value !== undefined) {
         const last = splitted.pop();
-        const map = splitted.length === 0 ? config
-                    : splitted.reduce((config, partialKey) => config.get(partialKey), config);
+        const map =
+          splitted.length === 0
+            ? config
+            : splitted.reduce((config, partialKey) => config.get(partialKey), config);
         map.set(last, value);
       }
     });
 
-    return this._map = deepFreeze(config);
+    return (this._map = deepFreeze(config));
   }
 
   get(key: string): any {
@@ -99,8 +102,8 @@ export default function alpConfig(dirname: ?string, options: ConfigOptions = {})
       config.loadSync(options);
     }
 
-    app.existsConfig = deprecate((name) => config.existsConfigSync(name), 'use app.existsConfigSync');
-    app.loadConfig = deprecate((name) => config.loadConfigSync(name), 'use app.loadConfigSync');
+    app.existsConfig = deprecate(name => config.existsConfigSync(name), 'use app.existsConfigSync');
+    app.loadConfig = deprecate(name => config.loadConfigSync(name), 'use app.loadConfigSync');
 
     app.existsConfigSync = name => config.existsConfigSync(name);
     app.loadConfigSync = name => config.loadConfigSync(name);

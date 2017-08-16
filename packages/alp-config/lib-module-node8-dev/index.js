@@ -87,16 +87,12 @@ export let Config = (_dec = t.decorate(t.ref('Map', t.string(), t.any())), _dec2
     let socketPath = argv['socket-path'] || argv.socketPath;
 
 
-    return socketPath ? config.set('socketPath', socketPath) : argv.port ? (config.set('port', argv.port), config.delete('socketPath')) : process.env.PORT && (config.set('port', Number(process.env.PORT)), config.delete('socketPath')), argvOverrides.forEach(function (key) {
+    return socketPath ? config.set('socketPath', socketPath) : argv.port ? (config.set('port', argv.port), config.delete('socketPath')) : process.env.PORT && (config.set('port', Number(process.env.PORT)), config.delete('socketPath')), argvOverrides.forEach(key => {
       const splitted = key.split('.');
-      const value = splitted.length !== 0 && splitted.reduce(function (config, partialKey) {
-        return config && config[partialKey];
-      }, argv);
+      const value = splitted.length !== 0 && splitted.reduce((config, partialKey) => config && config[partialKey], argv);
       if (value !== void 0) {
         const last = splitted.pop();
-        const map = splitted.length === 0 ? config : splitted.reduce(function (config, partialKey) {
-          return config.get(partialKey);
-        }, config);
+        const map = splitted.length === 0 ? config : splitted.reduce((config, partialKey) => config.get(partialKey), config);
         map.set(last, value);
       }
     }), _returnType.assert(this._map = deepFreeze(config));
@@ -139,18 +135,10 @@ export let Config = (_dec = t.decorate(t.ref('Map', t.string(), t.any())), _dec2
 export default function alpConfig(dirname, options = {}) {
   let _dirnameType4 = t.nullable(t.string());
 
-  return t.param('dirname', _dirnameType4).assert(dirname), t.param('options', ConfigOptions).assert(options), function (app, config) {
+  return t.param('dirname', _dirnameType4).assert(dirname), t.param('options', ConfigOptions).assert(options), (app, config) => {
     let _configType = t.nullable(t.ref(Config));
 
-    return t.param('config', _configType).assert(config), config || (config = _configType.assert(new Config(dirname)), config.loadSync(options)), app.existsConfig = deprecate(function (name) {
-      return config.existsConfigSync(name);
-    }, 'use app.existsConfigSync'), app.loadConfig = deprecate(function (name) {
-      return config.loadConfigSync(name);
-    }, 'use app.loadConfigSync'), app.existsConfigSync = function (name) {
-      return config.existsConfigSync(name);
-    }, app.loadConfigSync = function (name) {
-      return config.loadConfigSync(name);
-    }, app.config = config, app.context.config = config, config;
+    return t.param('config', _configType).assert(config), config || (config = _configType.assert(new Config(dirname)), config.loadSync(options)), app.existsConfig = deprecate(name => config.existsConfigSync(name), 'use app.existsConfigSync'), app.loadConfig = deprecate(name => config.loadConfigSync(name), 'use app.loadConfigSync'), app.existsConfigSync = name => config.existsConfigSync(name), app.loadConfigSync = name => config.loadConfigSync(name), app.config = config, app.context.config = config, config;
   };
 }
 //# sourceMappingURL=index.js.map

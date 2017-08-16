@@ -5,16 +5,13 @@ import stringify from 'stringify-json';
 
 var map = function () {
   var config = localStorage.getItem('ibex-config');
-  if (config === null) {
-    return new Map();
-  }
-
-  return parseJSON(config);
+  return config === null ? new Map() : parseJSON(config);
 }();
 
 map.forEach(function (value) {
   return deepFreeze(value);
 });
+
 
 export function getVersion() {
   return map.get('version');
@@ -33,13 +30,10 @@ export function save() {
 }
 
 export function set(key, value) {
-  map.set(key, value);
-  save();
+  map.set(key, value), save();
 }
 
 export function clear(version) {
-  map.clear();
-  map.set('version', version);
-  save();
+  map.clear(), map.set('version', version), save();
 }
 //# sourceMappingURL=browserStoredConfig.js.map
