@@ -1,3 +1,12 @@
+<a name="0.23.1"></a>
+## [0.23.1](https://github.com/alpjs/alp-browser/compare/v0.23.0...v0.23.1) (2017-08-16)
+
+
+### Bug Fixes
+
+* remove dependency alauda ([d736407](https://github.com/alpjs/alp-browser/commit/d736407))
+
+
 <a name="0.23.0"></a>
 # [0.23.0](https://github.com/alpjs/alp-browser/compare/v0.22.0...v0.23.0) (2017-08-16)
 
