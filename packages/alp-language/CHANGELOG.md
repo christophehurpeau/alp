@@ -1,3 +1,12 @@
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/alpjs/alp-language/compare/v1.7.0...v1.8.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies ([ea91b2c](https://github.com/alpjs/alp-language/commit/ea91b2c))
+
+
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/alpjs/alp-language/compare/v1.6.0...v1.7.0) (2017-04-03)
 
