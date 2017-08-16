@@ -2,32 +2,70 @@
   "name": "alp-body-parser",
   "version": "1.0.2",
   "description": "body parser in alp framework",
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "make test",
-    "lint": "make lint",
-    "build": "make build",
-    "postpublish": "make post-publish",
-    "preversion": "make pre-version",
-    "version": "make version",
-    "watch": "make watch"
-  },
-  "repository": "alpjs/alp-body-parser",
   "keywords": [
     "alp",
     "body-parser"
   ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
+  "repository": "git@github.com:alpjs/alp-body-parser.git",
+  "homepage": "https://github.com/alpjs/alp-body-parser#readme",
   "bugs": {
     "url": "https://github.com/alpjs/alp-body-parser/issues"
   },
-  "homepage": "https://github.com/alpjs/alp-body-parser#readme",
-  "devDependencies": {
-    "eslint": "^2.4.0",
-    "springbokjs-library": "^16.1.1"
+  "engines": {
+    "node": ">=6.5.0"
+  },
+  "main": "lib/index.js",
+  "module:node": "./lib-module-node8/index.js",
+  "module:node-dev": "./lib-module-node8-dev/index.js",
+  "scripts": {
+    "build": "pob-build",
+    "clean": "rm -Rf docs dist test/node6 coverage",
+    "lint": "eslint --ext .js,.jsx src/",
+    "postcheckout": "./.git-hooks/post-checkout",
+    "postmerge": "./.git-hooks/post-merge",
+    "precommit": "./.git-hooks/pre-commit",
+    "preparecommitmsg": "./.git-hooks/prepare-commit-msg ${GIT_PARAMS}",
+    "preversion": "yarn run lint && yarn run build && pob-repository-check-clean",
+    "release": "pob-repository-check-clean && pob-release",
+    "version": "pob-version",
+    "watch": "pob-watch"
+  },
+  "lint-staged": {
+    "package.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.{js,jsx}": [
+      "eslint --fix --quiet",
+      "git add"
+    ]
   },
   "dependencies": {
-    "co-body": "^5.0.0"
+    "co-body": "^5.1.1",
+    "flow-runtime": "0.10.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-preset-latest-node": "^0.4.0",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-config-pob": "^16.0.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-prettier": "^2.2.0",
+    "husky": "^0.14.3",
+    "komet": "^0.1.4",
+    "komet-karma": "^0.2.5",
+    "lint-staged": "^4.0.2",
+    "pob-babel": "^18.1.0",
+    "pob-release": "^3.1.0",
+    "prettier": "^1.5.3"
   }
 }
