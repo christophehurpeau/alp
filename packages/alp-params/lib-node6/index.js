@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ParamValidator = undefined;
+exports.ParamValidator = void 0;
 exports.default = alpParams;
 
 var _objectProperties = require('object-properties');
@@ -41,15 +41,11 @@ function alpParams(app) {
     },
 
     paramGETorPOST(name) {
-      return this.body[name] !== undefined ? this.body[name] : this.query[name];
+      return this.body[name] === void 0 ? this.query[name] : this.body[name];
     }
-  });
-
-  (0, _objectProperties.defineLazyProperty)(app.context, 'params', function () {
+  }), (0, _objectProperties.defineLazyProperty)(app.context, 'params', function () {
     return new _ParamValidator2.default(this);
-  });
-
-  (0, _objectProperties.defineLazyProperty)(app.context, 'validParams', function () {
+  }), (0, _objectProperties.defineLazyProperty)(app.context, 'validParams', function () {
     return new _ParamValidatorValid2.default(this);
   });
 }

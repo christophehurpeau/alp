@@ -1,0 +1,22 @@
+{
+  "pob": {
+    "pob-config": {
+      "entries": [
+        "index"
+      ],
+      "documentation": false,
+      "testing": {
+        "circleci": true,
+        "travisci": true,
+        "codecov": true
+      },
+      "envs": [
+        "node6",
+        "node8",
+        "module-modern-browsers",
+        "module",
+        "module-node8"
+      ]
+    }
+  }
+}

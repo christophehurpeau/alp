@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
 var _ParamValueStringValidator = require('./ParamValueStringValidator');
 
@@ -10,17 +11,13 @@ var _ParamValueStringValidator2 = _interopRequireDefault(_ParamValueStringValida
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-class ParamValidator {
+let ParamValidator = class {
   constructor(context) {
     this.context = context;
   }
 
   _error(name, key, value) {
-    if (!this._errors) {
-      this._errors = {};
-    }
-
-    this._errors[name] = { error: key, value: value };
+    this._errors || (this._errors = {}), this._errors[name] = { error: key, value };
   }
 
   getErrors() {
@@ -46,7 +43,7 @@ class ParamValidator {
    console.log('paramvalidator model', modelName, M[modelName]);
    let data = this.context.getOrPostParam(name);
    return new ParamValueModelValidator(this, name, !data ? null : new M[modelName](data));
-   }*/
-}
+   } */
+};
 exports.default = ParamValidator;
 //# sourceMappingURL=ParamValidator.js.map

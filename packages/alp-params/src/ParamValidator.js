@@ -10,7 +10,7 @@ export default class ParamValidator {
       this._errors = {};
     }
 
-    this._errors[name] = { error: key, value: value };
+    this._errors[name] = { error: key, value };
   }
 
   getErrors() {
@@ -36,5 +36,5 @@ export default class ParamValidator {
    console.log('paramvalidator model', modelName, M[modelName]);
    let data = this.context.getOrPostParam(name);
    return new ParamValueModelValidator(this, name, !data ? null : new M[modelName](data));
-   }*/
+   } */
 }

@@ -30,11 +30,11 @@ export default function alpParams(app) {
     },
   });
 
-  defineLazyProperty(app.context, 'params', function () {
+  defineLazyProperty(app.context, 'params', function() {
     return new ParamValidator(this);
   });
 
-  defineLazyProperty(app.context, 'validParams', function () {
+  defineLazyProperty(app.context, 'validParams', function() {
     return new ParamValidatorValid(this);
   });
 }
