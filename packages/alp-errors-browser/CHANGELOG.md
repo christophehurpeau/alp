@@ -1,3 +1,12 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/alpjs/alp-errors-browser/compare/v0.5.0...v0.6.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies ([bcb8bca](https://github.com/alpjs/alp-errors-browser/commit/bcb8bca))
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/alpjs/alp-errors-browser/compare/v0.4.0...v0.5.0) (2017-04-03)
 
