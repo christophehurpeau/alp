@@ -1,3 +1,12 @@
+<a name="0.23.0"></a>
+# [0.23.0](https://github.com/alpjs/alp-browser/compare/v0.22.0...v0.23.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies, remove .use and .initialRender and browser state ([e8e03e6](https://github.com/alpjs/alp-browser/commit/e8e03e6))
+
+
 <a name="0.22.0"></a>
 # [0.22.0](https://github.com/alpjs/alp-browser/compare/v0.21.1...v0.22.0) (2017-04-03)
 
