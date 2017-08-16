@@ -8,8 +8,8 @@ const logger = new Logger('alp:listen');
  * @returns {Function}
  */
 export default function alpListen(dirname) {
-  return (app) => (
-    new Promise((resolve) => {
+  return app =>
+    new Promise(resolve => {
       const socketPath = app.config.get('socketPath');
       const port = app.config.get('port');
       const hostname = app.config.get('hostname');
@@ -17,11 +17,9 @@ export default function alpListen(dirname) {
       // eslint-disable-next-line global-require, import/no-dynamic-require
       const createServer = require(!socketPath && tls ? 'https' : 'http').createServer;
 
-      logger.info(
-                'Creating server',
-                socketPath ? { socketPath: socketPath } : { port: port },
-                { [socketPath ? 'socketPath' : 'port']: ['yellow'] },
-            );
+      logger.info('Creating server', socketPath ? { socketPath } : { port }, {
+        [socketPath ? 'socketPath' : 'port']: ['yellow'],
+      });
 
       const server = (() => {
         if (!tls) {
@@ -39,8 +37,7 @@ export default function alpListen(dirname) {
       if (socketPath) {
         try {
           unlinkSync(socketPath);
-        } catch (err) {
-        }
+        } catch (err) {}
 
         server.listen(socketPath, () => {
           if (socketPath) {
@@ -56,6 +53,5 @@ export default function alpListen(dirname) {
           resolve(server);
         });
       }
-    })
-  );
+    });
 }

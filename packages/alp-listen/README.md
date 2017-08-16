@@ -2,8 +2,8 @@
 
 Listen function, using config and logger for alp server
 
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
+[![Dependency ci Status][dependencyci-image]][dependencyci-url]
 
 ## Install
 

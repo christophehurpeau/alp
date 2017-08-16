@@ -1,8 +1,0 @@
-{
-  "envs": [
-    "node6"
-  ],
-  "react": false,
-  "documentation": false,
-  "testing": false
-}

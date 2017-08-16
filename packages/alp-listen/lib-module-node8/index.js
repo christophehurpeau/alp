@@ -1,25 +1,13 @@
-'use strict';
+import { chmodSync, unlinkSync, readFileSync } from 'fs';
+import Logger from 'nightingale-logger';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = alpListen;
-
-var _fs = require('fs');
-
-var _nightingaleLogger = require('nightingale-logger');
-
-var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const logger = new _nightingaleLogger2.default('alp:listen');
+const logger = new Logger('alp:listen');
 
 /**
  * @param {string} dirname for tls server, dirname of the server.key and server.crt
  * @returns {Function}
  */
-function alpListen(dirname) {
+export default function alpListen(dirname) {
   return app => new Promise(resolve => {
     const socketPath = app.config.get('socketPath');
     const port = app.config.get('port');
@@ -37,8 +25,8 @@ function alpListen(dirname) {
       if (!tls) return createServer(app.callback());
 
       const options = {
-        key: (0, _fs.readFileSync)(`${dirname}/server.key`),
-        cert: (0, _fs.readFileSync)(`${dirname}/server.crt`)
+        key: readFileSync(`${dirname}/server.key`),
+        cert: readFileSync(`${dirname}/server.crt`)
       };
 
       return createServer(options, app.callback());
@@ -46,11 +34,11 @@ function alpListen(dirname) {
 
     if (socketPath) {
       try {
-        (0, _fs.unlinkSync)(socketPath);
+        unlinkSync(socketPath);
       } catch (err) {}
 
       server.listen(socketPath, () => {
-        socketPath && (0, _fs.chmodSync)(socketPath, '777'), logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] }), resolve(server);
+        socketPath && chmodSync(socketPath, '777'), logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] }), resolve(server);
       });
     } else server.listen(port, hostname, () => {
         logger.info('Server listening', { port }, { port: ['yellow'] }), resolve(server);
