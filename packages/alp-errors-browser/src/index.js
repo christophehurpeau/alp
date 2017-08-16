@@ -4,7 +4,7 @@ import Logger from 'nightingale-logger/src';
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer();
 
-export default async function (ctx, next) {
+export default async function(ctx, next) {
   try {
     await next();
   } catch (err) {
