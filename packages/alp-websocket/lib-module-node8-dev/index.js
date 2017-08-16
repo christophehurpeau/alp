@@ -12,9 +12,7 @@ let io;
  * @param {string} [dirname] for tls, dirname of server.key server.crt. If undefined: app.certPath
  */
 export default function alpWebsocket(app, dirname) {
-  return app.alpReducers || (app.alpReducers = {}), app.alpReducers.websocket = function () {
-    return 'disconnected';
-  }, start(app.config, dirname || app.certPath), app.websocket = io, app.on('close', close), io;
+  return app.alpReducers || (app.alpReducers = {}), app.alpReducers.websocket = () => 'disconnected', start(app.config, dirname || app.certPath), app.websocket = io, app.on('close', close), io;
 }
 
 export function close() {
@@ -22,12 +20,10 @@ export function close() {
 }
 
 export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
-  const diconnect = callbackOnUnsubscribe && function () {
-    return callbackOnUnsubscribe();
-  };
-  socket.on(`subscribe:${name}`, function (callback) {
+  const diconnect = callbackOnUnsubscribe && (() => callbackOnUnsubscribe());
+  socket.on(`subscribe:${name}`, callback => {
     logger.info('join', { name }), socket.join(name), callbackOnSubscribe ? callback(null, callbackOnSubscribe()) : callback(null), diconnect && socket.on('disconnect', diconnect);
-  }), socket.on(`unsubscribe:${name}`, function (callback) {
+  }), socket.on(`unsubscribe:${name}`, callback => {
     logger.info('leave', { name }), socket.leave(name), diconnect && socket.removeListener('disconnect', diconnect), callbackOnUnsubscribe ? callback(null, callbackOnUnsubscribe()) : callback(null);
   });
 }
@@ -46,25 +42,15 @@ function start(config, dirname) {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const createServer = require(secure ? 'https' : 'http').createServer;
 
-  const server = function () {
-    return secure ? createServer({
-      key: readFileSync(`${dirname}/server.key`),
-      cert: readFileSync(`${dirname}/server.crt`)
-    }) : createServer();
-  }();
+  const server = (() => secure ? createServer({
+    key: readFileSync(`${dirname}/server.key`),
+    cert: readFileSync(`${dirname}/server.crt`)
+  }) : createServer())();
 
-  return logger.info('Starting', { port }), server.listen(port, function () {
-    return logger.info('Listening', { port });
-  }), server.on('error', function (err) {
-    return logger.error(err);
-  }), io = socketio(server), io.on('connection', function (socket) {
-    logger.debug('connected', { id: socket.id }), socket.emit('hello', { version: config.get('version') }), socket.on('error', function (err) {
-      return logger.error(err);
-    }), socket.on('disconnect', function () {
+  return logger.info('Starting', { port }), server.listen(port, () => logger.info('Listening', { port })), server.on('error', err => logger.error(err)), io = socketio(server), io.on('connection', socket => {
+    logger.debug('connected', { id: socket.id }), socket.emit('hello', { version: config.get('version') }), socket.on('error', err => logger.error(err)), socket.on('disconnect', () => {
       logger.debug('disconnected', { id: socket.id });
     });
-  }), io.on('error', function (err) {
-    return logger.error(err);
-  }), io;
+  }), io.on('error', err => logger.error(err)), io;
 }
 //# sourceMappingURL=index.js.map

@@ -5,7 +5,7 @@ import Logger from 'nightingale-logger';
 import _t from 'flow-runtime';
 const logger = new Logger('alp:websocket');
 let socket;
-let successfulConnection = false;
+let successfulConnection = null;
 let connected = false;
 
 export const websocket = {
@@ -19,38 +19,30 @@ export const websocket = {
   isDisconnected
 };
 
-const WEBSOCKET_ONLINE_STATE_ACTION_TYPE = 'alp:websocket/online';
+const WEBSOCKET_STATE_ACTION_TYPE = 'alp:websocket/state';
 
 export default function alpWebsocket(app, namespaceName) {
-  if (!app.alpReducers) app.alpReducers = {}; // TODO remove in next major
-  app.alpReducers.websocket = function (state, action) {
-    if (!state) state = connected ? 'connected' : 'disconnected';
-    if (action.type === WEBSOCKET_ONLINE_STATE_ACTION_TYPE) return action.state;
+  return app.alpReducers || (app.alpReducers = {}), app.alpReducers.websocket = function (state, action) {
+    if (!state) state = 'disconnected', setTimeout(function () {
+        successfulConnection !== false && app.store.dispatch({
+          type: WEBSOCKET_STATE_ACTION_TYPE,
+          state: connected ? 'connected' : 'connecting'
+        });
+      });else if (action.type === WEBSOCKET_STATE_ACTION_TYPE) return action.state;
     return state;
-  };
-
-  start(app, namespaceName);
-  app.websocket = websocket;
-  websocket.socket = socket;
-  return socket;
+  }, start(app, namespaceName), app.websocket = websocket, websocket.socket = socket, socket;
 }
 
 function start(app, namespaceName = '') {
   const { config, context } = app;
 
-  if (socket) {
-    throw new Error('WebSocket already started');
-  }
+  if (socket) throw new Error('WebSocket already started');
 
   const webSocketConfig = config.get('webSocket') || config.get('websocket');
 
-  if (!webSocketConfig) {
-    throw new Error('Missing config webSocket');
-  }
+  if (!webSocketConfig) throw new Error('Missing config webSocket');
 
-  if (!webSocketConfig.has('port')) {
-    throw new Error('Missing config webSocket.port');
-  }
+  if (!webSocketConfig.has('port')) throw new Error('Missing config webSocket.port');
 
   const secure = webSocketConfig.get('secure');
   const port = webSocketConfig.get('port');
@@ -62,59 +54,36 @@ function start(app, namespaceName = '') {
     transports: ['websocket']
   });
 
-  socket.on('connect', function () {
-    logger.success('connected');
-    successfulConnection = true;
-    connected = true;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'connected' });
-    }
-  });
 
-  socket.on('reconnect', function () {
-    logger.success('reconnected');
-    connected = true;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'connected' });
-    }
-  });
+  const callbackFirstConnectionError = function callbackFirstConnectionError() {
+    return successfulConnection = false;
+  };
 
-  socket.on('disconnect', function () {
-    logger.warn('disconnected');
-    connected = false;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'disconnected' });
-    }
-  });
-
-  socket.on('hello', function ({ version }) {
+  return socket.on('connect_error', callbackFirstConnectionError), socket.on('connect', function () {
+    socket.off('connect_error', callbackFirstConnectionError), logger.success('connected'), successfulConnection = true, connected = true, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
+  }), socket.on('reconnect', function () {
+    logger.success('reconnected'), connected = true, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
+  }), socket.on('disconnect', function () {
+    logger.warn('disconnected'), connected = false, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
+  }), socket.on('hello', function ({ version }) {
     if (version !== window.VERSION) {
       // eslint-disable-next-line no-alert
-      if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) {
-        return location.reload(true);
-      } else {
-        console.warn('Version mismatch', { serverVersion: version, clientVersion: window.VERSION });
-      }
+      if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) return location.reload(true);
+      console.warn('Version mismatch', { serverVersion: version, clientVersion: window.VERSION });
     }
-  });
-
-  return socket;
+  }), socket;
 }
 
 function emit(...args) {
   const _returnType = _t.return(_t.any());
 
-  logger.debug('emit', { args });
-  return new Promise(function (resolve, reject) {
+  return logger.debug('emit', { args }), new Promise(function (resolve, reject) {
     const resolved = setTimeout(function () {
-      logger.warn('websocket emit timeout', { args });
-      reject(new Error('websocket response timeout'));
+      logger.warn('websocket emit timeout', { args }), reject(new Error('websocket response timeout'));
     }, 10000);
 
     socket.emit(...args, function (error, result) {
-      clearTimeout(resolved);
-      if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
-      resolve(result);
+      return clearTimeout(resolved), error == null ? void resolve(result) : reject(typeof error === 'string' ? new Error(error) : error);
     });
   }).then(function (_arg) {
     return _returnType.assert(_arg);
@@ -122,8 +91,7 @@ function emit(...args) {
 }
 
 function on(type, handler) {
-  socket.on(type, handler);
-  return handler;
+  return socket.on(type, handler), handler;
 }
 
 function off(type, handler) {

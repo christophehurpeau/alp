@@ -12,10 +12,9 @@ let io;
  * @param {string} [dirname] for tls, dirname of server.key server.crt. If undefined: app.certPath
  */
 export default function alpWebsocket(app, dirname) {
-  start(app.config, dirname || app.certPath);
-  app.websocket = io;
-  app.on('close', close);
-  return io;
+  return app.alpReducers || (app.alpReducers = {}), app.alpReducers.websocket = function () {
+    return 'disconnected';
+  }, start(app.config, dirname || app.certPath), app.websocket = io, app.on('close', close), io;
 }
 
 export function close() {
@@ -27,45 +26,20 @@ export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscri
     return callbackOnUnsubscribe();
   };
   socket.on(`subscribe:${name}`, function (callback) {
-    logger.info('join', { name });
-    socket.join(name);
-
-    if (callbackOnSubscribe) {
-      callback(null, callbackOnSubscribe());
-    } else {
-      callback(null);
-    }
-
-    if (diconnect) socket.on('disconnect', diconnect);
-  });
-
-  socket.on(`unsubscribe:${name}`, function (callback) {
-    logger.info('leave', { name });
-    socket.leave(name);
-    if (diconnect) socket.removeListener('disconnect', diconnect);
-
-    if (callbackOnUnsubscribe) {
-      callback(null, callbackOnUnsubscribe());
-    } else {
-      callback(null);
-    }
+    logger.info('join', { name }), socket.join(name), callbackOnSubscribe ? callback(null, callbackOnSubscribe()) : callback(null), diconnect && socket.on('disconnect', diconnect);
+  }), socket.on(`unsubscribe:${name}`, function (callback) {
+    logger.info('leave', { name }), socket.leave(name), diconnect && socket.removeListener('disconnect', diconnect), callbackOnUnsubscribe ? callback(null, callbackOnUnsubscribe()) : callback(null);
   });
 }
 
 function start(config, dirname) {
-  if (io) {
-    throw new Error('Already started');
-  }
+  if (io) throw new Error('Already started');
 
   const webSocketConfig = config.get('webSocket') || config.get('websocket');
 
-  if (!webSocketConfig) {
-    throw new Error('Missing config webSocket');
-  }
+  if (!webSocketConfig) throw new Error('Missing config webSocket');
 
-  if (!webSocketConfig.has('port')) {
-    throw new Error('Missing config webSocket.port');
-  }
+  if (!webSocketConfig.has('port')) throw new Error('Missing config webSocket.port');
 
   const secure = webSocketConfig.get('secure');
   const port = webSocketConfig.get('port');
@@ -73,41 +47,24 @@ function start(config, dirname) {
   const createServer = require(secure ? 'https' : 'http').createServer;
 
   const server = function () {
-    if (!secure) {
-      return createServer();
-    }
-
-    return createServer({
+    return secure ? createServer({
       key: readFileSync(`${dirname}/server.key`),
       cert: readFileSync(`${dirname}/server.crt`)
-    });
+    }) : createServer();
   }();
 
-  logger.info('Starting', { port });
-  server.listen(port, function () {
+  return logger.info('Starting', { port }), server.listen(port, function () {
     return logger.info('Listening', { port });
-  });
-  server.on('error', function (err) {
+  }), server.on('error', function (err) {
     return logger.error(err);
-  });
-  io = socketio(server);
-
-  io.on('connection', function (socket) {
-    logger.debug('connected', { id: socket.id });
-    socket.emit('hello', { version: config.get('version') });
-
-    socket.on('error', function (err) {
+  }), io = socketio(server), io.on('connection', function (socket) {
+    logger.debug('connected', { id: socket.id }), socket.emit('hello', { version: config.get('version') }), socket.on('error', function (err) {
       return logger.error(err);
-    });
-    socket.on('disconnect', function () {
+    }), socket.on('disconnect', function () {
       logger.debug('disconnected', { id: socket.id });
     });
-  });
-
-  io.on('error', function (err) {
+  }), io.on('error', function (err) {
     return logger.error(err);
-  });
-
-  return io;
+  }), io;
 }
 //# sourceMappingURL=index.js.map

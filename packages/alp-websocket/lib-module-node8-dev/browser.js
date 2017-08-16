@@ -2,6 +2,7 @@
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
+import _t from 'flow-runtime';
 const logger = new Logger('alp:websocket');
 let socket;
 let successfulConnection = null;
@@ -21,8 +22,8 @@ export const websocket = {
 const WEBSOCKET_STATE_ACTION_TYPE = 'alp:websocket/state';
 
 export default function alpWebsocket(app, namespaceName) {
-  return app.alpReducers || (app.alpReducers = {}), app.alpReducers.websocket = function (state, action) {
-    if (!state) state = 'disconnected', setTimeout(function () {
+  return app.alpReducers || (app.alpReducers = {}), app.alpReducers.websocket = (state, action) => {
+    if (!state) state = 'disconnected', setTimeout(() => {
         successfulConnection !== false && app.store.dispatch({
           type: WEBSOCKET_STATE_ACTION_TYPE,
           state: connected ? 'connected' : 'connecting'
@@ -54,17 +55,15 @@ function start(app, namespaceName = '') {
   });
 
 
-  const callbackFirstConnectionError = function callbackFirstConnectionError() {
-    return successfulConnection = false;
-  };
+  const callbackFirstConnectionError = () => successfulConnection = false;
 
-  return socket.on('connect_error', callbackFirstConnectionError), socket.on('connect', function () {
+  return socket.on('connect_error', callbackFirstConnectionError), socket.on('connect', () => {
     socket.off('connect_error', callbackFirstConnectionError), logger.success('connected'), successfulConnection = true, connected = true, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
-  }), socket.on('reconnect', function () {
+  }), socket.on('reconnect', () => {
     logger.success('reconnected'), connected = true, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
-  }), socket.on('disconnect', function () {
+  }), socket.on('disconnect', () => {
     logger.warn('disconnected'), connected = false, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
-  }), socket.on('hello', function ({ version }) {
+  }), socket.on('hello', ({ version }) => {
     if (version !== window.VERSION) {
       // eslint-disable-next-line no-alert
       if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) return location.reload(true);
@@ -74,15 +73,15 @@ function start(app, namespaceName = '') {
 }
 
 function emit(...args) {
-  return logger.debug('emit', { args }), new Promise(function (resolve, reject) {
-    const resolved = setTimeout(function () {
+  const _returnType = _t.return(_t.any());
+
+  return logger.debug('emit', { args }), new Promise((resolve, reject) => {
+    const resolved = setTimeout(() => {
       logger.warn('websocket emit timeout', { args }), reject(new Error('websocket response timeout'));
     }, 10000);
 
-    socket.emit(...args, function (error, result) {
-      return clearTimeout(resolved), error == null ? void resolve(result) : reject(typeof error === 'string' ? new Error(error) : error);
-    });
-  });
+    socket.emit(...args, (error, result) => (clearTimeout(resolved), error == null ? void resolve(result) : reject(typeof error === 'string' ? new Error(error) : error)));
+  }).then(_arg => _returnType.assert(_arg));
 }
 
 function on(type, handler) {

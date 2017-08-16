@@ -4,11 +4,13 @@ import Logger from 'nightingale-logger/src';
 
 const logger = new Logger('alp:websocket');
 let socket;
-let successfulConnection = false;
+let successfulConnection = null;
 let connected = false;
 
 export const websocket = {
-  get connected() { return connected; },
+  get connected() {
+    return connected;
+  },
   on,
   off,
   emit,
@@ -16,13 +18,22 @@ export const websocket = {
   isDisconnected,
 };
 
-const WEBSOCKET_ONLINE_STATE_ACTION_TYPE = 'alp:websocket/online';
+const WEBSOCKET_STATE_ACTION_TYPE = 'alp:websocket/state';
 
 export default function alpWebsocket(app, namespaceName) {
   if (!app.alpReducers) app.alpReducers = {}; // TODO remove in next major
   app.alpReducers.websocket = (state, action) => {
-    if (!state) state = connected ? 'connected' : 'disconnected';
-    if (action.type === WEBSOCKET_ONLINE_STATE_ACTION_TYPE) return action.state;
+    if (!state) {
+      state = 'disconnected';
+      setTimeout(() => {
+        if (successfulConnection !== false) {
+          app.store.dispatch({
+            type: WEBSOCKET_STATE_ACTION_TYPE,
+            state: connected ? 'connected' : 'connecting',
+          });
+        }
+      });
+    } else if (action.type === WEBSOCKET_STATE_ACTION_TYPE) return action.state;
     return state;
   };
 
@@ -59,12 +70,17 @@ function start(app, namespaceName = '') {
     transports: ['websocket'],
   });
 
+  const callbackFirstConnectionError = () => (successfulConnection = false);
+
+  socket.on('connect_error', callbackFirstConnectionError);
+
   socket.on('connect', () => {
+    socket.off('connect_error', callbackFirstConnectionError);
     logger.success('connected');
     successfulConnection = true;
     connected = true;
     if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'connected' });
+      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
     }
   });
 
@@ -72,7 +88,7 @@ function start(app, namespaceName = '') {
     logger.success('reconnected');
     connected = true;
     if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'connected' });
+      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
     }
   });
 
@@ -80,7 +96,7 @@ function start(app, namespaceName = '') {
     logger.warn('disconnected');
     connected = false;
     if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_ONLINE_STATE_ACTION_TYPE, state: 'disconnected' });
+      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
     }
   });
 
@@ -122,7 +138,6 @@ function on(type, handler) {
 function off(type, handler) {
   socket.off(type, handler);
 }
-
 
 function isConnected() {
   // socket.connected is not updated after reconnect event
