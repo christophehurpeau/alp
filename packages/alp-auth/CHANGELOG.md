@@ -1,3 +1,12 @@
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/alpjs/alp-auth/compare/v0.11.1...v0.12.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies ([516b035](https://github.com/alpjs/alp-auth/commit/516b035))
+
+
 <a name="0.11.1"></a>
 ## [0.11.1](https://github.com/alpjs/alp-auth/compare/v0.11.0...v0.11.1) (2017-07-28)
 
