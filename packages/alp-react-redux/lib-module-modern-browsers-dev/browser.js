@@ -37,12 +37,13 @@ export default (async function browser(app, App, { sharedReducers } = {}) {
 
   const createStore = function createStore(ctx, moduleReducers) {
     moduleStoreReducer = createBrowserModuleStoreReducer(moduleReducers);
+
     const store = createBrowserStore(app, ctx, moduleStoreReducer.reducer, {
       sharedReducers,
       middlewares: [app.websocket && websocketMiddleware(app)].filter(Boolean)
     });
-    app.store = store;
-    return store;
+
+    return app.store = store, store;
   };
 
   const preRender = async function preRender(app) {
@@ -54,14 +55,13 @@ export default (async function browser(app, App, { sharedReducers } = {}) {
           return { ctx };
         } }
     });
-    await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-    return moduleVisitor.getReducers();
+
+    return await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor), moduleVisitor.getReducers();
   };
 
   const render = async function render(App) {
     let app = React.createElement(App);
-
     app = React.createElement(BrowserAppContainer, {}, app);
 
 
@@ -78,23 +78,16 @@ export default (async function browser(app, App, { sharedReducers } = {}) {
       }
     });
 
-    renderApp(WrappedApp);
-    logger.success('rendered');
+    renderApp(WrappedApp), logger.success('rendered');
   };
 
   if (app.websocket) {
     const loggerWebsocket = logger.child('websocket');
-    loggerWebsocket.debug('register websocket redux:action');
-    app.websocket.on('redux:action', function (action) {
-      loggerWebsocket.debug('dispatch action from websocket', action);
-      if (store) {
-        store.dispatch(action);
-      }
+    loggerWebsocket.debug('register websocket redux:action'), app.websocket.on('redux:action', function (action) {
+      loggerWebsocket.debug('dispatch action from websocket', action), store && store.dispatch(action);
     });
   }
 
-  await render(App);
-
-  return render;
+  return await render(App), render;
 });
 //# sourceMappingURL=browser.js.map

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.identityReducer = exports.classNames = exports.createPureStatelessComponent = exports.createLoader = exports.createReducer = exports.createAction = undefined;
+exports.identityReducer = exports.classNames = exports.createPureStatelessComponent = exports.createLoader = exports.createReducer = exports.createAction = void 0;
 
 var _createAction2 = require('./createAction');
 

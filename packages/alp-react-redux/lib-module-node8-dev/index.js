@@ -1,4 +1,4 @@
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) keys.indexOf(i) >= 0 || Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]); return target; }
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -40,8 +40,7 @@ const OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReduce
 export default (function index(App, options = {}) {
   let _optionsType = t.nullable(OptionsType);
 
-  t.param('options', _optionsType).assert(options);
-  return async ctx => {
+  return t.param('options', _optionsType).assert(options), async ctx => {
     const version = t.string().assert(ctx.config.get('version'));
     // TODO create alp-useragent with getter in context
     const ua = ctx.req.headers['user-agent'];
@@ -52,6 +51,7 @@ export default (function index(App, options = {}) {
 
     const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: { getState: () => ({ ctx }) } });
     await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+
 
     const store = createServerStore(ctx, moduleVisitor.getReducers(), {
       sharedReducers: options.sharedReducers
@@ -65,8 +65,8 @@ export default (function index(App, options = {}) {
           initialData = _objectWithoutProperties(_store$getState, ['ctx']);
     ctx.body = await renderHtml(React.createElement(WrappedApp), {
       version,
-      scriptName: options.scriptName !== undefined ? options.scriptName : name,
-      styleName: options.styleName !== undefined ? options.styleName : name,
+      scriptName: options.scriptName === void 0 ? name : options.scriptName,
+      styleName: options.styleName === void 0 ? name : options.styleName,
       polyfillFeatures: options.polyfillFeatures,
       initialData
     });
@@ -76,7 +76,6 @@ export default (function index(App, options = {}) {
 const loggerWebsocket = logger.child('websocket');
 
 export function emitAction(to, action) {
-  loggerWebsocket.debug('emitAction', action);
-  to.emit('redux:action', action);
+  loggerWebsocket.debug('emitAction', action), to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map

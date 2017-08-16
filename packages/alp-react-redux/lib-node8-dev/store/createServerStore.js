@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]); } return target; };
 
 var _redux = require('redux');
 
@@ -19,9 +19,8 @@ exports.default = function createServerStore(ctx, moduleReducers, { sharedReduce
   const initialContext = ctx.computeInitialContextForBrowser().state;
   const keys = Object.keys(initialContext);
   const initialContextReducers = Object.create(null);
-  keys.forEach(key => initialContextReducers[key] = _identityReducer2.default);
+  keys.forEach(key => initialContextReducers[key] = _identityReducer2.default), initialContext.ctx = ctx;
 
-  initialContext.ctx = ctx;
 
   const rootReducer = (0, _redux.combineReducers)(_extends({}, initialContextReducers, ctx.app.alpReducers, sharedReducers, {
     ctx: _identityReducer2.default,

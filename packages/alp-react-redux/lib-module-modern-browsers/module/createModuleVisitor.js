@@ -8,12 +8,7 @@ export default (function () {
     visitor: function visitor(element, instance) {
       // console.log(element, instance, instance instanceof AlpModule, element.type === AppContainer);
 
-      if (instance && instance instanceof AlpModule) {
-        reducers = instance.props.reducers;
-        return false;
-      }
-
-      return true;
+      return instance && instance instanceof AlpModule ? (reducers = instance.props.reducers, false) : true;
     },
 
     getReducers: function getReducers() {

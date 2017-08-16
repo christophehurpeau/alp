@@ -14,18 +14,13 @@ export default (function (initialReducers) {
   };
   return {
     reducer: function reducer(state, action) {
-      return combinedReducers(action.type === MODULE_INIT_TYPE ? undefined : state, action);
+      return combinedReducers(action.type === MODULE_INIT_TYPE ? void 0 : state, action);
     },
 
     set: function set(store, reducers) {
-      if (reducers === _reducers) return false;
-      console.log('set reducers', reducers, _reducers);
-      return new Promise(function (resolve) {
+      return reducers !== _reducers && new Promise(function (resolve) {
         setImmediate(function () {
-          _reducers = reducers;
-          combinedReducers = combineReducers(reducers);
-          store.dispatch({ type: MODULE_INIT_TYPE });
-          resolve();
+          _reducers = reducers, combinedReducers = combineReducers(reducers), store.dispatch({ type: MODULE_INIT_TYPE }), resolve();
         });
       });
     }

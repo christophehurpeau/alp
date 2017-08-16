@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.websocketMiddleware = undefined;
+exports.websocketMiddleware = void 0;
 exports.createEmitAction = createEmitAction;
 exports.createEmitPromiseAction = createEmitPromiseAction;
 
@@ -30,11 +30,7 @@ function createEmitAction(type, argsNamesOrHandler) {
 
   let _argsNamesOrHandlerType = _flowRuntime2.default.nullable(ArgsNamesOfHandlerType);
 
-  _flowRuntime2.default.param('type', _typeType).assert(type);
-
-  _flowRuntime2.default.param('argsNamesOrHandler', _argsNamesOrHandlerType).assert(argsNamesOrHandler);
-
-  return (0, _createAction2.default)(type, argsNamesOrHandler, { meta: { websocket: true } });
+  return _flowRuntime2.default.param('type', _typeType).assert(type), _flowRuntime2.default.param('argsNamesOrHandler', _argsNamesOrHandlerType).assert(argsNamesOrHandler), (0, _createAction2.default)(type, argsNamesOrHandler, { meta: { websocket: true } });
 }
 
 function createEmitPromiseAction(type, argsNamesOrHandler) {
@@ -42,34 +38,20 @@ function createEmitPromiseAction(type, argsNamesOrHandler) {
 
   let _argsNamesOrHandlerType2 = _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.string())), _flowRuntime2.default.string(), _flowRuntime2.default.function());
 
-  _flowRuntime2.default.param('type', _typeType2).assert(type);
-
-  _flowRuntime2.default.param('argsNamesOrHandler', _argsNamesOrHandlerType2).assert(argsNamesOrHandler);
-
-  return (0, _createAction2.default)(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
+  return _flowRuntime2.default.param('type', _typeType2).assert(type), _flowRuntime2.default.param('argsNamesOrHandler', _argsNamesOrHandlerType2).assert(argsNamesOrHandler), (0, _createAction2.default)(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
 }
 
 const websocketMiddleware = exports.websocketMiddleware = app => store => next => action => {
-  if (!action.meta || !action.meta.websocket) {
-    return next(action);
-  }
+  if (!action.meta || !action.meta.websocket) return next(action);
 
-  if (!action.meta.promise) {
-    app.websocket.emit(action.type, action);
-    return;
-  }
+  if (!action.meta.promise) return void app.websocket.emit(action.type, action);
 
   const resolved = setTimeout(() => {
-    logger.warn('websocket emit timeout', { action });
-    // eslint-disable-next-line no-console
-    console.log('alp.react-redux websocket emit timeout', action);
+    logger.warn('websocket emit timeout', { action }), console.log('alp.react-redux websocket emit timeout', action);
   }, 10000);
 
   app.websocket.emit(action.type, action, action => {
-    clearTimeout(resolved);
-    if (action) {
-      store.dispatch(action);
-    }
+    clearTimeout(resolved), action && store.dispatch(action);
   });
 };
 //# sourceMappingURL=websocket.js.map

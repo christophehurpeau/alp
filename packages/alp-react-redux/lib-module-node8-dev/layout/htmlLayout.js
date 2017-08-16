@@ -22,9 +22,7 @@ export default (function htmlLayout(helmet, content, {
 
   const _returnType = t.return(t.string());
 
-  t.param('helmet', HelmetDataType).assert(helmet);
-  t.param('content', _contentType).assert(content);
-  return _returnType.assert(`<!doctype html>
+  return t.param('helmet', HelmetDataType).assert(helmet), t.param('content', _contentType).assert(content), _returnType.assert(`<!doctype html>
 <html ${helmet.htmlAttributes.toString()}>
   <head>
     ${helmet.title.toString()}

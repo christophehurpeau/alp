@@ -19,9 +19,7 @@ export default (function createAlpAppWrapper(app, context) {
 
   let _contextType = t.object();
 
-  t.param('app', _appType).assert(app);
-  t.param('context', _contextType).assert(context);
-  return _temp = _class = class extends Component {
+  return t.param('app', _appType).assert(app), t.param('context', _contextType).assert(context), (_temp = _class = class extends Component {
 
     getChildContext() {
       const _returnType = t.return(t.object());
@@ -38,6 +36,6 @@ export default (function createAlpAppWrapper(app, context) {
     context: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
     setModuleReducers: PropTypes.func
-  }, _temp;
+  }, _temp);
 });
 //# sourceMappingURL=createAlpAppWrapper.js.map

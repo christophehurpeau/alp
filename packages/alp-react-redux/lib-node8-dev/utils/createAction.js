@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]); } return target; };
 
 var _flowRuntime = require("flow-runtime");
 
@@ -20,13 +20,10 @@ exports.default = function createAction(type, handler) {
 
   let _handlerType = _flowRuntime2.default.nullable(HandlerType);
 
-  _flowRuntime2.default.param("type", _typeType).assert(type);
+  _flowRuntime2.default.param("type", _typeType).assert(type), _flowRuntime2.default.param("handler", _handlerType).assert(handler);
 
-  _flowRuntime2.default.param("handler", _handlerType).assert(handler);
+  const action = handler ? (...args) => _extends({ type }, handler(...args)) : () => ({ type });
 
-  const action = !handler ? () => ({ type }) : (...args) => _extends({ type }, handler(...args));
-  action.type = type;
-  action.toString = () => type;
-  return action;
+  return action.type = type, action.toString = () => type, action;
 };
 //# sourceMappingURL=createAction.js.map

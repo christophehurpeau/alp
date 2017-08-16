@@ -1,16 +1,4 @@
-export const promiseMiddleware = store => next => action => {
-  if (typeof action.then !== 'function') {
-    return next(action);
-  }
+export const promiseMiddleware = store => next => action => typeof action.then === 'function' ? Promise.resolve(action).then(store.dispatch) : next(action);
 
-  return Promise.resolve(action).then(store.dispatch);
-};
-
-export const createFunctionMiddleware = app => store => next => action => {
-  if (typeof action !== 'function') {
-    return next(action);
-  }
-
-  return action(store.dispatch, app);
-};
+export const createFunctionMiddleware = app => store => next => action => typeof action === 'function' ? action(store.dispatch, app) : next(action);
 //# sourceMappingURL=middleware-browser.js.map

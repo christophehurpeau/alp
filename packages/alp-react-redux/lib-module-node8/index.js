@@ -1,4 +1,4 @@
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) keys.indexOf(i) >= 0 || Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]); return target; }
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -45,6 +45,7 @@ export default ((App, options = {}) => async ctx => {
   const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: { getState: () => ({ ctx }) } });
   await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
+
   const store = createServerStore(ctx, moduleVisitor.getReducers(), {
     sharedReducers: options.sharedReducers
   });
@@ -57,8 +58,8 @@ export default ((App, options = {}) => async ctx => {
         initialData = _objectWithoutProperties(_store$getState, ['ctx']);
   ctx.body = await renderHtml(React.createElement(WrappedApp), {
     version,
-    scriptName: options.scriptName !== undefined ? options.scriptName : name,
-    styleName: options.styleName !== undefined ? options.styleName : name,
+    scriptName: options.scriptName === void 0 ? name : options.scriptName,
+    styleName: options.styleName === void 0 ? name : options.styleName,
     polyfillFeatures: options.polyfillFeatures,
     initialData
   });
@@ -67,7 +68,6 @@ export default ((App, options = {}) => async ctx => {
 const loggerWebsocket = logger.child('websocket');
 
 export function emitAction(to, action) {
-  loggerWebsocket.debug('emitAction', action);
-  to.emit('redux:action', action);
+  loggerWebsocket.debug('emitAction', action), to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map

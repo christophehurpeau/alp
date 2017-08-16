@@ -31,11 +31,7 @@ exports.default = function createAlpAppWrapper(app, context) {
 
   let _contextType = _flowRuntime2.default.object();
 
-  _flowRuntime2.default.param('app', _appType).assert(app);
-
-  _flowRuntime2.default.param('context', _contextType).assert(context);
-
-  return _temp = _class = class extends _react.Component {
+  return _flowRuntime2.default.param('app', _appType).assert(app), _flowRuntime2.default.param('context', _contextType).assert(context), (_temp = _class = class extends _react.Component {
 
     getChildContext() {
       const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.object());
@@ -52,6 +48,6 @@ exports.default = function createAlpAppWrapper(app, context) {
     context: _propTypes2.default.object.isRequired,
     store: _propTypes2.default.object.isRequired,
     setModuleReducers: _propTypes2.default.func
-  }, _temp;
+  }, _temp);
 };
 //# sourceMappingURL=createAlpAppWrapper.js.map

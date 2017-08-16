@@ -9,7 +9,7 @@ function uneval(obj, keys, objects = new Set()) {
   switch (obj) {
     case null:
       return 'null';
-    case undefined:
+    case void 0:
       return 'undefined';
     case Infinity:
       return 'Infinity';
@@ -17,43 +17,21 @@ function uneval(obj, keys, objects = new Set()) {
       return '-Infinity';
   }
 
-  if (Number.isNaN(obj)) {
-    return 'NaN';
-  }
+  if (Number.isNaN(obj)) return 'NaN';
 
   switch (typeof obj) {
     case 'function':
-      throw new Error(false);
+      throw false, new Error(false);
     case 'string':
     case 'number':
     case 'boolean':
       return JSON.stringify(obj);
   }
 
-  if (objects.has(obj)) {
-    throw new Error(false);
-  }
-
-  objects.add(obj);
+  if (objects.has(obj)) throw new Error(false);
 
   // specialized types
-  if (obj instanceof Array) {
-    return `[${obj.map(o => uneval(o, false, objects)).join(',')}]`;
-  }
-
-  if (obj instanceof Date) {
-    return `new Date(${obj.getTime()})`;
-  }
-
-  if (obj instanceof Set) {
-    return `new Set(${uneval(Array.from(obj), keys)})`;
-  }
-
-  if (obj instanceof Map) {
-    return `new Map(${uneval(Array.from(obj), keys)})`;
-  }
-
-  return `{${Object.keys(obj).map(key => `${JSON.stringify(key)}:${uneval(obj[key], false)}`).join(',')}}`;
+  return objects.add(obj), obj instanceof Array ? `[${obj.map(o => uneval(o, false, objects)).join(',')}]` : obj instanceof Date ? `new Date(${obj.getTime()})` : obj instanceof Set ? `new Set(${uneval(Array.from(obj), keys)})` : obj instanceof Map ? `new Map(${uneval(Array.from(obj), keys)})` : `{${Object.keys(obj).map(key => `${JSON.stringify(key)}:${uneval(obj[key], false)}`).join(',')}}`;
 }
 
 // https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw

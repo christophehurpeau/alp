@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.websocketMiddleware = undefined;
+exports.websocketMiddleware = void 0;
 exports.createEmitAction = createEmitAction;
 exports.createEmitPromiseAction = createEmitPromiseAction;
 
@@ -28,26 +28,16 @@ function createEmitPromiseAction(type, argsNamesOrHandler) {
 }
 
 const websocketMiddleware = exports.websocketMiddleware = app => store => next => action => {
-  if (!action.meta || !action.meta.websocket) {
-    return next(action);
-  }
+  if (!action.meta || !action.meta.websocket) return next(action);
 
-  if (!action.meta.promise) {
-    app.websocket.emit(action.type, action);
-    return;
-  }
+  if (!action.meta.promise) return void app.websocket.emit(action.type, action);
 
   const resolved = setTimeout(() => {
-    logger.warn('websocket emit timeout', { action });
-    // eslint-disable-next-line no-console
-    console.log('alp.react-redux websocket emit timeout', action);
+    logger.warn('websocket emit timeout', { action }), console.log('alp.react-redux websocket emit timeout', action);
   }, 10000);
 
   app.websocket.emit(action.type, action, action => {
-    clearTimeout(resolved);
-    if (action) {
-      store.dispatch(action);
-    }
+    clearTimeout(resolved), action && store.dispatch(action);
   });
 };
 //# sourceMappingURL=websocket.js.map

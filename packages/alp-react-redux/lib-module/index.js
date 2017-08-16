@@ -1,8 +1,8 @@
 var _this = this;
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) !(keys.indexOf(i) >= 0) && Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]); return target; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { return void reject(error); } return info.done ? void resolve(value) : Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } return step("next"); }); }; }
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -38,54 +38,35 @@ var renderHtml = function renderHtml(app, options) {
 };
 
 export default (function (App) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
   return function () {
-    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(ctx) {
       var version, ua, name, app, moduleVisitor, preRenderStore, PreRenderWrappedApp, store, WrappedApp, _store$getState, removeCtxFromInitialData, initialData;
 
       return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              version = ctx.config.get('version');
-              // TODO create alp-useragent with getter in context
+        for (;;) switch (_context.prev = _context.next) {
+          case 0:
+            return version = ctx.config.get('version'), ua = ctx.req.headers['user-agent'], name = isModernBrowser(ua) ? 'modern-browsers' : 'es5', app = React.createElement(App), moduleVisitor = createModuleVisitor(), preRenderStore = { getState: function getState() {
+                return { ctx: ctx };
+              } }, PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: preRenderStore }), _context.next = 9, reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-              ua = ctx.req.headers['user-agent'];
-              name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-              app = React.createElement(App);
-              moduleVisitor = createModuleVisitor();
-              preRenderStore = { getState: function getState() {
-                  return { ctx: ctx };
-                } };
-              PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: preRenderStore });
-              _context.next = 9;
-              return reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+          case 9:
+            return store = createServerStore(ctx, moduleVisitor.getReducers(), {
+              sharedReducers: options.sharedReducers
+            }), WrappedApp = createAlpAppWrapper(app, { context: ctx, store: store }), _store$getState = store.getState(), removeCtxFromInitialData = _store$getState.ctx, initialData = _objectWithoutProperties(_store$getState, ['ctx']), _context.next = 14, renderHtml(React.createElement(WrappedApp), {
+              version: version,
+              scriptName: options.scriptName === void 0 ? name : options.scriptName,
+              styleName: options.styleName === void 0 ? name : options.styleName,
+              polyfillFeatures: options.polyfillFeatures,
+              initialData: initialData
+            });
 
-            case 9:
-              store = createServerStore(ctx, moduleVisitor.getReducers(), {
-                sharedReducers: options.sharedReducers
-              });
-              WrappedApp = createAlpAppWrapper(app, { context: ctx, store: store });
+          case 14:
+            ctx.body = _context.sent;
 
-              // eslint-disable-next-line no-unused-vars
-
-              _store$getState = store.getState(), removeCtxFromInitialData = _store$getState.ctx, initialData = _objectWithoutProperties(_store$getState, ['ctx']);
-              _context.next = 14;
-              return renderHtml(React.createElement(WrappedApp), {
-                version: version,
-                scriptName: options.scriptName !== undefined ? options.scriptName : name,
-                styleName: options.styleName !== undefined ? options.styleName : name,
-                polyfillFeatures: options.polyfillFeatures,
-                initialData: initialData
-              });
-
-            case 14:
-              ctx.body = _context.sent;
-
-            case 15:
-            case 'end':
-              return _context.stop();
-          }
+          case 15:
+          case 'end':
+            return _context.stop();
         }
       }, _callee, _this);
     }));
@@ -99,7 +80,6 @@ export default (function (App) {
 var loggerWebsocket = logger.child('websocket');
 
 export function emitAction(to, action) {
-  loggerWebsocket.debug('emitAction', action);
-  to.emit('redux:action', action);
+  loggerWebsocket.debug('emitAction', action), to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map

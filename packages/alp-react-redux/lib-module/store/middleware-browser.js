@@ -1,11 +1,7 @@
 export var promiseMiddleware = function promiseMiddleware(store) {
   return function (next) {
     return function (action) {
-      if (typeof action.then !== 'function') {
-        return next(action);
-      }
-
-      return Promise.resolve(action).then(store.dispatch);
+      return typeof action.then === 'function' ? Promise.resolve(action).then(store.dispatch) : next(action);
     };
   };
 };
@@ -14,11 +10,7 @@ export var createFunctionMiddleware = function createFunctionMiddleware(app) {
   return function (store) {
     return function (next) {
       return function (action) {
-        if (typeof action !== 'function') {
-          return next(action);
-        }
-
-        return action(store.dispatch, app);
+        return typeof action === 'function' ? action(store.dispatch, app) : next(action);
       };
     };
   };

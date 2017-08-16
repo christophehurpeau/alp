@@ -3,9 +3,9 @@ export default function createLoader(handlers) {
   var handlerMap = new Map(Object.keys(handlers).map(function (key) {
     return [key, handlers[key]];
   }));
-  handlers = undefined;
 
-  return function (state, data) {
+
+  return handlers = void 0, function (state, data) {
     var keys = Object.keys(data);
     return Promise.all(keys.map(function (key) {
       var handler = handlerMap.get(key);
@@ -13,10 +13,10 @@ export default function createLoader(handlers) {
       return handler(state, data[key]);
     })).then(function (results) {
       var data = Object.create(null);
-      results.forEach(function (result, index) {
+
+      return results.forEach(function (result, index) {
         data[keys[index]] = result;
-      });
-      return data;
+      }), data;
     });
   };
 }

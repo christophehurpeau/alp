@@ -16,7 +16,6 @@ export default (initialReducers: Object) => {
 
     set: (store, reducers) => {
       if (reducers === _reducers) return false;
-      console.log('set reducers', reducers, _reducers);
       return new Promise((resolve, reject) => {
         setImmediate(() => {
           _reducers = reducers;

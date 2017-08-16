@@ -16,20 +16,13 @@ export default (function createBrowserModuleStoreReducer(initialReducers) {
   let _reducers = initialReducers;
   let combinedReducers = initialReducers ? combineReducers(initialReducers) : state => state;
   return {
-    reducer: (state, action) => combinedReducers(action.type === MODULE_INIT_TYPE ? undefined : state, action),
+    reducer: (state, action) => combinedReducers(action.type === MODULE_INIT_TYPE ? void 0 : state, action),
 
-    set: (store, reducers) => {
-      if (reducers === _reducers) return false;
-      console.log('set reducers', reducers, _reducers);
-      return new Promise(resolve => {
-        setImmediate(() => {
-          _reducers = reducers;
-          combinedReducers = combineReducers(reducers);
-          store.dispatch({ type: MODULE_INIT_TYPE });
-          resolve();
-        });
+    set: (store, reducers) => reducers !== _reducers && new Promise(resolve => {
+      setImmediate(() => {
+        _reducers = reducers, combinedReducers = combineReducers(reducers), store.dispatch({ type: MODULE_INIT_TYPE }), resolve();
       });
-    }
+    })
   };
 });
 //# sourceMappingURL=createBrowserModuleStoreReducer.js.map

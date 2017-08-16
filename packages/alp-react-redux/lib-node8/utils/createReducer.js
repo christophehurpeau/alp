@@ -7,27 +7,14 @@ exports.default = createReducer;
 /* global PRODUCTION */
 
 function createReducer(defaultState, handlers) {
-  if (typeof defaultState === 'object') {
-    handlers = defaultState;
-    defaultState = () => null;
-  }
+  typeof defaultState === 'object' && (handlers = defaultState, defaultState = () => null);
+
 
   const handlerMap = new Map();
-  Object.keys(handlers).forEach(key => {
-    if (typeof key === 'function') {
-      handlerMap.set(key.type, handlers[key]);
-    } else {
-      handlerMap.set(key, handlers[key]);
-    }
-  });
-  handlers = undefined;
 
-  return (state = defaultState(), action) => {
-    if (action && handlerMap.has(action.type)) {
-      return handlerMap.get(action.type)(state, action);
-    }
 
-    return state;
-  };
+  return Object.keys(handlers).forEach(key => {
+    typeof key === 'function' ? handlerMap.set(key.type, handlers[key]) : handlerMap.set(key, handlers[key]);
+  }), handlers = void 0, (state = defaultState(), action) => action && handlerMap.has(action.type) ? handlerMap.get(action.type)(state, action) : state;
 }
 //# sourceMappingURL=createReducer.js.map

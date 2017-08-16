@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+exports.default = void 0;
 
 var _class, _temp;
 
@@ -32,8 +32,7 @@ const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.
 let AlpReduxModule = (_temp = _class = class extends _AlpModule2.default {
 
   constructor(props, context) {
-    super(props, context);
-    this.state = {
+    super(props, context), this.state = {
       loading: this.setModuleReducers(props.reducers)
     };
   }
@@ -41,23 +40,17 @@ let AlpReduxModule = (_temp = _class = class extends _AlpModule2.default {
   setModuleReducers(reducers) {
     if (!this.context.setModuleReducers) return false; // pre render
     const result = this.context.setModuleReducers(reducers);
-    if (result === false) return false;
-    result.then(() => {
+    return result !== false && (result.then(() => {
       this.setState({ loading: false });
-    });
-    return true;
+    }), true);
   }
 
   componentWillReceiveProps(nextProps) {
     let _nextPropsType = _flowRuntime2.default.ref(_propTypes2.default);
 
-    _flowRuntime2.default.param('nextProps', _nextPropsType).assert(nextProps);
-
-    if (nextProps.reducers !== this.props.reducers) {
-      this.setState({
-        loading: this.setModuleReducers(nextProps.reducers)
-      });
-    }
+    _flowRuntime2.default.param('nextProps', _nextPropsType).assert(nextProps), nextProps.reducers !== this.props.reducers && this.setState({
+      loading: this.setModuleReducers(nextProps.reducers)
+    });
   }
 
   render() {

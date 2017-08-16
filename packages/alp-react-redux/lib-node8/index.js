@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AppContainer = exports.Body = exports.AlpReduxModule = exports.AlpModule = exports.identityReducer = exports.createPureStatelessComponent = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = exports.Helmet = undefined;
+exports.AppContainer = exports.Body = exports.AlpReduxModule = exports.AlpModule = exports.identityReducer = exports.createPureStatelessComponent = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = exports.Helmet = void 0;
 
 var _redux = require('redux');
 
@@ -119,7 +119,7 @@ var _AppContainer3 = _interopRequireDefault(_AppContainer2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) keys.indexOf(i) >= 0 || Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]); return target; }
 
 exports.Helmet = _reactHelmet2.default;
 exports.AlpModule = _AlpModule3.default;
@@ -148,6 +148,7 @@ exports.default = (App, options = {}) => async ctx => {
   const PreRenderWrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store: { getState: () => ({ ctx }) } });
   await (0, _reactTreeWalker2.default)(_react2.default.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
+
   const store = (0, _createServerStore2.default)(ctx, moduleVisitor.getReducers(), {
     sharedReducers: options.sharedReducers
   });
@@ -160,8 +161,8 @@ exports.default = (App, options = {}) => async ctx => {
         initialData = _objectWithoutProperties(_store$getState, ['ctx']);
   ctx.body = await renderHtml(_react2.default.createElement(WrappedApp), {
     version,
-    scriptName: options.scriptName !== undefined ? options.scriptName : name,
-    styleName: options.styleName !== undefined ? options.styleName : name,
+    scriptName: options.scriptName === void 0 ? name : options.scriptName,
+    styleName: options.styleName === void 0 ? name : options.styleName,
     polyfillFeatures: options.polyfillFeatures,
     initialData
   });
@@ -170,7 +171,6 @@ exports.default = (App, options = {}) => async ctx => {
 const loggerWebsocket = logger.child('websocket');
 
 function emitAction(to, action) {
-  loggerWebsocket.debug('emitAction', action);
-  to.emit('redux:action', action);
+  loggerWebsocket.debug('emitAction', action), to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map
