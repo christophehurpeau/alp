@@ -1,3 +1,12 @@
+<a name="12.1.0"></a>
+# [12.1.0](https://github.com/alpjs/alp-react-redux/compare/v12.0.0...v12.1.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies ([578349d](https://github.com/alpjs/alp-react-redux/commit/578349d))
+
+
 <a name="12.0.0"></a>
 # [12.0.0](https://github.com/alpjs/alp-react-redux/compare/v11.0.0...v12.0.0) (2017-08-15)
 
