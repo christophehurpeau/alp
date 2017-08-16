@@ -1,3 +1,12 @@
+<a name="2.5.0"></a>
+# [2.5.0](https://github.com/alpjs/alp-errors-node/compare/v2.4.0...v2.5.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies ([dd34db8](https://github.com/alpjs/alp-errors-node/commit/dd34db8))
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/alpjs/alp-errors-node/compare/v2.3.0...v2.4.0) (2017-04-03)
 
