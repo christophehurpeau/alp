@@ -1,3 +1,12 @@
+<a name="3.5.0"></a>
+# [3.5.0](https://github.com/alpjs/alp-config/compare/v3.4.0...v3.5.0) (2017-08-16)
+
+
+### Features
+
+* update dependencies ([2669343](https://github.com/alpjs/alp-config/commit/2669343))
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/alpjs/alp-config/compare/v3.3.1...v3.4.0) (2017-04-03)
 
