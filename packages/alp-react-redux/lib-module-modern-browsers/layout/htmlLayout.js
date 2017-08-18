@@ -21,8 +21,11 @@ export default (function (helmet, content, {
     ${helmet.style.toString()}
     ${polyfillFeatures && `<script defer src="${`https://polyfill.io/v2/polyfill.min.js?features=${polyfillFeatures}&unknown=polyfill`}"></script>`}
     ${helmet.script.toString()}
-    ${scriptName === false ? '' : `<script>${`window.VERSION='${version}';window.__INITIAL_DATA__=${uneval(initialData)};`}</script>`}
-    ${scriptName === false ? '' : `<script defer src="${assetUrl(`/${scriptName}.js`, version)}"></script>`}
+    ${scriptName === false ? '' : `<script>
+window.VERSION='${version}';
+window.__INITIAL_DATA__=${uneval(initialData)};
+</script>
+<script defer src="${assetUrl(`/${scriptName}.js`, version)}"></script>`}
   </head>
   <body ${helmet.bodyAttributes.toString()}>
     <div id="react-app">${content}</div>

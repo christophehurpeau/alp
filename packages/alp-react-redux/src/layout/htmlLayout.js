@@ -51,13 +51,12 @@ export default (
       `<script defer src="${`https://polyfill.io/v2/polyfill.min.js?features=${polyfillFeatures}&unknown=polyfill`}"></script>`}
     ${helmet.script.toString()}
     ${scriptName === false
-      ? null
-      : `<script>${`window.VERSION='${version}';window.__INITIAL_DATA__=${uneval(
-          initialData,
-        )};`}</script>`}
-    ${scriptName === false
-      ? null
-      : `<script defer src="${assetUrl(`/${scriptName}.js`, version)}"></script>`}
+      ? ''
+      : `<script>
+window.VERSION='${version}';
+window.__INITIAL_DATA__=${uneval(initialData)};
+</script>
+<script defer src="${assetUrl(`/${scriptName}.js`, version)}"></script>`}
   </head>
   <body ${helmet.bodyAttributes.toString()}>
     <div id="react-app">${content}</div>
