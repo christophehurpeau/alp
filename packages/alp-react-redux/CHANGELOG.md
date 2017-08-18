@@ -1,3 +1,13 @@
+<a name="12.1.1"></a>
+## [12.1.1](https://github.com/alpjs/alp-react-redux/compare/v12.1.0...v12.1.1) (2017-08-18)
+
+
+### Bug Fixes
+
+* check DOMContentLoaded before first render ([52a1e35](https://github.com/alpjs/alp-react-redux/commit/52a1e35))
+* scriptName false null in <head> ([8c38959](https://github.com/alpjs/alp-react-redux/commit/8c38959))
+
+
 <a name="12.1.0"></a>
 # [12.1.0](https://github.com/alpjs/alp-react-redux/compare/v12.0.0...v12.1.0) (2017-08-16)
 
