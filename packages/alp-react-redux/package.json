@@ -51,6 +51,7 @@
     ]
   },
   "dependencies": {
+    "content-loaded": "^1.1.0",
     "flow-runtime": "0.10.0",
     "modern-browsers": "^0.4.1",
     "nightingale-logger": "^3.4.0",

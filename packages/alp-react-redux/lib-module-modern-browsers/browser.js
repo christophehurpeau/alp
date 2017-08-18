@@ -1,4 +1,5 @@
 
+import contentLoaded from 'content-loaded';
 import React from 'react';
 import { render } from 'react-dom';
 import Helmet from 'react-helmet';
@@ -87,6 +88,6 @@ export default (async function (app, App, { sharedReducers } = {}) {
     });
   }
 
-  return await render(App), render;
+  return await contentLoaded(), await render(App), render;
 });
 //# sourceMappingURL=browser.js.map

@@ -62,6 +62,10 @@ Object.defineProperty(exports, 'identityReducer', {
   }
 });
 
+var _contentLoaded = require('content-loaded');
+
+var _contentLoaded2 = _interopRequireDefault(_contentLoaded);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -180,6 +184,6 @@ exports.default = async (app, App, { sharedReducers } = {}) => {
     });
   }
 
-  return await render(App), render;
+  return await (0, _contentLoaded2.default)(), await render(App), render;
 };
 //# sourceMappingURL=browser.js.map

@@ -2,6 +2,7 @@ var _this = this;
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { return void reject(error); } return info.done ? void resolve(value) : Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } return step("next"); }); }; }
 
+import contentLoaded from 'content-loaded';
 import React from 'react';
 import { render } from 'react-dom';
 import Helmet from 'react-helmet';
@@ -106,12 +107,15 @@ export default (function () {
             };
           }(), app.websocket && (loggerWebsocket = logger.child('websocket'), loggerWebsocket.debug('register websocket redux:action'), app.websocket.on('redux:action', function (action) {
             loggerWebsocket.debug('dispatch action from websocket', action), store && store.dispatch(action);
-          })), _context3.next = 9, render(App);
+          })), _context3.next = 9, contentLoaded();
 
         case 9:
+          return _context3.next = 11, render(App);
+
+        case 11:
           return _context3.abrupt('return', render);
 
-        case 10:
+        case 12:
         case 'end':
           return _context3.stop();
       }
