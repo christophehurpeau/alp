@@ -1,5 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]); } return target; };
-
 import { combineReducers, createStore } from 'redux';
 import identityReducer from '../utils/identityReducer';
 
@@ -15,7 +13,7 @@ export default (function (ctx, moduleReducers, _ref) {
   }), initialContext.ctx = ctx;
 
 
-  var rootReducer = combineReducers(_extends({}, initialContextReducers, ctx.app.alpReducers, sharedReducers, {
+  var rootReducer = combineReducers(Object.assign({}, initialContextReducers, ctx.app.alpReducers, sharedReducers, {
     ctx: identityReducer,
     module: moduleReducers ? combineReducers(moduleReducers) : identityReducer
   }));

@@ -9,7 +9,7 @@ import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 import reactTreeWalker from 'react-tree-walker';
 import Logger from 'nightingale-logger';
-import isModernBrowser from 'modern-browsers';
+import createIsModernBrowser from 'modern-browsers';
 import htmlLayout from './layout/htmlLayout';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createServerStore from './store/createServerStore';
@@ -37,6 +37,8 @@ var renderHtml = function renderHtml(app, options) {
   var helmet = Helmet.renderStatic();
   return htmlLayout(helmet, content, options);
 };
+
+var isModernBrowser = createIsModernBrowser();
 
 var OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReducers', t.nullable(t.object(t.indexer('key', t.string(), t.any())))), t.property('scriptName', t.union(t.nullable(t.string()), t.boolean(false))), t.property('styleName', t.union(t.nullable(t.string()), t.boolean(false))), t.property('polyfillFeatures', t.nullable(t.string()))));
 

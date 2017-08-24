@@ -140,6 +140,8 @@ const renderHtml = (app, options) => {
   return (0, _htmlLayout2.default)(helmet, content, options);
 };
 
+const isModernBrowser = (0, _modernBrowsers2.default)();
+
 const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('sharedReducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object(_flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any())))), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.string()), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('styleName', _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.string()), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('polyfillFeatures', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))));
 
 exports.default = function index(App, options = {}) {
@@ -149,7 +151,7 @@ exports.default = function index(App, options = {}) {
     const version = _flowRuntime2.default.string().assert(ctx.config.get('version'));
     // TODO create alp-useragent with getter in context
     const ua = ctx.req.headers['user-agent'];
-    const name = (0, _modernBrowsers2.default)(ua) ? 'modern-browsers' : 'es5';
+    const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
     const app = _react2.default.createElement(App);
     const moduleVisitor = (0, _createModuleVisitor2.default)();

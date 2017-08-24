@@ -136,11 +136,13 @@ const renderHtml = (app, options) => {
   return (0, _htmlLayout2.default)(helmet, content, options);
 };
 
+const isModernBrowser = (0, _modernBrowsers2.default)();
+
 exports.default = (App, options = {}) => async ctx => {
   const version = ctx.config.get('version');
   // TODO create alp-useragent with getter in context
   const ua = ctx.req.headers['user-agent'];
-  const name = (0, _modernBrowsers2.default)(ua) ? 'modern-browsers' : 'es5';
+  const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
   const app = _react2.default.createElement(App);
   const moduleVisitor = (0, _createModuleVisitor2.default)();

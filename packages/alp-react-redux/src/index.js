@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 import reactTreeWalker from 'react-tree-walker';
 import Logger from 'nightingale-logger/src';
-import isModernBrowser from 'modern-browsers';
+import createIsModernBrowser from 'modern-browsers';
 import htmlLayout from './layout/htmlLayout';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createServerStore from './store/createServerStore';
@@ -32,6 +32,8 @@ const renderHtml = (app, options) => {
   const helmet = Helmet.renderStatic();
   return htmlLayout(helmet, content, options);
 };
+
+const isModernBrowser = createIsModernBrowser();
 
 type OptionsType = {|
   sharedReducers: ?{ [string]: any },
