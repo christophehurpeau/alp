@@ -1,4 +1,4 @@
-var _dec, _dec2, _dec3, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _dec3, _dec4, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 function _initDefineProp(target, property, descriptor, context) {
   descriptor && Object.defineProperty(target, property, {
@@ -58,7 +58,7 @@ const buildedConfigPath = `${appDirname}/build/config/`;
 const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
 export const config = new Config(configPath);
 config.loadSync({ packageConfig });
-let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 = t.decorate(t.array(t.function())), _class = class extends Koa {
+let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 = t.decorate(t.array(t.function())), _dec4 = t.decorate(t.array(t.function())), _class = class extends Koa {
 
   /**
    * @param {Object} [options]
@@ -69,7 +69,7 @@ let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 
    * @param {Array} [options.argv] deprecated, list of overridable config by argv
    */
   constructor(options = {}) {
-    if (super(), _initDefineProp(this, 'dirname', _descriptor, this), _initDefineProp(this, 'packageDirname', _descriptor2, this), _initDefineProp(this, 'browserStateTransformers', _descriptor3, this), options.packageDirname) throw new Error('options.packageDirname is deprecated');
+    if (super(), _initDefineProp(this, 'dirname', _descriptor, this), _initDefineProp(this, 'packageDirname', _descriptor2, this), _initDefineProp(this, 'reduxReducers', _descriptor3, this), _initDefineProp(this, 'reduxMiddlewares', _descriptor4, this), options.packageDirname) throw new Error('options.packageDirname is deprecated');
     if (options.config) throw new Error('options.config is deprecated');
     if (options.srcDirname) throw new Error('options.srcDirname is deprecated');
     if (options.dirname) throw new Error('options.dirname is deprecated');
@@ -78,29 +78,7 @@ let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 
       get: deprecate(() => packageDirname, 'packageDirname'),
       configurable: false,
       enumerable: false
-    }), this.certPath = options.certPath || `${packageDirname}/config/cert`, this.publicPath = options.publicPath || `${packageDirname}/public/`, _config()(this, config), params(this), language(this), translate('locales')(this), this.use(compress()), this.browserStateTransformers = [], this.browserContextTransformers = [(initialBrowserContext, context) => {
-      initialBrowserContext.state = Object.create(null), this.browserStateTransformers.forEach(transformer => transformer(initialBrowserContext.state, context));
-    }], this.context.computeInitialContextForBrowser = function () {
-      const initialBrowserContext = Object.create(null);
-
-      return this.app.browserContextTransformers.forEach(transformer => transformer(initialBrowserContext, this)), initialBrowserContext;
-    };
-  }
-
-  registerBrowserContextTransformer(transformer) {
-    let _transformerType = t.function();
-
-    t.param('transformer', _transformerType).assert(transformer), this.browserContextTransformers.push(transformer);
-  }
-
-  registerBrowserStateTransformer(transformer) {
-    let _transformerType2 = t.function();
-
-    t.param('transformer', _transformerType2).assert(transformer), this.browserStateTransformers.push(transformer);
-  }
-
-  registerBrowserStateTransformers(transformer) {
-    deprecate(() => () => null, 'breaking: use registerBrowserStateTransformer instead')(), this.browserStateTransformers.push(transformer);
+    }), this.certPath = options.certPath || `${packageDirname}/config/cert`, this.publicPath = options.publicPath || `${packageDirname}/public/`, _config()(this, config), params(this), language(this), translate('locales')(this), this.use(compress());
   }
 
   get environment() {
@@ -142,9 +120,16 @@ let Alp = (_dec = t.decorate(t.string()), _dec2 = t.decorate(t.string()), _dec3 
 }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'packageDirname', [_dec2], {
   enumerable: true,
   initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'browserStateTransformers', [_dec3], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'reduxReducers', [_dec3], {
   enumerable: true,
-  initializer: null
+  initializer: function () {
+    return [];
+  }
+}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'reduxMiddlewares', [_dec4], {
+  enumerable: true,
+  initializer: function () {
+    return [];
+  }
 }), _class);
 export { Alp as default };
 //# sourceMappingURL=index.js.map

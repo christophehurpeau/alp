@@ -36,7 +36,8 @@ config.loadSync({ packageConfig });
 export default class Alp extends Koa {
   dirname: string;
   packageDirname: string;
-  browserStateTransformers: Array<Function>;
+  reduxReducers: Array<Function> = [];
+  reduxMiddlewares: Array<Function> = [];
 
   /**
    * @param {Object} [options]
@@ -79,39 +80,6 @@ export default class Alp extends Koa {
     translate('locales')(this);
 
     this.use(compress());
-
-    this.browserStateTransformers = [];
-    this.browserContextTransformers = [
-      (initialBrowserContext, context) => {
-        initialBrowserContext.state = Object.create(null);
-        this.browserStateTransformers.forEach(transformer =>
-          transformer(initialBrowserContext.state, context),
-        );
-      },
-    ];
-
-    this.context.computeInitialContextForBrowser = function() {
-      const initialBrowserContext = Object.create(null);
-
-      this.app.browserContextTransformers.forEach(transformer =>
-        transformer(initialBrowserContext, this),
-      );
-
-      return initialBrowserContext;
-    };
-  }
-
-  registerBrowserContextTransformer(transformer: Function) {
-    this.browserContextTransformers.push(transformer);
-  }
-
-  registerBrowserStateTransformer(transformer: Function) {
-    this.browserStateTransformers.push(transformer);
-  }
-
-  registerBrowserStateTransformers(transformer) {
-    deprecate(() => () => null, 'breaking: use registerBrowserStateTransformer instead')();
-    this.browserStateTransformers.push(transformer);
   }
 
   get environment() {

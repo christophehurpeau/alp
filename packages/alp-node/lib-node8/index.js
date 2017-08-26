@@ -95,7 +95,7 @@ let Alp = class extends _koa2.default {
    * @param {Array} [options.argv] deprecated, list of overridable config by argv
    */
   constructor(options = {}) {
-    if (super(), options.packageDirname) throw new Error('options.packageDirname is deprecated');
+    if (super(), this.reduxReducers = [], this.reduxMiddlewares = [], options.packageDirname) throw new Error('options.packageDirname is deprecated');
     if (options.config) throw new Error('options.config is deprecated');
     if (options.srcDirname) throw new Error('options.srcDirname is deprecated');
     if (options.dirname) throw new Error('options.dirname is deprecated');
@@ -104,25 +104,7 @@ let Alp = class extends _koa2.default {
       get: (0, _util.deprecate)(() => packageDirname, 'packageDirname'),
       configurable: false,
       enumerable: false
-    }), this.certPath = options.certPath || `${packageDirname}/config/cert`, this.publicPath = options.publicPath || `${packageDirname}/public/`, (0, _alpConfig2.default)()(this, config), (0, _alpParams2.default)(this), (0, _alpLanguage2.default)(this), (0, _alpTranslate2.default)('locales')(this), this.use((0, _koaCompress2.default)()), this.browserStateTransformers = [], this.browserContextTransformers = [(initialBrowserContext, context) => {
-      initialBrowserContext.state = Object.create(null), this.browserStateTransformers.forEach(transformer => transformer(initialBrowserContext.state, context));
-    }], this.context.computeInitialContextForBrowser = function () {
-      const initialBrowserContext = Object.create(null);
-
-      return this.app.browserContextTransformers.forEach(transformer => transformer(initialBrowserContext, this)), initialBrowserContext;
-    };
-  }
-
-  registerBrowserContextTransformer(transformer) {
-    this.browserContextTransformers.push(transformer);
-  }
-
-  registerBrowserStateTransformer(transformer) {
-    this.browserStateTransformers.push(transformer);
-  }
-
-  registerBrowserStateTransformers(transformer) {
-    (0, _util.deprecate)(() => () => null, 'breaking: use registerBrowserStateTransformer instead')(), this.browserStateTransformers.push(transformer);
+    }), this.certPath = options.certPath || `${packageDirname}/config/cert`, this.publicPath = options.publicPath || `${packageDirname}/public/`, (0, _alpConfig2.default)()(this, config), (0, _alpParams2.default)(this), (0, _alpLanguage2.default)(this), (0, _alpTranslate2.default)('locales')(this), this.use((0, _koaCompress2.default)());
   }
 
   get environment() {
