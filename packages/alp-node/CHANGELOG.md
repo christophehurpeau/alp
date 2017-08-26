@@ -1,3 +1,17 @@
+<a name="0.35.0"></a>
+# [0.35.0](https://github.com/alpjs/alp-node/compare/v0.34.0...v0.35.0) (2017-08-26)
+
+
+### Features
+
+* remove initialBrowserContext ([be7e039](https://github.com/alpjs/alp-node/commit/be7e039))
+
+
+### BREAKING CHANGES
+
+* initialBrowserContext
+
+
 <a name="0.34.0"></a>
 # [0.34.0](https://github.com/alpjs/alp-node/compare/v0.33.0...v0.34.0) (2017-08-16)
 
