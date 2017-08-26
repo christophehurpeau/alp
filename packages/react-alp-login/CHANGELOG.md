@@ -1,3 +1,12 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/alpjs/react-alp-login/compare/v0.7.0...v0.8.0) (2017-08-26)
+
+
+### Features
+
+* use a and direct link instead of react-alp-link ([a263fdc](https://github.com/alpjs/react-alp-login/commit/a263fdc))
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/alpjs/react-alp-login/compare/v0.6.4...v0.7.0) (2017-05-13)
 
