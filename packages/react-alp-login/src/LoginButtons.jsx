@@ -1,10 +1,9 @@
 import List from 'ynnub/components/List';
 import LoginButtonGoogle from './LoginButtonGoogle';
 
-export default () => (
+export default () =>
   <List links>
     <li>
       <LoginButtonGoogle />
     </li>
-  </List>
-);
+  </List>;
