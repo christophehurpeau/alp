@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.websocket = void 0;
+exports.websocket = undefined;
 exports.default = alpWebsocket;
 
 var _socket = require('socket.io-client');
@@ -36,27 +36,44 @@ const websocket = exports.websocket = {
 const WEBSOCKET_STATE_ACTION_TYPE = 'alp:websocket/state';
 
 function alpWebsocket(app, namespaceName) {
-  return app.alpReducers || (app.alpReducers = {}), app.alpReducers.websocket = (state, action) => {
-    if (!state) state = 'disconnected', setTimeout(() => {
-        successfulConnection !== false && app.store.dispatch({
-          type: WEBSOCKET_STATE_ACTION_TYPE,
-          state: connected ? 'connected' : 'connecting'
-        });
-      });else if (action.type === WEBSOCKET_STATE_ACTION_TYPE) return action.state;
+  if (!app.alpReducers) app.alpReducers = {}; // TODO remove in next major
+  app.alpReducers.websocket = (state, action) => {
+    if (!state) {
+      state = 'disconnected';
+      setTimeout(() => {
+        if (successfulConnection !== false) {
+          app.store.dispatch({
+            type: WEBSOCKET_STATE_ACTION_TYPE,
+            state: connected ? 'connected' : 'connecting'
+          });
+        }
+      });
+    } else if (action.type === WEBSOCKET_STATE_ACTION_TYPE) return action.state;
     return state;
-  }, start(app, namespaceName), app.websocket = websocket, websocket.socket = socket, socket;
+  };
+
+  start(app, namespaceName);
+  app.websocket = websocket;
+  websocket.socket = socket;
+  return socket;
 }
 
 function start(app, namespaceName = '') {
   const { config, context } = app;
 
-  if (socket) throw new Error('WebSocket already started');
+  if (socket) {
+    throw new Error('WebSocket already started');
+  }
 
   const webSocketConfig = config.get('webSocket') || config.get('websocket');
 
-  if (!webSocketConfig) throw new Error('Missing config webSocket');
+  if (!webSocketConfig) {
+    throw new Error('Missing config webSocket');
+  }
 
-  if (!webSocketConfig.has('port')) throw new Error('Missing config webSocket.port');
+  if (!webSocketConfig.has('port')) {
+    throw new Error('Missing config webSocket.port');
+  }
 
   const secure = webSocketConfig.get('secure');
   const port = webSocketConfig.get('port');
@@ -68,36 +85,69 @@ function start(app, namespaceName = '') {
     transports: ['websocket']
   });
 
-
   const callbackFirstConnectionError = () => successfulConnection = false;
 
-  return socket.on('connect_error', callbackFirstConnectionError), socket.on('connect', () => {
-    socket.off('connect_error', callbackFirstConnectionError), logger.success('connected'), successfulConnection = true, connected = true, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
-  }), socket.on('reconnect', () => {
-    logger.success('reconnected'), connected = true, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
-  }), socket.on('disconnect', () => {
-    logger.warn('disconnected'), connected = false, app.store && app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
-  }), socket.on('hello', ({ version }) => {
+  socket.on('connect_error', callbackFirstConnectionError);
+
+  socket.on('connect', () => {
+    socket.off('connect_error', callbackFirstConnectionError);
+    logger.success('connected');
+    successfulConnection = true;
+    connected = true;
+    if (app.store) {
+      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
+    }
+  });
+
+  socket.on('reconnect', () => {
+    logger.success('reconnected');
+    connected = true;
+    if (app.store) {
+      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
+    }
+  });
+
+  socket.on('disconnect', () => {
+    logger.warn('disconnected');
+    connected = false;
+    if (app.store) {
+      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
+    }
+  });
+
+  socket.on('hello', ({ version }) => {
     if (version !== window.VERSION) {
       // eslint-disable-next-line no-alert
-      if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) return location.reload(true);
-      console.warn('Version mismatch', { serverVersion: version, clientVersion: window.VERSION });
+      if (process.env.NODE_ENV === 'production' && confirm(context.t('newversion'))) {
+        return location.reload(true);
+      } else {
+        console.warn('Version mismatch', { serverVersion: version, clientVersion: window.VERSION });
+      }
     }
-  }), socket;
+  });
+
+  return socket;
 }
 
 function emit(...args) {
-  return logger.debug('emit', { args }), new Promise((resolve, reject) => {
+  logger.debug('emit', { args });
+  return new Promise((resolve, reject) => {
     const resolved = setTimeout(() => {
-      logger.warn('websocket emit timeout', { args }), reject(new Error('websocket response timeout'));
+      logger.warn('websocket emit timeout', { args });
+      reject(new Error('websocket response timeout'));
     }, 10000);
 
-    socket.emit(...args, (error, result) => (clearTimeout(resolved), error == null ? void resolve(result) : reject(typeof error === 'string' ? new Error(error) : error)));
+    socket.emit(...args, (error, result) => {
+      clearTimeout(resolved);
+      if (error != null) return reject(typeof error === 'string' ? new Error(error) : error);
+      resolve(result);
+    });
   });
 }
 
 function on(type, handler) {
-  return socket.on(type, handler), handler;
+  socket.on(type, handler);
+  return handler;
 }
 
 function off(type, handler) {
