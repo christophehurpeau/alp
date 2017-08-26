@@ -40,8 +40,7 @@ const websocket = exports.websocket = {
 const WEBSOCKET_STATE_ACTION_TYPE = 'alp:websocket/state';
 
 function alpWebsocket(app, namespaceName) {
-  if (!app.alpReducers) app.alpReducers = {}; // TODO remove in next major
-  app.alpReducers.websocket = (state, action) => {
+  app.reduxReducers.websocket = (state, action) => {
     if (!state) {
       state = 'disconnected';
       setTimeout(() => {
