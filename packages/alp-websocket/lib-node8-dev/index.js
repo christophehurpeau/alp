@@ -29,8 +29,7 @@ let io;
  * @param {string} [dirname] for tls, dirname of server.key server.crt. If undefined: app.certPath
  */
 function alpWebsocket(app, dirname) {
-  if (!app.alpReducers) app.alpReducers = {}; // TODO remove in next major
-  app.alpReducers.websocket = () => 'disconnected';
+  app.reduxReducers.websocket = (state = 'disconnected') => state;
 
   start(app.config, dirname || app.certPath);
   app.websocket = io;

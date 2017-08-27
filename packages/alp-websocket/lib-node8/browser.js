@@ -14,10 +14,15 @@ var _nightingaleLogger = require('nightingale-logger');
 
 var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
 
+var _middleware = require('./redux/middleware');
+
+var _middleware2 = _interopRequireDefault(_middleware);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-use-before-define */
-const logger = new _nightingaleLogger2.default('alp:websocket');
+const logger = new _nightingaleLogger2.default('alp:websocket'); /* eslint-disable no-use-before-define */
+
+
 let socket;
 let successfulConnection = null;
 let connected = false;
@@ -33,12 +38,13 @@ const websocket = exports.websocket = {
   isDisconnected
 };
 
+const REDUX_INIT_TYPE = '@@INIT';
 const WEBSOCKET_STATE_ACTION_TYPE = 'alp:websocket/state';
 
 function alpWebsocket(app, namespaceName) {
-  app.reduxReducers.websocket = (state, action) => {
-    if (!state) {
-      state = 'disconnected';
+  app.reduxReducers.websocket = (state = 'disconnected', action) => {
+    if (action.type === WEBSOCKET_STATE_ACTION_TYPE) return action.state;
+    if (action.type === REDUX_INIT_TYPE) {
       setTimeout(() => {
         if (successfulConnection !== false) {
           app.store.dispatch({
@@ -47,9 +53,12 @@ function alpWebsocket(app, namespaceName) {
           });
         }
       });
-    } else if (action.type === WEBSOCKET_STATE_ACTION_TYPE) return action.state;
+      return state;
+    }
     return state;
   };
+
+  app.reduxMiddlewares.push((0, _middleware2.default)(app));
 
   start(app, namespaceName);
   app.websocket = websocket;
@@ -93,25 +102,19 @@ function start(app, namespaceName = '') {
     logger.success('connected');
     successfulConnection = true;
     connected = true;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
-    }
+    app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
   });
 
   socket.on('reconnect', () => {
     logger.success('reconnected');
     connected = true;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
-    }
+    app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
   });
 
   socket.on('disconnect', () => {
     logger.warn('disconnected');
     connected = false;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
-    }
+    app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
   });
 
   socket.on('hello', ({ version }) => {
@@ -123,6 +126,11 @@ function start(app, namespaceName = '') {
         console.warn('Version mismatch', { serverVersion: version, clientVersion: window.VERSION });
       }
     }
+  });
+
+  socket.on('redux:action', action => {
+    logger.debug('dispatch action from websocket', action);
+    app.store.dispatch(action);
   });
 
   return socket;

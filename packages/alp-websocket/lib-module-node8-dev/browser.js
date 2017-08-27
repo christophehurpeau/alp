@@ -1,9 +1,11 @@
 /* eslint-disable no-use-before-define */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
+import reduxMiddleware from './redux/middleware';
 
 import _t from 'flow-runtime';
 const logger = new Logger('alp:websocket');
+
 let socket;
 let successfulConnection = null;
 let connected = false;
@@ -19,12 +21,13 @@ export const websocket = {
   isDisconnected
 };
 
+const REDUX_INIT_TYPE = '@@INIT';
 const WEBSOCKET_STATE_ACTION_TYPE = 'alp:websocket/state';
 
 export default function alpWebsocket(app, namespaceName) {
-  app.reduxReducers.websocket = (state, action) => {
-    if (!state) {
-      state = 'disconnected';
+  app.reduxReducers.websocket = (state = 'disconnected', action) => {
+    if (action.type === WEBSOCKET_STATE_ACTION_TYPE) return action.state;
+    if (action.type === REDUX_INIT_TYPE) {
       setTimeout(() => {
         if (successfulConnection !== false) {
           app.store.dispatch({
@@ -33,9 +36,12 @@ export default function alpWebsocket(app, namespaceName) {
           });
         }
       });
-    } else if (action.type === WEBSOCKET_STATE_ACTION_TYPE) return action.state;
+      return state;
+    }
     return state;
   };
+
+  app.reduxMiddlewares.push(reduxMiddleware(app));
 
   start(app, namespaceName);
   app.websocket = websocket;
@@ -79,25 +85,19 @@ function start(app, namespaceName = '') {
     logger.success('connected');
     successfulConnection = true;
     connected = true;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
-    }
+    app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
   });
 
   socket.on('reconnect', () => {
     logger.success('reconnected');
     connected = true;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
-    }
+    app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
   });
 
   socket.on('disconnect', () => {
     logger.warn('disconnected');
     connected = false;
-    if (app.store) {
-      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
-    }
+    app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'disconnected' });
   });
 
   socket.on('hello', ({ version }) => {
@@ -109,6 +109,11 @@ function start(app, namespaceName = '') {
         console.warn('Version mismatch', { serverVersion: version, clientVersion: window.VERSION });
       }
     }
+  });
+
+  socket.on('redux:action', action => {
+    logger.debug('dispatch action from websocket', action);
+    app.store.dispatch(action);
   });
 
   return socket;

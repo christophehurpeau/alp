@@ -58,6 +58,9 @@
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3"
   },
+  "peerDependencies": {
+    "alp-react-redux": "^14.0.0"
+  },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.0",
