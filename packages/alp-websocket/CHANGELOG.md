@@ -1,3 +1,12 @@
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/alpjs/alp-websocket/compare/v4.0.0...v4.0.1) (2017-08-27)
+
+
+### Bug Fixes
+
+* socket connected before redux store created ([b9c93e1](https://github.com/alpjs/alp-websocket/commit/b9c93e1))
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/alpjs/alp-websocket/compare/v3.13.0...v4.0.0) (2017-08-27)
 
