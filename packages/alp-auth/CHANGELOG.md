@@ -1,3 +1,17 @@
+<a name="0.13.0"></a>
+# [0.13.0](https://github.com/alpjs/alp-auth/compare/v0.12.0...v0.13.0) (2017-08-27)
+
+
+### Features
+
+* new alp-react-redux API ([861a191](https://github.com/alpjs/alp-auth/commit/861a191))
+
+
+### BREAKING CHANGES
+
+* added app.reduxReducers and removed app.registerBrowserStateTransformer
+
+
 <a name="0.12.0"></a>
 # [0.12.0](https://github.com/alpjs/alp-auth/compare/v0.11.1...v0.12.0) (2017-08-16)
 
