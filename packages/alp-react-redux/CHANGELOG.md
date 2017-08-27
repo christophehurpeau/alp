@@ -1,3 +1,12 @@
+<a name="14.0.0"></a>
+# [14.0.0](https://github.com/alpjs/alp-react-redux/compare/v12.1.1...v14.0.0) (2017-08-27)
+
+
+### Features
+
+* app.reduxReducers, app.reduxMiddlewares and fixes ([7f90439](https://github.com/alpjs/alp-react-redux/commit/7f90439))
+
+
 <a name="12.1.1"></a>
 ## [12.1.1](https://github.com/alpjs/alp-react-redux/compare/v12.1.0...v12.1.1) (2017-08-18)
 
