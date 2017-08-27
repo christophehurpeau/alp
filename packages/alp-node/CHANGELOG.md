@@ -1,3 +1,12 @@
+<a name="0.36.0"></a>
+# [0.36.0](https://github.com/alpjs/alp-node/compare/v0.35.0...v0.36.0) (2017-08-27)
+
+
+### Features
+
+* remove redux* in app, now in alp-react-redux ([dd7b041](https://github.com/alpjs/alp-node/commit/dd7b041))
+
+
 <a name="0.35.0"></a>
 # [0.35.0](https://github.com/alpjs/alp-node/compare/v0.34.0...v0.35.0) (2017-08-26)
 
