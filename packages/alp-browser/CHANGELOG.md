@@ -1,3 +1,7 @@
+<a name="0.23.2"></a>
+## [0.23.2](https://github.com/alpjs/alp-browser/compare/v0.23.1...v0.23.2) (2017-08-27)
+
+
 <a name="0.23.1"></a>
 ## [0.23.1](https://github.com/alpjs/alp-browser/compare/v0.23.0...v0.23.1) (2017-08-16)
 
