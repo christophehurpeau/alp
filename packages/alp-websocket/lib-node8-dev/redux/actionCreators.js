@@ -8,14 +8,13 @@ exports.createEmitPromiseAction = createEmitPromiseAction;
 
 var _alpReactRedux = require('alp-react-redux');
 
-var _alpReactRedux2 = _interopRequireDefault(_alpReactRedux);
-
 var _flowRuntime = require('flow-runtime');
 
 var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable */
 const ArgsNamesOfHandlerType = _flowRuntime2.default.type('ArgsNamesOfHandlerType', _flowRuntime2.default.union(_flowRuntime2.default.array(_flowRuntime2.default.string()), _flowRuntime2.default.string(), _flowRuntime2.default.function()));
 
 function createEmitAction(type, argsNamesOrHandler) {
@@ -27,7 +26,7 @@ function createEmitAction(type, argsNamesOrHandler) {
 
   _flowRuntime2.default.param('argsNamesOrHandler', _argsNamesOrHandlerType).assert(argsNamesOrHandler);
 
-  return (0, _alpReactRedux2.default)(type, argsNamesOrHandler, { meta: { websocket: true } });
+  return (0, _alpReactRedux.createAction)(type, argsNamesOrHandler, { meta: { websocket: true } });
 }
 
 function createEmitPromiseAction(type, argsNamesOrHandler) {
@@ -39,6 +38,6 @@ function createEmitPromiseAction(type, argsNamesOrHandler) {
 
   _flowRuntime2.default.param('argsNamesOrHandler', _argsNamesOrHandlerType2).assert(argsNamesOrHandler);
 
-  return (0, _alpReactRedux2.default)(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
+  return (0, _alpReactRedux.createAction)(type, argsNamesOrHandler, { meta: { websocket: true, promise: true } });
 }
 //# sourceMappingURL=actionCreators.js.map

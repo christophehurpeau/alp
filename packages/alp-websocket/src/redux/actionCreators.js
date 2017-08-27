@@ -1,4 +1,5 @@
-import createAction from 'alp-react-redux';
+/* eslint-disable */
+import { createAction } from 'alp-react-redux/src';
 
 type ArgsNamesOfHandlerType = Array<string> | string | Function;
 

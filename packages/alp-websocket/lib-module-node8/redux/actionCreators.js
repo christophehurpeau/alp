@@ -1,4 +1,5 @@
-import createAction from 'alp-react-redux';
+/* eslint-disable */
+import { createAction } from 'alp-react-redux';
 
 export function createEmitAction(type, argsNamesOrHandler) {
   return createAction(type, argsNamesOrHandler, { meta: { websocket: true } });

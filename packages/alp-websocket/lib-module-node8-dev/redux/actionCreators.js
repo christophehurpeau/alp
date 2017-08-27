@@ -1,4 +1,5 @@
-import createAction from 'alp-react-redux';
+/* eslint-disable */
+import { createAction } from 'alp-react-redux';
 
 import t from 'flow-runtime';
 const ArgsNamesOfHandlerType = t.type('ArgsNamesOfHandlerType', t.union(t.array(t.string()), t.string(), t.function()));
