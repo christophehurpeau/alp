@@ -1,3 +1,12 @@
+<a name="10.3.0"></a>
+# [10.3.0](https://github.com/alpjs/alp-dev/compare/v10.2.1...v10.3.0) (2017-08-27)
+
+
+### Features
+
+* update dependencies and use node 8 ([94388fa](https://github.com/alpjs/alp-dev/commit/94388fa))
+
+
 <a name="10.2.1"></a>
 ## [10.2.1](https://github.com/alpjs/alp-dev/compare/v10.2.0...v10.2.1) (2017-08-15)
 
