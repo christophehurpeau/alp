@@ -20,8 +20,9 @@ Object.assign(mongoUsersManager, {
     const r = this.store.r;
     let filter = r.row('accounts').contains(row => r.and(row('provider').eq(provider), row('accountId').eq(accountId)));
 
-    emails && emails.length && (filter = r.or(filter, r.row('emails').contains(row => r.expr(emails).contains(row))));
-
+    if (emails && emails.length) {
+      filter = r.or(filter, r.row('emails').contains(row => r.expr(emails).contains(row)));
+    }
 
     let query = this.store.query().filter(filter);
     return this.store.findOne(query).then(_arg2 => _returnType.assert(_arg2));
@@ -32,10 +33,13 @@ Object.assign(mongoUsersManager, {
 
     let _accountType = t.ref(AccountType);
 
-    t.param('user', _userType).assert(user), t.param('account', _accountType).assert(account);
+    t.param('user', _userType).assert(user);
+    t.param('account', _accountType).assert(account);
 
     let accountIndex = user.accounts.indexOf(account);
-    if (accountIndex === -1) throw new Error('Invalid account');
+    if (accountIndex === -1) {
+      throw new Error('Invalid account');
+    }
 
     return this.store.partialUpdateOne(user, {
       accounts: this.store.r.row('accounts').changeAt(accountIndex, account)

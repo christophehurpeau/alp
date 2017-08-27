@@ -7,7 +7,9 @@ export function randomBase64(size) {
 
   const _returnType = t.return(t.string());
 
-  return t.param('size', _sizeType).assert(size), promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('base64')).then(_arg => _returnType.assert(_arg));
+  t.param('size', _sizeType).assert(size);
+
+  return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('base64')).then(_arg => _returnType.assert(_arg));
 }
 
 export function randomHex(size) {
@@ -15,6 +17,8 @@ export function randomHex(size) {
 
   const _returnType2 = t.return(t.string());
 
-  return t.param('size', _sizeType2).assert(size), promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('hex')).then(_arg2 => _returnType2.assert(_arg2));
+  t.param('size', _sizeType2).assert(size);
+
+  return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('hex')).then(_arg2 => _returnType2.assert(_arg2));
 }
 //# sourceMappingURL=generators.js.map

@@ -37,6 +37,9 @@ export default function init({
       homeRouterKey,
     });
 
+    app.reduxReducers.user = (state = null) => state;
+    app.reduxReducers.connected = (state = null) => state;
+
     app.context.setConnected = async function(connected: number | string, user: Object) {
       logger.debug('setConnected', { connected });
       if (!connected) {
@@ -70,13 +73,6 @@ export default function init({
       delete this.state.user;
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
     };
-
-    app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
-      if (ctx.state.connected) {
-        initialBrowserState.connected = ctx.state.connected || null;
-        initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user);
-      }
-    });
 
     const decodeJwt = (token, userAgent) => {
       const result = verify(token, app.config.get('authentication').get('secretKey'), {
@@ -142,7 +138,21 @@ export default function init({
         let token = ctx.cookies.get(COOKIE_NAME);
         logger.debug('middleware', { token });
 
-        if (!token) return next();
+        const setState = (connected, user) => {
+          ctx.state.connected = connected;
+          ctx.state.user = user;
+          if (ctx.reduxInitialContext) {
+            ctx.reduxInitialContext.connected = connected;
+            ctx.reduxInitialContext.user = user && usersManager.transformForBrowser(user);
+          }
+        };
+
+        const notConnected = () => {
+          setState(null, null);
+          return next();
+        };
+
+        if (!token) return notConnected();
 
         let connected;
         try {
@@ -150,23 +160,21 @@ export default function init({
         } catch (err) {
           logger.info('failed to verify authentification', { err });
           ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-          return next();
+          return notConnected();
         }
         logger.debug('middleware', { connected });
 
-        if (!connected) return next();
+        if (!connected) return notConnected();
 
         const user = await usersManager.findConnected(connected);
 
         if (!user) {
           ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-          return next();
+          return notConnected();
         }
 
-        ctx.state.connected = connected;
-        ctx.state.user = user;
-
-        await next();
+        setState(connected, user);
+        return next();
       },
     };
   };

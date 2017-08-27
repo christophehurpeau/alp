@@ -39,9 +39,19 @@ exports.default = new (_temp2 = _class = class extends _events2.default {
   getEmails(profile, plusProfile) {
     const emails = [];
 
-    return profile.email && emails.push(profile.email), plusProfile.emails && plusProfile.emails.forEach(email => {
-      emails.indexOf(email.value) === -1 && emails.push(email.value);
-    }), emails;
+    if (profile.email) {
+      emails.push(profile.email);
+    }
+
+    if (plusProfile.emails) {
+      plusProfile.emails.forEach(email => {
+        if (emails.indexOf(email.value) === -1) {
+          emails.push(email.value);
+        }
+      });
+    }
+
+    return emails;
   }
 
   getDisplayName(profile) {
@@ -60,7 +70,7 @@ exports.default = new (_temp2 = _class = class extends _events2.default {
   }
 
   getScope(oldScope, newScope) {
-    return oldScope ? oldScope.concat(newScope.split(' ')).filter((item, i, ar) => ar.indexOf(item) === i) : newScope.split(' ');
+    return !oldScope ? newScope.split(' ') : oldScope.concat(newScope.split(' ')).filter((item, i, ar) => ar.indexOf(item) === i);
   }
 }, _class.scopeKeyToScope = {
   login: 'openid profile email https://www.googleapis.com/auth/plus.profile.emails.read'

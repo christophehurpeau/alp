@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.rethinkUsersManager = exports.mongoUsersManager = exports.abstractUsersManager = void 0;
+exports.rethinkUsersManager = exports.mongoUsersManager = exports.abstractUsersManager = undefined;
 exports.default = init;
 
 var _jsonwebtoken = require('jsonwebtoken');
@@ -66,11 +66,17 @@ function init({
       homeRouterKey
     });
 
+    app.reduxReducers.user = (state = null) => state;
+    app.reduxReducers.connected = (state = null) => state;
+
     app.context.setConnected = async function (connected, user) {
-      if (logger.debug('setConnected', { connected }), !connected) throw new Error('Illegal value for setConnected');
+      logger.debug('setConnected', { connected });
+      if (!connected) {
+        throw new Error('Illegal value for setConnected');
+      }
 
-      this.state.connected = connected, this.state.user = user;
-
+      this.state.connected = connected;
+      this.state.user = user;
 
       const token = await (0, _promiseCallbackFactory2.default)(done => (0, _jsonwebtoken.sign)({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
@@ -82,12 +88,13 @@ function init({
         httpOnly: true,
         secure: this.config.get('allowHttps')
       });
-    }, app.context.logout = function () {
-      delete this.state.connected, delete this.state.user, this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-    }, app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
-      ctx.state.connected && (initialBrowserState.connected = ctx.state.connected || null, initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user));
-    });
+    };
 
+    app.context.logout = function () {
+      delete this.state.connected;
+      delete this.state.user;
+      this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+    };
 
     const decodeJwt = (token, userAgent) => {
       const result = (0, _jsonwebtoken.verify)(token, app.config.get('authentication').get('secretKey'), {
@@ -99,62 +106,94 @@ function init({
 
     if (app.websocket) {
       logger.debug('app has websocket');
-
       // eslint-disable-next-line global-require
       const Cookies = require('cookies');
 
       const users = new Map();
-      app.websocket.users = users, app.websocket.use(async (socket, next) => {
+      app.websocket.users = users;
+
+      app.websocket.use(async (socket, next) => {
         const handshakeData = socket.request;
         const cookies = new Cookies(handshakeData, null, { keys: app.keys });
         let token = cookies.get(COOKIE_NAME);
+        logger.debug('middleware websocket', { token });
 
-
-        if (logger.debug('middleware websocket', { token }), !token) return next();
+        if (!token) return next();
 
         let connected;
         try {
           connected = await decodeJwt(token, handshakeData.headers['user-agent']);
         } catch (err) {
-          return logger.info('failed to verify authentication', { err }), next();
+          logger.info('failed to verify authentication', { err });
+          return next();
         }
+        logger.debug('middleware websocket', { connected });
 
-
-        if (logger.debug('middleware websocket', { connected }), !connected) return next();
+        if (!connected) return next();
 
         const user = await usersManager.findConnected(connected);
 
-        return user ? void (socket.user = user, users.set(socket.client.id, user), socket.on('disconnected', () => users.delete(socket.client.id)), await next()) : next();
+        if (!user) return next();
+
+        socket.user = user;
+        users.set(socket.client.id, user);
+
+        socket.on('disconnected', () => users.delete(socket.client.id));
+
+        await next();
       });
     }
 
     return {
       routes: {
         login: ['/login/:strategy', segment => {
-          segment.add('/response', controller.loginResponse, 'loginResponse'), segment.defaultRoute(controller.login, 'login');
+          segment.add('/response', controller.loginResponse, 'loginResponse');
+          segment.defaultRoute(controller.login, 'login');
         }],
         logout: ['/logout', controller.logout]
       },
 
       middleware: async (ctx, next) => {
         let token = ctx.cookies.get(COOKIE_NAME);
+        logger.debug('middleware', { token });
 
+        const setState = (connected, user) => {
+          ctx.state.connected = connected;
+          ctx.state.user = user;
+          if (ctx.reduxInitialContext) {
+            ctx.reduxInitialContext.connected = connected;
+            ctx.reduxInitialContext.user = user && usersManager.transformForBrowser(user);
+          }
+        };
 
-        if (logger.debug('middleware', { token }), !token) return next();
+        const notConnected = () => {
+          setState(null, null);
+          return next();
+        };
+
+        if (!token) return notConnected();
 
         let connected;
         try {
           connected = await decodeJwt(token, ctx.request.headers['user-agent']);
         } catch (err) {
-          return logger.info('failed to verify authentification', { err }), ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) }), next();
+          logger.info('failed to verify authentification', { err });
+          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+          return notConnected();
         }
+        logger.debug('middleware', { connected });
 
-
-        if (logger.debug('middleware', { connected }), !connected) return next();
+        if (!connected) return notConnected();
 
         const user = await usersManager.findConnected(connected);
 
-        return user ? void (ctx.state.connected = connected, ctx.state.user = user, await next()) : (ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) }), next());
+        if (!user) {
+          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+          return notConnected();
+        }
+
+        setState(connected, user);
+        return next();
       }
     };
   };

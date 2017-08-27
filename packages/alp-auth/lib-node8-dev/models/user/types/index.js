@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UserBrowserType = exports.AccountBrowserType = exports.UserType = exports.AccountType = exports.UserNameType = void 0;
+exports.UserBrowserType = exports.AccountBrowserType = exports.UserType = exports.AccountType = exports.UserNameType = undefined;
 
 var _flowRuntime = require("flow-runtime");
 

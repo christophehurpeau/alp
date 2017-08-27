@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.rethinkUsersManager = exports.mongoUsersManager = exports.abstractUsersManager = void 0;
+exports.rethinkUsersManager = exports.mongoUsersManager = exports.abstractUsersManager = undefined;
 exports.default = init;
 
 var _jsonwebtoken = require('jsonwebtoken');
@@ -46,7 +46,7 @@ var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { return void reject(error); } return info.done ? void resolve(value) : Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 exports.abstractUsersManager = _abstractUsersManager2.default;
 exports.mongoUsersManager = _mongoUsersManager2.default;
@@ -74,6 +74,9 @@ function init(_arg) {
       homeRouterKey
     });
 
+    app.reduxReducers.user = (state = null) => state;
+    app.reduxReducers.connected = (state = null) => state;
+
     app.context.setConnected = (() => {
       var _ref = _asyncToGenerator(function* (connected, user) {
         var _this = this;
@@ -82,10 +85,17 @@ function init(_arg) {
 
         let _userType = _flowRuntime2.default.object();
 
-        if (_flowRuntime2.default.param('connected', _connectedType).assert(connected), _flowRuntime2.default.param('user', _userType).assert(user), logger.debug('setConnected', { connected }), !connected) throw new Error('Illegal value for setConnected');
+        _flowRuntime2.default.param('connected', _connectedType).assert(connected);
 
-        this.state.connected = connected, this.state.user = user;
+        _flowRuntime2.default.param('user', _userType).assert(user);
 
+        logger.debug('setConnected', { connected });
+        if (!connected) {
+          throw new Error('Illegal value for setConnected');
+        }
+
+        this.state.connected = connected;
+        this.state.user = user;
 
         const token = yield (0, _promiseCallbackFactory2.default)(function (done) {
           return (0, _jsonwebtoken.sign)({ connected, time: Date.now() }, _this.config.get('authentication').get('secretKey'), {
@@ -104,12 +114,13 @@ function init(_arg) {
       return function () {
         return _ref.apply(this, arguments);
       };
-    })(), app.context.logout = function () {
-      delete this.state.connected, delete this.state.user, this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-    }, app.registerBrowserStateTransformer((initialBrowserState, ctx) => {
-      ctx.state.connected && (initialBrowserState.connected = ctx.state.connected || null, initialBrowserState.user = usersManager.transformForBrowser(ctx.state.user));
-    });
+    })();
 
+    app.context.logout = function () {
+      delete this.state.connected;
+      delete this.state.user;
+      this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+    };
 
     const decodeJwt = (token, userAgent) => {
       const result = (0, _jsonwebtoken.verify)(token, app.config.get('authentication').get('secretKey'), {
@@ -121,35 +132,44 @@ function init(_arg) {
 
     if (app.websocket) {
       logger.debug('app has websocket');
-
       // eslint-disable-next-line global-require
       const Cookies = require('cookies');
 
       const users = new Map();
-      app.websocket.users = users, app.websocket.use((() => {
+      app.websocket.users = users;
+
+      app.websocket.use((() => {
         var _ref2 = _asyncToGenerator(function* (socket, next) {
           const handshakeData = socket.request;
           const cookies = new Cookies(handshakeData, null, { keys: app.keys });
           let token = cookies.get(COOKIE_NAME);
+          logger.debug('middleware websocket', { token });
 
-
-          if (logger.debug('middleware websocket', { token }), !token) return next();
+          if (!token) return next();
 
           let connected;
           try {
             connected = yield decodeJwt(token, handshakeData.headers['user-agent']);
           } catch (err) {
-            return logger.info('failed to verify authentication', { err }), next();
+            logger.info('failed to verify authentication', { err });
+            return next();
           }
+          logger.debug('middleware websocket', { connected });
 
-
-          if (logger.debug('middleware websocket', { connected }), !connected) return next();
+          if (!connected) return next();
 
           const user = yield usersManager.findConnected(connected);
 
-          return user ? void (socket.user = user, users.set(socket.client.id, user), socket.on('disconnected', function () {
+          if (!user) return next();
+
+          socket.user = user;
+          users.set(socket.client.id, user);
+
+          socket.on('disconnected', function () {
             return users.delete(socket.client.id);
-          }), yield next()) : next();
+          });
+
+          yield next();
         });
 
         return function () {
@@ -161,7 +181,8 @@ function init(_arg) {
     return {
       routes: {
         login: ['/login/:strategy', segment => {
-          segment.add('/response', controller.loginResponse, 'loginResponse'), segment.defaultRoute(controller.login, 'login');
+          segment.add('/response', controller.loginResponse, 'loginResponse');
+          segment.defaultRoute(controller.login, 'login');
         }],
         logout: ['/logout', controller.logout]
       },
@@ -169,23 +190,45 @@ function init(_arg) {
       middleware: (() => {
         var _ref3 = _asyncToGenerator(function* (ctx, next) {
           let token = ctx.cookies.get(COOKIE_NAME);
+          logger.debug('middleware', { token });
 
+          const setState = function (connected, user) {
+            ctx.state.connected = connected;
+            ctx.state.user = user;
+            if (ctx.reduxInitialContext) {
+              ctx.reduxInitialContext.connected = connected;
+              ctx.reduxInitialContext.user = user && usersManager.transformForBrowser(user);
+            }
+          };
 
-          if (logger.debug('middleware', { token }), !token) return next();
+          const notConnected = function () {
+            setState(null, null);
+            return next();
+          };
+
+          if (!token) return notConnected();
 
           let connected;
           try {
             connected = yield decodeJwt(token, ctx.request.headers['user-agent']);
           } catch (err) {
-            return logger.info('failed to verify authentification', { err }), ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) }), next();
+            logger.info('failed to verify authentification', { err });
+            ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+            return notConnected();
           }
+          logger.debug('middleware', { connected });
 
-
-          if (logger.debug('middleware', { connected }), !connected) return next();
+          if (!connected) return notConnected();
 
           const user = yield usersManager.findConnected(connected);
 
-          return user ? void (ctx.state.connected = connected, ctx.state.user = user, yield next()) : (ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) }), next());
+          if (!user) {
+            ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+            return notConnected();
+          }
+
+          setState(connected, user);
+          return next();
         });
 
         return function middleware() {
