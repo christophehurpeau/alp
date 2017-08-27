@@ -108,7 +108,7 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-ansi-styles@^3.0.0, ansi-styles@^3.1.0:
+ansi-styles@^3.1.0, ansi-styles@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.0.tgz#c159b8d5be0f9e5a6f346dab94f16ce022161b88"
   dependencies:
@@ -787,9 +787,9 @@ babel-preset-modern-browsers@^10.0.0:
     babel-plugin-transform-es2015-modules-commonjs "^6.22.0"
     babel-plugin-transform-object-rest-spread "^6.23.0"
 
-babel-preset-optimizations@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/babel-preset-optimizations/-/babel-preset-optimizations-1.1.1.tgz#29208664a1c5743ffda708e0cae0f10b309936c9"
+babel-preset-optimizations@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-optimizations/-/babel-preset-optimizations-1.2.1.tgz#fdbda5bbc0be40d22ab506e6e23a207dfb9d94da"
   dependencies:
     babel-plugin-minify-constant-folding "^0.2.0"
     babel-plugin-minify-dead-code-elimination "^0.2.0"
@@ -954,8 +954,8 @@ camelcase@^3.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
 
 caniuse-lite@^1.0.30000715:
-  version "1.0.30000715"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000715.tgz#c327f5e6d907ebcec62cde598c3bf0dd793fb9a0"
+  version "1.0.30000718"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000718.tgz#0dd24290beb11310b2d80f6b70a823c2a65a6fad"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -978,7 +978,7 @@ chalk@^1.0.0, chalk@^1.1.1, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chalk@^2.0.0:
+chalk@^2.0.0, chalk@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.1.0.tgz#ac5becf14fa21b99c6c92ca7a7d7cfd5b17e743e"
   dependencies:
@@ -1037,8 +1037,8 @@ cli-truncate@^0.2.1:
     string-width "^1.0.1"
 
 cli-width@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.1.0.tgz#b234ca209b29ef66fc518d9b98d5847b00edf00a"
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
 
 cliui@^2.1.0:
   version "2.1.0"
@@ -1354,9 +1354,9 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-eslint-config-airbnb-base@^11.3.1:
-  version "11.3.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-11.3.1.tgz#c0ab108c9beed503cb999e4c60f4ef98eda0ed30"
+eslint-config-airbnb-base@^11.3.2:
+  version "11.3.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-11.3.2.tgz#8703b11abe3c88ac7ec2b745b7fdf52e00ae680a"
   dependencies:
     eslint-restricted-globals "^0.1.1"
 
@@ -1421,13 +1421,13 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.3.0:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.4.1.tgz#99cd7eafcffca2ff99a5c8f5f2a474d6364b4bd3"
+eslint@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.5.0.tgz#bb75d3b8bde97fb5e13efcd539744677feb019c3"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
-    chalk "^1.1.3"
+    chalk "^2.1.0"
     concat-stream "^1.6.0"
     cross-spawn "^5.1.0"
     debug "^2.6.8"
@@ -1458,6 +1458,7 @@ eslint@^4.3.0:
     progress "^2.0.0"
     require-uncached "^1.0.3"
     semver "^5.3.0"
+    strip-ansi "^4.0.0"
     strip-json-comments "~2.0.1"
     table "^4.0.1"
     text-table "~0.2.0"
@@ -1902,8 +1903,8 @@ iconv-lite@^0.4.17:
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.18.tgz#23d8656b16aae6742ac29732ea8f0336a4789cf2"
 
 ignore@^3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.3.tgz#432352e57accd87ab3110e82d3fea0e47812156d"
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.4.tgz#85ab6d0a9ca8b27b31604c09efe1c14dc21ab872"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -1954,8 +1955,8 @@ inquirer@^2.0.0:
     through "^2.3.6"
 
 inquirer@^3.0.1, inquirer@^3.0.6:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-3.2.1.tgz#06ceb0f540f45ca548c17d6840959878265fa175"
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-3.2.2.tgz#c2aaede1507cc54d826818737742d621bef2e823"
   dependencies:
     ansi-escapes "^2.0.0"
     chalk "^2.0.0"
@@ -2250,9 +2251,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^4.0.2:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-4.0.3.tgz#1ce55591bc2c83a781a90b69a0a0c8aa0fc6370b"
+lint-staged@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-4.0.4.tgz#9ca6968b30dfbfe81365b7a763cd4f4992896553"
   dependencies:
     app-root-path "^2.0.0"
     cosmiconfig "^1.1.0"
@@ -2600,12 +2601,12 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
 
 nightingale-ansi-formatter@^1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/nightingale-ansi-formatter/-/nightingale-ansi-formatter-1.7.2.tgz#74513cd4b181f53d79174e9b3ecd37e10eecb713"
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/nightingale-ansi-formatter/-/nightingale-ansi-formatter-1.8.1.tgz#2ee0e138a2e622c7e330f166d641ae1fa696067d"
   dependencies:
-    ansi-styles "^3.0.0"
-    flow-runtime "^0.10.0"
-    nightingale-formatter "^2.2.2"
+    ansi-styles "^3.2.0"
+    flow-runtime "0.10.0"
+    nightingale-formatter "^2.2.5"
 
 nightingale-console-output@^1.4.0:
   version "1.4.0"
@@ -2630,7 +2631,7 @@ nightingale-debug@^2.3.1:
     flow-runtime "^0.10.0"
     nightingale-levels "^1.0.0"
 
-nightingale-formatter@^2.2.2:
+nightingale-formatter@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/nightingale-formatter/-/nightingale-formatter-2.2.5.tgz#e6115ce03879302d6c5bce830f4be31d602b304d"
   dependencies:
@@ -2930,14 +2931,14 @@ pluralize@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-4.0.0.tgz#59b708c1c0190a2f692f1c7618c446b052fd1762"
 
-pob-babel@^18.1.3:
-  version "18.1.3"
-  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-18.1.3.tgz#e540d3824b707802868db3d156bc827333108343"
+pob-babel@^18.1.5:
+  version "18.1.5"
+  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-18.1.5.tgz#3220f041c7d64a28064f8fca21c4e96b4a7b07f5"
   dependencies:
     babel-core "^6.26.0"
     babel-plugin-discard-module-references "^1.1.2"
     babel-plugin-flow-runtime "^0.10.0"
-    babel-preset-optimizations "^1.1.1"
+    babel-preset-optimizations "^1.2.1"
     babel-preset-pob "^0.5.0"
     babel-preset-pob-stages "^0.2.4"
     babel-register "^6.26.0"
@@ -3106,8 +3107,8 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.0.tgz#7e54fe5b5ccd5d6624ea6255c3473be090b802e1"
 
 regenerator-transform@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/regenerator-transform/-/regenerator-transform-0.10.0.tgz#f9ab3eac9cc2de38431d996a6a8abf1c50f2e459"
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/regenerator-transform/-/regenerator-transform-0.10.1.tgz#1e4996837231da8b7f3cf4114d71b5691a0680dd"
   dependencies:
     babel-runtime "^6.18.0"
     babel-types "^6.19.0"
@@ -3301,8 +3302,8 @@ sntp@1.x.x:
     hoek "2.x.x"
 
 source-map-support@^0.4.15:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.15.tgz#03202df65c06d2bd8c7ec2362a193056fef8d3b1"
+  version "0.4.16"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.16.tgz#16fecf98212467d017d586a2af68d628b9421cd8"
   dependencies:
     source-map "^0.5.6"
 
@@ -3313,8 +3314,8 @@ source-map@^0.4.4:
     amdefine ">=0.0.4"
 
 source-map@^0.5.6, source-map@~0.5.1:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 
 spawn-sync@^1.0.15:
   version "1.0.15"

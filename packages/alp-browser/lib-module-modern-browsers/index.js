@@ -12,11 +12,15 @@ const logger = new Logger('alp');
 let AlpBrowser = class extends Ibex {
 
   constructor(path = '/', { version = window.VERSION } = {}) {
-    super(), this.path = path, this.appVersion = window.VERSION;
+    super();
+    this.path = path;
+    this.appVersion = window.VERSION;
   }
 
   async init() {
-    await config('/config')(this), language(this), await translate('/locales')(this);
+    await config('/config')(this);
+    language(this);
+    await translate('/locales')(this);
   }
 
   get environment() {
