@@ -2,7 +2,6 @@
   "pob": {
     "pob-config": {
       "envs": [
-        "node6",
         "node8"
       ],
       "testing": false,

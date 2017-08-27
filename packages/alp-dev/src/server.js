@@ -5,7 +5,7 @@ import { watch } from './config-build';
 export default function watchServer(port) {
   return watch().then(emitter => {
     const daemon = nodeDaemon([
-      'lib-node6-dev/index.server.js',
+      'lib-node8-dev/index.server.js',
       '--port',
       port,
       '--version',

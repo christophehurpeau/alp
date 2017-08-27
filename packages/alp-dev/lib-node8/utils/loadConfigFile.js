@@ -1,7 +1,5 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 const { readFileSync } = require('fs');
 const path = require('path');
 const { safeLoad: saveLoadYml } = require('js-yaml');
@@ -10,8 +8,8 @@ module.exports = function loadConfigFile(content, dirname) {
   let data = saveLoadYml(content) || {};
 
   const config = data.shared || data.common || {};
-  const serverConfig = _extends({}, config, data.server);
-  const browserConfig = _extends({}, config, data.browser);
+  const serverConfig = Object.assign({}, config, data.server);
+  const browserConfig = Object.assign({}, config, data.browser);
 
   if (data.include) {
     const includePaths = data.include.map(includePath => path.resolve(dirname, includePath));

@@ -12,7 +12,7 @@ var _configBuild = require('./config-build');
 // const bsReload = require('./bs-reload');
 function watchServer(port) {
   return (0, _configBuild.watch)().then(emitter => {
-    const daemon = (0, _springbokjsDaemon.node)(['lib-node6-dev/index.server.js', '--port', port, '--version', `dev${Date.now()}`]);
+    const daemon = (0, _springbokjsDaemon.node)(['lib-node8-dev/index.server.js', '--port', port, '--version', `dev${Date.now()}`]);
 
     process.on('exit', () => {
       if (daemon) {
