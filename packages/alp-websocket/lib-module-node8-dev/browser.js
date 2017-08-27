@@ -85,7 +85,9 @@ function start(app, namespaceName = '') {
     logger.success('connected');
     successfulConnection = true;
     connected = true;
-    app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
+    if (app.store) {
+      app.store.dispatch({ type: WEBSOCKET_STATE_ACTION_TYPE, state: 'connected' });
+    }
   });
 
   socket.on('reconnect', () => {
