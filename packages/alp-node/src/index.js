@@ -36,8 +36,6 @@ config.loadSync({ packageConfig });
 export default class Alp extends Koa {
   dirname: string;
   packageDirname: string;
-  reduxReducers: Array<Function> = [];
-  reduxMiddlewares: Array<Function> = [];
 
   /**
    * @param {Object} [options]

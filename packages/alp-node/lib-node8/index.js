@@ -95,7 +95,7 @@ let Alp = class extends _koa2.default {
    * @param {Array} [options.argv] deprecated, list of overridable config by argv
    */
   constructor(options = {}) {
-    if (super(), this.reduxReducers = [], this.reduxMiddlewares = [], options.packageDirname) throw new Error('options.packageDirname is deprecated');
+    if (super(), options.packageDirname) throw new Error('options.packageDirname is deprecated');
     if (options.config) throw new Error('options.config is deprecated');
     if (options.srcDirname) throw new Error('options.srcDirname is deprecated');
     if (options.dirname) throw new Error('options.dirname is deprecated');
