@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('./lib-node6-dev/build')
+require('./lib-node8-dev/build')
