@@ -1,3 +1,14 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/alpjs/alp-websocket/compare/v3.13.0...v4.0.0) (2017-08-27)
+
+
+### Features
+
+* breaking change: socket.io 2.0 ([5beec54](https://github.com/alpjs/alp-websocket/commit/5beec54))
+* move middleware from alp-react-redux to here ([942a37d](https://github.com/alpjs/alp-websocket/commit/942a37d))
+* use app.reduxReducers ([7f9f22f](https://github.com/alpjs/alp-websocket/commit/7f9f22f))
+
+
 <a name="3.13.0"></a>
 # [3.13.0](https://github.com/alpjs/alp-websocket/compare/v3.12.0...v3.13.0) (2017-08-16)
 
