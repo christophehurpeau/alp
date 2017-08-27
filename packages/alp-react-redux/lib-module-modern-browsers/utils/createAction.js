@@ -1,14 +1,15 @@
 
 
 export default (function (type, handler) {
-  const action = handler ? function (...args) {
-    return Object.assign({ type }, handler(...args));
-  } : function () {
+  const action = !handler ? function () {
     return { type };
+  } : function (...args) {
+    return Object.assign({ type }, handler(...args));
   };
-
-  return action.type = type, action.toString = function () {
+  action.type = type;
+  action.toString = function () {
     return type;
-  }, action;
+  };
+  return action;
 }); // eslint-disable-next-line flowtype/no-weak-types
 //# sourceMappingURL=createAction.js.map

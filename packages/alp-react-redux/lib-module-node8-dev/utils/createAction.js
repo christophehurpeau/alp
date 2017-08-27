@@ -8,10 +8,12 @@ export default (function createAction(type, handler) {
 
   let _handlerType = t.nullable(HandlerType);
 
-  t.param("type", _typeType).assert(type), t.param("handler", _handlerType).assert(handler);
+  t.param("type", _typeType).assert(type);
+  t.param("handler", _handlerType).assert(handler);
 
-  const action = handler ? (...args) => Object.assign({ type }, handler(...args)) : () => ({ type });
-
-  return action.type = type, action.toString = () => type, action;
+  const action = !handler ? () => ({ type }) : (...args) => Object.assign({ type }, handler(...args));
+  action.type = type;
+  action.toString = () => type;
+  return action;
 });
 //# sourceMappingURL=createAction.js.map

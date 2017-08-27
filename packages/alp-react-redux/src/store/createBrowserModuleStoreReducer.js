@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux/src';
+import type { ReducerDictionaryType } from '../types';
 
 const MODULE_INIT_TYPE = '@@alp-redux/INIT_MODULE';
 
@@ -7,19 +8,22 @@ const MODULE_INIT_TYPE = '@@alp-redux/INIT_MODULE';
 // https://gist.github.com/gaearon/0a2213881b5d53973514
 // https://github.com/zeit/next.js/pull/1459
 
-export default (initialReducers: Object) => {
+const createModuleReducer = (reducers: ?ReducerDictionaryType) =>
+  reducers ? combineReducers(reducers) : (state = null) => state;
+
+export default (initialReducers: ?ReducerDictionaryType) => {
   let _reducers = initialReducers;
-  let combinedReducers = initialReducers ? combineReducers(initialReducers) : state => state;
+  let moduleReducer = createModuleReducer(initialReducers);
   return {
     reducer: (state, action) =>
-      combinedReducers(action.type === MODULE_INIT_TYPE ? undefined : state, action),
+      moduleReducer(action.type === MODULE_INIT_TYPE ? undefined : state, action),
 
     set: (store, reducers) => {
       if (reducers === _reducers) return false;
       return new Promise((resolve, reject) => {
         setImmediate(() => {
           _reducers = reducers;
-          combinedReducers = combineReducers(reducers);
+          moduleReducer = createModuleReducer(reducers);
           store.dispatch({ type: MODULE_INIT_TYPE });
           resolve();
         });

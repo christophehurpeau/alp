@@ -5,7 +5,8 @@ import AlpModule from './AlpModule';
 let AlpReduxModule = (_temp = _class = class extends AlpModule {
 
   constructor(props, context) {
-    super(props, context), this.state = {
+    super(props, context);
+    this.state = {
       loading: this.setModuleReducers(props.reducers)
     };
   }
@@ -13,15 +14,19 @@ let AlpReduxModule = (_temp = _class = class extends AlpModule {
   setModuleReducers(reducers) {
     if (!this.context.setModuleReducers) return false; // pre render
     const result = this.context.setModuleReducers(reducers);
-    return result !== false && (result.then(() => {
+    if (result === false) return false;
+    result.then(() => {
       this.setState({ loading: false });
-    }), true);
+    });
+    return true;
   }
 
   componentWillReceiveProps(nextProps) {
-    nextProps.reducers !== this.props.reducers && this.setState({
-      loading: this.setModuleReducers(nextProps.reducers)
-    });
+    if (nextProps.reducers !== this.props.reducers) {
+      this.setState({
+        loading: this.setModuleReducers(nextProps.reducers)
+      });
+    }
   }
 
   render() {

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AppContainer = exports.Body = exports.AlpReduxModule = exports.AlpModule = exports.identityReducer = exports.createPureStatelessComponent = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = exports.Helmet = void 0;
+exports.AppContainer = exports.Body = exports.AlpReduxModule = exports.AlpModule = exports.identityReducer = exports.createPureStatelessComponent = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = exports.Helmet = undefined;
 
 var _redux = require('redux');
 
@@ -119,7 +119,7 @@ var _AppContainer3 = _interopRequireDefault(_AppContainer2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) keys.indexOf(i) >= 0 || Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]); return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 exports.Helmet = _reactHelmet2.default;
 exports.AlpModule = _AlpModule3.default;
@@ -138,41 +138,53 @@ const renderHtml = (app, options) => {
 
 const isModernBrowser = (0, _modernBrowsers2.default)();
 
-exports.default = (App, options = {}) => async ctx => {
-  const version = ctx.config.get('version');
-  // TODO create alp-useragent with getter in context
-  const ua = ctx.req.headers['user-agent'];
-  const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+exports.default = () => app => {
+  app.reduxReducers = {};
+  app.reduxMiddlewares = [];
 
-  const app = _react2.default.createElement(App);
-  const moduleVisitor = (0, _createModuleVisitor2.default)();
+  return {
+    middleware: (ctx, next) => {
+      ctx.reduxInitialContext = {};
+      return next();
+    },
 
-  const PreRenderWrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store: { getState: () => ({ ctx }) } });
-  await (0, _reactTreeWalker2.default)(_react2.default.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+    createApp: (App, options = {}) => async ctx => {
+      const version = ctx.config.get('version');
+      // TODO create alp-useragent with getter in context
+      const ua = ctx.req.headers['user-agent'];
+      const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
+      const app = _react2.default.createElement(App);
+      const moduleVisitor = (0, _createModuleVisitor2.default)();
 
-  const store = (0, _createServerStore2.default)(ctx, moduleVisitor.getReducers(), {
-    sharedReducers: options.sharedReducers
-  });
+      const PreRenderWrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store: { getState: () => ({ ctx }) } });
+      await (0, _reactTreeWalker2.default)(_react2.default.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-  const WrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store });
+      const store = (0, _createServerStore2.default)(ctx, moduleVisitor.getReducers(), {
+        sharedReducers: options.sharedReducers
+      });
 
-  // eslint-disable-next-line no-unused-vars
-  const _store$getState = store.getState(),
-        { ctx: removeCtxFromInitialData } = _store$getState,
-        initialData = _objectWithoutProperties(_store$getState, ['ctx']);
-  ctx.body = await renderHtml(_react2.default.createElement(WrappedApp), {
-    version,
-    scriptName: options.scriptName === void 0 ? name : options.scriptName,
-    styleName: options.styleName === void 0 ? name : options.styleName,
-    polyfillFeatures: options.polyfillFeatures,
-    initialData
-  });
+      const WrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store });
+
+      // eslint-disable-next-line no-unused-vars
+      const _store$getState = store.getState(),
+            { ctx: removeCtxFromInitialData } = _store$getState,
+            initialData = _objectWithoutProperties(_store$getState, ['ctx']);
+      ctx.body = await renderHtml(_react2.default.createElement(WrappedApp), {
+        version,
+        scriptName: options.scriptName !== undefined ? options.scriptName : name,
+        styleName: options.styleName !== undefined ? options.styleName : name,
+        polyfillFeatures: options.polyfillFeatures,
+        initialData
+      });
+    }
+  };
 };
 
 const loggerWebsocket = logger.child('websocket');
 
 function emitAction(to, action) {
-  loggerWebsocket.debug('emitAction', action), to.emit('redux:action', action);
+  loggerWebsocket.debug('emitAction', action);
+  to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map

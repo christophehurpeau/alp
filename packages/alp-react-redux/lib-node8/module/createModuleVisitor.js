@@ -14,7 +14,16 @@ exports.default = () => {
   let reducers;
 
   return {
-    visitor: (element, instance) => instance && instance instanceof _AlpModule2.default ? (reducers = instance.props.reducers, false) : true,
+    visitor: (element, instance) => {
+      // console.log(element, instance, instance instanceof AlpModule, element.type === AppContainer);
+
+      if (instance && instance instanceof _AlpModule2.default) {
+        reducers = instance.props.reducers;
+        return false;
+      }
+
+      return true;
+    },
 
     getReducers: () => reducers
   };

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AppContainer = exports.Body = exports.AlpReduxModule = exports.AlpModule = exports.identityReducer = exports.createPureStatelessComponent = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = exports.Helmet = void 0;
+exports.AppContainer = exports.Body = exports.AlpReduxModule = exports.AlpModule = exports.identityReducer = exports.createPureStatelessComponent = exports.classNames = exports.createLoader = exports.createReducer = exports.createAction = exports.connect = exports.combineReducers = exports.Helmet = undefined;
 
 var _redux = require('redux');
 
@@ -123,7 +123,7 @@ var _AppContainer3 = _interopRequireDefault(_AppContainer2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) keys.indexOf(i) >= 0 || Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]); return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 exports.Helmet = _reactHelmet2.default;
 exports.AlpModule = _AlpModule3.default;
@@ -144,45 +144,61 @@ const isModernBrowser = (0, _modernBrowsers2.default)();
 
 const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('sharedReducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object(_flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any())))), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.string()), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('styleName', _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.string()), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('polyfillFeatures', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))));
 
-exports.default = function index(App, options = {}) {
-  let _optionsType = _flowRuntime2.default.nullable(OptionsType);
+exports.default = function index() {
+  return app => {
+    app.reduxReducers = {};
+    app.reduxMiddlewares = [];
 
-  return _flowRuntime2.default.param('options', _optionsType).assert(options), async ctx => {
-    const version = _flowRuntime2.default.string().assert(ctx.config.get('version'));
-    // TODO create alp-useragent with getter in context
-    const ua = ctx.req.headers['user-agent'];
-    const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+    return {
+      middleware: (ctx, next) => {
+        ctx.reduxInitialContext = {};
+        return next();
+      },
 
-    const app = _react2.default.createElement(App);
-    const moduleVisitor = (0, _createModuleVisitor2.default)();
+      createApp: (App, options = {}) => {
+        let _optionsType = _flowRuntime2.default.nullable(OptionsType);
 
-    const PreRenderWrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store: { getState: () => ({ ctx }) } });
-    await (0, _reactTreeWalker2.default)(_react2.default.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+        _flowRuntime2.default.param('options', _optionsType).assert(options);
 
+        return async ctx => {
+          const version = _flowRuntime2.default.string().assert(ctx.config.get('version'));
+          // TODO create alp-useragent with getter in context
+          const ua = ctx.req.headers['user-agent'];
+          const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
-    const store = (0, _createServerStore2.default)(ctx, moduleVisitor.getReducers(), {
-      sharedReducers: options.sharedReducers
-    });
+          const app = _react2.default.createElement(App);
+          const moduleVisitor = (0, _createModuleVisitor2.default)();
 
-    const WrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store });
+          const PreRenderWrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store: { getState: () => ({ ctx }) } });
+          await (0, _reactTreeWalker2.default)(_react2.default.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-    // eslint-disable-next-line no-unused-vars
-    const _store$getState = store.getState(),
-          { ctx: removeCtxFromInitialData } = _store$getState,
-          initialData = _objectWithoutProperties(_store$getState, ['ctx']);
-    ctx.body = await renderHtml(_react2.default.createElement(WrappedApp), {
-      version,
-      scriptName: options.scriptName === void 0 ? name : options.scriptName,
-      styleName: options.styleName === void 0 ? name : options.styleName,
-      polyfillFeatures: options.polyfillFeatures,
-      initialData
-    });
+          const store = (0, _createServerStore2.default)(ctx, moduleVisitor.getReducers(), {
+            sharedReducers: options.sharedReducers
+          });
+
+          const WrappedApp = (0, _createAlpAppWrapper2.default)(app, { context: ctx, store });
+
+          // eslint-disable-next-line no-unused-vars
+          const _store$getState = store.getState(),
+                { ctx: removeCtxFromInitialData } = _store$getState,
+                initialData = _objectWithoutProperties(_store$getState, ['ctx']);
+          ctx.body = await renderHtml(_react2.default.createElement(WrappedApp), {
+            version,
+            scriptName: options.scriptName !== undefined ? options.scriptName : name,
+            styleName: options.styleName !== undefined ? options.styleName : name,
+            polyfillFeatures: options.polyfillFeatures,
+            initialData
+          });
+        };
+      }
+    };
   };
 };
 
 const loggerWebsocket = logger.child('websocket');
 
 function emitAction(to, action) {
-  loggerWebsocket.debug('emitAction', action), to.emit('redux:action', action);
+  loggerWebsocket.debug('emitAction', action);
+  to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map

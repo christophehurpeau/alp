@@ -3,12 +3,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /* global PRODUCTION */
 
 function uneval(obj, keys) {
-  var objects = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : new Set();
+  var objects = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new Set();
 
   switch (obj) {
     case null:
       return 'null';
-    case void 0:
+    case undefined:
       return 'undefined';
     case Infinity:
       return 'Infinity';
@@ -16,23 +16,45 @@ function uneval(obj, keys) {
       return '-Infinity';
   }
 
-  if (Number.isNaN(obj)) return 'NaN';
+  if (Number.isNaN(obj)) {
+    return 'NaN';
+  }
 
   switch (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) {
     case 'function':
-      throw false, new Error(false);
+      throw new Error(false);
     case 'string':
     case 'number':
     case 'boolean':
       return JSON.stringify(obj);
   }
 
-  if (objects.has(obj)) throw new Error(false);
+  if (objects.has(obj)) {
+    throw new Error(false);
+  }
+
+  objects.add(obj);
 
   // specialized types
-  return objects.add(obj), obj instanceof Array ? '[' + obj.map(function (o) {
-    return uneval(o, false, objects);
-  }).join(',') + ']' : obj instanceof Date ? 'new Date(' + obj.getTime() + ')' : obj instanceof Set ? 'new Set(' + uneval(Array.from(obj), keys) + ')' : obj instanceof Map ? 'new Map(' + uneval(Array.from(obj), keys) + ')' : '{' + Object.keys(obj).map(function (key) {
+  if (obj instanceof Array) {
+    return '[' + obj.map(function (o) {
+      return uneval(o, false, objects);
+    }).join(',') + ']';
+  }
+
+  if (obj instanceof Date) {
+    return 'new Date(' + obj.getTime() + ')';
+  }
+
+  if (obj instanceof Set) {
+    return 'new Set(' + uneval(Array.from(obj), keys) + ')';
+  }
+
+  if (obj instanceof Map) {
+    return 'new Map(' + uneval(Array.from(obj), keys) + ')';
+  }
+
+  return '{' + Object.keys(obj).map(function (key) {
     return JSON.stringify(key) + ':' + uneval(obj[key], false);
   }).join(',') + '}';
 }

@@ -3,7 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-const promiseMiddleware = exports.promiseMiddleware = store => next => action => typeof action.then === 'function' ? Promise.resolve(action).then(store.dispatch) : next(action);
+const promiseMiddleware = exports.promiseMiddleware = store => next => action => {
+  if (typeof action.then !== 'function') {
+    return next(action);
+  }
 
-const createFunctionMiddleware = exports.createFunctionMiddleware = app => store => next => action => typeof action === 'function' ? action(store.dispatch, app) : next(action);
+  return Promise.resolve(action).then(store.dispatch);
+};
+
+const createFunctionMiddleware = exports.createFunctionMiddleware = app => store => next => action => {
+  if (typeof action !== 'function') {
+    return next(action);
+  }
+
+  return action(store.dispatch, app);
+};
 //# sourceMappingURL=middleware-browser.js.map

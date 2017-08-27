@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
+import { ReducerDictionaryType as _ReducerDictionaryType } from '../types';
 
 import t from 'flow-runtime';
+var ReducerDictionaryType = t.tdz(function () {
+  return _ReducerDictionaryType;
+});
 var MODULE_INIT_TYPE = '@@alp-redux/INIT_MODULE';
 
 // https://github.com/insin/react-examples/tree/master/code-splitting-redux-reducers
@@ -8,24 +12,36 @@ var MODULE_INIT_TYPE = '@@alp-redux/INIT_MODULE';
 // https://gist.github.com/gaearon/0a2213881b5d53973514
 // https://github.com/zeit/next.js/pull/1459
 
+var createModuleReducer = function createModuleReducer(reducers) {
+  var _reducersType = t.nullable(t.ref(ReducerDictionaryType));
+
+  t.param('reducers', _reducersType).assert(reducers);
+  return reducers ? combineReducers(reducers) : function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    return state;
+  };
+};
+
 export default (function createBrowserModuleStoreReducer(initialReducers) {
-  var _initialReducersType = t.object();
+  var _initialReducersType = t.nullable(t.ref(ReducerDictionaryType));
 
   t.param('initialReducers', _initialReducersType).assert(initialReducers);
 
   var _reducers = initialReducers;
-  var combinedReducers = initialReducers ? combineReducers(initialReducers) : function (state) {
-    return state;
-  };
+  var moduleReducer = createModuleReducer(initialReducers);
   return {
     reducer: function reducer(state, action) {
-      return combinedReducers(action.type === MODULE_INIT_TYPE ? void 0 : state, action);
+      return moduleReducer(action.type === MODULE_INIT_TYPE ? undefined : state, action);
     },
 
     set: function set(store, reducers) {
-      return reducers !== _reducers && new Promise(function (resolve) {
+      if (reducers === _reducers) return false;
+      return new Promise(function (resolve) {
         setImmediate(function () {
-          _reducers = reducers, combinedReducers = combineReducers(reducers), store.dispatch({ type: MODULE_INIT_TYPE }), resolve();
+          _reducers = reducers;
+          moduleReducer = createModuleReducer(reducers);
+          store.dispatch({ type: MODULE_INIT_TYPE });
+          resolve();
         });
       });
     }

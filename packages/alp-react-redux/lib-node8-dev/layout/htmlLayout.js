@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LayoutOptionsType = void 0;
+exports.LayoutOptionsType = undefined;
 
 var _assetUrl = require('./assetUrl');
 
@@ -41,7 +41,11 @@ exports.default = function htmlLayout(helmet, content, {
 
   const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.string());
 
-  return _flowRuntime2.default.param('helmet', HelmetDataType).assert(helmet), _flowRuntime2.default.param('content', _contentType).assert(content), _returnType.assert(`<!doctype html>
+  _flowRuntime2.default.param('helmet', HelmetDataType).assert(helmet);
+
+  _flowRuntime2.default.param('content', _contentType).assert(content);
+
+  return _returnType.assert(`<!doctype html>
 <html ${helmet.htmlAttributes.toString()}>
   <head>
     ${helmet.title.toString()}

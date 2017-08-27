@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = undefined;
 
 var _class, _temp;
 
@@ -28,7 +28,9 @@ let AlpModule = (_temp = _class = class extends _react.Component {
   render() {
     const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
 
-    if (this.props.reducers) throw new Error('You have reducers, probably want to use AlpReduxModule.');
+    if (this.props.reducers) {
+      throw new Error('You have reducers, probably want to use AlpReduxModule.');
+    }
 
     return _returnType.assert(this.props.children);
   }

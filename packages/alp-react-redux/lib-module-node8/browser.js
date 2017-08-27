@@ -8,8 +8,8 @@ import Logger from 'nightingale-logger';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createBrowserStore from './store/createBrowserStore';
 import createBrowserModuleStoreReducer from './store/createBrowserModuleStoreReducer';
-import { websocketMiddleware } from './websocket';
 import createModuleVisitor from './module/createModuleVisitor';
+
 
 export { Helmet };
 export { combineReducers } from 'redux';
@@ -29,59 +29,77 @@ const logger = new Logger('alp:react-redux');
 
 const renderApp = App => render(React.createElement(App), document.getElementById('react-app'));
 
-export default (async (app, App, { sharedReducers } = {}) => {
-  const ctx = app.createContext();
-  let store;
-  let moduleStoreReducer;
+const preRender = async (ctx, appElement) => {
+  const moduleVisitor = createModuleVisitor();
 
-  const createStore = (ctx, moduleReducers) => {
-    moduleStoreReducer = createBrowserModuleStoreReducer(moduleReducers);
+  const PreRenderWrappedApp = createAlpAppWrapper(appElement, {
+    context: ctx,
+    store: { getState: () => ({ ctx }) }
+  });
+  await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-    const store = createBrowserStore(app, ctx, moduleStoreReducer.reducer, {
-      sharedReducers,
-      middlewares: [app.websocket && websocketMiddleware(app)].filter(Boolean)
-    });
+  return moduleVisitor.getReducers();
+};
 
-    return app.store = store, store;
+export default (app => {
+  app.reduxReducers = {
+    loading: (state = 0, action) => {
+      if (action.meta && action.meta.loading !== undefined) {
+        return state + (action.meta.loading ? 1 : -1);
+      }
+      return state;
+    }
   };
+  app.reduxMiddlewares = [];
 
-  const preRender = async app => {
-    const moduleVisitor = createModuleVisitor();
+  return {
+    renderApp: async (App, { middlewares = [], sharedReducers } = {}) => {
+      let store;
+      let moduleStoreReducer;
 
-    const PreRenderWrappedApp = createAlpAppWrapper(app, {
-      context: ctx,
-      store: { getState: () => ({ ctx }) }
-    });
+      const createStore = (ctx, moduleReducers) => {
+        moduleStoreReducer = createBrowserModuleStoreReducer(moduleReducers);
+        const store = createBrowserStore(app, ctx, moduleStoreReducer.reducer, {
+          middlewares,
+          sharedReducers
+        });
+        app.store = store;
+        window.store = store;
+        return store;
+      };
+
+      const ctx = app.createContext();
+
+      const render = async App => {
+        let appElement = React.createElement(App);
 
 
-    return await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor), moduleVisitor.getReducers();
+        const moduleReducers = await preRender(ctx, appElement);
+
+        // in DEV
+        // eslint-disable-next-line no-lonely-if
+        if (!store) {
+          store = createStore(ctx, moduleReducers);
+        } else {
+          moduleStoreReducer.setReducers(moduleReducers);
+        }
+
+
+        const WrappedApp = createAlpAppWrapper(appElement, {
+          context: ctx,
+          store,
+          setModuleReducers: reducers => moduleStoreReducer.set(store, reducers)
+        });
+
+        await contentLoaded();
+        renderApp(WrappedApp);
+        logger.success('rendered');
+      };
+
+      await render(App);
+
+      return render;
+    }
   };
-
-  const render = async App => {
-    let app = React.createElement(App);
-
-
-    const moduleReducers = await preRender(app);
-
-    store ? moduleStoreReducer.setReducers(moduleReducers) : store = createStore(ctx, moduleReducers);
-
-
-    const WrappedApp = createAlpAppWrapper(app, {
-      context: ctx,
-      store,
-      setModuleReducers: reducers => moduleStoreReducer.set(store, reducers)
-    });
-
-    renderApp(WrappedApp), logger.success('rendered');
-  };
-
-  if (app.websocket) {
-    const loggerWebsocket = logger.child('websocket');
-    loggerWebsocket.debug('register websocket redux:action'), app.websocket.on('redux:action', action => {
-      loggerWebsocket.debug('dispatch action from websocket', action), store && store.dispatch(action);
-    });
-  }
-
-  return await contentLoaded(), await render(App), render;
 });
 //# sourceMappingURL=browser.js.map

@@ -1,8 +1,8 @@
 import AlpModule from './AlpModule';
-import type { ReactNodeType, ReactElementType } from '../types';
+import type { ReactNodeType, ReactElementType, ReducerDictionaryType } from '../types';
 
 type PropsType = {|
-  reducers: { [string]: any },
+  reducers: ?ReducerDictionaryType,
   children: ReactNodeType,
 |};
 

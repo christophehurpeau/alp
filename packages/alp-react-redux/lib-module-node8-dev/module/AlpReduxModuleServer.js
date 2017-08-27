@@ -1,10 +1,11 @@
 import AlpModule from './AlpModule';
-import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType } from '../types';
+import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType, ReducerDictionaryType as _ReducerDictionaryType } from '../types';
 
 import t from 'flow-runtime';
 const ReactNodeType = t.tdz(() => _ReactNodeType);
 const ReactElementType = t.tdz(() => _ReactElementType);
-const PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.object(t.indexer('key', t.string(), t.any()))), t.property('children', t.ref(ReactNodeType))));
+const ReducerDictionaryType = t.tdz(() => _ReducerDictionaryType);
+const PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.nullable(t.ref(ReducerDictionaryType))), t.property('children', t.ref(ReactNodeType))));
 let AlpReduxModule = class extends AlpModule {
 
   render() {

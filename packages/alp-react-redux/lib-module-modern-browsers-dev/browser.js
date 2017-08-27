@@ -8,9 +8,13 @@ import Logger from 'nightingale-logger';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createBrowserStore from './store/createBrowserStore';
 import createBrowserModuleStoreReducer from './store/createBrowserModuleStoreReducer';
-import { websocketMiddleware } from './websocket';
 import createModuleVisitor from './module/createModuleVisitor';
+import { ReduxActionType as _ReduxActionType } from './types';
 
+import t from 'flow-runtime';
+const ReduxActionType = t.tdz(function () {
+  return _ReduxActionType;
+});
 export { Helmet };
 export { combineReducers } from 'redux';
 export { connect } from 'react-redux';
@@ -27,68 +31,88 @@ export { _AppContainer as AppContainer };
 
 const logger = new Logger('alp:react-redux');
 
-const renderApp = function renderApp(App) {
+const _renderApp = function _renderApp(App) {
   return render(React.createElement(App), document.getElementById('react-app'));
 };
 
-export default (async function browser(app, App, { sharedReducers } = {}) {
-  const ctx = app.createContext();
-  let store;
-  let moduleStoreReducer;
+const preRender = async function preRender(ctx, appElement) {
+  const moduleVisitor = createModuleVisitor();
 
-  const createStore = function createStore(ctx, moduleReducers) {
-    moduleStoreReducer = createBrowserModuleStoreReducer(moduleReducers);
+  const PreRenderWrappedApp = createAlpAppWrapper(appElement, {
+    context: ctx,
+    store: { getState: function getState() {
+        return { ctx };
+      } }
+  });
+  await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-    const store = createBrowserStore(app, ctx, moduleStoreReducer.reducer, {
-      sharedReducers,
-      middlewares: [app.websocket && websocketMiddleware(app)].filter(Boolean)
-    });
+  return moduleVisitor.getReducers();
+};
 
-    return app.store = store, store;
-  };
+export default (function browser(app) {
+  app.reduxReducers = {
+    loading: function loading(state = 0, action) {
+      let _stateType = t.nullable(t.number());
 
-  const preRender = async function preRender(app) {
-    const moduleVisitor = createModuleVisitor();
+      let _actionType = t.ref(ReduxActionType);
 
-    const PreRenderWrappedApp = createAlpAppWrapper(app, {
-      context: ctx,
-      store: { getState: function getState() {
-          return { ctx };
-        } }
-    });
+      t.param('state', _stateType).assert(state);
+      t.param('action', _actionType).assert(action);
 
-
-    return await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor), moduleVisitor.getReducers();
-  };
-
-  const render = async function render(App) {
-    let app = React.createElement(App);
-    app = React.createElement(BrowserAppContainer, {}, app);
-
-
-    const moduleReducers = await preRender(app);
-
-    store = createStore(ctx, moduleReducers);
-
-
-    const WrappedApp = createAlpAppWrapper(app, {
-      context: ctx,
-      store,
-      setModuleReducers: function setModuleReducers(reducers) {
-        return moduleStoreReducer.set(store, reducers);
+      if (action.meta && action.meta.loading !== undefined) {
+        return state + (action.meta.loading ? 1 : -1);
       }
-    });
-
-    renderApp(WrappedApp), logger.success('rendered');
+      return state;
+    }
   };
+  app.reduxMiddlewares = [];
 
-  if (app.websocket) {
-    const loggerWebsocket = logger.child('websocket');
-    loggerWebsocket.debug('register websocket redux:action'), app.websocket.on('redux:action', function (action) {
-      loggerWebsocket.debug('dispatch action from websocket', action), store && store.dispatch(action);
-    });
-  }
+  return {
+    renderApp: async function renderApp(App, { middlewares = [], sharedReducers } = {}) {
+      let store;
+      let moduleStoreReducer;
 
-  return await contentLoaded(), await render(App), render;
+      const createStore = function createStore(ctx, moduleReducers) {
+        moduleStoreReducer = createBrowserModuleStoreReducer(moduleReducers);
+        const store = createBrowserStore(app, ctx, moduleStoreReducer.reducer, {
+          middlewares,
+          sharedReducers
+        });
+        app.store = store;
+        window.store = store;
+        return store;
+      };
+
+      const ctx = app.createContext();
+
+      const render = async function render(App) {
+        let appElement = React.createElement(App);
+
+        appElement = React.createElement(BrowserAppContainer, {}, appElement);
+
+
+        const moduleReducers = await preRender(ctx, appElement);
+
+        store = createStore(ctx, moduleReducers);
+
+
+        const WrappedApp = createAlpAppWrapper(appElement, {
+          context: ctx,
+          store,
+          setModuleReducers: function setModuleReducers(reducers) {
+            return moduleStoreReducer.set(store, reducers);
+          }
+        });
+
+        await contentLoaded();
+        _renderApp(WrappedApp);
+        logger.success('rendered');
+      };
+
+      await render(App);
+
+      return render;
+    }
+  };
 });
 //# sourceMappingURL=browser.js.map

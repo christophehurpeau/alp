@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = undefined;
 
 var _AlpModule = require('./AlpModule');
 
@@ -21,7 +21,9 @@ const ReactNodeType = _flowRuntime2.default.tdz(() => _types.ReactNodeType);
 
 const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType);
 
-const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('reducers', _flowRuntime2.default.object(_flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any()))), _flowRuntime2.default.property('children', _flowRuntime2.default.ref(ReactNodeType))));
+const ReducerDictionaryType = _flowRuntime2.default.tdz(() => _types.ReducerDictionaryType);
+
+const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('reducers', _flowRuntime2.default.nullable(_flowRuntime2.default.ref(ReducerDictionaryType))), _flowRuntime2.default.property('children', _flowRuntime2.default.ref(ReactNodeType))));
 
 let AlpReduxModule = class extends _AlpModule2.default {
 

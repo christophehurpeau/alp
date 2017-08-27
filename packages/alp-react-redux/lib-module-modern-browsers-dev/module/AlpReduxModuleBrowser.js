@@ -2,7 +2,7 @@ var _class, _temp;
 
 import PropTypes from 'prop-types';
 import AlpModule from './AlpModule';
-import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType } from '../types';
+import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType, ReducerDictionaryType as _ReducerDictionaryType } from '../types';
 
 import t from 'flow-runtime';
 const ReactNodeType = t.tdz(function () {
@@ -11,11 +11,15 @@ const ReactNodeType = t.tdz(function () {
 const ReactElementType = t.tdz(function () {
   return _ReactElementType;
 });
-const PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.object(t.indexer('key', t.string(), t.any()))), t.property('children', t.ref(ReactNodeType))));
+const ReducerDictionaryType = t.tdz(function () {
+  return _ReducerDictionaryType;
+});
+const PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.nullable(t.ref(ReducerDictionaryType))), t.property('children', t.ref(ReactNodeType))));
 let AlpReduxModule = (_temp = _class = class extends AlpModule {
 
   constructor(props, context) {
-    super(props, context), this.state = {
+    super(props, context);
+    this.state = {
       loading: this.setModuleReducers(props.reducers)
     };
   }
@@ -25,17 +29,23 @@ let AlpReduxModule = (_temp = _class = class extends AlpModule {
 
     if (!this.context.setModuleReducers) return false; // pre render
     const result = this.context.setModuleReducers(reducers);
-    return result !== false && (result.then(function () {
+    if (result === false) return false;
+    result.then(function () {
       _this.setState({ loading: false });
-    }), true);
+    });
+    return true;
   }
 
   componentWillReceiveProps(nextProps) {
     let _nextPropsType = t.ref(PropTypes);
 
-    t.param('nextProps', _nextPropsType).assert(nextProps), nextProps.reducers !== this.props.reducers && this.setState({
-      loading: this.setModuleReducers(nextProps.reducers)
-    });
+    t.param('nextProps', _nextPropsType).assert(nextProps);
+
+    if (nextProps.reducers !== this.props.reducers) {
+      this.setState({
+        loading: this.setModuleReducers(nextProps.reducers)
+      });
+    }
   }
 
   render() {

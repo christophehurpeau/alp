@@ -18,10 +18,13 @@ exports.default = function createAction(type, handler) {
 
   let _handlerType = _flowRuntime2.default.nullable(HandlerType);
 
-  _flowRuntime2.default.param("type", _typeType).assert(type), _flowRuntime2.default.param("handler", _handlerType).assert(handler);
+  _flowRuntime2.default.param("type", _typeType).assert(type);
 
-  const action = handler ? (...args) => Object.assign({ type }, handler(...args)) : () => ({ type });
+  _flowRuntime2.default.param("handler", _handlerType).assert(handler);
 
-  return action.type = type, action.toString = () => type, action;
+  const action = !handler ? () => ({ type }) : (...args) => Object.assign({ type }, handler(...args));
+  action.type = type;
+  action.toString = () => type;
+  return action;
 };
 //# sourceMappingURL=createAction.js.map

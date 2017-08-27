@@ -1,4 +1,4 @@
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) keys.indexOf(i) >= 0 || Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]); return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -35,41 +35,53 @@ const renderHtml = (app, options) => {
 
 const isModernBrowser = createIsModernBrowser();
 
-export default ((App, options = {}) => async ctx => {
-  const version = ctx.config.get('version');
-  // TODO create alp-useragent with getter in context
-  const ua = ctx.req.headers['user-agent'];
-  const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+export default (() => app => {
+  app.reduxReducers = {};
+  app.reduxMiddlewares = [];
 
-  const app = React.createElement(App);
-  const moduleVisitor = createModuleVisitor();
+  return {
+    middleware: (ctx, next) => {
+      ctx.reduxInitialContext = {};
+      return next();
+    },
 
-  const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: { getState: () => ({ ctx }) } });
-  await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+    createApp: (App, options = {}) => async ctx => {
+      const version = ctx.config.get('version');
+      // TODO create alp-useragent with getter in context
+      const ua = ctx.req.headers['user-agent'];
+      const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
+      const app = React.createElement(App);
+      const moduleVisitor = createModuleVisitor();
 
-  const store = createServerStore(ctx, moduleVisitor.getReducers(), {
-    sharedReducers: options.sharedReducers
-  });
+      const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: { getState: () => ({ ctx }) } });
+      await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-  const WrappedApp = createAlpAppWrapper(app, { context: ctx, store });
+      const store = createServerStore(ctx, moduleVisitor.getReducers(), {
+        sharedReducers: options.sharedReducers
+      });
 
-  // eslint-disable-next-line no-unused-vars
-  const _store$getState = store.getState(),
-        { ctx: removeCtxFromInitialData } = _store$getState,
-        initialData = _objectWithoutProperties(_store$getState, ['ctx']);
-  ctx.body = await renderHtml(React.createElement(WrappedApp), {
-    version,
-    scriptName: options.scriptName === void 0 ? name : options.scriptName,
-    styleName: options.styleName === void 0 ? name : options.styleName,
-    polyfillFeatures: options.polyfillFeatures,
-    initialData
-  });
+      const WrappedApp = createAlpAppWrapper(app, { context: ctx, store });
+
+      // eslint-disable-next-line no-unused-vars
+      const _store$getState = store.getState(),
+            { ctx: removeCtxFromInitialData } = _store$getState,
+            initialData = _objectWithoutProperties(_store$getState, ['ctx']);
+      ctx.body = await renderHtml(React.createElement(WrappedApp), {
+        version,
+        scriptName: options.scriptName !== undefined ? options.scriptName : name,
+        styleName: options.styleName !== undefined ? options.styleName : name,
+        polyfillFeatures: options.polyfillFeatures,
+        initialData
+      });
+    }
+  };
 });
 
 const loggerWebsocket = logger.child('websocket');
 
 export function emitAction(to, action) {
-  loggerWebsocket.debug('emitAction', action), to.emit('redux:action', action);
+  loggerWebsocket.debug('emitAction', action);
+  to.emit('redux:action', action);
 }
 //# sourceMappingURL=index.js.map

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ReactNodeType = exports.ReactElementType = void 0;
+exports.ReactNodeType = exports.ReactElementType = undefined;
 
 var _flowRuntime = require('flow-runtime');
 

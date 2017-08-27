@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../src/utils/identityReducer.js"],"names":["state"],"mappings":"AAAA,gBAAe;AAAA,MAACA,KAAD,oEAAS,IAAT;AAAA,SAAkBA,KAAlB;AAAA,CAAf","file":"identityReducer.js","sourcesContent":["export default (state = null) => state;\n"]}
+{"version":3,"sources":["../../src/utils/identityReducer.js"],"names":["state"],"mappings":"AAAA,gBAAe;AAAA,MAACA,KAAD,uEAAS,IAAT;AAAA,SAAkBA,KAAlB;AAAA,CAAf","file":"identityReducer.js","sourcesContent":["export default (state = null) => state;\n"]}

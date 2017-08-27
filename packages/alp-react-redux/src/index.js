@@ -42,33 +42,45 @@ type OptionsType = {|
   polyfillFeatures: ?string,
 |};
 
-export default (App, options: ?OptionsType = {}) => async ctx => {
-  const version: string = ctx.config.get('version');
-  // TODO create alp-useragent with getter in context
-  const ua = ctx.req.headers['user-agent'];
-  const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+export default () => app => {
+  app.reduxReducers = {};
+  app.reduxMiddlewares = [];
 
-  const app = React.createElement(App);
-  const moduleVisitor = createModuleVisitor();
-  const preRenderStore = { getState: () => ({ ctx }) };
-  const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: preRenderStore });
-  await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+  return {
+    middleware: (ctx, next) => {
+      ctx.reduxInitialContext = {};
+      return next();
+    },
 
-  const store = createServerStore(ctx, moduleVisitor.getReducers(), {
-    sharedReducers: options.sharedReducers,
-  });
+    createApp: (App, options: ?OptionsType = {}) => async ctx => {
+      const version: string = ctx.config.get('version');
+      // TODO create alp-useragent with getter in context
+      const ua = ctx.req.headers['user-agent'];
+      const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
-  const WrappedApp = createAlpAppWrapper(app, { context: ctx, store });
+      const app = React.createElement(App);
+      const moduleVisitor = createModuleVisitor();
+      const preRenderStore = { getState: () => ({ ctx }) };
+      const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: preRenderStore });
+      await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-  // eslint-disable-next-line no-unused-vars
-  const { ctx: removeCtxFromInitialData, ...initialData } = store.getState();
-  ctx.body = await renderHtml(React.createElement(WrappedApp), {
-    version,
-    scriptName: options.scriptName !== undefined ? options.scriptName : name,
-    styleName: options.styleName !== undefined ? options.styleName : name,
-    polyfillFeatures: options.polyfillFeatures,
-    initialData,
-  });
+      const store = createServerStore(ctx, moduleVisitor.getReducers(), {
+        sharedReducers: options.sharedReducers,
+      });
+
+      const WrappedApp = createAlpAppWrapper(app, { context: ctx, store });
+
+      // eslint-disable-next-line no-unused-vars
+      const { ctx: removeCtxFromInitialData, ...initialData } = store.getState();
+      ctx.body = await renderHtml(React.createElement(WrappedApp), {
+        version,
+        scriptName: options.scriptName !== undefined ? options.scriptName : name,
+        styleName: options.styleName !== undefined ? options.styleName : name,
+        polyfillFeatures: options.polyfillFeatures,
+        initialData,
+      });
+    },
+  };
 };
 
 const loggerWebsocket = logger.child('websocket');

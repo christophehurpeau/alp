@@ -3,13 +3,22 @@ import { promiseMiddleware, createFunctionMiddleware } from './middleware-browse
 import identityReducer from '../utils/identityReducer';
 
 export default (function createBrowserStore(app, ctx, moduleReducer, { middlewares, sharedReducers }) {
-  const rootReducer = combineReducers(Object.assign({}, app.alpReducers, sharedReducers, {
+  const reducers = Object.assign({}, app.reduxReducers, sharedReducers, {
     ctx: identityReducer,
     module: moduleReducer
-  }));
+  });
+
+  Object.keys(reducers).forEach(function (key) {
+    if (typeof reducers[key] !== 'function') throw new Error(`Invalid reducer ${key}`);
+  });
+
+
+  const rootReducer = combineReducers(reducers);
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-  return middlewares = [createFunctionMiddleware(app), promiseMiddleware, ...middlewares], createStore(rootReducer, Object.assign({ ctx }, window.__INITIAL_DATA__), composeEnhancers(applyMiddleware(...middlewares)));
+  middlewares = [createFunctionMiddleware(app), promiseMiddleware, ...app.reduxMiddlewares, ...middlewares];
+
+  return createStore(rootReducer, Object.assign({ ctx }, window.__INITIAL_DATA__), composeEnhancers(applyMiddleware(...middlewares)));
 });
 //# sourceMappingURL=createBrowserStore.js.map

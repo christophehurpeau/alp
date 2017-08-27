@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = undefined;
 
 var _class, _temp;
 
@@ -27,12 +27,15 @@ const ReactNodeType = _flowRuntime2.default.tdz(() => _types.ReactNodeType);
 
 const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType);
 
-const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('reducers', _flowRuntime2.default.object(_flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any()))), _flowRuntime2.default.property('children', _flowRuntime2.default.ref(ReactNodeType))));
+const ReducerDictionaryType = _flowRuntime2.default.tdz(() => _types.ReducerDictionaryType);
+
+const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('reducers', _flowRuntime2.default.nullable(_flowRuntime2.default.ref(ReducerDictionaryType))), _flowRuntime2.default.property('children', _flowRuntime2.default.ref(ReactNodeType))));
 
 let AlpReduxModule = (_temp = _class = class extends _AlpModule2.default {
 
   constructor(props, context) {
-    super(props, context), this.state = {
+    super(props, context);
+    this.state = {
       loading: this.setModuleReducers(props.reducers)
     };
   }
@@ -40,17 +43,23 @@ let AlpReduxModule = (_temp = _class = class extends _AlpModule2.default {
   setModuleReducers(reducers) {
     if (!this.context.setModuleReducers) return false; // pre render
     const result = this.context.setModuleReducers(reducers);
-    return result !== false && (result.then(() => {
+    if (result === false) return false;
+    result.then(() => {
       this.setState({ loading: false });
-    }), true);
+    });
+    return true;
   }
 
   componentWillReceiveProps(nextProps) {
     let _nextPropsType = _flowRuntime2.default.ref(_propTypes2.default);
 
-    _flowRuntime2.default.param('nextProps', _nextPropsType).assert(nextProps), nextProps.reducers !== this.props.reducers && this.setState({
-      loading: this.setModuleReducers(nextProps.reducers)
-    });
+    _flowRuntime2.default.param('nextProps', _nextPropsType).assert(nextProps);
+
+    if (nextProps.reducers !== this.props.reducers) {
+      this.setState({
+        loading: this.setModuleReducers(nextProps.reducers)
+      });
+    }
   }
 
   render() {

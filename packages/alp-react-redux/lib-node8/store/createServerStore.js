@@ -13,14 +13,13 @@ var _identityReducer2 = _interopRequireDefault(_identityReducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (ctx, moduleReducers, { sharedReducers }) => {
-  // TODO create new API ?
-  const initialContext = ctx.computeInitialContextForBrowser().state;
-  const keys = Object.keys(initialContext);
-  const initialContextReducers = Object.create(null);
-  keys.forEach(key => initialContextReducers[key] = _identityReducer2.default), initialContext.ctx = ctx;
+  const initialContext = Object.assign({
+    ctx
+  }, ctx.reduxInitialContext, {
+    ctx: ctx
+  });
 
-
-  const rootReducer = (0, _redux.combineReducers)(Object.assign({}, initialContextReducers, ctx.app.alpReducers, sharedReducers, {
+  const rootReducer = (0, _redux.combineReducers)(Object.assign({}, ctx.app.reduxReducers, sharedReducers, {
     ctx: _identityReducer2.default,
     module: moduleReducers ? (0, _redux.combineReducers)(moduleReducers) : _identityReducer2.default
   }));

@@ -2,16 +2,13 @@ import { combineReducers, createStore } from 'redux';
 import identityReducer from '../utils/identityReducer';
 
 export default (function createServerStore(ctx, moduleReducers, { sharedReducers }) {
-  // TODO create new API ?
-  const initialContext = ctx.computeInitialContextForBrowser().state;
-  const keys = Object.keys(initialContext);
-  const initialContextReducers = Object.create(null);
-  keys.forEach(function (key) {
-    return initialContextReducers[key] = identityReducer;
-  }), initialContext.ctx = ctx;
+  const initialContext = Object.assign({
+    ctx
+  }, ctx.reduxInitialContext, {
+    ctx: ctx
+  });
 
-
-  const rootReducer = combineReducers(Object.assign({}, initialContextReducers, ctx.app.alpReducers, sharedReducers, {
+  const rootReducer = combineReducers(Object.assign({}, ctx.app.reduxReducers, sharedReducers, {
     ctx: identityReducer,
     module: moduleReducers ? combineReducers(moduleReducers) : identityReducer
   }));

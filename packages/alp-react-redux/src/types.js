@@ -15,13 +15,7 @@ export type ReactStatelessComponentType = (props: Object) => ReactNodeType;
 export type ReactComponentType = ReactClassComponentType | ReactStatelessComponentType;
 export type TagNameOrReactComponentType = TagNameType | ReactComponentType;
 
-export type ModuleDescriptorType = {|
-  identifier: ?string,
-  View: any,
-  reducer: ?Function,
-  reducers: ?Object,
-  loader: ?Function,
-|};
-
 export type ReduxActionType = { type: string };
 export type ReduxDispatchType = (action: ReduxActionType) => ReduxActionType | any;
+export type ReduxReducerType = (state: any, action: ReduxActionType) => any;
+export type ReducerDictionaryType = { [string]: ReduxReducerType };

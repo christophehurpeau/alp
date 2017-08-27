@@ -1,6 +1,6 @@
 {
   "name": "alp-react-redux",
-  "version": "12.1.1",
+  "version": "13.0.0",
   "description": "render with react and redux in alp framework",
   "keywords": [
     "alp",
@@ -80,7 +80,7 @@
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
     "lint-staged": "^4.0.4",
-    "pob-babel": "^18.1.3",
+    "pob-babel": "^18.1.5",
     "pob-release": "^3.1.0",
     "prettier": "^1.5.3",
     "prop-types": "^15.5.10",

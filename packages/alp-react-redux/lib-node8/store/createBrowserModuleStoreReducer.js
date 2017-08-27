@@ -13,17 +13,25 @@ const MODULE_INIT_TYPE = '@@alp-redux/INIT_MODULE';
 // https://gist.github.com/gaearon/0a2213881b5d53973514
 // https://github.com/zeit/next.js/pull/1459
 
+const createModuleReducer = reducers => reducers ? (0, _redux.combineReducers)(reducers) : (state = null) => state;
+
 exports.default = initialReducers => {
   let _reducers = initialReducers;
-  let combinedReducers = initialReducers ? (0, _redux.combineReducers)(initialReducers) : state => state;
+  let moduleReducer = createModuleReducer(initialReducers);
   return {
-    reducer: (state, action) => combinedReducers(action.type === MODULE_INIT_TYPE ? void 0 : state, action),
+    reducer: (state, action) => moduleReducer(action.type === MODULE_INIT_TYPE ? undefined : state, action),
 
-    set: (store, reducers) => reducers !== _reducers && new Promise(resolve => {
-      setImmediate(() => {
-        _reducers = reducers, combinedReducers = (0, _redux.combineReducers)(reducers), store.dispatch({ type: MODULE_INIT_TYPE }), resolve();
+    set: (store, reducers) => {
+      if (reducers === _reducers) return false;
+      return new Promise(resolve => {
+        setImmediate(() => {
+          _reducers = reducers;
+          moduleReducer = createModuleReducer(reducers);
+          store.dispatch({ type: MODULE_INIT_TYPE });
+          resolve();
+        });
       });
-    })
+    }
   };
 };
 //# sourceMappingURL=createBrowserModuleStoreReducer.js.map

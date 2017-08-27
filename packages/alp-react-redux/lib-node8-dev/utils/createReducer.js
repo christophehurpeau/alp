@@ -18,17 +18,34 @@ function createReducer(defaultState, handlers) {
 
   let _handlersType = _flowRuntime2.default.nullable(_flowRuntime2.default.object());
 
-  _flowRuntime2.default.param('defaultState', _defaultStateType).assert(defaultState), _flowRuntime2.default.param('handlers', _handlersType).assert(handlers), typeof defaultState === 'object' && (handlers = _handlersType.assert(defaultState), defaultState = _defaultStateType.assert(() => null));
+  _flowRuntime2.default.param('defaultState', _defaultStateType).assert(defaultState);
 
+  _flowRuntime2.default.param('handlers', _handlersType).assert(handlers);
+
+  if (typeof defaultState === 'object') {
+    handlers = _handlersType.assert(defaultState);
+    defaultState = _defaultStateType.assert(() => null);
+  }
 
   const handlerMap = new Map();
-
-
-  return Object.keys(handlers).forEach(key => {
+  Object.keys(handlers).forEach(key => {
     if (typeof key === 'function') {
-      if (typeof key.type !== 'string') throw new Error(`Invalid handler key: "${key.name}"`);
+      if (typeof key.type !== 'string') {
+        throw new Error(`Invalid handler key: "${key.name}"`);
+      }
       handlerMap.set(key.type, handlers[key]);
-    } else handlerMap.set(key, handlers[key]);
-  }), handlers = _handlersType.assert(void 0), (state = defaultState(), action) => action && handlerMap.has(action.type) ? handlerMap.get(action.type)(state, action) : state;
+    } else {
+      handlerMap.set(key, handlers[key]);
+    }
+  });
+  handlers = _handlersType.assert(undefined);
+
+  return (state = defaultState(), action) => {
+    if (action && handlerMap.has(action.type)) {
+      return handlerMap.get(action.type)(state, action);
+    }
+
+    return state;
+  };
 }
 //# sourceMappingURL=createReducer.js.map

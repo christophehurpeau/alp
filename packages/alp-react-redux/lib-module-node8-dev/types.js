@@ -13,8 +13,8 @@ export const ReactStatelessComponentType = t.type('ReactStatelessComponentType',
 export const ReactComponentType = t.type('ReactComponentType', t.union(ReactClassComponentType, ReactStatelessComponentType));
 export const TagNameOrReactComponentType = t.type('TagNameOrReactComponentType', t.union(TagNameType, ReactComponentType));
 
-export const ModuleDescriptorType = t.type('ModuleDescriptorType', t.exactObject(t.property('identifier', t.nullable(t.string())), t.property('View', t.any()), t.property('reducer', t.nullable(t.function())), t.property('reducers', t.nullable(t.object())), t.property('loader', t.nullable(t.function()))));
-
 export const ReduxActionType = t.type('ReduxActionType', t.object(t.property('type', t.string())));
 export const ReduxDispatchType = t.type('ReduxDispatchType', t.function(t.param('action', ReduxActionType), t.return(t.union(ReduxActionType, t.any()))));
+export const ReduxReducerType = t.type('ReduxReducerType', t.function(t.param('state', t.any()), t.param('action', ReduxActionType), t.return(t.any())));
+export const ReducerDictionaryType = t.type('ReducerDictionaryType', t.object(t.indexer('key', t.string(), ReduxReducerType)));
 //# sourceMappingURL=types.js.map

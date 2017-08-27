@@ -16,7 +16,9 @@ let AlpModule = (_temp = _class = class extends Component {
   render() {
     const _returnType = t.return(t.ref(ReactElementType));
 
-    if (this.props.reducers) throw new Error('You have reducers, probably want to use AlpReduxModule.');
+    if (this.props.reducers) {
+      throw new Error('You have reducers, probably want to use AlpReduxModule.');
+    }
 
     return _returnType.assert(this.props.children);
   }
