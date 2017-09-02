@@ -1,3 +1,12 @@
+<a name="10.4.0"></a>
+# [10.4.0](https://github.com/alpjs/alp-dev/compare/v10.3.1...v10.4.0) (2017-09-02)
+
+
+### Features
+
+* argv.host ([38d9dba](https://github.com/alpjs/alp-dev/commit/38d9dba))
+
+
 <a name="10.3.1"></a>
 ## [10.3.1](https://github.com/alpjs/alp-dev/compare/v10.3.0...v10.3.1) (2017-08-27)
 
