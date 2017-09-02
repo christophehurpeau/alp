@@ -17,7 +17,7 @@ const createModernBrowserCompiler = exports.createModernBrowserCompiler = produc
 
 const createOlderBrowserCompiler = exports.createOlderBrowserCompiler = production => (0, _pobpackBrowser.createAppBrowserCompiler)(_pobpackBrowser.ALL, (0, _createPobpackConfig2.default)('browser', production));
 
-const runDevServer = exports.runDevServer = (compiler, port, proxyPort) => (0, _pobpackBrowser.runDevServer)(compiler, {
+const runDevServer = exports.runDevServer = (compiler, port, proxyPort, options) => (0, _pobpackBrowser.runDevServer)(compiler, Object.assign({
   port: proxyPort,
   https: false,
 
@@ -30,5 +30,6 @@ const runDevServer = exports.runDevServer = (compiler, port, proxyPort) => (0, _
   proxy: {
     '**': `http://localhost:${port}`
   }
-});
+
+}, options));
 //# sourceMappingURL=browser.js.map

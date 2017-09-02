@@ -16,7 +16,7 @@ import autoprefixer from 'autoprefixer';
 
 type TargetType = 'node' | 'modern-browser' | 'browser';
 
-export default (target: TargetType, production: boolean = false) => ({
+export default (target: TargetType, production: ?boolean = false) => ({
   env: process.env.NODE_ENV,
   hmr: !production,
 

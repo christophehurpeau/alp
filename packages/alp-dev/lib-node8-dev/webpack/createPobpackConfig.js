@@ -67,7 +67,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const TargetType = _flowRuntime2.default.type('TargetType', _flowRuntime2.default.union(_flowRuntime2.default.string('node'), _flowRuntime2.default.string('modern-browser'), _flowRuntime2.default.string('browser')));
 
 exports.default = function createPobpackConfig(target, production = false) {
-  let _productionType = _flowRuntime2.default.boolean();
+  let _productionType = _flowRuntime2.default.nullable(_flowRuntime2.default.boolean());
 
   _flowRuntime2.default.param('target', TargetType).assert(target);
 

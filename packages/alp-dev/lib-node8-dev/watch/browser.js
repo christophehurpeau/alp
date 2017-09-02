@@ -10,5 +10,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const browserCompiler = (0, _browser.createModernBrowserCompiler)();
 
-(0, _browser.runDevServer)(browserCompiler, _minimistArgv2.default.port, _minimistArgv2.default['proxy-port']);
+(0, _browser.runDevServer)(browserCompiler, _minimistArgv2.default.port, _minimistArgv2.default['proxy-port'], {
+  host: _minimistArgv2.default.host
+});
 //# sourceMappingURL=browser.js.map

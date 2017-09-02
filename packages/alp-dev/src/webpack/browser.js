@@ -12,7 +12,7 @@ export const createModernBrowserCompiler = production =>
 export const createOlderBrowserCompiler = production =>
   createAppBrowserCompiler(ALL, createPobpackConfig('browser', production));
 
-export const runDevServer = (compiler, port: number, proxyPort: number) =>
+export const runDevServer = (compiler, port: number, proxyPort: number, options) =>
   runDevServerPobpack(compiler, {
     port: proxyPort,
     https: false,
@@ -27,4 +27,6 @@ export const runDevServer = (compiler, port: number, proxyPort: number) =>
     proxy: {
       '**': `http://localhost:${port}`,
     },
+
+    ...options,
   });

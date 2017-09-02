@@ -29,7 +29,15 @@ Promise.all([
 
     createChild({
       autoRestart: true,
-      args: [require.resolve('./browser'), '--port', port, '--proxy-port', proxyPort],
+      args: [
+        require.resolve('./browser'),
+        '--port',
+        port,
+        '--proxy-port',
+        proxyPort,
+        '--host',
+        argv.host || '',
+      ],
     }).start();
   })
   .catch(err => console.log(err.stack));

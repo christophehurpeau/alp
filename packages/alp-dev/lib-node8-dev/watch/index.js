@@ -46,7 +46,7 @@ Promise.all([_portscanner2.default.findAPortNotInUse(startProxyPort, startProxyP
 
   (0, _springbokjsDaemon2.default)({
     autoRestart: true,
-    args: [require.resolve('./browser'), '--port', port, '--proxy-port', proxyPort]
+    args: [require.resolve('./browser'), '--port', port, '--proxy-port', proxyPort, '--host', _minimistArgv2.default.host || '']
   }).start();
 }).catch(err => console.log(err.stack));
 //# sourceMappingURL=index.js.map
