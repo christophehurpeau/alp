@@ -62,7 +62,7 @@ Object.defineProperty(exports, 'identityReducer', {
   }
 });
 
-var _BrowserAppContainer = require('alp-dev/BrowserAppContainer');
+var _BrowserAppContainer = require('pobpack-browser/BrowserAppContainer');
 
 var _BrowserAppContainer2 = _interopRequireDefault(_BrowserAppContainer);
 
@@ -128,7 +128,8 @@ var _AppContainer3 = _interopRequireDefault(_AppContainer2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const ReduxActionType = _flowRuntime2.default.tdz(() => _types.ReduxActionType);
+const ReduxActionType = _flowRuntime2.default.tdz(() => _types.ReduxActionType); // eslint-disable-next-line
+
 
 exports.Helmet = _reactHelmet2.default;
 exports.AlpModule = _AlpModule3.default;

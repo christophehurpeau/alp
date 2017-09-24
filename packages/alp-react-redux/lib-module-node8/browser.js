@@ -1,5 +1,6 @@
 
-import contentLoaded from 'content-loaded';
+import contentLoaded from 'content-loaded'; // eslint-disable-next-line
+
 import React from 'react';
 import { render } from 'react-dom';
 import Helmet from 'react-helmet';

@@ -1,4 +1,5 @@
-import BrowserAppContainer from 'alp-dev/BrowserAppContainer';
+// eslint-disable-next-line
+import BrowserAppContainer from 'pobpack-browser/BrowserAppContainer';
 import contentLoaded from 'content-loaded';
 import React from 'react';
 import { render } from 'react-dom';

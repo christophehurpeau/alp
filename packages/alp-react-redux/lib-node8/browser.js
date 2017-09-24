@@ -118,7 +118,8 @@ var _AppContainer3 = _interopRequireDefault(_AppContainer2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.Helmet = _reactHelmet2.default;
+exports.Helmet = _reactHelmet2.default; // eslint-disable-next-line
+
 exports.AlpModule = _AlpModule3.default;
 exports.AlpReduxModule = _AlpReduxModuleBrowser2.default;
 exports.Body = _Body3.default;

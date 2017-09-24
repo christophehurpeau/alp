@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../src/layout/AppContainer.jsx"],"names":["children"],"mappings":";AAAA,gBAAe,UAAC,EAAEA,QAAF,EAAD;AAAA,SACb;AAAA;AAAA;AACGA;AADH,GADa;AAAA,CAAf","file":"AppContainer.jsx","sourcesContent":["export default ({ children }) =>\n  <div>\n    {children}\n  </div>;\n"]}
+{"version":3,"sources":["../../src/layout/AppContainer.jsx"],"names":["children"],"mappings":";AAAA,gBAAe,UAAC,EAAEA,QAAF,EAAD;AAAA,SAAkB;AAAA;AAAA;AAAMA;AAAN,GAAlB;AAAA,CAAf","file":"AppContainer.jsx","sourcesContent":["export default ({ children }) => <div>{children}</div>;\n"]}
