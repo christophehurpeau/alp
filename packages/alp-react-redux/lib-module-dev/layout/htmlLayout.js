@@ -11,7 +11,7 @@ var HelmetDataAttributeType = t.type('HelmetDataAttributeType', t.object(t.prope
 var HelmetDataType = t.type('HelmetDataType', t.object(t.property('htmlAttributes', HelmetDataAttributeType), t.property('title', HelmetDataAttributeType), t.property('base', HelmetDataAttributeType), t.property('meta', HelmetDataAttributeType), t.property('link', HelmetDataAttributeType), t.property('script', HelmetDataAttributeType), t.property('style', HelmetDataAttributeType)));
 
 
-export var LayoutOptionsType = t.type('LayoutOptionsType', t.exactObject(t.property('layoutBody', t.nullable(t.function())), t.property('version', t.string()), t.property('scriptName', t.union(t.string(), t.boolean(false))), t.property('styleName', t.union(t.string(), t.boolean(false))), t.property('initialData', t.nullable(t.any())), t.property('polyfillFeatures', t.nullable(t.string()))));
+export var LayoutOptionsType = t.type('LayoutOptionsType', t.exactObject(t.property('layoutBody', t.nullable(t.function()), true), t.property('version', t.string()), t.property('scriptName', t.union(t.string(), t.boolean(false))), t.property('styleName', t.union(t.string(), t.boolean(false))), t.property('initialData', t.nullable(t.any()), true), t.property('polyfillFeatures', t.nullable(t.string()), true)));
 
 export default (function htmlLayout(helmet, content, _ref) {
   var version = _ref.version,

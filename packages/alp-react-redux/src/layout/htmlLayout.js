@@ -19,12 +19,12 @@ type HelmetDataType = {
 };
 
 export type LayoutOptionsType = {|
-  layoutBody: ?Function,
+  layoutBody?: ?Function,
   version: string,
   scriptName: string | false,
   styleName: string | false,
-  initialData: ?any,
-  polyfillFeatures: ?string,
+  initialData?: ?any,
+  polyfillFeatures?: ?string,
 |};
 
 export default (

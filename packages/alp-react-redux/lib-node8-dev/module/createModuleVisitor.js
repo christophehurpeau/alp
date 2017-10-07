@@ -18,7 +18,7 @@ exports.default = function createModuleVisitor() {
       // console.log(element, instance, instance instanceof AlpModule, element.type === AppContainer);
 
       if (instance && instance instanceof _AlpModule2.default) {
-        reducers = instance.props.reducers;
+        [reducers] = instance.props;
         return false;
       }
 
