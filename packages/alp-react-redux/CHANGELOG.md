@@ -1,3 +1,13 @@
+<a name="14.2.0"></a>
+# [14.2.0](https://github.com/alpjs/alp-react-redux/compare/v14.0.0...v14.2.0) (2017-10-07)
+
+
+### Features
+
+* update dependencies ([014a54c](https://github.com/alpjs/alp-react-redux/commit/014a54c))
+* update dependencies ([b95bdb5](https://github.com/alpjs/alp-react-redux/commit/b95bdb5))
+
+
 <a name="14.0.0"></a>
 # [14.0.0](https://github.com/alpjs/alp-react-redux/compare/v12.1.1...v14.0.0) (2017-08-27)
 
