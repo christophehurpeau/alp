@@ -1,3 +1,12 @@
+<a name="0.8.1"></a>
+## [0.8.1](https://github.com/alpjs/react-alp-login/compare/v0.8.0...v0.8.1) (2017-10-22)
+
+
+### Features
+
+* update dependencies ([7dfcb4b](https://github.com/alpjs/react-alp-login/commit/7dfcb4b))
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/alpjs/react-alp-login/compare/v0.7.0...v0.8.0) (2017-08-26)
 
