@@ -42,21 +42,25 @@ var _babelPluginFlowRuntime = require('babel-plugin-flow-runtime');
 
 var _babelPluginFlowRuntime2 = _interopRequireDefault(_babelPluginFlowRuntime);
 
-var _webpackConfig = require('ynnub/webpack-config');
+var _optimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+
+var _optimizeCssAssetsWebpackPlugin2 = _interopRequireDefault(_optimizeCssAssetsWebpackPlugin);
+
+var _babelMinifyWebpackPlugin = require('babel-minify-webpack-plugin');
+
+var _babelMinifyWebpackPlugin2 = _interopRequireDefault(_babelMinifyWebpackPlugin);
+
+var _webpack = require('webpack');
 
 var _extractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 var _extractTextWebpackPlugin2 = _interopRequireDefault(_extractTextWebpackPlugin);
 
-var _babiliWebpackPlugin = require('babili-webpack-plugin');
-
-var _babiliWebpackPlugin2 = _interopRequireDefault(_babiliWebpackPlugin);
-
-var _webpack = require('webpack');
-
 var _autoprefixer = require('autoprefixer');
 
 var _autoprefixer2 = _interopRequireDefault(_autoprefixer);
+
+var _webpackConfig = require('ynnub/webpack-config');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -122,11 +126,13 @@ exports.default = (target, production = false) => ({
   },
 
   moduleRules: [
-  // SCSS RULE
-  (0, _webpackConfig.createModuleRule)(_extractTextWebpackPlugin2.default, {
+  // SCSS RULE, CSS RULE
+  ...(0, _webpackConfig.createModuleRules)({
+    ExtractTextPlugin: _extractTextWebpackPlugin2.default,
     production,
     themeFile: './src/theme.scss',
-    plugins: [_autoprefixer2.default]
+    plugins: [_autoprefixer2.default],
+    includePaths: [_path2.default.resolve('./node_modules')]
   }),
 
   // IMG RULE
@@ -146,7 +152,7 @@ exports.default = (target, production = false) => ({
     // disable: target === 'node',
     // eslint-disable-next-line no-nested-ternary
     filename: `${target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
-  }), target !== 'node' && production && new _babiliWebpackPlugin2.default({
+  }), new _optimizeCssAssetsWebpackPlugin2.default(), target !== 'node' && production && new _babelMinifyWebpackPlugin2.default({
     booleans: true,
     builtIns: false,
     consecutiveAdds: true,
@@ -157,7 +163,7 @@ exports.default = (target, production = false) => ({
     infinity: false,
     mangle: true,
     memberExpressions: true,
-    mergeVars: false,
+    mergeVars: true,
     numericLiterals: true,
     propertyLiterals: true,
     regexpConstructors: true,
@@ -169,7 +175,9 @@ exports.default = (target, production = false) => ({
     simplifyComparisons: true,
     typeConstructors: true,
     undefinedToVoid: false
-  }), target === 'browser' && production && new _webpack.optimize.UglifyJsPlugin({
+    // keepFnName: true,
+    // keepClassName: true,
+  }, { comments: false }), target === 'browser' && production && new _webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false
     },

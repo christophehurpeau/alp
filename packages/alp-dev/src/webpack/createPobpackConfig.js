@@ -8,11 +8,12 @@ import presetLatestNode from 'babel-preset-latest-node';
 import presetOptimizations from 'babel-preset-optimizations';
 import pluginDiscardModuleReference from 'babel-plugin-discard-module-references';
 import pluginFlowRuntime from 'babel-plugin-flow-runtime';
-import { createModuleRule, createExtractPlugin } from 'ynnub/webpack-config';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import BabiliPlugin from 'babili-webpack-plugin';
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import BabelMinifyPlugin from 'babel-minify-webpack-plugin';
 import { optimize } from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
+import { createModuleRules, createExtractPlugin } from 'ynnub/webpack-config';
 
 type TargetType = 'node' | 'modern-browser' | 'browser';
 
@@ -103,11 +104,13 @@ export default (target: TargetType, production: ?boolean = false) => ({
   },
 
   moduleRules: [
-    // SCSS RULE
-    createModuleRule(ExtractTextPlugin, {
+    // SCSS RULE, CSS RULE
+    ...createModuleRules({
+      ExtractTextPlugin,
       production,
       themeFile: './src/theme.scss',
       plugins: [autoprefixer],
+      includePaths: [path.resolve('./node_modules')],
     }),
 
     // IMG RULE
@@ -133,32 +136,39 @@ export default (target: TargetType, production: ?boolean = false) => ({
         : target === 'browser' ? 'es5' : 'modern-browsers'}.css`,
     }),
 
+    new OptimizeCssAssetsPlugin(),
+
     target !== 'node' &&
       production &&
-      new BabiliPlugin({
-        booleans: true,
-        builtIns: false,
-        consecutiveAdds: true,
-        deadcode: true,
-        evaluate: true,
-        flipComparisons: true,
-        guards: true,
-        infinity: false,
-        mangle: true,
-        memberExpressions: true,
-        mergeVars: false,
-        numericLiterals: true,
-        propertyLiterals: true,
-        regexpConstructors: true,
-        removeConsole: false,
-        removeDebugger: true,
-        removeUndefined: true,
-        replace: false,
-        simplify: true,
-        simplifyComparisons: true,
-        typeConstructors: true,
-        undefinedToVoid: false,
-      }),
+      new BabelMinifyPlugin(
+        {
+          booleans: true,
+          builtIns: false,
+          consecutiveAdds: true,
+          deadcode: true,
+          evaluate: true,
+          flipComparisons: true,
+          guards: true,
+          infinity: false,
+          mangle: true,
+          memberExpressions: true,
+          mergeVars: true,
+          numericLiterals: true,
+          propertyLiterals: true,
+          regexpConstructors: true,
+          removeConsole: false,
+          removeDebugger: true,
+          removeUndefined: true,
+          replace: false,
+          simplify: true,
+          simplifyComparisons: true,
+          typeConstructors: true,
+          undefinedToVoid: false,
+          // keepFnName: true,
+          // keepClassName: true,
+        },
+        { comments: false },
+      ),
 
     target === 'browser' &&
       production &&
