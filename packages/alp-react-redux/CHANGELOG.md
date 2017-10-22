@@ -1,3 +1,12 @@
+<a name="14.2.1"></a>
+## [14.2.1](https://github.com/alpjs/alp-react-redux/compare/v14.2.0...v14.2.1) (2017-10-22)
+
+
+### Bug Fixes
+
+* use react types and fix reducers ([deefb26](https://github.com/alpjs/alp-react-redux/commit/deefb26))
+
+
 <a name="14.2.0"></a>
 # [14.2.0](https://github.com/alpjs/alp-react-redux/compare/v14.0.0...v14.2.0) (2017-10-07)
 
