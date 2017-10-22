@@ -1,16 +1,14 @@
 var _class, _temp;
 
-import { Component } from 'react';
-import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType } from '../types';
+import { Component, Node as _Node } from 'react';
 
 import t from 'flow-runtime';
-const ReactNodeType = t.tdz(() => _ReactNodeType);
-const ReactElementType = t.tdz(() => _ReactElementType);
-const PropsType = t.type('PropsType', t.exactObject(t.property('children', t.ref(ReactNodeType))));
+const Node = t.tdz(() => _Node);
+const PropsType = t.type('PropsType', t.exactObject(t.property('children', t.ref(Node))));
 let AlpModule = (_temp = _class = class extends Component {
 
   render() {
-    const _returnType = t.return(t.ref(ReactElementType));
+    const _returnType = t.return(t.ref(Node));
 
     if (this.props.reducers) {
       throw new Error('You have reducers, probably want to use AlpReduxModule.');

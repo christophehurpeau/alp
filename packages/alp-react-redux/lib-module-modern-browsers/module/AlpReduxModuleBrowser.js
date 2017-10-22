@@ -1,5 +1,6 @@
 var _class, _temp;
 
+import 'react';
 import PropTypes from 'prop-types';
 import AlpModule from './AlpModule';
 let AlpReduxModule = (_temp = _class = class extends AlpModule {

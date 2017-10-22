@@ -1,14 +1,15 @@
 var _this = this;
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } // eslint-disable-next-line
-
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 import contentLoaded from 'content-loaded';
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import Helmet from 'react-helmet';
 import reactTreeWalker from 'react-tree-walker';
 import Logger from 'nightingale-logger';
+// eslint-disable-next-line import/no-extraneous-dependencies
+
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createBrowserStore from './store/createBrowserStore';
 import createBrowserModuleStoreReducer from './store/createBrowserModuleStoreReducer';
@@ -32,7 +33,7 @@ export { _AppContainer as AppContainer };
 var logger = new Logger('alp:react-redux');
 
 var _renderApp = function _renderApp(App) {
-  return render(React.createElement(App), document.getElementById('react-app'));
+  return hydrate(React.createElement(App), document.getElementById('react-app'));
 };
 
 var preRender = function () {

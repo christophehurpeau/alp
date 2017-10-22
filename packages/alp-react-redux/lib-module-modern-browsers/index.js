@@ -1,5 +1,7 @@
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
@@ -47,38 +49,44 @@ export default (function () {
       },
 
       createApp: function createApp(App, options = {}) {
-        return async function (ctx) {
-          const version = ctx.config.get('version');
-          // TODO create alp-useragent with getter in context
-          const ua = ctx.req.headers['user-agent'];
-          const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+        return function () {
+          var _ref = _asyncToGenerator(function* (ctx) {
+            const version = ctx.config.get('version');
+            // TODO create alp-useragent with getter in context
+            const ua = ctx.req.headers['user-agent'];
+            const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
-          const app = React.createElement(App);
-          const moduleVisitor = createModuleVisitor();
+            const app = React.createElement(App);
+            const moduleVisitor = createModuleVisitor();
 
-          const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: { getState: function getState() {
-                return { ctx };
-              } } });
-          await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
+            const PreRenderWrappedApp = createAlpAppWrapper(app, { context: ctx, store: { getState: function getState() {
+                  return { ctx };
+                } } });
+            yield reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-          const store = createServerStore(ctx, moduleVisitor.getReducers(), {
-            sharedReducers: options.sharedReducers
+            const store = createServerStore(ctx, moduleVisitor.getReducers(), {
+              sharedReducers: options.sharedReducers
+            });
+
+            const WrappedApp = createAlpAppWrapper(app, { context: ctx, store });
+
+            // eslint-disable-next-line no-unused-vars
+            const _store$getState = store.getState(),
+                  { ctx: removeCtxFromInitialData } = _store$getState,
+                  initialData = _objectWithoutProperties(_store$getState, ['ctx']);
+            ctx.body = yield renderHtml(React.createElement(WrappedApp), {
+              version,
+              scriptName: options.scriptName !== undefined ? options.scriptName : name,
+              styleName: options.styleName !== undefined ? options.styleName : name,
+              polyfillFeatures: options.polyfillFeatures,
+              initialData
+            });
           });
 
-          const WrappedApp = createAlpAppWrapper(app, { context: ctx, store });
-
-          // eslint-disable-next-line no-unused-vars
-          const _store$getState = store.getState(),
-                { ctx: removeCtxFromInitialData } = _store$getState,
-                initialData = _objectWithoutProperties(_store$getState, ['ctx']);
-          ctx.body = await renderHtml(React.createElement(WrappedApp), {
-            version,
-            scriptName: options.scriptName !== undefined ? options.scriptName : name,
-            styleName: options.styleName !== undefined ? options.styleName : name,
-            polyfillFeatures: options.polyfillFeatures,
-            initialData
-          });
-        };
+          return function () {
+            return _ref.apply(this, arguments);
+          };
+        }();
       }
     };
   };

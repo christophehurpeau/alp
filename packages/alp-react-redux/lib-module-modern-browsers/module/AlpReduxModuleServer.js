@@ -1,3 +1,4 @@
+import 'react';
 import AlpModule from './AlpModule';
 let AlpReduxModule = class extends AlpModule {
 

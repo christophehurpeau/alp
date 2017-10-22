@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/html-has-lang, prefer-template */
+import { Element as _Element } from 'react';
 import assetUrl from './assetUrl';
 import uneval from './uneval';
-import { ReactElementType as _ReactElementType } from '../types';
 
 import t from 'flow-runtime';
-var ReactElementType = t.tdz(function () {
-  return _ReactElementType;
+var Element = t.tdz(function () {
+  return _Element;
 });
-var HelmetDataAttributeType = t.type('HelmetDataAttributeType', t.object(t.property('toString', t.function(t.return(t.string()))), t.property('toComponent', t.function(t.return(t.ref(ReactElementType))))));
+var HelmetDataAttributeType = t.type('HelmetDataAttributeType', t.object(t.property('toString', t.function(t.return(t.string()))), t.property('toComponent', t.function(t.return(t.ref(Element))))));
 var HelmetDataType = t.type('HelmetDataType', t.object(t.property('htmlAttributes', HelmetDataAttributeType), t.property('title', HelmetDataAttributeType), t.property('base', HelmetDataAttributeType), t.property('meta', HelmetDataAttributeType), t.property('link', HelmetDataAttributeType), t.property('script', HelmetDataAttributeType), t.property('style', HelmetDataAttributeType)));
 
 

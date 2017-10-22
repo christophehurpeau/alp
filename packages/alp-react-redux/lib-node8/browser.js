@@ -118,8 +118,8 @@ var _AppContainer3 = _interopRequireDefault(_AppContainer2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.Helmet = _reactHelmet2.default; // eslint-disable-next-line
-
+// eslint-disable-next-line import/no-extraneous-dependencies
+exports.Helmet = _reactHelmet2.default;
 exports.AlpModule = _AlpModule3.default;
 exports.AlpReduxModule = _AlpReduxModuleBrowser2.default;
 exports.Body = _Body3.default;
@@ -128,7 +128,7 @@ exports.AppContainer = _AppContainer3.default;
 
 const logger = new _nightingaleLogger2.default('alp:react-redux');
 
-const renderApp = App => (0, _reactDom.render)(_react2.default.createElement(App), document.getElementById('react-app'));
+const renderApp = App => (0, _reactDom.hydrate)(_react2.default.createElement(App), document.getElementById('react-app'));
 
 const preRender = async (ctx, appElement) => {
   const moduleVisitor = (0, _createModuleVisitor2.default)();

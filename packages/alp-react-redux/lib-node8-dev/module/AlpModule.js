@@ -9,24 +9,20 @@ var _class, _temp;
 
 var _react = require('react');
 
-var _types = require('../types');
-
 var _flowRuntime = require('flow-runtime');
 
 var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const ReactNodeType = _flowRuntime2.default.tdz(() => _types.ReactNodeType);
+const Node = _flowRuntime2.default.tdz(() => _react.Node);
 
-const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType);
-
-const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('children', _flowRuntime2.default.ref(ReactNodeType))));
+const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('children', _flowRuntime2.default.ref(Node))));
 
 let AlpModule = (_temp = _class = class extends _react.Component {
 
   render() {
-    const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType));
+    const _returnType = _flowRuntime2.default.return(_flowRuntime2.default.ref(Node));
 
     if (this.props.reducers) {
       throw new Error('You have reducers, probably want to use AlpReduxModule.');

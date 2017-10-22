@@ -14,7 +14,6 @@ var _uneval2 = _interopRequireDefault(_uneval);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable jsx-a11y/html-has-lang, prefer-template */
 exports.default = (helmet, content, {
   version,
   scriptName,
@@ -41,5 +40,5 @@ window.__INITIAL_DATA__=${(0, _uneval2.default)(initialData)};
   <body ${helmet.bodyAttributes.toString()}>
     <div id="react-app">${content}</div>
   </body>
-</html>`;
+</html>`; /* eslint-disable jsx-a11y/html-has-lang, prefer-template */
 //# sourceMappingURL=htmlLayout.js.map

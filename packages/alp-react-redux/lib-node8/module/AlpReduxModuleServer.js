@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+require('react');
+
 var _AlpModule = require('./AlpModule');
 
 var _AlpModule2 = _interopRequireDefault(_AlpModule);

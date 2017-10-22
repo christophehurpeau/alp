@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 let AlpModule = class extends Component {
 
   render() {

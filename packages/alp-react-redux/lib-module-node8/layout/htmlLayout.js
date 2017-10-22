@@ -1,7 +1,7 @@
-/* eslint-disable jsx-a11y/html-has-lang, prefer-template */
-import assetUrl from './assetUrl';
-import uneval from './uneval';
 
+import assetUrl from './assetUrl'; /* eslint-disable jsx-a11y/html-has-lang, prefer-template */
+
+import uneval from './uneval';
 
 export default ((helmet, content, {
   version,

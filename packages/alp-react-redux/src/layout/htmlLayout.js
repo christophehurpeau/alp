@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/html-has-lang, prefer-template */
+import type { Element } from 'react';
 import assetUrl from './assetUrl';
 import uneval from './uneval';
-import type { ReactElementType } from '../types';
 
 type HelmetDataAttributeType = {
   toString(): string,
-  toComponent(): ReactElementType,
+  toComponent(): Element,
 };
 
 type HelmetDataType = {

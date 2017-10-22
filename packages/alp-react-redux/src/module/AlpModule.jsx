@@ -1,14 +1,13 @@
-import { Component } from 'react';
-import type { ReactNodeType, ReactElementType } from '../types';
+import { Component, type Node } from 'react';
 
 type PropsType = {|
-  children: ReactNodeType,
+  children: Node,
 |};
 
 export default class AlpModule extends Component {
   props: PropsType;
 
-  render(): ReactElementType {
+  render(): Node {
     if (!PRODUCTION) {
       if (this.props.reducers) {
         throw new Error('You have reducers, probably want to use AlpReduxModule.');

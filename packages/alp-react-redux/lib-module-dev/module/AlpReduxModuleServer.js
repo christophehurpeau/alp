@@ -6,20 +6,18 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+import { Node as _Node } from 'react';
 import AlpModule from './AlpModule';
-import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType, ReducerDictionaryType as _ReducerDictionaryType } from '../types';
+import { ReducerDictionaryType as _ReducerDictionaryType } from '../types';
 
 import t from 'flow-runtime';
-var ReactNodeType = t.tdz(function () {
-  return _ReactNodeType;
-});
-var ReactElementType = t.tdz(function () {
-  return _ReactElementType;
-});
 var ReducerDictionaryType = t.tdz(function () {
   return _ReducerDictionaryType;
 });
-var PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.nullable(t.ref(ReducerDictionaryType))), t.property('children', t.ref(ReactNodeType))));
+var Node = t.tdz(function () {
+  return _Node;
+});
+var PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.nullable(t.ref(ReducerDictionaryType))), t.property('children', t.ref(Node))));
 
 var AlpReduxModule = function (_AlpModule) {
   _inherits(AlpReduxModule, _AlpModule);
@@ -33,7 +31,7 @@ var AlpReduxModule = function (_AlpModule) {
   _createClass(AlpReduxModule, [{
     key: 'render',
     value: function render() {
-      var _returnType = t.return(t.ref(ReactElementType));
+      var _returnType = t.return(t.ref(Node));
 
       return _returnType.assert(this.props.children);
     }

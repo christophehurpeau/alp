@@ -1,14 +1,14 @@
 var _class, _temp;
 
+import { Node as _Node } from 'react';
 import PropTypes from 'prop-types';
 import AlpModule from './AlpModule';
-import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType, ReducerDictionaryType as _ReducerDictionaryType } from '../types';
+import { ReducerDictionaryType as _ReducerDictionaryType } from '../types';
 
 import t from 'flow-runtime';
-const ReactNodeType = t.tdz(() => _ReactNodeType);
-const ReactElementType = t.tdz(() => _ReactElementType);
 const ReducerDictionaryType = t.tdz(() => _ReducerDictionaryType);
-const PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.nullable(t.ref(ReducerDictionaryType))), t.property('children', t.ref(ReactNodeType))));
+const Node = t.tdz(() => _Node);
+const PropsType = t.type('PropsType', t.exactObject(t.property('reducers', t.nullable(t.ref(ReducerDictionaryType))), t.property('children', t.ref(Node))));
 let AlpReduxModule = (_temp = _class = class extends AlpModule {
 
   constructor(props, context) {
@@ -41,7 +41,7 @@ let AlpReduxModule = (_temp = _class = class extends AlpModule {
   }
 
   render() {
-    const _returnType = t.return(t.union(t.ref(ReactElementType), t.null()));
+    const _returnType = t.return(t.ref(Node));
 
     return _returnType.assert(this.state.loading ? null : this.props.children);
   }

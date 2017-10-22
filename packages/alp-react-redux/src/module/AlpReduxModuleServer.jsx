@@ -1,15 +1,16 @@
+import { type Node } from 'react';
 import AlpModule from './AlpModule';
-import type { ReactNodeType, ReactElementType, ReducerDictionaryType } from '../types';
+import type { ReducerDictionaryType } from '../types';
 
 type PropsType = {|
   reducers: ?ReducerDictionaryType,
-  children: ReactNodeType,
+  children: Node,
 |};
 
 export default class AlpReduxModule extends AlpModule {
   props: PropsType;
 
-  render(): ReactElementType {
+  render(): Node {
     return this.props.children;
   }
 }

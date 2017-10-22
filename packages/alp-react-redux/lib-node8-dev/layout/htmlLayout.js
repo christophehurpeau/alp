@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.LayoutOptionsType = undefined;
 
+var _react = require('react');
+
 var _assetUrl = require('./assetUrl');
 
 var _assetUrl2 = _interopRequireDefault(_assetUrl);
@@ -13,8 +15,6 @@ var _uneval = require('./uneval');
 
 var _uneval2 = _interopRequireDefault(_uneval);
 
-var _types = require('../types');
-
 var _flowRuntime = require('flow-runtime');
 
 var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
@@ -22,9 +22,9 @@ var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* eslint-disable jsx-a11y/html-has-lang, prefer-template */
-const ReactElementType = _flowRuntime2.default.tdz(() => _types.ReactElementType);
+const Element = _flowRuntime2.default.tdz(() => _react.Element);
 
-const HelmetDataAttributeType = _flowRuntime2.default.type('HelmetDataAttributeType', _flowRuntime2.default.object(_flowRuntime2.default.property('toString', _flowRuntime2.default.function(_flowRuntime2.default.return(_flowRuntime2.default.string()))), _flowRuntime2.default.property('toComponent', _flowRuntime2.default.function(_flowRuntime2.default.return(_flowRuntime2.default.ref(ReactElementType))))));
+const HelmetDataAttributeType = _flowRuntime2.default.type('HelmetDataAttributeType', _flowRuntime2.default.object(_flowRuntime2.default.property('toString', _flowRuntime2.default.function(_flowRuntime2.default.return(_flowRuntime2.default.string()))), _flowRuntime2.default.property('toComponent', _flowRuntime2.default.function(_flowRuntime2.default.return(_flowRuntime2.default.ref(Element))))));
 
 const HelmetDataType = _flowRuntime2.default.type('HelmetDataType', _flowRuntime2.default.object(_flowRuntime2.default.property('htmlAttributes', HelmetDataAttributeType), _flowRuntime2.default.property('title', HelmetDataAttributeType), _flowRuntime2.default.property('base', HelmetDataAttributeType), _flowRuntime2.default.property('meta', HelmetDataAttributeType), _flowRuntime2.default.property('link', HelmetDataAttributeType), _flowRuntime2.default.property('script', HelmetDataAttributeType), _flowRuntime2.default.property('style', HelmetDataAttributeType)));
 

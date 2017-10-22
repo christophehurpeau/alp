@@ -1,10 +1,11 @@
+import { type Node } from 'react';
 import PropTypes from 'prop-types';
 import AlpModule from './AlpModule';
-import type { ReactNodeType, ReactElementType, ReducerDictionaryType } from '../types';
+import type { ReducerDictionaryType } from '../types';
 
 type PropsType = {|
   reducers: ?ReducerDictionaryType,
-  children: ReactNodeType,
+  children: Node,
 |};
 
 export default class AlpReduxModule extends AlpModule {
@@ -39,7 +40,7 @@ export default class AlpReduxModule extends AlpModule {
     }
   }
 
-  render(): ReactElementType | null {
+  render(): Node {
     return this.state.loading ? null : this.props.children;
   }
 }

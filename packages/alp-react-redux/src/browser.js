@@ -1,11 +1,11 @@
-// eslint-disable-next-line
-import BrowserAppContainer from 'pobpack-browser/BrowserAppContainer';
 import contentLoaded from 'content-loaded';
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import Helmet from 'react-helmet';
 import reactTreeWalker from 'react-tree-walker';
 import Logger from 'nightingale-logger/src';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import BrowserAppContainer from 'alp-dev/BrowserAppContainer';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createBrowserStore from './store/createBrowserStore';
 import createBrowserModuleStoreReducer from './store/createBrowserModuleStoreReducer';
@@ -30,7 +30,7 @@ export AppContainer from './layout/AppContainer';
 
 const logger = new Logger('alp:react-redux');
 
-const renderApp = App => render(React.createElement(App), document.getElementById('react-app'));
+const renderApp = App => hydrate(React.createElement(App), document.getElementById('react-app'));
 
 const preRender = async (ctx, appElement) => {
   const moduleVisitor = createModuleVisitor();

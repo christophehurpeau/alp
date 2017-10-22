@@ -8,17 +8,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { Component } from 'react';
-import { ReactNodeType as _ReactNodeType, ReactElementType as _ReactElementType } from '../types';
+import { Component, Node as _Node } from 'react';
 
 import t from 'flow-runtime';
-var ReactNodeType = t.tdz(function () {
-  return _ReactNodeType;
+var Node = t.tdz(function () {
+  return _Node;
 });
-var ReactElementType = t.tdz(function () {
-  return _ReactElementType;
-});
-var PropsType = t.type('PropsType', t.exactObject(t.property('children', t.ref(ReactNodeType))));
+var PropsType = t.type('PropsType', t.exactObject(t.property('children', t.ref(Node))));
 var AlpModule = (_temp = _class = function (_Component) {
   _inherits(AlpModule, _Component);
 
@@ -31,7 +27,7 @@ var AlpModule = (_temp = _class = function (_Component) {
   _createClass(AlpModule, [{
     key: 'render',
     value: function render() {
-      var _returnType = t.return(t.ref(ReactElementType));
+      var _returnType = t.return(t.ref(Node));
 
       if (this.props.reducers) {
         throw new Error('You have reducers, probably want to use AlpReduxModule.');
