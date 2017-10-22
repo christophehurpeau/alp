@@ -1,11 +1,11 @@
 import React from 'react';
-import List from 'ynnub/components/List';
+import 'react';
 import LoginButtonGoogle from './LoginButtonGoogle';
 
 export default (function () {
   return React.createElement(
-    List,
-    { links: true },
+    'ul',
+    null,
     React.createElement(
       'li',
       null,

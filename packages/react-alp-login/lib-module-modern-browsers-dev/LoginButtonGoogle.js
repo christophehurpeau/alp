@@ -4,22 +4,24 @@ import React from 'react';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+import { Element as _Element } from 'react';
 import Button from 'ynnub/components/Button';
 import GoogleIcon from 'react-icons/lib/fa/google';
 
 import t from 'flow-runtime';
-const PropsType = t.type('PropsType', t.object(t.property('label', t.nullable(t.string()))));
+const Element = t.tdz(function () {
+  return _Element;
+});
+const PropsType = t.type('PropsType', t.object(t.property('label', t.string(), true)));
 
 
 export default (function loginButtonGoogle(_arg) {
+  const _returnType = t.return(t.ref(Element, t.string('a')));
+
   let _PropsType$assert = PropsType.assert(_arg),
-      { label } = _PropsType$assert,
+      { label = 'Login with Google' } = _PropsType$assert,
       otherProps = _objectWithoutProperties(_PropsType$assert, ['label']);
 
-  return React.createElement(Button, _extends({
-    href: '/login/google',
-    icon: React.createElement(GoogleIcon, { className: 'icon' }),
-    label: label || 'Login with Google'
-  }, otherProps));
+  return _returnType.assert(React.createElement(Button, _extends({ href: '/login/google', icon: React.createElement(GoogleIcon, null), label: label }, otherProps)));
 });
 //# sourceMappingURL=LoginButtonGoogle.js.map

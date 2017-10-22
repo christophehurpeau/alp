@@ -4,17 +4,14 @@ import React from 'react';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+import 'react';
 import Button from 'ynnub/components/Button';
 import GoogleIcon from 'react-icons/lib/fa/google';
 
 export default ((_ref) => {
-  let { label } = _ref,
+  let { label = 'Login with Google' } = _ref,
       otherProps = _objectWithoutProperties(_ref, ['label']);
 
-  return React.createElement(Button, _extends({
-    href: '/login/google',
-    icon: React.createElement(GoogleIcon, { className: 'icon' }),
-    label: label || 'Login with Google'
-  }, otherProps));
+  return React.createElement(Button, _extends({ href: '/login/google', icon: React.createElement(GoogleIcon, null), label: label }, otherProps));
 });
 //# sourceMappingURL=LoginButtonGoogle.js.map

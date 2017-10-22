@@ -1,9 +1,10 @@
-import List from 'ynnub/components/List';
+import { type Element } from 'react';
 import LoginButtonGoogle from './LoginButtonGoogle';
 
-export default () =>
-  <List links>
+export default (): Element<'ul'> => (
+  <ul>
     <li>
       <LoginButtonGoogle />
     </li>
-  </List>;
+  </ul>
+);
