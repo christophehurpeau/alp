@@ -89,12 +89,10 @@
     "pob-release": "^3.1.0",
     "prettier": "^1.7.4",
     "react": "^16.0.0",
-    "react-icons": "^2.2.7",
-    "ynnub": "^0.5.4"
+    "ynnub": "^0.5.9"
   },
   "peerDependencies": {
     "react": "^16.0.0",
-    "react-icons": "^2.2.7",
-    "ynnub": ">= 0.5.0"
+    "ynnub": ">= 0.5.9"
   }
 }

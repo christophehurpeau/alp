@@ -6,7 +6,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import { Element as _Element } from 'react';
 import Button from 'ynnub/components/Button';
-import GoogleIcon from 'react-icons/lib/fa/google';
 
 import t from 'flow-runtime';
 const Element = t.tdz(function () {
@@ -22,6 +21,6 @@ export default (function loginButtonGoogle(_arg) {
       { label = 'Login with Google' } = _PropsType$assert,
       otherProps = _objectWithoutProperties(_PropsType$assert, ['label']);
 
-  return _returnType.assert(React.createElement(Button, _extends({ href: '/login/google', icon: React.createElement(GoogleIcon, null), label: label }, otherProps)));
+  return _returnType.assert(React.createElement(Button, _extends({ href: '/login/google', icon: 'google', label: label }, otherProps)));
 });
 //# sourceMappingURL=LoginButtonGoogle.js.map

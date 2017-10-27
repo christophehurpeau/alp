@@ -14,10 +14,6 @@ var _Button = require('ynnub/components/Button');
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _google = require('react-icons/lib/fa/google');
-
-var _google2 = _interopRequireDefault(_google);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -26,6 +22,6 @@ exports.default = (_ref) => {
   let { label = 'Login with Google' } = _ref,
       otherProps = _objectWithoutProperties(_ref, ['label']);
 
-  return _react2.default.createElement(_Button2.default, _extends({ href: '/login/google', icon: _react2.default.createElement(_google2.default, null), label: label }, otherProps));
+  return _react2.default.createElement(_Button2.default, _extends({ href: '/login/google', icon: 'google', label: label }, otherProps));
 };
 //# sourceMappingURL=LoginButtonGoogle.js.map
