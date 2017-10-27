@@ -1,3 +1,12 @@
+<a name="0.8.2"></a>
+## [0.8.2](https://github.com/alpjs/react-alp-login/compare/v0.8.1...v0.8.2) (2017-10-27)
+
+
+### Features
+
+* ynnub@0.5.9 and material icons ([01eeb75](https://github.com/alpjs/react-alp-login/commit/01eeb75))
+
+
 <a name="0.8.1"></a>
 ## [0.8.1](https://github.com/alpjs/react-alp-login/compare/v0.8.0...v0.8.1) (2017-10-22)
 
