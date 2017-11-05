@@ -1,3 +1,12 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/alpjs/react-alp-translate/compare/v0.5.0...v0.6.0) (2017-11-05)
+
+
+### Features
+
+* react 16 return string ([ee8206f](https://github.com/alpjs/react-alp-translate/commit/ee8206f))
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/alpjs/react-alp-translate/compare/v0.4.0...v0.5.0) (2017-08-15)
 
