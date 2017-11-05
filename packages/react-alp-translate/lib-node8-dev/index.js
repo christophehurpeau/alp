@@ -4,10 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
 var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -22,12 +18,12 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 const ChildrenCallbackType = _flowRuntime2.default.type('ChildrenCallbackType', _flowRuntime2.default.function(_flowRuntime2.default.param('translated', _flowRuntime2.default.string()), _flowRuntime2.default.return(_flowRuntime2.default.void())));
 
-const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('id', _flowRuntime2.default.string()), _flowRuntime2.default.property('as', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('children', _flowRuntime2.default.nullable(ChildrenCallbackType)), _flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any())));
+const PropsType = _flowRuntime2.default.type('PropsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('id', _flowRuntime2.default.string()), _flowRuntime2.default.property('as', _flowRuntime2.default.nullable(_flowRuntime2.default.null()), true), _flowRuntime2.default.property('children', _flowRuntime2.default.nullable(ChildrenCallbackType), true), _flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any())));
 
 const TranslateComponent = (_arg, _arg2) => {
   let _PropsType$assert = PropsType.assert(_arg),
-      { id, as: AsType = 'span', children } = _PropsType$assert,
-      props = _objectWithoutProperties(_PropsType$assert, ['id', 'as', 'children']);
+      { id, children } = _PropsType$assert,
+      props = _objectWithoutProperties(_PropsType$assert, ['id', 'children']);
 
   let { context } = _arg2;
 
@@ -37,11 +33,7 @@ const TranslateComponent = (_arg, _arg2) => {
     return children(translated);
   }
 
-  return _react2.default.createElement(
-    AsType,
-    null,
-    translated
-  );
+  return translated;
 };
 
 TranslateComponent.contextTypes = {
