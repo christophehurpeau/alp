@@ -1,3 +1,12 @@
+<a name="10.6.0"></a>
+# [10.6.0](https://github.com/alpjs/alp-dev/compare/v10.5.0...v10.6.0) (2017-11-05)
+
+
+### Features
+
+* update dependencies ([f3e62f0](https://github.com/alpjs/alp-dev/commit/f3e62f0))
+
+
 <a name="10.5.0"></a>
 # [10.5.0](https://github.com/alpjs/alp-dev/compare/v10.4.0...v10.5.0) (2017-10-22)
 
