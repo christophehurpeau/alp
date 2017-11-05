@@ -14,6 +14,10 @@ var _Button = require('ynnub/components/Button');
 
 var _Button2 = _interopRequireDefault(_Button);
 
+var _google = require('react-icons/lib/fa/google');
+
+var _google2 = _interopRequireDefault(_google);
+
 var _flowRuntime = require('flow-runtime');
 
 var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
@@ -33,6 +37,6 @@ exports.default = function loginButtonGoogle(_arg) {
       { label = 'Login with Google' } = _PropsType$assert,
       otherProps = _objectWithoutProperties(_PropsType$assert, ['label']);
 
-  return _returnType.assert(_react2.default.createElement(_Button2.default, _extends({ href: '/login/google', icon: 'google', label: label }, otherProps)));
+  return _returnType.assert(_react2.default.createElement(_Button2.default, _extends({ href: '/login/google', icon: _react2.default.createElement(_google2.default, null), label: label }, otherProps)));
 };
 //# sourceMappingURL=LoginButtonGoogle.js.map
