@@ -36,7 +36,7 @@ const renderHtml = (app, options) => {
 
 const isModernBrowser = createIsModernBrowser();
 
-const OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReducers', t.nullable(t.object(t.indexer('key', t.string(), t.any())))), t.property('scriptName', t.union(t.nullable(t.string()), t.boolean(false))), t.property('styleName', t.union(t.nullable(t.string()), t.boolean(false))), t.property('polyfillFeatures', t.nullable(t.string()), true)));
+const OptionsType = t.type('OptionsType', t.exactObject(t.property('sharedReducers', t.nullable(t.object(t.indexer('key', t.string(), t.any()))), true), t.property('scriptName', t.union(t.nullable(t.string()), t.boolean(false)), true), t.property('styleName', t.union(t.nullable(t.string()), t.boolean(false)), true), t.property('polyfillFeatures', t.nullable(t.string()), true)));
 
 
 export default (function index() {

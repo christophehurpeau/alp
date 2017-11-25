@@ -36,9 +36,9 @@ const renderHtml = (app, options) => {
 const isModernBrowser = createIsModernBrowser();
 
 type OptionsType = {|
-  sharedReducers: ?{ [string]: any },
-  scriptName: ?string | false,
-  styleName: ?string | false,
+  sharedReducers?: ?{ [string]: any },
+  scriptName?: ?string | false,
+  styleName?: ?string | false,
   polyfillFeatures?: ?string,
 |};
 
