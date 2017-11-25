@@ -1,3 +1,12 @@
+<a name="14.2.2"></a>
+## [14.2.2](https://github.com/alpjs/alp-react-redux/compare/v14.2.1...v14.2.2) (2017-11-25)
+
+
+### Bug Fixes
+
+* polyfillFeatures is optional and update dependencies ([2a015d2](https://github.com/alpjs/alp-react-redux/commit/2a015d2))
+
+
 <a name="14.2.1"></a>
 ## [14.2.1](https://github.com/alpjs/alp-react-redux/compare/v14.2.0...v14.2.1) (2017-10-22)
 
