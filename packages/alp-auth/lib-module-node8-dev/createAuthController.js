@@ -6,7 +6,7 @@ export default function createAuthController(_arg) {
     usersManager,
     authenticationService,
     homeRouterKey = '/'
-  } = t.object(t.property('usersManager', t.object()), t.property('authenticationService', t.ref(AuthenticationService)), t.property('homeRouterKey', t.nullable(t.string()))).assert(_arg);
+  } = t.object(t.property('usersManager', t.object()), t.property('authenticationService', t.ref(AuthenticationService)), t.property('homeRouterKey', t.nullable(t.string()), true)).assert(_arg);
 
   return {
     async login(ctx) {

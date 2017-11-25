@@ -59,7 +59,7 @@ function init(_arg) {
     usersManager,
     strategies,
     homeRouterKey
-  } = _flowRuntime2.default.object(_flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('strategies', _flowRuntime2.default.object()), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))).assert(_arg);
+  } = _flowRuntime2.default.object(_flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('strategies', _flowRuntime2.default.object()), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true)).assert(_arg);
 
   return app => {
     const userAccountsService = new _UserAccountsService2.default(usersManager);

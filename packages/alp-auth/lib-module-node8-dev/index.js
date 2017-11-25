@@ -19,7 +19,7 @@ export default function init(_arg) {
     usersManager,
     strategies,
     homeRouterKey
-  } = t.object(t.property('usersManager', t.object()), t.property('strategies', t.object()), t.property('homeRouterKey', t.nullable(t.string()))).assert(_arg);
+  } = t.object(t.property('usersManager', t.object()), t.property('strategies', t.object()), t.property('homeRouterKey', t.nullable(t.string()), true)).assert(_arg);
 
   return app => {
     const userAccountsService = new UserAccountsService(usersManager);

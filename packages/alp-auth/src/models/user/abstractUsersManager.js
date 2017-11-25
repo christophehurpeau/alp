@@ -1,4 +1,4 @@
-import type { UserType } from './types';
+import type { UserType, UserBrowserType } from './types';
 
 export default {
   STATUSES: {
@@ -30,9 +30,10 @@ export default {
     return this.store.updateOne(user);
   },
 
-  transformForBrowser(user) {
+  transformForBrowser(user): UserBrowserType {
     return {
       id: user.id,
+      _id: user._id,
       displayName: user.displayName,
       fullName: user.fullName,
       status: user.status,

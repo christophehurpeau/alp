@@ -14,6 +14,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const UserType = _flowRuntime2.default.tdz(() => _types.UserType);
 
+const UserBrowserType = _flowRuntime2.default.tdz(() => _types.UserBrowserType);
+
 exports.default = {
   STATUSES: {
     VALIDATED: 'validated',
@@ -51,8 +53,11 @@ exports.default = {
   },
 
   transformForBrowser(user) {
-    return {
+    const _returnType5 = _flowRuntime2.default.return(_flowRuntime2.default.ref(UserBrowserType));
+
+    return _returnType5.assert({
       id: user.id,
+      _id: user._id,
       displayName: user.displayName,
       fullName: user.fullName,
       status: user.status,
@@ -65,7 +70,7 @@ exports.default = {
         status: account.status,
         profile: account.profile
       }))
-    };
+    });
   }
 };
 //# sourceMappingURL=abstractUsersManager.js.map

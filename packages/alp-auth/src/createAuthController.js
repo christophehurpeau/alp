@@ -7,7 +7,7 @@ export default function createAuthController({
 }: {
   usersManager: Object,
   authenticationService: AuthenticationService,
-  homeRouterKey: ?string,
+  homeRouterKey?: ?string,
 }) {
   return {
     async login(ctx) {

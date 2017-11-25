@@ -20,7 +20,7 @@ export default function init({
 }: {
   usersManager: Object,
   strategies: Object,
-  homeRouterKey: ?string,
+  homeRouterKey?: ?string,
 }) {
   return app => {
     const userAccountsService = new UserAccountsService(usersManager);

@@ -20,7 +20,7 @@ function createAuthController(_arg) {
     usersManager,
     authenticationService,
     homeRouterKey = '/'
-  } = _flowRuntime2.default.object(_flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('authenticationService', _flowRuntime2.default.ref(_AuthenticationService2.default)), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))).assert(_arg);
+  } = _flowRuntime2.default.object(_flowRuntime2.default.property('usersManager', _flowRuntime2.default.object()), _flowRuntime2.default.property('authenticationService', _flowRuntime2.default.ref(_AuthenticationService2.default)), _flowRuntime2.default.property('homeRouterKey', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true)).assert(_arg);
 
   return {
     async login(ctx) {

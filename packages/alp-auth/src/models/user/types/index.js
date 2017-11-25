@@ -16,6 +16,8 @@ export type AccountType = {
 };
 
 export type UserType = {
+  id?: string,
+  _id?: string,
   displayName: string,
   fullName: UserNameType,
   status: string,
@@ -32,6 +34,8 @@ export type AccountBrowserType = {
 };
 
 export type UserBrowserType = {
+  id?: string,
+  _id?: string,
   displayName: string,
   fullName: UserNameType,
   status: string,

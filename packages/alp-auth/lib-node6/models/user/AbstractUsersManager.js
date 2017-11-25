@@ -32,6 +32,7 @@ exports.default = {
   transformForBrowser(user) {
     return {
       id: user.id,
+      _id: user._id,
       displayName: user.displayName,
       fullName: user.fullName,
       status: user.status,

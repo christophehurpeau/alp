@@ -1,7 +1,8 @@
-import { UserType as _UserType } from './types';
+import { UserType as _UserType, UserBrowserType as _UserBrowserType } from './types';
 
 import t from 'flow-runtime';
 const UserType = t.tdz(() => _UserType);
+const UserBrowserType = t.tdz(() => _UserBrowserType);
 export default {
   STATUSES: {
     VALIDATED: 'validated',
@@ -38,8 +39,11 @@ export default {
   },
 
   transformForBrowser(user) {
-    return {
+    const _returnType5 = t.return(t.ref(UserBrowserType));
+
+    return _returnType5.assert({
       id: user.id,
+      _id: user._id,
       displayName: user.displayName,
       fullName: user.fullName,
       status: user.status,
@@ -52,7 +56,7 @@ export default {
         status: account.status,
         profile: account.profile
       }))
-    };
+    });
   }
 };
 //# sourceMappingURL=abstractUsersManager.js.map
