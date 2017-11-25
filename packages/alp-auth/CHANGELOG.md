@@ -1,3 +1,12 @@
+<a name="0.14.0"></a>
+# [0.14.0](https://github.com/alpjs/alp-auth/compare/v0.13.0...v0.14.0) (2017-11-25)
+
+
+### Features
+
+* add migration script from rethinkdb to mongo and update dependencies ([d0c9486](https://github.com/alpjs/alp-auth/commit/d0c9486))
+
+
 <a name="0.13.0"></a>
 # [0.13.0](https://github.com/alpjs/alp-auth/compare/v0.12.0...v0.13.0) (2017-08-27)
 
