@@ -1,5 +1,3 @@
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 import contentLoaded from 'content-loaded';
 import React from 'react';
 import { hydrate } from 'react-dom';
@@ -34,25 +32,19 @@ const _renderApp = function _renderApp(App) {
   return hydrate(React.createElement(App), document.getElementById('react-app'));
 };
 
-const preRender = function () {
-  var _ref = _asyncToGenerator(function* (ctx, appElement) {
-    const moduleVisitor = createModuleVisitor();
+const preRender = async function preRender(ctx, appElement) {
+  const moduleVisitor = createModuleVisitor();
 
-    const PreRenderWrappedApp = createAlpAppWrapper(appElement, {
-      context: ctx,
-      store: { getState: function getState() {
-          return { ctx };
-        } }
-    });
-    yield reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
-
-    return moduleVisitor.getReducers();
+  const PreRenderWrappedApp = createAlpAppWrapper(appElement, {
+    context: ctx,
+    store: { getState: function getState() {
+        return { ctx };
+      } }
   });
+  await reactTreeWalker(React.createElement(PreRenderWrappedApp), moduleVisitor.visitor);
 
-  return function preRender() {
-    return _ref.apply(this, arguments);
-  };
-}();
+  return moduleVisitor.getReducers();
+};
 
 export default (function (app) {
   app.reduxReducers = {
@@ -66,67 +58,55 @@ export default (function (app) {
   app.reduxMiddlewares = [];
 
   return {
-    renderApp: function () {
-      var _ref2 = _asyncToGenerator(function* (App, { middlewares = [], sharedReducers } = {}) {
-        let store;
-        let moduleStoreReducer;
+    renderApp: async function renderApp(App, { middlewares = [], sharedReducers } = {}) {
+      let store;
+      let moduleStoreReducer;
 
-        const createStore = function createStore(ctx, moduleReducers) {
-          moduleStoreReducer = createBrowserModuleStoreReducer(moduleReducers);
-          const store = createBrowserStore(app, ctx, moduleStoreReducer.reducer, {
-            middlewares,
-            sharedReducers
-          });
-          app.store = store;
-          window.store = store;
-          return store;
-        };
-
-        const ctx = app.createContext();
-
-        const render = function () {
-          var _ref3 = _asyncToGenerator(function* (App) {
-            let appElement = React.createElement(App);
-
-
-            const moduleReducers = yield preRender(ctx, appElement);
-
-            // in DEV
-            // eslint-disable-next-line no-lonely-if
-            if (!store) {
-              store = createStore(ctx, moduleReducers);
-            } else {
-              moduleStoreReducer.setReducers(moduleReducers);
-            }
-
-
-            const WrappedApp = createAlpAppWrapper(appElement, {
-              context: ctx,
-              store,
-              setModuleReducers: function setModuleReducers(reducers) {
-                return moduleStoreReducer.set(store, reducers);
-              }
-            });
-
-            yield contentLoaded();
-            _renderApp(WrappedApp);
-            logger.success('rendered');
-          });
-
-          return function render() {
-            return _ref3.apply(this, arguments);
-          };
-        }();
-
-        yield render(App);
-
-        return render;
-      });
-
-      return function renderApp() {
-        return _ref2.apply(this, arguments);
+      const createStore = function createStore(ctx, moduleReducers) {
+        moduleStoreReducer = createBrowserModuleStoreReducer(moduleReducers);
+        const store = createBrowserStore(app, ctx, moduleStoreReducer.reducer, {
+          middlewares,
+          sharedReducers
+        });
+        app.store = store;
+        window.store = store;
+        return store;
       };
-    }()
+
+      const ctx = app.createContext();
+
+      const render = async function render(App) {
+        let appElement = React.createElement(App);
+
+
+        const moduleReducers = await preRender(ctx, appElement);
+
+        // in DEV
+        // eslint-disable-next-line no-lonely-if
+        if (!store) {
+          store = createStore(ctx, moduleReducers);
+        } else {
+          moduleStoreReducer.setReducers(moduleReducers);
+        }
+
+
+        const WrappedApp = createAlpAppWrapper(appElement, {
+          context: ctx,
+          store,
+          setModuleReducers: function setModuleReducers(reducers) {
+            return moduleStoreReducer.set(store, reducers);
+          }
+        });
+
+        await contentLoaded();
+        _renderApp(WrappedApp);
+        logger.success('rendered');
+      };
+
+      await render(App);
+
+      return render;
+    }
   };
 });
 //# sourceMappingURL=browser.js.map

@@ -142,7 +142,7 @@ const renderHtml = (app, options) => {
 
 const isModernBrowser = (0, _modernBrowsers2.default)();
 
-const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('sharedReducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object(_flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any())))), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.string()), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('styleName', _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.string()), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('polyfillFeatures', _flowRuntime2.default.nullable(_flowRuntime2.default.string()))));
+const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('sharedReducers', _flowRuntime2.default.nullable(_flowRuntime2.default.object(_flowRuntime2.default.indexer('key', _flowRuntime2.default.string(), _flowRuntime2.default.any())))), _flowRuntime2.default.property('scriptName', _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.string()), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('styleName', _flowRuntime2.default.union(_flowRuntime2.default.nullable(_flowRuntime2.default.string()), _flowRuntime2.default.boolean(false))), _flowRuntime2.default.property('polyfillFeatures', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true)));
 
 exports.default = function index() {
   return app => {

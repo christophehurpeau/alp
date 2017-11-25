@@ -39,7 +39,7 @@ type OptionsType = {|
   sharedReducers: ?{ [string]: any },
   scriptName: ?string | false,
   styleName: ?string | false,
-  polyfillFeatures: ?string,
+  polyfillFeatures?: ?string,
 |};
 
 export default () => app => {
