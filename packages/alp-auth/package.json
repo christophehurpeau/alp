@@ -1,6 +1,6 @@
 {
   "name": "alp-auth",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "authentication with alp",
   "keywords": [
     "alp"
