@@ -75,7 +75,7 @@ let UserAccountsService = (_temp = _class = class extends EventEmitter {
       emails
     });
 
-    logger.info('create user', { emails, user });
+    logger.info(!user ? 'create user' : 'existing user', { emails, user });
 
     if (!user) {
       user = {};

@@ -1,3 +1,6 @@
 {
-  "extends": "pob/babel"
+  "extends": "pob/babel",
+  "rules": {
+    "prefer-destructuring": "off"
+  }
 }
