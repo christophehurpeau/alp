@@ -73,7 +73,7 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
   constructor(...args) {
     var _temp;
 
-    return _temp = super(...args), _initDefineProp(this, 'subscribed', _descriptor, this), this.timeout = null, this.state = {}, this.handleVisibilityChange = () => {
+    return _temp = super(...args), this.state = {}, _initDefineProp(this, 'subscribed', _descriptor, this), this.timeout = null, this.handleVisibilityChange = () => {
       if (!document.hidden) {
         if (this.timeout) {
           logger.log('timeout cleared', { name: this.props.name });
@@ -110,10 +110,6 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
     }, _temp;
   }
 
-  getWebsocket() {
-    return this.context.context.app.websocket;
-  }
-
   componentDidMount() {
     const websocket = this.getWebsocket();
     websocket.on('connect', this.subscribe);
@@ -129,6 +125,10 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
     this.unsubscribe();
   }
 
+  getWebsocket() {
+    return this.context.context.app.websocket;
+  }
+
   render() {
     return this.props.children;
   }
@@ -138,7 +138,8 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
   children: _propTypes2.default.node,
   visibleTimeout: _propTypes2.default.number
 }, _class2.defaultProps = {
-  visibleTimeout: 120000 }, _class2.contextTypes = {
+  visibleTimeout: 120000 // 2 minutes
+}, _class2.contextTypes = {
   context: _propTypes2.default.object
 }, _temp2), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
   enumerable: true,

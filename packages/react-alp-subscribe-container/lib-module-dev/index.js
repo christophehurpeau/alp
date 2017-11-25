@@ -73,7 +73,7 @@ var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args))), _this), _initDefineProp(_this, 'subscribed', _descriptor, _this), _this.timeout = null, _this.state = {}, _this.handleVisibilityChange = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _initDefineProp(_this, 'subscribed', _descriptor, _this), _this.timeout = null, _this.handleVisibilityChange = function () {
       if (!document.hidden) {
         if (_this.timeout) {
           logger.log('timeout cleared', { name: _this.props.name });
@@ -117,11 +117,6 @@ var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
   }
 
   _createClass(SubscribeContainerComponent, [{
-    key: 'getWebsocket',
-    value: function getWebsocket() {
-      return this.context.context.app.websocket;
-    }
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var websocket = this.getWebsocket();
@@ -139,6 +134,11 @@ var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
       this.unsubscribe();
     }
   }, {
+    key: 'getWebsocket',
+    value: function getWebsocket() {
+      return this.context.context.app.websocket;
+    }
+  }, {
     key: 'render',
     value: function render() {
       return this.props.children;
@@ -152,7 +152,8 @@ var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
   children: PropTypes.node,
   visibleTimeout: PropTypes.number
 }, _class2.defaultProps = {
-  visibleTimeout: 120000 }, _class2.contextTypes = {
+  visibleTimeout: 120000 // 2 minutes
+}, _class2.contextTypes = {
   context: PropTypes.object
 }, _temp2), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
   enumerable: true,

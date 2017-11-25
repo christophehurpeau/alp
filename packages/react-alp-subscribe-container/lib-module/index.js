@@ -29,7 +29,7 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args))), _this), _this.subscribed = false, _this.timeout = null, _this.state = {}, _this.handleVisibilityChange = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _this.subscribed = false, _this.timeout = null, _this.handleVisibilityChange = function () {
       if (!document.hidden) {
         if (_this.timeout) {
           logger.log('timeout cleared', { name: _this.props.name });
@@ -73,11 +73,6 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
   }
 
   _createClass(SubscribeContainerComponent, [{
-    key: 'getWebsocket',
-    value: function getWebsocket() {
-      return this.context.context.app.websocket;
-    }
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var websocket = this.getWebsocket();
@@ -95,6 +90,11 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
       this.unsubscribe();
     }
   }, {
+    key: 'getWebsocket',
+    value: function getWebsocket() {
+      return this.context.context.app.websocket;
+    }
+  }, {
     key: 'render',
     value: function render() {
       return this.props.children;
@@ -108,7 +108,8 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
   children: PropTypes.node,
   visibleTimeout: PropTypes.number
 }, _class.defaultProps = {
-  visibleTimeout: 120000 }, _class.contextTypes = {
+  visibleTimeout: 120000 // 2 minutes
+}, _class.contextTypes = {
   context: PropTypes.object
 }, _temp2);
 

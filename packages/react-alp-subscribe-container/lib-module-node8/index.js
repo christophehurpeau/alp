@@ -1,32 +1,17 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _class, _temp2;
 
-var _react = require('react');
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'alp-react-redux';
+import Logger from 'nightingale-logger';
 
-var _propTypes = require('prop-types');
+const logger = new Logger('react-alp-subscribe-container');
 
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _alpReactRedux = require('alp-react-redux');
-
-var _nightingaleLogger = require('nightingale-logger');
-
-var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const logger = new _nightingaleLogger2.default('react-alp-subscribe-container');
-
-let SubscribeContainerComponent = (_temp2 = _class = class extends _react.Component {
+let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
   constructor(...args) {
     var _temp;
 
-    return _temp = super(...args), this.subscribed = false, this.timeout = null, this.state = {}, this.handleVisibilityChange = () => {
+    return _temp = super(...args), this.state = {}, this.subscribed = false, this.timeout = null, this.handleVisibilityChange = () => {
       if (!document.hidden) {
         if (this.timeout) {
           logger.log('timeout cleared', { name: this.props.name });
@@ -63,10 +48,6 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends _react.Compon
     }, _temp;
   }
 
-  getWebsocket() {
-    return this.context.context.app.websocket;
-  }
-
   componentDidMount() {
     const websocket = this.getWebsocket();
     websocket.on('connect', this.subscribe);
@@ -82,17 +63,24 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends _react.Compon
     this.unsubscribe();
   }
 
+  getWebsocket() {
+    return this.context.context.app.websocket;
+  }
+
   render() {
     return this.props.children;
   }
 }, _class.propTypes = {
-  dispatch: _propTypes2.default.func.isRequired,
-  name: _propTypes2.default.string.isRequired,
-  children: _propTypes2.default.node,
-  visibleTimeout: _propTypes2.default.number
+  dispatch: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  visibleTimeout: PropTypes.number
 }, _class.defaultProps = {
-  visibleTimeout: 120000 }, _class.contextTypes = {
-  context: _propTypes2.default.object
+  visibleTimeout: 120000 // 2 minutes
+}, _class.contextTypes = {
+  context: PropTypes.object
 }, _temp2);
-exports.default = (0, _alpReactRedux.connect)()(SubscribeContainerComponent);
+
+
+export default connect()(SubscribeContainerComponent);
 //# sourceMappingURL=index.js.map

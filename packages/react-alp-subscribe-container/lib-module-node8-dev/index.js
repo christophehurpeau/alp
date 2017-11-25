@@ -55,7 +55,7 @@ let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
   constructor(...args) {
     var _temp;
 
-    return _temp = super(...args), _initDefineProp(this, 'subscribed', _descriptor, this), this.timeout = null, this.state = {}, this.handleVisibilityChange = () => {
+    return _temp = super(...args), this.state = {}, _initDefineProp(this, 'subscribed', _descriptor, this), this.timeout = null, this.handleVisibilityChange = () => {
       if (!document.hidden) {
         if (this.timeout) {
           logger.log('timeout cleared', { name: this.props.name });
@@ -92,10 +92,6 @@ let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
     }, _temp;
   }
 
-  getWebsocket() {
-    return this.context.context.app.websocket;
-  }
-
   componentDidMount() {
     const websocket = this.getWebsocket();
     websocket.on('connect', this.subscribe);
@@ -111,6 +107,10 @@ let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
     this.unsubscribe();
   }
 
+  getWebsocket() {
+    return this.context.context.app.websocket;
+  }
+
   render() {
     return this.props.children;
   }
@@ -120,7 +120,8 @@ let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
   children: PropTypes.node,
   visibleTimeout: PropTypes.number
 }, _class2.defaultProps = {
-  visibleTimeout: 120000 }, _class2.contextTypes = {
+  visibleTimeout: 120000 // 2 minutes
+}, _class2.contextTypes = {
   context: PropTypes.object
 }, _temp2), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
   enumerable: true,

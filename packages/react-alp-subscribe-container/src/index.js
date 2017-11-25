@@ -21,15 +21,29 @@ class SubscribeContainerComponent extends Component {
     context: PropTypes.object,
   };
 
-
-  subscribed: boolean = false;
-  timeout = null;
   state = {};
+
+  componentDidMount() {
+    const websocket = this.getWebsocket();
+    websocket.on('connect', this.subscribe);
+    if (websocket.isConnected()) {
+      this.subscribe();
+    }
+    document.addEventListener('visibilitychange', this.handleVisibilityChange, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('visibilitychange', this.handleVisibilityChange, false);
+    this.getWebsocket().off('connect', this.subscribe);
+    this.unsubscribe();
+  }
 
   getWebsocket() {
     return this.context.context.app.websocket;
   }
 
+  subscribed: boolean = false;
+  timeout = null;
 
   handleVisibilityChange = () => {
     if (!document.hidden) {
@@ -56,8 +70,7 @@ class SubscribeContainerComponent extends Component {
     this.subscribed = true;
     const { dispatch, name } = this.props;
     const websocket = this.getWebsocket();
-    websocket.emit(`subscribe:${name}`)
-            .then(action => action && dispatch(action));
+    websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action));
   };
 
   unsubscribe = () => {
@@ -71,21 +84,6 @@ class SubscribeContainerComponent extends Component {
       websocket.emit(`unsubscribe:${name}`);
     }
   };
-
-  componentDidMount() {
-    const websocket = this.getWebsocket();
-    websocket.on('connect', this.subscribe);
-    if (websocket.isConnected()) {
-      this.subscribe();
-    }
-    document.addEventListener('visibilitychange', this.handleVisibilityChange, false);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('visibilitychange', this.handleVisibilityChange, false);
-    this.getWebsocket().off('connect', this.subscribe);
-    this.unsubscribe();
-  }
 
   render() {
     return this.props.children;

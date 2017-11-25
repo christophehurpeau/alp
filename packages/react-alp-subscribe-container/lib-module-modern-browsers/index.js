@@ -11,7 +11,7 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
   constructor(...args) {
     var _temp, _this;
 
-    return _temp = _this = super(...args), this.subscribed = false, this.timeout = null, this.state = {}, this.handleVisibilityChange = function () {
+    return _temp = _this = super(...args), this.state = {}, this.subscribed = false, this.timeout = null, this.handleVisibilityChange = function () {
       if (!document.hidden) {
         if (_this.timeout) {
           logger.log('timeout cleared', { name: _this.props.name });
@@ -50,10 +50,6 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
     }, _temp;
   }
 
-  getWebsocket() {
-    return this.context.context.app.websocket;
-  }
-
   componentDidMount() {
     const websocket = this.getWebsocket();
     websocket.on('connect', this.subscribe);
@@ -69,6 +65,10 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
     this.unsubscribe();
   }
 
+  getWebsocket() {
+    return this.context.context.app.websocket;
+  }
+
   render() {
     return this.props.children;
   }
@@ -78,7 +78,8 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
   children: PropTypes.node,
   visibleTimeout: PropTypes.number
 }, _class.defaultProps = {
-  visibleTimeout: 120000 }, _class.contextTypes = {
+  visibleTimeout: 120000 // 2 minutes
+}, _class.contextTypes = {
   context: PropTypes.object
 }, _temp2);
 
