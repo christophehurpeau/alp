@@ -1,3 +1,12 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/alpjs/react-alp-subscribe-container/compare/v0.6.0...v0.7.0) (2017-11-25)
+
+
+### Features
+
+* react 16 and update dependencies ([d6f0da4](https://github.com/alpjs/react-alp-subscribe-container/commit/d6f0da4))
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/alpjs/react-alp-subscribe-container/compare/v0.5.0...v0.6.0) (2017-05-09)
 
