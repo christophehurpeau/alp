@@ -1,3 +1,12 @@
+<a name="14.2.3"></a>
+## [14.2.3](https://github.com/alpjs/alp-react-redux/compare/v14.2.2...v14.2.3) (2017-11-25)
+
+
+### Bug Fixes
+
+* options sharedReducers, scriptName and styleName are optional ([2c5de44](https://github.com/alpjs/alp-react-redux/commit/2c5de44))
+
+
 <a name="14.2.2"></a>
 ## [14.2.2](https://github.com/alpjs/alp-react-redux/compare/v14.2.1...v14.2.2) (2017-11-25)
 
