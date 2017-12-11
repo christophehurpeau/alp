@@ -1,3 +1,12 @@
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/alpjs/react-alp-translate/compare/v0.6.0...v0.6.1) (2017-12-11)
+
+
+### Bug Fixes
+
+* PropsType ([b5c50b2](https://github.com/alpjs/react-alp-translate/commit/b5c50b2))
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/alpjs/react-alp-translate/compare/v0.5.0...v0.6.0) (2017-11-05)
 
