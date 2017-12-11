@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 
 type ChildrenCallbackType = (translated: string) => void;
 
-type PropsType = {|
+type PropsType = {
   id: string,
   as?: ?null,
   children?: ?ChildrenCallbackType,
-  [string]: any,
-|};
+};
 
 const TranslateComponent = ({ id, children, ...props }: PropsType, { context }) => {
   const translated = context.t(id, props);
