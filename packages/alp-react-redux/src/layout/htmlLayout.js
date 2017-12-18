@@ -48,9 +48,7 @@ export default (
     <link rel="stylesheet" href="${assetUrl(`/${styleName || 'index'}.css`, version)}" />
     ${helmet.style.toString()}
     ${polyfillFeatures &&
-      `<script defer src="${`https://polyfill.io/v2/polyfill.min.js?features=${
-        polyfillFeatures
-      }&unknown=polyfill`}"></script>`}
+      `<script defer src="${`https://polyfill.io/v2/polyfill.min.js?features=${polyfillFeatures}&unknown=polyfill`}"></script>`}
     ${helmet.script.toString()}
     ${
       scriptName === false

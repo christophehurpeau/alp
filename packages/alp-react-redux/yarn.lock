@@ -608,9 +608,9 @@ babel-plugin-discard-module-references@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-discard-module-references/-/babel-plugin-discard-module-references-1.1.2.tgz#898007cbeb472cef76ef11e1af485b41d4241747"
 
-babel-plugin-flow-runtime@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-runtime/-/babel-plugin-flow-runtime-0.10.0.tgz#de60b8c64ce0eec6b13663a129d79ec46b97cb2d"
+babel-plugin-flow-runtime@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-flow-runtime/-/babel-plugin-flow-runtime-0.11.1.tgz#5bccef681c75a126d6c81db3560dabf075e19d22"
   dependencies:
     babel-generator "^6.21.0"
     babel-traverse "^6.20.0"
@@ -619,9 +619,9 @@ babel-plugin-flow-runtime@^0.10.0:
     camelcase "^3.0.0"
     flow-config-parser "^0.3.0"
 
-babel-plugin-flow-runtime@^0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-runtime/-/babel-plugin-flow-runtime-0.11.1.tgz#5bccef681c75a126d6c81db3560dabf075e19d22"
+babel-plugin-flow-runtime@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-flow-runtime/-/babel-plugin-flow-runtime-0.15.0.tgz#fb2b427a75c1ba1cef7f0ee52111fdb8c265b992"
   dependencies:
     babel-generator "^6.21.0"
     babel-traverse "^6.20.0"
@@ -2286,6 +2286,12 @@ doctrine@^2.0.0:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
+doctrine@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.0.2.tgz#68f96ce8efc56cc42651f1faadb4f175273b0075"
+  dependencies:
+    esutils "^2.0.2"
+
 dom-walk@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
@@ -2509,13 +2515,13 @@ eslint-config-airbnb@^16.1.0:
   dependencies:
     eslint-config-airbnb-base "^12.1.0"
 
-eslint-config-pob@^17.0.0:
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-pob/-/eslint-config-pob-17.0.0.tgz#deee50f5617663f077f8899a24ef8f4bf279fd9b"
+eslint-config-pob@^17.1.0:
+  version "17.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-pob/-/eslint-config-pob-17.1.0.tgz#fa34578e2a9b1bfc211506862612e5561996448a"
 
-eslint-config-prettier@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.8.0.tgz#929861a11de0249677686eba908118175d1a26bc"
+eslint-config-prettier@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.9.0.tgz#5ecd65174d486c22dff389fe036febf502d468a3"
   dependencies:
     get-stdin "^5.0.1"
 
@@ -2547,9 +2553,9 @@ eslint-plugin-babel@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-babel/-/eslint-plugin-babel-4.1.2.tgz#79202a0e35757dd92780919b2336f1fa2fe53c1e"
 
-eslint-plugin-flowtype@^2.39.1:
-  version "2.39.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.39.1.tgz#b5624622a0388bcd969f4351131232dcb9649cd5"
+eslint-plugin-flowtype@^2.40.1:
+  version "2.40.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.40.1.tgz#f78a8e6a4cc6da831dd541eb61e803ff0279b796"
   dependencies:
     lodash "^4.15.0"
 
@@ -2568,9 +2574,9 @@ eslint-plugin-import@^2.8.0:
     minimatch "^3.0.3"
     read-pkg-up "^2.0.0"
 
-eslint-plugin-jsx-a11y@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.0.2.tgz#659277a758b036c305a7e4a13057c301cd3be73f"
+eslint-plugin-jsx-a11y@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.0.3.tgz#54583d1ae442483162e040e13cc31865465100e5"
   dependencies:
     aria-query "^0.7.0"
     array-includes "^3.0.3"
@@ -2578,11 +2584,11 @@ eslint-plugin-jsx-a11y@^6.0.2:
     axobject-query "^0.1.0"
     damerau-levenshtein "^1.0.0"
     emoji-regex "^6.1.0"
-    jsx-ast-utils "^1.4.0"
+    jsx-ast-utils "^2.0.0"
 
-eslint-plugin-prettier@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-2.3.1.tgz#e7a746c67e716f335274b88295a9ead9f544e44d"
+eslint-plugin-prettier@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-2.4.0.tgz#85cab0775c6d5e3344ef01e78d960f166fb93aae"
   dependencies:
     fast-diff "^1.1.1"
     jest-docblock "^21.0.0"
@@ -2607,9 +2613,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.11.0:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.11.0.tgz#39a8c82bc0a3783adf5a39fa27fdd9d36fac9a34"
+eslint@^4.13.1:
+  version "4.13.1"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.13.1.tgz#0055e0014464c7eb7878caf549ef2941992b444f"
   dependencies:
     ajv "^5.3.0"
     babel-code-frame "^6.22.0"
@@ -2617,7 +2623,7 @@ eslint@^4.11.0:
     concat-stream "^1.6.0"
     cross-spawn "^5.1.0"
     debug "^3.0.1"
-    doctrine "^2.0.0"
+    doctrine "^2.0.2"
     eslint-scope "^3.7.1"
     espree "^3.5.2"
     esquery "^1.0.0"
@@ -2626,7 +2632,7 @@ eslint@^4.11.0:
     file-entry-cache "^2.0.0"
     functional-red-black-tree "^1.0.1"
     glob "^7.1.2"
-    globals "^9.17.0"
+    globals "^11.0.1"
     ignore "^3.3.3"
     imurmurhash "^0.1.4"
     inquirer "^3.0.6"
@@ -3072,9 +3078,9 @@ fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
 
-fs-readdir-recursive@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/fs-readdir-recursive/-/fs-readdir-recursive-1.0.0.tgz#8cd1745c8b4f8a29c8caec392476921ba195f560"
+fs-readdir-recursive@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fs-readdir-recursive/-/fs-readdir-recursive-1.1.0.tgz#e32fc030a2ccee44a6b5371308da54be0b397d27"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -3269,7 +3275,11 @@ global@^4.3.0:
     min-document "^2.19.0"
     process "~0.5.1"
 
-globals@^9.17.0, globals@^9.18.0:
+globals@^11.0.1:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-11.1.0.tgz#632644457f5f0e3ae711807183700ebf2e4633e4"
+
+globals@^9.18.0:
   version "9.18.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-9.18.0.tgz#aa3896b3e69b487f17e31ed2143d69a8e30c2d8a"
 
@@ -4087,10 +4097,6 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jsx-ast-utils@^1.4.0:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.4.1.tgz#3867213e8dd79bf1e8f2300c0cfc1efb182c0df1"
-
 jsx-ast-utils@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-2.0.0.tgz#ec06a3d60cf307e5e119dac7bad81e89f096f0f8"
@@ -4164,14 +4170,15 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-5.0.0.tgz#f1c670e03e2fdf3f3d0eb81f72d3bcf658770e54"
+lint-staged@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-6.0.0.tgz#7ab7d345f2fe302ff196f1de6a005594ace03210"
   dependencies:
     app-root-path "^2.0.0"
     chalk "^2.1.0"
     commander "^2.11.0"
     cosmiconfig "^3.1.0"
+    debug "^3.1.0"
     dedent "^0.7.0"
     execa "^0.8.0"
     find-parent-dir "^0.3.0"
@@ -4290,9 +4297,9 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lock@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/lock/-/lock-0.1.4.tgz#fec7deaef17e7c3a0a55e1da042803e25d91745d"
+lock@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/lock/-/lock-1.1.0.tgz#53157499d1653b136ca66451071fca615703fa55"
 
 lodash-es@^4.2.0, lodash-es@^4.2.1:
   version "4.17.4"
@@ -5259,22 +5266,22 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
-pob-babel@^18.1.5:
-  version "18.1.5"
-  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-18.1.5.tgz#3220f041c7d64a28064f8fca21c4e96b4a7b07f5"
+pob-babel@^18.2.0:
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-18.2.0.tgz#a406bdbd8765a1e82390235bebb9edcec7a2db48"
   dependencies:
     babel-core "^6.26.0"
     babel-plugin-discard-module-references "^1.1.2"
-    babel-plugin-flow-runtime "^0.10.0"
+    babel-plugin-flow-runtime "^0.15.0"
     babel-preset-optimizations "^1.2.1"
     babel-preset-pob "^0.5.0"
     babel-preset-pob-stages "^0.2.4"
     babel-register "^6.26.0"
     chokidar "^1.7.0"
-    fs-readdir-recursive "^1.0.0"
+    fs-readdir-recursive "^1.1.0"
     glob "^7.1.2"
-    js-yaml "^3.9.1"
-    lock "^0.1.4"
+    js-yaml "^3.10.0"
+    lock "^1.1.0"
     minimist-argv "^1.0.0"
     mkdirp "^0.5.1"
     nightingale "^6.2.1"
@@ -5648,9 +5655,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.8.2.tgz#bff83e7fd573933c607875e5ba3abbdffb96aeb8"
+prettier@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.9.2.tgz#96bc2132f7a32338e6078aeb29727178c6335827"
 
 pretty-format@^21.1.0:
   version "21.1.0"
@@ -5848,9 +5855,9 @@ react-dev-utils@^4.2.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.1.1:
-  version "16.1.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.1.1.tgz#b2e331b6d752faf1a2d31399969399a41d8d45f8"
+react-dom@^16.2.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5915,9 +5922,9 @@ react-tree-walker@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/react-tree-walker/-/react-tree-walker-2.1.3.tgz#e781dd7ba9b5c50cc6300e3388b490f2b43b6295"
 
-react@^16.1.1:
-  version "16.1.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.1.1.tgz#d5c4ef795507e3012282dd51261ff9c0e824fe1f"
+react@^16.2.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
