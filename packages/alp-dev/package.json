@@ -81,8 +81,8 @@
     "node-sass": "^4.7.2",
     "offline-plugin": "^4.9.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
-    "pobpack-browser": "^3.2.0",
-    "pobpack-node": "^3.2.0",
+    "pobpack-browser": "^3.2.1",
+    "pobpack-node": "^3.2.1",
     "portscanner": "^2.1.1",
     "postcss": "^6.0.14",
     "postcss-loader": "^2.0.9",
@@ -114,9 +114,5 @@
   },
   "peerDependencies": {
     "ynnub": "^0.*"
-  },
-  "resolutions": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
   }
 }
