@@ -1,3 +1,7 @@
+<a name="10.6.3"></a>
+## [10.6.3](https://github.com/alpjs/alp-dev/compare/v10.6.2...v10.6.3) (2017-12-25)
+
+
 <a name="10.6.2"></a>
 ## [10.6.2](https://github.com/alpjs/alp-dev/compare/v10.6.1...v10.6.2) (2017-12-25)
 
