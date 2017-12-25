@@ -150,8 +150,9 @@ exports.default = (target, production = false) => ({
 
   plugins: [(0, _webpackConfig.createExtractPlugin)(_extractTextWebpackPlugin2.default, {
     // disable: target === 'node',
+    filename: `${
     // eslint-disable-next-line no-nested-ternary
-    filename: `${target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
+    target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
   }), new _optimizeCssAssetsWebpackPlugin2.default(), target !== 'node' && production && new _babelMinifyWebpackPlugin2.default({
     booleans: true,
     builtIns: false,

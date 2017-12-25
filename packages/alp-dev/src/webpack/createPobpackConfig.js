@@ -130,10 +130,10 @@ export default (target: TargetType, production: ?boolean = false) => ({
   plugins: [
     createExtractPlugin(ExtractTextPlugin, {
       // disable: target === 'node',
-      // eslint-disable-next-line no-nested-ternary
-      filename: `${target === 'node'
-        ? 'server'
-        : target === 'browser' ? 'es5' : 'modern-browsers'}.css`,
+      filename: `${
+        // eslint-disable-next-line no-nested-ternary
+        target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'
+      }.css`,
     }),
 
     new OptimizeCssAssetsPlugin(),
