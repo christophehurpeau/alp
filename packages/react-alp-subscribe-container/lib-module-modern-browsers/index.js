@@ -14,10 +14,10 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
     return _temp = _this = super(...args), this.state = {}, this.subscribed = false, this.timeout = null, this.handleVisibilityChange = function () {
       if (!document.hidden) {
         if (_this.timeout) {
-          logger.log('timeout cleared', { name: _this.props.name });
+          logger.log('timeout cleared', { names: _this.props.names, name: _this.props.name });
           clearTimeout(_this.timeout);
         } else {
-          logger.debug('resubscribe', { name: _this.props.name });
+          logger.debug('resubscribe', { names: _this.props.names, name: _this.props.name });
           _this.subscribe();
         }
         return;
@@ -25,27 +25,32 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
 
       if (!_this.subscribed) return;
 
-      logger.log('timeout visible', { name: _this.props.name });
+      logger.log('timeout visible', { names: _this.props.names, name: _this.props.name });
       _this.timeout = setTimeout(_this.unsubscribe, _this.props.visibleTimeout);
     }, this.subscribe = function () {
       if (document.hidden) return;
 
-      logger.log('subscribe', { name: _this.props.name });
+      logger.log('subscribe', { names: _this.props.names, name: _this.props.name });
       _this.subscribed = true;
-      const { dispatch, name } = _this.props;
+      const { dispatch } = _this.props;
+      const names = _this.props.names || [_this.props.name];
       const websocket = _this.getWebsocket();
-      websocket.emit(`subscribe:${name}`).then(function (action) {
-        return action && dispatch(action);
+      names.forEach(function (name) {
+        return websocket.emit(`subscribe:${name}`).then(function (action) {
+          return action && dispatch(action);
+        });
       });
     }, this.unsubscribe = function () {
       _this.timeout = null;
       if (!_this.subscribed) return;
-      logger.log('unsubscribe', { name: _this.props.name });
+      logger.log('unsubscribe', { names: _this.props.names, name: _this.props.name });
       _this.subscribed = false;
-      const { name } = _this.props;
+      const names = _this.props.names || [_this.props.name];
       const websocket = _this.getWebsocket();
       if (websocket.isConnected()) {
-        websocket.emit(`unsubscribe:${name}`);
+        names.forEach(function (name) {
+          return websocket.emit(`unsubscribe:${name}`);
+        });
       }
     }, _temp;
   }
@@ -74,7 +79,8 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
   }
 }, _class.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  names: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.node,
   visibleTimeout: PropTypes.number
 }, _class.defaultProps = {

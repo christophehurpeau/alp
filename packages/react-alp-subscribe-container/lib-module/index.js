@@ -32,10 +32,10 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _this.subscribed = false, _this.timeout = null, _this.handleVisibilityChange = function () {
       if (!document.hidden) {
         if (_this.timeout) {
-          logger.log('timeout cleared', { name: _this.props.name });
+          logger.log('timeout cleared', { names: _this.props.names, name: _this.props.name });
           clearTimeout(_this.timeout);
         } else {
-          logger.debug('resubscribe', { name: _this.props.name });
+          logger.debug('resubscribe', { names: _this.props.names, name: _this.props.name });
           _this.subscribe();
         }
         return;
@@ -43,31 +43,33 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
 
       if (!_this.subscribed) return;
 
-      logger.log('timeout visible', { name: _this.props.name });
+      logger.log('timeout visible', { names: _this.props.names, name: _this.props.name });
       _this.timeout = setTimeout(_this.unsubscribe, _this.props.visibleTimeout);
     }, _this.subscribe = function () {
       if (document.hidden) return;
 
-      logger.log('subscribe', { name: _this.props.name });
+      logger.log('subscribe', { names: _this.props.names, name: _this.props.name });
       _this.subscribed = true;
-      var _this$props = _this.props,
-          dispatch = _this$props.dispatch,
-          name = _this$props.name;
+      var dispatch = _this.props.dispatch;
 
+      var names = _this.props.names || [_this.props.name];
       var websocket = _this.getWebsocket();
-      websocket.emit('subscribe:' + name).then(function (action) {
-        return action && dispatch(action);
+      names.forEach(function (name) {
+        return websocket.emit('subscribe:' + name).then(function (action) {
+          return action && dispatch(action);
+        });
       });
     }, _this.unsubscribe = function () {
       _this.timeout = null;
       if (!_this.subscribed) return;
-      logger.log('unsubscribe', { name: _this.props.name });
+      logger.log('unsubscribe', { names: _this.props.names, name: _this.props.name });
       _this.subscribed = false;
-      var name = _this.props.name;
-
+      var names = _this.props.names || [_this.props.name];
       var websocket = _this.getWebsocket();
       if (websocket.isConnected()) {
-        websocket.emit('unsubscribe:' + name);
+        names.forEach(function (name) {
+          return websocket.emit('unsubscribe:' + name);
+        });
       }
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -104,7 +106,8 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
   return SubscribeContainerComponent;
 }(Component), _class.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  names: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.node,
   visibleTimeout: PropTypes.number
 }, _class.defaultProps = {

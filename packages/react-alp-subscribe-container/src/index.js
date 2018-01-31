@@ -8,7 +8,8 @@ const logger = new Logger('react-alp-subscribe-container');
 class SubscribeContainerComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    names: PropTypes.arrayOf(PropTypes.string.isRequired),
     children: PropTypes.node,
     visibleTimeout: PropTypes.number,
   };
@@ -48,10 +49,10 @@ class SubscribeContainerComponent extends Component {
   handleVisibilityChange = () => {
     if (!document.hidden) {
       if (this.timeout) {
-        logger.log('timeout cleared', { name: this.props.name });
+        logger.log('timeout cleared', { names: this.props.names, name: this.props.name });
         clearTimeout(this.timeout);
       } else {
-        logger.debug('resubscribe', { name: this.props.name });
+        logger.debug('resubscribe', { names: this.props.names, name: this.props.name });
         this.subscribe();
       }
       return;
@@ -59,29 +60,32 @@ class SubscribeContainerComponent extends Component {
 
     if (!this.subscribed) return;
 
-    logger.log('timeout visible', { name: this.props.name });
+    logger.log('timeout visible', { names: this.props.names, name: this.props.name });
     this.timeout = setTimeout(this.unsubscribe, this.props.visibleTimeout);
   };
 
   subscribe = () => {
     if (document.hidden) return;
 
-    logger.log('subscribe', { name: this.props.name });
+    logger.log('subscribe', { names: this.props.names, name: this.props.name });
     this.subscribed = true;
-    const { dispatch, name } = this.props;
+    const { dispatch } = this.props;
+    const names = this.props.names || [this.props.name];
     const websocket = this.getWebsocket();
-    websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action));
+    names.forEach(name =>
+      websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action)),
+    );
   };
 
   unsubscribe = () => {
     this.timeout = null;
     if (!this.subscribed) return;
-    logger.log('unsubscribe', { name: this.props.name });
+    logger.log('unsubscribe', { names: this.props.names, name: this.props.name });
     this.subscribed = false;
-    const { name } = this.props;
+    const names = this.props.names || [this.props.name];
     const websocket = this.getWebsocket();
     if (websocket.isConnected()) {
-      websocket.emit(`unsubscribe:${name}`);
+      names.forEach(name => websocket.emit(`unsubscribe:${name}`));
     }
   };
 

@@ -76,10 +76,10 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
     return _temp = super(...args), this.state = {}, _initDefineProp(this, 'subscribed', _descriptor, this), this.timeout = null, this.handleVisibilityChange = () => {
       if (!document.hidden) {
         if (this.timeout) {
-          logger.log('timeout cleared', { name: this.props.name });
+          logger.log('timeout cleared', { names: this.props.names, name: this.props.name });
           clearTimeout(this.timeout);
         } else {
-          logger.debug('resubscribe', { name: this.props.name });
+          logger.debug('resubscribe', { names: this.props.names, name: this.props.name });
           this.subscribe();
         }
         return;
@@ -87,25 +87,26 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
 
       if (!this.subscribed) return;
 
-      logger.log('timeout visible', { name: this.props.name });
+      logger.log('timeout visible', { names: this.props.names, name: this.props.name });
       this.timeout = setTimeout(this.unsubscribe, this.props.visibleTimeout);
     }, this.subscribe = () => {
       if (document.hidden) return;
 
-      logger.log('subscribe', { name: this.props.name });
+      logger.log('subscribe', { names: this.props.names, name: this.props.name });
       this.subscribed = true;
-      const { dispatch, name } = this.props;
+      const { dispatch } = this.props;
+      const names = this.props.names || [this.props.name];
       const websocket = this.getWebsocket();
-      websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action));
+      names.forEach(name => websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action)));
     }, this.unsubscribe = () => {
       this.timeout = null;
       if (!this.subscribed) return;
-      logger.log('unsubscribe', { name: this.props.name });
+      logger.log('unsubscribe', { names: this.props.names, name: this.props.name });
       this.subscribed = false;
-      const { name } = this.props;
+      const names = this.props.names || [this.props.name];
       const websocket = this.getWebsocket();
       if (websocket.isConnected()) {
-        websocket.emit(`unsubscribe:${name}`);
+        names.forEach(name => websocket.emit(`unsubscribe:${name}`));
       }
     }, _temp;
   }
@@ -134,7 +135,8 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
   }
 }, _class2.propTypes = {
   dispatch: _propTypes2.default.func.isRequired,
-  name: _propTypes2.default.string.isRequired,
+  name: _propTypes2.default.string,
+  names: _propTypes2.default.arrayOf(_propTypes2.default.string.isRequired),
   children: _propTypes2.default.node,
   visibleTimeout: _propTypes2.default.number
 }, _class2.defaultProps = {
