@@ -1,3 +1,12 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/alpjs/react-alp-subscribe-container/compare/v0.7.0...v0.8.0) (2018-01-31)
+
+
+### Features
+
+* add names ([461e383](https://github.com/alpjs/react-alp-subscribe-container/commit/461e383))
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/alpjs/react-alp-subscribe-container/compare/v0.6.0...v0.7.0) (2017-11-25)
 
