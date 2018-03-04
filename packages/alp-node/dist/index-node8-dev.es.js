@@ -4,38 +4,36 @@ import { deprecate } from 'util';
 import Koa from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
-import _config, { Config } from 'alp-config/src';
-import errors from 'alp-errors-node/src';
-import params from 'alp-params/src';
-import language from 'alp-language/src';
-import translate from 'alp-translate';
-import _listen from 'alp-listen/src';
-import Logger from 'nightingale-logger/src';
-import findUp from 'findup-sync';
-
+import _config, { Config } from 'alp-config';
 export { Config } from 'alp-config';
+import errors from 'alp-errors-node';
+import params from 'alp-params';
+import language from 'alp-language';
+import translate from 'alp-translate';
+import _listen from 'alp-listen';
+import Logger from 'nightingale-logger';
+import findUp from 'findup-sync';
+import t from 'flow-runtime';
 
 const logger = new Logger('alp');
 
-export const appDirname = path.dirname(process.argv[1]);
+const appDirname = path.dirname(process.argv[1]);
 
 const packagePath = findUp('package.json', { cwd: appDirname });
 if (!packagePath) throw new Error(`Could not find package.json: "${packagePath}"`);
-export const packageDirname = path.dirname(packagePath);
+const packageDirname = path.dirname(packagePath);
 
 logger.debug('init', { appDirname, packageDirname });
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
-export const packageConfig = require(packagePath);
+const packageConfig = require(packagePath);
 
 const buildedConfigPath = `${appDirname}/build/config/`;
 const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
-export const config = new Config(configPath);
+const config = new Config(configPath);
 config.loadSync({ packageConfig });
 
-export default class Alp extends Koa {
-  dirname: string;
-  packageDirname: string;
+let Alp = class extends Koa {
 
   /**
    * @param {Object} [options]
@@ -65,7 +63,7 @@ export default class Alp extends Koa {
     Object.defineProperty(this, 'packageDirname', {
       get: deprecate(() => packageDirname, 'packageDirname'),
       configurable: false,
-      enumerable: false,
+      enumerable: false
     });
 
     this.certPath = options.certPath || `${packageDirname}/config/cert`;
@@ -98,12 +96,10 @@ export default class Alp extends Koa {
   }
 
   listen() {
-    return _listen(this.certPath)(this)
-      .then(server => (this._server = server))
-      .catch(err => {
-        logger.error(err);
-        throw err;
-      });
+    return _listen(this.certPath)(this).then(server => this._server = server).catch(err => {
+      logger.error(err);
+      throw err;
+    });
   }
 
   /**
@@ -116,9 +112,15 @@ export default class Alp extends Koa {
     }
   }
 
-  start(fn: Function) {
-    fn()
-      .then(() => logger.success('started'))
-      .catch(err => logger.error('start fail', { err }));
+  start(fn) {
+    let _fnType = t.function();
+
+    t.param('fn', _fnType).assert(fn);
+
+    fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
   }
-}
+};
+
+export default Alp;
+export { appDirname, packageDirname, packageConfig, config };
+//# sourceMappingURL=index-node8-dev.es.js.map
