@@ -1,3 +1,7 @@
+<a name="0.37.0"></a>
+# [0.37.0](https://github.com/alpjs/alp-node/compare/v0.36.0...v0.37.0) (2018-03-04)
+
+
 <a name="0.36.0"></a>
 # [0.36.0](https://github.com/alpjs/alp-node/compare/v0.35.0...v0.36.0) (2017-08-27)
 
