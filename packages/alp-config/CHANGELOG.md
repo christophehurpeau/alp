@@ -1,3 +1,12 @@
+<a name="3.5.1"></a>
+## [3.5.1](https://github.com/alpjs/alp-config/compare/v3.5.0...v3.5.1) (2018-03-23)
+
+
+### Bug Fixes
+
+* flow optional ([bdcccbc](https://github.com/alpjs/alp-config/commit/bdcccbc))
+
+
 <a name="3.5.0"></a>
 # [3.5.0](https://github.com/alpjs/alp-config/compare/v3.4.0...v3.5.0) (2017-08-16)
 
