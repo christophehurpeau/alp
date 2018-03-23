@@ -1,3 +1,12 @@
+<a name="0.37.1"></a>
+## [0.37.1](https://github.com/alpjs/alp-node/compare/v0.37.0...v0.37.1) (2018-03-23)
+
+
+### Bug Fixes
+
+* use JSON.parse and readFileSync to load package config ([5379b51](https://github.com/alpjs/alp-node/commit/5379b51))
+
+
 <a name="0.37.0"></a>
 # [0.37.0](https://github.com/alpjs/alp-node/compare/v0.36.0...v0.37.0) (2018-03-04)
 
