@@ -2,13 +2,25 @@
   "pob": {
     "pob-config": {
       "envs": [
-        "node8"
+        {
+          "target": "node",
+          "version": "8",
+          "formats": [
+            "cjs"
+          ]
+        }
       ],
       "testing": false,
       "documentation": false,
       "doclets": false,
       "entries": [
-        "index"
+        "watch",
+        "watch-browser",
+        "watch-node",
+        "build",
+        "build-modern-browser",
+        "build-node",
+        "build-older-browser"
       ]
     }
   }

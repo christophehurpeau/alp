@@ -1,9 +1,9 @@
-const { readFileSync } = require('fs');
-const path = require('path');
-const { safeLoad: saveLoadYml } = require('js-yaml');
+import { readFileSync } from 'fs';
+import path from 'path';
+import { safeLoad as saveLoadYml } from 'js-yaml';
 
-module.exports = function loadConfigFile(content, dirname) {
-  let data = saveLoadYml(content) || {};
+export default function loadConfigFile(content, dirname) {
+  const data = saveLoadYml(content) || {};
 
   const config = data.shared || data.common || {};
   const serverConfig = { ...config, ...data.server };
@@ -37,4 +37,4 @@ module.exports = function loadConfigFile(content, dirname) {
   }
 
   return [serverConfig, browserConfig];
-};
+}

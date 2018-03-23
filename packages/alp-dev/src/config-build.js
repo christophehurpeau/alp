@@ -1,8 +1,8 @@
-const glob = require('glob');
-const readFile = require('./utils/readFile');
-const writeFile = require('./utils/writeFile');
-const { dirname, join } = require('path');
-const loadConfigFile = require('./utils/loadConfigFile');
+import { dirname, join } from 'path';
+import glob from 'glob';
+import readFile from './utils/readFile';
+import writeFile from './utils/writeFile';
+import loadConfigFile from './utils/loadConfigFile';
 
 export const clean = () => {};
 

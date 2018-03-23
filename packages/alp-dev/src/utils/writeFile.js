@@ -1,9 +1,9 @@
-const fs = require('fs');
-const path = require('path');
-const mkdirp = require('mkdirp');
+import fs from 'fs';
+import path from 'path';
+import mkdirp from 'mkdirp';
 
-module.exports = function writeFile(target, content) {
-  return new Promise((resolve, reject) => {
+export default (target, content) =>
+  new Promise((resolve, reject) => {
     mkdirp(path.dirname(target), () => {
       fs.writeFile(target, content, err => {
         if (err) {
@@ -14,4 +14,3 @@ module.exports = function writeFile(target, content) {
       });
     });
   });
-};
