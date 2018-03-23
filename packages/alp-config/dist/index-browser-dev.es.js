@@ -1,8 +1,8 @@
+import { existsSync, readFileSync } from 'fs';
 import { deprecate } from 'util';
 import argv from 'minimist-argv';
 import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
-import { existsSync, readFileSync } from 'fs';
 import t from 'flow-runtime';
 
 var classCallCheck = function (instance, Constructor) {
@@ -90,7 +90,7 @@ function _loadConfigSync(dirname, name) {
   return parseJSON(content);
 }
 
-var ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string()))), t.property('packageConfig', t.nullable(t.object())), t.property('version', t.nullable(t.string()))));
+var ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string())), true), t.property('packageConfig', t.nullable(t.object()), true), t.property('version', t.nullable(t.string()), true)));
 
 
 var Config = function () {
@@ -218,7 +218,8 @@ var Config = function () {
         }
       });
 
-      return _returnType.assert(this._map = deepFreeze(config));
+      this._map = deepFreeze(config);
+      return _returnType.assert(this._map);
     }
   }, {
     key: 'get',

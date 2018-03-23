@@ -1,8 +1,8 @@
+import { existsSync, readFileSync } from 'fs';
 import { deprecate } from 'util';
 import argv from 'minimist-argv';
 import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
-import { existsSync, readFileSync } from 'fs';
 import t from 'flow-runtime';
 
 function _existsConfigSync(dirname, name) {
@@ -24,11 +24,11 @@ function _loadConfigSync(dirname, name) {
   t.param('dirname', _dirnameType2).assert(dirname);
   t.param('name', _nameType2).assert(name);
 
-  let content = readFileSync(`${dirname}${name}.json`);
+  const content = readFileSync(`${dirname}${name}.json`);
   return parseJSON(content);
 }
 
-const ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string()))), t.property('packageConfig', t.nullable(t.object())), t.property('version', t.nullable(t.string()))));
+const ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string())), true), t.property('packageConfig', t.nullable(t.object()), true), t.property('version', t.nullable(t.string()), true)));
 
 
 let Config = class {
@@ -53,13 +53,13 @@ let Config = class {
 
     const config = this.loadConfigSync('common');
     // eslint-disable-next-line no-restricted-syntax
-    for (let [key, value] of this.loadConfigSync(env)) {
+    for (const [key, value] of this.loadConfigSync(env)) {
       config.set(key, value);
     }
 
     if (this.existsConfigSync('local')) {
       // eslint-disable-next-line no-restricted-syntax
-      for (let [key, value] of this.loadConfigSync('local')) {
+      for (const [key, value] of this.loadConfigSync('local')) {
         config.set(key, value);
       }
     }
@@ -70,7 +70,7 @@ let Config = class {
 
     config.set('version', version || argv.version || packageConfig.version);
 
-    let socketPath = argv['socket-path'] || argv.socketPath;
+    const socketPath = argv['socket-path'] || argv.socketPath;
     if (socketPath) {
       config.set('socketPath', socketPath);
     } else if (argv.port) {
@@ -95,7 +95,8 @@ let Config = class {
       }
     });
 
-    return _returnType.assert(this._map = deepFreeze(config));
+    this._map = deepFreeze(config);
+    return _returnType.assert(this._map);
   }
 
   get(key) {

@@ -4,11 +4,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var fs = require('fs');
 var util = require('util');
 var argv = _interopDefault(require('minimist-argv'));
 var deepFreeze = _interopDefault(require('deep-freeze-es6'));
 var parseJSON = _interopDefault(require('parse-json-object-as-map'));
-var fs = require('fs');
 var t = _interopDefault(require('flow-runtime'));
 
 function _existsConfigSync(dirname, name) {
@@ -30,11 +30,11 @@ function _loadConfigSync(dirname, name) {
   t.param('dirname', _dirnameType2).assert(dirname);
   t.param('name', _nameType2).assert(name);
 
-  let content = fs.readFileSync(`${dirname}${name}.json`);
+  const content = fs.readFileSync(`${dirname}${name}.json`);
   return parseJSON(content);
 }
 
-const ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string()))), t.property('packageConfig', t.nullable(t.object())), t.property('version', t.nullable(t.string()))));
+const ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string())), true), t.property('packageConfig', t.nullable(t.object()), true), t.property('version', t.nullable(t.string()), true)));
 
 
 let Config = class {
@@ -59,13 +59,13 @@ let Config = class {
 
     const config = this.loadConfigSync('common');
     // eslint-disable-next-line no-restricted-syntax
-    for (let [key, value] of this.loadConfigSync(env)) {
+    for (const [key, value] of this.loadConfigSync(env)) {
       config.set(key, value);
     }
 
     if (this.existsConfigSync('local')) {
       // eslint-disable-next-line no-restricted-syntax
-      for (let [key, value] of this.loadConfigSync('local')) {
+      for (const [key, value] of this.loadConfigSync('local')) {
         config.set(key, value);
       }
     }
@@ -76,7 +76,7 @@ let Config = class {
 
     config.set('version', version || argv.version || packageConfig.version);
 
-    let socketPath = argv['socket-path'] || argv.socketPath;
+    const socketPath = argv['socket-path'] || argv.socketPath;
     if (socketPath) {
       config.set('socketPath', socketPath);
     } else if (argv.port) {
@@ -97,7 +97,8 @@ let Config = class {
       }
     });
 
-    return _returnType.assert(this._map = deepFreeze(config));
+    this._map = deepFreeze(config);
+    return _returnType.assert(this._map);
   }
 
   get(key) {

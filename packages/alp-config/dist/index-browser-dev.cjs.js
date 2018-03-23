@@ -4,11 +4,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var fs = require('fs');
 var util = require('util');
 var argv = _interopDefault(require('minimist-argv'));
 var deepFreeze = _interopDefault(require('deep-freeze-es6'));
 var parseJSON = _interopDefault(require('parse-json-object-as-map'));
-var fs = require('fs');
 var t = _interopDefault(require('flow-runtime'));
 
 var classCallCheck = function (instance, Constructor) {
@@ -96,7 +96,7 @@ function _loadConfigSync(dirname, name) {
   return parseJSON(content);
 }
 
-var ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string()))), t.property('packageConfig', t.nullable(t.object())), t.property('version', t.nullable(t.string()))));
+var ConfigOptions = t.type('ConfigOptions', t.exactObject(t.property('argv', t.nullable(t.array(t.string())), true), t.property('packageConfig', t.nullable(t.object()), true), t.property('version', t.nullable(t.string()), true)));
 
 
 var Config = function () {
@@ -224,7 +224,8 @@ var Config = function () {
         }
       });
 
-      return _returnType.assert(this._map = deepFreeze(config));
+      this._map = deepFreeze(config);
+      return _returnType.assert(this._map);
     }
   }, {
     key: 'get',

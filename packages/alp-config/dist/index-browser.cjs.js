@@ -4,11 +4,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var fs = require('fs');
 var util = require('util');
 var argv = _interopDefault(require('minimist-argv'));
 var deepFreeze = _interopDefault(require('deep-freeze-es6'));
 var parseJSON = _interopDefault(require('parse-json-object-as-map'));
-var fs = require('fs');
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -198,7 +198,8 @@ var Config = function () {
         }
       });
 
-      return this._map = deepFreeze(config);
+      this._map = deepFreeze(config);
+      return this._map;
     }
   }, {
     key: 'get',

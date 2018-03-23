@@ -1,22 +1,22 @@
+import { existsSync, readFileSync } from 'fs';
 import { deprecate } from 'util';
 import argv from 'minimist-argv';
 import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
-import { existsSync, readFileSync } from 'fs';
 
 function _existsConfigSync(dirname: string, name: string) {
   return existsSync(`${dirname}${name}.json`);
 }
 
 function _loadConfigSync(dirname: string, name: string) {
-  let content = readFileSync(`${dirname}${name}.json`);
+  const content = readFileSync(`${dirname}${name}.json`);
   return parseJSON(content);
 }
 
 type ConfigOptions = {|
-  argv: ?Array<string>,
-  packageConfig: ?Object,
-  version: ?string,
+  argv?: ?Array<string>,
+  packageConfig?: ?Object,
+  version?: ?string,
 |};
 
 export class Config {
@@ -36,13 +36,13 @@ export class Config {
 
     const config = this.loadConfigSync('common');
     // eslint-disable-next-line no-restricted-syntax
-    for (let [key, value] of this.loadConfigSync(env)) {
+    for (const [key, value] of this.loadConfigSync(env)) {
       config.set(key, value);
     }
 
     if (this.existsConfigSync('local')) {
       // eslint-disable-next-line no-restricted-syntax
-      for (let [key, value] of this.loadConfigSync('local')) {
+      for (const [key, value] of this.loadConfigSync('local')) {
         config.set(key, value);
       }
     }
@@ -53,7 +53,7 @@ export class Config {
 
     config.set('version', version || argv.version || packageConfig.version);
 
-    let socketPath = argv['socket-path'] || argv.socketPath;
+    const socketPath = argv['socket-path'] || argv.socketPath;
     if (socketPath) {
       config.set('socketPath', socketPath);
     } else if (argv.port) {
@@ -79,7 +79,8 @@ export class Config {
       }
     });
 
-    return (this._map = deepFreeze(config));
+    this._map = deepFreeze(config);
+    return this._map;
   }
 
   get(key: string): any {

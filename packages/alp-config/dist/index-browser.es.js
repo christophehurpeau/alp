@@ -1,8 +1,8 @@
+import { existsSync, readFileSync } from 'fs';
 import { deprecate } from 'util';
 import argv from 'minimist-argv';
 import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
-import { existsSync, readFileSync } from 'fs';
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -192,7 +192,8 @@ var Config = function () {
         }
       });
 
-      return this._map = deepFreeze(config);
+      this._map = deepFreeze(config);
+      return this._map;
     }
   }, {
     key: 'get',
