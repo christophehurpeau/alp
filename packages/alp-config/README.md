@@ -1,9 +1,16 @@
-# alp-config [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  alp-config
+</h3>
 
-config in alp framework
+<p align="center">
+  config in alp framework
+</p>
 
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+<p align="center">
+  <a href="https://npmjs.org/package/alp-config"><img src="https://img.shields.io/npm/v/alp-config.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/alpjs/alp-config"><img src="https://david-dm.org/alpjs/alp-config.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/alpjs/alp-config"><img src="https://dependencyci.com/github/alpjs/alp-config/badge?style=flat-square"></a>
+</p>
 
 ## In your app
 
@@ -48,10 +55,3 @@ import config from './config';
 
 const app = new Alp({ config });
 ```
-
-[npm-image]: https://img.shields.io/npm/v/alp-config.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/alp-config
-[daviddm-image]: https://david-dm.org/alpjs/alp-config.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/alp-config
-[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-config/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-config
