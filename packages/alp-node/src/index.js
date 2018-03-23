@@ -1,4 +1,4 @@
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import { deprecate } from 'util';
 import Koa from 'koa';
@@ -26,7 +26,7 @@ export const packageDirname = path.dirname(packagePath);
 logger.debug('init', { appDirname, packageDirname });
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
-export const packageConfig = require(packagePath);
+export const packageConfig = JSON.parse(readFileSync(packagePath));
 
 const buildedConfigPath = `${appDirname}/build/config/`;
 const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
