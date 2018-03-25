@@ -3834,9 +3834,11 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-properties@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/object-properties/-/object-properties-2.0.0.tgz#e43dc3c0436204382dd8f56bfd271551260dca1e"
+object-properties@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/object-properties/-/object-properties-3.0.0.tgz#c4b7dc7c92ee5cf3c6ff46830f27d51185b34bdc"
+  dependencies:
+    flow-runtime "^0.17.0"
 
 object-visit@^1.0.0:
   version "1.0.1"
@@ -4061,9 +4063,9 @@ pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
 
-pob-babel@^20.1.0:
-  version "20.1.0"
-  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-20.1.0.tgz#c7c906cebab1eff6f4e2220334321f316871c0a4"
+pob-babel@^20.1.1:
+  version "20.1.1"
+  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-20.1.1.tgz#5182b46c06dbc90b797f9075ea4ec3d79cbb0108"
   dependencies:
     babel-cli "^6.26.0"
     babel-plugin-add-jsdoc-annotations "^5.1.0"
