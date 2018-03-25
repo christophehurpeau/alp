@@ -1,4 +1,5 @@
 import { defineLazyProperty } from 'object-properties';
+import t from 'flow-runtime';
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -157,31 +158,65 @@ var ParamValidatorValid = function (_ParamValidator) {
 function alpParams(app) {
   Object.assign(app.context, {
     param: function param(name) {
-      return this.namedParam(name) || this.paramGET(name);
+      var _nameType = t.string();
+
+      var _returnType = t.return(t.nullable(t.string()));
+
+      t.param('name', _nameType).assert(name);
+
+      return _returnType.assert(this.namedParam(name) || this.paramGET(name));
     },
     namedParam: function namedParam(name) {
+      var _nameType2 = t.string();
+
+      var _returnType2 = t.return(t.nullable(t.string()));
+
+      t.param('name', _nameType2).assert(name);
+
       var namedParams = this.route.namedParams;
-      return namedParams && namedParams.get(name);
+      return _returnType2.assert(namedParams && namedParams.get(name));
     },
     otherParam: function otherParam(position) {
+      var _positionType = t.number();
+
+      var _returnType3 = t.return(t.nullable(t.string()));
+
+      t.param('position', _positionType).assert(position);
+
       var otherParams = this.route.otherParams;
-      return otherParams && otherParams[position - 1];
+      return _returnType3.assert(otherParams && otherParams[position - 1]);
     },
     paramGET: function paramGET(name) {
+      var _nameType3 = t.string();
+
+      var _returnType4 = t.return(t.nullable(t.string()));
+
+      t.param('name', _nameType3).assert(name);
+
       var query = this.query;
-      return query && query[name];
+      return _returnType4.assert(query && query[name]);
     },
     paramGETorPOST: function paramGETorPOST(name) {
-      return this.body[name] !== undefined ? this.body[name] : this.query[name];
+      var _nameType4 = t.string();
+
+      var _returnType5 = t.return(t.nullable(t.string()));
+
+      t.param('name', _nameType4).assert(name);
+
+      return _returnType5.assert(this.body[name] !== undefined ? this.body[name] : this.query[name]);
     }
   });
 
   defineLazyProperty(app.context, 'params', function () {
-    return new ParamValidator(this);
+    var _returnType6 = t.return(t.ref(ParamValidator));
+
+    return _returnType6.assert(new ParamValidator(this));
   });
 
   defineLazyProperty(app.context, 'validParams', function () {
-    return new ParamValidatorValid(this);
+    var _returnType7 = t.return(t.ref(ParamValidatorValid));
+
+    return _returnType7.assert(new ParamValidatorValid(this));
   });
 }
 

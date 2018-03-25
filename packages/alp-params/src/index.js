@@ -6,35 +6,35 @@ export { ParamValidator };
 
 export default function alpParams(app) {
   Object.assign(app.context, {
-    param(name) {
+    param(name: string): ?string {
       return this.namedParam(name) || this.paramGET(name);
     },
 
-    namedParam(name) {
-      let namedParams = this.route.namedParams;
+    namedParam(name: string): ?string {
+      const namedParams = this.route.namedParams;
       return namedParams && namedParams.get(name);
     },
 
-    otherParam(position) {
-      let otherParams = this.route.otherParams;
+    otherParam(position: number): ?string {
+      const otherParams = this.route.otherParams;
       return otherParams && otherParams[position - 1];
     },
 
-    paramGET(name) {
-      let query = this.query;
+    paramGET(name: string): ?string {
+      const query = this.query;
       return query && query[name];
     },
 
-    paramGETorPOST(name) {
+    paramGETorPOST(name: string): ?string {
       return this.body[name] !== undefined ? this.body[name] : this.query[name];
     },
   });
 
-  defineLazyProperty(app.context, 'params', function() {
+  defineLazyProperty(app.context, 'params', function(): ParamValidator {
     return new ParamValidator(this);
   });
 
-  defineLazyProperty(app.context, 'validParams', function() {
+  defineLazyProperty(app.context, 'validParams', function(): ParamValidatorValid {
     return new ParamValidatorValid(this);
   });
 }

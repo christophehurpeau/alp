@@ -78,17 +78,17 @@ function alpParams(app) {
     },
 
     namedParam(name) {
-      let namedParams = this.route.namedParams;
+      const namedParams = this.route.namedParams;
       return namedParams && namedParams.get(name);
     },
 
     otherParam(position) {
-      let otherParams = this.route.otherParams;
+      const otherParams = this.route.otherParams;
       return otherParams && otherParams[position - 1];
     },
 
     paramGET(name) {
-      let query = this.query;
+      const query = this.query;
       return query && query[name];
     },
 
