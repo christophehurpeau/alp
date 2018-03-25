@@ -1,3 +1,12 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/alpjs/alp-params/compare/v0.4.0...v0.5.0) (2018-03-25)
+
+
+### Features
+
+* update object-properties ([db65a25](https://github.com/alpjs/alp-params/commit/db65a25))
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/alpjs/alp-params/compare/v0.3.0...v0.4.0) (2017-08-16)
 
