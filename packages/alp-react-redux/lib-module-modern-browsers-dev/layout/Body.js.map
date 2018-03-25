@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/layout/Body.jsx"],"names":["children"],"mappings":";AAAA,gBAAe,cAAC,EAAEA,QAAF,EAAD;AAAA,SAAkB;AAAA;AAAA;AAAMA;AAAN,GAAlB;AAAA,CAAf","file":"Body.jsx","sourcesContent":["export default ({ children }) => <div>{children}</div>;\n"]}

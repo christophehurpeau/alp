@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux/src';
-import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
 import identityReducer from '../utils/identityReducer';
+import { promiseMiddleware, createFunctionMiddleware } from './middleware-browser';
 
 export default (app, ctx, moduleReducer, { middlewares, sharedReducers }) => {
   const reducers = {

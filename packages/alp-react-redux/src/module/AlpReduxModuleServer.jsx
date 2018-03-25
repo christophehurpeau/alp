@@ -1,6 +1,6 @@
 import { type Node } from 'react';
-import AlpModule from './AlpModule';
 import type { ReducerDictionaryType } from '../types';
+import AlpModule from './AlpModule';
 
 type PropsType = {|
   reducers: ?ReducerDictionaryType,

@@ -1,9 +1,10 @@
 [ignore]
 <PROJECT_ROOT>/index.js
-<PROJECT_ROOT>/lib.*
-.*/lib-node(4|5|6|7|8)(-dev)?/.*
-.*/lib-module(-node(7|8)|-modern-browsers)?(-dev)?/.*
-.*/node_modules/.*
+.*/docs/.*
+.*/dist/.*
+.*/node_modules/.*/__tests__/.*
+.*/node_modules/.*/test/.*
+.*/node_modules/.*/.*\.test.*
 
 [include]
 

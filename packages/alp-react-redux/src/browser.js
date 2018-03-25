@@ -1,7 +1,6 @@
 import contentLoaded from 'content-loaded';
 import React from 'react';
 import { hydrate } from 'react-dom';
-import Helmet from 'react-helmet';
 import reactTreeWalker from 'react-tree-walker';
 import Logger from 'nightingale-logger/src';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -12,7 +11,7 @@ import createBrowserModuleStoreReducer from './store/createBrowserModuleStoreRed
 import createModuleVisitor from './module/createModuleVisitor';
 import type { ReduxActionType } from './types';
 
-export { Helmet };
+export Helmet from 'react-helmet';
 export { combineReducers } from 'redux/src';
 export { connect } from 'react-redux/src';
 export {
@@ -30,9 +29,9 @@ export AppContainer from './layout/AppContainer';
 
 const logger = new Logger('alp:react-redux');
 
-const renderApp = App => hydrate(React.createElement(App), document.getElementById('react-app'));
+const hydrateApp = App => hydrate(React.createElement(App), document.getElementById('react-app'));
 
-const preRender = async (ctx, appElement) => {
+const preRender = async function preRender(ctx, appElement) {
   const moduleVisitor = createModuleVisitor();
   const preRenderStore = { getState: () => ({ ctx }) };
   const PreRenderWrappedApp = createAlpAppWrapper(appElement, {
@@ -56,7 +55,7 @@ export default app => {
   app.reduxMiddlewares = [];
 
   return {
-    renderApp: async (App, { middlewares = [], sharedReducers } = {}) => {
+    renderApp: async function renderApp(App, { middlewares = [], sharedReducers } = {}) {
       let store;
       let moduleStoreReducer;
 
@@ -100,7 +99,7 @@ export default app => {
         });
 
         await contentLoaded();
-        renderApp(WrappedApp);
+        hydrateApp(WrappedApp);
         logger.success('rendered');
       };
 

@@ -9,6 +9,7 @@ export default class AlpModule extends Component {
 
   render(): Node {
     if (!PRODUCTION) {
+      // eslint-disable-next-line react/prop-types
       if (this.props.reducers) {
         throw new Error('You have reducers, probably want to use AlpReduxModule.');
       }

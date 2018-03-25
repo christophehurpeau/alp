@@ -8,6 +8,7 @@ import htmlLayout from './layout/htmlLayout';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import createServerStore from './store/createServerStore';
 import createModuleVisitor from './module/createModuleVisitor';
+import type { ReduxActionType } from './types';
 
 export { Helmet };
 export { combineReducers } from 'redux/src';
@@ -36,10 +37,10 @@ const renderHtml = (app, options) => {
 const isModernBrowser = createIsModernBrowser();
 
 type OptionsType = {|
-  sharedReducers?: ?{ [string]: any },
-  scriptName?: ?string | false,
-  styleName?: ?string | false,
   polyfillFeatures?: ?string,
+  scriptName?: ?string | false,
+  sharedReducers?: ?{ [string]: any },
+  styleName?: ?string | false,
 |};
 
 export default () => app => {
@@ -85,7 +86,7 @@ export default () => app => {
 
 const loggerWebsocket = logger.child('websocket');
 
-export function emitAction(to, action) {
+export function emitAction(to: string, action: ReduxActionType) {
   loggerWebsocket.debug('emitAction', action);
   to.emit('redux:action', action);
 }
