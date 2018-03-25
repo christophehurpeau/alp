@@ -1,9 +1,16 @@
-# alp-node [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  alp-node
+</h3>
 
-framework based on koa 2
+<p align="center">
+  framework based on koa 2
+</p>
 
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+<p align="center">
+  <a href="https://npmjs.org/package/alp-node"><img src="https://img.shields.io/npm/v/alp-node.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/alpjs/alp-node"><img src="https://david-dm.org/alpjs/alp-node.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/alpjs/alp-node"><img src="https://dependencyci.com/github/alpjs/alp-node/badge?style=flat-square"></a>
+</p>
 
 ## Install
 
@@ -21,10 +28,3 @@ app.servePublic();
 app.catchErrors();
 app.listen();
 ```
-
-[npm-image]: https://img.shields.io/npm/v/alp-node.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/alp-node
-[daviddm-image]: https://david-dm.org/alpjs/alp-node.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/alp-node
-[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-node/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-node

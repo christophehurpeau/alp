@@ -99,7 +99,10 @@ export default class Alp extends Koa {
 
   listen() {
     return _listen(this.certPath)(this)
-      .then(server => (this._server = server))
+      .then(server => {
+        this._server = server;
+        return server;
+      })
       .catch(err => {
         logger.error(err);
         throw err;

@@ -96,7 +96,10 @@ let Alp = class extends Koa {
   }
 
   listen() {
-    return _listen(this.certPath)(this).then(server => this._server = server).catch(err => {
+    return _listen(this.certPath)(this).then(server => {
+      this._server = server;
+      return server;
+    }).catch(err => {
       logger.error(err);
       throw err;
     });
