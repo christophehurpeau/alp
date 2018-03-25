@@ -7,15 +7,38 @@
       "documentation": false,
       "testing": {
         "circleci": true,
-        "travisci": true,
         "codecov": true
       },
       "envs": [
-        "node6",
-        "node8",
-        "module-modern-browsers",
-        "module",
-        "module-node8"
+        {
+          "target": "node",
+          "version": "8",
+          "formats": [
+            "cjs",
+            "es"
+          ]
+        },
+        {
+          "target": "node",
+          "version": "6",
+          "formats": [
+            "cjs"
+          ]
+        },
+        {
+          "target": "browser",
+          "version": "modern",
+          "formats": [
+            "es"
+          ]
+        },
+        {
+          "target": "browser",
+          "formats": [
+            "cjs",
+            "es"
+          ]
+        }
       ]
     }
   }

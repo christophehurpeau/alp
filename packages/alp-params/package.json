@@ -2,37 +2,36 @@
   "name": "alp-params",
   "version": "0.4.0",
   "description": "Validate params from query, router or post body in koa 2 or ibex",
-  "keywords": [
-    "alp"
-  ],
+  "keywords": ["alp"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
   "repository": "git@github.com:alpjs/alp-params.git",
   "homepage": "https://github.com/alpjs/alp-params#readme",
-  "bugs": {
-    "url": "https://github.com/alpjs/alp-params/issues"
-  },
-  "engines": {
-    "node": ">=6.5.0"
-  },
+  "bugs": { "url": "https://github.com/alpjs/alp-params/issues" },
+  "engines": { "node": ">=6.5.0" },
   "main": "index.js",
-  "module": "./lib-module/index.js",
-  "module-dev": "./lib-module-dev/index.js",
-  "module:node": "./lib-module-node8/index.js",
-  "module:node-dev": "./lib-module-node8-dev/index.js",
-  "module:modern-browsers": "./lib-module-modern-browsers/index.js",
-  "module:modern-browsers-dev": "./lib-module-modern-browsers-dev/index.js",
+  "module": "./dist/index-browser.es.js",
+  "module-dev": "./dist/index-browser-dev.es.js",
+  "browser": "./dist/index.cjs.js",
+  "browser-dev": "./dist/index-dev.cjs.js",
+  "module:node": "./dist/index-node8.es.js",
+  "module:node-dev": "./dist/index-node8-dev.es.js",
+  "module:browser": "./dist/index-browser.es.js",
+  "module:browser-dev": "./dist/index-browser-dev.es.js",
+  "module:modern-browsers": "./dist/index-browsermodern.es.js",
+  "module:modern-browsers-dev": "./dist/index-browsermodern-dev.es.js",
   "scripts": {
     "build": "pob-build",
-    "clean": "rm -Rf docs dist test/node6 coverage",
-    "generate:api": "rm -Rf docs/ ; mkdir docs/ ; pob-build doc ; jsdoc README.md lib-doc --recurse --destination docs/ --configure jsdoc.conf.json ; rm -Rf lib-doc",
-    "generate:docs": "npm run generate:api && npm run generate:test-coverage",
-    "generate:test-coverage": "NODE_ENV=production rm -Rf coverage/ ; jest --coverage --coverageReporters=lcov --coverageDirectory=coverage/",
-    "lint": "eslint --ext .js,.jsx src/",
-    "postcheckout": "./.git-hooks/post-checkout",
-    "postmerge": "./.git-hooks/post-merge",
-    "precommit": "./.git-hooks/pre-commit",
-    "preparecommitmsg": "./.git-hooks/prepare-commit-msg ${GIT_PARAMS}",
+    "clean": "rm -Rf docs dist",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "flow": "flow",
+    "generate:test-coverage":
+      "rm -Rf docs/coverage/ ; NODE_ENV=production BABEL_ENV=test jest --coverage --coverageReporters=lcov --coverageDirectory=docs/coverage/",
+    "lint": "eslint src/",
+    "postcheckout": "yarnhook",
+    "postmerge": "yarnhook",
+    "postrewrite": "yarnhook",
+    "precommit": "lint-staged",
     "preversion": "yarn run lint && yarn run build && pob-repository-check-clean",
     "release": "pob-repository-check-clean && pob-release",
     "test": "jest",
@@ -40,56 +39,42 @@
     "watch": "pob-watch"
   },
   "lint-staged": {
-    "package.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.{js,jsx}": [
-      "eslint --fix --quiet",
-      "git add"
-    ]
+    "{package.json,.eslintrc.json}": ["prettier --write", "git add"],
+    "src/**/*.json": ["prettier --write", "git add"],
+    "src/**/*.js": ["eslint --fix --quiet", "git add"]
   },
+  "prettier": { "trailingComma": "all", "singleQuote": true, "printWidth": 100 },
+  "commitlint": { "extends": ["@commitlint/config-conventional"] },
   "jest": {
     "cacheDirectory": "./node_modules/.cache/jest",
-    "testMatch": [
-      "**/src/**/?(*.)test.js",
-      "**/__tests__/**/*.test.js"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ]
+    "testMatch": ["<rootDir>/src/**/__tests__/**/*.js", "<rootDir>/src/**/*.test.js"],
+    "collectCoverageFrom": ["src/**/*.js"]
   },
-  "dependencies": {
-    "flow-runtime": "0.10.0",
-    "object-properties": "^2.0.0"
-  },
+  "dependencies": { "flow-runtime": "^0.17.0", "object-properties": "^2.0.0" },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-latest-node": "^0.4.0",
-    "babel-preset-modern-browsers": "^10.0.0",
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-config-pob": "^15.0.0",
-    "eslint-config-prettier": "^2.3.0",
+    "@commitlint/cli": "^6.1.3",
+    "@commitlint/config-conventional": "^6.1.3",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-latest-node": "^1.0.0",
+    "babel-preset-modern-browsers": "^10.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-pob": "^18.0.0",
     "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-flowtype": "^2.35.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "flow-bin": "^0.68.0",
     "husky": "^0.14.3",
-    "jest": "^20.0.4",
+    "jest": "^22.4.2",
     "jest-junit-reporter": "^1.1.0",
-    "jsdoc": "^3.4.0",
-    "komet": "^0.1.4",
-    "komet-karma": "^0.2.5",
-    "lint-staged": "^4.0.2",
-    "pob-babel": "^18.1.0",
+    "lint-staged": "^7.0.0",
+    "pob-babel": "^20.1.1",
     "pob-release": "^3.1.0",
-    "prettier": "^1.5.3",
-    "xunit-file": "^1.0.0"
+    "prettier": "^1.11.1",
+    "xunit-file": "^1.0.0",
+    "yarnhook": "^0.1.1"
   }
 }

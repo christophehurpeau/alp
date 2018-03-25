@@ -1,12 +1,18 @@
-# alp-params [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  alp-params
+</h3>
 
-Validate params from query, router or post body in koa 2 or ibex
+<p align="center">
+  Validate params from query, router or post body in koa 2 or ibex
+</p>
 
-[![Build Status][circleci-status-image]][circleci-status-url]
-[![Travis Status][travisci-status-image]][travisci-status-url]
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
-[![Coverage percentage][coverage-image]][coverage-url]
+<p align="center">
+  <a href="https://npmjs.org/package/alp-params"><img src="https://img.shields.io/npm/v/alp-params.svg?style=flat-square"></a>
+  <a href="https://circleci.com/gh/alpjs/alp-params"><img src="https://img.shields.io/circleci/project/alpjs/alp-params/master.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/alpjs/alp-params"><img src="https://david-dm.org/alpjs/alp-params.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/alpjs/alp-params"><img src="https://dependencyci.com/github/alpjs/alp-params/badge?style=flat-square"></a>
+  <a href="https://codecov.io/gh/alpjs/alp-params"><img src="https://img.shields.io/codecov/c/github/alpjs/alp-params/master.svg?style=flat-square"></a>
+</p>
 
 ## Install
 
@@ -53,17 +59,3 @@ params(app);
         ctx.body = this.t('Hello %s!', name);
     },
 ```
-
-[npm-image]: https://img.shields.io/npm/v/alp-params.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/alp-params
-[daviddm-image]: https://david-dm.org/alpjs/alp-params.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/alp-params
-[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-params/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-params
-[circleci-status-image]: https://img.shields.io/circleci/project/alpjs/alp-params/master.svg?style=flat-square
-[circleci-status-url]: https://circleci.com/gh/alpjs/alp-params
-[travisci-status-image]: https://img.shields.io/travis/alpjs/alp-params/master.svg?style=flat-square
-[travisci-status-url]: https://travis-ci.org/alpjs/alp-params
-[coverage-image]: https://img.shields.io/codecov/c/github/alpjs/alp-params/master.svg?style=flat-square
-[coverage-url]: https://codecov.io/gh/alpjs/alp-params
-[docs-coverage-url]: https://alpjs.github.io/alp-params/coverage/lcov-report/
