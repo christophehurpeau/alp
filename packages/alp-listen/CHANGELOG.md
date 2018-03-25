@@ -1,3 +1,12 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/alpjs/alp-listen/compare/v1.4.0...v1.5.0) (2018-03-25)
+
+
+### Features
+
+* update nightingale-logger ([c390089](https://github.com/alpjs/alp-listen/commit/c390089))
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/alpjs/alp-listen/compare/v1.3.1...v1.4.0) (2017-08-16)
 

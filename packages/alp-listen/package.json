@@ -1,6 +1,6 @@
 {
   "name": "alp-listen",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Listen function, using config and logger for alp server",
   "keywords": ["alp"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
