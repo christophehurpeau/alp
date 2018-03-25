@@ -7,8 +7,12 @@
   "license": "ISC",
   "repository": "git@github.com:alpjs/alp-node.git",
   "homepage": "https://github.com/alpjs/alp-node#readme",
-  "bugs": { "url": "https://github.com/alpjs/alp-node/issues" },
-  "engines": { "node": ">=8.3.0" },
+  "bugs": {
+    "url": "https://github.com/alpjs/alp-node/issues"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
   "main": "lib/index.js",
   "module:node": "./dist/index-node8.es.js",
   "module:node-dev": "./dist/index-node8-dev.es.js",
@@ -32,22 +36,28 @@
     "src/**/*.json": ["prettier --write", "git add"],
     "src/**/*.js": ["eslint --fix --quiet", "git add"]
   },
-  "prettier": { "trailingComma": "all", "singleQuote": true, "printWidth": 100 },
-  "commitlint": { "extends": ["@commitlint/config-conventional"] },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
   "dependencies": {
-    "alp-config": "^3.5.0",
-    "alp-errors-node": "^2.5.0",
-    "alp-language": "^1.8.0",
-    "alp-listen": "^1.4.0",
-    "alp-params": "^0.4.0",
-    "alp-translate": "^2.6.0",
+    "alp-config": "^3.5.1",
+    "alp-errors-node": "^2.6.0",
+    "alp-language": "^1.9.1",
+    "alp-listen": "^1.5.0",
+    "alp-params": "^0.5.0",
+    "alp-translate": "^2.7.0",
     "findup-sync": "^2.0.0",
     "flow-runtime": "^0.17.0",
     "koa": "^2.5.0",
     "koa-compress": "^2.0.0",
     "koa-static": "^4.0.2",
-    "nightingale-logger": "^3.4.0",
-    "node-fetch": "^2.0.0"
+    "nightingale-logger": "^4.0.0",
+    "node-fetch": "^2.1.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",
