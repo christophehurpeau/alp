@@ -7,8 +7,12 @@
   "license": "ISC",
   "repository": "git@github.com:alpjs/alp-listen.git",
   "homepage": "https://github.com/alpjs/alp-listen#readme",
-  "bugs": { "url": "https://github.com/alpjs/alp-listen/issues" },
-  "engines": { "node": ">=6.5.0" },
+  "bugs": {
+    "url": "https://github.com/alpjs/alp-listen/issues"
+  },
+  "engines": {
+    "node": ">=6.5.0"
+  },
   "main": "./index.js",
   "module:node": "./dist/index-node8.es.js",
   "module:node-dev": "./dist/index-node8-dev.es.js",
@@ -31,9 +35,17 @@
     "src/**/*.json": ["prettier --write", "git add"],
     "src/**/*.js": ["eslint --fix --quiet", "git add"]
   },
-  "prettier": { "trailingComma": "all", "singleQuote": true, "printWidth": 100 },
-  "commitlint": { "extends": ["@commitlint/config-conventional"] },
-  "dependencies": { "nightingale-logger": "^3.0.0-beta.1" },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
+  "dependencies": {
+    "nightingale-logger": "^4.0.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",
     "@commitlint/config-conventional": "^6.1.3",
