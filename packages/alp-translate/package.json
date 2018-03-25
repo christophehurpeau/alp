@@ -54,8 +54,8 @@
   },
   "dependencies": {
     "flow-runtime": "^0.17.0",
-    "intl-messageformat": "^2.1.0",
-    "nightingale-logger": "^3.4.0"
+    "intl-messageformat": "^2.2.0",
+    "nightingale-logger": "^4.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",
