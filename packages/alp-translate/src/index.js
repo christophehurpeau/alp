@@ -19,7 +19,7 @@ export default function alpTranslate(dirname: string) {
     });
 
     app.translations = new Map();
-    app.config.get('availableLanguages').forEach(language => {
+    app.config.get('availableLanguages').forEach((language: string) => {
       const translations = app.config.loadConfigSync(dirname + language);
       app.translations.set(language, load(translations, language));
     });

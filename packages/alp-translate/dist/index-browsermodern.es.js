@@ -1,5 +1,4 @@
 import IntlMessageFormat from 'intl-messageformat';
-import Logger from 'nightingale-logger';
 
 function load(translations, language) {
   const result = new Map();
@@ -17,27 +16,21 @@ function load(translations, language) {
   return result;
 }
 
-const logger = new Logger('alp:translate');
-
 function alpTranslate(dirname) {
   dirname = dirname.replace(/\/*$/, '/');
   return function (app) {
     Object.assign(app.context, {
       t(key, args) {
-        const msg = app.translations.get(this.language).get(key);
-        if (!msg) {
-          logger.warn('invalid msg', { language: this.language, key });
-          return key;
-        }
-
+        const msg = app.translations.get(key);
+        if (!msg) return key;
         return msg.format(args);
       }
     });
 
-    app.translations = new Map();
-    app.config.get('availableLanguages').forEach(function (language) {
-      const translations = app.config.loadConfigSync(dirname + language);
-      app.translations.set(language, load(translations, language));
+    const language = app.context.language;
+    return app.loadConfig(dirname + language).then(function (map) {
+      app.translations = load(map, language);
+      return map;
     });
   };
 }

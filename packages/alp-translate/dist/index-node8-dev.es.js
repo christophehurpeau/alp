@@ -7,6 +7,8 @@ function load(translations, language) {
 
   let _languageType = _t.string();
 
+  const _returnType = _t.return(_t.ref('Map', _t.string(), _t.ref(IntlMessageFormat)));
+
   _t.param('translations', _translationsType).assert(translations);
   _t.param('language', _languageType).assert(language);
 
@@ -22,7 +24,7 @@ function load(translations, language) {
     });
   })(translations, '');
 
-  return result;
+  return _returnType.assert(result);
 }
 
 const logger = new Logger('alp:translate');
@@ -58,6 +60,10 @@ function alpTranslate(dirname) {
 
     app.translations = new Map();
     app.config.get('availableLanguages').forEach(language => {
+      let _languageType = _t.string();
+
+      _t.param('language', _languageType).assert(language);
+
       const translations = app.config.loadConfigSync(dirname + language);
       app.translations.set(language, load(translations, language));
     });

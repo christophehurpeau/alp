@@ -28,7 +28,8 @@
       "testing": false,
       "documentation": false,
       "entries": [
-        "index"
+        "index",
+        "browser"
       ],
       "doclets": false
     }

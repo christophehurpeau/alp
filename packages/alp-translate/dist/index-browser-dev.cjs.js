@@ -3,8 +3,7 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var IntlMessageFormat = _interopDefault(require('intl-messageformat'));
-var _t = _interopDefault(require('flow-runtime'));
-var Logger = _interopDefault(require('nightingale-logger'));
+var t = _interopDefault(require('flow-runtime'));
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
@@ -13,12 +12,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 };
 
 function load(translations, language) {
-  var _translationsType = _t.ref('Map', _t.string(), _t.any());
+  var _translationsType = t.ref('Map', t.string(), t.any());
 
-  var _languageType = _t.string();
+  var _languageType = t.string();
 
-  _t.param('translations', _translationsType).assert(translations);
-  _t.param('language', _languageType).assert(language);
+  var _returnType = t.return(t.ref('Map', t.string(), t.ref(IntlMessageFormat)));
+
+  t.param('translations', _translationsType).assert(translations);
+  t.param('language', _languageType).assert(language);
 
   var result = new Map();
 
@@ -32,44 +33,38 @@ function load(translations, language) {
     });
   })(translations, '');
 
-  return result;
+  return _returnType.assert(result);
 }
 
-var logger = new Logger('alp:translate');
-
 function alpTranslate(dirname) {
-  var _dirnameType = _t.string();
+  var _dirnameType = t.string();
 
-  _t.param('dirname', _dirnameType).assert(dirname);
+  t.param('dirname', _dirnameType).assert(dirname);
 
   dirname = _dirnameType.assert(dirname.replace(/\/*$/, '/'));
   return function (app) {
     Object.assign(app.context, {
-      t: function t(key, args) {
-        var _keyType = _t.string();
+      t: function t$$1(key, args) {
+        var _keyType = t.string();
 
-        var _argsType = _t.nullable(_t.object());
+        var _argsType = t.nullable(t.object());
 
-        var _returnType = _t.return(_t.string());
+        var _returnType = t.return(t.string());
 
-        _t.param('key', _keyType).assert(key);
+        t.param('key', _keyType).assert(key);
 
-        _t.param('args', _argsType).assert(args);
+        t.param('args', _argsType).assert(args);
 
-        var msg = app.translations.get(this.language).get(key);
-        if (!msg) {
-          logger.warn('invalid msg', { language: this.language, key: key });
-          return _returnType.assert(key);
-        }
-
+        var msg = app.translations.get(key);
+        if (!msg) return _returnType.assert(key);
         return _returnType.assert(msg.format(args));
       }
     });
 
-    app.translations = new Map();
-    app.config.get('availableLanguages').forEach(function (language) {
-      var translations = app.config.loadConfigSync(dirname + language);
-      app.translations.set(language, load(translations, language));
+    var language = app.context.language;
+    return app.loadConfig(dirname + language).then(function (map) {
+      app.translations = load(map, language);
+      return map;
     });
   };
 }
