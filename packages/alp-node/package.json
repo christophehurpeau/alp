@@ -1,6 +1,6 @@
 {
   "name": "alp-node",
-  "version": "0.37.1",
+  "version": "0.38.0",
   "description": "framework based on koa 2",
   "keywords": ["springbokjs", "alp", "framework", "koa", "node5"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",

@@ -1,3 +1,12 @@
+<a name="0.38.0"></a>
+# [0.38.0](https://github.com/alpjs/alp-node/compare/v0.37.1...v0.38.0) (2018-03-25)
+
+
+### Features
+
+* update dependencies ([cf31787](https://github.com/alpjs/alp-node/commit/cf31787))
+
+
 <a name="0.37.1"></a>
 ## [0.37.1](https://github.com/alpjs/alp-node/compare/v0.37.0...v0.37.1) (2018-03-23)
 
