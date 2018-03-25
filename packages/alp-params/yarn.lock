@@ -4317,9 +4317,11 @@ object-keys@^1.0.8:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
 
-object-properties@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/object-properties/-/object-properties-2.0.0.tgz#e43dc3c0436204382dd8f56bfd271551260dca1e"
+object-properties@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/object-properties/-/object-properties-3.0.0.tgz#c4b7dc7c92ee5cf3c6ff46830f27d51185b34bdc"
+  dependencies:
+    flow-runtime "^0.17.0"
 
 object-visit@^1.0.0:
   version "1.0.1"
