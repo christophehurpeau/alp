@@ -1,5 +1,9 @@
-import { chmodSync, unlinkSync, readFileSync } from 'fs';
-import Logger from 'nightingale-logger';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var fs = require('fs');
+var Logger = _interopDefault(require('nightingale-logger'));
 
 const logger = new Logger('alp:listen');
 
@@ -7,7 +11,7 @@ const logger = new Logger('alp:listen');
  * @param {string} dirname for tls server, dirname of the server.key and server.crt
  * @returns {Function}
  */
-export default function alpListen(dirname) {
+function alpListen(dirname) {
   return app => new Promise(resolve => {
     const socketPath = app.config.get('socketPath');
     const port = app.config.get('port');
@@ -20,13 +24,14 @@ export default function alpListen(dirname) {
       [socketPath ? 'socketPath' : 'port']: ['yellow']
     });
 
-
     const server = (() => {
-      if (!tls) return createServer(app.callback());
+      if (!tls) {
+        return createServer(app.callback());
+      }
 
       const options = {
-        key: readFileSync(`${dirname}/server.key`),
-        cert: readFileSync(`${dirname}/server.crt`)
+        key: fs.readFileSync(`${dirname}/server.key`),
+        cert: fs.readFileSync(`${dirname}/server.crt`)
       };
 
       return createServer(options, app.callback());
@@ -34,15 +39,25 @@ export default function alpListen(dirname) {
 
     if (socketPath) {
       try {
-        unlinkSync(socketPath);
+        fs.unlinkSync(socketPath);
       } catch (err) {}
 
       server.listen(socketPath, () => {
-        socketPath && chmodSync(socketPath, '777'), logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] }), resolve(server);
+        if (socketPath) {
+          fs.chmodSync(socketPath, '777');
+        }
+
+        logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] });
+        resolve(server);
       });
-    } else server.listen(port, hostname, () => {
-        logger.info('Server listening', { port }, { port: ['yellow'] }), resolve(server);
+    } else {
+      server.listen(port, hostname, () => {
+        logger.info('Server listening', { port }, { port: ['yellow'] });
+        resolve(server);
       });
+    }
   });
 }
-//# sourceMappingURL=index.js.map
+
+module.exports = alpListen;
+//# sourceMappingURL=index-node6.cjs.js.map
