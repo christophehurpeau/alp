@@ -1,9 +1,16 @@
-# alp-language [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  alp-language
+</h3>
 
-language context in alp framework
+<p align="center">
+  language context in alp framework
+</p>
 
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+<p align="center">
+  <a href="https://npmjs.org/package/alp-language"><img src="https://img.shields.io/npm/v/alp-language.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/alpjs/alp-language"><img src="https://david-dm.org/alpjs/alp-language.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/alpjs/alp-language"><img src="https://dependencyci.com/github/alpjs/alp-language/badge?style=flat-square"></a>
+</p>
 
 ## Config file
 
@@ -45,10 +52,3 @@ First accepted language in the header / in `navigator.languages` contained in `a
 ### firstAcceptedLanguage: string
 
 The first accepted language in the header / in `navigator.languages` regardless of `availableLanguages`. Can be a locale. Usefull for date/time/...
-
-[npm-image]: https://img.shields.io/npm/v/alp-language.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/alp-language
-[daviddm-image]: https://david-dm.org/alpjs/alp-language.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/alp-language
-[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-language/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-language
