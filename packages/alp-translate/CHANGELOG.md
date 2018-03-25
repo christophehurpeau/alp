@@ -1,3 +1,12 @@
+<a name="2.8.0"></a>
+# [2.8.0](https://github.com/alpjs/alp-translate/compare/v2.7.0...v2.8.0) (2018-03-25)
+
+
+### Features
+
+* update dependencies ([277f0e6](https://github.com/alpjs/alp-translate/commit/277f0e6))
+
+
 <a name="2.7.0"></a>
 # [2.7.0](https://github.com/alpjs/alp-translate/compare/v2.6.0...v2.7.0) (2018-03-25)
 
