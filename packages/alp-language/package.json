@@ -1,6 +1,6 @@
 {
   "name": "alp-language",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "language context in alp framework",
   "keywords": ["alp", "accepts-languages"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
