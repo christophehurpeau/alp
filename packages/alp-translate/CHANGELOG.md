@@ -1,3 +1,7 @@
+<a name="2.7.0"></a>
+# [2.7.0](https://github.com/alpjs/alp-translate/compare/v2.6.0...v2.7.0) (2018-03-25)
+
+
 <a name="2.6.0"></a>
 # [2.6.0](https://github.com/alpjs/alp-translate/compare/v2.5.0...v2.6.0) (2017-08-16)
 
