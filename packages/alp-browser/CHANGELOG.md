@@ -1,3 +1,12 @@
+<a name="0.24.1"></a>
+## [0.24.1](https://github.com/alpjs/alp-browser/compare/v0.24.0...v0.24.1) (2018-03-30)
+
+
+### Bug Fixes
+
+* remove unexistant export Config from "alp-config" ([d1f0bc3](https://github.com/alpjs/alp-browser/commit/d1f0bc3))
+
+
 <a name="0.24.0"></a>
 # [0.24.0](https://github.com/alpjs/alp-browser/compare/v0.23.2...v0.24.0) (2018-03-30)
 
