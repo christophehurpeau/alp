@@ -1,3 +1,12 @@
+<a name="0.15.0"></a>
+# [0.15.0](https://github.com/alpjs/alp-auth/compare/v0.14.1...v0.15.0) (2018-03-30)
+
+
+### Bug Fixes
+
+* missing limit in migrate script ([41c7d79](https://github.com/alpjs/alp-auth/commit/41c7d79))
+
+
 <a name="0.14.1"></a>
 ## [0.14.1](https://github.com/alpjs/alp-auth/compare/v0.14.0...v0.14.1) (2017-11-25)
 
