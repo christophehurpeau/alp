@@ -4,8 +4,6 @@ import language from 'alp-language/src';
 import translate from 'alp-translate/src';
 import Logger from 'nightingale-logger/src';
 
-export { Config } from 'alp-config/src';
-
 const logger = new Logger('alp');
 
 type OptionsType = {

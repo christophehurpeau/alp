@@ -1,6 +1,5 @@
 import Ibex from 'ibex';
 import config from 'alp-config';
-export { Config } from 'alp-config';
 import language from 'alp-language';
 import translate from 'alp-translate';
 import Logger from 'nightingale-logger';
