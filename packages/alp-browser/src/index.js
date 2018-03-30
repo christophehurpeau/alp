@@ -9,7 +9,7 @@ export { Config } from 'alp-config/src';
 const logger = new Logger('alp');
 
 type OptionsType = {
-  version: ?string, // default to window.VERSION
+  version?: ?string, // default to window.VERSION
 };
 
 export default class AlpBrowser extends Ibex {

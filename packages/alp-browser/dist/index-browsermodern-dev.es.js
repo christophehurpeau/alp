@@ -6,11 +6,9 @@ import translate from 'alp-translate';
 import Logger from 'nightingale-logger';
 import t from 'flow-runtime';
 
-/* global window */
-
 const logger = new Logger('alp');
 
-const OptionsType = t.type('OptionsType', t.object(t.property('version', t.nullable(t.string()))));
+const OptionsType = t.type('OptionsType', t.object(t.property('version', t.nullable(t.string()), true)));
 let AlpBrowser = class extends Ibex {
 
   constructor(path = '/', _arg = {}) {

@@ -83,11 +83,9 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-/* global window */
-
 var logger = new Logger('alp');
 
-var OptionsType = t.type('OptionsType', t.object(t.property('version', t.nullable(t.string()))));
+var OptionsType = t.type('OptionsType', t.object(t.property('version', t.nullable(t.string()), true)));
 
 var AlpBrowser = function (_Ibex) {
   inherits(AlpBrowser, _Ibex);

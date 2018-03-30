@@ -5,8 +5,6 @@ import language from 'alp-language';
 import translate from 'alp-translate';
 import Logger from 'nightingale-logger';
 
-/* global window */
-
 const logger = new Logger('alp');
 
 let AlpBrowser = class extends Ibex {

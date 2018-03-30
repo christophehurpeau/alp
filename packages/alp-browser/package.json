@@ -7,7 +7,9 @@
   "license": "ISC",
   "repository": "git@github.com:alpjs/alp-browser.git",
   "homepage": "https://github.com/alpjs/alp-browser#readme",
-  "bugs": { "url": "https://github.com/alpjs/alp-browser/issues" },
+  "bugs": {
+    "url": "https://github.com/alpjs/alp-browser/issues"
+  },
   "main": "./index.js",
   "module": "./dist/index-browser.es.js",
   "module-dev": "./dist/index-browser-dev.es.js",
@@ -35,15 +37,21 @@
     "src/**/*.json": ["prettier --write", "git add"],
     "src/**/*.js": ["eslint --fix --quiet", "git add"]
   },
-  "prettier": { "trailingComma": "all", "singleQuote": true, "printWidth": 100 },
-  "commitlint": { "extends": ["@commitlint/config-conventional"] },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
   "dependencies": {
-    "alp-config": "^3.5.0",
-    "alp-language": "^1.8.0",
-    "alp-translate": "^2.6.0",
+    "alp-config": "^3.5.1",
+    "alp-language": "^1.9.1",
+    "alp-translate": "^2.8.0",
     "flow-runtime": "^0.17.0",
-    "ibex": "^4.5.0",
-    "nightingale-logger": "^3.4.0"
+    "ibex": "^4.5.1",
+    "nightingale-logger": "^4.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",

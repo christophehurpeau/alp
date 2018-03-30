@@ -82,8 +82,6 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-/* global window */
-
 var logger = new Logger('alp');
 
 var AlpBrowser = function (_Ibex) {
