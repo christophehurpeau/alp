@@ -14,6 +14,7 @@ import type { ReduxActionType } from './types';
 export Helmet from 'react-helmet';
 export { combineReducers } from 'redux/src';
 export { connect } from 'react-redux/src';
+export * from './types';
 export {
   createAction,
   createReducer,

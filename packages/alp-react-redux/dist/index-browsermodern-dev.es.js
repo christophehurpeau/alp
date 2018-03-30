@@ -490,5 +490,5 @@ var browser = (function (app) {
 });
 
 export default browser;
-export { AlpModule, AlpReduxModule, Body, AppContainer, createAction, createReducer, createLoader, classNames, createPureStatelessComponent, identityReducer };
+export { AlpModule, AlpReduxModule, Body, AppContainer, createAction, createReducer, createLoader, classNames, createPureStatelessComponent, identityReducer, ReduxActionType, ReduxDispatchType, ReduxReducerType, ReducerDictionaryType };
 //# sourceMappingURL=index-browsermodern-dev.es.js.map

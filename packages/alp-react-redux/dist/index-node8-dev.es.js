@@ -456,5 +456,5 @@ function emitAction(to, action) {
 }
 
 export default index;
-export { AlpModule, AlpReduxModule, Body, AppContainer, emitAction, createAction, createReducer, createLoader, classNames, createPureStatelessComponent, identityReducer };
+export { AlpModule, AlpReduxModule, Body, AppContainer, emitAction, createAction, createReducer, createLoader, classNames, createPureStatelessComponent, identityReducer, ReduxActionType, ReduxDispatchType, ReduxReducerType, ReducerDictionaryType };
 //# sourceMappingURL=index-node8-dev.es.js.map
