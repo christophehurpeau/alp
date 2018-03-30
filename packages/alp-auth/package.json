@@ -7,12 +7,18 @@
   "license": "ISC",
   "repository": "git@github.com:alpjs/alp-auth.git",
   "homepage": "https://github.com/alpjs/alp-auth",
-  "engines": {
-    "node": ">=6.5.0"
-  },
+  "engines": { "node": ">=6.5.0" },
   "main": "./index.js",
+  "module": "./dist/index-browser.es.js",
+  "module-dev": "./dist/index-browser-dev.es.js",
+  "browser": "./dist/index.cjs.js",
+  "browser-dev": "./dist/index-dev.cjs.js",
   "module:node": "./dist/index-node8.es.js",
   "module:node-dev": "./dist/index-node8-dev.es.js",
+  "module:browser": "./dist/index-browser.es.js",
+  "module:browser-dev": "./dist/index-browser-dev.es.js",
+  "module:modern-browsers": "./dist/index-browsermodern.es.js",
+  "module:modern-browsers-dev": "./dist/index-browsermodern-dev.es.js",
   "scripts": {
     "build": "pob-build",
     "clean": "rm -Rf docs dist",
@@ -33,14 +39,8 @@
     "src/**/*.json": ["prettier --write", "git add"],
     "src/**/*.js": ["eslint --fix --quiet", "git add"]
   },
-  "prettier": {
-    "trailingComma": "all",
-    "singleQuote": true,
-    "printWidth": 100
-  },
-  "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
-  },
+  "prettier": { "trailingComma": "all", "singleQuote": true, "printWidth": 100 },
+  "commitlint": { "extends": ["@commitlint/config-conventional"] },
   "dependencies": {
     "cookies": "^0.7.1",
     "flow-runtime": "^0.17.0",
@@ -53,7 +53,9 @@
     "@commitlint/config-conventional": "^6.1.3",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-latest-node": "^1.0.0",
+    "babel-preset-modern-browsers": "^10.0.1",
     "eslint": "^4.19.1",
     "eslint-config-pob": "^18.0.0",
     "eslint-plugin-babel": "^4.1.2",
