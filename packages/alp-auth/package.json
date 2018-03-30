@@ -1,6 +1,6 @@
 {
   "name": "alp-auth",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "authentication with alp",
   "keywords": ["alp"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
