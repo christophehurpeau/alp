@@ -6,13 +6,13 @@ export default mongoUsersManager;
 
 Object.assign(mongoUsersManager, {
   findOneByAccountOrEmails({
-    provider,
     accountId,
     emails,
+    provider,
   }: {
-    provider: string,
     accountId: string | number,
     emails: ?Array<string>,
+    provider: string,
   }): Promise<?UserType> {
     const r = this.store.r;
     let filter = r
@@ -23,12 +23,12 @@ Object.assign(mongoUsersManager, {
       filter = r.or(filter, r.row('emails').contains(row => r.expr(emails).contains(row)));
     }
 
-    let query = this.store.query().filter(filter);
+    const query = this.store.query().filter(filter);
     return this.store.findOne(query);
   },
 
   updateAccount(user: UserType, account: AccountType) {
-    let accountIndex = user.accounts.indexOf(account);
+    const accountIndex = user.accounts.indexOf(account);
     if (accountIndex === -1) {
       throw new Error('Invalid account');
     }

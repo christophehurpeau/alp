@@ -11,9 +11,9 @@ export default {
     accountId,
     emails,
   }: {
-    provider: string,
     accountId: string | number,
     emails: ?Array<string>,
+    provider: string,
   }): Promise<?UserType> {
     throw new Error('Not implemented');
   },

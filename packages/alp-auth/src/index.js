@@ -9,6 +9,7 @@ import UserAccountsService from './services/user/UserAccountsService';
 import createAuthController from './createAuthController';
 
 export { abstractUsersManager, mongoUsersManager, rethinkUsersManager };
+export * from './models/user/types';
 
 const COOKIE_NAME = 'connectedUser';
 const logger = new Logger('alp:auth');
@@ -18,9 +19,9 @@ export default function init({
   strategies,
   homeRouterKey,
 }: {
-  usersManager: Object,
-  strategies: Object,
   homeRouterKey?: ?string,
+  strategies: Object,
+  usersManager: Object,
 }) {
   return app => {
     const userAccountsService = new UserAccountsService(usersManager);
@@ -93,7 +94,7 @@ export default function init({
       app.websocket.use(async (socket, next) => {
         const handshakeData = socket.request;
         const cookies = new Cookies(handshakeData, null, { keys: app.keys });
-        let token = cookies.get(COOKIE_NAME);
+        const token = cookies.get(COOKIE_NAME);
         logger.debug('middleware websocket', { token });
 
         if (!token) return next();
@@ -135,7 +136,7 @@ export default function init({
       },
 
       middleware: async (ctx, next) => {
-        let token = ctx.cookies.get(COOKIE_NAME);
+        const token = ctx.cookies.get(COOKIE_NAME);
         logger.debug('middleware', { token });
 
         const setState = (connected, user) => {

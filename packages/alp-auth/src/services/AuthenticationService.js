@@ -2,20 +2,20 @@
 import EventEmitter from 'events';
 import promiseCallback from 'promise-callback-factory';
 import Logger from 'nightingale-logger';
-import UserAccountsService from './user/UserAccountsService';
 import { randomHex } from '../utils/generators';
+import UserAccountsService from './user/UserAccountsService';
 
 const logger = new Logger('alp:auth:authentication');
 
 type GenerateAuthUrlOptionsType = {
+  accessType?: string,
+  grantType?: string,
+  includeGrantedScopes?: boolean,
+  loginHint?: string,
+  prompt?: string,
   redirectUri?: string,
   scope?: string,
   state?: string,
-  grantType?: string,
-  accessType?: string,
-  prompt?: string,
-  loginHint?: string,
-  includeGrantedScopes?: boolean,
 };
 
 type GetTokensOptionsType = {

@@ -1,5 +1,5 @@
 {
-  "extends": "pob/babel",
+  "extends": ["pob/babel", "pob/flow"],
   "rules": {
     "prefer-destructuring": "off"
   }

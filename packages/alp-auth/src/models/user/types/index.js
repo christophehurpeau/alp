@@ -1,45 +1,45 @@
 export type UserNameType = {
-  givenName: string,
   familyName: string,
+  givenName: string,
 };
 
 export type AccountType = {
-  provider: string,
+  accessToken: string,
   accountId: string,
   name: string,
-  status: string,
-  accessToken: string,
-  tokenExpireDate: Date,
-  refreshToken?: string,
   profile?: Object,
+  provider: string,
+  refreshToken?: string,
   scope: Array<string>,
+  status: string,
+  tokenExpireDate: Date,
 };
 
 export type UserType = {
-  id?: string,
   _id?: string,
-  displayName: string,
-  fullName: UserNameType,
-  status: string,
-  emails: Array<string>,
-  emailDomains: Array<string>,
   accounts: Array<AccountType>,
+  displayName: string,
+  emailDomains: Array<string>,
+  emails: Array<string>,
+  fullName: UserNameType,
+  id?: string,
+  status: string,
 };
 
 export type AccountBrowserType = {
-  provider: string,
   accountId: string,
   name: string,
+  provider: string,
   status: string,
 };
 
 export type UserBrowserType = {
-  id?: string,
   _id?: string,
-  displayName: string,
-  fullName: UserNameType,
-  status: string,
-  emails: Array<string>,
-  emailDomains: Array<string>,
   accounts: Array<AccountBrowserType>,
+  displayName: string,
+  emailDomains: Array<string>,
+  emails: Array<string>,
+  fullName: UserNameType,
+  id?: string,
+  status: string,
 };

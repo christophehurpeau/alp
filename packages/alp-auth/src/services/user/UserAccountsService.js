@@ -5,10 +5,10 @@ import userAccountGoogleService from './userAccountGoogleService';
 
 type TokensObject = {
   accessToken: string,
-  refreshToken?: string,
   expireDate: Date,
-  tokenType: string,
   idToken: string,
+  refreshToken?: string,
+  tokenType: string,
 };
 
 const logger = new Logger('alp:auth:userAccounts');
