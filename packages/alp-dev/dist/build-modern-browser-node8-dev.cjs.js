@@ -15,7 +15,7 @@ var pluginFlowRuntime = _interopDefault(require('babel-plugin-flow-runtime'));
 var OptimizeCssAssetsPlugin = _interopDefault(require('optimize-css-assets-webpack-plugin'));
 var BabelMinifyPlugin = _interopDefault(require('babel-minify-webpack-plugin'));
 var webpack = require('webpack');
-var ExtractTextPlugin = _interopDefault(require('extract-text-webpack-plugin'));
+var MiniCssExtractPlugin = _interopDefault(require('mini-css-extract-plugin'));
 var autoprefixer = _interopDefault(require('autoprefixer'));
 var webpackConfig = require('ynnub/webpack-config');
 var t = _interopDefault(require('flow-runtime'));
@@ -93,7 +93,7 @@ var createPobpackConfig = ((target, production = false) => {
     moduleRules: [
     // SCSS RULE, CSS RULE
     ...webpackConfig.createModuleRules({
-      ExtractTextPlugin,
+      MiniCssExtractPlugin,
       production,
       themeFile: './src/theme.scss',
       plugins: [autoprefixer],
@@ -113,7 +113,7 @@ var createPobpackConfig = ((target, production = false) => {
       }
     }],
 
-    plugins: [webpackConfig.createExtractPlugin(ExtractTextPlugin, {
+    plugins: [webpackConfig.createExtractPlugin(MiniCssExtractPlugin, {
       // disable: target === 'node',
       filename: `${
       // eslint-disable-next-line no-nested-ternary

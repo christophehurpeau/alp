@@ -86,12 +86,12 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, startProxyPort + 49),
 
   createChild({
     autoRestart: true,
-    args: [require.resolve('./node'), '--port', port]
+    args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port]
   }).start();
 
   createChild({
     autoRestart: true,
-    args: [require.resolve('./browser'), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']
+    args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']
   }).start();
 }).catch(err => console.log(err.stack));
 //# sourceMappingURL=watch-node8-dev.cjs.js.map

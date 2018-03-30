@@ -9,8 +9,8 @@ clean();
 
 Promise.all([
   build(),
-  ...['./build-node', './build-modern-browser', './build-older-browser'].map(path => {
-    const instance = execa('node', [require.resolve(path)]);
+  ...['build-node', 'build-modern-browser', 'build-older-browser'].map(path => {
+    const instance = execa('node', [__filename.replace('/build-', `/${path}-`)]);
     instance.stdout.pipe(process.stdout);
     return instance;
   }),

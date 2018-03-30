@@ -11,7 +11,7 @@ import pluginFlowRuntime from 'babel-plugin-flow-runtime';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import BabelMinifyPlugin from 'babel-minify-webpack-plugin';
 import { optimize } from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
 import { createModuleRules, createExtractPlugin } from 'ynnub/webpack-config';
 
@@ -106,7 +106,7 @@ export default (target: TargetType, production: ?boolean = false) => ({
   moduleRules: [
     // SCSS RULE, CSS RULE
     ...createModuleRules({
-      ExtractTextPlugin,
+      MiniCssExtractPlugin,
       production,
       themeFile: './src/theme.scss',
       plugins: [autoprefixer],
@@ -128,7 +128,7 @@ export default (target: TargetType, production: ?boolean = false) => ({
   ],
 
   plugins: [
-    createExtractPlugin(ExtractTextPlugin, {
+    createExtractPlugin(MiniCssExtractPlugin, {
       // disable: target === 'node',
       filename: `${
         // eslint-disable-next-line no-nested-ternary

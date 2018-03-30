@@ -72,8 +72,8 @@ const build = (src = './src/config') => Promise.all(glob.sync(path.join(src, '**
 
 child_process.execSync(`rm -Rf ${path.resolve('public')}/* ${path.resolve('build')}/*`);
 
-Promise.all([build(), ...['./build-node', './build-modern-browser', './build-older-browser'].map(path$$1 => {
-  const instance = execa('node', [require.resolve(path$$1)]);
+Promise.all([build(), ...['build-node', 'build-modern-browser', 'build-older-browser'].map(path$$1 => {
+  const instance = execa('node', [__filename.replace('/build-', `/${path$$1}-`)]);
   instance.stdout.pipe(process.stdout);
   return instance;
 })]).then(() => {

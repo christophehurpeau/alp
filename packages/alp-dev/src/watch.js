@@ -24,13 +24,13 @@ Promise.all([
 
     createChild({
       autoRestart: true,
-      args: [require.resolve('./node'), '--port', port],
+      args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port],
     }).start();
 
     createChild({
       autoRestart: true,
       args: [
-        require.resolve('./browser'),
+        require.resolve(__filename.replace('/watch-', '/watch-browser-')),
         '--port',
         port,
         '--proxy-port',
