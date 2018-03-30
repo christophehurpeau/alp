@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var crypto = require('crypto');
-var promiseCallback = _interopDefault(require('promise-callback-factory'));
+var util = require('util');
 var EventEmitter = _interopDefault(require('events'));
 var Logger = _interopDefault(require('nightingale-logger'));
 var jsonwebtoken = require('jsonwebtoken');
@@ -121,8 +121,10 @@ Object.assign(mongoUsersManager$1, {
   }
 });
 
+const randomBytesPromisified = util.promisify(crypto.randomBytes);
+
 function randomHex(size) {
-  return promiseCallback(done => crypto.randomBytes(size, done)).then(buffer => buffer.toString('hex'));
+  return randomBytesPromisified(size).then(buffer => buffer.toString('hex'));
 }
 
 /* eslint camelcase: 'off', max-lines: 'off' */
@@ -182,11 +184,9 @@ let AuthenticationService = class extends EventEmitter {
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
-        return promiseCallback(done => {
-          strategyInstance.oauth2.authorizationCode.getToken({
-            code: options.code,
-            redirect_uri: options.redirectUri
-          }, done);
+        return strategyInstance.oauth2.authorizationCode.getToken({
+          code: options.code,
+          redirect_uri: options.redirectUri
         }).then(result => result && {
           accessToken: result.access_token,
           refreshToken: result.refresh_token,
@@ -216,7 +216,7 @@ let AuthenticationService = class extends EventEmitter {
           const token = strategyInstance.oauth2.accessToken.create({
             refresh_token: tokens.refreshToken
           });
-          return promiseCallback(done => token.refresh(done)).then(result => {
+          return token.refresh().then(result => {
             const tokens = result.token;
             return result && {
               accessToken: tokens.access_token,
@@ -579,6 +579,9 @@ function createAuthController({
 const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
 
+const signPromisified = util.promisify(jsonwebtoken.sign);
+const verifyPromisified = util.promisify(jsonwebtoken.verify);
+
 function init({
   usersManager,
   strategies,
@@ -607,11 +610,11 @@ function init({
       this.state.connected = connected;
       this.state.user = user;
 
-      const token = await promiseCallback(done => jsonwebtoken.sign({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
+      const token = signPromisified({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
         audience: this.request.headers['user-agent'],
         expiresIn: '30 days'
-      }, done));
+      });
 
       this.cookies.set(COOKIE_NAME, token, {
         httpOnly: true,
@@ -625,8 +628,8 @@ function init({
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
     };
 
-    const decodeJwt = (token, userAgent) => {
-      const result = jsonwebtoken.verify(token, app.config.get('authentication').get('secretKey'), {
+    const decodeJwt = async (token, userAgent) => {
+      const result = await verifyPromisified(token, app.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
         audience: userAgent
       });

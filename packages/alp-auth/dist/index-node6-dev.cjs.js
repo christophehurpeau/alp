@@ -6,7 +6,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var t = _interopDefault(require('flow-runtime'));
 var crypto = require('crypto');
-var promiseCallback = _interopDefault(require('promise-callback-factory'));
+var util = require('util');
 var EventEmitter = _interopDefault(require('events'));
 var Logger = _interopDefault(require('nightingale-logger'));
 var jsonwebtoken = require('jsonwebtoken');
@@ -171,6 +171,8 @@ Object.assign(mongoUsersManager$1, {
   }
 });
 
+const randomBytesPromisified = util.promisify(crypto.randomBytes);
+
 function randomHex(size) {
   let _sizeType2 = t.number();
 
@@ -178,7 +180,7 @@ function randomHex(size) {
 
   t.param('size', _sizeType2).assert(size);
 
-  return promiseCallback(done => crypto.randomBytes(size, done)).then(buffer => buffer.toString('hex')).then(_arg2 => _returnType2.assert(_arg2));
+  return randomBytesPromisified(size).then(buffer => buffer.toString('hex')).then(_arg2 => _returnType2.assert(_arg2));
 }
 
 var _class, _temp2;
@@ -516,11 +518,9 @@ let AuthenticationService = class extends EventEmitter {
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
-        return promiseCallback(done => {
-          strategyInstance.oauth2.authorizationCode.getToken({
-            code: options.code,
-            redirect_uri: options.redirectUri
-          }, done);
+        return strategyInstance.oauth2.authorizationCode.getToken({
+          code: options.code,
+          redirect_uri: options.redirectUri
         }).then(result => result && {
           accessToken: result.access_token,
           refreshToken: result.refresh_token,
@@ -554,7 +554,7 @@ let AuthenticationService = class extends EventEmitter {
           const token = strategyInstance.oauth2.accessToken.create({
             refresh_token: tokens.refreshToken
           });
-          return promiseCallback(done => token.refresh(done)).then(result => {
+          return token.refresh().then(result => {
             const tokens = result.token;
             return result && {
               accessToken: tokens.access_token,
@@ -758,6 +758,9 @@ function createAuthController(_arg) {
 const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
 
+const signPromisified = util.promisify(jsonwebtoken.sign);
+const verifyPromisified = util.promisify(jsonwebtoken.verify);
+
 function init(_arg) {
   let {
     usersManager,
@@ -781,8 +784,6 @@ function init(_arg) {
 
     app.context.setConnected = (() => {
       var _ref = asyncToGenerator(function* (connected, user) {
-        var _this = this;
-
         let _connectedType = t.union(t.number(), t.string());
 
         let _userType = t.object();
@@ -798,12 +799,10 @@ function init(_arg) {
         this.state.connected = connected;
         this.state.user = user;
 
-        const token = yield promiseCallback(function (done) {
-          return jsonwebtoken.sign({ connected, time: Date.now() }, _this.config.get('authentication').get('secretKey'), {
-            algorithm: 'HS512',
-            audience: _this.request.headers['user-agent'],
-            expiresIn: '30 days'
-          }, done);
+        const token = signPromisified({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
+          algorithm: 'HS512',
+          audience: this.request.headers['user-agent'],
+          expiresIn: '30 days'
         });
 
         this.cookies.set(COOKIE_NAME, token, {
@@ -823,13 +822,19 @@ function init(_arg) {
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
     };
 
-    const decodeJwt = (token, userAgent) => {
-      const result = jsonwebtoken.verify(token, app.config.get('authentication').get('secretKey'), {
-        algorithm: 'HS512',
-        audience: userAgent
+    const decodeJwt = (() => {
+      var _ref2 = asyncToGenerator(function* (token, userAgent) {
+        const result = yield verifyPromisified(token, app.config.get('authentication').get('secretKey'), {
+          algorithm: 'HS512',
+          audience: userAgent
+        });
+        return result && result.connected;
       });
-      return result && result.connected;
-    };
+
+      return function decodeJwt() {
+        return _ref2.apply(this, arguments);
+      };
+    })();
 
     if (app.websocket) {
       logger$2.debug('app has websocket');
@@ -840,7 +845,7 @@ function init(_arg) {
       app.websocket.users = users;
 
       app.websocket.use((() => {
-        var _ref2 = asyncToGenerator(function* (socket, next) {
+        var _ref3 = asyncToGenerator(function* (socket, next) {
           const handshakeData = socket.request;
           const cookies = new Cookies(handshakeData, null, { keys: app.keys });
           const token = cookies.get(COOKIE_NAME);
@@ -874,7 +879,7 @@ function init(_arg) {
         });
 
         return function () {
-          return _ref2.apply(this, arguments);
+          return _ref3.apply(this, arguments);
         };
       })());
     }
@@ -889,7 +894,7 @@ function init(_arg) {
       },
 
       middleware: (() => {
-        var _ref3 = asyncToGenerator(function* (ctx, next) {
+        var _ref4 = asyncToGenerator(function* (ctx, next) {
           const token = ctx.cookies.get(COOKIE_NAME);
           logger$2.debug('middleware', { token });
 
@@ -933,7 +938,7 @@ function init(_arg) {
         });
 
         return function middleware() {
-          return _ref3.apply(this, arguments);
+          return _ref4.apply(this, arguments);
         };
       })()
     };

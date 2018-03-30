@@ -1,6 +1,5 @@
 /* eslint camelcase: 'off', max-lines: 'off' */
 import EventEmitter from 'events';
-import promiseCallback from 'promise-callback-factory';
 import Logger from 'nightingale-logger';
 import { randomHex } from '../utils/generators';
 import UserAccountsService from './user/UserAccountsService';
@@ -78,30 +77,27 @@ export default class AuthenticationService extends EventEmitter {
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
-        return promiseCallback(done => {
-          strategyInstance.oauth2.authorizationCode.getToken(
-            {
-              code: options.code,
-              redirect_uri: options.redirectUri,
-            },
-            done,
+        return strategyInstance.oauth2.authorizationCode
+          .getToken({
+            code: options.code,
+            redirect_uri: options.redirectUri,
+          })
+          .then(
+            result =>
+              result && {
+                accessToken: result.access_token,
+                refreshToken: result.refresh_token,
+                tokenType: result.token_type,
+                expiresIn: result.expires_in,
+                expireDate: (() => {
+                  const d = new Date();
+                  d.setTime(d.getTime() + result.expires_in * 1000);
+                  return d;
+                })(),
+                idToken: result.id_token,
+              },
+            // return strategyInstance.accessToken.create(result);
           );
-        }).then(
-          result =>
-            result && {
-              accessToken: result.access_token,
-              refreshToken: result.refresh_token,
-              tokenType: result.token_type,
-              expiresIn: result.expires_in,
-              expireDate: (() => {
-                const d = new Date();
-                d.setTime(d.getTime() + result.expires_in * 1000);
-                return d;
-              })(),
-              idToken: result.id_token,
-            },
-          // return strategyInstance.accessToken.create(result);
-        );
     }
   }
 
@@ -116,7 +112,7 @@ export default class AuthenticationService extends EventEmitter {
         const token = strategyInstance.oauth2.accessToken.create({
           refresh_token: tokens.refreshToken,
         });
-        return promiseCallback(done => token.refresh(done)).then(result => {
+        return token.refresh().then(result => {
           const tokens = result.token;
           return (
             result && {

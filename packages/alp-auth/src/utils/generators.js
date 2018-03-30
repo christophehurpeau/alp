@@ -1,10 +1,12 @@
 import { randomBytes } from 'crypto';
-import promiseCallback from 'promise-callback-factory';
+import { promisify } from 'util';
+
+const randomBytesPromisified = promisify(randomBytes);
 
 export function randomBase64(size: number): Promise<string> {
-  return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('base64'));
+  return randomBytesPromisified(size).then(buffer => buffer.toString('base64'));
 }
 
 export function randomHex(size: number): Promise<string> {
-  return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('hex'));
+  return randomBytesPromisified(size).then(buffer => buffer.toString('hex'));
 }

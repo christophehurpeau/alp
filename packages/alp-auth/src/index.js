@@ -1,5 +1,5 @@
+import { promisify } from 'util';
 import { sign, verify } from 'jsonwebtoken';
-import promiseCallback from 'promise-callback-factory';
 import Logger from 'nightingale-logger/src';
 import abstractUsersManager from './models/user/abstractUsersManager';
 import mongoUsersManager from './models/user/mongoUsersManager';
@@ -13,6 +13,9 @@ export * from './models/user/types';
 
 const COOKIE_NAME = 'connectedUser';
 const logger = new Logger('alp:auth');
+
+const signPromisified = promisify(sign);
+const verifyPromisified = promisify(verify);
 
 export default function init({
   usersManager,
@@ -50,17 +53,14 @@ export default function init({
       this.state.connected = connected;
       this.state.user = user;
 
-      const token = await promiseCallback(done =>
-        sign(
-          { connected, time: Date.now() },
-          this.config.get('authentication').get('secretKey'),
-          {
-            algorithm: 'HS512',
-            audience: this.request.headers['user-agent'],
-            expiresIn: '30 days',
-          },
-          done,
-        ),
+      const token = signPromisified(
+        { connected, time: Date.now() },
+        this.config.get('authentication').get('secretKey'),
+        {
+          algorithm: 'HS512',
+          audience: this.request.headers['user-agent'],
+          expiresIn: '30 days',
+        },
       );
 
       this.cookies.set(COOKIE_NAME, token, {
@@ -75,11 +75,15 @@ export default function init({
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
     };
 
-    const decodeJwt = (token, userAgent) => {
-      const result = verify(token, app.config.get('authentication').get('secretKey'), {
-        algorithm: 'HS512',
-        audience: userAgent,
-      });
+    const decodeJwt = async (token, userAgent) => {
+      const result = await verifyPromisified(
+        token,
+        app.config.get('authentication').get('secretKey'),
+        {
+          algorithm: 'HS512',
+          audience: userAgent,
+        },
+      );
       return result && result.connected;
     };
 

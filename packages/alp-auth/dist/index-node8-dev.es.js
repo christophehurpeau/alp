@@ -1,6 +1,6 @@
 import t from 'flow-runtime';
 import { randomBytes } from 'crypto';
-import promiseCallback from 'promise-callback-factory';
+import { promisify } from 'util';
 import EventEmitter from 'events';
 import Logger from 'nightingale-logger';
 import { sign, verify } from 'jsonwebtoken';
@@ -165,6 +165,8 @@ Object.assign(mongoUsersManager$1, {
   }
 });
 
+const randomBytesPromisified = promisify(randomBytes);
+
 function randomHex(size) {
   let _sizeType2 = t.number();
 
@@ -172,7 +174,7 @@ function randomHex(size) {
 
   t.param('size', _sizeType2).assert(size);
 
-  return promiseCallback(done => randomBytes(size, done)).then(buffer => buffer.toString('hex')).then(_arg2 => _returnType2.assert(_arg2));
+  return randomBytesPromisified(size).then(buffer => buffer.toString('hex')).then(_arg2 => _returnType2.assert(_arg2));
 }
 
 var _class, _temp2;
@@ -465,11 +467,9 @@ let AuthenticationService = class extends EventEmitter {
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
-        return promiseCallback(done => {
-          strategyInstance.oauth2.authorizationCode.getToken({
-            code: options.code,
-            redirect_uri: options.redirectUri
-          }, done);
+        return strategyInstance.oauth2.authorizationCode.getToken({
+          code: options.code,
+          redirect_uri: options.redirectUri
         }).then(result => result && {
           accessToken: result.access_token,
           refreshToken: result.refresh_token,
@@ -503,7 +503,7 @@ let AuthenticationService = class extends EventEmitter {
           const token = strategyInstance.oauth2.accessToken.create({
             refresh_token: tokens.refreshToken
           });
-          return promiseCallback(done => token.refresh(done)).then(result => {
+          return token.refresh().then(result => {
             const tokens = result.token;
             return result && {
               accessToken: tokens.access_token,
@@ -693,6 +693,9 @@ function createAuthController(_arg) {
 const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
 
+const signPromisified = promisify(sign);
+const verifyPromisified = promisify(verify);
+
 function init(_arg) {
   let {
     usersManager,
@@ -730,11 +733,11 @@ function init(_arg) {
       this.state.connected = connected;
       this.state.user = user;
 
-      const token = await promiseCallback(done => sign({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
+      const token = signPromisified({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
         audience: this.request.headers['user-agent'],
         expiresIn: '30 days'
-      }, done));
+      });
 
       this.cookies.set(COOKIE_NAME, token, {
         httpOnly: true,
@@ -748,8 +751,8 @@ function init(_arg) {
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
     };
 
-    const decodeJwt = (token, userAgent) => {
-      const result = verify(token, app.config.get('authentication').get('secretKey'), {
+    const decodeJwt = async (token, userAgent) => {
+      const result = await verifyPromisified(token, app.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
         audience: userAgent
       });
