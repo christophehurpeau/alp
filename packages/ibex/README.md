@@ -1,9 +1,16 @@
-# ibex [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  ibex
+</h3>
 
-Framework for browser, with the same API than koa 2
+<p align="center">
+  Framework for browser, with the same API than koa 2
+</p>
 
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+<p align="center">
+  <a href="https://npmjs.org/package/ibex"><img src="https://img.shields.io/npm/v/ibex.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/alpjs/ibex"><img src="https://david-dm.org/alpjs/ibex.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/alpjs/ibex"><img src="https://dependencyci.com/github/alpjs/ibex/badge?style=flat-square"></a>
+</p>
 
 ## Usage
 
@@ -45,10 +52,3 @@ app.use(...);
 - request.protocol [location.protocol](https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol)
 - request.search [location.search](https://developer.mozilla.org/en-US/docs/Web/API/Location/search)
 - request.searchParams [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
-
-[npm-image]: https://img.shields.io/npm/v/ibex.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/ibex
-[daviddm-image]: https://david-dm.org/alpjs/ibex.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/ibex
-[dependencyci-image]: https://dependencyci.com/github/alpjs/ibex/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/ibex

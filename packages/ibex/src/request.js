@@ -1,41 +1,41 @@
-/* global location, URLSearchParams */
-
 import { parse as parseQueryString } from 'querystring';
 
 export default {
   get search() {
-    return location.search;
+    return window.location.search;
   },
   get path() {
-    return location.pathname;
+    return window.location.pathname;
   },
   get port() {
-    return location.port;
+    return window.location.port;
   },
   get url() {
-    return location.url;
+    return window.location.url;
   },
   get origin() {
-    return location.origin;
+    return window.location.origin;
   },
   get protocol() {
-    return location.protocol;
+    return window.location.protocol;
   },
   get query() {
-    return parseQueryString(location.search);
+    return parseQueryString(window.location.search);
   },
   get searchParams() {
     return new URLSearchParams(
-      location.search.length === 0 ? location.search : location.search.substr(1),
+      window.location.search.length === 0
+        ? window.location.search
+        : window.location.search.substr(1),
     );
   },
   get href() {
-    return location.href;
+    return window.location.href;
   },
   get host() {
-    return location.host;
+    return window.location.host;
   },
   get hostname() {
-    return location.hostname;
+    return window.location.hostname;
   },
 };

@@ -1,8 +1,5 @@
-/* eslint class-methods-use-this: 'off' */
-/* global window, document */
-
-import Logger from 'nightingale-logger';
 import { EventEmitter } from 'events';
+import Logger from 'nightingale-logger';
 import compose from './compose';
 import context from './context';
 import request from './request';
@@ -16,7 +13,7 @@ function respond(ctx) {
     return;
   }
 
-  let body = ctx.body;
+  const body = ctx.body;
   if (body == null) return;
 
   // const code = ctx.status;
@@ -35,13 +32,11 @@ function respond(ctx) {
 }
 
 export default class Application extends EventEmitter {
-  middleware: Array<Function>;
-  context: Object;
+  middleware: Array<Function> = [];
+  context: Object = Object.create(context);
 
   constructor() {
     super();
-    this.middleware = [];
-    this.context = Object.create(context);
     this.context.app = this;
     this.context.state = {};
   }

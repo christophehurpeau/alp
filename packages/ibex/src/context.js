@@ -2,7 +2,9 @@ import delegate from 'delegates';
 
 const proto = {};
 
-delegate(proto, 'response').access('body').method('redirect');
+delegate(proto, 'response')
+  .access('body')
+  .method('redirect');
 
 delegate(proto, 'request')
   .getter('host')
