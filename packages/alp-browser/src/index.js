@@ -1,4 +1,3 @@
-/* global window */
 import Ibex from 'ibex/src';
 import config from 'alp-config/src';
 import language from 'alp-language/src';
@@ -34,6 +33,8 @@ export default class AlpBrowser extends Ibex {
   }
 
   start(fn: Function) {
-    fn().then(() => logger.success('started')).catch(err => logger.error('start fail', { err }));
+    fn()
+      .then(() => logger.success('started'))
+      .catch(err => logger.error('start fail', { err }));
   }
 }

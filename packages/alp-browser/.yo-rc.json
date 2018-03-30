@@ -2,8 +2,19 @@
   "pob": {
     "pob-config": {
       "envs": [
-        "module-modern-browsers",
-        "module"
+        {
+          "target": "browser",
+          "version": "modern",
+          "formats": [
+            "es"
+          ]
+        },
+        {
+          "target": "browser",
+          "formats": [
+            "es"
+          ]
+        }
       ],
       "testing": false,
       "documentation": false,

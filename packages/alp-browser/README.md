@@ -1,9 +1,16 @@
-# alp-browser [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  alp-browser
+</h3>
 
-framework for browser based on ibex
+<p align="center">
+  framework for browser based on ibex
+</p>
 
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+<p align="center">
+  <a href="https://npmjs.org/package/alp-browser"><img src="https://img.shields.io/npm/v/alp-browser.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/alpjs/alp-browser"><img src="https://david-dm.org/alpjs/alp-browser.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/alpjs/alp-browser"><img src="https://dependencyci.com/github/alpjs/alp-browser/badge?style=flat-square"></a>
+</p>
 
 ## Install
 
@@ -33,10 +40,3 @@ app.start(async () => {
 });
 
 ```
-
-[npm-image]: https://img.shields.io/npm/v/alp-browser.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/alp-browser
-[daviddm-image]: https://david-dm.org/alpjs/alp-browser.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/alp-browser
-[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-browser/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-browser

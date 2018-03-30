@@ -1,17 +1,21 @@
-/* global window */
 import Ibex from 'ibex';
 import config from 'alp-config';
+export { Config } from 'alp-config';
 import language from 'alp-language';
 import translate from 'alp-translate';
 import Logger from 'nightingale-logger';
+import t from 'flow-runtime';
 
-export { Config } from 'alp-config';
+/* global window */
 
 const logger = new Logger('alp');
 
+const OptionsType = t.type('OptionsType', t.object(t.property('version', t.nullable(t.string()))));
 let AlpBrowser = class extends Ibex {
 
-  constructor(path = '/', { version = window.VERSION } = {}) {
+  constructor(path = '/', _arg = {}) {
+    let { version = window.VERSION } = OptionsType.assert(_arg);
+
     super();
     this.path = path;
     this.appVersion = window.VERSION;
@@ -28,6 +32,10 @@ let AlpBrowser = class extends Ibex {
   }
 
   start(fn) {
+    let _fnType = t.function();
+
+    t.param('fn', _fnType).assert(fn);
+
     fn().then(function () {
       return logger.success('started');
     }).catch(function (err) {
@@ -35,5 +43,6 @@ let AlpBrowser = class extends Ibex {
     });
   }
 };
-export { AlpBrowser as default };
-//# sourceMappingURL=index.js.map
+
+export default AlpBrowser;
+//# sourceMappingURL=index-browsermodern-dev.es.js.map
