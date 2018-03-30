@@ -1,5 +1,6 @@
-const { MongoStore } = require('liwi/mongo');
-const { RethinkStore } = require('liwi/rethinkdb');
+/* eslint-disable import/no-unresolved, import/no-commonjs */
+const { MongoStore } = require('liwi-mongo');
+const { RethinkStore } = require('liwi-rethinkdb');
 
 export default async (rethinkConnection, mongoConnection) => {
   const rethinkUsersStore = new RethinkStore(rethinkConnection, 'users');

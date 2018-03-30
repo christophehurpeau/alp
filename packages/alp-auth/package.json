@@ -63,13 +63,9 @@
     "flow-bin": "^0.69.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
-    "liwi": "^0.18.8",
     "pob-babel": "^20.2.0",
     "pob-release": "^3.1.0",
     "prettier": "^1.11.1",
     "yarnhook": "^0.2.0"
-  },
-  "peerDependencies": {
-    "liwi": ">=0.8.0 <1.0.0"
   }
 }
