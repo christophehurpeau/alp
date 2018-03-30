@@ -1,6 +1,6 @@
 {
   "name": "alp-react-redux",
-  "version": "14.3.0",
+  "version": "14.3.1",
   "description": "render with react and redux in alp framework",
   "keywords": ["alp", "auk"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
