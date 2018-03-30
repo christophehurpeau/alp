@@ -1,13 +1,15 @@
 {
   "name": "alp-auth",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "authentication with alp",
   "keywords": ["alp"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
   "license": "ISC",
   "repository": "git@github.com:alpjs/alp-auth.git",
   "homepage": "https://github.com/alpjs/alp-auth",
-  "engines": { "node": ">=6.5.0" },
+  "engines": {
+    "node": ">=6.5.0"
+  },
   "main": "./index.js",
   "module": "./dist/index-browser.es.js",
   "module-dev": "./dist/index-browser-dev.es.js",
@@ -39,8 +41,14 @@
     "src/**/*.json": ["prettier --write", "git add"],
     "src/**/*.js": ["eslint --fix --quiet", "git add"]
   },
-  "prettier": { "trailingComma": "all", "singleQuote": true, "printWidth": 100 },
-  "commitlint": { "extends": ["@commitlint/config-conventional"] },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
   "dependencies": {
     "cookies": "^0.7.1",
     "flow-runtime": "^0.17.0",
