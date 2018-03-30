@@ -1,28 +1,14 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var _dec, _desc, _value, _class, _descriptor, _class2, _temp2;
+var react = require('react');
+var PropTypes = _interopDefault(require('prop-types'));
+var alpReactRedux = require('alp-react-redux');
+var Logger = _interopDefault(require('nightingale-logger'));
+var t = _interopDefault(require('flow-runtime'));
 
-var _react = require('react');
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _alpReactRedux = require('alp-react-redux');
-
-var _nightingaleLogger = require('nightingale-logger');
-
-var _nightingaleLogger2 = _interopRequireDefault(_nightingaleLogger);
-
-var _flowRuntime = require('flow-runtime');
-
-var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _dec, _class, _descriptor, _class2, _temp2;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -62,14 +48,9 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 
   return desc;
 }
+const logger = new Logger('react-alp-subscribe-container');
 
-function _initializerWarningHelper() {
-  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
-}
-
-const logger = new _nightingaleLogger2.default('react-alp-subscribe-container');
-
-let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRuntime2.default.boolean()), (_class = (_temp2 = _class2 = class extends _react.Component {
+let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_temp2 = _class2 = class extends react.Component {
   constructor(...args) {
     var _temp;
 
@@ -134,20 +115,24 @@ let SubscribeContainerComponent = (_dec = _flowRuntime2.default.decorate(_flowRu
     return this.props.children;
   }
 }, _class2.propTypes = {
-  dispatch: _propTypes2.default.func.isRequired,
-  name: _propTypes2.default.string,
-  names: _propTypes2.default.arrayOf(_propTypes2.default.string.isRequired),
-  children: _propTypes2.default.node,
-  visibleTimeout: _propTypes2.default.number
+  dispatch: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  names: PropTypes.arrayOf(PropTypes.string.isRequired),
+  children: PropTypes.node,
+  visibleTimeout: PropTypes.number
 }, _class2.defaultProps = {
   visibleTimeout: 120000 // 2 minutes
 }, _class2.contextTypes = {
-  context: _propTypes2.default.object
-}, _temp2), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
+  context: PropTypes.object
+}, _temp2), _descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
   enumerable: true,
   initializer: function () {
     return false;
   }
-})), _class));
-exports.default = (0, _alpReactRedux.connect)()(SubscribeContainerComponent);
-//# sourceMappingURL=index.js.map
+}), _class);
+
+
+var index = alpReactRedux.connect()(SubscribeContainerComponent);
+
+module.exports = index;
+//# sourceMappingURL=index-node8-dev.cjs.js.map

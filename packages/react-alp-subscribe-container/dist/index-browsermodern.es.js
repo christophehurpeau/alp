@@ -1,61 +1,17 @@
-var _dec, _desc, _value, _class, _descriptor, _class2, _temp2;
-
-function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
-    enumerable: descriptor.enumerable,
-    configurable: descriptor.configurable,
-    writable: descriptor.writable,
-    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-  });
-}
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
-  Object['keys'](descriptor).forEach(function (key) {
-    desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-    return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['defineProperty'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
-}
-
-function _initializerWarningHelper() {
-  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
-}
-
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'alp-react-redux';
 import Logger from 'nightingale-logger';
 
-import t from 'flow-runtime';
+var _class, _temp2;
+
 const logger = new Logger('react-alp-subscribe-container');
 
-let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_temp2 = _class2 = class extends Component {
+let SubscribeContainerComponent = (_temp2 = _class = class extends Component {
   constructor(...args) {
     var _temp, _this;
 
-    return _temp = _this = super(...args), this.state = {}, _initDefineProp(this, 'subscribed', _descriptor, this), this.timeout = null, this.handleVisibilityChange = function () {
+    return _temp = _this = super(...args), this.state = {}, this.subscribed = false, this.timeout = null, this.handleVisibilityChange = function () {
       if (!document.hidden) {
         if (_this.timeout) {
           logger.log('timeout cleared', { names: _this.props.names, name: _this.props.name });
@@ -121,23 +77,20 @@ let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), (_class = (_t
   render() {
     return this.props.children;
   }
-}, _class2.propTypes = {
+}, _class.propTypes = {
   dispatch: PropTypes.func.isRequired,
   name: PropTypes.string,
   names: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.node,
   visibleTimeout: PropTypes.number
-}, _class2.defaultProps = {
+}, _class.defaultProps = {
   visibleTimeout: 120000 // 2 minutes
-}, _class2.contextTypes = {
+}, _class.contextTypes = {
   context: PropTypes.object
-}, _temp2), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
-  enumerable: true,
-  initializer: function initializer() {
-    return false;
-  }
-})), _class));
+}, _temp2);
 
 
-export default connect()(SubscribeContainerComponent);
-//# sourceMappingURL=index.js.map
+var index = connect()(SubscribeContainerComponent);
+
+export default index;
+//# sourceMappingURL=index-browsermodern.es.js.map

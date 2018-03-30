@@ -1,9 +1,16 @@
-# react-alp-subscribe-container [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  react-alp-subscribe-container
+</h3>
 
-react subscribe-container, works with alp-websocket
+<p align="center">
+  react subscribe-container, works with alp-websocket
+</p>
 
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+<p align="center">
+  <a href="https://npmjs.org/package/react-alp-subscribe-container"><img src="https://img.shields.io/npm/v/react-alp-subscribe-container.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/alpjs/react-alp-subscribe-container"><img src="https://david-dm.org/alpjs/react-alp-subscribe-container.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/alpjs/react-alp-subscribe-container"><img src="https://dependencyci.com/github/alpjs/react-alp-subscribe-container/badge?style=flat-square"></a>
+</p>
 
 ## Install
 
@@ -23,10 +30,3 @@ export function MyComponent({ dispatch }) {
     </SubscribeContainer>)
 }
 ```
-
-[npm-image]: https://img.shields.io/npm/v/react-alp-subscribe-container.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/react-alp-subscribe-container
-[daviddm-image]: https://david-dm.org/alpjs/react-alp-subscribe-container.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/react-alp-subscribe-container
-[dependencyci-image]: https://dependencyci.com/github/alpjs/react-alp-subscribe-container/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/react-alp-subscribe-container

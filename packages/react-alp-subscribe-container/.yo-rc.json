@@ -2,10 +2,28 @@
   "pob": {
     "pob-config": {
       "envs": [
-        "node8",
-        "module-modern-browsers",
-        "module",
-        "module-node8"
+        {
+          "target": "node",
+          "version": "8",
+          "formats": [
+            "cjs",
+            "es"
+          ]
+        },
+        {
+          "target": "browser",
+          "version": "modern",
+          "formats": [
+            "es"
+          ]
+        },
+        {
+          "target": "browser",
+          "formats": [
+            "cjs",
+            "es"
+          ]
+        }
       ],
       "testing": false,
       "documentation": false,
