@@ -1,4 +1,4 @@
-import Logger from 'nightingale-logger/src';
+import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp-websocket:middleware');
 

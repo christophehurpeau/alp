@@ -1,7 +1,8 @@
-/* eslint-disable no-use-before-define */
 import { readFileSync } from 'fs';
 import socketio from 'socket.io';
 import Logger from 'nightingale-logger';
+
+/* eslint-disable no-use-before-define */
 
 const logger = new Logger('alp:websocket');
 
@@ -11,7 +12,7 @@ let io;
  * @param {Koa|AlpNodeApp} app
  * @param {string} [dirname] for tls, dirname of server.key server.crt. If undefined: app.certPath
  */
-export default function alpWebsocket(app, dirname) {
+function alpWebsocket(app, dirname) {
   app.reduxReducers.websocket = (state = 'disconnected') => state;
 
   start(app.config, dirname || app.certPath);
@@ -20,11 +21,11 @@ export default function alpWebsocket(app, dirname) {
   return io;
 }
 
-export function close() {
+function close() {
   io.close();
 }
 
-export function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
+function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
   const diconnect = callbackOnUnsubscribe && (() => callbackOnUnsubscribe());
   socket.on(`subscribe:${name}`, callback => {
     logger.info('join', { name });
@@ -79,7 +80,7 @@ function start(config, dirname) {
 
     return createServer({
       key: readFileSync(`${dirname}/server.key`),
-      cert: readFileSync(`${dirname}/server.crt`),
+      cert: readFileSync(`${dirname}/server.crt`)
     });
   })();
 
@@ -102,3 +103,7 @@ function start(config, dirname) {
 
   return io;
 }
+
+export default alpWebsocket;
+export { close, subscribe };
+//# sourceMappingURL=index-node8-dev.es.js.map
