@@ -1,6 +1,6 @@
 {
   "name": "alp-websocket",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "websocket in alp framework",
   "keywords": ["alp", "websocket", "socket.io", "socketio"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
