@@ -1,3 +1,12 @@
+<a name="0.15.3"></a>
+## [0.15.3](https://github.com/alpjs/alp-auth/compare/v0.15.2...v0.15.3) (2018-03-30)
+
+
+### Bug Fixes
+
+* entry browser ([d01cd25](https://github.com/alpjs/alp-auth/commit/d01cd25))
+
+
 <a name="0.15.2"></a>
 ## [0.15.2](https://github.com/alpjs/alp-auth/compare/v0.15.1...v0.15.2) (2018-03-30)
 
