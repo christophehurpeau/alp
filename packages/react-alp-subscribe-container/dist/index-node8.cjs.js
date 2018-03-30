@@ -15,7 +15,7 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends react.Compone
   constructor(...args) {
     var _temp;
 
-    return _temp = super(...args), this.state = {}, this.subscribed = false, this.timeout = null, this.handleVisibilityChange = () => {
+    return _temp = super(...args), this.subscribed = false, this.timeout = null, this.handleVisibilityChange = () => {
       if (!document.hidden) {
         if (this.timeout) {
           logger.log('timeout cleared', { names: this.props.names, name: this.props.name });
@@ -75,12 +75,6 @@ let SubscribeContainerComponent = (_temp2 = _class = class extends react.Compone
   render() {
     return this.props.children;
   }
-}, _class.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  name: PropTypes.string,
-  names: PropTypes.arrayOf(PropTypes.string.isRequired),
-  children: PropTypes.node,
-  visibleTimeout: PropTypes.number
 }, _class.defaultProps = {
   visibleTimeout: 120000 // 2 minutes
 }, _class.contextTypes = {

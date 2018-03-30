@@ -1,19 +1,19 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'alp-react-redux';
+import { connect, type ReduxDispatchType } from 'alp-react-redux';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('react-alp-subscribe-container');
 
-class SubscribeContainerComponent extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    name: PropTypes.string,
-    names: PropTypes.arrayOf(PropTypes.string.isRequired),
-    children: PropTypes.node,
-    visibleTimeout: PropTypes.number,
-  };
+type Props = {|
+  children: Node,
+  dispatch: ReduxDispatchType,
+  name?: ?string,
+  names?: ?Array<string>,
+  visibleTimeout?: ?number,
+|};
 
+class SubscribeContainerComponent extends Component<Props> {
   static defaultProps = {
     visibleTimeout: 1000 * 60 * 2, // 2 minutes
   };
@@ -22,7 +22,8 @@ class SubscribeContainerComponent extends Component {
     context: PropTypes.object,
   };
 
-  state = {};
+  subscribed: boolean = false;
+  timeout = null;
 
   componentDidMount() {
     const websocket = this.getWebsocket();
@@ -42,9 +43,6 @@ class SubscribeContainerComponent extends Component {
   getWebsocket() {
     return this.context.context.app.websocket;
   }
-
-  subscribed: boolean = false;
-  timeout = null;
 
   handleVisibilityChange = () => {
     if (!document.hidden) {

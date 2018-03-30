@@ -300,17 +300,17 @@ align-text@^0.1.1, align-text@^0.1.3:
     longest "^1.0.1"
     repeat-string "^1.5.2"
 
-alp-react-redux@^14.2.1:
-  version "14.2.1"
-  resolved "https://registry.yarnpkg.com/alp-react-redux/-/alp-react-redux-14.2.1.tgz#a24a68a3f9e988de9a0f8429ad2a60280b1dac52"
+alp-react-redux@^14.3.0:
+  version "14.3.0"
+  resolved "https://registry.yarnpkg.com/alp-react-redux/-/alp-react-redux-14.3.0.tgz#9e32bbaf5a8e86b4f8f4ab608c65539b5663556f"
   dependencies:
     content-loaded "^1.1.0"
-    flow-runtime "^0.14.0"
+    flow-runtime "^0.17.0"
     modern-browsers "^0.5.0"
-    nightingale-logger "^3.4.0"
+    nightingale-logger "^4.0.0"
     react-helmet "^5.2.0"
-    react-redux "^5.0.6"
-    react-tree-walker "^2.1.3"
+    react-redux "^5.0.7"
+    react-tree-walker "^4.0.2"
 
 amdefine@>=0.0.4:
   version "1.0.1"
@@ -1244,9 +1244,9 @@ babel-preset-pob-env@^0.2.1:
     babel-preset-optimizations "^1.2.1"
     babel-preset-pob-stages "^0.2.4"
 
-babel-preset-pob-react@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/babel-preset-pob-react/-/babel-preset-pob-react-0.2.4.tgz#58f1e2291f7b242c26cbff4db2b6a6f5afa02612"
+babel-preset-pob-react@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/babel-preset-pob-react/-/babel-preset-pob-react-0.2.5.tgz#8c719957a1c82af84ef8b94029ed1628d039adac"
   dependencies:
     babel-plugin-react-require "^3.0.0"
     babel-plugin-transform-react-jsx-self "^6.22.0"
@@ -2221,9 +2221,9 @@ eslint-plugin-import@^2.10.0:
     minimatch "^3.0.3"
     read-pkg-up "^2.0.0"
 
-eslint-plugin-jsx-a11y@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.0.2.tgz#659277a758b036c305a7e4a13057c301cd3be73f"
+eslint-plugin-jsx-a11y@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.0.3.tgz#54583d1ae442483162e040e13cc31865465100e5"
   dependencies:
     aria-query "^0.7.0"
     array-includes "^3.0.3"
@@ -2231,7 +2231,7 @@ eslint-plugin-jsx-a11y@^6.0.2:
     axobject-query "^0.1.0"
     damerau-levenshtein "^1.0.0"
     emoji-regex "^6.1.0"
-    jsx-ast-utils "^1.4.0"
+    jsx-ast-utils "^2.0.0"
 
 eslint-plugin-prefer-class-properties@^1.0.0:
   version "1.0.0"
@@ -2599,13 +2599,9 @@ flow-config-parser@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/flow-config-parser/-/flow-config-parser-0.3.0.tgz#704916efba88cd2518ab4d8f933079571276138f"
 
-flow-runtime@0.10.0, flow-runtime@^0.10.0:
+flow-runtime@0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/flow-runtime/-/flow-runtime-0.10.0.tgz#20a70432fb20e8bba43769078c7a17d99dd1acab"
-
-flow-runtime@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/flow-runtime/-/flow-runtime-0.14.0.tgz#bbbcb700b19a0a299ab403e807d69912ef077c16"
 
 flow-runtime@^0.17.0:
   version "0.17.0"
@@ -2964,9 +2960,9 @@ hoek@4.x.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
-hoist-non-react-statics@^2.2.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
+hoist-non-react-statics@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -3631,11 +3627,7 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.3.6"
 
-jsx-ast-utils@^1.4.0:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.4.1.tgz#3867213e8dd79bf1e8f2300c0cfc1efb182c0df1"
-
-jsx-ast-utils@^2.0.1:
+jsx-ast-utils@^2.0.0, jsx-ast-utils@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-2.0.1.tgz#e801b1b39985e20fffc87b40e3748080e2dcac7f"
   dependencies:
@@ -3799,9 +3791,9 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.2.0:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
+lodash-es@^4.17.5:
+  version "4.17.8"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.8.tgz#6fa8c8c5d337481df0bdf1c0d899d42473121e45"
 
 lodash._basecopy@^3.0.0:
   version "3.0.1"
@@ -4188,16 +4180,16 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
 
-nightingale-levels@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/nightingale-levels/-/nightingale-levels-1.1.0.tgz#d20cd00d050f557e1c29026fd75ec5b9a9752af3"
+nightingale-levels@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/nightingale-levels/-/nightingale-levels-2.0.0.tgz#6b782e77e6fa9afa074c4f509465b675f5824f09"
 
-nightingale-logger@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/nightingale-logger/-/nightingale-logger-3.4.0.tgz#1fcea1429c470356fe1135111e99402bb94110ce"
+nightingale-logger@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/nightingale-logger/-/nightingale-logger-4.0.0.tgz#b6bc362f4a4aa1ede1ba9654f1d92250e0d82fc7"
   dependencies:
-    flow-runtime "^0.10.0"
-    nightingale-levels "^1.1.0"
+    flow-runtime "^0.17.0"
+    nightingale-levels "^2.0.0"
 
 node-fetch@^1.0.1:
   version "1.7.3"
@@ -4610,7 +4602,13 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.6.0:
+prop-types@^15.5.4:
+  version "15.5.8"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
+  dependencies:
+    fbjs "^0.8.9"
+
+prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -4618,11 +4616,13 @@ prop-types@^15.5.10, prop-types@^15.6.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-prop-types@^15.5.4:
-  version "15.5.8"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
+prop-types@^15.6.1:
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
-    fbjs "^0.8.9"
+    fbjs "^0.8.16"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
 
 pseudomap@^1.0.2:
   version "1.0.2"
@@ -4681,16 +4681,16 @@ react-helmet@^5.2.0:
     prop-types "^15.5.4"
     react-side-effect "^1.1.0"
 
-react-redux@^5.0.6:
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.6.tgz#23ed3a4f986359d68b5212eaaa681e60d6574946"
+react-redux@^5.0.7:
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
   dependencies:
-    hoist-non-react-statics "^2.2.1"
+    hoist-non-react-statics "^2.5.0"
     invariant "^2.0.0"
-    lodash "^4.2.0"
-    lodash-es "^4.2.0"
+    lodash "^4.17.5"
+    lodash-es "^4.17.5"
     loose-envify "^1.1.0"
-    prop-types "^15.5.10"
+    prop-types "^15.6.0"
 
 react-side-effect@^1.1.0:
   version "1.1.0"
@@ -4699,13 +4699,13 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^0.2.2"
 
-react-tree-walker@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/react-tree-walker/-/react-tree-walker-2.1.3.tgz#e781dd7ba9b5c50cc6300e3388b490f2b43b6295"
+react-tree-walker@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/react-tree-walker/-/react-tree-walker-4.0.2.tgz#a50df477ba9f0559584d19944b669fefa2a5669f"
 
-react@^16.1.1:
-  version "16.1.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.1.1.tgz#d5c4ef795507e3012282dd51261ff9c0e824fe1f"
+react@^16.3.0:
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.3.0.tgz#fc5a01c68f91e9b38e92cf83f7b795ebdca8ddff"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"

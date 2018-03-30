@@ -8,7 +8,7 @@ var alpReactRedux = require('alp-react-redux');
 var Logger = _interopDefault(require('nightingale-logger'));
 var t = _interopDefault(require('flow-runtime'));
 
-var _dec, _class, _descriptor, _class2, _temp2;
+var _dec, _class, _descriptor, _class2, _temp;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -48,49 +48,11 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 
   return desc;
 }
+const ReduxDispatchType = t.tdz(() => alpReactRedux.ReduxDispatchType);
 const logger = new Logger('react-alp-subscribe-container');
 
-let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_temp2 = _class2 = class extends react.Component {
-  constructor(...args) {
-    var _temp;
-
-    return _temp = super(...args), this.state = {}, _initDefineProp(this, 'subscribed', _descriptor, this), this.timeout = null, this.handleVisibilityChange = () => {
-      if (!document.hidden) {
-        if (this.timeout) {
-          logger.log('timeout cleared', { names: this.props.names, name: this.props.name });
-          clearTimeout(this.timeout);
-        } else {
-          logger.debug('resubscribe', { names: this.props.names, name: this.props.name });
-          this.subscribe();
-        }
-        return;
-      }
-
-      if (!this.subscribed) return;
-
-      logger.log('timeout visible', { names: this.props.names, name: this.props.name });
-      this.timeout = setTimeout(this.unsubscribe, this.props.visibleTimeout);
-    }, this.subscribe = () => {
-      if (document.hidden) return;
-
-      logger.log('subscribe', { names: this.props.names, name: this.props.name });
-      this.subscribed = true;
-      const { dispatch } = this.props;
-      const names = this.props.names || [this.props.name];
-      const websocket = this.getWebsocket();
-      names.forEach(name => websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action)));
-    }, this.unsubscribe = () => {
-      this.timeout = null;
-      if (!this.subscribed) return;
-      logger.log('unsubscribe', { names: this.props.names, name: this.props.name });
-      this.subscribed = false;
-      const names = this.props.names || [this.props.name];
-      const websocket = this.getWebsocket();
-      if (websocket.isConnected()) {
-        names.forEach(name => websocket.emit(`unsubscribe:${name}`));
-      }
-    }, _temp;
-  }
+const Props = t.type('Props', t.exactObject(t.property('children', t.ref('Node')), t.property('dispatch', t.ref(ReduxDispatchType)), t.property('name', t.nullable(t.string()), true), t.property('names', t.nullable(t.array(t.string())), true), t.property('visibleTimeout', t.nullable(t.number()), true)));
+let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_temp = _class2 = class extends react.Component {
 
   componentDidMount() {
     const websocket = this.getWebsocket();
@@ -111,20 +73,65 @@ let SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_te
     return this.context.context.app.websocket;
   }
 
+  constructor(...args) {
+    super(...args);
+
+    _initDefineProp(this, 'subscribed', _descriptor, this);
+
+    this.timeout = null;
+
+    this.handleVisibilityChange = () => {
+      if (!document.hidden) {
+        if (this.timeout) {
+          logger.log('timeout cleared', { names: this.props.names, name: this.props.name });
+          clearTimeout(this.timeout);
+        } else {
+          logger.debug('resubscribe', { names: this.props.names, name: this.props.name });
+          this.subscribe();
+        }
+        return;
+      }
+
+      if (!this.subscribed) return;
+
+      logger.log('timeout visible', { names: this.props.names, name: this.props.name });
+      this.timeout = setTimeout(this.unsubscribe, this.props.visibleTimeout);
+    };
+
+    this.subscribe = () => {
+      if (document.hidden) return;
+
+      logger.log('subscribe', { names: this.props.names, name: this.props.name });
+      this.subscribed = true;
+      const { dispatch } = this.props;
+      const names = this.props.names || [this.props.name];
+      const websocket = this.getWebsocket();
+      names.forEach(name => websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action)));
+    };
+
+    this.unsubscribe = () => {
+      this.timeout = null;
+      if (!this.subscribed) return;
+      logger.log('unsubscribe', { names: this.props.names, name: this.props.name });
+      this.subscribed = false;
+      const names = this.props.names || [this.props.name];
+      const websocket = this.getWebsocket();
+      if (websocket.isConnected()) {
+        names.forEach(name => websocket.emit(`unsubscribe:${name}`));
+      }
+    };
+
+    t.bindTypeParameters(this, Props);
+  }
+
   render() {
     return this.props.children;
   }
-}, _class2.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  name: PropTypes.string,
-  names: PropTypes.arrayOf(PropTypes.string.isRequired),
-  children: PropTypes.node,
-  visibleTimeout: PropTypes.number
-}, _class2.defaultProps = {
+}, _class2.propTypes = t.propTypes(Props), _class2.defaultProps = {
   visibleTimeout: 120000 // 2 minutes
 }, _class2.contextTypes = {
   context: PropTypes.object
-}, _temp2), _descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
+}, _temp), _descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
   enumerable: true,
   initializer: function () {
     return false;

@@ -69,7 +69,7 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _this.subscribed = false, _this.timeout = null, _this.handleVisibilityChange = function () {
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args))), _this), _this.subscribed = false, _this.timeout = null, _this.handleVisibilityChange = function () {
       if (!document.hidden) {
         if (_this.timeout) {
           logger.log('timeout cleared', { names: _this.props.names, name: _this.props.name });
@@ -143,13 +143,7 @@ var SubscribeContainerComponent = (_temp2 = _class = function (_Component) {
     }
   }]);
   return SubscribeContainerComponent;
-}(Component), _class.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  name: PropTypes.string,
-  names: PropTypes.arrayOf(PropTypes.string.isRequired),
-  children: PropTypes.node,
-  visibleTimeout: PropTypes.number
-}, _class.defaultProps = {
+}(Component), _class.defaultProps = {
   visibleTimeout: 120000 // 2 minutes
 }, _class.contextTypes = {
   context: PropTypes.object

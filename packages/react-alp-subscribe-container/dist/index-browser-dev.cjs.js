@@ -56,7 +56,7 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-var _dec, _class, _descriptor, _class2, _temp2;
+var _dec, _class, _descriptor, _class2, _temp;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -96,67 +96,14 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 
   return desc;
 }
+var ReduxDispatchType = t.tdz(function () {
+  return alpReactRedux.ReduxDispatchType;
+});
 var logger = new Logger('react-alp-subscribe-container');
 
-var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_temp2 = _class2 = function (_Component) {
+var Props = t.type('Props', t.exactObject(t.property('children', t.ref('Node')), t.property('dispatch', t.ref(ReduxDispatchType)), t.property('name', t.nullable(t.string()), true), t.property('names', t.nullable(t.array(t.string())), true), t.property('visibleTimeout', t.nullable(t.number()), true)));
+var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_temp = _class2 = function (_Component) {
   inherits(SubscribeContainerComponent, _Component);
-
-  function SubscribeContainerComponent() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    classCallCheck(this, SubscribeContainerComponent);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _initDefineProp(_this, 'subscribed', _descriptor, _this), _this.timeout = null, _this.handleVisibilityChange = function () {
-      if (!document.hidden) {
-        if (_this.timeout) {
-          logger.log('timeout cleared', { names: _this.props.names, name: _this.props.name });
-          clearTimeout(_this.timeout);
-        } else {
-          logger.debug('resubscribe', { names: _this.props.names, name: _this.props.name });
-          _this.subscribe();
-        }
-        return;
-      }
-
-      if (!_this.subscribed) return;
-
-      logger.log('timeout visible', { names: _this.props.names, name: _this.props.name });
-      _this.timeout = setTimeout(_this.unsubscribe, _this.props.visibleTimeout);
-    }, _this.subscribe = function () {
-      if (document.hidden) return;
-
-      logger.log('subscribe', { names: _this.props.names, name: _this.props.name });
-      _this.subscribed = true;
-      var dispatch = _this.props.dispatch;
-
-      var names = _this.props.names || [_this.props.name];
-      var websocket = _this.getWebsocket();
-      names.forEach(function (name) {
-        return websocket.emit('subscribe:' + name).then(function (action) {
-          return action && dispatch(action);
-        });
-      });
-    }, _this.unsubscribe = function () {
-      _this.timeout = null;
-      if (!_this.subscribed) return;
-      logger.log('unsubscribe', { names: _this.props.names, name: _this.props.name });
-      _this.subscribed = false;
-      var names = _this.props.names || [_this.props.name];
-      var websocket = _this.getWebsocket();
-      if (websocket.isConnected()) {
-        names.forEach(function (name) {
-          return websocket.emit('unsubscribe:' + name);
-        });
-      }
-    }, _temp), possibleConstructorReturn(_this, _ret);
-  }
-
   createClass(SubscribeContainerComponent, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
@@ -179,24 +126,87 @@ var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_te
     value: function getWebsocket() {
       return this.context.context.app.websocket;
     }
-  }, {
+  }]);
+
+  function SubscribeContainerComponent() {
+    var _ref;
+
+    classCallCheck(this, SubscribeContainerComponent);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var _this = possibleConstructorReturn(this, (_ref = SubscribeContainerComponent.__proto__ || Object.getPrototypeOf(SubscribeContainerComponent)).call.apply(_ref, [this].concat(args)));
+
+    _initDefineProp(_this, 'subscribed', _descriptor, _this);
+
+    _this.timeout = null;
+
+    _this.handleVisibilityChange = function () {
+      if (!document.hidden) {
+        if (_this.timeout) {
+          logger.log('timeout cleared', { names: _this.props.names, name: _this.props.name });
+          clearTimeout(_this.timeout);
+        } else {
+          logger.debug('resubscribe', { names: _this.props.names, name: _this.props.name });
+          _this.subscribe();
+        }
+        return;
+      }
+
+      if (!_this.subscribed) return;
+
+      logger.log('timeout visible', { names: _this.props.names, name: _this.props.name });
+      _this.timeout = setTimeout(_this.unsubscribe, _this.props.visibleTimeout);
+    };
+
+    _this.subscribe = function () {
+      if (document.hidden) return;
+
+      logger.log('subscribe', { names: _this.props.names, name: _this.props.name });
+      _this.subscribed = true;
+      var dispatch = _this.props.dispatch;
+
+      var names = _this.props.names || [_this.props.name];
+      var websocket = _this.getWebsocket();
+      names.forEach(function (name) {
+        return websocket.emit('subscribe:' + name).then(function (action) {
+          return action && dispatch(action);
+        });
+      });
+    };
+
+    _this.unsubscribe = function () {
+      _this.timeout = null;
+      if (!_this.subscribed) return;
+      logger.log('unsubscribe', { names: _this.props.names, name: _this.props.name });
+      _this.subscribed = false;
+      var names = _this.props.names || [_this.props.name];
+      var websocket = _this.getWebsocket();
+      if (websocket.isConnected()) {
+        names.forEach(function (name) {
+          return websocket.emit('unsubscribe:' + name);
+        });
+      }
+    };
+
+    t.bindTypeParameters(_this, Props);
+    return _this;
+  }
+
+  createClass(SubscribeContainerComponent, [{
     key: 'render',
     value: function render() {
       return this.props.children;
     }
   }]);
   return SubscribeContainerComponent;
-}(react.Component), _class2.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  name: PropTypes.string,
-  names: PropTypes.arrayOf(PropTypes.string.isRequired),
-  children: PropTypes.node,
-  visibleTimeout: PropTypes.number
-}, _class2.defaultProps = {
+}(react.Component), _class2.propTypes = t.propTypes(Props), _class2.defaultProps = {
   visibleTimeout: 120000 // 2 minutes
 }, _class2.contextTypes = {
   context: PropTypes.object
-}, _temp2), _descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
+}, _temp), _descriptor = _applyDecoratedDescriptor(_class.prototype, 'subscribed', [_dec], {
   enumerable: true,
   initializer: function initializer() {
     return false;
