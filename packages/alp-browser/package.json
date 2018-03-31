@@ -46,7 +46,7 @@
     "extends": ["@commitlint/config-conventional"]
   },
   "dependencies": {
-    "alp-config": "^3.5.1",
+    "alp-config": "^3.5.2",
     "alp-language": "^1.9.1",
     "alp-translate": "^2.8.0",
     "flow-runtime": "^0.17.0",
