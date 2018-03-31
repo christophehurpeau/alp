@@ -1,6 +1,6 @@
 {
   "name": "alp-browser",
-  "version": "0.24.1",
+  "version": "0.24.2",
   "description": "framework for browser based on ibex",
   "keywords": ["springbokjs", "alp", "framework", "ibex"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",

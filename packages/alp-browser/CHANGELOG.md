@@ -1,3 +1,12 @@
+<a name="0.24.2"></a>
+## [0.24.2](https://github.com/alpjs/alp-browser/compare/v0.24.1...v0.24.2) (2018-03-31)
+
+
+### Bug Fixes
+
+* alp-config ([ac765a7](https://github.com/alpjs/alp-browser/commit/ac765a7))
+
+
 <a name="0.24.1"></a>
 ## [0.24.1](https://github.com/alpjs/alp-browser/compare/v0.24.0...v0.24.1) (2018-03-30)
 
