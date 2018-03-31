@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, Node } from 'react';
 import PropTypes from 'prop-types';
 import { connect, ReduxDispatchType } from 'alp-react-redux';
 import Logger from 'nightingale-logger';
@@ -95,9 +95,12 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 var ReduxDispatchType$1 = t.tdz(function () {
   return ReduxDispatchType;
 });
+var Node$1 = t.tdz(function () {
+  return Node;
+});
 var logger = new Logger('react-alp-subscribe-container');
 
-var Props = t.type('Props', t.exactObject(t.property('children', t.ref('Node')), t.property('dispatch', t.ref(ReduxDispatchType$1)), t.property('name', t.nullable(t.string()), true), t.property('names', t.nullable(t.array(t.string())), true), t.property('visibleTimeout', t.nullable(t.number()), true)));
+var Props = t.type('Props', t.exactObject(t.property('children', t.ref(Node$1)), t.property('dispatch', t.ref(ReduxDispatchType$1)), t.property('name', t.nullable(t.string()), true), t.property('names', t.nullable(t.array(t.string())), true), t.property('visibleTimeout', t.nullable(t.number()), true)));
 var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_temp = _class2 = function (_Component) {
   inherits(SubscribeContainerComponent, _Component);
   createClass(SubscribeContainerComponent, [{

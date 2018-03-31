@@ -99,9 +99,12 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 var ReduxDispatchType = t.tdz(function () {
   return alpReactRedux.ReduxDispatchType;
 });
+var Node = t.tdz(function () {
+  return react.Node;
+});
 var logger = new Logger('react-alp-subscribe-container');
 
-var Props = t.type('Props', t.exactObject(t.property('children', t.ref('Node')), t.property('dispatch', t.ref(ReduxDispatchType)), t.property('name', t.nullable(t.string()), true), t.property('names', t.nullable(t.array(t.string())), true), t.property('visibleTimeout', t.nullable(t.number()), true)));
+var Props = t.type('Props', t.exactObject(t.property('children', t.ref(Node)), t.property('dispatch', t.ref(ReduxDispatchType)), t.property('name', t.nullable(t.string()), true), t.property('names', t.nullable(t.array(t.string())), true), t.property('visibleTimeout', t.nullable(t.number()), true)));
 var SubscribeContainerComponent = (_dec = t.decorate(t.boolean()), _class = (_temp = _class2 = function (_Component) {
   inherits(SubscribeContainerComponent, _Component);
   createClass(SubscribeContainerComponent, [{
