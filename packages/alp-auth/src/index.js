@@ -53,7 +53,7 @@ export default function init({
       this.state.connected = connected;
       this.state.user = user;
 
-      const token = signPromisified(
+      const token = await signPromisified(
         { connected, time: Date.now() },
         this.config.get('authentication').get('secretKey'),
         {

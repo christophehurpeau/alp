@@ -670,7 +670,7 @@ function init({
         this.state.connected = connected;
         this.state.user = user;
 
-        const token = signPromisified({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
+        const token = yield signPromisified({ connected, time: Date.now() }, this.config.get('authentication').get('secretKey'), {
           algorithm: 'HS512',
           audience: this.request.headers['user-agent'],
           expiresIn: '30 days'
