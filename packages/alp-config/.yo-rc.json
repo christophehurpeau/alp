@@ -29,7 +29,8 @@
       "documentation": false,
       "doclets": false,
       "entries": [
-        "index"
+        "index",
+        "browser"
       ]
     }
   }
