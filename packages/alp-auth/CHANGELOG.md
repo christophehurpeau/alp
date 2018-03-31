@@ -1,3 +1,12 @@
+<a name="0.15.4"></a>
+## [0.15.4](https://github.com/alpjs/alp-auth/compare/v0.15.3...v0.15.4) (2018-03-31)
+
+
+### Bug Fixes
+
+* missing await ([529dbd8](https://github.com/alpjs/alp-auth/commit/529dbd8))
+
+
 <a name="0.15.3"></a>
 ## [0.15.3](https://github.com/alpjs/alp-auth/compare/v0.15.2...v0.15.3) (2018-03-30)
 
