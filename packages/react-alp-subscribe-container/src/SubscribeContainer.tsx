@@ -1,19 +1,23 @@
-import { Component, type Node } from 'react';
+import { Component, ReactElement } from 'react';
+import { Dispatch, AnyAction } from 'redux';
 import PropTypes from 'prop-types';
-import { connect, type ReduxDispatchType } from 'alp-react-redux';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('react-alp-subscribe-container');
 
-type Props = {|
-  children: Node,
-  dispatch: ReduxDispatchType,
-  name?: ?string,
-  names?: ?Array<string>,
-  visibleTimeout?: ?number,
-|};
+export interface OwnProps {
+  children: ReactElement<any>;
+  // eslint-disable-next-line no-restricted-globals
+  name?: string;
+  names?: Array<string>;
+  visibleTimeout?: number;
+}
 
-class SubscribeContainerComponent extends Component<Props> {
+export interface ConnectProps {
+  dispatch: Dispatch<any>;
+}
+
+export default class SubscribeContainer extends Component<OwnProps & ConnectProps, never> {
   static defaultProps = {
     visibleTimeout: 1000 * 60 * 2, // 2 minutes
   };
@@ -23,7 +27,7 @@ class SubscribeContainerComponent extends Component<Props> {
   };
 
   subscribed: boolean = false;
-  timeout = null;
+  timeout: number | undefined = undefined;
 
   componentDidMount() {
     const websocket = this.getWebsocket();
@@ -46,11 +50,17 @@ class SubscribeContainerComponent extends Component<Props> {
 
   handleVisibilityChange = () => {
     if (!document.hidden) {
-      if (this.timeout) {
-        logger.log('timeout cleared', { names: this.props.names, name: this.props.name });
+      if (this.timeout != null) {
+        logger.log('timeout cleared', {
+          names: this.props.names,
+          name: this.props.name,
+        });
         clearTimeout(this.timeout);
       } else {
-        logger.debug('resubscribe', { names: this.props.names, name: this.props.name });
+        logger.debug('resubscribe', {
+          names: this.props.names,
+          name: this.props.name,
+        });
         this.subscribe();
       }
       return;
@@ -58,7 +68,10 @@ class SubscribeContainerComponent extends Component<Props> {
 
     if (!this.subscribed) return;
 
-    logger.log('timeout visible', { names: this.props.names, name: this.props.name });
+    logger.log('timeout visible', {
+      names: this.props.names,
+      name: this.props.name,
+    });
     this.timeout = setTimeout(this.unsubscribe, this.props.visibleTimeout);
   };
 
@@ -71,14 +84,17 @@ class SubscribeContainerComponent extends Component<Props> {
     const names = this.props.names || [this.props.name];
     const websocket = this.getWebsocket();
     names.forEach(name =>
-      websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action)),
+      websocket.emit(`subscribe:${name}`).then((action: AnyAction) => action && dispatch(action)),
     );
   };
 
   unsubscribe = () => {
-    this.timeout = null;
+    this.timeout = undefined;
     if (!this.subscribed) return;
-    logger.log('unsubscribe', { names: this.props.names, name: this.props.name });
+    logger.log('unsubscribe', {
+      names: this.props.names,
+      name: this.props.name,
+    });
     this.subscribed = false;
     const names = this.props.names || [this.props.name];
     const websocket = this.getWebsocket();
@@ -87,9 +103,7 @@ class SubscribeContainerComponent extends Component<Props> {
     }
   };
 
-  render() {
+  render(): ReactElement<any> {
     return this.props.children;
   }
 }
-
-export default connect()(SubscribeContainerComponent);
