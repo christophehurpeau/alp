@@ -1,0 +1,5 @@
+{
+  "extends": ["pob/babel", "pob/react", "pob/typescript"],
+  "parser": "typescript-eslint-parser",
+  "plugins": ["typescript"]
+}

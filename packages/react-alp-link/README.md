@@ -1,9 +1,16 @@
-# react-alp-link [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  react-alp-link
+</h3>
 
-react link with limosa router
+<p align="center">
+  react link with limosa router
+</p>
 
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
-[![Dependency Status][daviddm-image]][daviddm-url]
+<p align="center">
+  <a href="https://npmjs.org/package/react-alp-link"><img src="https://img.shields.io/npm/v/react-alp-link.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/alpjs/react-alp-link"><img src="https://david-dm.org/alpjs/react-alp-link.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/alpjs/react-alp-link"><img src="https://dependencyci.com/github/alpjs/react-alp-link/badge?style=flat-square"></a>
+</p>
 
 ## Install
 
@@ -20,10 +27,3 @@ export function MyComponent() {
     return <Link to="home" />
 }
 ```
-
-[npm-image]: https://img.shields.io/npm/v/react-alp-link.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/react-alp-link
-[daviddm-image]: https://david-dm.org/alpjs/react-alp-link.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/react-alp-link
-[dependencyci-image]: https://dependencyci.com/github/alpjs/react-alp-link/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/react-alp-link
