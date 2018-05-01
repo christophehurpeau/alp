@@ -1,4 +1,4 @@
-import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node/src';
+import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
 import createPobpackConfig from './createPobpackConfig';
 
 export const createNodeCompiler = production =>

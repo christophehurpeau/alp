@@ -3,7 +3,7 @@ import {
   MODERN,
   ALL,
   runDevServer as runDevServerPobpack,
-} from 'pobpack-browser/src';
+} from 'pobpack-browser';
 import createPobpackConfig from './createPobpackConfig';
 
 export const createModernBrowserCompiler = production =>

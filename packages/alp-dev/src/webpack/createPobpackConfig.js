@@ -1,13 +1,7 @@
 import path from 'path';
-import presetPob from 'babel-preset-pob';
-import presetPobReact from 'babel-preset-pob-react';
-import presetPobStages from 'babel-preset-pob-stages';
-import presetEnv from 'babel-preset-env';
-import { buildPreset as presetModernBrowsers } from 'babel-preset-modern-browsers';
-import presetLatestNode from 'babel-preset-latest-node';
-import presetOptimizations from 'babel-preset-optimizations';
-import pluginDiscardModuleReference from 'babel-plugin-discard-module-references';
-import pluginFlowRuntime from 'babel-plugin-flow-runtime';
+import presetPobEnv from 'babel-preset-pob-env';
+import presetReact from '@babel/preset-react';
+import presetFlow from '@babel/preset-flow';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import BabelMinifyPlugin from 'babel-minify-webpack-plugin';
 import { optimize } from 'webpack';
@@ -41,17 +35,25 @@ export default (target: TargetType, production: ?boolean = false) => ({
     minified: target !== 'node' && production,
     comments: !(target !== 'node' && production),
 
-    // preset order is last to first, so we reverse it for clarity.
     presets: [
+      // flow
+      presetFlow,
       // add react preset with jsx
-      [presetPobReact, { production }],
-      // add stage-1 to stage-3 features
-      presetPobStages,
-      // pob preset: flow, import `src`, export default function name, replacements
+      [presetReact, { development: !production, useBuiltIns: true }],
+      // pob preset: flow, import `src`, export default function name, replacements, exnext features, ...
       [
-        presetPob,
+        presetPobEnv,
         {
+          resolvePreset: preset => require.resolve(preset),
           production,
+          typescript: false,
+          exportDefaultName: false,
+          optimizations: true,
+          target: target === 'node' ? 'node' : 'browser',
+          // eslint-disable-next-line no-nested-ternary
+          version: target === 'node' ? 8.3 : target === 'modern-browser' ? 'modern' : undefined,
+          loose: true,
+          modules: false,
           replacements: {
             BROWSER: target !== 'node',
             NODEJS: target === 'node',
@@ -60,47 +62,31 @@ export default (target: TargetType, production: ?boolean = false) => ({
           },
         },
       ],
-      // optimizations: remove dead-code
-      presetOptimizations,
-      // flow runtime
-      !production && {
-        plugins: [
-          [
-            pluginFlowRuntime,
-            {
-              assert: true,
-              annotate: false,
-            },
-          ],
-        ],
-      },
-      // discard unused imports (like production-only or node-only imports)
-      { plugins: [pluginDiscardModuleReference] },
       // transpile for browser
-      target === 'modern-browser' && [presetModernBrowsers, { modules: false }],
-      target === 'browser' && [
-        presetEnv,
-        {
-          modules: false,
-          useBuiltIns: true,
-          targets: [
-            '>1%',
-            'not ie < 9', // react doesn't support ie < 9
-          ],
-        },
-      ],
-
-      target === 'node' && [
-        presetLatestNode,
-        {
-          modules: false,
-          target: 8.3,
-        },
-      ],
-    ]
-      .reverse()
-      .filter(Boolean),
-    plugins: [],
+      // target === 'modern-browser' && [presetModernBrowsers, { modules: false, loose: true }],
+      // target === 'browser' && [
+      //   presetEnv,
+      //   {
+      //     modules: false,
+      //     loose: true,
+      //     useBuiltIns: true,
+      //     targets: [
+      //       '>1%',
+      //       'not ie < 9', // react doesn't support ie < 9
+      //     ],
+      //   },
+      // ],
+      //
+      // target === 'node' && [
+      //   presetLatestNode,
+      //   {
+      //     modules: false,
+      //     loose: true,
+      //     target: 8.3,
+      //   },
+      // ],
+    ].filter(Boolean),
+    plugins: [require.resolve('babel-plugin-react-require')],
   },
 
   moduleRules: [
@@ -111,6 +97,7 @@ export default (target: TargetType, production: ?boolean = false) => ({
       themeFile: './src/theme.scss',
       plugins: [autoprefixer],
       includePaths: [path.resolve('./node_modules')],
+      resolveLoader: loader => require.resolve(loader),
     }),
 
     // IMG RULE
@@ -170,8 +157,8 @@ export default (target: TargetType, production: ?boolean = false) => ({
         { comments: false },
       ),
 
-    target === 'browser' &&
-      production &&
+    // target === 'browser' &&
+    production &&
       new optimize.UglifyJsPlugin({
         compress: {
           warnings: false,

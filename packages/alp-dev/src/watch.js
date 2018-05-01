@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 import path from 'path';
 import portscanner from 'portscanner';
 import argv from 'minimist-argv';
-import createChild from 'springbokjs-daemon/src';
+import createChild from 'springbokjs-daemon';
 // import watchServer from './server';
 import * as configBuild from './config-build';
 

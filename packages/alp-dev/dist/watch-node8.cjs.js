@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var fs = require('fs');
@@ -36,21 +38,66 @@ var writeFile = ((target, content) => new Promise((resolve, reject) => {
   });
 }));
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
 function loadConfigFile(content, dirname) {
   const data = jsYaml.safeLoad(content) || {};
-
   const config = data.shared || data.common || {};
-  const serverConfig = Object.assign({}, config, data.server);
-  const browserConfig = Object.assign({}, config, data.browser);
+
+  const serverConfig = _objectSpread({}, config, data.server);
+
+  const browserConfig = _objectSpread({}, config, data.browser);
 
   if (data.include) {
     const includePaths = data.include.map(includePath => path__default.resolve(dirname, includePath));
     includePaths.map(includePath => fs.readFileSync(includePath)).map((content, index) => loadConfigFile(content, path__default.dirname(includePaths[index]))).forEach(([includeServerConfig, includeBrowserConfig]) => {
-      [{ config: serverConfig, include: includeServerConfig }, { config: browserConfig, include: includeBrowserConfig }].forEach(({ config, include }) => Object.keys(include).forEach(key => {
+      [{
+        config: serverConfig,
+        include: includeServerConfig
+      }, {
+        config: browserConfig,
+        include: includeBrowserConfig
+      }].forEach(({
+        config,
+        include
+      }) => Object.keys(include).forEach(key => {
         if (!(key in config)) {
           config[key] = include[key];
           return;
         }
+
         if (Array.isArray(config[key])) {
           config[key].push(include[key]);
         } else if (typeof config[key] === 'object') {
@@ -68,17 +115,13 @@ function loadConfigFile(content, dirname) {
 const build = (src = './src/config') => Promise.all(glob.sync(path.join(src, '**/*.yml')).map(filename => readFile(filename).then(content => {
   const [serverConfig, browserConfig] = loadConfigFile(content, path.dirname(filename));
   const destFile = `${filename.slice(4, -3)}json`;
-
   return Promise.all([writeFile(`build/${destFile}`, JSON.stringify(serverConfig)), writeFile(`public/${destFile}`, JSON.stringify(browserConfig))]);
 })));
 
 /* eslint-disable global-require */
-
 const startProxyPort = argv.browserSyncStartPort || 3000;
 const startAppPort = argv.startAppPort || 3050;
-
 child_process.execSync(`rm -Rf ${path__default.resolve('public')}/* ${path__default.resolve('build')}/*`);
-
 Promise.all([portscanner.findAPortNotInUse(startProxyPort, startProxyPort + 49), portscanner.findAPortNotInUse(startAppPort, startAppPort + 49), build()]).then(([proxyPort, port]) => {
   if (proxyPort === port) {
     throw new Error(`"proxyPort" and "port" cannot have the same value: ${port}`);
@@ -88,7 +131,6 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, startProxyPort + 49),
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port]
   }).start();
-
   createChild({
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']
