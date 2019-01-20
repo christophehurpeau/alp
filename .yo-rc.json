@@ -3,7 +3,43 @@
     "promptValues": {
       "authorName": "Christophe Hurpeau",
       "authorEmail": "christophe@hurpeau.com",
-      "authorUrl": ""
+      "authorUrl": "https://christophe.hurpeau.com"
+    },
+    "monorepo": {
+      "ci": true,
+      "testing": true,
+      "codecov": true,
+      "documentation": false,
+      "packageNames": [
+        "alp-body-parser",
+        "alp-browser",
+        "alp-browser-auth",
+        "alp-browser-config",
+        "alp-browser-errors",
+        "alp-browser-language",
+        "alp-dev",
+        "alp-hello-react-example",
+        "alp-listen",
+        "alp-migrations",
+        "alp-node",
+        "alp-node-auth",
+        "alp-node-config",
+        "alp-node-errors",
+        "alp-node-language",
+        "alp-params",
+        "alp-react",
+        "alp-router",
+        "alp-translate",
+        "alp-types",
+        "alp-websocket",
+        "ibex",
+        "react-alp-context",
+        "react-alp-link",
+        "react-alp-login",
+        "react-alp-subscribe-container",
+        "react-alp-translate"
+      ],
+      "typescript": false
     }
   }
 }

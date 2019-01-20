@@ -1,9 +1,15 @@
-# alp-migrations [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  alp-migrations
+</h3>
 
-migrations scripts in alp
+<p align="center">
+  migrations scripts in alp
+</p>
 
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
-[![Dependency Status][daviddm-image]][daviddm-url]
+<p align="center">
+  <a href="https://npmjs.org/package/alp-migrations"><img src="https://img.shields.io/npm/v/alp-migrations.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-migrations"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-migrations.svg?style=flat-square"></a>
+</p>
 
 ## Install
 
@@ -22,10 +28,3 @@ import alpMigrations from 'alp-migrations';
 
 console.log(alpMigrations);
 ```
-
-[npm-image]: https://img.shields.io/npm/v/alp-migrations.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/alp-migrations
-[daviddm-image]: https://david-dm.org/alpjs/alp-migrations.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/alp-migrations
-[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-migrations/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-migrations

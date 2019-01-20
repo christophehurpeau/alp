@@ -4,10 +4,17 @@
       "envs": [
         {
           "target": "node",
-          "version": "8",
+          "version": "10",
           "formats": [
             "cjs",
             "es"
+          ]
+        },
+        {
+          "target": "node",
+          "version": "8",
+          "formats": [
+            "cjs"
           ]
         },
         {
@@ -30,8 +37,7 @@
       "entries": [
         "index",
         "browser"
-      ],
-      "doclets": false
+      ]
     }
   }
 }

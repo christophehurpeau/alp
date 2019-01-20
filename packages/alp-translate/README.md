@@ -8,8 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-translate"><img src="https://img.shields.io/npm/v/alp-translate.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/alpjs/alp-translate"><img src="https://david-dm.org/alpjs/alp-translate.svg?style=flat-square"></a>
-  <a href="https://dependencyci.com/github/alpjs/alp-translate"><img src="https://dependencyci.com/github/alpjs/alp-translate/badge?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-translate"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-translate.svg?style=flat-square"></a>
 </p>
 
 ## Config
@@ -26,7 +25,7 @@ common:
 
 ```js
 import Koa from 'koa';
-import config from 'alp-config';
+import config from 'alp-node-config';
 import translate from 'alp-translate';
 
 const app = new Koa();

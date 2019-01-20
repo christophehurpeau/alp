@@ -2,70 +2,56 @@
   "name": "alp-body-parser",
   "version": "2.0.0",
   "description": "body parser in alp framework",
-  "keywords": [
-    "alp",
-    "body-parser"
-  ],
+  "keywords": ["alp", "body-parser"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
-  "repository": "git@github.com:alpjs/alp-body-parser.git",
-  "homepage": "https://github.com/alpjs/alp-body-parser#readme",
+  "repository": "git@github.com:christophehurpeau/alp.git",
+  "homepage": "https://github.com/christophehurpeau/alp",
   "bugs": {
     "url": "https://github.com/alpjs/alp-body-parser/issues"
   },
   "engines": {
-    "node": ">=6.5.0"
+    "node": ">=8.3.0"
   },
-  "main": "lib/index.js",
-  "module:node": "./lib-module-node8/index.js",
-  "module:node-dev": "./lib-module-node8-dev/index.js",
+  "main": "./index.js",
+  "types": "./dist/index.d.ts",
+  "module:node": "./dist/index-node10.es.js",
+  "module:node-dev": "./dist/index-node10-dev.es.js",
   "scripts": {
     "build": "pob-build",
+    "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
-    "lint": "eslint --ext .js,.jsx src/",
-    "postcheckout": "./.git-hooks/post-checkout",
-    "postmerge": "./.git-hooks/post-merge",
-    "precommit": "./.git-hooks/pre-commit",
-    "preparecommitmsg": "./.git-hooks/prepare-commit-msg ${GIT_PARAMS}",
-    "preversion": "yarn run lint && yarn run build && pob-repository-check-clean",
-    "release": "pob-repository-check-clean && pob-release",
-    "version": "pob-version",
+    "lint": "npm run typescript-check && eslint --ext .ts src/",
+    "typescript-check": "tsc --noEmit",
     "watch": "pob-watch"
   },
-  "lint-staged": {
-    "package.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.{js,jsx}": [
-      "eslint --fix --quiet",
-      "git add"
-    ]
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "peerDependencies": {
+    "alp-node": "^0.38.0"
   },
   "dependencies": {
-    "co-body": "^5.1.1",
-    "flow-runtime": "0.10.0"
+    "@types/co-body": "^0.0.3",
+    "@types/koa": "^2.0.48",
+    "co-body": "^6.0.0",
+    "koa": "^2.6.2"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "babel-preset-latest-node": "^0.4.0",
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-config-pob": "^16.0.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-prettier": "^2.2.0",
-    "husky": "^0.14.3",
-    "komet": "^0.1.4",
-    "komet-karma": "^0.2.5",
-    "lint-staged": "^4.0.2",
-    "pob-babel": "^18.1.0",
-    "pob-release": "^3.1.0",
-    "prettier": "^1.5.3"
+    "@babel/core": "7.2.2",
+    "babel-eslint": "10.0.1",
+    "babel-preset-latest-node": "3.0.1",
+    "eslint": "5.12.1",
+    "eslint-config-pob": "25.0.0",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-typescript": "0.14.0",
+    "pob-babel": "23.5.5",
+    "prettier": "1.16.0",
+    "typescript": "3.3.0-dev.20190119",
+    "typescript-eslint-parser": "21.0.2"
   }
 }

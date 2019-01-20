@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/layouts/Html.jsx"],"names":[],"mappings":";;;;;kBAEwB,U;;;;;;AAFxB;;;;;;AAEe,SAAS,UAAT,CAAoB,KAApB,EAA2B;AACtC,WAAO,wDAAU,KAAV,CAAP;AACH","file":"views/layouts/Html.js","sourcesContent":["import Html from 'fody-html-layout';\n\nexport default function HtmlLayout(props) {\n    return <Html {...props} />;\n}\n"],"sourceRoot":"/"}

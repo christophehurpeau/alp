@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/index.js"],"names":["LoginButtons","LoginForm"],"mappings":"0BAAyB,gB;0BAAlBA,Y;uBACe,a;uBAAfC,S","file":"index.js","sourcesContent":["export LoginButtons from './LoginButtons';\nexport LoginForm from './LoginForm';\n"]}

@@ -1,14 +1,18 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 import Logger from 'nightingale-logger';
-import { connect } from 'react-redux';
+import ReactAlpContext from 'react-alp-context';
 
 const logger = new Logger('react-alp-subscribe-container');
 class SubscribeContainer extends Component {
   constructor(...args) {
-    var _temp, _this;
+    var _this;
 
-    return _temp = _this = super(...args), this.subscribed = false, this.timeout = undefined, this.handleVisibilityChange = function () {
+    super(...args);
+    _this = this;
+    this.subscribed = false;
+    this.timeout = undefined;
+
+    this.handleVisibilityChange = function () {
       if (!document.hidden) {
         if (_this.timeout != null) {
           logger.log('timeout cleared', {
@@ -34,26 +38,25 @@ class SubscribeContainer extends Component {
         name: _this.props.name
       });
       _this.timeout = setTimeout(_this.unsubscribe, _this.props.visibleTimeout);
-    }, this.subscribe = function () {
+    };
+
+    this.subscribe = function () {
       if (document.hidden) return;
       logger.log('subscribe', {
         names: _this.props.names,
         name: _this.props.name
       });
       _this.subscribed = true;
-      const {
-        dispatch
-      } = _this.props;
       const names = _this.props.names || [_this.props.name];
 
       const websocket = _this.getWebsocket();
 
       names.forEach(function (name) {
-        return websocket.emit(`subscribe:${name}`).then(function (action) {
-          return action && dispatch(action);
-        });
+        return websocket.emit(`subscribe:${name}`).then(_this.props.onEvent);
       });
-    }, this.unsubscribe = function () {
+    };
+
+    this.unsubscribe = function () {
       _this.timeout = undefined;
       if (!_this.subscribed) return;
       logger.log('unsubscribe', {
@@ -70,7 +73,7 @@ class SubscribeContainer extends Component {
           return websocket.emit(`unsubscribe:${name}`);
         });
       }
-    }, _temp;
+    };
   }
 
   componentDidMount() {
@@ -91,7 +94,7 @@ class SubscribeContainer extends Component {
   }
 
   getWebsocket() {
-    return this.context.context.app.websocket;
+    return this.context.app.websocket;
   }
 
   render() {
@@ -103,11 +106,7 @@ SubscribeContainer.defaultProps = {
   visibleTimeout: 120000 // 2 minutes
 
 };
-SubscribeContainer.contextTypes = {
-  context: PropTypes.object
-};
+SubscribeContainer.contextType = ReactAlpContext;
 
-const SubscribeContainerConnected = connect()(SubscribeContainer);
-
-export default SubscribeContainerConnected;
+export default SubscribeContainer;
 //# sourceMappingURL=index-browsermodern-dev.es.js.map

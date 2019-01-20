@@ -1,0 +1,34 @@
+{
+  "name": "alp-hello-react-example",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Say hello, with alp and react",
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "scripts": {
+    "start": "alp-dev",
+    "lint": "eslint --ext .js,.jsx --fix src/",
+    "build": "alp-dev-build",
+    "preversion": "npm run lint && pob-repository-check-clean"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "dependencies": {
+    "alp-browser": "^0.24.2",
+    "alp-node": "^0.38.0",
+    "alp-react": "^14.3.1",
+    "nightingale-app-console": "^3.0.0",
+    "react": "^16.7.0",
+    "react-alp-context": "^0.0.0",
+    "react-alp-translate": "^0.6.1",
+    "ynnub": "^1.0.0"
+  },
+  "devDependencies": {
+    "alp-dev": "^10.6.3",
+    "typescript": "^3.2.4",
+    "typescript-eslint-parser": "21.0.2"
+  }
+}

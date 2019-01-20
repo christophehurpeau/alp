@@ -1,0 +1,15 @@
+{
+  "name": "alp-types",
+  "version": "0.0.0",
+  "description": "Alp types for typescript",
+  "keywords": ["logger"],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "repository": "git@github.com:alpjs/alp.git",
+  "homepage": "https://github.com/alpjs/alp",
+  "engines": {
+    "node": ">=6.5.0"
+  },
+  "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts"
+}

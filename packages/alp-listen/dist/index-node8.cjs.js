@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var fs = require('fs');
@@ -7,35 +9,33 @@ var Logger = _interopDefault(require('nightingale-logger'));
 
 const logger = new Logger('alp:listen');
 
-/**
- * @param {string} dirname for tls server, dirname of the server.key and server.crt
- * @returns {Function}
- */
-function alpListen(dirname) {
-  return app => new Promise(resolve => {
-    const socketPath = app.config.get('socketPath');
-    const port = app.config.get('port');
-    const hostname = app.config.get('hostname');
-    const tls = app.config.get('tls');
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    const createServer = require(!socketPath && tls ? 'https' : 'http').createServer;
+const createServer = (callback, socketPath, tls, dirname) => {
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const createServer = require(!socketPath && tls ? 'https' : 'http').createServer;
 
-    logger.info('Creating server', socketPath ? { socketPath } : { port }, {
-      [socketPath ? 'socketPath' : 'port']: ['yellow']
+  if (!tls) {
+    return createServer(callback);
+  }
+
+  const options = {
+    key: fs.readFileSync(`${dirname}/server.key`),
+    cert: fs.readFileSync(`${dirname}/server.crt`)
+  };
+  return createServer(options, callback);
+};
+
+function alpListen(config, callback, dirname) {
+  return new Promise(resolve => {
+    const socketPath = config.get('socketPath');
+    const port = config.get('port');
+    const hostname = config.get('hostname');
+    const tls = config.get('tls');
+    logger.info('Creating server', socketPath ? {
+      socketPath
+    } : {
+      port
     });
-
-    const server = (() => {
-      if (!tls) {
-        return createServer(app.callback());
-      }
-
-      const options = {
-        key: fs.readFileSync(`${dirname}/server.key`),
-        cert: fs.readFileSync(`${dirname}/server.crt`)
-      };
-
-      return createServer(options, app.callback());
-    })();
+    const server = createServer(callback, socketPath, tls, dirname);
 
     if (socketPath) {
       try {
@@ -47,17 +47,21 @@ function alpListen(dirname) {
           fs.chmodSync(socketPath, '777');
         }
 
-        logger.info('Server listening', { socketPath }, { socketPath: ['yellow'] });
+        logger.info('Server listening', {
+          socketPath
+        });
         resolve(server);
       });
     } else {
       server.listen(port, hostname, () => {
-        logger.info('Server listening', { port }, { port: ['yellow'] });
+        logger.info('Server listening', {
+          port
+        });
         resolve(server);
       });
     }
   });
 }
 
-module.exports = alpListen;
+exports.default = alpListen;
 //# sourceMappingURL=index-node8.cjs.js.map

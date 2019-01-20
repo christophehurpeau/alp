@@ -10,37 +10,44 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "workspaces": ["packages/*"],
   "scripts": {
-    "build": "lerna run --ignore \"*-example\" build",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
-    "generate:docs":
-      "lerna run --parallel --ignore \"*-example\" generate:docs",
+    "build": "lerna run --stream --concurrency=1 build",
+    "build:definitions": "lerna run --stream build:definitions",
+    "generate:docs": "lerna run --parallel --ignore \"*-example\" generate:docs",
     "lint": "lerna run --stream lint",
-    "postcheckout": "yarnhook",
-    "postmerge": "yarnhook",
-    "postrewrite": "yarnhook",
-    "precommit": "lint-staged",
-    "preversion":
-      "yarn run lint && yarn run build && yarn run generate:docs && pob-repository-check-clean",
+    "postbuild": "yarn run build:definitions",
+    "preversion": "yarn run lint && yarn run build && yarn run build:definitions && yarn run generate:docs",
     "release": "lerna publish --conventional-commits -m 'chore: release'",
     "test": "lerna run --stream test",
+    "typescript-check": "lerna run --parallel typescript-check",
     "watch": "lerna run --parallel --ignore \"*-example\" watch"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS",
+      "post-checkout": "yarnhook",
+      "post-merge": "yarnhook",
+      "post-rewrite": "yarnhook",
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "{package.json,.eslintrc.json}": ["prettier --write", "git add"],
-    "lib/**/*.json": ["prettier --write", "git add"],
-    "lib/**/*.js": ["eslint --fix --quiet", "git add"]
+    "{package.json,packages/*/package.json,,.eslintrc.json}": [
+      "prettier --parser json --write",
+      "git add"
+    ],
+    "packages/*/lib/**/*.json": ["prettier --parser json --write", "git add"],
+    "packages/*/lib/**/*.js": ["eslint --fix --quiet", "git add"]
   },
   "commitlint": {
     "extends": ["@commitlint/config-conventional"]
   },
   "devDependencies": {
-    "@commitlint/cli": "^6.1.3",
-    "@commitlint/config-conventional": "^6.1.3",
-    "husky": "^0.14.3",
-    "lerna": "3.0.0-beta.18",
-    "lint-staged": "^7.0.5",
-    "pob-release": "^4.1.1",
-    "prettier": "^1.12.1",
-    "yarnhook": "^0.2.0"
+    "@commitlint/cli": "7.3.2",
+    "@commitlint/config-conventional": "7.3.1",
+    "husky": "1.3.1",
+    "lerna": "3.10.6",
+    "lint-staged": "8.1.0",
+    "pob-release": "4.6.3",
+    "yarnhook": "0.3.0"
   }
 }

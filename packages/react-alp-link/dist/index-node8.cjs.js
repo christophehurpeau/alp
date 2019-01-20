@@ -4,28 +4,31 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = _interopDefault(require('react'));
-var PropTypes = _interopDefault(require('prop-types'));
+var React = require('react');
+var React__default = _interopDefault(React);
+var ReactAlpContext = _interopDefault(require('react-alp-context'));
 
-const LinkComponent = ({
-  as: Type = 'a',
-  to = 'default',
-  params,
-  children,
-  ...props
-}, {
-  context: ctx
-}) => {
-  return React.createElement(Type, Object.assign({
-    href: ctx.urlGenerator(to, params)
-  }, props), children);
-};
+class LinkComponent extends React.Component {
+  render() {
+    const {
+      as,
+      to,
+      params,
+      children,
+      ...props
+    } = this.props;
+    return React__default.createElement(as, {
+      href: this.context.urlGenerator(to, params),
+      ...props
+    }, children);
+  }
 
-LinkComponent.contextTypes = {
-  context: PropTypes.shape({
-    urlGenerator: PropTypes.func
-  })
+}
+LinkComponent.defaultProps = {
+  as: 'a',
+  to: 'default'
 };
+LinkComponent.contextType = ReactAlpContext;
 
 exports.default = LinkComponent;
 //# sourceMappingURL=index-node8.cjs.js.map

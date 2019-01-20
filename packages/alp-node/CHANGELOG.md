@@ -147,7 +147,7 @@ app.migrate(migrationsManager)
 by
 
 ```js
-import migrate from 'alp-migrations/src';
+import migrate from 'alp-migrations';
 
 migrate({ app, migrationsManager });
 ```

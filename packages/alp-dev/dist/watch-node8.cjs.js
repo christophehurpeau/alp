@@ -1,23 +1,21 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var fs = require('fs');
-var fs__default = _interopDefault(fs);
+var child_process = require('child_process');
 var path = require('path');
 var path__default = _interopDefault(path);
-var mkdirp = _interopDefault(require('mkdirp'));
-var jsYaml = require('js-yaml');
-var glob = _interopDefault(require('glob'));
-var child_process = require('child_process');
 var portscanner = _interopDefault(require('portscanner'));
 var argv = _interopDefault(require('minimist-argv'));
 var createChild = _interopDefault(require('springbokjs-daemon'));
+var fs = require('fs');
+var fs__default = _interopDefault(fs);
+var glob = _interopDefault(require('glob'));
+var mkdirp = _interopDefault(require('mkdirp'));
+var jsYaml = require('js-yaml');
 
 var readFile = (target => new Promise((resolve, reject) => {
-  fs__default.readFile(target, (err, content) => {
+  fs__default.readFile(target, 'utf-8', (err, content) => {
     if (err) {
       return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
     }
@@ -38,51 +36,19 @@ var writeFile = ((target, content) => new Promise((resolve, reject) => {
   });
 }));
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      _defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
 function loadConfigFile(content, dirname) {
   const data = jsYaml.safeLoad(content) || {};
   const config = data.shared || data.common || {};
-
-  const serverConfig = _objectSpread({}, config, data.server);
-
-  const browserConfig = _objectSpread({}, config, data.browser);
+  const serverConfig = { ...config,
+    ...data.server
+  };
+  const browserConfig = { ...config,
+    ...data.browser
+  };
 
   if (data.include) {
     const includePaths = data.include.map(includePath => path__default.resolve(dirname, includePath));
-    includePaths.map(includePath => fs.readFileSync(includePath)).map((content, index) => loadConfigFile(content, path__default.dirname(includePaths[index]))).forEach(([includeServerConfig, includeBrowserConfig]) => {
+    includePaths.map(includePath => fs.readFileSync(includePath, 'utf-8')).map((content, index) => loadConfigFile(content, path__default.dirname(includePaths[index]))).forEach(([includeServerConfig, includeBrowserConfig]) => {
       [{
         config: serverConfig,
         include: includeServerConfig
@@ -103,7 +69,7 @@ function loadConfigFile(content, dirname) {
         } else if (typeof config[key] === 'object') {
           Object.assign(config[key], include[key]);
         } else {
-          throw new Error(`Unexpected override "${key}", filename = ${includePaths[key]}`);
+          throw new TypeError(`Unexpected override "${key}", filename = ${includePaths[key]}`);
         }
       }));
     });
@@ -112,25 +78,56 @@ function loadConfigFile(content, dirname) {
   return [serverConfig, browserConfig];
 }
 
-const build = (src = './src/config') => Promise.all(glob.sync(path.join(src, '**/*.yml')).map(filename => readFile(filename).then(content => {
+const compileYml = async filename => {
+  const content = await readFile(filename);
   const [serverConfig, browserConfig] = loadConfigFile(content, path.dirname(filename));
   const destFile = `${filename.slice(4, -3)}json`;
   return Promise.all([writeFile(`build/${destFile}`, JSON.stringify(serverConfig)), writeFile(`public/${destFile}`, JSON.stringify(browserConfig))]);
-})));
+};
+
+const build = (src = './src/config', onChanged) => Promise.all(glob.sync(path.join(src, '**/*.yml')).map(async filename => {
+  const compilePromise = compileYml(filename);
+
+  if (onChanged) {
+    const fsWatcher = fs.watch(filename, {
+      persistent: false,
+      recursive: false
+    }, async eventType => {
+      console.log(eventType, filename);
+
+      if (eventType === 'change') {
+        await compileYml(filename);
+        onChanged();
+      }
+    });
+    await compilePromise;
+    return () => fsWatcher.close();
+  }
+
+  return () => {};
+})).then(closeFns => () => {
+  closeFns.forEach(closeFn => closeFn());
+});
 
 /* eslint-disable global-require */
 const startProxyPort = argv.browserSyncStartPort || 3000;
 const startAppPort = argv.startAppPort || 3050;
+const endProxyPort = startProxyPort + 49;
+const endAppPort = startAppPort + 49;
 child_process.execSync(`rm -Rf ${path__default.resolve('public')}/* ${path__default.resolve('build')}/*`);
-Promise.all([portscanner.findAPortNotInUse(startProxyPort, startProxyPort + 49), portscanner.findAPortNotInUse(startAppPort, startAppPort + 49), build()]).then(([proxyPort, port]) => {
+let nodeChild;
+Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portscanner.findAPortNotInUse(startAppPort, endAppPort), build('./src/config', () => {
+  if (nodeChild) nodeChild.sendSIGUSR2();
+})]).then(([proxyPort, port]) => {
   if (proxyPort === port) {
     throw new Error(`"proxyPort" and "port" cannot have the same value: ${port}`);
   }
 
-  createChild({
+  nodeChild = createChild({
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port]
-  }).start();
+  });
+  nodeChild.start();
   createChild({
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']

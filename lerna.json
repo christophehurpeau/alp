@@ -1,13 +1,10 @@
 {
-  "lerna": "3.0.0-beta.18",
+  "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "version": "independent",
-  "commands": {
+  "command": {
     "publish": {
-      "ignore": [
-        "*-example"
-      ]
+      "npmClient": "npm"
     }
   }
 }

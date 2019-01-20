@@ -8,8 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-node"><img src="https://img.shields.io/npm/v/alp-node.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/alpjs/alp-node"><img src="https://david-dm.org/alpjs/alp-node.svg?style=flat-square"></a>
-  <a href="https://dependencyci.com/github/alpjs/alp-node"><img src="https://dependencyci.com/github/alpjs/alp-node/badge?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-node"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-node.svg?style=flat-square"></a>
 </p>
 
 ## Install

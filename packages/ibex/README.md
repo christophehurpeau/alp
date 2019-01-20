@@ -8,8 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/ibex"><img src="https://img.shields.io/npm/v/ibex.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/alpjs/ibex"><img src="https://david-dm.org/alpjs/ibex.svg?style=flat-square"></a>
-  <a href="https://dependencyci.com/github/alpjs/ibex"><img src="https://dependencyci.com/github/alpjs/ibex/badge?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/ibex"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/ibex.svg?style=flat-square"></a>
 </p>
 
 ## Usage

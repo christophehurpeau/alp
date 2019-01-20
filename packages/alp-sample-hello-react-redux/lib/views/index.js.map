@@ -1,1 +1,0 @@
-{"version":3,"sources":["views/index.js"],"names":[],"mappings":";;;;;;;;;;;8CAAS,O;;;;;;;;;6CACA,O","file":"views/index.js","sourcesContent":["export { default as View } from './IndexView';\nexport { default as reducer } from './reducers';\n"],"sourceRoot":"/"}

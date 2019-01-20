@@ -1,7 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import ReactAlpContext from 'react-alp-context';
 
-function _objectWithoutProperties(source, excluded) {
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
   var target = {};
   var sourceKeys = Object.keys(source);
@@ -13,47 +37,45 @@ function _objectWithoutProperties(source, excluded) {
     target[key] = source[key];
   }
 
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
   return target;
 }
 
-var LinkComponent = function LinkComponent(_ref, _ref2) {
-  var _ref$as = _ref.as,
-      Type = _ref$as === void 0 ? 'a' : _ref$as,
-      _ref$to = _ref.to,
-      to = _ref$to === void 0 ? 'default' : _ref$to,
-      params = _ref.params,
-      children = _ref.children,
-      props = _objectWithoutProperties(_ref, ["as", "to", "params", "children"]);
+var LinkComponent =
+/*#__PURE__*/
+function (_Component) {
+  _inheritsLoose(LinkComponent, _Component);
 
-  var ctx = _ref2.context;
-  if (props.tagName) throw new Error('`tagName` is deprecated, use `as` instead');
-  return React.createElement(Type, Object.assign({
-    href: ctx.urlGenerator(to, params)
-  }, props, {
-    __source: {
-      fileName: "/Users/chris/Work/alp/react-alp-link/src/index.tsx",
-      lineNumber: 27
-    },
-    __self: this
-  }), children);
-};
+  function LinkComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
 
-LinkComponent.contextTypes = {
-  context: PropTypes.shape({
-    urlGenerator: PropTypes.func
-  })
+  var _proto = LinkComponent.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        as = _this$props.as,
+        to = _this$props.to,
+        params = _this$props.params,
+        children = _this$props.children,
+        props = _objectWithoutPropertiesLoose(_this$props, ["as", "to", "params", "children"]);
+
+    if (props.tagName) {
+      throw new Error('`tagName` is deprecated, use `as` instead');
+    }
+
+    return React.createElement(as, _extends({
+      href: this.context.urlGenerator(to, params)
+    }, props), children);
+  };
+
+  return LinkComponent;
+}(Component);
+
+LinkComponent.defaultProps = {
+  as: 'a',
+  to: 'default'
 };
+LinkComponent.contextType = ReactAlpContext;
 
 export default LinkComponent;
 //# sourceMappingURL=index-browser-dev.es.js.map

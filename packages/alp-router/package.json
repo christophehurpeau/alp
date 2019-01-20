@@ -2,84 +2,63 @@
   "name": "alp-router",
   "version": "1.1.0",
   "description": "router for alp",
-  "keywords": [
-    "alp",
-    "router"
-  ],
+  "keywords": ["alp", "router"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
-  "repository": "git@github.com:alpjs/alp-router.git",
-  "homepage": "https://github.com/alpjs/alp-router#readme",
+  "repository": "git@github.com:christophehurpeau/alp.git",
+  "homepage": "https://github.com/christophehurpeau/alp",
   "bugs": {
     "url": "https://github.com/alpjs/alp-router/issues"
   },
   "engines": {
-    "node": ">=6.5.0"
+    "node": ">=8.3.0"
   },
-  "main": "index.js",
-  "module": "./lib-module/index.js",
-  "module-dev": "./lib-module-dev/index.js",
-  "browser": "./lib-browsers/index.js",
-  "browser-dev": "./lib-browsers-dev/index.js",
-  "module:node": "./lib-module-node8/index.js",
-  "module:node-dev": "./lib-module-node8-dev/index.js",
-  "module:browser": "./lib-module/index.js",
-  "module:browser-dev": "./lib-module-dev/index.js",
-  "module:modern-browsers": "./lib-module-modern-browsers/index.js",
-  "module:modern-browsers-dev": "./lib-module-modern-browsers-dev/index.js",
+  "browserslist": ["> 0.1%", "Firefox ESR", "not ie < 9", "not dead"],
+  "main": "./index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index-browser.es.js",
+  "module-dev": "./dist/index-browser-dev.es.js",
+  "browser": "./dist/index-browser.cjs.js",
+  "browser-dev": "./dist/index-browser-dev.cjs.js",
+  "module:node": "./dist/index-node10.es.js",
+  "module:node-dev": "./dist/index-node10-dev.es.js",
+  "module:browser": "./dist/index-browser.es.js",
+  "module:browser-dev": "./dist/index-browser-dev.es.js",
+  "module:modern-browsers": "./dist/index-browsermodern.es.js",
+  "module:modern-browsers-dev": "./dist/index-browsermodern-dev.es.js",
   "scripts": {
     "build": "pob-build",
+    "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
-    "lint": "eslint --ext .js,.jsx src/",
-    "postcheckout": "./.git-hooks/post-checkout",
-    "postmerge": "./.git-hooks/post-merge",
-    "precommit": "./.git-hooks/pre-commit",
-    "preparecommitmsg": "./.git-hooks/prepare-commit-msg ${GIT_PARAMS}",
-    "preversion": "yarn run lint && yarn run build && pob-repository-check-clean",
-    "release": "pob-repository-check-clean && pob-release",
-    "test": "make test",
-    "version": "pob-version",
+    "lint": "npm run typescript-check && eslint --ext .ts src/",
+    "typescript-check": "tsc --noEmit",
     "watch": "pob-watch"
   },
-  "lint-staged": {
-    "package.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.{js,jsx}": [
-      "eslint --fix --quiet",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "flow-runtime": "0.10.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-latest-node": "^0.4.0",
-    "babel-preset-modern-browsers": "^10.0.0",
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-config-pob": "^15.0.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-flowtype": "^2.35.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-prettier": "^2.1.2",
-    "husky": "^0.14.3",
-    "komet": "^0.1.4",
-    "komet-karma": "^0.2.5",
-    "lint-staged": "^4.0.2",
-    "pob-babel": "^18.1.0",
-    "pob-release": "^3.1.0",
-    "prettier": "^1.5.3"
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
   },
   "peerDependencies": {
+    "alp-types": "0.0.0",
     "router-segments": "^1.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.2.3",
+    "babel-eslint": "10.0.1",
+    "babel-preset-latest-node": "3.0.1",
+    "babel-preset-modern-browsers": "13.0.1",
+    "eslint": "5.12.1",
+    "eslint-config-pob": "25.0.0",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-typescript": "0.14.0",
+    "pob-babel": "23.5.5",
+    "prettier": "1.16.0",
+    "router-segments": "^1.0.0",
+    "typescript": "3.3.0-dev.20190119",
+    "typescript-eslint-parser": "21.0.2"
   }
 }

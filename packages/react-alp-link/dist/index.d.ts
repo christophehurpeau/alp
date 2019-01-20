@@ -1,7 +1,7 @@
-/// <reference types="react" />
-import { ComponentType } from 'react';
+import React, { Component, ReactType } from 'react';
+import ReactAlpContext from 'react-alp-context';
 export interface Props {
-    as?: ComponentType<{
+    as?: ReactType<{
         href: string;
     }>;
     to: string;
@@ -9,11 +9,15 @@ export interface Props {
     children: any;
     tagName?: never;
 }
-export interface Context {
-    urlGenerator: Function;
+export default class LinkComponent extends Component<Props> {
+    static defaultProps: {
+        as: string;
+        to: string;
+    };
+    static contextType: React.Context<import("alp-types").Context>;
+    context: React.ContextType<typeof ReactAlpContext>;
+    render(): React.ReactElement<{
+        href: string;
+    }>;
 }
-export interface ContextType {
-    context: Context;
-}
-declare const LinkComponent: ComponentType<Props>;
-export default LinkComponent;
+//# sourceMappingURL=index.d.ts.map

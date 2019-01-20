@@ -2,18 +2,41 @@
   "pob": {
     "pob-config": {
       "envs": [
-        "node6",
-        "node8",
-        "module-modern-browsers",
-        "module",
-        "module-node8"
+        {
+          "target": "node",
+          "version": "10",
+          "formats": [
+            "cjs",
+            "es"
+          ]
+        },
+        {
+          "target": "node",
+          "version": "8",
+          "formats": [
+            "cjs"
+          ]
+        },
+        {
+          "target": "browser",
+          "version": "modern",
+          "formats": [
+            "es"
+          ]
+        },
+        {
+          "target": "browser",
+          "formats": [
+            "cjs",
+            "es"
+          ]
+        }
       ],
       "testing": false,
       "documentation": false,
       "entries": [
         "index"
-      ],
-      "doclets": false
+      ]
     }
   }
 }

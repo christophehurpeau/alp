@@ -5,16 +5,17 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var react = require('react');
-var PropTypes = _interopDefault(require('prop-types'));
 var Logger = _interopDefault(require('nightingale-logger'));
-var reactRedux = require('react-redux');
+var ReactAlpContext = _interopDefault(require('react-alp-context'));
 
 const logger = new Logger('react-alp-subscribe-container');
 class SubscribeContainer extends react.Component {
   constructor(...args) {
-    var _temp;
+    super(...args);
+    this.subscribed = false;
+    this.timeout = undefined;
 
-    return _temp = super(...args), this.subscribed = false, this.timeout = undefined, this.handleVisibilityChange = () => {
+    this.handleVisibilityChange = () => {
       if (!document.hidden) {
         if (this.timeout != null) {
           logger.log('timeout cleared', {
@@ -39,20 +40,21 @@ class SubscribeContainer extends react.Component {
         name: this.props.name
       });
       this.timeout = setTimeout(this.unsubscribe, this.props.visibleTimeout);
-    }, this.subscribe = () => {
+    };
+
+    this.subscribe = () => {
       if (document.hidden) return;
       logger.log('subscribe', {
         names: this.props.names,
         name: this.props.name
       });
       this.subscribed = true;
-      const {
-        dispatch
-      } = this.props;
       const names = this.props.names || [this.props.name];
       const websocket = this.getWebsocket();
-      names.forEach(name => websocket.emit(`subscribe:${name}`).then(action => action && dispatch(action)));
-    }, this.unsubscribe = () => {
+      names.forEach(name => websocket.emit(`subscribe:${name}`).then(this.props.onEvent));
+    };
+
+    this.unsubscribe = () => {
       this.timeout = undefined;
       if (!this.subscribed) return;
       logger.log('unsubscribe', {
@@ -66,7 +68,7 @@ class SubscribeContainer extends react.Component {
       if (websocket.isConnected()) {
         names.forEach(name => websocket.emit(`unsubscribe:${name}`));
       }
-    }, _temp;
+    };
   }
 
   componentDidMount() {
@@ -87,7 +89,7 @@ class SubscribeContainer extends react.Component {
   }
 
   getWebsocket() {
-    return this.context.context.app.websocket;
+    return this.context.app.websocket;
   }
 
   render() {
@@ -99,11 +101,7 @@ SubscribeContainer.defaultProps = {
   visibleTimeout: 120000 // 2 minutes
 
 };
-SubscribeContainer.contextTypes = {
-  context: PropTypes.object
-};
+SubscribeContainer.contextType = ReactAlpContext;
 
-const SubscribeContainerConnected = reactRedux.connect()(SubscribeContainer);
-
-exports.default = SubscribeContainerConnected;
+exports.default = SubscribeContainer;
 //# sourceMappingURL=index-node8-dev.cjs.js.map

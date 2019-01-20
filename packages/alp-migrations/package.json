@@ -5,44 +5,51 @@
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
   "license": "ISC",
-  "repository": "git@github.com:alpjs/alp-migrations.git",
-  "homepage": "https://github.com/alpjs/alp-migrations",
+  "repository": "git@github.com:christophehurpeau/alp.git",
+  "homepage": "https://github.com/christophehurpeau/alp",
   "engines": {
-    "node": ">=6.5.0"
+    "node": ">=8.3.0"
   },
   "main": "./index.js",
-  "module:node": "./lib-module-node7/index.js",
-  "module:node-dev": "./lib-module-node7-dev/index.js",
+  "types": "./dist/index.d.ts",
+  "module:node": "./dist/index-node10.es.js",
+  "module:node-dev": "./dist/index-node10-dev.es.js",
   "scripts": {
     "build": "pob-build",
+    "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
-    "lint": "eslint --ext .js,.jsx src/",
-    "prepare": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit 2>/dev/null || true ; ln -s ../../git-hooks/post-checkout .git/hooks/post-checkout 2>/dev/null || true ; ln -s ../../git-hooks/post-merge .git/hooks/post-merge 2>/dev/null || true ; ln -s ../../git-hooks/prepare-commit-msg .git/hooks/prepare-commit-msg 2>/dev/null || true",
-    "prepublish": "ln -s ../../git-hooks/pre-commit .git/hooks/pre-commit 2>/dev/null || true ; ln -s ../../git-hooks/post-checkout .git/hooks/post-checkout 2>/dev/null || true ; ln -s ../../git-hooks/post-merge .git/hooks/post-merge 2>/dev/null || true ; ln -s ../../git-hooks/prepare-commit-msg .git/hooks/prepare-commit-msg 2>/dev/null || true",
-    "preversion": "yarn run lint && yarn run build && pob-repository-check-clean",
-    "release": "pob-repository-check-clean && pob-release",
-    "version": "pob-version",
+    "lint": "npm run typescript-check && eslint --ext .ts src/",
+    "typescript-check": "tsc --noEmit",
     "watch": "pob-watch"
   },
-  "dependencies": {
-    "flow-runtime": "^0.10.0",
-    "nightingale-logger": "^3.4.0",
-    "semver": "^5.3.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.2.1",
-    "babel-preset-latest-node": "^0.2.2",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "^11.1.2",
-    "eslint-config-pob": "^12.0.0",
-    "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-import": "^2.2.0",
-    "komet": "^0.1.4",
-    "komet-karma": "^0.2.5",
-    "pob-babel": "^17.2.0",
-    "pob-release": "^3.1.0"
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
   },
   "peerDependencies": {
-    "liwi": ">=0.15.1"
+    "liwi-mongo": ">=2.0.0"
+  },
+  "dependencies": {
+    "alp-types": "0.0.0",
+    "nightingale-logger": "^6.0.0",
+    "semver": "^5.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@types/semver": "^5.5.0",
+    "babel-eslint": "10.0.1",
+    "babel-preset-latest-node": "3.0.1",
+    "eslint": "5.12.1",
+    "eslint-config-pob": "25.0.0",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-typescript": "0.14.0",
+    "liwi-mongo": "2.2.0",
+    "pob-babel": "23.5.5",
+    "prettier": "1.16.0",
+    "typescript": "3.3.0-dev.20190119",
+    "typescript-eslint-parser": "21.0.2"
   }
 }

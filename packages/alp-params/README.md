@@ -8,10 +8,9 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-params"><img src="https://img.shields.io/npm/v/alp-params.svg?style=flat-square"></a>
-  <a href="https://circleci.com/gh/alpjs/alp-params"><img src="https://img.shields.io/circleci/project/alpjs/alp-params/master.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/alpjs/alp-params"><img src="https://david-dm.org/alpjs/alp-params.svg?style=flat-square"></a>
-  <a href="https://dependencyci.com/github/alpjs/alp-params"><img src="https://dependencyci.com/github/alpjs/alp-params/badge?style=flat-square"></a>
-  <a href="https://codecov.io/gh/alpjs/alp-params"><img src="https://img.shields.io/codecov/c/github/alpjs/alp-params/master.svg?style=flat-square"></a>
+  <a href="https://circleci.com/gh/christophehurpeau/alp"><img src="https://img.shields.io/circleci/project/christophehurpeau/alp/master.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-params"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-params.svg?style=flat-square"></a>
+  <a href="https://codecov.io/gh/christophehurpeau/alp"><img src="https://img.shields.io/codecov/c/github/christophehurpeau/alp/master.svg?style=flat-square"></a>
 </p>
 
 ## Install

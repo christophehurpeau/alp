@@ -1,0 +1,99 @@
+{
+  "name": "alp-react",
+  "version": "14.3.1",
+  "description": "render with react in alp framework",
+  "keywords": ["alp", "auk"],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "repository": "git@github.com:christophehurpeau/alp.git",
+  "homepage": "https://github.com/christophehurpeau/alp",
+  "bugs": {
+    "url": "https://github.com/alpjs/alp-react/issues"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "browserslist": ["> 0.1%", "Firefox ESR", "not ie < 9", "not dead"],
+  "main": "./index.js",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    ">=3.1": {
+      "browser": ["./dist/browser.d.ts"]
+    }
+  },
+  "module": "./dist/index-browser.es.js",
+  "module-dev": "./dist/index-browser-dev.es.js",
+  "browser": "./dist/index-browser.cjs.js",
+  "browser-dev": "./dist/index-browser-dev.cjs.js",
+  "module:node": "./dist/index-node10.es.js",
+  "module:node-dev": "./dist/index-node10-dev.es.js",
+  "module:browser": "./dist/index-browser.es.js",
+  "module:browser-dev": "./dist/index-browser-dev.es.js",
+  "module:modern-browsers": "./dist/index-browsermodern.es.js",
+  "module:modern-browsers-dev": "./dist/index-browsermodern-dev.es.js",
+  "module:aliases-browser": {
+    "./browser.js": "./dist/index-browser.es.js"
+  },
+  "module:aliases-browser-dev": {
+    "./browser.js": "./dist/index-browser-dev.es.js"
+  },
+  "module:aliases-modern-browsers": {
+    "./browser.js": "./dist/index-browsermodern.es.js"
+  },
+  "module:aliases-modern-browsers-dev": {
+    "./browser.js": "./dist/index-browsermodern-dev.es.js"
+  },
+  "scripts": {
+    "build": "pob-build",
+    "build:definitions": "tsc -p tsconfig.build.json",
+    "clean": "rm -Rf docs dist",
+    "lint": "npm run typescript-check && eslint --ext .ts,.tsx src/",
+    "typescript-check": "tsc --noEmit",
+    "watch": "pob-watch"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devPeerDependencies": {
+    "alp-dev": "*"
+  },
+  "dependencies": {
+    "@types/react-dom": "^16.0.11",
+    "@types/react-helmet": "^5.0.8",
+    "alp-types": "0.0.0",
+    "content-loaded": "^1.2.1",
+    "modern-browsers": "^1.0.1",
+    "nightingale-logger": "^6.0.0",
+    "react-alp-context": "0.0.0",
+    "react-helmet": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.2.3",
+    "@babel/preset-react": "7.0.0",
+    "alp-dev": "^10.6.3",
+    "babel-eslint": "10.0.1",
+    "babel-preset-latest-node": "3.0.1",
+    "babel-preset-modern-browsers": "13.0.1",
+    "eslint": "5.12.1",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-pob": "25.0.0",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.12.4",
+    "eslint-plugin-typescript": "0.14.0",
+    "pob-babel": "23.5.5",
+    "prettier": "1.16.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "typescript": "3.3.0-dev.20190119",
+    "typescript-eslint-parser": "21.0.2"
+  }
+}

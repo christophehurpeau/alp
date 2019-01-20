@@ -1,74 +1,112 @@
-import delegate from 'delegates';
-import { parse } from 'querystring';
 import { EventEmitter } from 'events';
 import Logger from 'nightingale-logger';
+import delegate from 'delegates';
+import { parse } from 'querystring';
 
-// create lib
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+// TODO create lib
 function compose(middlewares) {
   return function (ctx) {
     var index = -1;
     return function dispatch(i) {
       if (i <= index) {
-        return Promise.reject(new Error(false));
+        return Promise.reject(new Error(undefined));
       }
+
       index = i;
-
       var fn = middlewares[i];
-
       var called = false;
+
       try {
         return Promise.resolve(fn.call(ctx, ctx, function () {
-          if (called) throw new Error(false);
+          if (called) {
+            throw new Error(undefined);
+          }
+
           called = true;
           return dispatch(i + 1);
         }));
-      } catch (e) {
-        return Promise.reject(e);
+      } catch (err) {
+        return Promise.reject(err);
       }
     }(0);
   };
 }
 
 var proto = {};
-
 delegate(proto, 'response').access('body').method('redirect');
-
 delegate(proto, 'request').getter('host').getter('hostname').getter('href').getter('origin').getter('path').getter('protocol').getter('query').getter('url').getter('search').getter('searchParams');
 
 var request = {
   get search() {
     return window.location.search;
   },
+
   get path() {
     return window.location.pathname;
   },
-  get port() {
-    return window.location.port;
-  },
+
   get url() {
-    return window.location.url;
+    return window.location.pathname + window.location.search;
   },
+
   get origin() {
     return window.location.origin;
   },
+
   get protocol() {
     return window.location.protocol;
   },
+
   get query() {
     return parse(window.location.search);
   },
+
   get searchParams() {
     return new URLSearchParams(window.location.search.length === 0 ? window.location.search : window.location.search.substr(1));
   },
+
   get href() {
     return window.location.href;
   },
+
   get host() {
     return window.location.host;
   },
+
   get hostname() {
     return window.location.hostname;
   }
+
 };
 
 var response = {
@@ -77,54 +115,6 @@ var response = {
       window.location.href = url;
     }
   }
-};
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
 var logger = new Logger('ibex');
@@ -136,9 +126,7 @@ function respond(ctx) {
   }
 
   var body = ctx.body;
-  if (body == null) return;
-
-  // const code = ctx.status;
+  if (body == null) return; // const code = ctx.status;
 
   if (typeof body === 'string') {
     document.body.innerHTML = body;
@@ -153,81 +141,87 @@ function respond(ctx) {
   throw new Error('Invalid body result');
 }
 
-var Application = function (_EventEmitter) {
-  inherits(Application, _EventEmitter);
+var Application =
+/*#__PURE__*/
+function (_EventEmitter) {
+  _inheritsLoose(Application, _EventEmitter);
 
   function Application() {
-    classCallCheck(this, Application);
-
-    var _this = possibleConstructorReturn(this, (Application.__proto__ || Object.getPrototypeOf(Application)).call(this));
+    var _this = _EventEmitter.call(this) || this;
 
     _this.middleware = [];
     _this.context = Object.create(proto);
-
-    _this.context.app = _this;
-    _this.context.state = {};
+    _this.context.app = _assertThisInitialized(_assertThisInitialized(_this));
     return _this;
   }
 
-  createClass(Application, [{
-    key: 'use',
-    value: function use(fn) {
-      logger.debug('use', { name: fn.name || '-' });
-      this.middleware.push(fn);
-      return this;
-    }
-  }, {
-    key: 'onerror',
-    value: function onerror(e) {
-      logger.error(e);
-    }
-  }, {
-    key: 'run',
-    value: function run(url) {
-      if (!this.listeners('error').length) {
-        this.on('error', this.onerror);
-      }
+  var _proto = Application.prototype;
 
-      this.callback = compose(this.middleware);
+  _proto.use = function use(fn) {
+    logger.debug('use', {
+      name: fn.name || '-'
+    });
+    this.middleware.push(fn);
+    return this;
+  };
 
-      if (url) {
-        this.load(url);
-      }
+  _proto.onerror = function onerror(e) {
+    logger.error(e);
+  };
+
+  _proto.run = function run(url) {
+    if (this.listeners('error').length === 0) {
+      this.on('error', this.onerror);
     }
-  }, {
-    key: 'createContext',
-    value: function createContext() {
-      var context = Object.create(this.context);
-      context.request = Object.create(request);
-      context.response = Object.create(response);
-      // eslint-disable-next-line no-multi-assign
-      context.request.app = context.response.app = this;
-      return context;
+
+    this.callback = compose(this.middleware);
+
+    if (url) {
+      this.load(url);
     }
-  }, {
-    key: 'load',
-    value: function load(url) {
-      var _this2 = this;
+  };
 
-      logger.debug('load', { url: url });
+  _proto.createContext = function createContext() {
+    var context = Object.create(this.context);
+    context.request = Object.create(request);
+    context.response = Object.create(response); // eslint-disable-next-line no-multi-assign
 
-      if (url.startsWith('?')) {
-        url = window.location.pathname + url;
-      }
+    context.request.app = context.response.app = this;
+    context.state = {};
+    context.sanitizedState = {};
+    return context;
+  };
 
-      var context = this.createContext();
-      return this.callback(context).then(function () {
-        return respond(context);
-      }).catch(function (err) {
-        return _this2.emit('error', err);
-      });
+  _proto.load = function load(url) {
+    var _this2 = this;
+
+    logger.debug('load', {
+      url: url
+    });
+
+    if (url.startsWith('?')) {
+      url = window.location.pathname + url;
     }
-  }, {
-    key: 'environment',
-    get: function get$$1() {
-      return this.env;
+
+    if (!this.callback) {
+      throw new Error('You should call load() after run()');
+    }
+
+    var context = this.createContext();
+    return this.callback(context).then(function () {
+      return respond(context);
+    }).catch(function (err) {
+      return _this2.emit('error', err);
+    });
+  };
+
+  _createClass(Application, [{
+    key: "environment",
+    get: function get() {
+      throw new Error('use process.env or POB_ENV instead');
     }
   }]);
+
   return Application;
 }(EventEmitter);
 

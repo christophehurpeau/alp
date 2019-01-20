@@ -1,37 +1,52 @@
 import Ibex from 'ibex';
-import config from 'alp-config';
-import language from 'alp-language';
-import translate from 'alp-translate';
+import config, { existsConfig, getConfig } from 'alp-browser-config';
+import language from 'alp-browser-language';
+import translate from 'alp-translate/browser';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp');
-
-let AlpBrowser = class extends Ibex {
-
-  constructor(path = '/', { version = window.VERSION } = {}) {
+const configPath = '/config';
+class AlpBrowser extends Ibex {
+  constructor(path = '/', {
+    version = window.__VERSION__
+  } = {}) {
     super();
     this.path = path;
-    this.appVersion = window.VERSION;
+    this.appVersion = version;
   }
 
   async init() {
-    await config('/config')(this);
+    await config(this, configPath);
     language(this);
     await translate('/locales')(this);
+    return this;
   }
 
-  get environment() {
-    return this.env;
+  existsConfig(name) {
+    return existsConfig(`${configPath}${name}`);
+  }
+
+  loadConfig(name) {
+    return getConfig(`${configPath}${name}`);
   }
 
   start(fn) {
-    fn().then(function () {
-      return logger.success('started');
-    }).catch(function (err) {
-      return logger.error('start fail', { err });
-    });
+    try {
+      fn().then(function () {
+        return logger.success('started');
+      }).catch(function (err) {
+        return logger.error('start fail', {
+          err
+        });
+      });
+    } catch (err) {
+      logger.error('start fail', {
+        err
+      });
+    }
   }
-};
+
+}
 
 export default AlpBrowser;
 //# sourceMappingURL=index-browsermodern.es.js.map

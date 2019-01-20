@@ -8,8 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/react-alp-link"><img src="https://img.shields.io/npm/v/react-alp-link.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/alpjs/react-alp-link"><img src="https://david-dm.org/alpjs/react-alp-link.svg?style=flat-square"></a>
-  <a href="https://dependencyci.com/github/alpjs/react-alp-link"><img src="https://dependencyci.com/github/alpjs/react-alp-link/badge?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/react-alp-link"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/react-alp-link.svg?style=flat-square"></a>
 </p>
 
 ## Install

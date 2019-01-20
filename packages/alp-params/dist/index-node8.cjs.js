@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var objectProperties = require('object-properties');
 
-let ParamValueValidator = class {
+class ParamValueValidator {
   constructor(validator, name, value) {
     this.validator = validator;
     this.name = name;
@@ -14,9 +14,10 @@ let ParamValueValidator = class {
   _error(key) {
     this.validator._error(this.name, key, this.value);
   }
-};
 
-let ParamValueStringValidator = class extends ParamValueValidator {
+}
+
+class ParamValueStringValidator extends ParamValueValidator {
   notEmpty() {
     if (this.value == null || this.value.trim() === '') {
       this._error('notEmpty');
@@ -24,9 +25,10 @@ let ParamValueStringValidator = class extends ParamValueValidator {
 
     return this;
   }
-};
 
-let ParamValidator = class {
+}
+
+class ParamValidator {
   constructor(context) {
     this.context = context;
   }
@@ -36,7 +38,10 @@ let ParamValidator = class {
       this._errors = {};
     }
 
-    this._errors[name] = { error: key, value };
+    this._errors[name] = {
+      error: key,
+      value
+    };
   }
 
   getErrors() {
@@ -44,15 +49,15 @@ let ParamValidator = class {
   }
 
   hasErrors() {
-    return !!this._errors;
+    return this._errors !== undefined;
   }
 
   isValid() {
-    return !this._errors;
+    return this._errors === undefined;
   }
 
-  string(name, position) {
-    return new ParamValueStringValidator(this, name, this.context.param(name, position));
+  string(name) {
+    return new ParamValueStringValidator(this, name, this.context.param(name));
   }
   /* int(name, position) {
    return new ParamValueIntValidator(this, name, this.context.param(name, position));
@@ -63,13 +68,18 @@ let ParamValidator = class {
    let data = this.context.getOrPostParam(name);
    return new ParamValueModelValidator(this, name, !data ? null : new M[modelName](data));
    } */
-};
 
-let ParamValidatorValid = class extends ParamValidator {
+
+}
+
+class ParamValidatorValid extends ParamValidator {
   _error() {
-    this.context.throw(404, 'Invalid params', { validator: this });
+    this.context.throw(404, 'Invalid params', {
+      validator: this
+    });
   }
-};
+
+}
 
 function alpParams(app) {
   Object.assign(app.context, {
@@ -95,12 +105,11 @@ function alpParams(app) {
     paramGETorPOST(name) {
       return this.body[name] !== undefined ? this.body[name] : this.query[name];
     }
-  });
 
+  });
   objectProperties.defineLazyProperty(app.context, 'params', function () {
     return new ParamValidator(this);
   });
-
   objectProperties.defineLazyProperty(app.context, 'validParams', function () {
     return new ParamValidatorValid(this);
   });

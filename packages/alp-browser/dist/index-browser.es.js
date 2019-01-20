@@ -1,150 +1,136 @@
 import Ibex from 'ibex';
-import config from 'alp-config';
-import language from 'alp-language';
-import translate from 'alp-translate';
+import config, { existsConfig, getConfig } from 'alp-browser-config';
+import language from 'alp-browser-language';
+import translate from 'alp-translate/browser';
 import Logger from 'nightingale-logger';
 
-var asyncToGenerator = function (fn) {
-  return function () {
-    var gen = fn.apply(this, arguments);
-    return new Promise(function (resolve, reject) {
-      function step(key, arg) {
-        try {
-          var info = gen[key](arg);
-          var value = info.value;
-        } catch (error) {
-          reject(error);
-          return;
-        }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
 
-        if (info.done) {
-          resolve(value);
-        } else {
-          return Promise.resolve(value).then(function (value) {
-            step("next", value);
-          }, function (err) {
-            step("throw", err);
-          });
-        }
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
       }
 
-      return step("next");
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
     });
   };
-};
+}
 
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
 
 var logger = new Logger('alp');
+var configPath = '/config';
 
-var AlpBrowser = function (_Ibex) {
-  inherits(AlpBrowser, _Ibex);
+var AlpBrowser =
+/*#__PURE__*/
+function (_Ibex) {
+  _inheritsLoose(AlpBrowser, _Ibex);
 
-  function AlpBrowser() {
-    var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/';
+  function AlpBrowser(path, _temp) {
+    var _this;
 
-    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+    if (path === void 0) {
+      path = '/';
+    }
+
+    var _ref = _temp === void 0 ? {} : _temp,
         _ref$version = _ref.version,
-        version = _ref$version === undefined ? window.VERSION : _ref$version;
+        version = _ref$version === void 0 ? window.__VERSION__ : _ref$version;
 
-    classCallCheck(this, AlpBrowser);
-
-    var _this = possibleConstructorReturn(this, (AlpBrowser.__proto__ || Object.getPrototypeOf(AlpBrowser)).call(this));
-
+    _this = _Ibex.call(this) || this;
     _this.path = path;
-    _this.appVersion = window.VERSION;
+    _this.appVersion = version;
     return _this;
   }
 
-  createClass(AlpBrowser, [{
-    key: 'init',
-    value: function () {
-      var _ref2 = asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return config('/config')(this);
+  var _proto = AlpBrowser.prototype;
 
-              case 2:
-                language(this);
-                _context.next = 5;
-                return translate('/locales')(this);
+  _proto.init =
+  /*#__PURE__*/
+  function () {
+    var _init = _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee() {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return config(this, configPath);
 
-              case 5:
-              case 'end':
-                return _context.stop();
-            }
+            case 2:
+              language(this);
+              _context.next = 5;
+              return translate('/locales')(this);
+
+            case 5:
+              return _context.abrupt("return", this);
+
+            case 6:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, this);
-      }));
+        }
+      }, _callee, this);
+    }));
 
-      return function init() {
-        return _ref2.apply(this, arguments);
-      };
-    }()
-  }, {
-    key: 'start',
-    value: function start(fn) {
+    return function init() {
+      return _init.apply(this, arguments);
+    };
+  }();
+
+  _proto.existsConfig = function existsConfig$$1(name) {
+    return existsConfig("/config" + name);
+  };
+
+  _proto.loadConfig = function loadConfig(name) {
+    return getConfig("/config" + name);
+  };
+
+  _proto.start = function start(fn) {
+    try {
       fn().then(function () {
         return logger.success('started');
       }).catch(function (err) {
-        return logger.error('start fail', { err: err });
+        return logger.error('start fail', {
+          err: err
+        });
+      });
+    } catch (err) {
+      logger.error('start fail', {
+        err: err
       });
     }
-  }, {
-    key: 'environment',
-    get: function get$$1() {
-      return this.env;
-    }
-  }]);
+  };
+
   return AlpBrowser;
 }(Ibex);
 

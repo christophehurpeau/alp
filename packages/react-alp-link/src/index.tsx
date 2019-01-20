@@ -1,39 +1,34 @@
 import { PRODUCTION } from 'pob-babel';
-import React, { ComponentType } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, ReactType } from 'react';
+import ReactAlpContext from 'react-alp-context';
 
 export interface Props {
-  as?: ComponentType<{ href: string }>;
+  as?: ReactType<{ href: string }>;
   to: string;
   params?: Object;
   children: any;
   tagName?: never;
 }
 
-export interface Context {
-  urlGenerator: Function;
+export default class LinkComponent extends Component<Props> {
+  static defaultProps = { as: 'a', to: 'default' };
+
+  static contextType = ReactAlpContext;
+
+  // eslint-disable-next-line react/sort-comp
+  context!: React.ContextType<typeof ReactAlpContext>;
+
+  render() {
+    const { as, to, params, children, ...props } = this.props;
+
+    if (!PRODUCTION && props.tagName) {
+      throw new Error('`tagName` is deprecated, use `as` instead');
+    }
+
+    return React.createElement(
+      as as ReactType<{ href: string }>,
+      { href: this.context.urlGenerator(to, params), ...props },
+      children,
+    );
+  }
 }
-
-export interface ContextType {
-  context: Context;
-}
-
-const LinkComponent: ComponentType<Props> = (
-  { as: Type = 'a', to = 'default', params, children, ...props }: Props,
-  { context: ctx }: ContextType,
-) => {
-  if (!PRODUCTION && props.tagName) throw new Error('`tagName` is deprecated, use `as` instead');
-  return (
-    <Type href={ctx.urlGenerator(to, params)} {...props}>
-      {children}
-    </Type>
-  );
-};
-
-LinkComponent.contextTypes = {
-  context: PropTypes.shape({
-    urlGenerator: PropTypes.func,
-  }),
-};
-
-export default LinkComponent;

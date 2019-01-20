@@ -8,8 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-browser"><img src="https://img.shields.io/npm/v/alp-browser.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/alpjs/alp-browser"><img src="https://david-dm.org/alpjs/alp-browser.svg?style=flat-square"></a>
-  <a href="https://dependencyci.com/github/alpjs/alp-browser"><img src="https://dependencyci.com/github/alpjs/alp-browser/badge?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-browser"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-browser.svg?style=flat-square"></a>
 </p>
 
 ## Install

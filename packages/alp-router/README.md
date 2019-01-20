@@ -1,9 +1,15 @@
-# alp-router [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  alp-router
+</h3>
 
-router for alp
+<p align="center">
+  router for alp
+</p>
 
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+<p align="center">
+  <a href="https://npmjs.org/package/alp-router"><img src="https://img.shields.io/npm/v/alp-router.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-router"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-router.svg?style=flat-square"></a>
+</p>
 
 ## router-segments
 
@@ -20,8 +26,8 @@ npm install --save alp-router router-segments
 
 ```js
 import Koa from 'koa';
-import config from 'alp-config';
-import language from 'alp-language';
+import config from 'alp-node-config';
+import language from 'alp-node-language';
 import router from 'alp-router';
 import createRouter from './createRouter';
 
@@ -37,7 +43,7 @@ app.use(router(createRouter())(app));
 ## With Alp (Node or Browser)
 
 ```js
-import Alp from 'alp';         
+import Alp from 'alp';
 import router from 'alp-router';
 import createRouter from './createRouter';
 
@@ -46,10 +52,3 @@ const app = new Alp();
 // handlers
 app.use(router(createRouter())(app));
 ```
-
-[npm-image]: https://img.shields.io/npm/v/alp-router.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/alp-router
-[daviddm-image]: https://david-dm.org/alpjs/alp-router.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/alpjs/alp-router
-[dependencyci-image]: https://dependencyci.com/github/alpjs/alp-router/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/alpjs/alp-router

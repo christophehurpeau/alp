@@ -1,0 +1,53 @@
+{
+  "name": "alp-node-errors",
+  "version": "2.6.0",
+  "description": "display errors in alp framework",
+  "keywords": ["alp"],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "repository": "git@github.com:christophehurpeau/alp.git",
+  "homepage": "https://github.com/christophehurpeau/alp",
+  "bugs": {
+    "url": "https://github.com/alpjs/alp-node-errors/issues"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "main": "./index.js",
+  "types": "./dist/index.d.ts",
+  "module:node": "./dist/index-node10.es.js",
+  "module:node-dev": "./dist/index-node10-dev.es.js",
+  "scripts": {
+    "build": "pob-build",
+    "build:definitions": "tsc -p tsconfig.build.json",
+    "clean": "rm -Rf docs dist",
+    "lint": "npm run typescript-check && eslint --ext .ts src/",
+    "typescript-check": "tsc --noEmit",
+    "watch": "pob-watch"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "dependencies": {
+    "alp-types": "0.0.0",
+    "error-html": "^0.3.5",
+    "nightingale-logger": "^6.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "babel-eslint": "10.0.1",
+    "babel-preset-latest-node": "3.0.1",
+    "eslint": "5.12.1",
+    "eslint-config-pob": "25.0.0",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-typescript": "0.14.0",
+    "pob-babel": "23.5.5",
+    "prettier": "1.16.0",
+    "typescript": "3.3.0-dev.20190119",
+    "typescript-eslint-parser": "21.0.2"
+  }
+}

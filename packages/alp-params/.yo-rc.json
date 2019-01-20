@@ -12,7 +12,7 @@
       "envs": [
         {
           "target": "node",
-          "version": "8",
+          "version": "10",
           "formats": [
             "cjs",
             "es"
@@ -20,7 +20,7 @@
         },
         {
           "target": "node",
-          "version": "6",
+          "version": "8",
           "formats": [
             "cjs"
           ]
