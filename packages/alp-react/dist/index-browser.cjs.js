@@ -9,8 +9,7 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var reactDom = require('react-dom');
 var Logger = _interopDefault(require('nightingale-logger'));
-var ReactAlpContext = require('react-alp-context');
-var ReactAlpContext__default = _interopDefault(ReactAlpContext);
+var ReactAlpContext = _interopDefault(require('react-alp-context'));
 var reactHelmet = _interopDefault(require('react-helmet'));
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -49,24 +48,6 @@ function _asyncToGenerator(fn) {
   };
 }
 
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
@@ -99,32 +80,17 @@ var createAlpAppWrapper = (function (app, context) {
     var _proto = AlpAppWrapper.prototype;
 
     _proto.componentDidCatch = function componentDidCatch(error, errorInfo) {
-      this.setState({
-        error: error
-      });
       console.error(error, errorInfo);
       if (window.Raven) window.Raven.captureException(error, {
         extra: errorInfo
       });
     };
 
-    _proto.updateSanitizedState = function updateSanitizedState(patchState) {
-      this.setState(function (prevState) {
-        return {
-          appState: _extends({}, prevState.appState, {
-            patchState: patchState
-          })
-        };
-      });
-    };
-
     _proto.render = function render() {
       if (this.state.error) return React__default.createElement("div", null, "An unexpected error occured");
-      return React__default.createElement(ReactAlpContext__default.Provider, {
+      return React__default.createElement(ReactAlpContext.Provider, {
         value: context
-      }, React__default.createElement(ReactAlpContext.AppStateContext.Provider, {
-        value: this.state.appState
-      }, app));
+      }, app);
     };
 
     return AlpAppWrapper;
@@ -192,6 +158,7 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
                 return contentLoaded();
 
               case 8:
+                // const container =
                 reactDom.hydrate(appElement, document.getElementById('react-app'));
                 logger.success('rendered'); // container.updateSanitizedState({ loading: false });
 

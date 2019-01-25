@@ -1,6 +1,6 @@
 import socketio from 'socket.io-client';
 import { BrowserApplication } from 'alp-types';
-type Socket = ReturnType<typeof socketio>;
+declare type Socket = ReturnType<typeof socketio>;
 interface Websocket {
     connected: boolean;
     isConnected: () => boolean;

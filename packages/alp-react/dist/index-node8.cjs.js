@@ -9,8 +9,7 @@ var React__default = _interopDefault(React);
 var server = require('react-dom/server');
 var Helmet = _interopDefault(require('react-helmet'));
 var createIsModernBrowser = _interopDefault(require('modern-browsers'));
-var ReactAlpContext = require('react-alp-context');
-var ReactAlpContext__default = _interopDefault(ReactAlpContext);
+var ReactAlpContext = _interopDefault(require('react-alp-context'));
 
 const assetUrl = (asset, version) => asset.startsWith('/') ? `/${version}${asset}` : asset;
 
@@ -125,30 +124,17 @@ var createAlpAppWrapper = ((app, context) => {
     }
 
     componentDidCatch(error, errorInfo) {
-      this.setState({
-        error
-      });
       console.error(error, errorInfo);
       if (window.Raven) window.Raven.captureException(error, {
         extra: errorInfo
       });
     }
 
-    updateSanitizedState(patchState) {
-      this.setState(prevState => ({
-        appState: { ...prevState.appState,
-          patchState
-        }
-      }));
-    }
-
     render() {
       if (this.state.error) return React__default.createElement("div", null, "An unexpected error occured");
-      return React__default.createElement(ReactAlpContext__default.Provider, {
+      return React__default.createElement(ReactAlpContext.Provider, {
         value: context
-      }, React__default.createElement(ReactAlpContext.AppStateContext.Provider, {
-        value: this.state.appState
-      }, app));
+      }, app);
     }
 
   }, _temp;

@@ -2,7 +2,7 @@ import contentLoaded from 'content-loaded';
 import React__default, { Component, createElement } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
-import ReactAlpContext, { AppStateContext } from 'react-alp-context';
+import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
 var _jsxFileName = "/Users/chris/Work/alp/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
@@ -19,22 +19,9 @@ var createAlpAppWrapper = (function (app, context) {
     }
 
     componentDidCatch(error, errorInfo) {
-      this.setState({
-        error
-      });
       console.error(error, errorInfo);
       if (window.Raven) window.Raven.captureException(error, {
         extra: errorInfo
-      });
-    }
-
-    updateSanitizedState(patchState) {
-      this.setState(function (prevState) {
-        return {
-          appState: Object.assign({}, prevState.appState, {
-            patchState
-          })
-        };
       });
     }
 
@@ -42,7 +29,7 @@ var createAlpAppWrapper = (function (app, context) {
       if (this.state.error) return React__default.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 31
         },
         __self: this
       }, "An unexpected error occured");
@@ -50,17 +37,10 @@ var createAlpAppWrapper = (function (app, context) {
         value: context,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 33
         },
         __self: this
-      }, React__default.createElement(AppStateContext.Provider, {
-        value: this.state.appState,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 41
-        },
-        __self: this
-      }, app));
+      }, app);
     }
 
   }, _temp;
@@ -118,7 +98,8 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
     logger.success('render called');
     const WrappedApp = createAlpAppWrapper(React__default.createElement(App), ctx);
     const appElement = React__default.createElement(WrappedApp);
-    await contentLoaded();
+    await contentLoaded(); // const container =
+
     hydrate(appElement, document.getElementById('react-app'));
     logger.success('rendered'); // container.updateSanitizedState({ loading: false });
   };

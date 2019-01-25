@@ -2,7 +2,7 @@ import contentLoaded from 'content-loaded';
 import React__default, { Component, createElement } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
-import ReactAlpContext, { AppStateContext } from 'react-alp-context';
+import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -41,24 +41,6 @@ function _asyncToGenerator(fn) {
   };
 }
 
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
@@ -92,22 +74,9 @@ var createAlpAppWrapper = (function (app, context) {
     var _proto = AlpAppWrapper.prototype;
 
     _proto.componentDidCatch = function componentDidCatch(error, errorInfo) {
-      this.setState({
-        error: error
-      });
       console.error(error, errorInfo);
       if (window.Raven) window.Raven.captureException(error, {
         extra: errorInfo
-      });
-    };
-
-    _proto.updateSanitizedState = function updateSanitizedState(patchState) {
-      this.setState(function (prevState) {
-        return {
-          appState: _extends({}, prevState.appState, {
-            patchState: patchState
-          })
-        };
       });
     };
 
@@ -115,7 +84,7 @@ var createAlpAppWrapper = (function (app, context) {
       if (this.state.error) return React__default.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 31
         },
         __self: this
       }, "An unexpected error occured");
@@ -123,17 +92,10 @@ var createAlpAppWrapper = (function (app, context) {
         value: context,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 33
         },
         __self: this
-      }, React__default.createElement(AppStateContext.Provider, {
-        value: this.state.appState,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 41
-        },
-        __self: this
-      }, app));
+      }, app);
     };
 
     return AlpAppWrapper;
@@ -215,6 +177,7 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
                 return contentLoaded();
 
               case 8:
+                // const container =
                 hydrate(appElement, document.getElementById('react-app'));
                 logger.success('rendered'); // container.updateSanitizedState({ loading: false });
 

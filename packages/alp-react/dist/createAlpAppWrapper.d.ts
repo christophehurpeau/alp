@@ -18,7 +18,6 @@ declare const _default: (app: React.ReactChild, context: Context) => {
             appState: any;
         };
         componentDidCatch(error: Error, errorInfo: any): void;
-        updateSanitizedState(patchState: any): void;
         render(): JSX.Element;
         context: any;
         setState<K extends "error" | "appState">(state: AlpAppState | ((prevState: Readonly<AlpAppState>, props: Readonly<AlpAppProps>) => AlpAppState | Pick<AlpAppState, K> | null) | Pick<AlpAppState, K> | null, callback?: (() => void) | undefined): void;
@@ -36,7 +35,6 @@ declare const _default: (app: React.ReactChild, context: Context) => {
             appState: any;
         };
         componentDidCatch(error: Error, errorInfo: any): void;
-        updateSanitizedState(patchState: any): void;
         render(): JSX.Element;
         context: any;
         setState<K extends "error" | "appState">(state: AlpAppState | ((prevState: Readonly<AlpAppState>, props: Readonly<AlpAppProps>) => AlpAppState | Pick<AlpAppState, K> | null) | Pick<AlpAppState, K> | null, callback?: (() => void) | undefined): void;

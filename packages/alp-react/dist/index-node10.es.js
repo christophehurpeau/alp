@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 export { default as Helmet } from 'react-helmet';
 import createIsModernBrowser from 'modern-browsers';
-import ReactAlpContext, { AppStateContext } from 'react-alp-context';
+import ReactAlpContext from 'react-alp-context';
 
 const assetUrl = (asset, version) => asset.startsWith('/') ? `/${version}${asset}` : asset;
 
@@ -118,30 +118,17 @@ var createAlpAppWrapper = ((app, context) => {
     }
 
     componentDidCatch(error, errorInfo) {
-      this.setState({
-        error
-      });
       console.error(error, errorInfo);
       if (window.Raven) window.Raven.captureException(error, {
         extra: errorInfo
       });
     }
 
-    updateSanitizedState(patchState) {
-      this.setState(prevState => ({
-        appState: { ...prevState.appState,
-          patchState
-        }
-      }));
-    }
-
     render() {
       if (this.state.error) return React__default.createElement("div", null, "An unexpected error occured");
       return React__default.createElement(ReactAlpContext.Provider, {
         value: context
-      }, React__default.createElement(AppStateContext.Provider, {
-        value: this.state.appState
-      }, app));
+      }, app);
     }
 
   }, _temp;

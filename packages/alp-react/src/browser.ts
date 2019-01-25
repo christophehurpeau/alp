@@ -38,7 +38,8 @@ export default (app: BrowserApplication) =>
     const appElement = React.createElement(WrappedApp);
 
     await contentLoaded();
-    const container = hydrate(appElement, document.getElementById('react-app'));
+    // const container =
+    hydrate(appElement, document.getElementById('react-app'));
     logger.success('rendered');
 
     // container.updateSanitizedState({ loading: false });

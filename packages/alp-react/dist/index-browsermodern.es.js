@@ -2,7 +2,7 @@ import contentLoaded from 'content-loaded';
 import React__default, { Component, createElement } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
-import ReactAlpContext, { AppStateContext } from 'react-alp-context';
+import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
 var createAlpAppWrapper = (function (app, context) {
@@ -18,22 +18,9 @@ var createAlpAppWrapper = (function (app, context) {
     }
 
     componentDidCatch(error, errorInfo) {
-      this.setState({
-        error
-      });
       console.error(error, errorInfo);
       if (window.Raven) window.Raven.captureException(error, {
         extra: errorInfo
-      });
-    }
-
-    updateSanitizedState(patchState) {
-      this.setState(function (prevState) {
-        return {
-          appState: Object.assign({}, prevState.appState, {
-            patchState
-          })
-        };
       });
     }
 
@@ -41,9 +28,7 @@ var createAlpAppWrapper = (function (app, context) {
       if (this.state.error) return React__default.createElement("div", null, "An unexpected error occured");
       return React__default.createElement(ReactAlpContext.Provider, {
         value: context
-      }, React__default.createElement(AppStateContext.Provider, {
-        value: this.state.appState
-      }, app));
+      }, app);
     }
 
   }, _temp;
@@ -87,7 +72,8 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
     logger.success('render called');
     const WrappedApp = createAlpAppWrapper(React__default.createElement(App), ctx);
     const appElement = React__default.createElement(WrappedApp);
-    await contentLoaded();
+    await contentLoaded(); // const container =
+
     hydrate(appElement, document.getElementById('react-app'));
     logger.success('rendered'); // container.updateSanitizedState({ loading: false });
   };

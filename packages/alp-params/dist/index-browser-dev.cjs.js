@@ -84,7 +84,7 @@ function () {
 
   _proto.string = function string(name) {
     return new ParamValueStringValidator(this, name, this.context.param(name));
-  };
+  }
   /* int(name, position) {
    return new ParamValueIntValidator(this, name, this.context.param(name, position));
    }
@@ -94,7 +94,7 @@ function () {
    let data = this.context.getOrPostParam(name);
    return new ParamValueModelValidator(this, name, !data ? null : new M[modelName](data));
    } */
-
+  ;
 
   return ParamValidator;
 }();
