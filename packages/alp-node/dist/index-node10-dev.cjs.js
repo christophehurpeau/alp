@@ -20,8 +20,9 @@ var _listen = _interopDefault(require('alp-listen'));
 var Logger = _interopDefault(require('nightingale-logger'));
 var findUp = _interopDefault(require('findup-sync'));
 
-const logger = new Logger('alp');
-const appDirname = path.dirname(process.argv[1]);
+const logger = new Logger('alp'); // see alp-dev
+
+const appDirname = path.resolve('build');
 const packagePath = findUp('package.json', {
   cwd: appDirname
 });
@@ -121,6 +122,7 @@ class Alp extends Koa {
       const server = await _listen(this.config, this.callback(), this.certPath);
       this._server = server;
       logger.success('started');
+      if (process.send) process.send('ready');
       return server;
     } catch (err) {
       logger.error('start fail', {

@@ -19,7 +19,8 @@ export { Config };
 
 const logger = new Logger('alp');
 
-export const appDirname = path.dirname(process.argv[1]);
+// see alp-dev
+export const appDirname = path.resolve('build');
 
 const packagePath = findUp('package.json', { cwd: appDirname });
 if (!packagePath) {
@@ -144,6 +145,7 @@ export default class Alp extends Koa implements NodeApplication {
       const server = await _listen(this.config, this.callback(), this.certPath);
       this._server = server;
       logger.success('started');
+      if (process.send) process.send('ready');
       return server;
     } catch (err) {
       logger.error('start fail', { err });
