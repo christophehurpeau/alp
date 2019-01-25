@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { unlinkSync, chmodSync, readFileSync } from 'fs';
 import socketio from 'socket.io';
 import Logger from 'nightingale-logger';
 
@@ -17,12 +17,14 @@ function start(config, dirname) {
     throw new Error('Missing config webSocket');
   }
 
-  if (!webSocketConfig.has('port')) {
+  if (!webSocketConfig.has('port') && !webSocketConfig.has('socketPath')) {
     throw new Error('Missing config webSocket.port');
   }
 
   const secure = webSocketConfig.get('secure');
-  const port = webSocketConfig.get('port'); // eslint-disable-next-line global-require, import/no-dynamic-require
+  const socketPath = webSocketConfig.get('socketPath');
+  const port = webSocketConfig.get('port');
+  const hostname = webSocketConfig.get('hostname'); // eslint-disable-next-line global-require, import/no-dynamic-require
 
   const createServer = require(secure ? 'https' : 'http').createServer;
 
@@ -37,30 +39,54 @@ function start(config, dirname) {
     });
   })();
 
-  logger.info('Starting', {
+  logger.info('Creating server', socketPath ? {
+    socketPath
+  } : {
     port
   });
-  server.listen(port, () => logger.info('Listening', {
-    port
-  }));
-  server.on('error', err => logger.error(err));
-  io = socketio(server);
-  io.on('connection', socket => {
-    logger.debug('connected', {
-      id: socket.id
-    });
-    socket.emit('hello', {
-      version: config.get('version')
-    });
-    socket.on('error', err => logger.error(err));
-    socket.on('disconnect', () => {
-      logger.debug('disconnected', {
+  return new Promise(resolve => {
+    if (socketPath) {
+      try {
+        unlinkSync(socketPath);
+      } catch (err) {}
+
+      server.listen(socketPath, () => {
+        if (socketPath) {
+          chmodSync(socketPath, '777');
+        }
+
+        logger.info('Server listening', {
+          socketPath
+        });
+        resolve(io);
+      });
+    } else {
+      server.listen(port, hostname, () => {
+        logger.info('Server listening', {
+          port
+        });
+        resolve(io);
+      });
+    }
+
+    server.on('error', err => logger.error(err));
+    io = socketio(server);
+    io.on('connection', socket => {
+      logger.debug('connected', {
         id: socket.id
       });
+      socket.emit('hello', {
+        version: config.get('version')
+      });
+      socket.on('error', err => logger.error(err));
+      socket.on('disconnect', () => {
+        logger.debug('disconnected', {
+          id: socket.id
+        });
+      });
     });
+    io.on('error', err => logger.error(err));
   });
-  io.on('error', err => logger.error(err));
-  return io;
 }
 
 function close() {
