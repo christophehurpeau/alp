@@ -3,8 +3,8 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var argv = _interopDefault(require('minimist-argv'));
-var pobpackNode = require('pobpack-node');
 var path = _interopDefault(require('path'));
+var pobpackNode = require('pobpack-node');
 var OptimizeCssAssetsPlugin = _interopDefault(require('optimize-css-assets-webpack-plugin'));
 var MiniCssExtractPlugin = _interopDefault(require('mini-css-extract-plugin'));
 var autoprefixer = _interopDefault(require('autoprefixer'));
@@ -90,7 +90,7 @@ const createNodeCompiler = production => pobpackNode.createAppNodeCompiler(creat
 const watchAndRun = (nodeCompiler, port) => pobpackNode.watchAndRunCompiler(nodeCompiler, {
   key: 'alp-dev:watch',
   args: ['--trace-warnings', '--port', port, '--version', Date.now()],
-  cwd: nodeCompiler.webpackConfig.output.path
+  cwd: path.resolve('.')
 });
 
 const nodeCompiler = createNodeCompiler(false);

@@ -1,5 +1,5 @@
-import { createAppNodeCompiler } from 'pobpack-node';
 import path from 'path';
+import { createAppNodeCompiler } from 'pobpack-node';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';

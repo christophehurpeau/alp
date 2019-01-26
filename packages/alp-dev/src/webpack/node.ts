@@ -1,3 +1,4 @@
+import path from 'path';
 import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
 import { PobpackCompiler } from 'pobpack-types';
 import { Watching } from 'webpack';
@@ -13,5 +14,5 @@ export const watchAndRun = (
   watchAndRunCompiler(nodeCompiler, {
     key: 'alp-dev:watch',
     args: ['--trace-warnings', '--port', port, '--version', Date.now()],
-    cwd: nodeCompiler.webpackConfig.output.path,
+    cwd: path.resolve('.'),
   });

@@ -1,6 +1,6 @@
 import argv from 'minimist-argv';
-import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
 import path from 'path';
+import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
@@ -86,7 +86,7 @@ const createNodeCompiler = production => createAppNodeCompiler(createPobpackConf
 const watchAndRun = (nodeCompiler, port) => watchAndRunCompiler(nodeCompiler, {
   key: 'alp-dev:watch',
   args: ['--trace-warnings', '--port', port, '--version', Date.now()],
-  cwd: nodeCompiler.webpackConfig.output.path
+  cwd: path.resolve('.')
 });
 
 const nodeCompiler = createNodeCompiler(false);
