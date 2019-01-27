@@ -5,7 +5,7 @@ import { Context } from 'alp-types';
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer({
-  appPath: process.cwd(),
+  appPath: `${process.cwd()}/`,
 });
 
 export default async (ctx: Context, next: () => void) => {

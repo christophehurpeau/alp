@@ -4,7 +4,7 @@ import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer({
-  appPath: process.cwd()
+  appPath: `${process.cwd()}/`
 });
 var index = (async (ctx, next) => {
   try {
