@@ -22,16 +22,22 @@ const assertBodyNotParsed = (ctx: Context) => {
 export default function alpBodyParser(app: Application) {
   app.context.parseBody = async function(this: Context) {
     assertBodyNotParsed(this);
-    this.request.body = await parse.form(this);
+    const body = await parse.form(this);
+    this.request.body = body;
+    return body;
   };
 
   app.context.parseBodyJson = async function(this: Context) {
     assertBodyNotParsed(this);
-    this.request.body = await parse.json(this);
+    const body = await parse.json(this);
+    this.request.body = body;
+    return body;
   };
 
   app.context.parseBodyText = async function(this: Context) {
     assertBodyNotParsed(this);
-    this.request.body = await parse.text(this);
+    const body = await parse.text(this);
+    this.request.body = body;
+    return body;
   };
 }
