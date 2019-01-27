@@ -178,7 +178,7 @@ export default class UserAccountsService extends EventEmitter {
     ];
 
     const keyPath: string = this.usersManager.store.keyPath;
-    await this.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);
+    await this.usersManager[user[keyPath] ? 'replaceOne' : 'insertOne'](user);
     return user;
   }
 

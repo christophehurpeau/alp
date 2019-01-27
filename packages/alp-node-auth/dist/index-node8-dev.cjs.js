@@ -462,7 +462,7 @@ class UserAccountsService extends EventEmitter {
     });
     user.emailDomains = [...user.emails.reduce((domains, email) => domains.add(email.split('@', 2)[1]), new Set())];
     const keyPath = this.usersManager.store.keyPath;
-    await this.usersManager[user[keyPath] ? 'updateOne' : 'insertOne'](user);
+    await this.usersManager[user[keyPath] ? 'replaceOne' : 'insertOne'](user);
     return user;
   }
 
