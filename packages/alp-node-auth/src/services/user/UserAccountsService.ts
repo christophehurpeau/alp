@@ -2,6 +2,7 @@
 import EventEmitter from 'events';
 import Logger from 'nightingale-logger';
 import { AccountId, User, Account } from '../../../types.d';
+import MongoUsersManager from '../../MongoUsersManager';
 import userAccountGoogleService from './userAccountGoogleService';
 
 type TokensObject = {
@@ -24,7 +25,7 @@ export default class UserAccountsService extends EventEmitter {
     google: userAccountGoogleService,
   };
 
-  usersManager: any;
+  usersManager: MongoUsersManager;
 
   constructor(usersManager: any) {
     super();
@@ -86,7 +87,7 @@ export default class UserAccountsService extends EventEmitter {
       account.subservices.push(subservice);
     }
 
-    await this.usersManager.update(user);
+    await this.usersManager.replaceOne(user);
     return user;
   }
 
@@ -112,7 +113,9 @@ export default class UserAccountsService extends EventEmitter {
 
     const emails = service.getEmails(profile, plusProfile);
 
-    let user = await this.usersManager.findOneByAccountOrEmails({
+    let user:
+      | Partial<User>
+      | undefined = await this.usersManager.findOneByAccountOrEmails({
       provider: service.providerKey,
       accountId: service.getId(profile),
       emails,
@@ -134,13 +137,14 @@ export default class UserAccountsService extends EventEmitter {
 
     const accountId = service.getId(profile);
 
-    let account = user.accounts.find(
+    let account: Partial<Account> | undefined = user.accounts.find(
       (account: Account) =>
         account.provider === strategy && account.accountId === accountId,
     );
 
     if (!account) {
       account = { provider: strategy, accountId };
+      // @ts-ignore
       user.accounts.push(account);
     }
 
@@ -178,8 +182,14 @@ export default class UserAccountsService extends EventEmitter {
     ];
 
     const keyPath: string = this.usersManager.store.keyPath;
-    await this.usersManager[user[keyPath] ? 'replaceOne' : 'insertOne'](user);
-    return user;
+
+    if (user[keyPath]) {
+      await this.usersManager.replaceOne(user as User);
+    } else {
+      await this.usersManager.insertOne(user as User);
+    }
+
+    return user as User;
   }
 
   async updateAccount(user: User, account: Account): Promise<User> {

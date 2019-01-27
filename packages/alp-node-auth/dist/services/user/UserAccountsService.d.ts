@@ -1,6 +1,7 @@
 /// <reference types="node" />
 import EventEmitter from 'events';
 import { AccountId, User, Account } from '../../../types.d';
+import MongoUsersManager from '../../MongoUsersManager';
 declare type TokensObject = {
     accessToken: string;
     expireDate: Date;
@@ -16,7 +17,7 @@ export default class UserAccountsService extends EventEmitter {
     static strategyToService: {
         [key: string]: any;
     };
-    usersManager: any;
+    usersManager: MongoUsersManager;
     constructor(usersManager: any);
     getScope(strategy: string, scopeKey: string, user?: User, accountId?: AccountId): any;
     update(user: User, strategy: string, tokens: TokensObject, scope: string, subservice: string): Promise<User>;

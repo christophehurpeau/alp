@@ -389,7 +389,7 @@ class UserAccountsService extends EventEmitter {
       account.subservices.push(subservice);
     }
 
-    await this.usersManager.update(user);
+    await this.usersManager.replaceOne(user);
     return user;
   }
 
@@ -429,7 +429,8 @@ class UserAccountsService extends EventEmitter {
       account = {
         provider: strategy,
         accountId
-      };
+      }; // @ts-ignore
+
       user.accounts.push(account);
     }
 
@@ -462,7 +463,13 @@ class UserAccountsService extends EventEmitter {
     });
     user.emailDomains = [...user.emails.reduce((domains, email) => domains.add(email.split('@', 2)[1]), new Set())];
     const keyPath = this.usersManager.store.keyPath;
-    await this.usersManager[user[keyPath] ? 'replaceOne' : 'insertOne'](user);
+
+    if (user[keyPath]) {
+      await this.usersManager.replaceOne(user);
+    } else {
+      await this.usersManager.insertOne(user);
+    }
+
     return user;
   }
 
