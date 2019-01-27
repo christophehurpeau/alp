@@ -33,9 +33,9 @@
     "arrowParens": "always"
   },
   "peerDependencies": {
-    "liwi-mongo": "^2.1.0",
-    "liwi-store": "^2.1.0",
-    "liwi-types": "^1.1.0"
+    "liwi-mongo": "^2.2.0",
+    "liwi-store": "^2.2.0",
+    "liwi-types": "^1.2.0"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.3.0",

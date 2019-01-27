@@ -14,6 +14,11 @@ type TokensObject = {
 
 const logger = new Logger('alp:auth:userAccounts');
 
+export const STATUSES = {
+  VALIDATED: 'validated',
+  DELETED: 'deleted',
+};
+
 export default class UserAccountsService extends EventEmitter {
   static strategyToService: { [key: string]: any } = {
     google: userAccountGoogleService,
@@ -122,7 +127,7 @@ export default class UserAccountsService extends EventEmitter {
     Object.assign(user, {
       displayName: service.getDisplayName(profile),
       fullName: service.getFullName(profile),
-      status: this.usersManager.STATUSES.VALIDATED,
+      status: STATUSES.VALIDATED,
     });
 
     if (!user.accounts) user.accounts = [];

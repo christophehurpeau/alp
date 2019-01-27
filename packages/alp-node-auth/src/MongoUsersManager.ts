@@ -3,11 +3,6 @@ import { Store } from 'liwi-store';
 import { User, Account, UserSanitized } from '../types.d';
 
 export default class MongoUsersManager {
-  static STATUSES = {
-    VALIDATED: 'validated',
-    DELETED: 'deleted',
-  };
-
   store: Store<User, '_id', any, any, any>;
 
   constructor(store: Store<User, '_id', any, any, any>) {

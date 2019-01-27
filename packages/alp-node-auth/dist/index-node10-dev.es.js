@@ -323,6 +323,10 @@ var userAccountGoogleService = new (_temp = _class = class extends EventEmitter 
 
 /* global fetch */
 const logger$1 = new Logger('alp:auth:userAccounts');
+const STATUSES = {
+  VALIDATED: 'validated',
+  DELETED: 'deleted'
+};
 class UserAccountsService extends EventEmitter {
   constructor(usersManager) {
     super();
@@ -409,7 +413,7 @@ class UserAccountsService extends EventEmitter {
     Object.assign(user, {
       displayName: service.getDisplayName(profile),
       fullName: service.getFullName(profile),
-      status: this.usersManager.STATUSES.VALIDATED
+      status: STATUSES.VALIDATED
     });
     if (!user.accounts) user.accounts = [];
     const accountId = service.getId(profile);
@@ -575,10 +579,6 @@ class MongoUsersManager {
   }
 
 }
-MongoUsersManager.STATUSES = {
-  VALIDATED: 'validated',
-  DELETED: 'deleted'
-};
 
 const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
@@ -742,5 +742,5 @@ function init({
 }
 
 export default init;
-export { MongoUsersManager };
+export { MongoUsersManager, STATUSES };
 //# sourceMappingURL=index-node10-dev.es.js.map

@@ -2,6 +2,7 @@ import { NodeApplication } from 'alp-types';
 import { Option } from 'cookies';
 import { Strategies } from './services/authentification/AuthenticationService';
 export { default as MongoUsersManager } from './MongoUsersManager';
+export { STATUSES } from './services/user/UserAccountsService';
 interface ExtendedNodeApplication extends NodeApplication {
     websocket?: any;
 }

@@ -10,6 +10,7 @@ import UserAccountsService from './services/user/UserAccountsService';
 import createAuthController from './createAuthController';
 
 export { default as MongoUsersManager } from './MongoUsersManager';
+export { STATUSES } from './services/user/UserAccountsService';
 
 const COOKIE_NAME = 'connectedUser';
 const logger = new Logger('alp:auth');

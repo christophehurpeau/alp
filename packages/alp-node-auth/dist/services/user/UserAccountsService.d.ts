@@ -8,6 +8,10 @@ declare type TokensObject = {
     refreshToken?: string;
     tokenType: string;
 };
+export declare const STATUSES: {
+    VALIDATED: string;
+    DELETED: string;
+};
 export default class UserAccountsService extends EventEmitter {
     static strategyToService: {
         [key: string]: any;
