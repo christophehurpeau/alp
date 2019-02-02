@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import Button from 'ynnub/components/Button';
 

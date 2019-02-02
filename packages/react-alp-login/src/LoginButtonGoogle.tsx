@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import Button, { ButtonProps } from 'ynnub/components/Button';
 

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import LoginButtonGoogle from './LoginButtonGoogle';
 
 export default (): ReactElement<'ul'> => (
