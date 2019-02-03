@@ -51,7 +51,7 @@ export default (
         require.resolve('@babel/preset-react'),
         { development: !production, useBuiltIns: true },
       ],
-      // pob preset: export default function name, replacements, exnext features, ...
+      // pob preset: flow, import `src`, export default function name, replacements, exnext features, ...
       [
         require.resolve('babel-preset-pob-env'),
         {
@@ -74,10 +74,6 @@ export default (
       ],
     ].filter(Boolean),
     plugins: [require.resolve('babel-plugin-inline-classnames-babel7')],
-  },
-
-  aliases: {
-    '@app': path.resolve('src'),
   },
 
   moduleRules: [
