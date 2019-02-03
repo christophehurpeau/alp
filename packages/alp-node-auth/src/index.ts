@@ -7,7 +7,11 @@ import AuthenticationService, {
   Strategies,
 } from './services/authentification/AuthenticationService';
 import UserAccountsService from './services/user/UserAccountsService';
-import createAuthController from './createAuthController';
+import {
+  createAuthController,
+  AuthController as AuthControllerType,
+} from './createAuthController';
+import { createRoutes } from './createRoutes';
 import MongoUsersManager from './MongoUsersManager';
 
 export { default as MongoUsersManager } from './MongoUsersManager';
@@ -22,6 +26,8 @@ const verifyPromisified: any = promisify(verify);
 interface ExtendedNodeApplication extends NodeApplication {
   websocket?: any;
 }
+
+export type AuthController = AuthControllerType;
 
 export default function init({
   usersManager,
@@ -143,16 +149,7 @@ export default function init({
     }
 
     return {
-      routes: {
-        login: [
-          '/login/:strategy',
-          (segment: any) => {
-            segment.add('/response', controller.loginResponse, 'loginResponse');
-            segment.defaultRoute(controller.login, 'login');
-          },
-        ],
-        logout: ['/logout', controller.logout],
-      },
+      routes: createRoutes(controller),
 
       middleware: async (ctx: any, next: any) => {
         const token = ctx.cookies.get(COOKIE_NAME);

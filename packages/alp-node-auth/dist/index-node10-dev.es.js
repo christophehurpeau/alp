@@ -591,6 +591,15 @@ const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
 const signPromisified = promisify(sign);
 const verifyPromisified = promisify(verify);
+
+const createRoutes = controller => ({
+  login: ['/login/:strategy', segment => {
+    segment.add('/response', controller.loginResponse, 'loginResponse');
+    segment.defaultRoute(controller.login, 'login');
+  }],
+  logout: ['/logout', controller.logout]
+});
+
 function init({
   usersManager,
   strategies,
@@ -688,13 +697,7 @@ function init({
     }
 
     return {
-      routes: {
-        login: ['/login/:strategy', segment => {
-          segment.add('/response', controller.loginResponse, 'loginResponse');
-          segment.defaultRoute(controller.login, 'login');
-        }],
-        logout: ['/logout', controller.logout]
-      },
+      routes: createRoutes(controller),
       middleware: async (ctx, next) => {
         const token = ctx.cookies.get(COOKIE_NAME);
         logger$2.debug('middleware', {

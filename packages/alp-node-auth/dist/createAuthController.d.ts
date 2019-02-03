@@ -1,11 +1,14 @@
 import AuthenticationService from './services/authentification/AuthenticationService';
-export default function createAuthController({ usersManager, authenticationService, homeRouterKey, }: {
+import MongoUsersManager from './MongoUsersManager';
+export interface CreateAuthControllerParams {
     authenticationService: AuthenticationService;
     homeRouterKey?: string;
-    usersManager: any;
-}): {
+    usersManager: MongoUsersManager;
+}
+export interface AuthController {
     login(ctx: any): Promise<void>;
     loginResponse(ctx: any): Promise<void>;
     logout(ctx: any): Promise<void>;
-};
+}
+export default function createAuthController({ usersManager, authenticationService, homeRouterKey, }: CreateAuthControllerParams): AuthController;
 //# sourceMappingURL=createAuthController.d.ts.map
