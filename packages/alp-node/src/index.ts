@@ -48,6 +48,8 @@ declare module 'koa' {
   interface BaseContext extends AlpContext {}
 }
 
+export type Context = AlpContext;
+
 export default class Alp extends Koa implements NodeApplication {
   dirname: string;
 

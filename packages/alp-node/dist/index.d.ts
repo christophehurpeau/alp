@@ -16,6 +16,7 @@ declare module 'koa' {
     interface BaseContext extends AlpContext {
     }
 }
+export declare type Context = AlpContext;
 export default class Alp extends Koa implements NodeApplication {
     dirname: string;
     certPath: string;
