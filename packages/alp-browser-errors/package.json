@@ -30,7 +30,7 @@
     "arrowParens": "always"
   },
   "dependencies": {
-    "alp-types": "^0.0.0",
+    "alp-types": "^1.0.0-pre",
     "error-html": "^0.3.5",
     "nightingale-logger": "^6.0.0"
   },
