@@ -66,7 +66,7 @@
   "dependencies": {
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.8",
-    "alp-types": "0.0.0",
+    "alp-types": "1.0.0-pre",
     "content-loaded": "^1.2.1",
     "modern-browsers": "^1.0.1",
     "nightingale-logger": "^6.0.0",

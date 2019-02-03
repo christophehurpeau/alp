@@ -37,7 +37,7 @@
     "alp-node-language": "^1.9.1",
     "alp-params": "^0.5.0",
     "alp-translate": "^2.7.0",
-    "alp-types": "0.0.0",
+    "alp-types": "1.0.0-pre",
     "findup-sync": "^3.0.0",
     "koa": "^2.6.2",
     "koa-compress": "^3.0.0",

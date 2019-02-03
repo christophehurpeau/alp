@@ -40,7 +40,7 @@
     "arrowParens": "always"
   },
   "peerDependencies": {
-    "alp-types": "0.0.0",
+    "alp-types": "1.0.0-pre",
     "router-segments": "^1.0.0"
   },
   "dependencies": {},

@@ -38,7 +38,7 @@
     "alp-browser": "^0.24.2"
   },
   "dependencies": {
-    "alp-types": "0.0.0"
+    "alp-types": "1.0.0-pre"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

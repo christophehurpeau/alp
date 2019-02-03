@@ -37,7 +37,7 @@
     "alp-browser-config": "^3.5.2",
     "alp-browser-language": "^1.9.1",
     "alp-translate": "^2.8.0",
-    "alp-types": "0.0.0",
+    "alp-types": "1.0.0-pre",
     "ibex": "^4.5.1",
     "nightingale-logger": "^6.0.0"
   },

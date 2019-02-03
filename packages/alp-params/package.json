@@ -54,7 +54,7 @@
     }
   },
   "dependencies": {
-    "alp-types": "0.0.0",
+    "alp-types": "1.0.0-pre",
     "object-properties": "^3.0.0"
   },
   "devDependencies": {
