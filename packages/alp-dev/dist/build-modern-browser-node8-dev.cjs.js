@@ -30,7 +30,7 @@ var createPobpackConfig = ((target, production = false) => ({
     [require.resolve('@babel/preset-react'), {
       development: !production,
       useBuiltIns: true
-    }], // pob preset: flow, import `src`, export default function name, replacements, exnext features, ...
+    }], // pob preset: export default function name, replacements, exnext features, ...
     [require.resolve('babel-preset-pob-env'), {
       resolvePreset: preset => require.resolve(preset),
       production,
@@ -44,6 +44,9 @@ var createPobpackConfig = ((target, production = false) => ({
       modules: false
     }]].filter(Boolean),
     plugins: [require.resolve('babel-plugin-inline-classnames-babel7')]
+  },
+  aliases: {
+    '@app': path.resolve('src')
   },
   moduleRules: [// SCSS RULE, CSS RULE
   ...ynnubWebpackConfig.createModuleRules({
