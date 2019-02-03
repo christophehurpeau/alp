@@ -27,7 +27,7 @@ export default class UserAccountsService extends EventEmitter {
 
   usersManager: MongoUsersManager;
 
-  constructor(usersManager: any) {
+  constructor(usersManager: MongoUsersManager) {
     super();
     this.usersManager = usersManager;
   }

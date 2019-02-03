@@ -8,6 +8,7 @@ import AuthenticationService, {
 } from './services/authentification/AuthenticationService';
 import UserAccountsService from './services/user/UserAccountsService';
 import createAuthController from './createAuthController';
+import MongoUsersManager from './MongoUsersManager';
 
 export { default as MongoUsersManager } from './MongoUsersManager';
 export { STATUSES } from './services/user/UserAccountsService';
@@ -29,7 +30,7 @@ export default function init({
 }: {
   homeRouterKey?: string;
   strategies: Strategies;
-  usersManager: any;
+  usersManager: MongoUsersManager;
 }) {
   return (
     app: ExtendedNodeApplication,
