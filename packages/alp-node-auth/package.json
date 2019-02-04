@@ -34,8 +34,7 @@
   },
   "peerDependencies": {
     "liwi-mongo": "^2.2.0",
-    "liwi-store": "^2.2.0",
-    "liwi-types": "^1.2.0"
+    "liwi-store": "^2.2.0"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.3.0",
@@ -58,7 +57,6 @@
     "eslint-plugin-typescript": "0.14.0",
     "liwi-mongo": "^2.1.0",
     "liwi-store": "^2.2.0",
-    "liwi-types": "^1.2.0",
     "pob-babel": "23.5.5",
     "prettier": "1.16.0",
     "typescript": "3.3.0-dev.20190119",

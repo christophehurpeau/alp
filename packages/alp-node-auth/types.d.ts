@@ -1,5 +1,4 @@
 import { MongoModel } from 'liwi-mongo';
-import { InsertType } from 'liwi-types';
 
 /* eslint-disable no-restricted-globals */
 export interface UserName {

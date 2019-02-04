@@ -1,4 +1,4 @@
-import { InsertType } from 'liwi-types';
+import { MongoInsertType } from 'liwi-mongo';
 import { Store } from 'liwi-store';
 import { User, Account, UserSanitized } from '../types.d';
 
@@ -13,7 +13,7 @@ export default class MongoUsersManager {
     return this.store.findByKey(connected);
   }
 
-  insertOne(user: InsertType<User, '_id'>): Promise<any> {
+  insertOne(user: MongoInsertType<User>): Promise<any> {
     return this.store.insertOne(user);
   }
 
