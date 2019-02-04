@@ -1,44 +1,31 @@
 import { MongoInsertType } from 'liwi-mongo';
-import { Store } from 'liwi-store';
+import { Store, Update } from 'liwi-store';
 import { User, Account, UserSanitized } from '../types.d';
 
-export default class MongoUsersManager {
-  store: Store<User, '_id', any, any, any>;
+export default class MongoUsersManager<
+  U extends User = User,
+  USanitized extends UserSanitized = UserSanitized
+> {
+  store: Store<U, '_id', any, any, any>;
 
-  constructor(store: Store<User, '_id', any, any, any>) {
+  constructor(store: Store<U, '_id', any, any, any>) {
     this.store = store;
   }
 
-  findConnected(connected: string): Promise<User | undefined> {
+  findConnected(connected: string): Promise<U | undefined> {
     return this.store.findByKey(connected);
   }
 
-  insertOne(user: MongoInsertType<User>): Promise<any> {
+  insertOne(user: MongoInsertType<U>): Promise<any> {
     return this.store.insertOne(user);
   }
 
-  replaceOne(user: User): Promise<any> {
+  replaceOne(user: U): Promise<any> {
     return this.store.replaceOne(user);
   }
 
-  sanitize(user: User): UserSanitized {
-    return {
-      _id: user._id,
-      created: user.created,
-      updated: user.updated,
-      displayName: user.displayName,
-      fullName: user.fullName,
-      status: user.status,
-      emails: user.emails,
-      emailDomains: user.emailDomains,
-      accounts: user.accounts.map((account: Account) => ({
-        provider: account.provider,
-        accountId: account.accountId,
-        name: account.name,
-        status: account.status,
-        profile: account.profile,
-      })),
-    };
+  public sanitize(user: U): USanitized {
+    return this.sanitizeBaseUser(user) as USanitized;
   }
 
   findOneByAccountOrEmails({
@@ -49,7 +36,7 @@ export default class MongoUsersManager {
     accountId: string | number;
     emails?: Array<string>;
     provider: string;
-  }): Promise<User | undefined> {
+  }): Promise<U | undefined> {
     let query: any = {
       'accounts.provider': provider,
       'accounts.accountId': accountId,
@@ -69,7 +56,7 @@ export default class MongoUsersManager {
     return this.store.findOne(query);
   }
 
-  updateAccount(user: User, account: Account) {
+  updateAccount(user: U, account: Account) {
     const accountIndex = user.accounts.indexOf(account);
     if (accountIndex === -1) {
       throw new Error('Invalid account');
@@ -79,6 +66,26 @@ export default class MongoUsersManager {
       $set: {
         [`accounts.${accountIndex}`]: account,
       },
-    });
+    } as Update<U>);
+  }
+
+  protected sanitizeBaseUser(user: U): UserSanitized {
+    return {
+      _id: user._id,
+      created: user.created,
+      updated: user.updated,
+      displayName: user.displayName,
+      fullName: user.fullName,
+      status: user.status,
+      emails: user.emails,
+      emailDomains: user.emailDomains,
+      accounts: user.accounts.map((account: Account) => ({
+        provider: account.provider,
+        accountId: account.accountId,
+        name: account.name,
+        status: account.status,
+        profile: account.profile,
+      })),
+    };
   }
 }

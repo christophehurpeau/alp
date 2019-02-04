@@ -8371,38 +8371,38 @@ listr@^0.14.2:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
-liwi-mongo@2.2.0, liwi-mongo@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-2.2.0.tgz#5c390f8d8685e916c3e1349f7cd1955503ee852e"
-  integrity sha512-SBR0k3+7QBayLRenyQmK0l0IVVEpI2wZFWwR0BxFawWHRc7XPKY0aymZ7M1tJXhkrev71zmbFR75QENZIRTowg==
+liwi-mongo@2.2.1, liwi-mongo@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-2.2.1.tgz#add7fb356d9104a5e3af579c4445ac1b1eb0fbe2"
+  integrity sha512-595o68jz0mx909EWuvCJpY/YoMNeI+9VlQLyhrSv8189SBwfMbiHzUkwOjXHFTq/p3FMfb/rTJ1i1O1CBvm/Gw==
   dependencies:
     "@types/mongodb" "^2.0.0"
-    liwi-store "^2.2.0"
-    liwi-subscribe-store "^1.0.0"
-    liwi-types "^1.2.0"
+    liwi-store "^2.3.0"
+    liwi-subscribe-store "^1.0.1"
+    liwi-types "^1.2.1"
     mingo "^2.2.10"
     mongodb "^2.2.33"
     nightingale-logger "^6.0.0"
 
-liwi-store@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-2.2.0.tgz#16e992070fcb0f14dc55aac381e63ea74f2074dc"
-  integrity sha512-FK6EI9Tv0cZvFumrVqSkdbLLJ+oRpd5SN4BxWz0Zzy24iO5n6TmyBflOEMO/IdYP6isxj8zW3WCWYB49wo5MQQ==
+liwi-store@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-2.3.0.tgz#cf3d828b24ecb23f61ca5f47e29d1e180b51596b"
+  integrity sha512-Lm7UOLszgBW7pvm2RJSNQeR3Yimxnq1kNkSGmofaGe7sTWIilYyLbRMygEuDazFL1pCrG2y6DRcSPc5vyJJouw==
   dependencies:
-    liwi-types "^1.2.0"
+    liwi-types "^1.2.1"
 
-liwi-subscribe-store@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-1.0.0.tgz#a53f472666ecdde74b6df6f77319a1cec3069220"
-  integrity sha512-Y6Y4uqxlWNp2anOW9ss2oTzcgMm7QYRoXhRmmOvJixJ0F5twkTMC9zun48CKaa7yLO19AjWDwc8yMwlgy8uqPg==
+liwi-subscribe-store@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-1.0.1.tgz#8cce63009d5c9dc42cba6367812f2a69e600a834"
+  integrity sha512-RwnIkt+Or1nBoDxq0vc771fnzJh1ljfcAVeQikopIhOqk1FMQfcL0ljum9CzFlME46J/4dNLsAgDa+PHJTZE7g==
   dependencies:
-    liwi-store "^2.2.0"
-    liwi-types "^1.2.0"
+    liwi-store "^2.3.0"
+    liwi-types "^1.2.1"
 
-liwi-types@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-1.2.0.tgz#b7b902108c5b782adb8e922d8115f01575de55e7"
-  integrity sha512-kJITu4fS23LIMO916cmSTA/He0CR6XDL/m3rVOrTwcumrnTEyvRHSIHCed9ZAGJWJP9KId4oMIhJ+BadmLUXpw==
+liwi-types@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-1.2.1.tgz#6573a94a6635758a32c1346d1a802c044053d148"
+  integrity sha512-4y+mAD8RBPTBFJIVqWwfG5MYUUtbll4HlDWVjTJUbc3Me+K40FVSp+9odYaTKvFQX/rdTQQNqkersCM0fvS90A==
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -13108,10 +13108,10 @@ typescript-estree@5.3.0:
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-typescript@3.3.0-dev.20190119:
-  version "3.3.0-dev.20190119"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.0-dev.20190119.tgz#ea338e9ddf023a67fe1c244e51321933a1080203"
-  integrity sha512-idvKUbbKtDznX5dUsS9HuamKPpI4UrGkhjGFcDBeFEBxjQuZ9bSFtIiutAoh197PoWrzksqVRoRXMzt3VpiK6Q==
+typescript@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.1.tgz#6de14e1db4b8a006ac535e482c8ba018c55f750b"
+  integrity sha512-cTmIDFW7O0IHbn1DPYjkiebHxwtCMU+eTy30ZtJNBPF9j2O1ITu5XH2YnBeVRKWHqF+3JQwWJv0Q0aUgX8W7IA==
 
 typescript@^3.2.4:
   version "3.2.4"
