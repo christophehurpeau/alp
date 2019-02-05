@@ -29,9 +29,12 @@ interface Options {
   styleName?: string | false;
 }
 
-export default (App: React.ReactType<any>, options: Options = {}) => async (
-  ctx: Context,
-) => {
+export type ReactAppCallback = (ctx: Context) => Promise<void>;
+
+export default (
+  App: React.ReactType<any>,
+  options: Options = {},
+): ReactAppCallback => async (ctx: Context) => {
   const version: string = ctx.config.get('version');
   // TODO create alp-useragent with getter in context
   const ua = ctx.req.headers['user-agent'];

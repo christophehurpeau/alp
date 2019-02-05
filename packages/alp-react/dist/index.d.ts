@@ -10,6 +10,7 @@ interface Options {
     scriptName?: string | false;
     styleName?: string | false;
 }
-declare const _default: (App: React.ReactType<any>, options?: Options) => (ctx: Context) => Promise<void>;
+export declare type ReactAppCallback = (ctx: Context) => Promise<void>;
+declare const _default: (App: React.ReactType<any>, options?: Options) => ReactAppCallback;
 export default _default;
 //# sourceMappingURL=index.d.ts.map
