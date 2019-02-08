@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "alp-types": "1.0.0-pre",
-    "router-segments": "^1.0.0"
+    "router-segments": "^2.0.0"
   },
   "dependencies": {},
   "devDependencies": {
@@ -58,7 +58,7 @@
     "eslint-plugin-import": "2.16.0",
     "pob-babel": "23.6.2",
     "prettier": "1.16.4",
-    "router-segments": "^1.0.0",
+    "router-segments": "^2.0.0",
     "typescript": "3.3.3"
   }
 }
