@@ -2015,7 +2015,7 @@
     "@types/node" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.7.20", "@types/react@^16.8.2":
+"@types/react@*", "@types/react@^16.8.2":
   version "16.8.2"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.2.tgz#3b7a7f7ea89d1c7d68b00849fb5de839011c077b"
   integrity sha512-6mcKsqlqkN9xADrwiUz2gm9Wg4iGnlVGciwBRYFQSMWG6MQjhOZ/AVnxn+6v8nslFgfYTV8fNdE6XwKu6va5PA==
@@ -2082,7 +2082,7 @@
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.7.tgz#137a4e57aa31ab57b1baf66f5dc3b6bf085e9944"
   integrity sha512-rzi6fw7hhxPcCoNVsgysHFlKnhYYvVj7AJwdAO0HQNP5vg9sY0DoRRC1pfuCQm94cOa1sab82HGUtdFlWHIhBg==
 
-"@types/webpack@*", "@types/webpack@^4.4.23", "@types/webpack@^4.4.24":
+"@types/webpack@*", "@types/webpack@^4.4.24":
   version "4.4.24"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.24.tgz#75bc301176066f566ec54151b6101c2b45abb8b2"
   integrity sha512-yg99CjvB7xZ/iuHrsZ7dkGKoq/FRDzqLzAxKh2EmTem6FWjzrty4FqCqBYuX5z+MFwSaaQGDAX4Q9HQkLjGLnQ==
@@ -2682,16 +2682,16 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-autoprefixer@^9.4.5:
-  version "9.4.5"
-  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.4.5.tgz#a13ccb001e4bc8837f71c3354005b42f02cc03d7"
-  integrity sha512-M602C0ZxzFpJKqD4V6eq2j+K5CkzlhekCrcQupJmAOrPEZjWJyj/wSeo6qRSNoN6M3/9mtLPQqTTrABfReytQg==
+autoprefixer@^9.4.7:
+  version "9.4.7"
+  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.4.7.tgz#f997994f9a810eae47b38fa6d8a119772051c4ff"
+  integrity sha512-qS5wW6aXHkm53Y4z73tFGsUhmZu4aMPV9iHXYlF0c/wxjknXNHuj/1cIQb+6YH692DbJGGWcckAXX+VxKvahMA==
   dependencies:
-    browserslist "^4.4.0"
-    caniuse-lite "^1.0.30000928"
+    browserslist "^4.4.1"
+    caniuse-lite "^1.0.30000932"
     normalize-range "^0.1.2"
     num2fraction "^1.2.2"
-    postcss "^7.0.11"
+    postcss "^7.0.14"
     postcss-value-parser "^3.3.1"
 
 aws-sign2@~0.7.0:
@@ -3212,7 +3212,7 @@ browserslist@4.1.1:
     electron-to-chromium "^1.3.62"
     node-releases "^1.0.0-alpha.11"
 
-browserslist@^4.0.0, browserslist@^4.3.4, browserslist@^4.4.0:
+browserslist@^4.0.0, browserslist@^4.3.4, browserslist@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.4.1.tgz#42e828954b6b29a7a53e352277be429478a69062"
   integrity sha512-pEBxEXg7JwaakBXjATYw/D1YZh4QUSCX/Mnd/wnqSRPPSi1U39iDhDoKGoBUcraKdxDlrYqJxSI5nNvD+dWP2A==
@@ -3431,10 +3431,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000884, caniuse-lite@^1.0.30000928, caniuse-lite@^1.0.30000929:
-  version "1.0.30000929"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000929.tgz#7b391b781a9c3097ecc39ea053301aea8ea16317"
-  integrity sha512-n2w1gPQSsYyorSVYqPMqbSaz1w7o9ZC8VhOEGI9T5MfGDzp7sbopQxG6GaQmYsaq13Xfx/mkxJUWC1Dz3oZfzw==
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000884, caniuse-lite@^1.0.30000929, caniuse-lite@^1.0.30000932:
+  version "1.0.30000935"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000935.tgz#d1b59df00b46f4921bb84a8a34c1d172b346df59"
+  integrity sha512-1Y2uJ5y56qDt3jsDTdBHL1OqiImzjoQcBG6Yl3Qizq8mcc2SgCFpi+ZwLLqkztYnk9l87IYqRlNBnPSOTbFkXQ==
 
 capture-exit@^1.2.0:
   version "1.2.0"
@@ -10267,10 +10267,10 @@ pob-release@4.7.1:
     semver "^5.6.0"
     standard-changelog "0.0.1"
 
-pobpack-browser@^7.6.0:
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/pobpack-browser/-/pobpack-browser-7.6.0.tgz#71a5ca305d6f77ea64367b8a72a97d454f6a0a9b"
-  integrity sha512-Dti493uTzB5Ztfor6ZzaXWhJNQK/pRw9qQGZBsgcH7Spz/dtN1BUaXKzzSPx9Gvns7geFgU4rr9DWQOIX52PjA==
+pobpack-browser@^7.6.1:
+  version "7.6.1"
+  resolved "https://registry.yarnpkg.com/pobpack-browser/-/pobpack-browser-7.6.1.tgz#12572266337bde9184503a60374cbf66f362b251"
+  integrity sha512-SCPsTG3W15cuuWHiG8YopqGYd+5eay8nuBkkDJ027kRl0qTcIBWmjkPaHD17IU60syrDNcvkLYUfT0bpFvsQow==
   dependencies:
     "@babel/preset-env" "^7.3.1"
     "@types/react-hot-loader" "^4.1.0"
@@ -10283,10 +10283,10 @@ pobpack-browser@^7.6.0:
     source-map-support "^0.5.10"
     webpack-dev-server "3.1.14"
 
-pobpack-node@^7.4.0:
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-7.4.0.tgz#17d57e93ece1ebd02ea872789f460082b0afaab3"
-  integrity sha512-hXyTWUlwMhMEeUTZ+Q4F2Fem5LpPaJUnnpBakIKNJWLk9vXLWg6arA1ZECpQFKIt6PGjJXF0nEplUkVtDjHqeQ==
+pobpack-node@^7.4.1:
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-7.4.1.tgz#3fd1084ee4ffd58356ae43bee3d2ab0dd68f67d8"
+  integrity sha512-CWE8RzSsf6jdkTkcdD76Xsblog+aLR9GaZeCL8nEFrssR0CwGL76JmLktKzN1sOFfzECKDp74H6zdv5BTtJAGg==
   dependencies:
     babel-preset-latest-node "^3.0.1"
     pobpack-types "^3.3.0"
@@ -10706,7 +10706,7 @@ postcss@6.0.1:
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@7.x.x, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.11, postcss@^7.0.14, postcss@^7.0.5, postcss@^7.0.6:
+postcss@7.x.x, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.5, postcss@^7.0.6:
   version "7.0.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.14.tgz#4527ed6b1ca0d82c53ce5ec1a2041c2346bbd6e5"
   integrity sha512-NsbD6XUUMZvBxtQAJuWDJeeC4QFsmWsfozWxCJPWf3M55K9iu2iMDaKqyoOdTJ1R4usBXuxlVFAIo8rZPQD4Bg==
@@ -13750,10 +13750,10 @@ ylru@^1.2.0:
   resolved "https://registry.yarnpkg.com/ylru/-/ylru-1.2.1.tgz#f576b63341547989c1de7ba288760923b27fe84f"
   integrity sha512-faQrqNMzcPCHGVC2aaOINk13K+aaBDUPjGWl0teOXywElLjyVAB6Oe2jj62jHYtwsU49jXhScYbvPENK+6zAvQ==
 
-ynnub-webpack-config@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ynnub-webpack-config/-/ynnub-webpack-config-1.0.0.tgz#a1bfa6a05e40668734e649f309981a3fd65006b6"
-  integrity sha512-GwTCRB50bvQ70vD1mxH9OMdow620k8gn7lCON0xKHKeiZHd6U/uv0PIiyv6W2/qNyMYi87UNMsgT3yhw1CY89A==
+ynnub-webpack-config@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ynnub-webpack-config/-/ynnub-webpack-config-1.1.0.tgz#63b78d4b6948202f8401d133a8a7c49f1b8d99dd"
+  integrity sha512-Bs3SldlpViDWwVC+jsBY1/+uUgZ7m9j7+TsR0ZCdXRl9NMi2NhspBkhhsqJgaDLQAmvmnhNJoEwZkJ1Hi1sDrg==
   dependencies:
     "@material/button" "^0.29.0"
     "@material/list" "^0.29.0"
@@ -13761,13 +13761,13 @@ ynnub-webpack-config@1.0.0:
     "@material/theme" "^0.29.0"
     "@material/typography" "^0.28.0"
     "@types/mini-css-extract-plugin" "^0.2.0"
-    "@types/react" "^16.7.20"
-    "@types/webpack" "^4.4.23"
+    "@types/react" "^16.8.2"
+    "@types/webpack" "^4.4.24"
 
-ynnub@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ynnub/-/ynnub-1.0.0.tgz#65712e16a44f8051c76701864961aeba7bed642b"
-  integrity sha512-8bma9wzAgs2MY2uQOt3JYRE/Q9+N19CFTY03YuqALizCJVy8S6s0QQEy726SYDoVLVsSy2oOy0iLH2F6aVYWNQ==
+ynnub@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ynnub/-/ynnub-1.1.0.tgz#5aa795c87b396f72171267eea673116fd69dc7d2"
+  integrity sha512-xkA6u3Uv+J7VsjO3U6/YEvVra7OLPsfOPvQxHlibG400AD1l/ZT2u79n9VjbtGZeO93zEySTS7cQl29pGymv4A==
   dependencies:
     "@material/button" "0.29.0"
     "@material/list" "0.29.0"
