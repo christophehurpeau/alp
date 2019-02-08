@@ -2,7 +2,9 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { safeLoad as saveLoadYml } from 'js-yaml';
 
-export type Config = { [key: string]: any };
+export interface Config {
+  [key: string]: any;
+}
 
 export default function loadConfigFile(
   content: string,

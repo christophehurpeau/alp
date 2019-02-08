@@ -14,7 +14,6 @@ This repository is a monorepo that we manage using [Lerna](https://github.com/le
 |---------|---------|-------------|
 | [alp-body-parser](/packages/alp-body-parser) | <a href="https://npmjs.org/package/alp-body-parser"><img src="https://img.shields.io/npm/v/alp-body-parser.svg?style=flat-square"></a> | body parser in alp framework
 | [alp-browser](/packages/alp-browser) | <a href="https://npmjs.org/package/alp-browser"><img src="https://img.shields.io/npm/v/alp-browser.svg?style=flat-square"></a> | framework for browser based on ibex
-| [alp-browser-auth](/packages/alp-browser-auth) | <a href="https://npmjs.org/package/alp-browser-auth"><img src="https://img.shields.io/npm/v/alp-browser-auth.svg?style=flat-square"></a> | authentication with alp
 | [alp-browser-config](/packages/alp-browser-config) | <a href="https://npmjs.org/package/alp-browser-config"><img src="https://img.shields.io/npm/v/alp-browser-config.svg?style=flat-square"></a> | config in alp framework
 | [alp-browser-errors](/packages/alp-browser-errors) | <a href="https://npmjs.org/package/alp-browser-errors"><img src="https://img.shields.io/npm/v/alp-browser-errors.svg?style=flat-square"></a> | display errors in alp framework
 | [alp-browser-language](/packages/alp-browser-language) | <a href="https://npmjs.org/package/alp-browser-language"><img src="https://img.shields.io/npm/v/alp-browser-language.svg?style=flat-square"></a> | language context in alp framework

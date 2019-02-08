@@ -517,6 +517,14 @@ function createAuthController({
   };
 }
 
+const createRoutes = controller => ({
+  login: ['/login/:strategy', segment => {
+    segment.add('/response', controller.loginResponse, 'loginResponse');
+    segment.defaultRoute(controller.login, 'login');
+  }],
+  logout: ['/logout', controller.logout]
+});
+
 class MongoUsersManager {
   constructor(store) {
     this.store = store;
@@ -535,23 +543,7 @@ class MongoUsersManager {
   }
 
   sanitize(user) {
-    return {
-      _id: user._id,
-      created: user.created,
-      updated: user.updated,
-      displayName: user.displayName,
-      fullName: user.fullName,
-      status: user.status,
-      emails: user.emails,
-      emailDomains: user.emailDomains,
-      accounts: user.accounts.map(account => ({
-        provider: account.provider,
-        accountId: account.accountId,
-        name: account.name,
-        status: account.status,
-        profile: account.profile
-      }))
-    };
+    return this.sanitizeBaseUser(user);
   }
 
   findOneByAccountOrEmails({
@@ -591,21 +583,32 @@ class MongoUsersManager {
     });
   }
 
+  sanitizeBaseUser(user) {
+    return {
+      _id: user._id,
+      created: user.created,
+      updated: user.updated,
+      displayName: user.displayName,
+      fullName: user.fullName,
+      status: user.status,
+      emails: user.emails,
+      emailDomains: user.emailDomains,
+      accounts: user.accounts.map(account => ({
+        provider: account.provider,
+        accountId: account.accountId,
+        name: account.name,
+        status: account.status,
+        profile: account.profile
+      }))
+    };
+  }
+
 }
 
 const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
 const signPromisified = util.promisify(jsonwebtoken.sign);
 const verifyPromisified = util.promisify(jsonwebtoken.verify);
-
-const createRoutes = controller => ({
-  login: ['/login/:strategy', segment => {
-    segment.add('/response', controller.loginResponse, 'loginResponse');
-    segment.defaultRoute(controller.login, 'login');
-  }],
-  logout: ['/logout', controller.logout]
-});
-
 function init({
   usersManager,
   strategies,
@@ -662,7 +665,7 @@ function init({
     };
 
     if (app.websocket) {
-      logger$2.debug('app has websocket'); // eslint-disable-next-line global-require, typescript/no-var-requires
+      logger$2.debug('app has websocket'); // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
 
       const Cookies = require('cookies');
 

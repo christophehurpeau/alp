@@ -49,8 +49,8 @@ const getOrFetchAppConfig = function(
     fetchConfig(`${configPath}/common`),
     environment ? fetchConfig(`${configPath}/${environment}`) : undefined,
     fetchConfig(`${configPath}/local`),
-  ] as Array<Promise<RawConfig | undefined> | undefined>).then(
-    ([config, ...others]: [...Array<RawConfig | undefined>]) => {
+  ] as (Promise<RawConfig | undefined> | undefined)[]).then(
+    ([config, ...others]: [...(RawConfig | undefined)[]]) => {
       if (!config) config = new Map();
       config.set('version', version);
 

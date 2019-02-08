@@ -3,6 +3,7 @@ import { sign, verify } from 'jsonwebtoken';
 import Logger from 'nightingale-logger';
 import { NodeApplication } from 'alp-types';
 import { Option } from 'cookies';
+import { User } from '../types.d';
 import AuthenticationService, {
   Strategies,
 } from './services/authentification/AuthenticationService';
@@ -29,14 +30,14 @@ interface ExtendedNodeApplication extends NodeApplication {
 
 export type AuthController = AuthControllerType;
 
-export default function init({
+export default function init<U extends User = User>({
   usersManager,
   strategies,
   homeRouterKey,
 }: {
   homeRouterKey?: string;
   strategies: Strategies;
-  usersManager: MongoUsersManager;
+  usersManager: MongoUsersManager<U>;
 }) {
   return (
     app: ExtendedNodeApplication,
@@ -58,7 +59,7 @@ export default function init({
 
     app.context.setConnected = async function(
       connected: number | string,
-      user: Object,
+      user: U,
     ) {
       logger.debug('setConnected', { connected });
       if (!connected) {
@@ -104,7 +105,7 @@ export default function init({
 
     if (app.websocket) {
       logger.debug('app has websocket');
-      // eslint-disable-next-line global-require, typescript/no-var-requires
+      // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
       const Cookies = require('cookies');
 
       const users = new Map();

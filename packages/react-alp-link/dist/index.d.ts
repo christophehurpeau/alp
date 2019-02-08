@@ -18,6 +18,6 @@ export default class LinkComponent extends Component<Props> {
     context: React.ContextType<typeof ReactAlpContext>;
     render(): React.ReactElement<{
         href: string;
-    }>;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 }
 //# sourceMappingURL=index.d.ts.map

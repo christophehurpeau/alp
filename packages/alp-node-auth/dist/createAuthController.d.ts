@@ -10,5 +10,5 @@ export interface AuthController {
     loginResponse(ctx: any): Promise<void>;
     logout(ctx: any): Promise<void>;
 }
-export default function createAuthController({ usersManager, authenticationService, homeRouterKey, }: CreateAuthControllerParams): AuthController;
+export declare function createAuthController({ usersManager, authenticationService, homeRouterKey, }: CreateAuthControllerParams): AuthController;
 //# sourceMappingURL=createAuthController.d.ts.map

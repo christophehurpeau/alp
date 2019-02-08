@@ -52,8 +52,8 @@ export const build = (
         return () => {};
       },
     ),
-  ).then((closeFns: Array<() => void>) => () => {
+  ).then((closeFns: (() => void)[]) => () => {
     closeFns.forEach((closeFn) => closeFn());
   });
 
-export const watch = (envs: Array<string>) => {};
+export const watch = (envs: string[]) => {};
