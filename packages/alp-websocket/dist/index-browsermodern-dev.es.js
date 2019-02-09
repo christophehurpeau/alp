@@ -135,7 +135,7 @@ function isDisconnected() {
 }
 
 function alpWebsocket(app, namespaceName = '') {
-  start(app, namespaceName);
+  const socket = start(app, namespaceName);
   app.websocket = websocket;
   websocket.socket = socket;
   return socket;

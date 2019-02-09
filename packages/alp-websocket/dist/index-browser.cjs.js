@@ -152,7 +152,7 @@ function alpWebsocket(app, namespaceName) {
     namespaceName = '';
   }
 
-  start(app, namespaceName);
+  var socket = start(app, namespaceName);
   app.websocket = websocket;
   websocket.socket = socket;
   return socket;

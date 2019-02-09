@@ -44,7 +44,7 @@ export const websocket: Websocket = {
   socket,
 };
 
-function start(app: BrowserApplication, namespaceName: string) {
+function start(app: BrowserApplication, namespaceName: string): Socket {
   const { config, context } = app;
 
   if (socket) {
@@ -171,8 +171,8 @@ function isDisconnected(): boolean {
 export default function alpWebsocket(
   app: BrowserApplication,
   namespaceName: string = '',
-) {
-  start(app, namespaceName);
+): Socket {
+  const socket = start(app, namespaceName);
   app.websocket = websocket;
   websocket.socket = socket;
   return socket;
