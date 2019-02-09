@@ -2,13 +2,13 @@
 import EventEmitter from 'events';
 import { AccountId, User, Account } from '../../../types.d';
 import MongoUsersManager from '../../MongoUsersManager';
-declare type TokensObject = {
+interface TokensObject {
     accessToken: string;
     expireDate: Date;
     idToken: string;
     refreshToken?: string;
     tokenType: string;
-};
+}
 export declare const STATUSES: {
     VALIDATED: string;
     DELETED: string;

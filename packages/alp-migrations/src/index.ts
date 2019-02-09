@@ -33,7 +33,7 @@ export default async function migrate({
   const packageVersion = config.packageConfig.version;
   const currentVersion = await migrationsManager.findLastVersion();
 
-  let migrations: Array<{ version: string; fileName: string }> = [];
+  let migrations: { version: string; fileName: string }[] = [];
 
   logger.info('migrate', { packageVersion, currentVersion });
 

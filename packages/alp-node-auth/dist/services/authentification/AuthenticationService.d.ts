@@ -26,9 +26,9 @@ export interface Strategy {
 export interface Oauth2Strategy extends Strategy {
     oauth2: OAuthClient;
 }
-export declare type Strategies = {
+export interface Strategies {
     [strategy: string]: Strategy;
-};
+}
 export default class AuthenticationService extends EventEmitter {
     config: NodeConfig;
     strategies: Strategies;

@@ -31,7 +31,7 @@ export default new class UserAccountGoogleService extends EventEmitter {
   }
 
   getEmails(profile: any, plusProfile: any) {
-    const emails: Array<string> = [];
+    const emails: string[] = [];
 
     if (profile.email) {
       emails.push(profile.email);
@@ -63,13 +63,11 @@ export default new class UserAccountGoogleService extends EventEmitter {
     return this.getScope(undefined, newScope);
   }
 
-  getScope(oldScope: Array<string> | undefined, newScope: string) {
+  getScope(oldScope: string[] | undefined, newScope: string) {
     return !oldScope
       ? newScope.split(' ')
       : oldScope
           .concat(newScope.split(' '))
-          .filter(
-            (item: any, i: any, ar: Array<string>) => ar.indexOf(item) === i,
-          );
+          .filter((item: any, i: any, ar: string[]) => ar.indexOf(item) === i);
   }
 }();

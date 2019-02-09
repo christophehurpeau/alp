@@ -16,7 +16,7 @@ async function randomHex(size) {
   return buffer.toString('hex');
 }
 
-/* eslint camelcase: 'off', max-lines: 'off' */
+/* eslint-disable camelcase, max-lines, @typescript-eslint/camelcase */
 const logger = new Logger('alp:auth:authentication');
 class AuthenticationService extends EventEmitter {
   constructor(config, strategies, userAccountsService) {

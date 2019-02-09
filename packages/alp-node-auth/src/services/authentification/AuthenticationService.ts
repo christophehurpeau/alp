@@ -1,4 +1,4 @@
-/* eslint camelcase: 'off', max-lines: 'off' */
+/* eslint-disable camelcase, max-lines, @typescript-eslint/camelcase */
 import EventEmitter from 'events';
 import Logger from 'nightingale-logger';
 import { OAuthClient } from 'simple-oauth2';
@@ -35,7 +35,9 @@ export interface Oauth2Strategy extends Strategy {
   oauth2: OAuthClient;
 }
 
-export type Strategies = { [strategy: string]: Strategy };
+export interface Strategies {
+  [strategy: string]: Strategy;
+}
 
 export default class AuthenticationService extends EventEmitter {
   config: NodeConfig;

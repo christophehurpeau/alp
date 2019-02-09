@@ -752,13 +752,13 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@commitlint/cli@7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.5.0.tgz#6967633e45239daa09f1ff080cbd66e6e9ac11bc"
-  integrity sha512-ts5b7eCF5B2qhUtgXuFFVkhlgnkSqKVyrq9Eu197bCyT1KyxCmAGTVCvPznaK8VhG3ts7rTt7byE+lyDXpuvSg==
+"@commitlint/cli@7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.5.1.tgz#370e465df67325c964c6255f865e914b47405ede"
+  integrity sha512-5LTc56dbuK+B83JPriUraORD/opZTqmJg43A0AgZLw01ougEvaE/bGqCEmMcEFapNohHPbdFLbuSRdXlUMWFMQ==
   dependencies:
     "@commitlint/format" "^7.5.0"
-    "@commitlint/lint" "^7.5.0"
+    "@commitlint/lint" "^7.5.1"
     "@commitlint/load" "^7.5.0"
     "@commitlint/read" "^7.5.0"
     babel-polyfill "6.26.0"
@@ -796,19 +796,19 @@
     babel-runtime "^6.23.0"
     chalk "^2.0.1"
 
-"@commitlint/is-ignored@^7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/is-ignored/-/is-ignored-7.5.0.tgz#3531e311a3548504a2ee1420ffb5e1d944a2f6e0"
-  integrity sha512-5Nd/driOV9IFwJ7e0+g7I8pqq3EOs8dP0C2wxOpwUAL8C5saf+VGMe0HN6iPGLktITP6fHPrKisOdEJ6sRg2lw==
+"@commitlint/is-ignored@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@commitlint/is-ignored/-/is-ignored-7.5.1.tgz#c4f7ffc1c8b4cf9dc3204d22ef8e78ff82536d67"
+  integrity sha512-8JZCgy6bWSnjOT5cTTiyEAGp+Y4+5CUknhVbyiPxTRbjy6yF0aMKs1gMTfHrNHTKsasgmkCyPQd4C2eOPceuKA==
   dependencies:
     semver "5.6.0"
 
-"@commitlint/lint@^7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/lint/-/lint-7.5.0.tgz#6f8560b491e10ec2a5a894d5d701cd6444547072"
-  integrity sha512-sRd6V/SoJuF6Qwwd9cjz8pLd8lCh1jisnyRlubkq0spgZFR9IXE3Qj1hK29q4EPVvXHwli/z3fBZx2hrrZqqsQ==
+"@commitlint/lint@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@commitlint/lint/-/lint-7.5.1.tgz#e0ff67c759a5633609a3f50318a382005be22fff"
+  integrity sha512-y0clwEl+l1EcuFA1ckV0HnHJpH3VOBAmXGVBQicglvWGG1sXBl1iJUqBEzi2xExq36EINKsXLjs45272H9I1dQ==
   dependencies:
-    "@commitlint/is-ignored" "^7.5.0"
+    "@commitlint/is-ignored" "^7.5.1"
     "@commitlint/parse" "^7.5.0"
     "@commitlint/rules" "^7.5.0"
     babel-runtime "^6.23.0"
@@ -1956,10 +1956,10 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/node@*", "@types/node@>=8.0.0", "@types/node@^10.12.12", "@types/node@^10.12.23":
-  version "10.12.23"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.23.tgz#308a3acdc5d1c842aeadc50b867d99c46cfae868"
-  integrity sha512-EKhb5NveQ3NlW5EV7B0VRtDKwUfVey8LuJRl9pp5iW0se87/ZqLjG0PMf2MCzPXAJYWZN5Ltg7pHIAf9/Dm1tQ==
+"@types/node@*", "@types/node@>=8.0.0", "@types/node@^10.12.12", "@types/node@^10.12.24":
+  version "10.12.24"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.24.tgz#b13564af612a22a20b5d95ca40f1bffb3af315cf"
+  integrity sha512-GWWbvt+z9G5otRBW8rssOFgRY87J9N/qbhqfjMZ+gUuL6zoL+Hm6gP/8qQBG4jjimqdaNLCehcVapZ/Fs2WjCQ==
 
 "@types/optimize-css-assets-webpack-plugin@^1.3.3":
   version "1.3.3"
@@ -5831,11 +5831,6 @@ flat-cache@^1.2.1:
     rimraf "~2.6.2"
     write "^0.2.1"
 
-flow-runtime@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/flow-runtime/-/flow-runtime-0.17.0.tgz#ff57dd22bd7b0682c7beff20c3590f6a4a8286e3"
-  integrity sha512-x621HugMPrtU68ddiRX0TkNRif9PS6ml3oeP6oo0k+Kv2issqCmifC4ZX59XnLUh9dfmBcj4GoZJXu4oe8L28Q==
-
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
@@ -8233,38 +8228,38 @@ listr@^0.14.2:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
-liwi-mongo@2.3.0, liwi-mongo@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-2.3.0.tgz#d5ba478ba365bcca279db4a62c8f402d9c1ed3ca"
-  integrity sha512-PoZxaxhoBGzBCPhFGkaVOm0WBKv4fTrMuXhpxCcFifVqRyOEVe29AaUQUaDATFvFTH+0U2r16LpU3fRe9GPAaA==
+liwi-mongo@3.0.0, liwi-mongo@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-3.0.0.tgz#0f5ea5b1707211df03d1e4760a66d72093aff9ec"
+  integrity sha512-kOChxjH6hnYJFhqEwLTD7O5g7T7I3JaK5FZPMY1Uf27sqmzjW/PyD37SoayZIPTHn6pfhxR1mVx8oHNaMdzgjw==
   dependencies:
     "@types/mongodb" "^2.0.0"
-    liwi-store "^2.3.1"
-    liwi-subscribe-store "^1.0.2"
-    liwi-types "^1.3.0"
+    liwi-store "^3.0.0"
+    liwi-subscribe-store "^1.1.0"
+    liwi-types "^1.4.0"
     mingo "^2.2.10"
     mongodb "^2.2.33"
     nightingale-logger "^6.0.0"
 
-liwi-store@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-2.3.1.tgz#cf094ed942925e2626bdf655b6119b7623d0ed1a"
-  integrity sha512-BwB7nqnBO8yWRHNfp0Qped0djp83UOzO4ouR7yUHul1J4nenayKbQqk1vrehqc2bHIPKeG+VMuWsZFFSPd/MVA==
+liwi-store@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-3.0.0.tgz#32ad26ad3274f7c45b6875f0eb71c87d686a4f13"
+  integrity sha512-ZtBu/V7hntsV1Y8FhqR0N8hzShge5eAB9FKJ1DkMsgipZ6OT+zlfAOhGZNjcLbySAophb+pxG6GGuMuY37wkpQ==
   dependencies:
-    liwi-types "^1.3.0"
+    liwi-types "^1.4.0"
 
-liwi-subscribe-store@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-1.0.2.tgz#59320e070a1188f2c4af21787a99be2d78ced8b8"
-  integrity sha512-mPrGsTI8+qr+0cK7xPvwq6e/SkBvFAMJgjHo/T3clp969YI/fj2cCVKlehFx1kb1sCflN3sPP9362a0YeOocVg==
+liwi-subscribe-store@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-1.1.0.tgz#699a9415085372caebac8ccf590bbabd4381cfa5"
+  integrity sha512-O2diXmH2Oqd1EaZnVIbWgP+IisAXLpaDQsNSXKj0SaxRpt7mPiHM8yNHDyrA3NFeuI/YrdXWaWFpBzqJdchvpQ==
   dependencies:
-    liwi-store "^2.3.1"
-    liwi-types "^1.3.0"
+    liwi-store "^3.0.0"
+    liwi-types "^1.4.0"
 
-liwi-types@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-1.3.0.tgz#35803f5c72e37b13190d5698cf8becbc0ac459b5"
-  integrity sha512-X1hWXSek+rwx495HsCqIM3Wa6nA/pY2NU4HkgdDYnIjenvIVOj7Km1zC/+hqrp0hcP9DqIPafQAUsmlABi27WA==
+liwi-types@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-1.4.0.tgz#851323d253c8d0711cf71059f65644475726dad3"
+  integrity sha512-ikwjXRxb8sztBIA6BXTbGYKB12g5QyFxRW+oDJAHldBeJocYugDRvlNFAOGRS4zJ4E99usruBZSUWu4GKfGDpw==
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -9255,23 +9250,10 @@ nightingale-formatter@^5.0.1:
     nightingale-levels "^4.0.0"
     nightingale-types "^2.0.0"
 
-nightingale-levels@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/nightingale-levels/-/nightingale-levels-2.0.0.tgz#6b782e77e6fa9afa074c4f509465b675f5824f09"
-  integrity sha1-a3gud+b6mvoHTE9QlGW2dfWCTwk=
-
 nightingale-levels@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/nightingale-levels/-/nightingale-levels-4.0.0.tgz#e30b4bb53afc5124f95a16c68784f8cfe056aac0"
   integrity sha512-QvEs3MqIHrT4krBeorAEmeMyN0oqpq4P35JJiTPUWSG6kHtt41Nwd5UmBdPTdNf+FUXeQ6pZQvjr+61qVDQU/A==
-
-nightingale-logger@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/nightingale-logger/-/nightingale-logger-4.0.0.tgz#b6bc362f4a4aa1ede1ba9654f1d92250e0d82fc7"
-  integrity sha1-trw2L0pKoe3hupZU8dkiUODYL8c=
-  dependencies:
-    flow-runtime "^0.17.0"
-    nightingale-levels "^2.0.0"
 
 nightingale-logger@^6.0.0:
   version "6.0.0"
@@ -11671,13 +11653,12 @@ rollup@^1.1.2:
     "@types/node" "*"
     acorn "^6.0.5"
 
-router-segments@^1.0.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/router-segments/-/router-segments-1.2.0.tgz#859f641259b4051663ddc5358e146cce336bd6f4"
-  integrity sha512-lAzkHkVyFZ7b9uozucLr0hJKR3Oz99SNpugeiAjAziBB1Gx4UMTjoZlBwbgAEySMARionlaVBIZWJ/mTnBEmtw==
+router-segments@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/router-segments/-/router-segments-2.0.0.tgz#304f09823c42723149b482551bed4000048f24ed"
+  integrity sha512-e8YH1zCd7yShOOWk7DYhmtda8NAnBZRosJHoiKm7uIkEi54baM3LgG0pnVdMDEHeZ/VhTxESvzfFcR+AG0zXMg==
   dependencies:
-    flow-runtime "^0.17.0"
-    nightingale-logger "^4.0.0"
+    nightingale-logger "^6.0.0"
     path-to-regexp "^1.7.0"
 
 rsvp@^3.3.3:

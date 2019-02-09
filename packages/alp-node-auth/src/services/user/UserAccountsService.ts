@@ -5,13 +5,13 @@ import { AccountId, User, Account } from '../../../types.d';
 import MongoUsersManager from '../../MongoUsersManager';
 import userAccountGoogleService from './userAccountGoogleService';
 
-type TokensObject = {
+interface TokensObject {
   accessToken: string;
   expireDate: Date;
   idToken: string;
   refreshToken?: string;
   tokenType: string;
-};
+}
 
 const logger = new Logger('alp:auth:userAccounts');
 
