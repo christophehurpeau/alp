@@ -60,7 +60,7 @@
     "alp-types": "1.0.0-pre",
     "intl-messageformat": "^2.2.0",
     "nightingale-logger": "^6.0.0",
-    "react-alp-context": "0.0.0"
+    "react-alp-context": "1.0.0-pre"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

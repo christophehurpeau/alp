@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "alp-types": "^1.0.0-pre",
-    "react-alp-context": "0.0.0"
+    "react-alp-context": "1.0.0-pre"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",
