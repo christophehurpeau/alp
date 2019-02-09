@@ -22,7 +22,7 @@ export interface Context extends BaseContext {
 }
 export declare type Middleware = ComposeMiddleware<Context>;
 export default class Application extends EventEmitter {
-    middleware: Array<Middleware>;
+    middleware: Middleware[];
     context: Context;
     callback?: Composed<Context>;
     constructor();

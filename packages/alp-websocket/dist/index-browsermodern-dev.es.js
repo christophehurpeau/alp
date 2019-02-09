@@ -1,7 +1,7 @@
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 
-/* eslint-disable no-use-before-define, typescript/no-use-before-define, max-lines */
+/* eslint-disable no-use-before-define, @typescript-eslint/no-use-before-define, max-lines */
 const logger = new Logger('alp:websocket');
 let socket;
 let successfulConnection = null;

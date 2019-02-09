@@ -7,7 +7,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var socketio = _interopDefault(require('socket.io-client'));
 var Logger = _interopDefault(require('nightingale-logger'));
 
-/* eslint-disable no-use-before-define, typescript/no-use-before-define, max-lines */
+/* eslint-disable no-use-before-define, @typescript-eslint/no-use-before-define, max-lines */
 var logger = new Logger('alp:websocket');
 var socket;
 var successfulConnection = null;

@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, typescript/no-use-before-define, max-lines */
+/* eslint-disable no-use-before-define, @typescript-eslint/no-use-before-define, max-lines */
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 import { BrowserApplication } from 'alp-types';
@@ -125,7 +125,7 @@ function start(app: BrowserApplication, namespaceName: string) {
   return socket;
 }
 
-function emit(event: string, ...args: Array<any>): Promise<any> {
+function emit(event: string, ...args: any[]): Promise<any> {
   if (!socket) throw new Error('Cannot call emit() before start()');
   logger.debug('emit', { args });
   return new Promise((resolve, reject) => {

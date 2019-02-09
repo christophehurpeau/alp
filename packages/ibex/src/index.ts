@@ -8,7 +8,6 @@ import request, { Request } from './request';
 import response, { Response } from './response';
 
 export interface Context extends BaseContext {
-  // eslint-disable-next-line typescript/no-use-before-define, no-use-before-define
   app: Application;
   request: Request;
   response: Response;
@@ -18,7 +17,6 @@ export interface Context extends BaseContext {
   cookies: never;
   state: { [key: string]: any };
   sanitizedState: { [key: string]: any };
-  // eslint-disable-next-line typescript/no-use-before-define, no-use-before-define
   respond?: boolean;
 }
 
@@ -51,7 +49,7 @@ function respond(ctx: Context) {
 }
 
 export default class Application extends EventEmitter {
-  middleware: Array<Middleware> = [];
+  middleware: Middleware[] = [];
 
   context: Context = Object.create(context);
 
