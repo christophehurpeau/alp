@@ -1,8 +1,7 @@
 import { promisify } from 'util';
-import { sign, verify } from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 import Logger from 'nightingale-logger';
 import { NodeApplication } from 'alp-types';
-import { Option } from 'cookies';
 import { User } from '../types.d';
 import AuthenticationService, {
   Strategies,
@@ -14,19 +13,16 @@ import {
 } from './createAuthController';
 import { createRoutes, AuthRoutes as AuthRoutesType } from './createRoutes';
 import MongoUsersManager from './MongoUsersManager';
+import { createDecodeJWT } from './utils/createDecodeJWT';
 
 export { default as MongoUsersManager } from './MongoUsersManager';
+export { authSocketIO } from './authSocketIO';
 export { STATUSES } from './services/user/UserAccountsService';
 
 const COOKIE_NAME = 'connectedUser';
 const logger = new Logger('alp:auth');
 
 const signPromisified: any = promisify(sign);
-const verifyPromisified: any = promisify(verify);
-
-interface ExtendedNodeApplication extends NodeApplication {
-  websocket?: any;
-}
 
 export type AuthController = AuthControllerType;
 export type AuthRoutes = AuthRoutesType;
@@ -40,10 +36,7 @@ export default function init<U extends User = User>({
   strategies: Strategies;
   usersManager: MongoUsersManager<U>;
 }) {
-  return (
-    app: ExtendedNodeApplication,
-    options?: Pick<Option, Exclude<keyof Option, 'secure'>>,
-  ) => {
+  return (app: NodeApplication) => {
     const userAccountsService = new UserAccountsService(usersManager);
 
     const authenticationService = new AuthenticationService(
@@ -92,64 +85,9 @@ export default function init<U extends User = User>({
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
     };
 
-    const decodeJwt = async (token: string, userAgent: string) => {
-      const result = await verifyPromisified(
-        token,
-        app.config.get('authentication').get('secretKey'),
-        {
-          algorithm: 'HS512',
-          audience: userAgent,
-        },
-      );
-      return result && result.connected;
-    };
-
-    if (app.websocket) {
-      logger.debug('app has websocket');
-      // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
-      const Cookies = require('cookies');
-
-      const users = new Map();
-      app.websocket.users = users;
-
-      app.websocket.use(async (socket: any, next: any) => {
-        const handshakeData = socket.request;
-        const cookies = new Cookies(handshakeData, null, {
-          ...options,
-          secure: true,
-        });
-        const token = cookies.get(COOKIE_NAME);
-        logger.debug('middleware websocket', { token });
-
-        if (!token) return next();
-
-        let connected;
-        try {
-          connected = await decodeJwt(
-            token,
-            handshakeData.headers['user-agent'],
-          );
-        } catch (err) {
-          logger.info('failed to verify authentication', { err });
-          return next();
-        }
-        logger.debug('middleware websocket', { connected });
-
-        if (!connected) return next();
-
-        const user = await usersManager.findConnected(connected);
-
-        if (!user) return next();
-
-        socket.user = user;
-        users.set(socket.client.id, user);
-
-        socket.on('disconnected', () => users.delete(socket.client.id));
-
-        await next();
-      });
-    }
-
+    const decodeJwt = createDecodeJWT(
+      app.config.get('authentication').get('secretKey'),
+    );
     return {
       routes: createRoutes(controller),
 

@@ -9,6 +9,7 @@ var jsonwebtoken = require('jsonwebtoken');
 var Logger = _interopDefault(require('nightingale-logger'));
 var EventEmitter = _interopDefault(require('events'));
 var crypto = require('crypto');
+var Cookies = _interopDefault(require('cookies'));
 
 const randomBytesPromisified = util.promisify(crypto.randomBytes);
 async function randomHex(size) {
@@ -525,6 +526,15 @@ const createRoutes = controller => ({
   logout: ['/logout', controller.logout]
 });
 
+const verifyPromisified = util.promisify(jsonwebtoken.verify);
+const createDecodeJWT = secretKey => async (token, userAgent) => {
+  const result = await verifyPromisified(token, secretKey, {
+    algorithm: 'HS512',
+    audience: userAgent
+  });
+  return result && result.connected;
+};
+
 class MongoUsersManager {
   constructor(store) {
     this.store = store;
@@ -607,14 +617,53 @@ class MongoUsersManager {
 
 const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
+const authSocketIO = (app, usersManager, io, options) => {
+  const decodeJwt = createDecodeJWT(app.config.get('authentication').get('secretKey'));
+  const users = new Map();
+  io.users = users;
+  io.use(async (socket, next) => {
+    const handshakeData = socket.request;
+    const cookies = new Cookies(handshakeData, null, { ...options,
+      secure: true
+    });
+    const token = cookies.get(COOKIE_NAME);
+    logger$2.debug('middleware websocket', {
+      token
+    });
+    if (!token) return next();
+    let connected;
+
+    try {
+      connected = await decodeJwt(token, handshakeData.headers['user-agent']);
+    } catch (err) {
+      logger$2.info('failed to verify authentication', {
+        err
+      });
+      return next();
+    }
+
+    logger$2.debug('middleware websocket', {
+      connected
+    });
+    if (!connected) return next();
+    const user = await usersManager.findConnected(connected);
+    if (!user) return next();
+    socket.user = user;
+    users.set(socket.client.id, user);
+    socket.on('disconnected', () => users.delete(socket.client.id));
+    await next();
+  });
+};
+
+const COOKIE_NAME$1 = 'connectedUser';
+const logger$3 = new Logger('alp:auth');
 const signPromisified = util.promisify(jsonwebtoken.sign);
-const verifyPromisified = util.promisify(jsonwebtoken.verify);
 function init({
   usersManager,
   strategies,
   homeRouterKey
 }) {
-  return (app, options) => {
+  return app => {
     const userAccountsService = new UserAccountsService(usersManager);
     const authenticationService = new AuthenticationService(app.config, strategies, userAccountsService);
     const controller = createAuthController({
@@ -624,7 +673,7 @@ function init({
     });
 
     app.context.setConnected = async function (connected, user) {
-      logger$2.debug('setConnected', {
+      logger$3.debug('setConnected', {
         connected
       });
 
@@ -642,7 +691,7 @@ function init({
         audience: this.request.headers['user-agent'],
         expiresIn: '30 days'
       });
-      this.cookies.set(COOKIE_NAME, token, {
+      this.cookies.set(COOKIE_NAME$1, token, {
         httpOnly: true,
         secure: this.config.get('allowHttps')
       });
@@ -651,65 +700,17 @@ function init({
     app.context.logout = function () {
       delete this.state.connected;
       delete this.state.user;
-      this.cookies.set(COOKIE_NAME, '', {
+      this.cookies.set(COOKIE_NAME$1, '', {
         expires: new Date(1)
       });
     };
 
-    const decodeJwt = async (token, userAgent) => {
-      const result = await verifyPromisified(token, app.config.get('authentication').get('secretKey'), {
-        algorithm: 'HS512',
-        audience: userAgent
-      });
-      return result && result.connected;
-    };
-
-    if (app.websocket) {
-      logger$2.debug('app has websocket'); // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
-
-      const Cookies = require('cookies');
-
-      const users = new Map();
-      app.websocket.users = users;
-      app.websocket.use(async (socket, next) => {
-        const handshakeData = socket.request;
-        const cookies = new Cookies(handshakeData, null, { ...options,
-          secure: true
-        });
-        const token = cookies.get(COOKIE_NAME);
-        logger$2.debug('middleware websocket', {
-          token
-        });
-        if (!token) return next();
-        let connected;
-
-        try {
-          connected = await decodeJwt(token, handshakeData.headers['user-agent']);
-        } catch (err) {
-          logger$2.info('failed to verify authentication', {
-            err
-          });
-          return next();
-        }
-
-        logger$2.debug('middleware websocket', {
-          connected
-        });
-        if (!connected) return next();
-        const user = await usersManager.findConnected(connected);
-        if (!user) return next();
-        socket.user = user;
-        users.set(socket.client.id, user);
-        socket.on('disconnected', () => users.delete(socket.client.id));
-        await next();
-      });
-    }
-
+    const decodeJwt = createDecodeJWT(app.config.get('authentication').get('secretKey'));
     return {
       routes: createRoutes(controller),
       middleware: async (ctx, next) => {
-        const token = ctx.cookies.get(COOKIE_NAME);
-        logger$2.debug('middleware', {
+        const token = ctx.cookies.get(COOKIE_NAME$1);
+        logger$3.debug('middleware', {
           token
         });
 
@@ -731,23 +732,23 @@ function init({
         try {
           connected = await decodeJwt(token, ctx.request.headers['user-agent']);
         } catch (err) {
-          logger$2.info('failed to verify authentification', {
+          logger$3.info('failed to verify authentification', {
             err
           });
-          ctx.cookies.set(COOKIE_NAME, '', {
+          ctx.cookies.set(COOKIE_NAME$1, '', {
             expires: new Date(1)
           });
           return notConnected();
         }
 
-        logger$2.debug('middleware', {
+        logger$3.debug('middleware', {
           connected
         });
         if (!connected) return notConnected();
         const user = await usersManager.findConnected(connected);
 
         if (!user) {
-          ctx.cookies.set(COOKIE_NAME, '', {
+          ctx.cookies.set(COOKIE_NAME$1, '', {
             expires: new Date(1)
           });
           return notConnected();
@@ -762,5 +763,6 @@ function init({
 
 exports.default = init;
 exports.MongoUsersManager = MongoUsersManager;
+exports.authSocketIO = authSocketIO;
 exports.STATUSES = STATUSES;
 //# sourceMappingURL=index-node8.cjs.js.map
