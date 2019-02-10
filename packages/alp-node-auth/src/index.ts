@@ -12,7 +12,7 @@ import {
   createAuthController,
   AuthController as AuthControllerType,
 } from './createAuthController';
-import { createRoutes } from './createRoutes';
+import { createRoutes, AuthRoutesType } from './createRoutes';
 import MongoUsersManager from './MongoUsersManager';
 
 export { default as MongoUsersManager } from './MongoUsersManager';
@@ -29,6 +29,7 @@ interface ExtendedNodeApplication extends NodeApplication {
 }
 
 export type AuthController = AuthControllerType;
+export type AuthRoutes = AuthRoutesType;
 
 export default function init<U extends User = User>({
   usersManager,
