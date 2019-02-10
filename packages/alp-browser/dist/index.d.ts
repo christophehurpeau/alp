@@ -1,5 +1,6 @@
 import Ibex from 'ibex';
-import { BrowserApplication, BrowserApplicationInCreation } from 'alp-types';
+import { BrowserApplication as BrowserApplicationType, BrowserApplicationInCreation } from 'alp-types';
+export declare type BrowserApplication = BrowserApplicationType;
 declare global {
     interface Window {
         __VERSION__: string;

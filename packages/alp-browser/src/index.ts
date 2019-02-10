@@ -3,7 +3,12 @@ import config, { getConfig, existsConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
 import translate from 'alp-translate/browser';
 import Logger from 'nightingale-logger';
-import { BrowserApplication, BrowserApplicationInCreation } from 'alp-types';
+import {
+  BrowserApplication as BrowserApplicationType,
+  BrowserApplicationInCreation,
+} from 'alp-types';
+
+export type BrowserApplication = BrowserApplicationType;
 
 const logger = new Logger('alp');
 
