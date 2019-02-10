@@ -12,7 +12,7 @@ import {
   createAuthController,
   AuthController as AuthControllerType,
 } from './createAuthController';
-import { createRoutes, AuthRoutesType } from './createRoutes';
+import { createRoutes, AuthRoutes as AuthRoutesType } from './createRoutes';
 import MongoUsersManager from './MongoUsersManager';
 
 export { default as MongoUsersManager } from './MongoUsersManager';
