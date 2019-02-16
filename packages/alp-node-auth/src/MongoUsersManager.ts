@@ -34,7 +34,7 @@ export default class MongoUsersManager<
     provider,
   }: {
     accountId: string | number;
-    emails?: Array<string>;
+    emails?: string[];
     provider: string;
   }): Promise<U | undefined> {
     let query: any = {
