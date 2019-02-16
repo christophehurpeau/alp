@@ -30,9 +30,6 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
-  "peerDependencies": {
-    "alp-node": "^0.38.0"
-  },
   "dependencies": {
     "alp-types": "1.0.0-pre",
     "deep-freeze-es6": "^1.3.1",
