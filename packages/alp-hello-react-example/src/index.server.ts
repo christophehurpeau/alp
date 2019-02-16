@@ -1,7 +1,7 @@
 import 'nightingale-app-console';
 import Alp from 'alp-node';
 import createReactApp from 'alp-react';
-import App from './modules/core/Layout';
+import App from './web/core/Layout';
 
 const app = new Alp();
 

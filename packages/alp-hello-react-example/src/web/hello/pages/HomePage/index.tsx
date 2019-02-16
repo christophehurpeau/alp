@@ -39,7 +39,8 @@ export default class IndexView extends Component {
       const queryString = queryParams.toString();
       logger.info('new queryString', { queryString });
 
-      history.replaceState(
+      const location = window.location;
+      window.history.replaceState(
         { name: newName },
         document.title,
         (location.pathname.slice(0, -(location.search.length - 1)) || '/') +

@@ -4,7 +4,7 @@
   "extends": ["pob/babel", "pob/typescript", "pob/typescript-react"],
   "overrides": [
     {
-      "files": ["src/index.browser.js"],
+      "files": ["src/index.browser.ts", "src/web/**/*"],
       "env": {
         "browser": true
       }
