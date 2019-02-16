@@ -8,7 +8,7 @@ export interface SubscribeContainerProps {
   children: ReactNode;
   onEvent: (e: any) => any;
   name?: string;
-  names?: Array<string>;
+  names?: string[];
   visibleTimeout?: number;
 }
 

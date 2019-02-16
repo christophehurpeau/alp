@@ -6,11 +6,11 @@ interface Props {
     children?: ChildrenCallback;
     [propName: string]: any;
 }
-export declare type AlpContext = {
+export interface AlpContext {
     t: (id: string, args: {
         [key: string]: any;
     }) => string;
-};
+}
 export default class Translate extends React.Component<Props> {
     static contextType: React.Context<import("alp-types").Context>;
     context: React.ContextType<typeof ReactAlpContext>;

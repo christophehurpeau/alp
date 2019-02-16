@@ -1,7 +1,9 @@
 import { Context } from 'alp-types';
 import ParamValueStringValidator from './ParamValueStringValidator';
 
-export type Errors = { [key: string]: any };
+export interface Errors {
+  [key: string]: any;
+}
 
 export default class ParamValidator {
   context: Context;

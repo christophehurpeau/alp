@@ -10,7 +10,7 @@ export type Middleware<Context> = ComposeMiddleware<Context>;
 
 // TODO create lib
 export default function compose<Context>(
-  middlewares: Array<Middleware<Context>>,
+  middlewares: Middleware<Context>[],
 ): Composed<Context> {
   return function(ctx: Context): Promise<any> {
     let index = -1;

@@ -9,9 +9,9 @@ interface Props {
   [propName: string]: any;
 }
 
-export type AlpContext = {
+export interface AlpContext {
   t: (id: string, args: { [key: string]: any }) => string;
-};
+}
 
 export default class Translate extends React.Component<Props> {
   static contextType = ReactAlpContext;

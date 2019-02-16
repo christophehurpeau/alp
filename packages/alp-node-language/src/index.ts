@@ -1,7 +1,7 @@
 import { defineLazyProperty } from 'object-properties';
 import { ApplicationInCreation, Context } from 'alp-types';
 
-export default function alpLanguage(app: ApplicationInCreation) {
+export default function alpLanguage(app: ApplicationInCreation): void {
   const config = app.context.config;
   const availableLanguages: string[] = config.get('availableLanguages');
   if (!availableLanguages) {

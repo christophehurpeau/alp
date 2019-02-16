@@ -5,7 +5,7 @@ import ReactAlpContext from 'react-alp-context';
 export interface Props {
   as?: ReactType<{ href: string }>;
   to: string;
-  params?: Object;
+  params?: Record<string, any>;
   children: any;
   tagName?: never;
 }

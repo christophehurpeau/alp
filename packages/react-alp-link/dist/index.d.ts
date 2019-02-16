@@ -5,7 +5,7 @@ export interface Props {
         href: string;
     }>;
     to: string;
-    params?: Object;
+    params?: Record<string, any>;
     children: any;
     tagName?: never;
 }
