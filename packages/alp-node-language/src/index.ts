@@ -3,7 +3,7 @@ import { ApplicationInCreation, Context } from 'alp-types';
 
 export default function alpLanguage(app: ApplicationInCreation) {
   const config = app.context.config;
-  const availableLanguages: Array<string> = config.get('availableLanguages');
+  const availableLanguages: string[] = config.get('availableLanguages');
   if (!availableLanguages) {
     throw new Error('Missing config "availableLanguages"');
   }
