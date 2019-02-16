@@ -14,7 +14,7 @@ function _loadConfigSync(dirname: string, name: string) {
 }
 
 export interface ConfigOptions {
-  argv?: Array<string>;
+  argv?: string[];
   packageConfig?: PackageConfig;
   version?: string;
 }

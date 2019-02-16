@@ -1,6 +1,6 @@
 import { NodeApplication, NodeConfig, PackageConfig } from 'alp-types';
 export interface ConfigOptions {
-    argv?: Array<string>;
+    argv?: string[];
     packageConfig?: PackageConfig;
     version?: string;
 }
