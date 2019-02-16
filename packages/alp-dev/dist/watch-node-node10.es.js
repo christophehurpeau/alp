@@ -56,13 +56,13 @@ var createPobpackConfig = ((target, production = false) => ({
     test: /\.(png|jpg|jpeg|gif|svg)$/,
     loader: require.resolve('url-loader'),
     options: {
-      emitFile: target === 'node',
-      // only write file if node
+      /* config to emit with node doesn't work anymore because css is ignored by node */
+      // emitFile: target === 'node', // only write file if node
+      // outputPath: '../public/', // because it's node who is writing the file, node is in build/
+      // publicPath: (url: string): string => url.replace(/^..\/public\//, ''),
+      emitFile: target === 'modern-browser',
       limit: 1000,
-      name: 'images/[hash].[ext]',
-      outputPath: '../public/',
-      // because it's node who is writing the file, node is in build/
-      publicPath: url => url.replace(/^..\/public\//, '')
+      name: 'images/[hash].[ext]'
     }
   }],
   // TODO https://github.com/zeit/next.js/blob/7d78c3b64185d6d6417f1af9cde4a69d32b18cc6/packages/next/build/webpack.js

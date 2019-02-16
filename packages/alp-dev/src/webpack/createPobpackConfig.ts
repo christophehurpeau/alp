@@ -93,11 +93,13 @@ export default (
       test: /\.(png|jpg|jpeg|gif|svg)$/,
       loader: require.resolve('url-loader'),
       options: {
-        emitFile: target === 'node', // only write file if node
+        /* config to emit with node doesn't work anymore because css is ignored by node */
+        // emitFile: target === 'node', // only write file if node
+        // outputPath: '../public/', // because it's node who is writing the file, node is in build/
+        // publicPath: (url: string): string => url.replace(/^..\/public\//, ''),
+        emitFile: target === 'modern-browser',
         limit: 1000,
         name: 'images/[hash].[ext]',
-        outputPath: '../public/', // because it's node who is writing the file, node is in build/
-        publicPath: (url: string): string => url.replace(/^..\/public\//, ''),
       },
     },
   ],
