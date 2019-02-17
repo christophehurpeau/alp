@@ -1,3 +1,47 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 5.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-types refs ([7e9a693](https://github.com/christophehurpeau/alp/commit/7e9a693))
+* alp-websocket returns Socket ([8680fee](https://github.com/christophehurpeau/alp/commit/8680fee))
+* build missing definitions ([96c7e50](https://github.com/christophehurpeau/alp/commit/96c7e50))
+* call callback on unsubscribe when socket disconnects ([d602801](https://github.com/christophehurpeau/alp/commit/d602801))
+* flow-runtime missing Promise return type ([5236140](https://github.com/christophehurpeau/alp/commit/5236140))
+* keep internal connected state ([cd516f9](https://github.com/christophehurpeau/alp/commit/cd516f9))
+* revert to 1.7.3 ([290951e](https://github.com/christophehurpeau/alp/commit/290951e))
+* socket connected before redux store created ([70ea624](https://github.com/christophehurpeau/alp/commit/70ea624))
+
+
+### Features
+
+* add callbackonunsubscribe ([96722cc](https://github.com/christophehurpeau/alp/commit/96722cc))
+* alp reducer websocket state ([f3c0671](https://github.com/christophehurpeau/alp/commit/f3c0671))
+* alp-websocket support socketPath ([f08f1f6](https://github.com/christophehurpeau/alp/commit/f08f1f6))
+* breaking change: socket.io 2.0 ([b1c195f](https://github.com/christophehurpeau/alp/commit/b1c195f))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* move middleware from alp-react-redux to here ([1524e82](https://github.com/christophehurpeau/alp/commit/1524e82))
+* pob upgrade ([2f13b2b](https://github.com/christophehurpeau/alp/commit/2f13b2b))
+* transform error from websocket into Error instance if string ([ba8dc89](https://github.com/christophehurpeau/alp/commit/ba8dc89))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies, change websocket state ([eeaf755](https://github.com/christophehurpeau/alp/commit/eeaf755))
+* use app.certpath ([f98d978](https://github.com/christophehurpeau/alp/commit/f98d978))
+* use app.reduxReducers ([a9bdbfa](https://github.com/christophehurpeau/alp/commit/a9bdbfa))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="4.0.2"></a>
 ## [4.0.2](https://github.com/alpjs/alp-websocket/compare/v4.0.1...v4.0.2) (2018-03-30)
 

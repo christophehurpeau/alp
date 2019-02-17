@@ -1,6 +1,6 @@
 {
   "name": "alp-node-auth",
-  "version": "0.15.4",
+  "version": "1.0.0",
   "description": "authentication with alp",
   "keywords": ["alp"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@types/jsonwebtoken": "^8.3.0",
     "@types/simple-oauth2": "^1.1.1",
-    "alp-types": "1.0.0-pre",
+    "alp-types": "^1.0.0",
     "cookies": "^0.7.3",
     "jsonwebtoken": "^8.4.0",
     "nightingale-logger": "^6.0.0",

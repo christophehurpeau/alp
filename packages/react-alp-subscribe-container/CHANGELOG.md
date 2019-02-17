@@ -1,3 +1,34 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* missing import Node ([211e9ff](https://github.com/christophehurpeau/alp/commit/211e9ff))
+
+
+### Features
+
+* add names ([8ed46a3](https://github.com/christophehurpeau/alp/commit/8ed46a3))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* react 16 and update dependencies ([71102a3](https://github.com/christophehurpeau/alp/commit/71102a3))
+* timeout ([93172e2](https://github.com/christophehurpeau/alp/commit/93172e2))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* use prop-types ([c1c48ba](https://github.com/christophehurpeau/alp/commit/c1c48ba))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/alpjs/react-alp-subscribe-container/compare/v0.8.1...v0.9.0) (2018-05-01)
 

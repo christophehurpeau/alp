@@ -1,3 +1,36 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-config ([d395d64](https://github.com/christophehurpeau/alp/commit/d395d64))
+* alp-types refs ([7e9a693](https://github.com/christophehurpeau/alp/commit/7e9a693))
+* remove dependency alauda ([915ef45](https://github.com/christophehurpeau/alp/commit/915ef45))
+* remove unexistant export Config from "alp-config" ([f3bb53b](https://github.com/christophehurpeau/alp/commit/f3bb53b))
+
+
+### Features
+
+* export BrowserApplication type ([245f3d3](https://github.com/christophehurpeau/alp/commit/245f3d3))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies, remove .use and .initialRender and browser state ([5d2ee87](https://github.com/christophehurpeau/alp/commit/5d2ee87))
+* upgrade dependencies ([9e5309b](https://github.com/christophehurpeau/alp/commit/9e5309b))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="0.24.2"></a>
 ## [0.24.2](https://github.com/alpjs/alp-browser/compare/v0.24.1...v0.24.2) (2018-03-31)
 

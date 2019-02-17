@@ -1,6 +1,6 @@
 {
   "name": "react-alp-link",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "description": "react link with limosa router",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@types/react": "^16.8.2",
-    "react-alp-context": "1.0.0-pre"
+    "react-alp-context": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

@@ -1,3 +1,30 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 2.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-types refs ([e8209b1](https://github.com/christophehurpeau/alp/commit/e8209b1))
+
+
+### Features
+
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="1.9.1"></a>
 ## [1.9.1](https://github.com/alpjs/alp-language/compare/v1.9.0...v1.9.1) (2018-03-25)
 

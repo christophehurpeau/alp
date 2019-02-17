@@ -1,3 +1,53 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 11.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-dev path ([bc8b178](https://github.com/christophehurpeau/alp/commit/bc8b178))
+* alp-dev-build ([878b568](https://github.com/christophehurpeau/alp/commit/878b568))
+* build ([882938d](https://github.com/christophehurpeau/alp/commit/882938d))
+* config and dependencies ([7e5b4d3](https://github.com/christophehurpeau/alp/commit/7e5b4d3))
+* css server side ([2e143e5](https://github.com/christophehurpeau/alp/commit/2e143e5))
+* go back to flow-runtime 0.10 ([9c5b313](https://github.com/christophehurpeau/alp/commit/9c5b313))
+* package.json to reduce vulnerabilities ([a7a2835](https://github.com/christophehurpeau/alp/commit/a7a2835))
+* pob-babel ([6f4c529](https://github.com/christophehurpeau/alp/commit/6f4c529))
+* scripts ([9c83f9b](https://github.com/christophehurpeau/alp/commit/9c83f9b))
+* use target modern-browser to build images ([6f2ef58](https://github.com/christophehurpeau/alp/commit/6f2ef58))
+* watch ([eac82b7](https://github.com/christophehurpeau/alp/commit/eac82b7))
+
+
+### Features
+
+* argv.host ([7486c50](https://github.com/christophehurpeau/alp/commit/7486c50))
+* babel-preset-modern-browsers@10.0.0 ([ef57df4](https://github.com/christophehurpeau/alp/commit/ef57df4))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([9a1b7ae](https://github.com/christophehurpeau/alp/commit/9a1b7ae))
+* update dependencies ([ee7d48c](https://github.com/christophehurpeau/alp/commit/ee7d48c))
+* update dependencies ([29c1f8b](https://github.com/christophehurpeau/alp/commit/29c1f8b))
+* update dependencies ([133fc6a](https://github.com/christophehurpeau/alp/commit/133fc6a))
+* update dependencies and use node 8 ([67d45a5](https://github.com/christophehurpeau/alp/commit/67d45a5))
+* update dependencies, babel 7 ([b632f8e](https://github.com/christophehurpeau/alp/commit/b632f8e))
+* update deps in alp-dev ([779610b](https://github.com/christophehurpeau/alp/commit/779610b))
+* use pobpack-browser and pobpack-node ([13b3c91](https://github.com/christophehurpeau/alp/commit/13b3c91))
+* webpack 3, BrowserAppContainer ([c6adb43](https://github.com/christophehurpeau/alp/commit/c6adb43))
+* webpack 4 ([00bda22](https://github.com/christophehurpeau/alp/commit/00bda22))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+* webpack 3
+
+
+
+
+
 <a name="10.6.3"></a>
 ## [10.6.3](https://github.com/alpjs/alp-dev/compare/v10.6.2...v10.6.3) (2017-12-25)
 

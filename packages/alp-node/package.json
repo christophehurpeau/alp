@@ -1,6 +1,6 @@
 {
   "name": "alp-node",
-  "version": "0.38.0",
+  "version": "1.0.0",
   "description": "framework based on koa 2",
   "keywords": ["springbokjs", "alp", "framework", "koa", "node5"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -31,13 +31,13 @@
     "arrowParens": "always"
   },
   "dependencies": {
-    "alp-listen": "^1.5.0",
-    "alp-node-config": "^3.5.1",
-    "alp-node-errors": "^2.6.0",
-    "alp-node-language": "^1.9.1",
-    "alp-params": "^0.5.0",
-    "alp-translate": "^2.7.0",
-    "alp-types": "1.0.0-pre",
+    "alp-listen": "^2.0.0",
+    "alp-node-config": "^4.0.0",
+    "alp-node-errors": "^3.0.0",
+    "alp-node-language": "^2.0.0",
+    "alp-params": "^1.0.0",
+    "alp-translate": "^3.0.0",
+    "alp-types": "^1.0.0",
     "findup-sync": "^3.0.0",
     "koa": "^2.7.0",
     "koa-compress": "^3.0.0",

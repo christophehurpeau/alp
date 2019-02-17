@@ -1,3 +1,33 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 3.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-body-parser return body ([939638e](https://github.com/christophehurpeau/alp/commit/939638e))
+* build ([882938d](https://github.com/christophehurpeau/alp/commit/882938d))
+* package.json to reduce vulnerabilities ([#1](https://github.com/christophehurpeau/alp/issues/1)) ([fab43b1](https://github.com/christophehurpeau/alp/commit/fab43b1))
+
+
+### Features
+
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([89f0c58](https://github.com/christophehurpeau/alp/commit/89f0c58))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/alpjs/alp-body-parser/compare/v1.0.2...v2.0.0) (2017-08-16)
 

@@ -1,3 +1,31 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2019-02-17)
+
+
+### Features
+
+* as ([5812339](https://github.com/christophehurpeau/alp/commit/5812339))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* prop-types ([f9f2827](https://github.com/christophehurpeau/alp/commit/f9f2827))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([47d53b1](https://github.com/christophehurpeau/alp/commit/47d53b1))
+* upgrade ([e682a26](https://github.com/christophehurpeau/alp/commit/e682a26))
+
+
+### BREAKING CHANGES
+
+* liwi 3.0
+* too many breaking changes
+* use as instead of tagName
+
+
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/alpjs/react-alp-link/compare/v0.6.0...v0.7.0) (2018-05-01)
 

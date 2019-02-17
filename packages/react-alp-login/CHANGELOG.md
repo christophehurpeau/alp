@@ -1,3 +1,40 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* add space ([8706a9b](https://github.com/christophehurpeau/alp/commit/8706a9b))
+* react-alp-login import react ([b6ad023](https://github.com/christophehurpeau/alp/commit/b6ad023))
+* use icon button ([beb5f74](https://github.com/christophehurpeau/alp/commit/beb5f74))
+
+
+### Features
+
+* LoginButtonGoogle ([f34ac9d](https://github.com/christophehurpeau/alp/commit/f34ac9d))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* react-alp-link@0.5.0 ([b8001a8](https://github.com/christophehurpeau/alp/commit/b8001a8))
+* react-icons peerDependency ([f83a71e](https://github.com/christophehurpeau/alp/commit/f83a71e))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([6b17566](https://github.com/christophehurpeau/alp/commit/6b17566))
+* upgrade ([371b6f7](https://github.com/christophehurpeau/alp/commit/371b6f7))
+* use a and direct link instead of react-alp-link ([e3cea34](https://github.com/christophehurpeau/alp/commit/e3cea34))
+* ynnub@0.5.9 and material icons ([671ab16](https://github.com/christophehurpeau/alp/commit/671ab16))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+* requires react-icons
+
+
+
+
+
 <a name="0.8.3"></a>
 ## [0.8.3](https://github.com/alpjs/react-alp-login/compare/v0.8.2...v0.8.3) (2017-11-05)
 

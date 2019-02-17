@@ -1,3 +1,36 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 3.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-types refs ([7e9a693](https://github.com/christophehurpeau/alp/commit/7e9a693))
+* fix recursive load translations ([8a4f760](https://github.com/christophehurpeau/alp/commit/8a4f760))
+* flowtype ([1d5e379](https://github.com/christophehurpeau/alp/commit/1d5e379))
+* logger and main ([b4f494f](https://github.com/christophehurpeau/alp/commit/b4f494f))
+
+
+### Features
+
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* pob upgrade ([7002f3c](https://github.com/christophehurpeau/alp/commit/7002f3c))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([e759381](https://github.com/christophehurpeau/alp/commit/e759381))
+* update dependencies ([d389da6](https://github.com/christophehurpeau/alp/commit/d389da6))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="2.8.0"></a>
 # [2.8.0](https://github.com/alpjs/alp-translate/compare/v2.7.0...v2.8.0) (2018-03-25)
 

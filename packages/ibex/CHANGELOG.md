@@ -1,3 +1,27 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 5.0.0 (2019-02-17)
+
+
+### Features
+
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* pob upgrade ([1e88ec4](https://github.com/christophehurpeau/alp/commit/1e88ec4))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([ea9a1d4](https://github.com/christophehurpeau/alp/commit/ea9a1d4))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="4.5.1"></a>
 ## [4.5.1](https://github.com/alpjs/ibex/compare/v4.5.0...v4.5.1) (2018-03-30)
 

@@ -1,3 +1,27 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 2.0.0 (2019-02-17)
+
+
+### Features
+
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([05c404e](https://github.com/christophehurpeau/alp/commit/05c404e))
+* update nightingale-logger ([e600f9f](https://github.com/christophehurpeau/alp/commit/e600f9f))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/alpjs/alp-listen/compare/v1.4.0...v1.5.0) (2018-03-25)
 

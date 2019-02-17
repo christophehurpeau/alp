@@ -1,3 +1,46 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-node config path and ready ([21cf800](https://github.com/christophehurpeau/alp/commit/21cf800))
+* alp-types refs ([7e9a693](https://github.com/christophehurpeau/alp/commit/7e9a693))
+* build missing definitions ([96c7e50](https://github.com/christophehurpeau/alp/commit/96c7e50))
+* call deprecated packageDirname ([2cf4a50](https://github.com/christophehurpeau/alp/commit/2cf4a50))
+* use JSON.parse and readFileSync to load package config ([a6d4646](https://github.com/christophehurpeau/alp/commit/a6d4646))
+
+
+### Features
+
+* export type context in alp-node ([80d1ed5](https://github.com/christophehurpeau/alp/commit/80d1ed5))
+* look for build config ([b25c672](https://github.com/christophehurpeau/alp/commit/b25c672))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* node 8 ([680f060](https://github.com/christophehurpeau/alp/commit/680f060))
+* pob-babel@14.1 and webpack node6 ([7738e70](https://github.com/christophehurpeau/alp/commit/7738e70))
+* remove initialBrowserContext ([650a628](https://github.com/christophehurpeau/alp/commit/650a628))
+* remove redux* in app, now in alp-react-redux ([22ac762](https://github.com/christophehurpeau/alp/commit/22ac762))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([5d6252e](https://github.com/christophehurpeau/alp/commit/5d6252e))
+* update dependencies ([a0e53dd](https://github.com/christophehurpeau/alp/commit/a0e53dd))
+* update dependencies, remove alp-controller ([e122d23](https://github.com/christophehurpeau/alp/commit/e122d23))
+* upgrade dependencies ([ffdb6b6](https://github.com/christophehurpeau/alp/commit/ffdb6b6))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+* initialBrowserContext
+* upgrade to node 8
+
+
+
+
+
 <a name="0.38.0"></a>
 # [0.38.0](https://github.com/alpjs/alp-node/compare/v0.37.1...v0.38.0) (2018-03-25)
 

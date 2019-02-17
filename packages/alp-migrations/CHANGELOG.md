@@ -1,3 +1,36 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-types refs ([7e9a693](https://github.com/christophehurpeau/alp/commit/7e9a693))
+* logger key ([2e82064](https://github.com/christophehurpeau/alp/commit/2e82064))
+* upgrade pob and fix order version rethinkdb ([c4bce73](https://github.com/christophehurpeau/alp/commit/c4bce73))
+* use findValue instead of findOne ([48e6440](https://github.com/christophehurpeau/alp/commit/48e6440))
+
+
+### Features
+
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* pob upgrade ([ae3bf85](https://github.com/christophehurpeau/alp/commit/ae3bf85))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([47d53b1](https://github.com/christophehurpeau/alp/commit/47d53b1))
+
+
+### BREAKING CHANGES
+
+* liwi 3.0
+* too many breaking changes
+
+
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/alpjs/alp-migrations/compare/v0.7.1...v0.8.0) (2017-05-14)
 

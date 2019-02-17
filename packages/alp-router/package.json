@@ -1,6 +1,6 @@
 {
   "name": "alp-router",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "router for alp",
   "keywords": ["alp", "router"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -43,7 +43,7 @@
     "router-segments": "^2.0.0"
   },
   "dependencies": {
-    "alp-types": "1.0.0-pre"
+    "alp-types": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

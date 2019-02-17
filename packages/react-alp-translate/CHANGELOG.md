@@ -1,3 +1,33 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-types refs ([a1f1b91](https://github.com/christophehurpeau/alp/commit/a1f1b91))
+* PropsType ([0d8d3d3](https://github.com/christophehurpeau/alp/commit/0d8d3d3))
+
+
+### Features
+
+* as prop ([c89b281](https://github.com/christophehurpeau/alp/commit/c89b281))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* react 16 return string ([47f80e5](https://github.com/christophehurpeau/alp/commit/47f80e5))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+
+
+### BREAKING CHANGES
+
+* too many breaking changes
+
+
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/alpjs/react-alp-translate/compare/v0.6.0...v0.6.1) (2017-12-11)
 

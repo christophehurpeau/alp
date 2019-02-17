@@ -1,3 +1,42 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2019-02-17)
+
+
+### Bug Fixes
+
+* alp-types refs ([7e9a693](https://github.com/christophehurpeau/alp/commit/7e9a693))
+* better type alp-node-auth ([f329d36](https://github.com/christophehurpeau/alp/commit/f329d36))
+* clean UserAccountsService ([a5e2807](https://github.com/christophehurpeau/alp/commit/a5e2807))
+* statuses ([ff2d610](https://github.com/christophehurpeau/alp/commit/ff2d610))
+* updateOne doesnt exists, replaced by replaceOne ([2b34e5f](https://github.com/christophehurpeau/alp/commit/2b34e5f))
+* use MongoInsertType ([6dd6107](https://github.com/christophehurpeau/alp/commit/6dd6107))
+
+
+### Features
+
+* better type alp-node-auth ([5ffe898](https://github.com/christophehurpeau/alp/commit/5ffe898))
+* export AuthRoutes ([73d574c](https://github.com/christophehurpeau/alp/commit/73d574c))
+* export AuthRoutes ([b2e3e2e](https://github.com/christophehurpeau/alp/commit/b2e3e2e))
+* MongoUsersManager allow to extends user ([c00bc69](https://github.com/christophehurpeau/alp/commit/c00bc69))
+* split websocket auth ([45e26a4](https://github.com/christophehurpeau/alp/commit/45e26a4))
+* typescript ([3541e73](https://github.com/christophehurpeau/alp/commit/3541e73))
+* update dependencies ([47d53b1](https://github.com/christophehurpeau/alp/commit/47d53b1))
+
+
+### BREAKING CHANGES
+
+* use authSocketIO to auth websocket
+* liwi 3.0
+* too many breaking changes
+
+
+
+
+
 <a name="0.15.4"></a>
 ## [0.15.4](https://github.com/alpjs/alp-auth/compare/v0.15.3...v0.15.4) (2018-03-31)
 
