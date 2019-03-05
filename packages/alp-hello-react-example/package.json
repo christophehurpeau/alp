@@ -1,6 +1,6 @@
 {
   "name": "alp-hello-react-example",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Say hello, with alp and react",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -22,7 +22,7 @@
     "nightingale-app-console": "3.1.0",
     "react": "16.8.1",
     "react-alp-context": "1.0.0",
-    "react-alp-translate": "1.0.0",
+    "react-alp-translate": "^1.0.1",
     "ynnub": "1.1.1"
   },
   "devDependencies": {

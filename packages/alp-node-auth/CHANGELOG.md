@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@1.0.0...alp-node-auth@2.0.0) (2019-03-05)
+
+
+### Bug Fixes
+
+* remove google plus profile ([d7725aa](https://github.com/christophehurpeau/alp/commit/d7725aa))
+
+
+### Features
+
+* update to liwi 4 ([13cf357](https://github.com/christophehurpeau/alp/commit/13cf357))
+
+
+### BREAKING CHANGES
+
+* liwi 4.1 now required as peerdep
+
+
+
+
+
 # 1.0.0 (2019-02-17)
 
 
