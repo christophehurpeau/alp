@@ -6,9 +6,9 @@ export default class MongoUsersManager<
   U extends User = User,
   USanitized extends UserSanitized = UserSanitized
 > {
-  store: Store<U, '_id', any, any, any>;
+  store: Store<U, '_id', any, any>;
 
-  constructor(store: Store<U, '_id', any, any, any>) {
+  constructor(store: Store<U, '_id', any, any>) {
     this.store = store;
   }
 

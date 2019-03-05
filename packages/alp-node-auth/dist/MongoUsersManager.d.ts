@@ -2,8 +2,8 @@ import { MongoInsertType } from 'liwi-mongo';
 import { Store } from 'liwi-store';
 import { User, Account, UserSanitized } from '../types.d';
 export default class MongoUsersManager<U extends User = User, USanitized extends UserSanitized = UserSanitized> {
-    store: Store<U, '_id', any, any, any>;
-    constructor(store: Store<U, '_id', any, any, any>);
+    store: Store<U, '_id', any, any>;
+    constructor(store: Store<U, '_id', any, any>);
     findConnected(connected: string): Promise<U | undefined>;
     insertOne(user: MongoInsertType<U>): Promise<any>;
     replaceOne(user: U): Promise<any>;

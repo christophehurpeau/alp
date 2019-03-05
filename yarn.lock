@@ -8228,38 +8228,38 @@ listr@^0.14.2:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
-liwi-mongo@3.0.0, liwi-mongo@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-3.0.0.tgz#0f5ea5b1707211df03d1e4760a66d72093aff9ec"
-  integrity sha512-kOChxjH6hnYJFhqEwLTD7O5g7T7I3JaK5FZPMY1Uf27sqmzjW/PyD37SoayZIPTHn6pfhxR1mVx8oHNaMdzgjw==
+liwi-mongo@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-4.1.0.tgz#e9659b2d36ee0794da5f11a532500dfd60b280f6"
+  integrity sha512-9GBGqttnwJPnIuBGNbuy7gUIZcOiU072s5nivBW+EymwaCYBvQ524WJElVPHT4hArO2fACSfD+s27Y0HeP21+Q==
   dependencies:
     "@types/mongodb" "^2.0.0"
-    liwi-store "^3.0.0"
-    liwi-subscribe-store "^1.1.0"
-    liwi-types "^1.4.0"
+    liwi-store "^4.1.0"
+    liwi-subscribe-store "^2.1.0"
+    liwi-types "^2.1.0"
     mingo "^2.2.10"
     mongodb "^2.2.33"
     nightingale-logger "^6.0.0"
 
-liwi-store@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-3.0.0.tgz#32ad26ad3274f7c45b6875f0eb71c87d686a4f13"
-  integrity sha512-ZtBu/V7hntsV1Y8FhqR0N8hzShge5eAB9FKJ1DkMsgipZ6OT+zlfAOhGZNjcLbySAophb+pxG6GGuMuY37wkpQ==
+liwi-store@4.1.0, liwi-store@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-4.1.0.tgz#1d6f63dcca368eb64cc0905221c45050cc6959bd"
+  integrity sha512-ySO3SAExwDC5mrPUOrlC639IquOfkMB3b6tloVrmI08oUAeRNh6nGWP1U26BXfbhRgSNsvTMAQ4GI02wd/PtDw==
   dependencies:
-    liwi-types "^1.4.0"
+    liwi-types "^2.1.0"
 
-liwi-subscribe-store@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-1.1.0.tgz#699a9415085372caebac8ccf590bbabd4381cfa5"
-  integrity sha512-O2diXmH2Oqd1EaZnVIbWgP+IisAXLpaDQsNSXKj0SaxRpt7mPiHM8yNHDyrA3NFeuI/YrdXWaWFpBzqJdchvpQ==
+liwi-subscribe-store@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-2.1.0.tgz#a76e92a5014c432e5c42bfd9d3e2c3478a3f3766"
+  integrity sha512-HbxLUnR3vpe4XCRj3NILX1nAgFFJPWOodPKMYj52REhDsOkHwFOSAzzqZymZTGOlm1hPKAsQ9JQ/ESYjK4rsFQ==
   dependencies:
-    liwi-store "^3.0.0"
-    liwi-types "^1.4.0"
+    liwi-store "^4.1.0"
+    liwi-types "^2.1.0"
 
-liwi-types@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-1.4.0.tgz#851323d253c8d0711cf71059f65644475726dad3"
-  integrity sha512-ikwjXRxb8sztBIA6BXTbGYKB12g5QyFxRW+oDJAHldBeJocYugDRvlNFAOGRS4zJ4E99usruBZSUWu4GKfGDpw==
+liwi-types@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-2.1.0.tgz#eae728f05b2e3bb1fadfcea688e401f89f5d51e9"
+  integrity sha512-R5A7GUiOHT+ES2E3erI+AmSXD5d1lIS+/hkh/CIMfu6PLt4lmlSAQ/suUsncB7703wohnskaRP4oInpVNcB5Xw==
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -9189,34 +9189,6 @@ nightingale-ansi-formatter@^4.0.0:
     nightingale-formatter "^5.0.1"
     nightingale-types "^2.0.0"
 
-nightingale-app-console@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/nightingale-app-console/-/nightingale-app-console-3.0.0.tgz#1438da29939ccf6a323a89bf4d8baeea53a9ac05"
-  integrity sha512-0y/eDg6aIEeeNNXiRaPwTxcr3BBXdNVtQYmOb70G95Mi/EsuprgrhQluy/do9dL9PiFbFPkaGGTBHW9aNb/HFw==
-  dependencies:
-    nightingale "^9.0.0"
-    nightingale-browser-console "^4.0.0"
-    nightingale-console "^5.0.0"
-    source-map-support "^0.4.14"
-
-nightingale-browser-console-formatter@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/nightingale-browser-console-formatter/-/nightingale-browser-console-formatter-4.0.1.tgz#bd918940e9d4367862bc5efe8933536afc9a1114"
-  integrity sha512-wGILDNQ0y2SkRM7ewPogPiiyZM1y6twdGDLRNgU9rZBwKktA3WnBrPOW9kqS9pMXL9JPEmWRRj+CEfv0M4zmJw==
-  dependencies:
-    nightingale-formatter "^5.0.1"
-    nightingale-types "^2.0.0"
-
-nightingale-browser-console@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/nightingale-browser-console/-/nightingale-browser-console-4.0.0.tgz#4f189d0692d8d20e1e07fb7a4f11f626d585881f"
-  integrity sha512-mCMXayVh4Pab+XdEDuzmQp5SUbhAqD+pw02sOX6xS9irsVZb5cPaX2c1L/b5Sng5up5havjpQyY9VL0gsGEmWw==
-  dependencies:
-    nightingale-browser-console-formatter "^4.0.0"
-    nightingale-console-output "^4.0.0"
-    nightingale-debug "^5.0.0"
-    nightingale-types "^2.0.0"
-
 nightingale-console-output@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/nightingale-console-output/-/nightingale-console-output-4.0.0.tgz#8647709a61ed71be9dc6d9c1467768ad8cf1b1ce"
@@ -9271,7 +9243,7 @@ nightingale-types@^2.0.0:
   dependencies:
     nightingale-levels "^4.0.0"
 
-nightingale@^9.0.0, nightingale@^9.0.1:
+nightingale@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/nightingale/-/nightingale-9.0.1.tgz#6b1ed8fd766d4087579c32d9b8ff4399c708f557"
   integrity sha512-79iDwk6rrof82XG20itlXaR955P6eY/3piWY0ABD9Nxgh621kP7tusU48/N3GhF02uTP1yqLUZooK88dT2jjNQ==
@@ -12172,13 +12144,6 @@ source-map-resolve@^0.5.0:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
-source-map-support@^0.4.14:
-  version "0.4.18"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
-  integrity sha512-try0/JqxPLF9nOjvSta7tVondkP5dwgyLDjVoyMDlmjugT2lRZ1OfsrYTkCd2hkDnJTKRbO/Rl3orm8vlsUzbA==
-  dependencies:
-    source-map "^0.5.6"
-
 source-map-support@^0.5.10, source-map-support@^0.5.3, source-map-support@^0.5.6, source-map-support@~0.5.6:
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.10.tgz#2214080bc9d51832511ee2bab96e3c2f9353120c"
@@ -12983,7 +12948,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.3.3, typescript@^3.3.3:
+typescript@3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.3.tgz#f1657fc7daa27e1a8930758ace9ae8da31403221"
   integrity sha512-Y21Xqe54TBVp+VDSNbuDYdGw0BpoR/Q6wo/+35M8PAU0vipahnyduJWirxxdxjsAkS7hue53x2zp8gz7F05u0A==

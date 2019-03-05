@@ -314,7 +314,6 @@ var userAccountGoogleService = new (_temp = _class = class extends EventEmitter 
   login: 'openid profile email'
 }, _temp)();
 
-/* global fetch */
 const logger$1 = new Logger('alp:auth:userAccounts');
 const STATUSES = {
   VALIDATED: 'validated',
