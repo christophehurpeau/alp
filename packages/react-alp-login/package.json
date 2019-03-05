@@ -80,6 +80,6 @@
     "react": "^16.8.1",
     "react-icons": "^3.3.0",
     "typescript": "3.3.3",
-    "ynnub": "^1.1.0"
+    "ynnub": "1.1.1"
   }
 }
