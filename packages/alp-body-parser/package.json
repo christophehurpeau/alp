@@ -35,7 +35,7 @@
     "arrowParens": "always"
   },
   "peerDependencies": {
-    "alp-node": "^0.38.0"
+    "alp-node": "^1.0.0"
   },
   "dependencies": {
     "@types/co-body": "^0.0.3",
