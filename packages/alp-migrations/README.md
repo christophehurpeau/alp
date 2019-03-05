@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-migrations"><img src="https://img.shields.io/npm/v/alp-migrations.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-migrations"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-migrations.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-migrations"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/alp-migrations?style=flat-square"></a>
 </p>
 
 ## Install

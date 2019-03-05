@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-translate"><img src="https://img.shields.io/npm/v/alp-translate.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-translate"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-translate.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-translate"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/alp-translate?style=flat-square"></a>
 </p>
 
 ## Config

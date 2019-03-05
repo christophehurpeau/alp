@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-websocket"><img src="https://img.shields.io/npm/v/alp-websocket.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-websocket"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-websocket.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-websocket"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/alp-websocket?style=flat-square"></a>
 </p>
 
 ## Server-side

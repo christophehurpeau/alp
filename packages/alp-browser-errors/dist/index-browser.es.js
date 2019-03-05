@@ -89,7 +89,7 @@ function () {
             return _context.stop();
         }
       }
-    }, _callee, this, [[0, 5]]);
+    }, _callee, null, [[0, 5]]);
   }));
 
   return function errorMiddleware() {

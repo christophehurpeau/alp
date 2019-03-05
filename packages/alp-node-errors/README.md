@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-node-errors"><img src="https://img.shields.io/npm/v/alp-node-errors.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-node-errors"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-node-errors.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-node-errors"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/alp-node-errors?style=flat-square"></a>
 </p>
 
 ## Install

@@ -186,7 +186,7 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee);
       }));
 
       return function renderApp() {

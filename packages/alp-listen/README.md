@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-listen"><img src="https://img.shields.io/npm/v/alp-listen.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-listen"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-listen.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-listen"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/alp-listen?style=flat-square"></a>
 </p>
 
 ## Install

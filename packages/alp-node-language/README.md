@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-node-language"><img src="https://img.shields.io/npm/v/alp-node-language.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-node-language"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-node-language.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-node-language"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/alp-node-language?style=flat-square"></a>
 </p>
 
 ## Config file

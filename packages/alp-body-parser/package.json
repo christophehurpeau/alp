@@ -5,7 +5,11 @@
   "keywords": ["alp", "body-parser"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
-  "repository": "git@github.com:christophehurpeau/alp.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com:christophehurpeau/alp.git",
+    "directory": "packages/alp-body-parser"
+  },
   "homepage": "https://github.com/christophehurpeau/alp",
   "bugs": {
     "url": "https://github.com/alpjs/alp-body-parser/issues"
@@ -40,18 +44,18 @@
     "koa": "^2.7.0"
   },
   "devDependencies": {
-    "@babel/core": "7.2.2",
-    "@typescript-eslint/eslint-plugin": "1.3.0",
-    "@typescript-eslint/parser": "1.3.0",
+    "@babel/core": "7.3.4",
+    "@typescript-eslint/eslint-plugin": "1.4.2",
+    "@typescript-eslint/parser": "1.4.2",
     "babel-eslint": "10.0.1",
     "babel-preset-latest-node": "3.0.1",
-    "eslint": "5.13.0",
-    "eslint-config-pob": "26.0.8",
+    "eslint": "5.15.1",
+    "eslint-config-pob": "28.0.1",
     "eslint-plugin-babel": "5.3.0",
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-node": "8.0.1",
-    "pob-babel": "23.6.2",
+    "pob-babel": "23.6.7",
     "prettier": "1.16.4",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3333"
   }
 }

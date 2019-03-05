@@ -157,7 +157,7 @@ function (_EventEmitter) {
 
     _this.middleware = [];
     _this.context = Object.create(proto);
-    _this.context.app = _assertThisInitialized(_assertThisInitialized(_this));
+    _this.context.app = _assertThisInitialized(_this);
     return _this;
   }
 

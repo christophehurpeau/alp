@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-body-parser"><img src="https://img.shields.io/npm/v/alp-body-parser.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-body-parser"><img src="https://david-dm.org/christophehurpeau/alp?path=packages/alp-body-parser.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-body-parser"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/alp-body-parser?style=flat-square"></a>
 </p>
 
 ## Install
