@@ -6,7 +6,7 @@ declare const _default: {
     isAccount(account: any, profile: any): boolean;
     getId(profile: any): any;
     getAccountName(profile: any): any;
-    getEmails(profile: any, plusProfile: any): string[];
+    getEmails(profile: any): string[];
     getDisplayName(profile: any): any;
     getFullName(profile: any): {
         givenName: any;

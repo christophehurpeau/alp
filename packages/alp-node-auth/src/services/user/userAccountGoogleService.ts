@@ -4,8 +4,7 @@ import { Tokens } from '../authentification/types';
 
 export default new class UserAccountGoogleService extends EventEmitter {
   static scopeKeyToScope = {
-    login:
-      'openid profile email https://www.googleapis.com/auth/plus.profile.emails.read',
+    login: 'openid profile email',
   };
 
   providerKey = 'google';
@@ -30,19 +29,11 @@ export default new class UserAccountGoogleService extends EventEmitter {
     return profile.email;
   }
 
-  getEmails(profile: any, plusProfile: any) {
+  getEmails(profile: any) {
     const emails: string[] = [];
 
     if (profile.email) {
       emails.push(profile.email);
-    }
-
-    if (plusProfile.emails) {
-      plusProfile.emails.forEach((email: any) => {
-        if (emails.indexOf(email.value) === -1) {
-          emails.push(email.value);
-        }
-      });
     }
 
     return emails;

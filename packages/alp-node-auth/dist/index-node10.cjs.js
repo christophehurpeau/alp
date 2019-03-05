@@ -287,19 +287,11 @@ var userAccountGoogleService = new (_temp = _class = class extends EventEmitter 
     return profile.email;
   }
 
-  getEmails(profile, plusProfile) {
+  getEmails(profile) {
     const emails = [];
 
     if (profile.email) {
       emails.push(profile.email);
-    }
-
-    if (plusProfile.emails) {
-      plusProfile.emails.forEach(email => {
-        if (emails.indexOf(email.value) === -1) {
-          emails.push(email.value);
-        }
-      });
     }
 
     return emails;
@@ -325,7 +317,7 @@ var userAccountGoogleService = new (_temp = _class = class extends EventEmitter 
   }
 
 }, _class.scopeKeyToScope = {
-  login: 'openid profile email https://www.googleapis.com/auth/plus.profile.emails.read'
+  login: 'openid profile email'
 }, _temp)();
 
 /* global fetch */
@@ -401,8 +393,7 @@ class UserAccountsService extends EventEmitter {
 
     const service = UserAccountsService.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
-    const plusProfile = await fetch(`https://www.googleapis.com/plus/v1/people/me?access_token=${tokens.accessToken}`).then(response => response.json());
-    const emails = service.getEmails(profile, plusProfile);
+    const emails = service.getEmails(profile);
     let user = await this.usersManager.findOneByAccountOrEmails({
       provider: service.providerKey,
       accountId: service.getId(profile),

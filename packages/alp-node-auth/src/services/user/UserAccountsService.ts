@@ -1,4 +1,3 @@
-/* global fetch */
 import EventEmitter from 'events';
 import Logger from 'nightingale-logger';
 import { AccountId, User, Account } from '../../../types.d';
@@ -105,13 +104,7 @@ export default class UserAccountsService extends EventEmitter {
 
     const profile = await service.getProfile(tokens);
 
-    const plusProfile = await fetch(
-      `https://www.googleapis.com/plus/v1/people/me?access_token=${
-        tokens.accessToken
-      }`,
-    ).then((response) => response.json());
-
-    const emails = service.getEmails(profile, plusProfile);
+    const emails = service.getEmails(profile);
 
     let user:
       | Partial<User>
