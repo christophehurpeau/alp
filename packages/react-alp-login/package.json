@@ -79,7 +79,7 @@
     "prettier": "1.16.4",
     "react": "^16.8.1",
     "react-icons": "^3.3.0",
-    "typescript": "3.3.3",
+    "typescript": "3.3.3333",
     "ynnub": "1.1.1"
   }
 }
