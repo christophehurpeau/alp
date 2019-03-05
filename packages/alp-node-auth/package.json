@@ -58,7 +58,7 @@
     "eslint-plugin-node": "8.0.1",
     "liwi-mongo": "4.1.0",
     "liwi-store": "4.1.0",
-    "pob-babel": "23.6.2",
+    "pob-babel": "23.6.7",
     "prettier": "1.16.4",
     "typescript": "3.3.3"
   }

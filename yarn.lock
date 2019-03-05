@@ -2790,6 +2790,11 @@ babel-plugin-fix-class-properties-uninitialized@^1.1.1:
   resolved "https://registry.yarnpkg.com/babel-plugin-fix-class-properties-uninitialized/-/babel-plugin-fix-class-properties-uninitialized-1.1.1.tgz#f803dd8745e8c396cebe4d9e2ce042247e357bf8"
   integrity sha512-aiTjFTCjo3rzfH4fjvFpmxaThkVwSndc5eHFo9yqPdDbH+FlxUtCoz5LJQUdAImaAgM9EPEQ+u1vFWm6qgIjGQ==
 
+babel-plugin-fix-class-properties-uninitialized@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/babel-plugin-fix-class-properties-uninitialized/-/babel-plugin-fix-class-properties-uninitialized-1.1.6.tgz#4426d39fd78b96ddbe0daf814f9753e44558b143"
+  integrity sha512-99gYxk7ltRmr5L+S90ExT2vT4QVEd6WlxYhbj7pNCKLmVmIF+22q6OAAOlD4uro0ExbUDOw4ZBpZ6Z2fPxu+HQ==
+
 babel-plugin-import-export-rename@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-import-export-rename/-/babel-plugin-import-export-rename-1.0.1.tgz#194dc19bb79ac2598260a0b3a9a9278c99c77402"
@@ -2856,6 +2861,11 @@ babel-plugin-pob-babel@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-pob-babel/-/babel-plugin-pob-babel-0.7.1.tgz#746053351dd030f222397e1dffe3ee62aee2383a"
   integrity sha512-Oor9PlO2oBwNlz+Rho7Y8bb96Ut/tGhgfWnz4K4kLvX6ahSCLiK9iS+2qpqk/cFfapjXtrQEb3hC3R4S/19tLA==
+
+babel-plugin-pob-babel@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/babel-plugin-pob-babel/-/babel-plugin-pob-babel-0.7.6.tgz#064fa7a4e1934b75bfa811f55b9bf1b71c38e3bf"
+  integrity sha512-lWyo6oySdd6Y2XnxBPYSjw8DtqIULwrufi0Q/4mgoPSxqGBzqRKx0jbEKBgxZbkdF4smoYn2KwGcUyC+/AjTiQ==
 
 babel-plugin-transform-inline-consecutive-adds@^0.4.3:
   version "0.4.3"
@@ -2951,6 +2961,23 @@ babel-preset-pob-env@^2.14.1:
     babel-plugin-import-export-rename "^1.0.1"
     babel-plugin-minify-replace "^0.5.0"
     babel-plugin-pob-babel "^0.7.1"
+    babel-plugin-transform-name-export-default "^1.0.0"
+    babel-preset-optimizations "^1.6.0"
+
+babel-preset-pob-env@^2.15.3:
+  version "2.15.3"
+  resolved "https://registry.yarnpkg.com/babel-preset-pob-env/-/babel-preset-pob-env-2.15.3.tgz#4e5238c45d0351b3e5abd0e3f3052b64405a8a67"
+  integrity sha512-fwtuV0Uo/dswVfoI1BziZDEI35qn15fi8ozzgh+lAx2Di2JQo47q6Zl1OlP0htujdALZzbbtOc6wN7pif54hkw==
+  dependencies:
+    "@babel/plugin-proposal-class-properties" "^7.2.3"
+    "@babel/plugin-proposal-export-default-from" "^7.2.0"
+    "@babel/plugin-proposal-export-namespace-from" "^7.2.0"
+    "@babel/preset-typescript" "^7.1.0"
+    babel-plugin-discard-module-references "^1.1.2"
+    babel-plugin-fix-class-properties-uninitialized "^1.1.6"
+    babel-plugin-import-export-rename "^1.0.1"
+    babel-plugin-minify-replace "^0.5.0"
+    babel-plugin-pob-babel "^0.7.6"
     babel-plugin-transform-name-export-default "^1.0.0"
     babel-preset-optimizations "^1.6.0"
 
@@ -10298,14 +10325,14 @@ pn@^1.1.0:
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
-pob-babel@23.6.2:
-  version "23.6.2"
-  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-23.6.2.tgz#c626333d474593fa5e6a445ca3a6c25b8482b412"
-  integrity sha512-p5ZIoe0njMdYRYutMt+rtFgdVdB4yJNOgjji/2rlKPxMXukgSpUTeGzIRfaXpvPnlK5U0SZmMPrvabpGjGlr3g==
+pob-babel@23.6.7:
+  version "23.6.7"
+  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-23.6.7.tgz#84e29882c07abe075249bab3260dc39494b6b69f"
+  integrity sha512-vo7tZ+hQttT7q/4jY+ZcnJjxASn6p491d1MzcCC7II/slpkrTjzMRBZQmyrqhrnMYexBzUrJSIDidjFwO7vH9g==
   dependencies:
     "@babel/preset-flow" "^7.0.0"
     babel-plugin-external-helpers "^6.22.0"
-    babel-preset-pob-env "^2.14.1"
+    babel-preset-pob-env "^2.15.3"
     rollup "^1.1.2"
     rollup-config-external-dependencies "^0.2.0"
     rollup-plugin-babel "^4.3.2"
