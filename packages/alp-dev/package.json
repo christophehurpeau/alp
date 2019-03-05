@@ -99,7 +99,7 @@
     "ynnub-webpack-config": "1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.2.2",
+    "@babel/core": "7.3.4",
     "@types/autoprefixer": "^9.1.1",
     "@types/execa": "^0.9.0",
     "@types/glob": "^7.1.1",
