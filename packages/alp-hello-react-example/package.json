@@ -8,8 +8,7 @@
   "scripts": {
     "start": "alp-dev",
     "lint": "eslint --ext .ts,.tsx --fix src/",
-    "build": "alp-dev-build",
-    "preversion": "npm run lint && pob-repository-check-clean"
+    "build": "alp-dev-build"
   },
   "prettier": {
     "trailingComma": "all",
