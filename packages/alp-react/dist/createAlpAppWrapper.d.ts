@@ -22,9 +22,9 @@ declare const _default: (app: React.ReactChild, context: Context) => {
         context: any;
         setState<K extends "error" | "appState">(state: AlpAppState | ((prevState: Readonly<AlpAppState>, props: Readonly<AlpAppProps>) => AlpAppState | Pick<AlpAppState, K> | null) | Pick<AlpAppState, K> | null, callback?: (() => void) | undefined): void;
         forceUpdate(callBack?: (() => void) | undefined): void;
-        readonly props: Readonly<{
+        readonly props: Readonly<AlpAppProps> & Readonly<{
             children?: React.ReactNode;
-        }> & Readonly<AlpAppProps>;
+        }>;
         refs: {
             [key: string]: React.ReactInstance;
         };
@@ -39,9 +39,9 @@ declare const _default: (app: React.ReactChild, context: Context) => {
         context: any;
         setState<K extends "error" | "appState">(state: AlpAppState | ((prevState: Readonly<AlpAppState>, props: Readonly<AlpAppProps>) => AlpAppState | Pick<AlpAppState, K> | null) | Pick<AlpAppState, K> | null, callback?: (() => void) | undefined): void;
         forceUpdate(callBack?: (() => void) | undefined): void;
-        readonly props: Readonly<{
+        readonly props: Readonly<AlpAppProps> & Readonly<{
             children?: React.ReactNode;
-        }> & Readonly<AlpAppProps>;
+        }>;
         refs: {
             [key: string]: React.ReactInstance;
         };

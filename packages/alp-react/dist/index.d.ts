@@ -11,6 +11,6 @@ interface Options {
     styleName?: string | false;
 }
 export declare type ReactAppCallback = (ctx: Context) => Promise<void>;
-declare const _default: (App: React.ReactType<any>, options?: Options) => ReactAppCallback;
+declare const _default: (App: React.ElementType<any>, options?: Options) => ReactAppCallback;
 export default _default;
 //# sourceMappingURL=index.d.ts.map

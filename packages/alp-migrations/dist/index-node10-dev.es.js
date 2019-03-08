@@ -9,10 +9,10 @@ function readRecursiveDirectory(directory, callback) {
       Promise.all(files.map(file => {
         const path = `${directory}/${file}`;
         return new Promise((resolve, reject) => {
-          stat(path, (err, stat$$1) => {
+          stat(path, (err, stat) => {
             if (err) return reject(err);
 
-            if (stat$$1 && stat$$1.isDirectory()) {
+            if (stat && stat.isDirectory()) {
               return readRecursiveDirectory(path, callback).then(resolve).catch(reject);
             }
 
@@ -21,7 +21,7 @@ function readRecursiveDirectory(directory, callback) {
                 filename: file,
                 basedir: directory,
                 path,
-                stat: stat$$1
+                stat
               })).then(() => resolve()).catch(reject);
             } catch (err2) {
               return reject(err2);
@@ -58,9 +58,9 @@ async function migrate({
   config = app.config,
   dirname = `${app.dirname}/migrations`
 }) {
-  const unhandledRejectionHandler = err => {
+  const unhandledRejectionHandler = reason => {
     logger.error('unhandledRejection', {
-      err
+      err: reason
     });
     process.exit(1);
   };

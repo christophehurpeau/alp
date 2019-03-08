@@ -7,7 +7,8 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var fs = require('fs');
 var path = _interopDefault(require('path'));
 var util = require('util');
-var Koa = _interopDefault(require('koa'));
+var Koa = require('koa');
+var Koa__default = _interopDefault(Koa);
 var compress = _interopDefault(require('koa-compress'));
 var serve = _interopDefault(require('koa-static'));
 var _config = require('alp-node-config');
@@ -43,7 +44,7 @@ const configPath = fs.existsSync(buildedConfigPath) ? buildedConfigPath : `${app
 const config = new _config.Config(configPath).loadSync({
   packageConfig
 });
-class Alp extends Koa {
+class Alp extends Koa__default {
   /**
    * @param {Object} [options]
    * @param {string} [options.certPath] directory of the ssl certificates

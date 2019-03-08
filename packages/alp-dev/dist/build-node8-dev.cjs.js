@@ -108,9 +108,9 @@ const build = (src = './src/config', onChanged) => Promise.all(glob.sync(path.jo
 });
 
 child_process.execSync(`rm -Rf ${path.resolve('public')}/* ${path.resolve('build')}/*`);
-Promise.all([build(), ...['build-node', 'build-modern-browser', 'build-older-browser'].map(path$$1 => {
-  const instance = execa('node', [__filename.replace('/build-', `/${path$$1}-`)]);
-  instance.stdout.pipe(process.stdout);
+Promise.all([build(), ...['build-node', 'build-modern-browser', 'build-older-browser'].map(path => {
+  const instance = execa('node', [__filename.replace('/build-', `/${path}-`)]);
+  if (instance.stdout) instance.stdout.pipe(process.stdout);
   return instance;
 })]).then(() => {
   console.log('done !');

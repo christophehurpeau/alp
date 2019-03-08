@@ -64,9 +64,9 @@ async function migrate({
   config = app.config,
   dirname = `${app.dirname}/migrations`
 }) {
-  const unhandledRejectionHandler = err => {
+  const unhandledRejectionHandler = reason => {
     logger.error('unhandledRejection', {
-      err
+      err: reason
     });
     process.exit(1);
   };

@@ -30,7 +30,7 @@ var writeFile = ((target, content) => new Promise((resolve, reject) => {
   });
 }));
 
-function loadConfigFile(content, dirname$$1) {
+function loadConfigFile(content, dirname) {
   const data = safeLoad(content) || {};
   const config = data.shared || data.common || {};
   const serverConfig = { ...config,
@@ -41,7 +41,7 @@ function loadConfigFile(content, dirname$$1) {
   };
 
   if (data.include) {
-    const includePaths = data.include.map(includePath => path.resolve(dirname$$1, includePath));
+    const includePaths = data.include.map(includePath => path.resolve(dirname, includePath));
     includePaths.map(includePath => readFileSync(includePath, 'utf-8')).map((content, index) => loadConfigFile(content, path.dirname(includePaths[index]))).forEach(([includeServerConfig, includeBrowserConfig]) => {
       [{
         config: serverConfig,

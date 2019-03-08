@@ -107,7 +107,7 @@ function (_Ibex) {
     };
   }();
 
-  _proto.existsConfig = function existsConfig$$1(name) {
+  _proto.existsConfig = function existsConfig$1(name) {
     return existsConfig("/config" + name);
   };
 

@@ -6,29 +6,29 @@ import glob from 'glob';
 import mkdirp from 'mkdirp';
 import { safeLoad } from 'js-yaml';
 
-var readFile = (target => new Promise((resolve$$1, reject) => {
+var readFile = (target => new Promise((resolve, reject) => {
   fs.readFile(target, 'utf-8', (err, content) => {
     if (err) {
       return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
     }
 
-    resolve$$1(content);
+    resolve(content);
   });
 }));
 
-var writeFile = ((target, content) => new Promise((resolve$$1, reject) => {
+var writeFile = ((target, content) => new Promise((resolve, reject) => {
   mkdirp(path.dirname(target), () => {
     fs.writeFile(target, content, err => {
       if (err) {
         return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
       }
 
-      resolve$$1();
+      resolve();
     });
   });
 }));
 
-function loadConfigFile(content, dirname$$1) {
+function loadConfigFile(content, dirname) {
   const data = safeLoad(content) || {};
   const config = data.shared || data.common || {};
   const serverConfig = { ...config,
@@ -39,7 +39,7 @@ function loadConfigFile(content, dirname$$1) {
   };
 
   if (data.include) {
-    const includePaths = data.include.map(includePath => path.resolve(dirname$$1, includePath));
+    const includePaths = data.include.map(includePath => path.resolve(dirname, includePath));
     includePaths.map(includePath => readFileSync(includePath, 'utf-8')).map((content, index) => loadConfigFile(content, path.dirname(includePaths[index]))).forEach(([includeServerConfig, includeBrowserConfig]) => {
       [{
         config: serverConfig,
@@ -102,9 +102,9 @@ const build = (src = './src/config', onChanged) => Promise.all(glob.sync(join(sr
 });
 
 execSync(`rm -Rf ${resolve('public')}/* ${resolve('build')}/*`);
-Promise.all([build(), ...['build-node', 'build-modern-browser', 'build-older-browser'].map(path$$1 => {
-  const instance = execa('node', [__filename.replace('/build-', `/${path$$1}-`)]);
-  instance.stdout.pipe(process.stdout);
+Promise.all([build(), ...['build-node', 'build-modern-browser', 'build-older-browser'].map(path => {
+  const instance = execa('node', [__filename.replace('/build-', `/${path}-`)]);
+  if (instance.stdout) instance.stdout.pipe(process.stdout);
   return instance;
 })]).then(() => {
   console.log('done !');

@@ -9,6 +9,6 @@ declare global {
         __INITIAL_DATA__: any;
     }
 }
-declare const _default: (app: BrowserApplication) => (App: React.ReactType<{}>) => Promise<void>;
+declare const _default: (app: BrowserApplication) => (App: React.ElementType<{}>) => Promise<void>;
 export default _default;
 //# sourceMappingURL=browser.d.ts.map

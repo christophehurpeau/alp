@@ -1,6 +1,6 @@
 import argv from 'minimist-argv';
 import path from 'path';
-import { createAppBrowserCompiler, MODERN, runDevServer } from 'pobpack-browser';
+import { createAppBrowserCompiler, MODERN, runDevServer as runDevServer$1 } from 'pobpack-browser';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
@@ -83,7 +83,7 @@ var createPobpackConfig = ((target, production = false) => ({
 }));
 
 const createModernBrowserCompiler = production => createAppBrowserCompiler(MODERN, createPobpackConfig('modern-browser', production));
-const runDevServer$1 = (compiler, port, proxyPort, options) => runDevServer(compiler, {
+const runDevServer = (compiler, port, proxyPort, options) => runDevServer$1(compiler, {
   port: proxyPort,
   https: false,
   contentBase: path.resolve('public'),
@@ -99,7 +99,7 @@ const runDevServer$1 = (compiler, port, proxyPort, options) => runDevServer(comp
 });
 
 const browserCompiler = createModernBrowserCompiler(false);
-runDevServer$1(browserCompiler, argv.port, argv['proxy-port'], {
+runDevServer(browserCompiler, argv.port, argv['proxy-port'], {
   host: argv.host
 });
 //# sourceMappingURL=watch-browser-node10-dev.es.js.map
