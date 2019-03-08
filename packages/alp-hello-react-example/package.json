@@ -23,7 +23,7 @@
     "react": "16.8.4",
     "react-alp-context": "1.0.0",
     "react-alp-translate": "^1.0.1",
-    "ynnub": "1.1.1"
+    "ynnub": "1.1.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "1.4.2",
