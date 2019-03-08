@@ -14,7 +14,7 @@ Promise.all([
       const instance = execa('node', [
         __filename.replace('/build-', `/${path}-`),
       ]);
-      instance.stdout.pipe(process.stdout);
+      if (instance.stdout) instance.stdout.pipe(process.stdout);
       return instance;
     },
   ),
