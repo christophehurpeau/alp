@@ -68,11 +68,11 @@
     "alp-dev": "*"
   },
   "dependencies": {
-    "@types/react-dom": "^16.8.0",
+    "@types/react-dom": "^16.8.2",
     "@types/react-helmet": "^5.0.8",
     "alp-types": "^1.0.0",
     "content-loaded": "^1.2.1",
-    "modern-browsers": "^1.0.1",
+    "modern-browsers": "^1.2.0",
     "nightingale-logger": "^6.0.0",
     "react-alp-context": "^1.0.0",
     "react-helmet": "^5.2.0"
@@ -94,11 +94,11 @@
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-react": "7.12.4",
-    "eslint-plugin-react-hooks": "1.4.0",
+    "eslint-plugin-react-hooks": "1.5.0",
     "pob-babel": "23.6.7",
     "prettier": "1.16.4",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "typescript": "3.3.3333"
   }
 }

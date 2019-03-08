@@ -37,7 +37,7 @@
     "arrowParens": "always"
   },
   "dependencies": {
-    "@types/webpack-env": "^1.13.7",
+    "@types/webpack-env": "^1.13.9",
     "alp-browser-config": "^4.0.0",
     "alp-browser-language": "^2.0.0",
     "alp-translate": "^3.0.0",
