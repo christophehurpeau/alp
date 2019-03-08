@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/christophehurpeau/alp/compare/alp-migrations@2.0.0...alp-migrations@2.0.1) (2019-03-08)
+
+
+### Bug Fixes
+
+* unhandledRejectionHandler typings ([7b54834](https://github.com/christophehurpeau/alp/commit/7b54834))
+
+
+
+
+
 # [2.0.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@1.0.0...alp-migrations@2.0.0) (2019-03-05)
 
 

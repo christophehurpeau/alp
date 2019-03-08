@@ -1,6 +1,6 @@
 {
   "name": "react-alp-subscribe-container",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "react subscribe-container, works with alp-websocket",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -47,7 +47,7 @@
   "dependencies": {
     "@types/react": "^16.8.7",
     "nightingale-logger": "^6.0.0",
-    "react-alp-context": "^1.0.0"
+    "react-alp-context": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.3.4",

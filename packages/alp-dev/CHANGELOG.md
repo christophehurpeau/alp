@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.1](https://github.com/christophehurpeau/alp/compare/alp-dev@11.0.0...alp-dev@11.0.1) (2019-03-08)
+
+
+### Bug Fixes
+
+* instance.stdout can be null ([93df9f1](https://github.com/christophehurpeau/alp/commit/93df9f1))
+
+
+
+
+
 # 11.0.0 (2019-02-17)
 
 

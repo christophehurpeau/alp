@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/christophehurpeau/alp/compare/alp-body-parser@3.0.0...alp-body-parser@3.0.1) (2019-03-08)
+
+
+### Bug Fixes
+
+* peerdep alp-node ([e0e3670](https://github.com/christophehurpeau/alp/commit/e0e3670))
+
+
+
+
+
 # 3.0.0 (2019-02-17)
 
 

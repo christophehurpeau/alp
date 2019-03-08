@@ -1,6 +1,6 @@
 {
   "name": "alp-react",
-  "version": "15.0.0",
+  "version": "15.0.1",
   "description": "render with react in alp framework",
   "keywords": ["alp", "auk"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -74,7 +74,7 @@
     "content-loaded": "^1.2.1",
     "modern-browsers": "^1.2.0",
     "nightingale-logger": "^6.0.0",
-    "react-alp-context": "^1.0.0",
+    "react-alp-context": "^1.0.1",
     "react-helmet": "^5.2.0"
   },
   "devDependencies": {
@@ -83,7 +83,7 @@
     "@babel/preset-react": "7.0.0",
     "@typescript-eslint/eslint-plugin": "1.4.2",
     "@typescript-eslint/parser": "1.4.2",
-    "alp-dev": "^11.0.0",
+    "alp-dev": "^11.0.1",
     "babel-eslint": "10.0.1",
     "babel-preset-latest-node": "3.0.1",
     "babel-preset-modern-browsers": "13.0.1",

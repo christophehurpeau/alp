@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/christophehurpeau/alp/compare/react-alp-login@1.0.1...react-alp-login@1.0.2) (2019-03-08)
+
+
+### Bug Fixes
+
+* **react-alp-login:** components return type ([23f2eee](https://github.com/christophehurpeau/alp/commit/23f2eee))
+
+
+
+
+
 ## [1.0.1](https://github.com/christophehurpeau/alp/compare/react-alp-login@1.0.0...react-alp-login@1.0.1) (2019-03-05)
 
 **Note:** Version bump only for package react-alp-login
