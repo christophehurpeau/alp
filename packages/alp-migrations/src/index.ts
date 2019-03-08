@@ -24,8 +24,8 @@ export default async function migrate({
   config = app.config,
   dirname = `${app.dirname}/migrations`,
 }: Options) {
-  const unhandledRejectionHandler = (err: Error) => {
-    logger.error('unhandledRejection', { err });
+  const unhandledRejectionHandler = (reason: any) => {
+    logger.error('unhandledRejection', { err: reason });
     process.exit(1);
   };
   process.on('unhandledRejection', unhandledRejectionHandler);
