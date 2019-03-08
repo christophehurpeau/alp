@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
+import React, { ReactComponentElement } from 'react';
 import LoginButtonGoogle from './LoginButtonGoogle';
 
-export default (): ReactElement<'ul'> => (
+export default (): ReactComponentElement<'ul'> => (
   <ul>
     <li>
       <LoginButtonGoogle />
