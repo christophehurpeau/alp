@@ -3073,7 +3073,23 @@ babel-preset-latest-node@3.0.1, babel-preset-latest-node@^3.0.1:
     "@babel/plugin-transform-function-name" "^7.1.0"
     "@babel/plugin-transform-modules-commonjs" "^7.1.0"
 
-babel-preset-modern-browsers@13.0.1, babel-preset-modern-browsers@^13.0.1:
+babel-preset-modern-browsers@13.1.0:
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-modern-browsers/-/babel-preset-modern-browsers-13.1.0.tgz#65c721fceef2d6e8a40efc7094a210fcb26b0587"
+  integrity sha512-c7xXqroqRFeKLlf0D9gvEIeNHxzJKC6OKplJS8qHfzPAvpAObTZRN53gPZGUPenmGDr2TLc0scewQjp4Myymyw==
+  dependencies:
+    "@babel/plugin-proposal-async-generator-functions" "^7.2.0"
+    "@babel/plugin-proposal-object-rest-spread" "^7.3.4"
+    "@babel/plugin-proposal-optional-catch-binding" "^7.2.0"
+    "@babel/plugin-proposal-unicode-property-regex" "^7.2.0"
+    "@babel/plugin-syntax-async-generators" "^7.2.0"
+    "@babel/plugin-syntax-object-rest-spread" "^7.2.0"
+    "@babel/plugin-syntax-optional-catch-binding" "^7.2.0"
+    "@babel/plugin-transform-arrow-functions" "^7.2.0"
+    "@babel/plugin-transform-function-name" "^7.2.0"
+    "@babel/plugin-transform-modules-commonjs" "^7.2.0"
+
+babel-preset-modern-browsers@^13.0.1:
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/babel-preset-modern-browsers/-/babel-preset-modern-browsers-13.0.1.tgz#a04f002923c11011d564b64f8183f5d2ccf28392"
   integrity sha512-HIWYwr1Y+yweOLolAVwYuRi7ifJnH4IIoPzkrp4E/TT35MDea257Zwn3/PGSSOsiMI6J0nzjzfVOVMQC4GnElQ==
