@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://github.com/christophehurpeau/alp/compare/alp-dev@11.1.0...alp-dev@11.1.1) (2019-03-29)
+
+
+### Reverts
+
+* feat: remove react-alp-login in includeModules ([0ca0610](https://github.com/christophehurpeau/alp/commit/0ca0610))
+
+
+
+
+
 # [11.1.0](https://github.com/christophehurpeau/alp/compare/alp-dev@11.0.1...alp-dev@11.1.0) (2019-03-29)
 
 
