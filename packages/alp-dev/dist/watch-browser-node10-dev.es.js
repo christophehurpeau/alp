@@ -10,7 +10,7 @@ var createPobpackConfig = ((target, production = false) => ({
   env: process.env.NODE_ENV,
   hmr: !production,
   typescript: true,
-  includeModules: ['ynnub'],
+  includeModules: ['ynnub', 'react-alp-login'],
   paths: {
     build: target === 'node' ? 'build' : 'public'
   },
