@@ -3,6 +3,7 @@ import Logger from 'nightingale-logger';
 import { AccountId, User, Account } from '../../../types.d';
 import MongoUsersManager from '../../MongoUsersManager';
 import userAccountGoogleService from './userAccountGoogleService';
+import userAccountSlackService from './userAccountSlackService';
 
 interface TokensObject {
   accessToken: string;
@@ -22,6 +23,7 @@ export const STATUSES = {
 export default class UserAccountsService extends EventEmitter {
   static strategyToService: { [key: string]: any } = {
     google: userAccountGoogleService,
+    slack: userAccountSlackService,
   };
 
   usersManager: MongoUsersManager;
@@ -39,6 +41,10 @@ export default class UserAccountsService extends EventEmitter {
   ) {
     logger.debug('getScope', { strategy, userId: user && user._id });
     const service = UserAccountsService.strategyToService[strategy];
+    if (!service) {
+      throw new Error('Strategy not supported');
+    }
+
     const newScope = service.constructor.scopeKeyToScope[scopeKey];
     if (!user || !accountId) {
       return newScope;
@@ -90,19 +96,20 @@ export default class UserAccountsService extends EventEmitter {
     return user;
   }
 
-  async findOrCreateFromGoogle(
+  async findOrCreateFromStrategy(
     strategy: string,
     tokens: TokensObject,
     scope: string,
     subservice: string,
   ): Promise<User> {
-    if (strategy !== 'google') {
-      throw new Error('Not supported at the moment');
-    }
-
     const service = UserAccountsService.strategyToService[strategy];
 
+    if (!service) {
+      throw new Error('Strategy not supported');
+    }
+
     const profile = await service.getProfile(tokens);
+    console.log({ profile });
 
     const emails = service.getEmails(profile);
 

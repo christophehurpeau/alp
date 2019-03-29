@@ -21,7 +21,7 @@ export default class UserAccountsService extends EventEmitter {
     constructor(usersManager: MongoUsersManager);
     getScope(strategy: string, scopeKey: string, user?: User, accountId?: AccountId): any;
     update(user: User, strategy: string, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
-    findOrCreateFromGoogle(strategy: string, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
+    findOrCreateFromStrategy(strategy: string, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
     updateAccount(user: User, account: Account): Promise<User>;
 }
 export {};

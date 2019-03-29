@@ -259,7 +259,7 @@ export default class AuthenticationService extends EventEmitter {
     });
 
     if (cookie.isLoginAccess) {
-      const user = await this.userAccountsService.findOrCreateFromGoogle(
+      const user = await this.userAccountsService.findOrCreateFromStrategy(
         strategy,
         tokens,
         cookie.scope,
