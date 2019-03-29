@@ -1,6 +1,6 @@
 {
   "name": "alp-hello-react-example",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "Say hello, with alp and react",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "alp-browser": "^1.0.1",
-    "alp-node": "^1.0.2",
+    "alp-node": "^1.0.3",
     "alp-react": "^15.0.3",
     "nightingale-app-console": "3.1.0",
     "react": "16.8.4",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/christophehurpeau/alp/compare/alp-node-config@4.0.2...alp-node-config@4.0.3) (2019-03-29)
+
+
+### Bug Fixes
+
+* version undefined ([019a65c](https://github.com/christophehurpeau/alp/commit/019a65c))
+
+
+
+
+
 ## [4.0.2](https://github.com/christophehurpeau/alp/compare/alp-node-config@4.0.1...alp-node-config@4.0.2) (2019-03-29)
 
 
