@@ -3,7 +3,7 @@ import { FaGoogle } from 'react-icons/fa';
 import Button, { ButtonProps } from 'ynnub/components/Button';
 
 interface Props extends ButtonProps {
-  label?: string;
+  label?: ButtonProps['label'];
 }
 
 export default ({
