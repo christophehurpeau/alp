@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/christophehurpeau/alp/compare/react-alp-login@2.0.0...react-alp-login@2.0.1) (2019-03-29)
+
+
+### Bug Fixes
+
+* typings label button login ([8397566](https://github.com/christophehurpeau/alp/commit/8397566))
+
+
+
+
+
 # [2.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-login@1.0.2...react-alp-login@2.0.0) (2019-03-29)
 
 
