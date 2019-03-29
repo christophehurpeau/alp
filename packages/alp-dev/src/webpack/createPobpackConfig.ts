@@ -17,7 +17,7 @@ export default (
   hmr: !production,
   typescript: true,
 
-  includeModules: ['ynnub', 'react-alp-login'],
+  includeModules: ['ynnub'],
 
   paths: {
     build: target === 'node' ? 'build' : 'public',
