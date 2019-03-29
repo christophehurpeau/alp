@@ -47,7 +47,7 @@ class Config {
       throw new Error('Cannot have "version", in config.');
     }
 
-    config.set('version', version || String(argv.version) || packageConfig && packageConfig.version);
+    config.set('version', String(version || argv.version || packageConfig && packageConfig.version));
     const socketPath = argv['socket-path'] || argv.socketPath;
 
     if (socketPath) {

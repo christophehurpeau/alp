@@ -58,9 +58,9 @@ export class Config {
 
     config.set(
       'version',
-      version ||
-        String(argv.version) ||
-        (packageConfig && packageConfig.version),
+      String(
+        version || argv.version || (packageConfig && packageConfig.version),
+      ),
     );
 
     const socketPath = argv['socket-path'] || argv.socketPath;
