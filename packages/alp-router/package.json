@@ -64,6 +64,6 @@
     "pob-babel": "23.6.7",
     "prettier": "1.16.4",
     "router-segments": "^2.0.0",
-    "typescript": "3.3.3333"
+    "typescript": "3.4.1"
   }
 }

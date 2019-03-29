@@ -51,6 +51,6 @@
     "eslint-plugin-import": "2.16.0",
     "pob-babel": "23.6.7",
     "prettier": "1.16.4",
-    "typescript": "3.3.3333"
+    "typescript": "3.4.1"
   }
 }
