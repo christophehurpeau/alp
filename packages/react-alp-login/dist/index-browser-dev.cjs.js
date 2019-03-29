@@ -71,7 +71,34 @@ var LoginButtons = (function () {
   })));
 });
 
+var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/react-alp-login/src/LoginButtonSlack.tsx";
+var LoginButtonSlack = (function (_ref) {
+  var _ref$label = _ref.label,
+      label = _ref$label === void 0 ? 'Login with Slack' : _ref$label,
+      otherProps = _objectWithoutPropertiesLoose(_ref, ["label"]);
+
+  return React.createElement(Button, Object.assign({
+    href: "/login/slack",
+    icon: React.createElement(fa.FaSlack, {
+      __source: {
+        fileName: _jsxFileName$2,
+        lineNumber: 15
+      },
+      __self: this
+    }),
+    label: label
+  }, otherProps, {
+    __source: {
+      fileName: _jsxFileName$2,
+      lineNumber: 13
+    },
+    __self: this
+  }));
+});
+
 // export { default as LoginForm } from './LoginForm';
 
 exports.LoginButtons = LoginButtons;
+exports.LoginButtonGoogle = LoginButtonGoogle;
+exports.LoginButtonSlack = LoginButtonSlack;
 //# sourceMappingURL=index-browser-dev.cjs.js.map

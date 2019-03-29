@@ -19,7 +19,18 @@ var LoginButtonGoogle = (({
 
 var LoginButtons = (() => React.createElement("ul", null, React.createElement("li", null, React.createElement(LoginButtonGoogle, null))));
 
+var LoginButtonSlack = (({
+  label = 'Login with Slack',
+  ...otherProps
+}) => React.createElement(Button, Object.assign({
+  href: "/login/slack",
+  icon: React.createElement(fa.FaSlack, null),
+  label: label
+}, otherProps)));
+
 // export { default as LoginForm } from './LoginForm';
 
 exports.LoginButtons = LoginButtons;
+exports.LoginButtonGoogle = LoginButtonGoogle;
+exports.LoginButtonSlack = LoginButtonSlack;
 //# sourceMappingURL=index-node8.cjs.js.map

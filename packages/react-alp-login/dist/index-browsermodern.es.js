@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGoogle } from 'react-icons/fa';
+import { FaGoogle, FaSlack } from 'react-icons/fa';
 import Button from 'ynnub/components/Button';
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -34,7 +34,20 @@ var LoginButtons = (function () {
   return React.createElement("ul", null, React.createElement("li", null, React.createElement(LoginButtonGoogle, null)));
 });
 
+var LoginButtonSlack = (function (_ref) {
+  let {
+    label = 'Login with Slack'
+  } = _ref,
+      otherProps = _objectWithoutPropertiesLoose(_ref, ["label"]);
+
+  return React.createElement(Button, Object.assign({
+    href: "/login/slack",
+    icon: React.createElement(FaSlack, null),
+    label: label
+  }, otherProps));
+});
+
 // export { default as LoginForm } from './LoginForm';
 
-export { LoginButtons };
+export { LoginButtons, LoginButtonGoogle, LoginButtonSlack };
 //# sourceMappingURL=index-browsermodern.es.js.map

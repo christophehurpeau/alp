@@ -51,7 +51,31 @@ var LoginButtons = (() => React.createElement("ul", {
   __self: void 0
 }))));
 
+var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/react-alp-login/src/LoginButtonSlack.tsx";
+var LoginButtonSlack = (({
+  label = 'Login with Slack',
+  ...otherProps
+}) => React.createElement(Button, Object.assign({
+  href: "/login/slack",
+  icon: React.createElement(fa.FaSlack, {
+    __source: {
+      fileName: _jsxFileName$2,
+      lineNumber: 15
+    },
+    __self: void 0
+  }),
+  label: label
+}, otherProps, {
+  __source: {
+    fileName: _jsxFileName$2,
+    lineNumber: 13
+  },
+  __self: void 0
+})));
+
 // export { default as LoginForm } from './LoginForm';
 
 exports.LoginButtons = LoginButtons;
+exports.LoginButtonGoogle = LoginButtonGoogle;
+exports.LoginButtonSlack = LoginButtonSlack;
 //# sourceMappingURL=index-node8-dev.cjs.js.map

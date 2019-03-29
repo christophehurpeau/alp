@@ -35,8 +35,7 @@
       "testing": false,
       "documentation": false,
       "entries": [
-        "index",
-        "LoginButtonGoogle"
+        "index"
       ]
     }
   }
