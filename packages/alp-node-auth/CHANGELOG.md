@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.0.1...alp-node-auth@2.1.0) (2019-03-29)
+
+
+### Features
+
+* add slack auth ([8c2ffea](https://github.com/christophehurpeau/alp/commit/8c2ffea))
+
+
+
+
+
 ## [2.0.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.0.0...alp-node-auth@2.0.1) (2019-03-08)
 
 **Note:** Version bump only for package alp-node-auth

@@ -1,6 +1,6 @@
 {
   "name": "alp-hello-react-example",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Say hello, with alp and react",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "alp-browser": "^1.0.1",
-    "alp-node": "^1.0.1",
-    "alp-react": "^15.0.1",
+    "alp-node": "^1.0.2",
+    "alp-react": "^15.0.2",
     "nightingale-app-console": "3.1.0",
     "react": "16.8.4",
     "react-alp-context": "^1.0.1",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "1.4.2",
     "@typescript-eslint/parser": "1.4.2",
-    "alp-dev": "^11.0.1",
+    "alp-dev": "^11.1.0",
     "typescript": "3.3.3333"
   }
 }

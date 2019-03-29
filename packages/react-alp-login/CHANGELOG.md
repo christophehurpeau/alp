@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-login@1.0.2...react-alp-login@2.0.0) (2019-03-29)
+
+
+### Features
+
+* add slack button ([b3ca108](https://github.com/christophehurpeau/alp/commit/b3ca108))
+
+
+### BREAKING CHANGES
+
+* removed LoginButtonGoogle entry
+
+
+
+
+
 ## [1.0.2](https://github.com/christophehurpeau/alp/compare/react-alp-login@1.0.1...react-alp-login@1.0.2) (2019-03-08)
 
 

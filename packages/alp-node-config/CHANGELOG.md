@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/christophehurpeau/alp/compare/alp-node-config@4.0.1...alp-node-config@4.0.2) (2019-03-29)
+
+
+### Bug Fixes
+
+* build alp-node-config ([81cd61f](https://github.com/christophehurpeau/alp/commit/81cd61f))
+* force version as string ([eaedc73](https://github.com/christophehurpeau/alp/commit/eaedc73))
+
+
+
+
+
 ## [4.0.1](https://github.com/christophehurpeau/alp/compare/alp-node-config@4.0.0...alp-node-config@4.0.1) (2019-03-08)
 
 **Note:** Version bump only for package alp-node-config
