@@ -69,9 +69,10 @@ export default class UserAccountsService extends EventEmitter {
   ) {
     const service = UserAccountsService.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
+    const accountId = service.getId(profile);
     const account = user.accounts.find(
       (account) =>
-        account.provider === strategy && service.isAccount(account, profile),
+        account.provider === strategy && account.accountId === accountId,
     );
     if (!account) {
       // TODO check if already exists in other user => merge
@@ -103,13 +104,11 @@ export default class UserAccountsService extends EventEmitter {
     subservice: string,
   ): Promise<User> {
     const service = UserAccountsService.strategyToService[strategy];
-
-    if (!service) {
-      throw new Error('Strategy not supported');
-    }
+    if (!service) throw new Error('Strategy not supported');
 
     const profile = await service.getProfile(tokens);
-    console.log({ profile });
+    const accountId = service.getId(profile);
+    if (!accountId) throw new Error('Invalid profile: no id found');
 
     const emails = service.getEmails(profile);
 
@@ -117,7 +116,7 @@ export default class UserAccountsService extends EventEmitter {
       | Partial<User>
       | undefined = await this.usersManager.findOneByAccountOrEmails({
       provider: service.providerKey,
-      accountId: service.getId(profile),
+      accountId,
       emails,
     });
 
@@ -134,8 +133,6 @@ export default class UserAccountsService extends EventEmitter {
     });
 
     if (!user.accounts) user.accounts = [];
-
-    const accountId = service.getId(profile);
 
     let account: Partial<Account> | undefined = user.accounts.find(
       (account: Account) =>

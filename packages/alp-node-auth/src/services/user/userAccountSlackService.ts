@@ -18,14 +18,16 @@ export default new class UserAccountSlackService extends EventEmitter {
     ).then((response) => response.json());
   }
 
-  isAccount(account: any, profile: any) {
-    return (
-      account.slackUserId === profile.user.id &&
-      (account.teamUserId === profile.team.id || !account.teamUserId)
-    );
-  }
-
   getId(profile: any) {
+    if (
+      !profile ||
+      !profile.team ||
+      !profile.team.id ||
+      !profile.user ||
+      !profile.user.id
+    ) {
+      return null;
+    }
     return `team:${profile.team.id};user:${profile.user.id}`;
   }
 
@@ -34,7 +36,6 @@ export default new class UserAccountSlackService extends EventEmitter {
   }
 
   getEmails(profile: any) {
-    console.log(profile);
     return [profile.user.email];
   }
 

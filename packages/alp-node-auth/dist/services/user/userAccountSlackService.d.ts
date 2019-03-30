@@ -3,8 +3,7 @@ import { Tokens } from '../authentification/types';
 declare const _default: {
     providerKey: string;
     getProfile(tokens: Tokens): Promise<any>;
-    isAccount(account: any, profile: any): boolean;
-    getId(profile: any): string;
+    getId(profile: any): string | null;
     getAccountName(profile: any): any;
     getEmails(profile: any): any[];
     getDisplayName(profile: any): any;

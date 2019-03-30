@@ -17,10 +17,6 @@ export default new class UserAccountGoogleService extends EventEmitter {
     ).then((response) => response.json());
   }
 
-  isAccount(account: any, profile: any) {
-    return account.googleId === profile.id;
-  }
-
   getId(profile: any) {
     return profile.id;
   }

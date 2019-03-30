@@ -269,10 +269,6 @@ var userAccountGoogleService = new (_temp = _class = class extends EventEmitter 
     return fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`).then(response => response.json());
   }
 
-  isAccount(account, profile) {
-    return account.googleId === profile.id;
-  }
-
   getId(profile) {
     return profile.id;
   }
@@ -327,11 +323,11 @@ var userAccountSlackService = new (_temp$1 = _class$1 = class extends EventEmitt
     return fetch(`https://slack.com/api/users.identity?token=${tokens.accessToken}`).then(response => response.json());
   }
 
-  isAccount(account, profile) {
-    return account.slackUserId === profile.user.id && (account.teamUserId === profile.team.id || !account.teamUserId);
-  }
-
   getId(profile) {
+    if (!profile || !profile.team || !profile.team.id || !profile.user || !profile.user.id) {
+      return null;
+    }
+
     return `team:${profile.team.id};user:${profile.user.id}`;
   }
 
@@ -340,7 +336,6 @@ var userAccountSlackService = new (_temp$1 = _class$1 = class extends EventEmitt
   }
 
   getEmails(profile) {
-    console.log(profile);
     return [profile.user.email];
   }
 
@@ -404,7 +399,8 @@ class UserAccountsService extends EventEmitter {
   async update(user, strategy, tokens, scope, subservice) {
     const service = UserAccountsService.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
-    const account = user.accounts.find(account => account.provider === strategy && service.isAccount(account, profile));
+    const accountId = service.getId(profile);
+    const account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
 
     if (!account) {
       // TODO check if already exists in other user => merge
@@ -436,19 +432,14 @@ class UserAccountsService extends EventEmitter {
 
   async findOrCreateFromStrategy(strategy, tokens, scope, subservice) {
     const service = UserAccountsService.strategyToService[strategy];
-
-    if (!service) {
-      throw new Error('Strategy not supported');
-    }
-
+    if (!service) throw new Error('Strategy not supported');
     const profile = await service.getProfile(tokens);
-    console.log({
-      profile
-    });
+    const accountId = service.getId(profile);
+    if (!accountId) throw new Error('Invalid profile: no id found');
     const emails = service.getEmails(profile);
     let user = await this.usersManager.findOneByAccountOrEmails({
       provider: service.providerKey,
-      accountId: service.getId(profile),
+      accountId,
       emails
     });
     logger$1.info(!user ? 'create user' : 'existing user', {
@@ -466,7 +457,6 @@ class UserAccountsService extends EventEmitter {
       status: STATUSES.VALIDATED
     });
     if (!user.accounts) user.accounts = [];
-    const accountId = service.getId(profile);
     let account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
 
     if (!account) {
