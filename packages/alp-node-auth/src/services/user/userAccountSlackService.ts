@@ -19,11 +19,14 @@ export default new class UserAccountSlackService extends EventEmitter {
   }
 
   isAccount(account: any, profile: any) {
-    return account.slackUserId === profile.user.id;
+    return (
+      account.slackUserId === profile.user.id &&
+      (account.teamUserId === profile.team.id || !account.teamUserId)
+    );
   }
 
   getId(profile: any) {
-    return profile.id;
+    return `team:${profile.team.id};user:${profile.user.id}`;
   }
 
   getAccountName(profile: any) {

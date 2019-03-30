@@ -4,7 +4,7 @@ declare const _default: {
     providerKey: string;
     getProfile(tokens: Tokens): Promise<any>;
     isAccount(account: any, profile: any): boolean;
-    getId(profile: any): any;
+    getId(profile: any): string;
     getAccountName(profile: any): any;
     getEmails(profile: any): any[];
     getDisplayName(profile: any): any;

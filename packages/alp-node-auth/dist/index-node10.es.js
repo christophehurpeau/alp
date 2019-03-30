@@ -328,11 +328,11 @@ var userAccountSlackService = new (_temp$1 = _class$1 = class extends EventEmitt
   }
 
   isAccount(account, profile) {
-    return account.slackUserId === profile.user.id;
+    return account.slackUserId === profile.user.id && (account.teamUserId === profile.team.id || !account.teamUserId);
   }
 
   getId(profile) {
-    return profile.id;
+    return `team:${profile.team.id};user:${profile.user.id}`;
   }
 
   getAccountName(profile) {
