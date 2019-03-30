@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.1.0...alp-node-auth@2.1.1) (2019-03-30)
+
+
+### Bug Fixes
+
+* account id null ([f912d49](https://github.com/christophehurpeau/alp/commit/f912d49))
+* user id is not unique accross slack, use team ([74caf5c](https://github.com/christophehurpeau/alp/commit/74caf5c))
+
+
+
+
+
 # [2.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.0.1...alp-node-auth@2.1.0) (2019-03-29)
 
 
