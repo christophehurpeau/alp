@@ -37,11 +37,11 @@
   "dependencies": {
     "alp-types": "^1.0.0",
     "nightingale-logger": "^6.0.0",
-    "semver": "^5.6.0"
+    "semver": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.3.4",
-    "@types/semver": "^5.5.0",
+    "@types/semver": "6.0.0",
     "@typescript-eslint/eslint-plugin": "1.4.2",
     "@typescript-eslint/parser": "1.4.2",
     "babel-eslint": "10.0.1",
