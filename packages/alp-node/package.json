@@ -50,7 +50,7 @@
     "node-fetch": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.3.4",
+    "@babel/core": "7.4.3",
     "@types/findup-sync": "^2.0.1",
     "@types/koa-compress": "^2.0.8",
     "@types/koa-static": "^4.0.1",
