@@ -50,7 +50,7 @@
     "lint-staged": "8.1.5",
     "pob-release": "4.8.3",
     "repository-check-dirty": "1.0.2",
-    "yarn-update-lock": "0.3.2",
+    "yarn-update-lock": "0.3.5",
     "yarnhook": "0.4.0"
   }
 }
