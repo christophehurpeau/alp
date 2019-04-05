@@ -2,14 +2,14 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var path = _interopDefault(require('path'));
-var pobpackNode = require('pobpack-node');
-var OptimizeCssAssetsPlugin = _interopDefault(require('optimize-css-assets-webpack-plugin'));
-var MiniCssExtractPlugin = _interopDefault(require('mini-css-extract-plugin'));
-var autoprefixer = _interopDefault(require('autoprefixer'));
-var ynnubWebpackConfig = require('ynnub-webpack-config');
+const path = _interopDefault(require('path'));
+const pobpackNode = require('pobpack-node');
+const OptimizeCssAssetsPlugin = _interopDefault(require('optimize-css-assets-webpack-plugin'));
+const MiniCssExtractPlugin = _interopDefault(require('mini-css-extract-plugin'));
+const autoprefixer = _interopDefault(require('autoprefixer'));
+const ynnubWebpackConfig = require('ynnub-webpack-config');
 
-var createPobpackConfig = ((target, production = false) => ({
+const createPobpackConfig = ((target, production = false) => ({
   env: process.env.NODE_ENV,
   hmr: !production,
   typescript: true,

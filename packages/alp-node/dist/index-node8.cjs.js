@@ -4,22 +4,22 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var fs = require('fs');
-var path = _interopDefault(require('path'));
-var util = require('util');
-var Koa = require('koa');
-var Koa__default = _interopDefault(Koa);
-var compress = _interopDefault(require('koa-compress'));
-var serve = _interopDefault(require('koa-static'));
-var _config = require('alp-node-config');
-var _config__default = _interopDefault(_config);
-var errors = _interopDefault(require('alp-node-errors'));
-var params = _interopDefault(require('alp-params'));
-var language = _interopDefault(require('alp-node-language'));
-var translate = _interopDefault(require('alp-translate'));
-var _listen = _interopDefault(require('alp-listen'));
-var Logger = _interopDefault(require('nightingale-logger'));
-var findUp = _interopDefault(require('findup-sync'));
+const fs = require('fs');
+const path = _interopDefault(require('path'));
+const util = require('util');
+const Koa = require('koa');
+const Koa__default = _interopDefault(Koa);
+const compress = _interopDefault(require('koa-compress'));
+const serve = _interopDefault(require('koa-static'));
+const _config = require('alp-node-config');
+const _config__default = _interopDefault(_config);
+const errors = _interopDefault(require('alp-node-errors'));
+const params = _interopDefault(require('alp-params'));
+const language = _interopDefault(require('alp-node-language'));
+const translate = _interopDefault(require('alp-translate'));
+const _listen = _interopDefault(require('alp-listen'));
+const Logger = _interopDefault(require('nightingale-logger'));
+const findUp = _interopDefault(require('findup-sync'));
 
 const logger = new Logger('alp'); // see alp-dev
 
@@ -135,10 +135,15 @@ class Alp extends Koa__default {
 
 }
 
-exports.Config = _config.Config;
+Object.defineProperty(exports, 'Config', {
+  enumerable: true,
+  get: function () {
+    return _config.Config;
+  }
+});
 exports.appDirname = appDirname;
-exports.packageDirname = packageDirname;
-exports.packageConfig = packageConfig;
 exports.config = config;
 exports.default = Alp;
+exports.packageConfig = packageConfig;
+exports.packageDirname = packageDirname;
 //# sourceMappingURL=index-node8.cjs.js.map

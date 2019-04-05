@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = require('react');
-var React__default = _interopDefault(React);
-var ReactAlpContext = _interopDefault(require('react-alp-context'));
+const React = require('react');
+const React__default = _interopDefault(React);
+const ReactAlpContext = _interopDefault(require('react-alp-context'));
 
 class LinkComponent extends React.Component {
   render() {

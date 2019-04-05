@@ -38,5 +38,10 @@
         "index"
       ]
     }
+  },
+  "react-alp-login": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

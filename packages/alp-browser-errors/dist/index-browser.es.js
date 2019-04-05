@@ -1,3 +1,4 @@
+import _regeneratorRuntime from '@babel/runtime/regenerator';
 import ErrorHtmlRenderer from 'error-html';
 import Logger from 'nightingale-logger';
 
@@ -51,9 +52,9 @@ var errorMiddleware =
 function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(ctx, next) {
+  _regeneratorRuntime.mark(function _callee(ctx, next) {
     var errInstance;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+    return _regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:

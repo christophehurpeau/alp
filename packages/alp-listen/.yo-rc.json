@@ -24,5 +24,10 @@
         "index"
       ]
     }
+  },
+  "alp-listen": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

@@ -24,5 +24,10 @@
         "index"
       ]
     }
+  },
+  "alp-node-language": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

@@ -4,15 +4,15 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var http = require('http');
-var ErrorHtmlRenderer = _interopDefault(require('error-html'));
-var Logger = _interopDefault(require('nightingale-logger'));
+const http = require('http');
+const ErrorHtmlRenderer = _interopDefault(require('error-html'));
+const Logger = _interopDefault(require('nightingale-logger'));
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer({
   appPath: `${process.cwd()}/`
 });
-var index = (async (ctx, next) => {
+const index = (async (ctx, next) => {
   try {
     await next();
   } catch (err) {

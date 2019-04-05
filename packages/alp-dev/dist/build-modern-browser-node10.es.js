@@ -5,7 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
 import { createModuleRules } from 'ynnub-webpack-config';
 
-var createPobpackConfig = ((target, production = false) => ({
+const createPobpackConfig = ((target, production = false) => ({
   env: process.env.NODE_ENV,
   hmr: !production,
   typescript: true,

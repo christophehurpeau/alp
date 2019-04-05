@@ -5,10 +5,10 @@ import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
-var createAlpAppWrapper = (function (app, context) {
+const createAlpAppWrapper = (function (app, context) {
   var _temp;
 
-  return _temp = class extends Component {
+  return _temp = class AlpAppWrapper extends Component {
     constructor(...args) {
       super(...args);
       this.state = {
@@ -41,20 +41,20 @@ class AlpModule extends Component {
 
 }
 
-var Body = (function ({
+const Body = (function ({
   children
 }) {
   return React__default.createElement("div", null, children);
 });
 
-var AppContainer = (function ({
+const AppContainer = (function ({
   children
 }) {
   return createElement("div", null, children);
 });
 
 const logger = new Logger('alp:react');
-var browser = (function (app // loading: (state: number = 0, action: ReduxActionType) => {
+const browser = (function (app // loading: (state: number = 0, action: ReduxActionType) => {
 //   if (action.meta && action.meta.loading !== undefined) {
 //     return state + (action.meta.loading ? 1 : -1);
 //   }
@@ -80,5 +80,5 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
 });
 
 export default browser;
-export { AlpModule, Body, AppContainer };
+export { AlpModule, AppContainer, Body };
 //# sourceMappingURL=index-browsermodern.es.js.map

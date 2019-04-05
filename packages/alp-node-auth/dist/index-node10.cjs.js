@@ -4,12 +4,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var util = require('util');
-var jsonwebtoken = require('jsonwebtoken');
-var Logger = _interopDefault(require('nightingale-logger'));
-var EventEmitter = _interopDefault(require('events'));
-var crypto = require('crypto');
-var Cookies = _interopDefault(require('cookies'));
+const util = require('util');
+const jsonwebtoken = require('jsonwebtoken');
+const Logger = _interopDefault(require('nightingale-logger'));
+const EventEmitter = _interopDefault(require('events'));
+const crypto = require('crypto');
+const Cookies = _interopDefault(require('cookies'));
 
 const randomBytesPromisified = util.promisify(crypto.randomBytes);
 async function randomHex(size) {
@@ -265,7 +265,7 @@ class AuthenticationService extends EventEmitter {
 }
 
 var _class, _temp;
-var userAccountGoogleService = new (_temp = _class = class extends EventEmitter {
+const userAccountGoogleService = new (_temp = _class = class UserAccountGoogleService extends EventEmitter {
   constructor(...args) {
     super(...args);
     this.providerKey = 'google';
@@ -318,7 +318,7 @@ var userAccountGoogleService = new (_temp = _class = class extends EventEmitter 
 
 var _class$1, _temp$1;
 // https://api.slack.com/methods/users.identity
-var userAccountSlackService = new (_temp$1 = _class$1 = class extends EventEmitter {
+const userAccountSlackService = new (_temp$1 = _class$1 = class UserAccountSlackService extends EventEmitter {
   constructor(...args) {
     super(...args);
     this.providerKey = 'google';
@@ -349,7 +349,7 @@ var userAccountSlackService = new (_temp$1 = _class$1 = class extends EventEmitt
     return profile.user.name;
   }
 
-  getFullName() {
+  getFullName(profile) {
     return null;
   }
 
@@ -428,7 +428,7 @@ class UserAccountsService extends EventEmitter {
     account.scope = service.getScope(account.scope, scope);
     account.subservices = account.subservices || [];
 
-    if (subservice && account.subservices.indexOf(subservice) === -1) {
+    if (subservice && !account.subservices.includes(subservice)) {
       account.subservices.push(subservice);
     }
 
@@ -801,8 +801,8 @@ function init({
   };
 }
 
-exports.default = init;
 exports.MongoUsersManager = MongoUsersManager;
-exports.authSocketIO = authSocketIO;
 exports.STATUSES = STATUSES;
+exports.authSocketIO = authSocketIO;
+exports.default = init;
 //# sourceMappingURL=index-node10.cjs.js.map

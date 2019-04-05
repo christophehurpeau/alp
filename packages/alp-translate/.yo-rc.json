@@ -39,5 +39,10 @@
         "browser"
       ]
     }
+  },
+  "alp-translate": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

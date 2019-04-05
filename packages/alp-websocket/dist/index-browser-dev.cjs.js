@@ -158,6 +158,6 @@ function alpWebsocket(app, namespaceName) {
   return socket;
 }
 
-exports.websocket = websocket;
 exports.default = alpWebsocket;
+exports.websocket = websocket;
 //# sourceMappingURL=index-browser-dev.cjs.js.map

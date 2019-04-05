@@ -6,7 +6,7 @@ import glob from 'glob';
 import mkdirp from 'mkdirp';
 import { safeLoad } from 'js-yaml';
 
-var readFile = (target => new Promise((resolve, reject) => {
+const readFile = (target => new Promise((resolve, reject) => {
   fs.readFile(target, 'utf-8', (err, content) => {
     if (err) {
       return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
@@ -16,7 +16,7 @@ var readFile = (target => new Promise((resolve, reject) => {
   });
 }));
 
-var writeFile = ((target, content) => new Promise((resolve, reject) => {
+const writeFile = ((target, content) => new Promise((resolve, reject) => {
   mkdirp(path.dirname(target), () => {
     fs.writeFile(target, content, err => {
       if (err) {

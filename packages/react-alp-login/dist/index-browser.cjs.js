@@ -53,7 +53,7 @@ var LoginButtonSlack = (function (_ref) {
 
 // export { default as LoginForm } from './LoginForm';
 
-exports.LoginButtons = LoginButtons;
 exports.LoginButtonGoogle = LoginButtonGoogle;
 exports.LoginButtonSlack = LoginButtonSlack;
+exports.LoginButtons = LoginButtons;
 //# sourceMappingURL=index-browser.cjs.js.map

@@ -22,5 +22,10 @@
         "index"
       ]
     }
+  },
+  "alp-browser": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

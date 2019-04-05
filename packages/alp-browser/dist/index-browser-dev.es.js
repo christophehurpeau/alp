@@ -1,3 +1,4 @@
+import _regeneratorRuntime from '@babel/runtime/regenerator';
 import Ibex from 'ibex';
 import config, { existsConfig, getConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
@@ -78,8 +79,8 @@ function (_Ibex) {
   function () {
     var _init = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee() {
-      return regeneratorRuntime.wrap(function _callee$(_context) {
+    _regeneratorRuntime.mark(function _callee() {
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:

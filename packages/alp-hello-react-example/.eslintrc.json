@@ -1,7 +1,12 @@
 {
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "extends": ["pob/babel", "pob/typescript", "pob/typescript-react"],
+  "extends": [
+    "@pob/eslint-config-babel",
+    "@pob/eslint-config-typescript",
+    "@pob/eslint-config-typescript-react"
+  ],
   "overrides": [
     {
       "files": ["src/index.browser.ts", "src/web/**/*"],

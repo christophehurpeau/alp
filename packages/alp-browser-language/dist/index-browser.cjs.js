@@ -14,7 +14,7 @@ function alpLanguage(app) {
   var languageFound = navigator.languages.some(function (language) {
     var languageCode = language.split('-')[0].toLowerCase();
 
-    if (availableLanguages.indexOf(languageCode) !== -1) {
+    if (availableLanguages.includes(languageCode)) {
       app.context.language = languageCode;
       return true;
     }

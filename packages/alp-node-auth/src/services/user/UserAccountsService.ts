@@ -89,7 +89,7 @@ export default class UserAccountsService extends EventEmitter {
     }
     account.scope = service.getScope(account.scope, scope);
     account.subservices = account.subservices || [];
-    if (subservice && account.subservices.indexOf(subservice) === -1) {
+    if (subservice && !account.subservices.includes(subservice)) {
       account.subservices.push(subservice);
     }
 

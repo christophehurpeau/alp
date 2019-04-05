@@ -24,5 +24,10 @@
         "index"
       ]
     }
+  },
+  "alp-migrations": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

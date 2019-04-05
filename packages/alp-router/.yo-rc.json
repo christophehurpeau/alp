@@ -38,5 +38,10 @@
         "index"
       ]
     }
+  },
+  "alp-router": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

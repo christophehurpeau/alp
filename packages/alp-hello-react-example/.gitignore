@@ -1,31 +1,6 @@
-public/js
-public/**/*.map
-public/**/*.css
-public/**/*.js
-src/config/local.yml
 
-/docs
-/dist
-/coverage
+# alp paths
 /build
-node_modules
-jspm_packages
+/public
+/data
 
-/.settings
-/.project
-*.sublime-project
-*.sublime-workspace
-/.idea
-fabfile.pyc
-
-#*
-*$
-*.BAK
-*.bak
-*.log
-*.old
-*~
-.#*
-.*.swp
-.DS_Store
-,*

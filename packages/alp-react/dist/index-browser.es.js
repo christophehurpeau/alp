@@ -1,3 +1,4 @@
+import _regeneratorRuntime from '@babel/runtime/regenerator';
 import contentLoaded from 'content-loaded';
 import React__default, { Component, createElement } from 'react';
 import { hydrate } from 'react-dom';
@@ -131,9 +132,9 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
     function () {
       var _renderApp = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(App) {
+      _regeneratorRuntime.mark(function _callee(App) {
         var initialData, ctx, WrappedApp, appElement;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -171,5 +172,5 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
 });
 
 export default browser;
-export { AlpModule, Body, AppContainer };
+export { AlpModule, AppContainer, Body };
 //# sourceMappingURL=index-browser.es.js.map

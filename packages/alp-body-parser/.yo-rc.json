@@ -24,5 +24,10 @@
         }
       ]
     }
+  },
+  "alp-body-parser": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

@@ -18,7 +18,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 }
 
 var _jsxFileName = "/Users/chris/Work/alp/alp/packages/react-alp-login/src/LoginButtonGoogle.tsx";
-var LoginButtonGoogle = (function (_ref) {
+const LoginButtonGoogle = (function (_ref) {
   let {
     label = 'Login with Google'
   } = _ref,
@@ -44,7 +44,7 @@ var LoginButtonGoogle = (function (_ref) {
 });
 
 var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/react-alp-login/src/LoginButtons.tsx";
-var LoginButtons = (function () {
+const LoginButtons = (function () {
   return React.createElement("ul", {
     __source: {
       fileName: _jsxFileName$1,
@@ -67,7 +67,7 @@ var LoginButtons = (function () {
 });
 
 var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/react-alp-login/src/LoginButtonSlack.tsx";
-var LoginButtonSlack = (function (_ref) {
+const LoginButtonSlack = (function (_ref) {
   let {
     label = 'Login with Slack'
   } = _ref,
@@ -94,5 +94,5 @@ var LoginButtonSlack = (function (_ref) {
 
 // export { default as LoginForm } from './LoginForm';
 
-export { LoginButtons, LoginButtonGoogle, LoginButtonSlack };
+export { LoginButtonGoogle, LoginButtonSlack, LoginButtons };
 //# sourceMappingURL=index-browsermodern-dev.es.js.map

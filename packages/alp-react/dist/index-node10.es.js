@@ -74,10 +74,10 @@ const ESCAPED_CHARS = {
 
 const escapeUnsafeChars = unsafeChar => ESCAPED_CHARS[unsafeChar];
 
-var uneval$1 = (value => uneval(value, undefined).replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars));
+const uneval$1 = (value => uneval(value, undefined).replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars));
 
 /* eslint-disable jsx-a11y/html-has-lang */
-var htmlLayout = ((helmet, content, {
+const htmlLayout = ((helmet, content, {
   version,
   scriptName,
   styleName,
@@ -105,10 +105,10 @@ window.__INITIAL_DATA__=${uneval$1(initialData)};
   </body>
 </html>`);
 
-var createAlpAppWrapper = ((app, context) => {
+const createAlpAppWrapper = ((app, context) => {
   var _temp;
 
-  return _temp = class extends Component {
+  return _temp = class AlpAppWrapper extends Component {
     constructor(...args) {
       super(...args);
       this.state = {
@@ -141,11 +141,11 @@ class AlpModule extends Component {
 
 }
 
-var Body = (({
+const Body = (({
   children
 }) => React__default.createElement("div", null, children));
 
-var AppContainer = (({
+const AppContainer = (({
   children
 }) => createElement("div", null, children));
 
@@ -156,7 +156,7 @@ const renderHtml = (app, options) => {
 };
 
 const isModernBrowser = createIsModernBrowser();
-var index = ((App, options = {}) => async ctx => {
+const index = ((App, options = {}) => async ctx => {
   const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
 
   const ua = ctx.req.headers['user-agent'];
@@ -175,5 +175,5 @@ var index = ((App, options = {}) => async ctx => {
 });
 
 export default index;
-export { AlpModule, Body, AppContainer };
+export { AlpModule, AppContainer, Body };
 //# sourceMappingURL=index-node10.es.js.map

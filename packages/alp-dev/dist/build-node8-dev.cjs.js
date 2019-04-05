@@ -2,17 +2,17 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var child_process = require('child_process');
-var path = require('path');
-var path__default = _interopDefault(path);
-var execa = _interopDefault(require('execa'));
-var fs = require('fs');
-var fs__default = _interopDefault(fs);
-var glob = _interopDefault(require('glob'));
-var mkdirp = _interopDefault(require('mkdirp'));
-var jsYaml = require('js-yaml');
+const child_process = require('child_process');
+const path = require('path');
+const path__default = _interopDefault(path);
+const execa = _interopDefault(require('execa'));
+const fs = require('fs');
+const fs__default = _interopDefault(fs);
+const glob = _interopDefault(require('glob'));
+const mkdirp = _interopDefault(require('mkdirp'));
+const jsYaml = require('js-yaml');
 
-var readFile = (target => new Promise((resolve, reject) => {
+const readFile = (target => new Promise((resolve, reject) => {
   fs__default.readFile(target, 'utf-8', (err, content) => {
     if (err) {
       return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
@@ -22,7 +22,7 @@ var readFile = (target => new Promise((resolve, reject) => {
   });
 }));
 
-var writeFile = ((target, content) => new Promise((resolve, reject) => {
+const writeFile = ((target, content) => new Promise((resolve, reject) => {
   mkdirp(path__default.dirname(target), () => {
     fs__default.writeFile(target, content, err => {
       if (err) {

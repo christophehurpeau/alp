@@ -12,7 +12,7 @@ export default function alpLanguage(app: BrowserApplicationInCreation) {
 
   const languageFound = navigator.languages.some((language) => {
     const languageCode = language.split('-')[0].toLowerCase();
-    if (availableLanguages.indexOf(languageCode) !== -1) {
+    if (availableLanguages.includes(languageCode)) {
       app.context.language = languageCode;
       return true;
     }

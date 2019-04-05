@@ -141,7 +141,7 @@ function respond(ctx) {
 
   if (body.nodeType) {
     document.body.innerHTML = '';
-    document.body.appendChild(body);
+    document.body.append(body);
   }
 
   throw new Error('Invalid body result');

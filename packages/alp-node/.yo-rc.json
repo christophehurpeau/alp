@@ -24,5 +24,10 @@
         "index"
       ]
     }
+  },
+  "alp-node": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

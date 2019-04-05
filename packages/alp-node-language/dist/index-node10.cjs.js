@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var objectProperties = require('object-properties');
+const objectProperties = require('object-properties');
 
 function alpLanguage(app) {
   const config = app.context.config;
