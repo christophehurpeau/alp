@@ -52,7 +52,7 @@
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-node": "8.0.1",
     "liwi-mongo": "4.1.0",
-    "pob-babel": "23.6.7",
+    "pob-babel": "23.10.1",
     "prettier": "1.16.4",
     "typescript": "3.3.3333"
   }
