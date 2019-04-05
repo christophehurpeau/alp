@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/christophehurpeau/alp/compare/react-alp-login@2.0.1...react-alp-login@2.1.0) (2019-04-05)
+
+
+### Features
+
+* update dependencies ([9278dc6](https://github.com/christophehurpeau/alp/commit/9278dc6))
+
+
+
+
+
 ## [2.0.1](https://github.com/christophehurpeau/alp/compare/react-alp-login@2.0.0...react-alp-login@2.0.1) (2019-03-29)
 
 
