@@ -30,5 +30,10 @@
         "build-older-browser"
       ]
     }
+  },
+  "alp-dev": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

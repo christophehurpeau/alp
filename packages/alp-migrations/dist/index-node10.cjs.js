@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var semver = _interopDefault(require('semver'));
-var Logger = _interopDefault(require('nightingale-logger'));
-var fs = require('fs');
+const semver = _interopDefault(require('semver'));
+const Logger = _interopDefault(require('nightingale-logger'));
+const fs = require('fs');
 
 function readRecursiveDirectory(directory, callback) {
   return new Promise((resolve, reject) => {
@@ -128,6 +128,6 @@ async function migrate({
   process.removeListener('unhandledRejection', unhandledRejectionHandler);
 }
 
-exports.default = migrate;
 exports.MigrationsManager = MigrationsManager;
+exports.default = migrate;
 //# sourceMappingURL=index-node10.cjs.js.map

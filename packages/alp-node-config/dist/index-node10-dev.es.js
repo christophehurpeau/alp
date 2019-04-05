@@ -87,7 +87,7 @@ class Config {
   }
 
 }
-var index = ((app, config) => config);
+const index = ((app, config) => config);
 
 export default index;
 export { Config };

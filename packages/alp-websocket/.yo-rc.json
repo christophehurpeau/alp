@@ -39,5 +39,10 @@
         "browser"
       ]
     }
+  },
+  "alp-websocket": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

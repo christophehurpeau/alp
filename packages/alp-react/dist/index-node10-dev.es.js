@@ -75,10 +75,10 @@ const ESCAPED_CHARS = {
 
 const escapeUnsafeChars = unsafeChar => ESCAPED_CHARS[unsafeChar];
 
-var uneval$1 = (value => uneval(value, 'obj').replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars));
+const uneval$1 = (value => uneval(value, 'obj').replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars));
 
 /* eslint-disable jsx-a11y/html-has-lang */
-var htmlLayout = ((helmet, content, {
+const htmlLayout = ((helmet, content, {
   version,
   scriptName,
   styleName,
@@ -107,10 +107,10 @@ window.__INITIAL_DATA__=${uneval$1(initialData)};
 </html>`);
 
 var _jsxFileName = "/Users/chris/Work/alp/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
-var createAlpAppWrapper = ((app, context) => {
+const createAlpAppWrapper = ((app, context) => {
   var _temp;
 
-  return _temp = class extends Component {
+  return _temp = class AlpAppWrapper extends Component {
     constructor(...args) {
       super(...args);
       this.state = {
@@ -155,7 +155,7 @@ class AlpModule extends Component {
 }
 
 var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
-var Body = (({
+const Body = (({
   children
 }) => React__default.createElement("div", {
   __source: {
@@ -166,7 +166,7 @@ var Body = (({
 }, children));
 
 var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/AppContainer.tsx";
-var AppContainer = (({
+const AppContainer = (({
   children
 }) => createElement("div", {
   __source: {
@@ -183,7 +183,7 @@ const renderHtml = (app, options) => {
 };
 
 const isModernBrowser = createIsModernBrowser();
-var index = ((App, options = {}) => async ctx => {
+const index = ((App, options = {}) => async ctx => {
   const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
 
   const ua = ctx.req.headers['user-agent'];
@@ -202,5 +202,5 @@ var index = ((App, options = {}) => async ctx => {
 });
 
 export default index;
-export { AlpModule, Body, AppContainer };
+export { AlpModule, AppContainer, Body };
 //# sourceMappingURL=index-node10-dev.es.js.map

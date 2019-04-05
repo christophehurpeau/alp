@@ -14,7 +14,7 @@ export default class LinkComponent extends Component<Props> {
         as: string;
         to: string;
     };
-    static contextType: React.Context<import("alp-types").Context>;
+    static contextType: import("react").Context<import("alp-types").Context>;
     context: React.ContextType<typeof ReactAlpContext>;
     render(): React.ReactElement<{
         href: string;

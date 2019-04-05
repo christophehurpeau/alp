@@ -6,7 +6,7 @@ const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer({
   appPath: `${process.cwd()}/`
 });
-var index = (async (ctx, next) => {
+const index = (async (ctx, next) => {
   try {
     await next();
   } catch (err) {

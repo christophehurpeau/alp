@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var Logger = _interopDefault(require('nightingale-logger'));
-var IntlMessageFormat = _interopDefault(require('intl-messageformat'));
+const Logger = _interopDefault(require('nightingale-logger'));
+const IntlMessageFormat = _interopDefault(require('intl-messageformat'));
 
 function load(translations, language) {
   const result = new Map();

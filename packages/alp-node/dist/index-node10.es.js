@@ -129,5 +129,5 @@ class Alp extends Koa {
 }
 
 export default Alp;
-export { appDirname, packageDirname, packageConfig, config };
+export { appDirname, config, packageConfig, packageDirname };
 //# sourceMappingURL=index-node10.es.js.map

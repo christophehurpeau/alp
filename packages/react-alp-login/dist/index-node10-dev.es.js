@@ -3,7 +3,7 @@ import { FaGoogle, FaSlack } from 'react-icons/fa';
 import Button from 'ynnub/components/Button';
 
 var _jsxFileName = "/Users/chris/Work/alp/alp/packages/react-alp-login/src/LoginButtonGoogle.tsx";
-var LoginButtonGoogle = (({
+const LoginButtonGoogle = (({
   label = 'Login with Google',
   ...otherProps
 }) => React.createElement(Button, Object.assign({
@@ -25,7 +25,7 @@ var LoginButtonGoogle = (({
 })));
 
 var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/react-alp-login/src/LoginButtons.tsx";
-var LoginButtons = (() => React.createElement("ul", {
+const LoginButtons = (() => React.createElement("ul", {
   __source: {
     fileName: _jsxFileName$1,
     lineNumber: 5
@@ -46,7 +46,7 @@ var LoginButtons = (() => React.createElement("ul", {
 }))));
 
 var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/react-alp-login/src/LoginButtonSlack.tsx";
-var LoginButtonSlack = (({
+const LoginButtonSlack = (({
   label = 'Login with Slack',
   ...otherProps
 }) => React.createElement(Button, Object.assign({
@@ -69,5 +69,5 @@ var LoginButtonSlack = (({
 
 // export { default as LoginForm } from './LoginForm';
 
-export { LoginButtons, LoginButtonGoogle, LoginButtonSlack };
+export { LoginButtonGoogle, LoginButtonSlack, LoginButtons };
 //# sourceMappingURL=index-node10-dev.es.js.map

@@ -259,7 +259,7 @@ class AuthenticationService extends EventEmitter {
 }
 
 var _class, _temp;
-var userAccountGoogleService = new (_temp = _class = class extends EventEmitter {
+const userAccountGoogleService = new (_temp = _class = class UserAccountGoogleService extends EventEmitter {
   constructor(...args) {
     super(...args);
     this.providerKey = 'google';
@@ -312,7 +312,7 @@ var userAccountGoogleService = new (_temp = _class = class extends EventEmitter 
 
 var _class$1, _temp$1;
 // https://api.slack.com/methods/users.identity
-var userAccountSlackService = new (_temp$1 = _class$1 = class extends EventEmitter {
+const userAccountSlackService = new (_temp$1 = _class$1 = class UserAccountSlackService extends EventEmitter {
   constructor(...args) {
     super(...args);
     this.providerKey = 'google';
@@ -343,7 +343,7 @@ var userAccountSlackService = new (_temp$1 = _class$1 = class extends EventEmitt
     return profile.user.name;
   }
 
-  getFullName() {
+  getFullName(profile) {
     return null;
   }
 
@@ -796,5 +796,5 @@ function init({
 }
 
 export default init;
-export { MongoUsersManager, authSocketIO, STATUSES };
+export { MongoUsersManager, STATUSES, authSocketIO };
 //# sourceMappingURL=index-node10.es.js.map

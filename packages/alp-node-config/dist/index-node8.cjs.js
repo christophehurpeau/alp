@@ -4,10 +4,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var fs = require('fs');
-var argv = _interopDefault(require('minimist-argv'));
-var deepFreeze = _interopDefault(require('deep-freeze-es6'));
-var parseJSON = _interopDefault(require('parse-json-object-as-map'));
+const fs = require('fs');
+const argv = _interopDefault(require('minimist-argv'));
+const deepFreeze = _interopDefault(require('deep-freeze-es6'));
+const parseJSON = _interopDefault(require('parse-json-object-as-map'));
 
 function _existsConfigSync(dirname, name) {
   return fs.existsSync(`${dirname}${name}.json`);
@@ -93,7 +93,7 @@ class Config {
   }
 
 }
-var index = ((app, config) => config);
+const index = ((app, config) => config);
 
 exports.Config = Config;
 exports.default = index;

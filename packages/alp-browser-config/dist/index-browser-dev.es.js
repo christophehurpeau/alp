@@ -107,5 +107,5 @@ function alpConfig(app, configPath) {
 }
 
 export default alpConfig;
-export { getConfig, existsConfig };
+export { existsConfig, getConfig };
 //# sourceMappingURL=index-browser-dev.es.js.map

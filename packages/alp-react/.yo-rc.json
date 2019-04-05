@@ -39,5 +39,10 @@
         }
       ]
     }
+  },
+  "alp-react": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

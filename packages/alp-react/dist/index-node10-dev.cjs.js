@@ -4,12 +4,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = require('react');
-var React__default = _interopDefault(React);
-var server = require('react-dom/server');
-var Helmet = _interopDefault(require('react-helmet'));
-var createIsModernBrowser = _interopDefault(require('modern-browsers'));
-var ReactAlpContext = _interopDefault(require('react-alp-context'));
+const React = require('react');
+const React__default = _interopDefault(React);
+const server = require('react-dom/server');
+const Helmet = _interopDefault(require('react-helmet'));
+const createIsModernBrowser = _interopDefault(require('modern-browsers'));
+const ReactAlpContext = _interopDefault(require('react-alp-context'));
 
 const assetUrl = (asset, version) => asset.startsWith('/') ? `${asset}?${version}` : asset;
 
@@ -81,10 +81,10 @@ const ESCAPED_CHARS = {
 
 const escapeUnsafeChars = unsafeChar => ESCAPED_CHARS[unsafeChar];
 
-var uneval$1 = (value => uneval(value, 'obj').replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars));
+const uneval$1 = (value => uneval(value, 'obj').replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars));
 
 /* eslint-disable jsx-a11y/html-has-lang */
-var htmlLayout = ((helmet, content, {
+const htmlLayout = ((helmet, content, {
   version,
   scriptName,
   styleName,
@@ -113,10 +113,10 @@ window.__INITIAL_DATA__=${uneval$1(initialData)};
 </html>`);
 
 var _jsxFileName = "/Users/chris/Work/alp/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
-var createAlpAppWrapper = ((app, context) => {
+const createAlpAppWrapper = ((app, context) => {
   var _temp;
 
-  return _temp = class extends React.Component {
+  return _temp = class AlpAppWrapper extends React.Component {
     constructor(...args) {
       super(...args);
       this.state = {
@@ -161,7 +161,7 @@ class AlpModule extends React.Component {
 }
 
 var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
-var Body = (({
+const Body = (({
   children
 }) => React__default.createElement("div", {
   __source: {
@@ -172,7 +172,7 @@ var Body = (({
 }, children));
 
 var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/AppContainer.tsx";
-var AppContainer = (({
+const AppContainer = (({
   children
 }) => React.createElement("div", {
   __source: {
@@ -189,7 +189,7 @@ const renderHtml = (app, options) => {
 };
 
 const isModernBrowser = createIsModernBrowser();
-var index = ((App, options = {}) => async ctx => {
+const index = ((App, options = {}) => async ctx => {
   const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
 
   const ua = ctx.req.headers['user-agent'];
@@ -208,8 +208,8 @@ var index = ((App, options = {}) => async ctx => {
 });
 
 exports.Helmet = Helmet;
-exports.default = index;
 exports.AlpModule = AlpModule;
-exports.Body = Body;
 exports.AppContainer = AppContainer;
+exports.Body = Body;
+exports.default = index;
 //# sourceMappingURL=index-node10-dev.cjs.js.map

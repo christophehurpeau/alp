@@ -38,5 +38,10 @@
         "index"
       ]
     }
+  },
+  "react-alp-subscribe-container": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

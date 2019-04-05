@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var parse = _interopDefault(require('co-body'));
+const parse = _interopDefault(require('co-body'));
 
 const assertBodyNotParsed = ctx => {
   if (ctx.request.body) {

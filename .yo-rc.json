@@ -39,6 +39,9 @@
         "react-alp-translate"
       ],
       "typescript": false
+    },
+    "renovate": {
+      "enable": true
     }
   }
 }

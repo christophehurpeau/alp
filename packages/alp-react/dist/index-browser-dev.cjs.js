@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var _regeneratorRuntime = _interopDefault(require('@babel/runtime/regenerator'));
 var contentLoaded = _interopDefault(require('content-loaded'));
 var React = require('react');
 var React__default = _interopDefault(React);
@@ -164,9 +165,9 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
     function () {
       var _renderApp = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(App) {
+      _regeneratorRuntime.mark(function _callee(App) {
         var initialData, ctx, WrappedApp, appElement;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -204,8 +205,8 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
 });
 
 exports.Helmet = reactHelmet;
-exports.default = browser;
 exports.AlpModule = AlpModule;
-exports.Body = Body;
 exports.AppContainer = AppContainer;
+exports.Body = Body;
+exports.default = browser;
 //# sourceMappingURL=index-browser-dev.cjs.js.map

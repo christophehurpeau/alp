@@ -11,7 +11,7 @@ export default class SubscribeContainer extends Component<SubscribeContainerProp
     static defaultProps: {
         visibleTimeout: number;
     };
-    static contextType: React.Context<import("alp-types").Context>;
+    static contextType: import("react").Context<import("alp-types").Context>;
     context: React.ContextType<typeof ReactAlpContext>;
     subscribed: boolean;
     timeout: number | undefined;

@@ -17,7 +17,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   return target;
 }
 
-var LoginButtonGoogle = (function (_ref) {
+const LoginButtonGoogle = (function (_ref) {
   let {
     label = 'Login with Google'
   } = _ref,
@@ -30,11 +30,11 @@ var LoginButtonGoogle = (function (_ref) {
   }, otherProps));
 });
 
-var LoginButtons = (function () {
+const LoginButtons = (function () {
   return React.createElement("ul", null, React.createElement("li", null, React.createElement(LoginButtonGoogle, null)));
 });
 
-var LoginButtonSlack = (function (_ref) {
+const LoginButtonSlack = (function (_ref) {
   let {
     label = 'Login with Slack'
   } = _ref,
@@ -49,5 +49,5 @@ var LoginButtonSlack = (function (_ref) {
 
 // export { default as LoginForm } from './LoginForm';
 
-export { LoginButtons, LoginButtonGoogle, LoginButtonSlack };
+export { LoginButtonGoogle, LoginButtonSlack, LoginButtons };
 //# sourceMappingURL=index-browsermodern.es.js.map

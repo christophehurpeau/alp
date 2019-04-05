@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = require('react');
-var ReactAlpContext = _interopDefault(require('react-alp-context'));
+const React = require('react');
+const ReactAlpContext = _interopDefault(require('react-alp-context'));
 
 class Translate extends React.Component {
   render() {

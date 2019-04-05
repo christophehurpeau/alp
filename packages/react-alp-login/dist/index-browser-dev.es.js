@@ -92,5 +92,5 @@ var LoginButtonSlack = (function (_ref) {
 
 // export { default as LoginForm } from './LoginForm';
 
-export { LoginButtons, LoginButtonGoogle, LoginButtonSlack };
+export { LoginButtonGoogle, LoginButtonSlack, LoginButtons };
 //# sourceMappingURL=index-browser-dev.es.js.map

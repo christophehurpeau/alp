@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var react = require('react');
-var Logger = _interopDefault(require('nightingale-logger'));
-var ReactAlpContext = _interopDefault(require('react-alp-context'));
+const react = require('react');
+const Logger = _interopDefault(require('nightingale-logger'));
+const ReactAlpContext = _interopDefault(require('react-alp-context'));
 
 const logger = new Logger('react-alp-subscribe-container');
 class SubscribeContainer extends react.Component {

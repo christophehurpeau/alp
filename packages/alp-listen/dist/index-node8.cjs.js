@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var fs = require('fs');
-var Logger = _interopDefault(require('nightingale-logger'));
+const fs = require('fs');
+const Logger = _interopDefault(require('nightingale-logger'));
 
 const logger = new Logger('alp:listen');
 

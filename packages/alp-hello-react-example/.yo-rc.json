@@ -1,0 +1,12 @@
+{
+  "alp-hello-react-example": {
+    "type": {
+      "type": "app"
+    }
+  },
+  "pob": {
+    "app": {
+      "type": "alp"
+    }
+  }
+}

@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var fs = require('fs');
-var socketio = _interopDefault(require('socket.io'));
-var Logger = _interopDefault(require('nightingale-logger'));
+const fs = require('fs');
+const socketio = _interopDefault(require('socket.io'));
+const Logger = _interopDefault(require('nightingale-logger'));
 
 /* eslint-disable no-use-before-define */
 const logger = new Logger('alp:websocket');

@@ -41,5 +41,10 @@
         }
       ]
     }
+  },
+  "alp-params": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

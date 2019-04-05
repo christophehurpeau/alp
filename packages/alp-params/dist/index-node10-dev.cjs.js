@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var objectProperties = require('object-properties');
+const objectProperties = require('object-properties');
 
 class ParamValueValidator {
   constructor(validator, name, value) {

@@ -112,7 +112,7 @@ function alpConfig(app, configPath) {
   });
 }
 
-exports.getConfig = getConfig;
-exports.existsConfig = existsConfig;
 exports.default = alpConfig;
+exports.existsConfig = existsConfig;
+exports.getConfig = getConfig;
 //# sourceMappingURL=index-browser-dev.cjs.js.map
