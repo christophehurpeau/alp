@@ -39,7 +39,8 @@
             "es"
           ]
         }
-      ]
+      ],
+      "withReact": false
     }
   },
   "alp-params": {

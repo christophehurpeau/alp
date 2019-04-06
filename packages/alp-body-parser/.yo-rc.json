@@ -22,7 +22,8 @@
             "cjs"
           ]
         }
-      ]
+      ],
+      "withReact": false
     }
   },
   "alp-body-parser": {

@@ -36,7 +36,8 @@
       "documentation": false,
       "entries": [
         "index"
-      ]
+      ],
+      "withReact": false
     }
   },
   "alp-router": {

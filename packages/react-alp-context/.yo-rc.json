@@ -36,7 +36,8 @@
       "documentation": false,
       "entries": [
         "index"
-      ]
+      ],
+      "withReact": true
     }
   },
   "react-alp-context": {

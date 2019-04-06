@@ -37,7 +37,8 @@
       "entries": [
         "index",
         "browser"
-      ]
+      ],
+      "withReact": false
     }
   },
   "alp-translate": {

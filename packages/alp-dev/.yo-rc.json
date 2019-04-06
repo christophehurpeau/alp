@@ -28,7 +28,8 @@
         "build-modern-browser",
         "build-node",
         "build-older-browser"
-      ]
+      ],
+      "withReact": false
     }
   },
   "alp-dev": {

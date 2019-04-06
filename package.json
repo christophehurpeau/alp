@@ -9,7 +9,7 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "workspaces": ["packages/*"],
   "scripts": {
-    "build": "lerna run --stream --concurrency=1 build",
+    "build": "lerna run --stream build",
     "build:definitions": "lerna run --stream build:definitions",
     "lint": "lerna run --stream lint",
     "postbuild": "yarn run build:definitions --since",

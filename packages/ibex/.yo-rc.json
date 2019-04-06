@@ -21,7 +21,8 @@
       "documentation": false,
       "entries": [
         "index"
-      ]
+      ],
+      "withReact": false
     }
   },
   "ibex": {
