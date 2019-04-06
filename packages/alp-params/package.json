@@ -1,6 +1,6 @@
 {
   "name": "alp-params",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Validate params from query, router or post body in koa 2 or ibex",
   "keywords": ["alp"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",

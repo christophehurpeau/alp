@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://github.com/christophehurpeau/alp/compare/alp-dev@11.2.0...alp-dev@11.3.0) (2019-04-06)
+
+
+### Features
+
+* add support for antd and less ([508e0a9](https://github.com/christophehurpeau/alp/commit/508e0a9))
+
+
+
+
+
 # [11.2.0](https://github.com/christophehurpeau/alp/compare/alp-dev@11.1.1...alp-dev@11.2.0) (2019-04-05)
 
 
