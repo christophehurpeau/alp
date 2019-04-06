@@ -59,8 +59,7 @@
     "arrowParens": "always"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0",
-    "ynnub": ">=1.1.0"
+    "@babel/core": "^7.0.0"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.3",
@@ -99,7 +98,7 @@
     "typed-css-modules-loader": "^0.0.17",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
-    "ynnub-webpack-config": "1.1.1"
+    "ynnub-webpack-config": "1.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.4.3",
@@ -119,6 +118,6 @@
     "prettier": "1.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "typescript": "3.4.1"
+    "typescript": "3.4.2"
   }
 }
