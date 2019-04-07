@@ -123,7 +123,7 @@ var Body = (function (_ref) {
 
 var AppContainer = (function (_ref) {
   var children = _ref.children;
-  return React.createElement("div", null, children);
+  return React.createElement(React.Fragment, null, children);
 });
 
 var logger = new Logger('alp:react');

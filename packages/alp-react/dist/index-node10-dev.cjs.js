@@ -171,16 +171,9 @@ const Body = (({
   __self: void 0
 }, children));
 
-var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/AppContainer.tsx";
 const AppContainer = (({
   children
-}) => React.createElement("div", {
-  __source: {
-    fileName: _jsxFileName$2,
-    lineNumber: 7
-  },
-  __self: void 0
-}, children));
+}) => React.createElement(React.Fragment, null, children));
 
 const renderHtml = (app, options) => {
   const content = server.renderToString(app);

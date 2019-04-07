@@ -1,5 +1,5 @@
 import contentLoaded from 'content-loaded';
-import React__default, { Component, createElement } from 'react';
+import React__default, { Component, createElement, Fragment } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
@@ -50,7 +50,7 @@ const Body = (function ({
 const AppContainer = (function ({
   children
 }) {
-  return createElement("div", null, children);
+  return createElement(Fragment, null, children);
 });
 
 const logger = new Logger('alp:react');

@@ -1,4 +1,4 @@
-import React__default, { Component, createElement } from 'react';
+import React__default, { Component, createElement, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 export { default as Helmet } from 'react-helmet';
@@ -147,7 +147,7 @@ const Body = (({
 
 const AppContainer = (({
   children
-}) => createElement("div", null, children));
+}) => createElement(Fragment, null, children));
 
 const renderHtml = (app, options) => {
   const content = renderToString(app);

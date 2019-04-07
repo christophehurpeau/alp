@@ -1,6 +1,6 @@
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import contentLoaded from 'content-loaded';
-import React__default, { Component, createElement } from 'react';
+import React__default, { Component, createElement, Fragment } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
@@ -133,16 +133,9 @@ var Body = (function (_ref) {
   }, children);
 });
 
-var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/AppContainer.tsx";
 var AppContainer = (function (_ref) {
   var children = _ref.children;
-  return createElement("div", {
-    __source: {
-      fileName: _jsxFileName$2,
-      lineNumber: 7
-    },
-    __self: this
-  }, children);
+  return createElement(Fragment, null, children);
 });
 
 var logger = new Logger('alp:react');

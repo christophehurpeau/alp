@@ -153,7 +153,7 @@ const Body = (({
 
 const AppContainer = (({
   children
-}) => React.createElement("div", null, children));
+}) => React.createElement(React.Fragment, null, children));
 
 const renderHtml = (app, options) => {
   const content = server.renderToString(app);

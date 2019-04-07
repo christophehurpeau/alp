@@ -1,4 +1,4 @@
-import React__default, { Component, createElement } from 'react';
+import React__default, { Component, createElement, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 export { default as Helmet } from 'react-helmet';
@@ -165,16 +165,9 @@ const Body = (({
   __self: void 0
 }, children));
 
-var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/AppContainer.tsx";
 const AppContainer = (({
   children
-}) => createElement("div", {
-  __source: {
-    fileName: _jsxFileName$2,
-    lineNumber: 7
-  },
-  __self: void 0
-}, children));
+}) => createElement(Fragment, null, children));
 
 const renderHtml = (app, options) => {
   const content = renderToString(app);
