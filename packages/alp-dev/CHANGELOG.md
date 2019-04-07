@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.1](https://github.com/christophehurpeau/alp/compare/alp-dev@11.3.0...alp-dev@11.3.1) (2019-04-07)
+
+**Note:** Version bump only for package alp-dev
+
+
+
+
+
 # [11.3.0](https://github.com/christophehurpeau/alp/compare/alp-dev@11.2.0...alp-dev@11.3.0) (2019-04-06)
 
 

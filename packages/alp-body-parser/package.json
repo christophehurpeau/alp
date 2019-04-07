@@ -1,6 +1,6 @@
 {
   "name": "alp-body-parser",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "body parser in alp framework",
   "keywords": ["alp", "body-parser"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",

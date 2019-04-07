@@ -1,6 +1,6 @@
 {
   "name": "alp-browser-errors",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "display errors in alp framework",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.3",
-    "alp-types": "^1.0.0",
+    "alp-types": "^1.0.1",
     "error-html": "^0.3.5",
     "nightingale-logger": "^6.2.1"
   },
