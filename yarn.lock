@@ -13772,10 +13772,10 @@ ynnub-webpack-config@1.1.3:
     "@types/react" "^16.8.7"
     "@types/webpack" "^4.4.25"
 
-ynnub@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/ynnub/-/ynnub-1.3.0.tgz#1e44cf01944b3a2bcdeb86361834ce089cd3dce3"
-  integrity sha512-X0RZnoodFQ7pRfejnpnP+th6TgFfvb2Yf2MVG0ok9JKbsEogry1JrIKdSzGokivnboE+lDATQizodZ2XlhnvwA==
+ynnub@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ynnub/-/ynnub-1.4.0.tgz#4f4b03ce7ecf23c82ab071dfe308b5bd26c3f536"
+  integrity sha512-glSvTV47pNqIjQ5WLk8/EBuzPKSIRMO5QD8HQoZSlnhaiKMPBmNRwcv7+Q0l5BTm6V9wXRoLXXEohigUkq5aQA==
   dependencies:
     "@material/button" "0.29.0"
     "@material/list" "0.29.0"
