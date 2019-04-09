@@ -1,7 +1,6 @@
 {
   "name": "alp-hello-react-example",
   "private": true,
-  "version": "1.1.2",
   "description": "Say hello, with alp and react",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
