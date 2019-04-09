@@ -4,14 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = require('react');
+var react = require('react');
 var ReactAlpContext = _interopDefault(require('react-alp-context'));
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
 
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
@@ -28,36 +22,33 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   return target;
 }
 
-var Translate =
-/*#__PURE__*/
-function (_React$Component) {
-  _inheritsLoose(Translate, _React$Component);
+function useT(id, params, deps) {
+  var ctx = react.useContext(ReactAlpContext);
+  return react.useMemo(function () {
+    return ctx.t(id, params);
+  }, !deps ? [id] : [id].concat(deps));
+}
 
-  function Translate() {
-    return _React$Component.apply(this, arguments) || this;
-  }
+// for params: 2 solutions: params that are send to all or mapped params.
+// in both case it will be more difficult to use memo deps
+function useTs(ids) {
+  var ctx = react.useContext(ReactAlpContext);
+  return react.useMemo(function () {
+    return ids.map(function (id) {
+      return ctx.t(id);
+    });
+  }, [ids.join(',')]);
+}
 
-  var _proto = Translate.prototype;
+function T(_ref) {
+  var id = _ref.id,
+      props = _objectWithoutPropertiesLoose(_ref, ["id"]);
 
-  _proto.render = function render() {
-    var _this$props = this.props,
-        id = _this$props.id,
-        children = _this$props.children,
-        props = _objectWithoutPropertiesLoose(_this$props, ["id", "children"]);
+  var t = useT(id, props, Object.values(props));
+  return t;
+}
 
-    var translated = this.context.t(id, props);
-
-    if (children) {
-      return children(translated);
-    }
-
-    return translated;
-  };
-
-  return Translate;
-}(React.Component);
-
-Translate.contextType = ReactAlpContext;
-
-exports.default = Translate;
+exports.T = T;
+exports.useT = useT;
+exports.useTs = useTs;
 //# sourceMappingURL=index-browser-dev.cjs.js.map

@@ -1,24 +1,29 @@
-import { Component } from 'react';
+import { useContext, useMemo } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
-class Translate extends Component {
-  render() {
-    const {
-      id,
-      children,
-      ...props
-    } = this.props;
-    const translated = this.context.t(id, props);
-
-    if (children) {
-      return children(translated);
-    }
-
-    return translated;
-  }
-
+function useT(id, params, deps) {
+  const ctx = useContext(ReactAlpContext);
+  return useMemo(() => {
+    return ctx.t(id, params);
+  }, !deps ? [id] : [id, ...deps]);
 }
-Translate.contextType = ReactAlpContext;
 
-export default Translate;
+// for params: 2 solutions: params that are send to all or mapped params.
+// in both case it will be more difficult to use memo deps
+function useTs(ids) {
+  const ctx = useContext(ReactAlpContext);
+  return useMemo(() => {
+    return ids.map(id => ctx.t(id));
+  }, [ids.join(',')]);
+}
+
+function T({
+  id,
+  ...props
+}) {
+  const t = useT(id, props, Object.values(props));
+  return t;
+}
+
+export { T, useT, useTs };
 //# sourceMappingURL=index-node10-dev.es.js.map

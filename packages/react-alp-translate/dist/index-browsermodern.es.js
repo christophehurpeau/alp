@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useContext, useMemo } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -16,26 +16,33 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   return target;
 }
 
-class Translate extends Component {
-  render() {
-    const _this$props = this.props,
-          {
-      id,
-      children
-    } = _this$props,
-          props = _objectWithoutPropertiesLoose(_this$props, ["id", "children"]);
-
-    const translated = this.context.t(id, props);
-
-    if (children) {
-      return children(translated);
-    }
-
-    return translated;
-  }
-
+function useT(id, params, deps) {
+  const ctx = useContext(ReactAlpContext);
+  return useMemo(function () {
+    return ctx.t(id, params);
+  }, !deps ? [id] : [id, ...deps]);
 }
-Translate.contextType = ReactAlpContext;
 
-export default Translate;
+// for params: 2 solutions: params that are send to all or mapped params.
+// in both case it will be more difficult to use memo deps
+function useTs(ids) {
+  const ctx = useContext(ReactAlpContext);
+  return useMemo(function () {
+    return ids.map(function (id) {
+      return ctx.t(id);
+    });
+  }, [ids.join(',')]);
+}
+
+function T(_ref) {
+  let {
+    id
+  } = _ref,
+      props = _objectWithoutPropertiesLoose(_ref, ["id"]);
+
+  const t = useT(id, props, Object.values(props));
+  return t;
+}
+
+export { T, useT, useTs };
 //# sourceMappingURL=index-browsermodern.es.js.map

@@ -40,7 +40,7 @@
     "arrowParens": "always"
   },
   "peerDependencies": {
-    "react": "^16.6.3"
+    "react": "^16.8.6"
   },
   "dependencies": {
     "alp-types": "^1.0.1",

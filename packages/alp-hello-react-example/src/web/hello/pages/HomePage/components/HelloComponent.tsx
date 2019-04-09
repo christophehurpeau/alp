@@ -1,6 +1,6 @@
 import React from 'react';
 import sTypography from 'ynnub/text/typography';
-import T from 'react-alp-translate';
+import { T } from 'react-alp-translate';
 import InputName from './InputNameComponent';
 import s from './HelloComponent.scss';
 

@@ -1,30 +1,16 @@
-import * as React from 'react';
-import ReactAlpContext from 'react-alp-context';
-
-type ChildrenCallback = (translated: string) => React.ReactChild;
+import React from 'react';
+import useT from './useT';
+import useTs from './useTs';
 
 interface Props {
   id: string;
-  children?: ChildrenCallback;
+  children?: never;
   [propName: string]: any;
 }
 
-export interface AlpContext {
-  t: (id: string, args: { [key: string]: any }) => string;
+function T({ id, ...props }: Props): React.ReactElement {
+  const t = useT(id, props, Object.values(props));
+  return (t as unknown) as React.ReactElement;
 }
 
-export default class Translate extends React.Component<Props> {
-  static contextType = ReactAlpContext;
-
-  // eslint-disable-next-line react/sort-comp
-  context!: React.ContextType<typeof ReactAlpContext>;
-
-  render() {
-    const { id, children, ...props } = this.props;
-    const translated: string = this.context.t(id, props);
-    if (children) {
-      return children(translated);
-    }
-    return translated;
-  }
-}
+export { T, useT, useTs };
