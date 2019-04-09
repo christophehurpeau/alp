@@ -7,6 +7,7 @@ import {
   RunOptions,
 } from 'pobpack-browser';
 import { PobpackCompiler } from 'pobpack-types';
+import WebpackDevServer from 'webpack-dev-server';
 import createPobpackConfig from './createPobpackConfig';
 
 export const createModernBrowserCompiler = (production: boolean) =>
@@ -28,7 +29,7 @@ export const runDevServer = (
   port: number,
   proxyPort: number,
   options?: RunDevServerOptions,
-): ReturnType<typeof runDevServerPobpack> =>
+): WebpackDevServer =>
   runDevServerPobpack(compiler, {
     port: proxyPort,
     https: false,

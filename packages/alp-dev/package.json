@@ -101,6 +101,7 @@
     "typed-css-modules-loader": "^0.0.17",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
+    "webpack-dev-server": "^3.3.0",
     "ynnub-webpack-config": "1.1.3"
   },
   "devDependencies": {
