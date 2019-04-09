@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/christophehurpeau/alp/compare/react-alp-login@2.1.2...react-alp-login@2.1.3) (2019-04-09)
+
+
+### Bug Fixes
+
+* typescript definitions ([1b8c3f1](https://github.com/christophehurpeau/alp/commit/1b8c3f1))
+
+
+
+
+
 ## [2.1.2](https://github.com/christophehurpeau/alp/compare/react-alp-login@2.1.1...react-alp-login@2.1.2) (2019-04-07)
 
 **Note:** Version bump only for package react-alp-login

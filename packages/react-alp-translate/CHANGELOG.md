@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-translate@1.1.2...react-alp-translate@2.0.0) (2019-04-09)
+
+
+### Features
+
+* use hooks for react-alp-translate, remove render children ([9c16189](https://github.com/christophehurpeau/alp/commit/9c16189))
+
+
+### BREAKING CHANGES
+
+* replace import T from "react-alp-translate"; by import { T } from "react-alp-translate";
+
+
+
+
+
 ## [1.1.2](https://github.com/christophehurpeau/alp/compare/react-alp-translate@1.1.1...react-alp-translate@1.1.2) (2019-04-07)
 
 **Note:** Version bump only for package react-alp-translate
