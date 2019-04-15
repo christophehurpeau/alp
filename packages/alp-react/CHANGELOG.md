@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.3.0](https://github.com/christophehurpeau/alp/compare/alp-react@15.2.1...alp-react@15.3.0) (2019-04-15)
+
+
+### Bug Fixes
+
+* react element ([b210a7e](https://github.com/christophehurpeau/alp/commit/b210a7e))
+
+
+### Features
+
+* add suspense and fallback in AlpModule ([93afbb3](https://github.com/christophehurpeau/alp/commit/93afbb3))
+
+
+
+
+
 ## [15.2.1](https://github.com/christophehurpeau/alp/compare/alp-react@15.2.0...alp-react@15.2.1) (2019-04-09)
 
 **Note:** Version bump only for package alp-react
