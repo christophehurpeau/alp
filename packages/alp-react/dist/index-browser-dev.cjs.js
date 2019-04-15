@@ -110,30 +110,28 @@ var createAlpAppWrapper = (function (app, context) {
   }(React.Component), _temp;
 });
 
-var AlpModule =
-/*#__PURE__*/
-function (_Component) {
-  _inheritsLoose(AlpModule, _Component);
+var LoadingFallbackContext = React.createContext('Loading...');
 
-  function AlpModule() {
-    return _Component.apply(this, arguments) || this;
-  }
+var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/AlpModule.tsx";
 
-  var _proto = AlpModule.prototype;
+function AlpModuleBrowser(props) {
+  var loadingFallback = React.useContext(LoadingFallbackContext);
+  return React__default.createElement(React.Suspense, {
+    fallback: loadingFallback,
+    __source: {
+      fileName: _jsxFileName$1,
+      lineNumber: 15
+    },
+    __self: this
+  }, props.children);
+}
 
-  _proto.render = function render() {
-    return this.props.children;
-  };
-
-  return AlpModule;
-}(React.Component);
-
-var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
+var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
 var Body = (function (_ref) {
   var children = _ref.children;
   return React__default.createElement("div", {
     __source: {
-      fileName: _jsxFileName$1,
+      fileName: _jsxFileName$2,
       lineNumber: 8
     },
     __self: this
@@ -198,8 +196,9 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
 });
 
 exports.Helmet = reactHelmet;
-exports.AlpModule = AlpModule;
+exports.AlpModule = AlpModuleBrowser;
 exports.AppContainer = AppContainer;
 exports.Body = Body;
+exports.LoadingFallbackContext = LoadingFallbackContext;
 exports.default = browser;
 //# sourceMappingURL=index-browser-dev.cjs.js.map

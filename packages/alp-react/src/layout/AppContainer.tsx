@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-export interface Props {
+export interface AppContainerProps {
   children: React.ReactNode;
 }
 
-export default ({ children }: Props) => <>{children}</>;
+export default ({ children }: AppContainerProps) => <>{children}</>;

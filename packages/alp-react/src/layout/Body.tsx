@@ -1,9 +1,9 @@
 import React, { ReactElement, ReactNode } from 'react';
 
-export interface Props {
+export interface BodyProps {
   children: ReactNode;
 }
 
-export default ({ children }: Props): ReactElement<'div'> => (
+export default ({ children }: BodyProps): ReactElement<'div'> => (
   <div>{children}</div>
 );

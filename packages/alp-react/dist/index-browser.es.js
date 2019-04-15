@@ -1,6 +1,6 @@
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import contentLoaded from 'content-loaded';
-import React__default, { Component, createElement, Fragment } from 'react';
+import React__default, { Component, createContext, useContext, Suspense, createElement, Fragment } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
@@ -91,23 +91,14 @@ var createAlpAppWrapper = (function (app, context) {
   }(Component), _temp;
 });
 
-var AlpModule =
-/*#__PURE__*/
-function (_Component) {
-  _inheritsLoose(AlpModule, _Component);
+var LoadingFallbackContext = createContext('Loading...');
 
-  function AlpModule() {
-    return _Component.apply(this, arguments) || this;
-  }
-
-  var _proto = AlpModule.prototype;
-
-  _proto.render = function render() {
-    return this.props.children;
-  };
-
-  return AlpModule;
-}(Component);
+function AlpModuleBrowser(props) {
+  var loadingFallback = useContext(LoadingFallbackContext);
+  return React__default.createElement(Suspense, {
+    fallback: loadingFallback
+  }, props.children);
+}
 
 var Body = (function (_ref) {
   var children = _ref.children;
@@ -172,5 +163,5 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
 });
 
 export default browser;
-export { AlpModule, AppContainer, Body };
+export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext };
 //# sourceMappingURL=index-browser.es.js.map

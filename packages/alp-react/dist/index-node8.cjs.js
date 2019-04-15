@@ -140,11 +140,10 @@ const createAlpAppWrapper = ((app, context) => {
   }, _temp;
 });
 
-class AlpModule extends React.Component {
-  render() {
-    return this.props.children;
-  }
+const LoadingFallbackContext = React.createContext('Loading...');
 
+function AlpModuleNode(props) {
+  return props.children;
 }
 
 const Body = (({
@@ -181,8 +180,9 @@ const index = ((App, options = {}) => async ctx => {
 });
 
 exports.Helmet = Helmet;
-exports.AlpModule = AlpModule;
+exports.AlpModule = AlpModuleNode;
 exports.AppContainer = AppContainer;
 exports.Body = Body;
+exports.LoadingFallbackContext = LoadingFallbackContext;
 exports.default = index;
 //# sourceMappingURL=index-node8.cjs.js.map

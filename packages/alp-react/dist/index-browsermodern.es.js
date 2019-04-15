@@ -1,5 +1,5 @@
 import contentLoaded from 'content-loaded';
-import React__default, { Component, createElement, Fragment } from 'react';
+import React__default, { Component, createContext, useContext, Suspense, createElement, Fragment } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
@@ -34,11 +34,13 @@ const createAlpAppWrapper = (function (app, context) {
   }, _temp;
 });
 
-class AlpModule extends Component {
-  render() {
-    return this.props.children;
-  }
+const LoadingFallbackContext = createContext('Loading...');
 
+function AlpModuleBrowser(props) {
+  const loadingFallback = useContext(LoadingFallbackContext);
+  return React__default.createElement(Suspense, {
+    fallback: loadingFallback
+  }, props.children);
 }
 
 const Body = (function ({
@@ -80,5 +82,5 @@ const browser = (function (app // loading: (state: number = 0, action: ReduxActi
 });
 
 export default browser;
-export { AlpModule, AppContainer, Body };
+export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext };
 //# sourceMappingURL=index-browsermodern.es.js.map

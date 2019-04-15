@@ -5,6 +5,7 @@ export { Helmet };
 export { default as AlpModule } from './module/AlpModule';
 export { default as Body } from './layout/Body';
 export { default as AppContainer } from './layout/AppContainer';
+export { default as LoadingFallbackContext, } from './contexts/LoadingFallbackContext';
 interface Options {
     polyfillFeatures?: string;
     scriptName?: string | false;

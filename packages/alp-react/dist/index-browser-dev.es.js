@@ -1,6 +1,6 @@
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import contentLoaded from 'content-loaded';
-import React__default, { Component, createElement, Fragment } from 'react';
+import React__default, { Component, createContext, useContext, Suspense, createElement, Fragment } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
@@ -103,30 +103,28 @@ var createAlpAppWrapper = (function (app, context) {
   }(Component), _temp;
 });
 
-var AlpModule =
-/*#__PURE__*/
-function (_Component) {
-  _inheritsLoose(AlpModule, _Component);
+var LoadingFallbackContext = createContext('Loading...');
 
-  function AlpModule() {
-    return _Component.apply(this, arguments) || this;
-  }
+var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/AlpModule.tsx";
 
-  var _proto = AlpModule.prototype;
+function AlpModuleBrowser(props) {
+  var loadingFallback = useContext(LoadingFallbackContext);
+  return React__default.createElement(Suspense, {
+    fallback: loadingFallback,
+    __source: {
+      fileName: _jsxFileName$1,
+      lineNumber: 15
+    },
+    __self: this
+  }, props.children);
+}
 
-  _proto.render = function render() {
-    return this.props.children;
-  };
-
-  return AlpModule;
-}(Component);
-
-var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
+var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
 var Body = (function (_ref) {
   var children = _ref.children;
   return React__default.createElement("div", {
     __source: {
-      fileName: _jsxFileName$1,
+      fileName: _jsxFileName$2,
       lineNumber: 8
     },
     __self: this
@@ -191,5 +189,5 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
 });
 
 export default browser;
-export { AlpModule, AppContainer, Body };
+export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext };
 //# sourceMappingURL=index-browser-dev.es.js.map

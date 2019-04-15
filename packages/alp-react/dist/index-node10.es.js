@@ -1,4 +1,4 @@
-import React__default, { Component, createElement, Fragment } from 'react';
+import React__default, { Component, createContext, createElement, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 export { default as Helmet } from 'react-helmet';
@@ -134,11 +134,10 @@ const createAlpAppWrapper = ((app, context) => {
   }, _temp;
 });
 
-class AlpModule extends Component {
-  render() {
-    return this.props.children;
-  }
+const LoadingFallbackContext = createContext('Loading...');
 
+function AlpModuleNode(props) {
+  return props.children;
 }
 
 const Body = (({
@@ -175,5 +174,5 @@ const index = ((App, options = {}) => async ctx => {
 });
 
 export default index;
-export { AlpModule, AppContainer, Body };
+export { AlpModuleNode as AlpModule, AppContainer, Body, LoadingFallbackContext };
 //# sourceMappingURL=index-node10.es.js.map

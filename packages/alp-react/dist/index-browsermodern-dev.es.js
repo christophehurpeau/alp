@@ -1,5 +1,5 @@
 import contentLoaded from 'content-loaded';
-import React__default, { Component, createElement, Fragment } from 'react';
+import React__default, { Component, createContext, useContext, Suspense, createElement, Fragment } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
@@ -46,20 +46,29 @@ const createAlpAppWrapper = (function (app, context) {
   }, _temp;
 });
 
-class AlpModule extends Component {
-  render() {
-    return this.props.children;
-  }
+const LoadingFallbackContext = createContext('Loading...');
 
+var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/AlpModule.tsx";
+
+function AlpModuleBrowser(props) {
+  const loadingFallback = useContext(LoadingFallbackContext);
+  return React__default.createElement(Suspense, {
+    fallback: loadingFallback,
+    __source: {
+      fileName: _jsxFileName$1,
+      lineNumber: 15
+    },
+    __self: this
+  }, props.children);
 }
 
-var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
+var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
 const Body = (function ({
   children
 }) {
   return React__default.createElement("div", {
     __source: {
-      fileName: _jsxFileName$1,
+      fileName: _jsxFileName$2,
       lineNumber: 8
     },
     __self: this
@@ -99,5 +108,5 @@ const browser = (function (app // loading: (state: number = 0, action: ReduxActi
 });
 
 export default browser;
-export { AlpModule, AppContainer, Body };
+export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext };
 //# sourceMappingURL=index-browsermodern-dev.es.js.map

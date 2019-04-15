@@ -98,23 +98,14 @@ var createAlpAppWrapper = (function (app, context) {
   }(React.Component), _temp;
 });
 
-var AlpModule =
-/*#__PURE__*/
-function (_Component) {
-  _inheritsLoose(AlpModule, _Component);
+var LoadingFallbackContext = React.createContext('Loading...');
 
-  function AlpModule() {
-    return _Component.apply(this, arguments) || this;
-  }
-
-  var _proto = AlpModule.prototype;
-
-  _proto.render = function render() {
-    return this.props.children;
-  };
-
-  return AlpModule;
-}(React.Component);
+function AlpModuleBrowser(props) {
+  var loadingFallback = React.useContext(LoadingFallbackContext);
+  return React__default.createElement(React.Suspense, {
+    fallback: loadingFallback
+  }, props.children);
+}
 
 var Body = (function (_ref) {
   var children = _ref.children;
@@ -179,8 +170,9 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
 });
 
 exports.Helmet = reactHelmet;
-exports.AlpModule = AlpModule;
+exports.AlpModule = AlpModuleBrowser;
 exports.AppContainer = AppContainer;
 exports.Body = Body;
+exports.LoadingFallbackContext = LoadingFallbackContext;
 exports.default = browser;
 //# sourceMappingURL=index-browser.cjs.js.map
