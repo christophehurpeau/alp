@@ -143,7 +143,7 @@ const createAlpAppWrapper = ((app, context) => {
 const LoadingFallbackContext = React.createContext('Loading...');
 
 function AlpModuleNode(props) {
-  return props.children;
+  return React__default.createElement(React__default.Fragment, null, props.children);
 }
 
 const Body = (({

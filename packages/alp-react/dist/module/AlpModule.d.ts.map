@@ -1,1 +1,1 @@
-{"version":3,"file":"AlpModule.d.ts","sourceRoot":"","sources":["../../src/module/AlpModule.tsx"],"names":[],"mappings":"AACA,OAAc,EAAE,SAAS,EAAwB,MAAM,OAAO,CAAC;AAG/D,MAAM,WAAW,cAAc;IAC7B,QAAQ,EAAE,SAAS,CAAC;CACrB;AAED,iBAAS,aAAa,CAAC,KAAK,EAAE,cAAc,GAAG,SAAS,CAEvD;;AAOD,wBAA0E"}
+{"version":3,"file":"AlpModule.d.ts","sourceRoot":"","sources":["../../src/module/AlpModule.tsx"],"names":[],"mappings":"AACA,OAAc,EAAE,YAAY,EAAE,SAAS,EAAwB,MAAM,OAAO,CAAC;AAG7E,MAAM,WAAW,cAAc;IAC7B,QAAQ,EAAE,SAAS,CAAC;CACrB;AAED,iBAAS,aAAa,CAAC,KAAK,EAAE,cAAc,GAAG,YAAY,CAE1D;;AAOD,wBAA0E"}

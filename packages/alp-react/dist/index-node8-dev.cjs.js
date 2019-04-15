@@ -156,7 +156,7 @@ const createAlpAppWrapper = ((app, context) => {
 const LoadingFallbackContext = React.createContext('Loading...');
 
 function AlpModuleNode(props) {
-  return props.children;
+  return React__default.createElement(React__default.Fragment, null, props.children);
 }
 
 var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
