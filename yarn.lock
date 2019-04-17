@@ -10307,10 +10307,10 @@ pobpack-browser@^7.7.1:
     source-map-support "^0.5.11"
     webpack-dev-server "3.2.1"
 
-pobpack-node@^7.6.0:
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-7.6.0.tgz#897ed81c1549fc0e7f8b7cebb9099a5fd00fc14d"
-  integrity sha512-kSuQ6JlvB/eSO6aKZuUm6wTAn6n7p1AKpwxaPpodGvlzL0ovFZx6rX+G6pn+OiuzweV1VIx04/vhnpgbSEN3Cg==
+pobpack-node@^7.6.1:
+  version "7.6.1"
+  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-7.6.1.tgz#461578cc2ad4982b75e55aff44bdbfddadefd5cc"
+  integrity sha512-0cLPED3IMDPHjDXyOn4o/fmeDjm4jF8JZ6un0t1QOwPYf0XmTU7TKNBxs5Ntu78zDVUyITVmUsnNWMZXM3+mdQ==
   dependencies:
     babel-preset-latest-node "^3.0.1"
     pobpack-types "^3.5.0"
