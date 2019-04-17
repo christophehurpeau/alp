@@ -39,6 +39,7 @@ export default (
     hmr: !production,
     typescript: true,
 
+    whitelistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
     includeModules: ['ynnub', 'react-alp-login'],
 
     paths: {

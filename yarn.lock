@@ -9236,34 +9236,6 @@ nightingale-ansi-formatter@^4.2.1:
     nightingale-formatter "^5.2.1"
     nightingale-types "^2.2.1"
 
-nightingale-app-console@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/nightingale-app-console/-/nightingale-app-console-3.2.2.tgz#bd3f39d7dc6e0db24fd312cd50298c4427024d49"
-  integrity sha512-REObAZkHnA+33Z6OBFy2H+RJcfM4ByMM0Bl/goKNrYyZe0FFcEy29S4UhQG7ZNpMgVg+5Ri667PkyaSfBp7VcQ==
-  dependencies:
-    nightingale "^9.2.2"
-    nightingale-browser-console "^4.2.1"
-    nightingale-console "^5.2.1"
-    source-map-support "^0.4.14"
-
-nightingale-browser-console-formatter@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/nightingale-browser-console-formatter/-/nightingale-browser-console-formatter-4.2.1.tgz#534110dd7839b5ceb789902376a763ce54f5b328"
-  integrity sha512-4NS/yN3n6vGDGjK76lh0TPHeDrQ5X0z9ULnVjWuuLtqDLZmTDABvwaSu2WURNK7XFLadDomqKJSG2tc5QZmVqA==
-  dependencies:
-    nightingale-formatter "^5.2.1"
-    nightingale-types "^2.2.1"
-
-nightingale-browser-console@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/nightingale-browser-console/-/nightingale-browser-console-4.2.1.tgz#a53f433d390d2c24927e70dc4c9e7d37750d0b7b"
-  integrity sha512-ZGhvp0gw9/SbnQRwXEP3BLMZhzY9Jy8SirX6Hh/OZGG1zUhzPk1FTeloVNt/to9xJ3vrt1wbkyuTKPH2Fn9F4g==
-  dependencies:
-    nightingale-browser-console-formatter "^4.2.1"
-    nightingale-console-output "^4.2.1"
-    nightingale-debug "^5.2.1"
-    nightingale-types "^2.2.1"
-
 nightingale-console-output@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/nightingale-console-output/-/nightingale-console-output-4.2.1.tgz#53c372932770ffa0cac5a6527f4fa7c3c4c3bfa4"
@@ -10291,15 +10263,15 @@ pob-lcov-reporter@1.1.0:
   dependencies:
     istanbul-reports "^2.1.1"
 
-pobpack-browser@^7.7.0:
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/pobpack-browser/-/pobpack-browser-7.7.0.tgz#844981293fd80495fd7b142ffd666efea54d50c6"
-  integrity sha512-UNq8W5hFIXqFVoMwONhvJTh+da+ZhfmljiMCrhkWIQ+oU5DnwGsWSZVc6pnsjVmIjtTYz2iDEJ4HW99jmqzuWA==
+pobpack-browser@^7.7.1:
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/pobpack-browser/-/pobpack-browser-7.7.1.tgz#2fea904f34bee9b01e5db88b0e9a3844c973bddf"
+  integrity sha512-XLWKU9JpOd2ib5gUqyvydppXisA93BYtGw52A+m1oQoDQCAWFi4M7C3rewxIOx6HACMViQK62nEq4vyTs+g4YA==
   dependencies:
     "@babel/preset-env" "^7.4.3"
     "@types/react-hot-loader" "^4.1.0"
-    pobpack-types "^3.4.0"
-    pobpack-utils "^7.5.0"
+    pobpack-types "^3.5.0"
+    pobpack-utils "^7.6.0"
     react-dev-utils "^8.0.0"
     react-error-html "^0.2.2"
     react-hot-loader "^4.8.3"
@@ -10307,32 +10279,32 @@ pobpack-browser@^7.7.0:
     source-map-support "^0.5.11"
     webpack-dev-server "3.2.1"
 
-pobpack-node@^7.5.0:
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-7.5.0.tgz#a28a66771788223f93fd49897a64f80164b11be6"
-  integrity sha512-zykXoER6rkQOrM2SqaGaAneJsPbXWB8Qnv86FUuThtlFmZGFn7U1py9Pbo39It+vwcdnzm5HfSFDK0RYqcqmOA==
+pobpack-node@^7.6.0:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-7.6.0.tgz#897ed81c1549fc0e7f8b7cebb9099a5fd00fc14d"
+  integrity sha512-kSuQ6JlvB/eSO6aKZuUm6wTAn6n7p1AKpwxaPpodGvlzL0ovFZx6rX+G6pn+OiuzweV1VIx04/vhnpgbSEN3Cg==
   dependencies:
     babel-preset-latest-node "^3.0.1"
-    pobpack-types "^3.4.0"
-    pobpack-utils "^7.5.0"
+    pobpack-types "^3.5.0"
+    pobpack-utils "^7.6.0"
     source-map-support "^0.5.11"
     springbokjs-daemon "^3.1.0"
     webpack-node-externals "^1.7.2"
 
-pobpack-types@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/pobpack-types/-/pobpack-types-3.4.0.tgz#d2f63597d38e7395deccd82c15ac200d2abbd10c"
-  integrity sha512-QsLjoGBspFmRFRd4ch9U1yaRLs99zg0r3ooasuDk9yUjBlLfr2Cob0DDmTaDmeiOsY50JUdn4l6EkNHmoQb7JA==
+pobpack-types@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/pobpack-types/-/pobpack-types-3.5.0.tgz#465f80d1485bbb1b719f85478c92f9629c1e5411"
+  integrity sha512-tYBMe1h9SsAUUaKQDz6kAiJ5gmi5oYMoeUALtkx68Xg9XhAGi6SAIwavSthLZPbc+nPs7P9ZixTDSUVbSc+qng==
   dependencies:
     "@types/babel__core" "^7.1.0"
     "@types/babel__generator" "^7.0.2"
     "@types/babel__template" "^7.0.2"
     "@types/babel__traverse" "^7.0.6"
 
-pobpack-utils@^7.5.0:
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/pobpack-utils/-/pobpack-utils-7.5.0.tgz#aa6c2829f9fd70293f32f597b71f0392d0deb7a4"
-  integrity sha512-TVMwJq2x6oez5kAWEmMSInbrIdfswScgdLhLojI7+RCbs11ZqxfQjkazgiK9Wsw3bsKdgLd7ZE3qb3SpRwKY3w==
+pobpack-utils@^7.6.0:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/pobpack-utils/-/pobpack-utils-7.6.0.tgz#3b1dd16cbf56b75a6862f55361faa0e8ab6deed0"
+  integrity sha512-y7F6MC+1klqsJpfxlF437A/WZRmVkDf3MVBfelifYNfk0pGd0OLQYCj13qAZ+RFD4LweEPq7VVCVsE5R2ibIDQ==
   dependencies:
     "@types/webpack" "^4.4.27"
     babel-loader "^8.0.5"
@@ -10342,7 +10314,7 @@ pobpack-utils@^7.5.0:
     nightingale "^9.2.2"
     nightingale-console "^5.2.1"
     nightingale-logger "^6.2.1"
-    pobpack-types "^3.4.0"
+    pobpack-types "^3.5.0"
     progress "^2.0.3"
     react-dev-utils "^8.0.0"
     resolve-from "^4.0.0"
@@ -11140,7 +11112,7 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react@16.8.6, react@^16.8.6:
+react@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
@@ -12219,13 +12191,6 @@ source-map-resolve@^0.5.0:
     resolve-url "^0.2.1"
     source-map-url "^0.4.0"
     urix "^0.1.0"
-
-source-map-support@^0.4.14:
-  version "0.4.18"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
-  integrity sha512-try0/JqxPLF9nOjvSta7tVondkP5dwgyLDjVoyMDlmjugT2lRZ1OfsrYTkCd2hkDnJTKRbO/Rl3orm8vlsUzbA==
-  dependencies:
-    source-map "^0.5.6"
 
 source-map-support@^0.5.11, source-map-support@^0.5.3, source-map-support@^0.5.6, source-map-support@~0.5.6:
   version "0.5.11"
@@ -13346,10 +13311,10 @@ webpack-dev-server@3.2.1:
     webpack-log "^2.0.0"
     yargs "12.0.2"
 
-webpack-dev-server@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.3.0.tgz#eee6b5cf0f754661aed796ffdcc9c6493a963a8b"
-  integrity sha512-75LTgV367MRDVIC+IBETrKEy9175+i5fy9nkw8MW+udnPCzNzSfZtKUIG5thQcooaNruPZZoEV8fCZqKJszOIw==
+webpack-dev-server@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.3.1.tgz#7046e49ded5c1255a82c5d942bcdda552b72a62d"
+  integrity sha512-jY09LikOyGZrxVTXK0mgIq9y2IhCoJ05848dKZqX1gAGLU1YDqgpOT71+W53JH/wI4v6ky4hm+KvSyW14JEs5A==
   dependencies:
     ansi-html "0.0.7"
     bonjour "^3.5.0"
@@ -13403,10 +13368,10 @@ webpack-sources@^1.1.0, webpack-sources@^1.3.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.29.6:
-  version "4.29.6"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.29.6.tgz#66bf0ec8beee4d469f8b598d3988ff9d8d90e955"
-  integrity sha512-MwBwpiE1BQpMDkbnUUaW6K8RFZjljJHArC6tWQJoFm0oQtfoSebtg4Y7/QHnJ/SddtjYLHaKGX64CFjG5rehJw==
+webpack@^4.30.0:
+  version "4.30.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.30.0.tgz#aca76ef75630a22c49fcc235b39b4c57591d33a9"
+  integrity sha512-4hgvO2YbAFUhyTdlR4FNyt2+YaYBYHavyzjCMbZzgglo02rlKi/pcsEzwCuCpsn1ryzIl1cq/u8ArIKu8JBYMg==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
