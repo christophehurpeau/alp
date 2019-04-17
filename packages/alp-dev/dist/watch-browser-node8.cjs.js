@@ -29,6 +29,7 @@ const createPobpackConfig = ((target, production = false) => {
     env: process.env.NODE_ENV,
     hmr: !production,
     typescript: true,
+    whitelistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
     includeModules: ['ynnub', 'react-alp-login'],
     paths: {
       build: target === 'node' ? 'build' : 'public'
