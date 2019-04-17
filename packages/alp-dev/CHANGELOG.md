@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.1](https://github.com/christophehurpeau/alp/compare/alp-dev@11.5.0...alp-dev@11.5.1) (2019-04-17)
+
+
+### Bug Fixes
+
+* update pobpack-node ([85f5def](https://github.com/christophehurpeau/alp/commit/85f5def))
+
+
+
+
+
 # [11.5.0](https://github.com/christophehurpeau/alp/compare/alp-dev@11.4.0...alp-dev@11.5.0) (2019-04-17)
 
 

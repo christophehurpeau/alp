@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.3.2](https://github.com/christophehurpeau/alp/compare/alp-react@15.3.1...alp-react@15.3.2) (2019-04-17)
+
+**Note:** Version bump only for package alp-react
+
+
+
+
+
 ## [15.3.1](https://github.com/christophehurpeau/alp/compare/alp-react@15.3.0...alp-react@15.3.1) (2019-04-17)
 
 **Note:** Version bump only for package alp-react
