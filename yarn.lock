@@ -9236,6 +9236,34 @@ nightingale-ansi-formatter@^4.2.1:
     nightingale-formatter "^5.2.1"
     nightingale-types "^2.2.1"
 
+nightingale-app-console@3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/nightingale-app-console/-/nightingale-app-console-3.2.2.tgz#bd3f39d7dc6e0db24fd312cd50298c4427024d49"
+  integrity sha512-REObAZkHnA+33Z6OBFy2H+RJcfM4ByMM0Bl/goKNrYyZe0FFcEy29S4UhQG7ZNpMgVg+5Ri667PkyaSfBp7VcQ==
+  dependencies:
+    nightingale "^9.2.2"
+    nightingale-browser-console "^4.2.1"
+    nightingale-console "^5.2.1"
+    source-map-support "^0.4.14"
+
+nightingale-browser-console-formatter@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/nightingale-browser-console-formatter/-/nightingale-browser-console-formatter-4.2.1.tgz#534110dd7839b5ceb789902376a763ce54f5b328"
+  integrity sha512-4NS/yN3n6vGDGjK76lh0TPHeDrQ5X0z9ULnVjWuuLtqDLZmTDABvwaSu2WURNK7XFLadDomqKJSG2tc5QZmVqA==
+  dependencies:
+    nightingale-formatter "^5.2.1"
+    nightingale-types "^2.2.1"
+
+nightingale-browser-console@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/nightingale-browser-console/-/nightingale-browser-console-4.2.1.tgz#a53f433d390d2c24927e70dc4c9e7d37750d0b7b"
+  integrity sha512-ZGhvp0gw9/SbnQRwXEP3BLMZhzY9Jy8SirX6Hh/OZGG1zUhzPk1FTeloVNt/to9xJ3vrt1wbkyuTKPH2Fn9F4g==
+  dependencies:
+    nightingale-browser-console-formatter "^4.2.1"
+    nightingale-console-output "^4.2.1"
+    nightingale-debug "^5.2.1"
+    nightingale-types "^2.2.1"
+
 nightingale-console-output@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/nightingale-console-output/-/nightingale-console-output-4.2.1.tgz#53c372932770ffa0cac5a6527f4fa7c3c4c3bfa4"
@@ -11112,7 +11140,7 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react@^16.8.6:
+react@16.8.6, react@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
@@ -12191,6 +12219,13 @@ source-map-resolve@^0.5.0:
     resolve-url "^0.2.1"
     source-map-url "^0.4.0"
     urix "^0.1.0"
+
+source-map-support@^0.4.14:
+  version "0.4.18"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
+  integrity sha512-try0/JqxPLF9nOjvSta7tVondkP5dwgyLDjVoyMDlmjugT2lRZ1OfsrYTkCd2hkDnJTKRbO/Rl3orm8vlsUzbA==
+  dependencies:
+    source-map "^0.5.6"
 
 source-map-support@^0.5.11, source-map-support@^0.5.3, source-map-support@^0.5.6, source-map-support@~0.5.6:
   version "0.5.11"
