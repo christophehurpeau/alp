@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/christophehurpeau/alp/compare/alp-websocket@5.1.3...alp-websocket@5.2.0) (2019-04-19)
+
+
+### Features
+
+* export function initNamespace ([eec6f3f](https://github.com/christophehurpeau/alp/commit/eec6f3f))
+
+
+
+
+
 ## [5.1.3](https://github.com/christophehurpeau/alp/compare/alp-websocket@5.1.2...alp-websocket@5.1.3) (2019-04-19)
 
 
