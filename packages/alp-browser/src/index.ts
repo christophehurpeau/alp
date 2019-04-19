@@ -36,7 +36,7 @@ export default class AlpBrowser extends Ibex
   }
 
   async init(): Promise<BrowserApplication> {
-    await config(this, configPath);
+    await config(this, `/${this.appVersion}${configPath}`);
 
     language(this);
     await translate('/locales')(this);
