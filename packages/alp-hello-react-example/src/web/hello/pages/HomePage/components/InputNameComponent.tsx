@@ -1,5 +1,4 @@
 import React, { ChangeEvent, Component, KeyboardEvent } from 'react';
-import Input from 'ynnub/form/InputText';
 import s from './InputNameComponent.scss';
 
 interface Props {
@@ -26,8 +25,7 @@ export default class InputNameComponent extends Component<Props> {
   render() {
     console.log('render InputNameComponent');
     return (
-      <Input
-        id="input-name"
+      <input
         type="text"
         autoComplete="off"
         className={s.input}

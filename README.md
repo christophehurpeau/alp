@@ -33,8 +33,5 @@ This repository is a monorepo that we manage using [Lerna](https://github.com/le
 | [alp-websocket](packages/alp-websocket) | <a href="https://npmjs.org/package/alp-websocket"><img src="https://img.shields.io/npm/v/alp-websocket.svg?style=flat-square"></a>  | websocket in alp framework
 | [ibex](packages/ibex) | <a href="https://npmjs.org/package/ibex"><img src="https://img.shields.io/npm/v/ibex.svg?style=flat-square"></a>  | Framework for browser, with the same API than koa 2
 | [react-alp-context](packages/react-alp-context) | <a href="https://npmjs.org/package/react-alp-context"><img src="https://img.shields.io/npm/v/react-alp-context.svg?style=flat-square"></a>  | react alp context
-| [react-alp-link](packages/react-alp-link) | <a href="https://npmjs.org/package/react-alp-link"><img src="https://img.shields.io/npm/v/react-alp-link.svg?style=flat-square"></a>  | react link with limosa router
-| [react-alp-login](packages/react-alp-login) | <a href="https://npmjs.org/package/react-alp-login"><img src="https://img.shields.io/npm/v/react-alp-login.svg?style=flat-square"></a>  | react login components
-| [react-alp-subscribe-container](packages/react-alp-subscribe-container) | <a href="https://npmjs.org/package/react-alp-subscribe-container"><img src="https://img.shields.io/npm/v/react-alp-subscribe-container.svg?style=flat-square"></a>  | react subscribe-container, works with alp-websocket
 | [react-alp-translate](packages/react-alp-translate) | <a href="https://npmjs.org/package/react-alp-translate"><img src="https://img.shields.io/npm/v/react-alp-translate.svg?style=flat-square"></a>  | react translate
 

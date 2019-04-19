@@ -4,7 +4,7 @@ import { Tokens } from '../authentification/types';
 
 // https://api.slack.com/methods/users.identity
 
-export default new class UserAccountSlackService extends EventEmitter {
+export default new (class UserAccountSlackService extends EventEmitter {
   static scopeKeyToScope = {
     login: 'identity.basic identity.email identity.avatar',
   };
@@ -58,4 +58,4 @@ export default new class UserAccountSlackService extends EventEmitter {
           .concat(newScope.split(' '))
           .filter((item: any, i: any, ar: string[]) => ar.indexOf(item) === i);
   }
-}();
+})();

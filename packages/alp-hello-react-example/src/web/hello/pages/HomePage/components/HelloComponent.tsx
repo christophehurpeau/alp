@@ -1,5 +1,4 @@
 import React from 'react';
-import sTypography from 'ynnub/text/typography';
 import { T } from 'react-alp-translate';
 import InputName from './InputNameComponent';
 import s from './HelloComponent.scss';
@@ -12,7 +11,7 @@ interface Props {
 export default function HelloComponent({ name, onChangeName }: Props) {
   return (
     <div className={s.container}>
-      <span className={sTypography.display1}>
+      <span className={s.hello}>
         <T id="Hello {name}!" name={name || 'World'} />
       </span>
       <InputName value={name} onChange={onChangeName} />

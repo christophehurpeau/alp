@@ -1,10 +1,5 @@
 import { defineLazyProperty } from 'object-properties';
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
+import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 
 var ParamValueValidator =
 /*#__PURE__*/

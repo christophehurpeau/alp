@@ -2,7 +2,7 @@
 import EventEmitter from 'events';
 import { Tokens } from '../authentification/types';
 
-export default new class UserAccountGoogleService extends EventEmitter {
+export default new (class UserAccountGoogleService extends EventEmitter {
   static scopeKeyToScope = {
     login: 'openid profile email',
   };
@@ -57,4 +57,4 @@ export default new class UserAccountGoogleService extends EventEmitter {
           .concat(newScope.split(' '))
           .filter((item: any, i: any, ar: string[]) => ar.indexOf(item) === i);
   }
-}();
+})();

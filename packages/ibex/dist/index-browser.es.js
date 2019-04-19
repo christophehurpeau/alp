@@ -1,37 +1,10 @@
+import _createClass from '@babel/runtime/helpers/esm/createClass';
+import _assertThisInitialized from '@babel/runtime/helpers/esm/assertThisInitialized';
+import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import { EventEmitter } from 'events';
 import Logger from 'nightingale-logger';
 import delegate from 'delegates';
 import { parse } from 'querystring';
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
 
 // TODO create lib
 function compose(middlewares) {

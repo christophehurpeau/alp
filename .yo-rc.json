@@ -10,7 +10,7 @@
       "testing": true,
       "codecov": true,
       "documentation": false,
-      "typescript": false,
+      "typescript": true,
       "packageNames": [
         "alp-body-parser",
         "alp-browser",
@@ -34,9 +34,6 @@
         "alp-websocket",
         "ibex",
         "react-alp-context",
-        "react-alp-link",
-        "react-alp-login",
-        "react-alp-subscribe-container",
         "react-alp-translate"
       ]
     },
