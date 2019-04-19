@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.0.2...alp-hello-react-example@2.0.3) (2019-04-19)
+
+
+### Bug Fixes
+
+* update ynnub-webpack-config and mini-css-extract-plugin ([784a68a](https://github.com/christophehurpeau/alp/commit/784a68a))
+
+
+
+
+
 ## [2.0.2](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.0.1...alp-hello-react-example@2.0.2) (2019-04-19)
 
 **Note:** Version bump only for package alp-hello-react-example
