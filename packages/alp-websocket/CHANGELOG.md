@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/christophehurpeau/alp/compare/alp-websocket@5.1.2...alp-websocket@5.1.3) (2019-04-19)
+
+
+### Bug Fixes
+
+* increase pingTimeout to fix chrome issue ([96903b0](https://github.com/christophehurpeau/alp/commit/96903b0))
+
+
+
+
+
 ## [5.1.2](https://github.com/christophehurpeau/alp/compare/alp-websocket@5.1.1...alp-websocket@5.1.2) (2019-04-07)
 
 **Note:** Version bump only for package alp-websocket
