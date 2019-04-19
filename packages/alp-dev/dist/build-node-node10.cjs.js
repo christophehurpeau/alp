@@ -68,7 +68,12 @@ const createPobpackConfig = ((target, production = false) => {
     moduleRules: [// SCSS RULE, CSS RULE
     ...ynnubWebpackConfig.createModuleRules({
       target,
-      extractLoader: MiniCssExtractPlugin.loader,
+      extractLoader: {
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          hmr: false
+        }
+      },
       production,
       themeFile: './src/theme.scss',
       plugins: [autoprefixer],
@@ -80,7 +85,12 @@ const createPobpackConfig = ((target, production = false) => {
       use: ynnubWebpackConfig.createCssModuleUse({
         global: true,
         target,
-        extractLoader: MiniCssExtractPlugin.loader,
+        extractLoader: {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: false
+          }
+        },
         production,
         plugins: [autoprefixer],
         resolveLoader: loader => require.resolve(loader),

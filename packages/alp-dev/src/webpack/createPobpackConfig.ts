@@ -113,7 +113,10 @@ export default (
       // SCSS RULE, CSS RULE
       ...createModuleRules({
         target,
-        extractLoader: MiniCssExtractPlugin.loader,
+        extractLoader: {
+          loader: MiniCssExtractPlugin.loader as any,
+          options: { hmr: false },
+        },
         production,
         themeFile: './src/theme.scss',
         plugins: [autoprefixer],
@@ -127,7 +130,10 @@ export default (
         use: createCssModuleUse({
           global: true,
           target,
-          extractLoader: MiniCssExtractPlugin.loader,
+          extractLoader: {
+            loader: MiniCssExtractPlugin.loader as any,
+            options: { hmr: false },
+          },
           production,
           plugins: [autoprefixer],
           resolveLoader: (loader: string): string => require.resolve(loader),
