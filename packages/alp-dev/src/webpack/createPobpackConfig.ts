@@ -40,7 +40,7 @@ export default (
     typescript: true,
 
     whitelistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
-    includeModules: ['ynnub', 'react-alp-login'],
+    includeModules: [],
 
     paths: {
       build: target === 'node' ? 'build' : 'public',
