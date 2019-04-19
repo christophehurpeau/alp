@@ -11,6 +11,24 @@ const Logger = _interopDefault(require('nightingale-logger'));
 /* eslint-disable no-use-before-define */
 const logger = new Logger('alp:websocket');
 let io;
+function initNamespace(config, ns) {
+  ns.on('connection', socket => {
+    logger.debug('connected', {
+      id: socket.id
+    });
+    socket.emit('hello', {
+      version: config.get('version')
+    });
+    socket.on('error', err => {
+      logger.error(err);
+    });
+    socket.on('disconnect', () => {
+      logger.debug('disconnected', {
+        id: socket.id
+      });
+    });
+  });
+}
 
 function start(config, dirname) {
   if (io) {
@@ -80,20 +98,7 @@ function start(config, dirname) {
       // https://github.com/socketio/socket.io/issues/3259
       pingTimeout: 30000
     });
-    io.on('connection', socket => {
-      logger.debug('connected', {
-        id: socket.id
-      });
-      socket.emit('hello', {
-        version: config.get('version')
-      });
-      socket.on('error', err => logger.error(err));
-      socket.on('disconnect', () => {
-        logger.debug('disconnected', {
-          id: socket.id
-        });
-      });
-    });
+    initNamespace(config, io);
     io.on('error', err => logger.error(err));
   });
 }
@@ -149,5 +154,6 @@ function subscribe(socket, name, callbackOnSubscribe, callbackOnUnsubscribe) {
 
 exports.close = close;
 exports.default = alpWebsocket;
+exports.initNamespace = initNamespace;
 exports.subscribe = subscribe;
 //# sourceMappingURL=index-node8-dev.cjs.js.map

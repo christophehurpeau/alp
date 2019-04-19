@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { chmodSync, readFileSync, unlinkSync } from 'fs';
-import socketio, { Server, Socket } from 'socket.io';
+import socketio, { Namespace, Server, Socket } from 'socket.io';
 import Logger from 'nightingale-logger';
 import { NodeApplication, NodeConfig } from 'alp-types';
 
@@ -12,7 +12,30 @@ const logger = new Logger('alp:websocket');
 
 let io: Server;
 
-function start(config: NodeConfig, dirname: string) {
+export function initNamespace(config: NodeConfig, ns: Namespace | Server) {
+  ns.on(
+    'connection',
+    (socket): void => {
+      logger.debug('connected', { id: socket.id });
+      socket.emit('hello', { version: config.get('version') });
+
+      socket.on(
+        'error',
+        (err): void => {
+          logger.error(err);
+        },
+      );
+      socket.on(
+        'disconnect',
+        (): void => {
+          logger.debug('disconnected', { id: socket.id });
+        },
+      );
+    },
+  );
+}
+
+function start(config: NodeConfig, dirname: string): Promise<Server> {
   if (io) {
     throw new Error('Already started');
   }
@@ -74,21 +97,13 @@ function start(config: NodeConfig, dirname: string) {
       pingTimeout: 30000,
     });
 
-    io.on('connection', (socket) => {
-      logger.debug('connected', { id: socket.id });
-      socket.emit('hello', { version: config.get('version') });
-
-      socket.on('error', (err) => logger.error(err));
-      socket.on('disconnect', () => {
-        logger.debug('disconnected', { id: socket.id });
-      });
-    });
+    initNamespace(config, io);
 
     io.on('error', (err: Error) => logger.error(err));
   });
 }
 
-export function close() {
+export function close(): void {
   io.close();
 }
 

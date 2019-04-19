@@ -1,8 +1,9 @@
-import { Server, Socket } from 'socket.io';
-import { NodeApplication } from 'alp-types';
+import { Namespace, Server, Socket } from 'socket.io';
+import { NodeApplication, NodeConfig } from 'alp-types';
 interface NodeApplicationWithWebsocket extends NodeApplication {
     websocket: Server;
 }
+export declare function initNamespace(config: NodeConfig, ns: Namespace | Server): void;
 export declare function close(): void;
 /**
  * @param {Koa|AlpNodeApp} app

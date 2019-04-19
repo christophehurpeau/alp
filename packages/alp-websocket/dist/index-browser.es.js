@@ -70,7 +70,7 @@ function start(app, namespaceName) {
 
     if (version !== window.__VERSION__) {
       // eslint-disable-next-line no-alert
-      if (process.env.NODE_ENV === 'production' && window.confirm(context.t('newversion'))) {
+      if (window.confirm(context.t('newversion'))) {
         return window.location.reload(true);
       } else {
         console.warn('Version mismatch', {

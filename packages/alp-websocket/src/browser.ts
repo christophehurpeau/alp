@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define, @typescript-eslint/no-use-before-define, max-lines */
+import { PRODUCTION } from 'pob-babel';
 import socketio from 'socket.io-client';
 import Logger from 'nightingale-logger';
 import { BrowserApplication } from 'alp-types';
@@ -102,10 +103,7 @@ function start(app: BrowserApplication, namespaceName: string): Socket {
   socket.on('hello', ({ version }: { version: string }) => {
     if (version !== window.__VERSION__) {
       // eslint-disable-next-line no-alert
-      if (
-        process.env.NODE_ENV === 'production' &&
-        window.confirm(context.t('newversion'))
-      ) {
+      if (PRODUCTION && window.confirm(context.t('newversion'))) {
         return window.location.reload(true);
       } else {
         console.warn('Version mismatch', {
