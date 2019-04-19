@@ -69,7 +69,10 @@ function start(config: NodeConfig, dirname: string) {
     }
 
     server.on('error', (err: Error) => logger.error(err));
-    io = socketio(server);
+    io = socketio(server, {
+      // https://github.com/socketio/socket.io/issues/3259
+      pingTimeout: 30000,
+    });
 
     io.on('connection', (socket) => {
       logger.debug('connected', { id: socket.id });
