@@ -85,7 +85,7 @@ function (_Ibex) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return config(this, "/" + this.appVersion + configPath);
+              return config(this, configPath);
 
             case 2:
               language(this);

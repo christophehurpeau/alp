@@ -1,3 +1,4 @@
+import { PRODUCTION } from 'pob-babel';
 import Ibex from 'ibex';
 import config, { getConfig, existsConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
@@ -36,7 +37,10 @@ export default class AlpBrowser extends Ibex
   }
 
   async init(): Promise<BrowserApplication> {
-    await config(this, `/${this.appVersion}${configPath}`);
+    await config(
+      this,
+      PRODUCTION ? `/${this.appVersion}${configPath}` : configPath,
+    );
 
     language(this);
     await translate('/locales')(this);
