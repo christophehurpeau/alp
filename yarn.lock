@@ -311,6 +311,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
+"@babel/plugin-syntax-dynamic-import@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-dynamic-import/-/plugin-syntax-dynamic-import-7.2.0.tgz#69c159ffaf4998122161ad8ebc5e6d1f55df8612"
+  integrity sha512-mVxuJ0YroI/h/tbFTPGZR8cv6ai+STMKNBq0f8hFxsxWjl94qqhsb+wXbpNMDPU3cfR1TIsVFzU3nXyZMqyK4w==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
 "@babel/plugin-syntax-export-default-from@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-export-default-from/-/plugin-syntax-export-default-from-7.2.0.tgz#edd83b7adc2e0d059e2467ca96c650ab6d2f3820"
@@ -3214,14 +3221,15 @@ babel-preset-optimizations@^1.7.0:
     babel-plugin-transform-inline-consecutive-adds "^0.4.3"
     babel-plugin-transform-undefined-to-void "^6.9.4"
 
-babel-preset-pob-env@^2.21.0, babel-preset-pob-env@^2.22.0:
-  version "2.22.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-pob-env/-/babel-preset-pob-env-2.22.0.tgz#852acedf09726a171c30c2a833e1e11d1b628ebb"
-  integrity sha512-/ZanYBisgqxe/7lKNy3O+dRYWN6xT5jzkEUdUbuBhtfBtHUlxg0PA4SIpGZ5sQtetL00KZKOTVGCXadBOeoDFA==
+babel-preset-pob-env@^2.21.0, babel-preset-pob-env@^2.22.0, babel-preset-pob-env@^2.23.0:
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-pob-env/-/babel-preset-pob-env-2.23.0.tgz#63bc2604453f39d2004349f4cc6505a9d274225c"
+  integrity sha512-DyBgb7lxNQCCG6/b7NKiEisEI6jepFQAhLat/0r6iWsK8QdiuZa9usgq0J+DJAOdRY0kg+Q83gs/sGVamQFNFA==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.4.0"
     "@babel/plugin-proposal-export-default-from" "^7.2.0"
     "@babel/plugin-proposal-export-namespace-from" "^7.2.0"
+    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/preset-typescript" "^7.3.3"
     babel-plugin-discard-module-references "^1.1.2"
     babel-plugin-fix-class-properties-uninitialized "^1.4.0"
