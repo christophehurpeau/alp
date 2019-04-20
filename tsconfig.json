@@ -23,6 +23,7 @@
     { "path": "packages/alp-websocket/tsconfig.json" },
     { "path": "packages/ibex/tsconfig.json" },
     { "path": "packages/react-alp-context/tsconfig.json" },
+    { "path": "packages/react-alp-loading-bar/tsconfig.json" },
     { "path": "packages/react-alp-translate/tsconfig.json" }
   ]
 }

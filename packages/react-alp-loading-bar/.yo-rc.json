@@ -1,0 +1,53 @@
+{
+  "pob": {
+    "pob-config": {
+      "envs": [
+        {
+          "target": "node",
+          "version": "10",
+          "formats": [
+            "cjs",
+            "es"
+          ]
+        },
+        {
+          "target": "node",
+          "version": "8",
+          "formats": [
+            "cjs"
+          ]
+        },
+        {
+          "target": "browser",
+          "version": "modern",
+          "formats": [
+            "es"
+          ]
+        },
+        {
+          "target": "browser",
+          "formats": [
+            "cjs",
+            "es"
+          ]
+        }
+      ],
+      "testing": false,
+      "documentation": false,
+      "entries": [
+        "index"
+      ],
+      "withReact": true
+    }
+  },
+  "react-alp-translate": {
+    "type": {
+      "type": "lib"
+    }
+  },
+  "react-alp-loading-bar": {
+    "type": {
+      "type": "lib"
+    }
+  }
+}
