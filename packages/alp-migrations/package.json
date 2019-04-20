@@ -47,7 +47,7 @@
     "babel-preset-latest-node": "3.1.1",
     "eslint": "5.16.0",
     "liwi-mongo": "4.1.0",
-    "pob-babel": "23.13.0",
+    "pob-babel": "23.14.0",
     "prettier": "1.17.0"
   }
 }

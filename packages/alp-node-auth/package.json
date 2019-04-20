@@ -57,7 +57,7 @@
     "eslint": "5.16.0",
     "liwi-mongo": "4.1.0",
     "liwi-store": "4.1.0",
-    "pob-babel": "23.13.0",
+    "pob-babel": "23.14.0",
     "prettier": "1.17.0"
   }
 }
