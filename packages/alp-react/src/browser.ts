@@ -1,5 +1,5 @@
 import contentLoaded from 'content-loaded';
-import React from 'react';
+import React, { ElementType } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -30,7 +30,7 @@ export default (app: BrowserApplication) =>
   //   }
   //   return state;
   // },
-  async function renderApp(App: React.ReactType<{}>) {
+  async function renderApp(App: ElementType<{}>) {
     const initialData = window.__INITIAL_DATA__ || {};
     const ctx = app.createContext();
     if (initialData.sanitizedState) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ElementType } from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 // import Logger from 'nightingale-logger';
@@ -36,7 +36,7 @@ interface Options {
 export type ReactAppCallback = (ctx: Context) => Promise<void>;
 
 export default (
-  App: React.ReactType<any>,
+  App: ElementType<{}>,
   options: Options = {},
 ): ReactAppCallback => async (ctx: Context) => {
   const version: string = ctx.config.get('version');
