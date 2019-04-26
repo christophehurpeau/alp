@@ -15,17 +15,17 @@ export interface Account {
   profile?: any;
   provider: string;
   refreshToken?: string;
-  scope: Array<string>;
-  subservices?: Array<string>;
+  scope: string[];
+  subservices?: string[];
   status: string;
   tokenExpireDate: Date;
 }
 
 export interface User extends MongoModel {
-  accounts: Array<Account>;
+  accounts: Account[];
   displayName: string;
-  emailDomains: Array<string>;
-  emails: Array<string>;
+  emailDomains: string[];
+  emails: string[];
   fullName: UserName;
   status: string;
 }
@@ -39,10 +39,10 @@ export interface AccountSanitized {
 }
 
 export interface UserSanitized extends MongoModel {
-  accounts: Array<AccountSanitized>;
+  accounts: AccountSanitized[];
   displayName: string;
-  emailDomains: Array<string>;
-  emails: Array<string>;
+  emailDomains: string[];
+  emails: string[];
   fullName: UserName;
   status: string;
 }

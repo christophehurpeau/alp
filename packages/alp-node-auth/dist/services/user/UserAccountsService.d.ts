@@ -2,27 +2,19 @@
 import EventEmitter from 'events';
 import { AccountId, User, Account } from '../../../types.d';
 import MongoUsersManager from '../../MongoUsersManager';
-interface TokensObject {
-    accessToken: string;
-    expireDate: Date;
-    idToken: string;
-    refreshToken?: string;
-    tokenType: string;
-}
+import { AllowedStrategyKeys } from '../authentification/types';
+import { AccountService, TokensObject } from './types';
 export declare const STATUSES: {
     VALIDATED: string;
     DELETED: string;
 };
-export default class UserAccountsService extends EventEmitter {
-    static strategyToService: {
-        [key: string]: any;
-    };
+export default class UserAccountsService<StrategyKeys extends AllowedStrategyKeys> extends EventEmitter {
+    private strategyToService;
     usersManager: MongoUsersManager;
-    constructor(usersManager: MongoUsersManager);
-    getScope(strategy: string, scopeKey: string, user?: User, accountId?: AccountId): any;
-    update(user: User, strategy: string, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
-    findOrCreateFromStrategy(strategy: string, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
+    constructor(usersManager: MongoUsersManager, strategyToService: Record<StrategyKeys, AccountService<any>>);
+    getScope(strategy: StrategyKeys, scopeKey: string, user?: User, accountId?: AccountId): string;
+    update(user: User, strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
+    findOrCreateFromStrategy(strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
     updateAccount(user: User, account: Account): Promise<User>;
 }
-export {};
 //# sourceMappingURL=UserAccountsService.d.ts.map

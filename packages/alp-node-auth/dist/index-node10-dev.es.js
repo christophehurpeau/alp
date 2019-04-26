@@ -228,10 +228,7 @@ class AuthenticationService extends EventEmitter {
       return user;
     }
 
-    ctx.cookies.set(cookieName, '', {
-      expires: new Date(1)
-    });
-    const connectedUser = ctx.state.connected;
+    const connectedUser = ctx.state.user;
     await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
     return connectedUser;
   }
@@ -258,116 +255,16 @@ class AuthenticationService extends EventEmitter {
 
 }
 
-var _class, _temp;
-const userAccountGoogleService = new (_temp = _class = class UserAccountGoogleService extends EventEmitter {
-  constructor(...args) {
-    super(...args);
-    this.providerKey = 'google';
-  }
-
-  getProfile(tokens) {
-    return fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`).then(response => response.json());
-  }
-
-  getId(profile) {
-    return profile.id;
-  }
-
-  getAccountName(profile) {
-    return profile.email;
-  }
-
-  getEmails(profile) {
-    const emails = [];
-
-    if (profile.email) {
-      emails.push(profile.email);
-    }
-
-    return emails;
-  }
-
-  getDisplayName(profile) {
-    return profile.name;
-  }
-
-  getFullName(profile) {
-    return {
-      givenName: profile.given_name,
-      familyName: profile.family_name
-    };
-  }
-
-  getDefaultScope(newScope) {
-    return this.getScope(undefined, newScope);
-  }
-
-  getScope(oldScope, newScope) {
-    return !oldScope ? newScope.split(' ') : oldScope.concat(newScope.split(' ')).filter((item, i, ar) => ar.indexOf(item) === i);
-  }
-
-}, _class.scopeKeyToScope = {
-  login: 'openid profile email'
-}, _temp)();
-
-var _class$1, _temp$1;
-// https://api.slack.com/methods/users.identity
-const userAccountSlackService = new (_temp$1 = _class$1 = class UserAccountSlackService extends EventEmitter {
-  constructor(...args) {
-    super(...args);
-    this.providerKey = 'google';
-  }
-
-  getProfile(tokens) {
-    console.log(tokens);
-    return fetch(`https://slack.com/api/users.identity?token=${tokens.accessToken}`).then(response => response.json());
-  }
-
-  getId(profile) {
-    if (!profile || !profile.team || !profile.team.id || !profile.user || !profile.user.id) {
-      return null;
-    }
-
-    return `team:${profile.team.id};user:${profile.user.id}`;
-  }
-
-  getAccountName(profile) {
-    return profile.user.email;
-  }
-
-  getEmails(profile) {
-    return [profile.user.email];
-  }
-
-  getDisplayName(profile) {
-    return profile.user.name;
-  }
-
-  getFullName(profile) {
-    return null;
-  }
-
-  getDefaultScope(newScope) {
-    return this.getScope(undefined, newScope);
-  }
-
-  getScope(oldScope, newScope) {
-    return !oldScope ? newScope.split(' ') : oldScope.concat(newScope.split(' ')).filter((item, i, ar) => ar.indexOf(item) === i);
-  }
-
-}, _class$1.scopeKeyToScope = {
-  login: 'identity.basic identity.email identity.avatar'
-}, _temp$1)();
-
 const logger$1 = new Logger('alp:auth:userAccounts');
 const STATUSES = {
   VALIDATED: 'validated',
   DELETED: 'deleted'
 };
 class UserAccountsService extends EventEmitter {
-  constructor(usersManager) {
+  constructor(usersManager, strategyToService) {
     super();
     this.usersManager = usersManager;
+    this.strategyToService = strategyToService;
   }
 
   getScope(strategy, scopeKey, user, accountId) {
@@ -375,13 +272,13 @@ class UserAccountsService extends EventEmitter {
       strategy,
       userId: user && user._id
     });
-    const service = UserAccountsService.strategyToService[strategy];
+    const service = this.strategyToService[strategy];
 
     if (!service) {
       throw new Error('Strategy not supported');
     }
 
-    const newScope = service.constructor.scopeKeyToScope[scopeKey];
+    const newScope = service.scopeKeyToScope[scopeKey];
 
     if (!user || !accountId) {
       return newScope;
@@ -397,7 +294,7 @@ class UserAccountsService extends EventEmitter {
   }
 
   async update(user, strategy, tokens, scope, subservice) {
-    const service = UserAccountsService.strategyToService[strategy];
+    const service = this.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
     const account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
@@ -431,7 +328,7 @@ class UserAccountsService extends EventEmitter {
   }
 
   async findOrCreateFromStrategy(strategy, tokens, scope, subservice) {
-    const service = UserAccountsService.strategyToService[strategy];
+    const service = this.strategyToService[strategy];
     if (!service) throw new Error('Strategy not supported');
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
@@ -513,10 +410,6 @@ class UserAccountsService extends EventEmitter {
   }
 
 }
-UserAccountsService.strategyToService = {
-  google: userAccountGoogleService,
-  slack: userAccountSlackService
-};
 
 function createAuthController({
   usersManager,
@@ -530,6 +423,18 @@ function createAuthController({
       await authenticationService.redirectAuthUrl(ctx, strategy);
     },
 
+    async addScope(ctx) {
+      if (ctx.state.connected) {
+        ctx.redirect(ctx.urlGenerator(homeRouterKey));
+      }
+
+      const strategy = ctx.namedParam('strategy');
+      if (!strategy) throw new Error('Strategy missing');
+      const scopeKey = ctx.namedParam('scopeKey');
+      if (!scopeKey) throw new Error('Scope missing');
+      await authenticationService.redirectAuthUrl(ctx, strategy, undefined, scopeKey);
+    },
+
     async loginResponse(ctx) {
       if (ctx.state.connected) {
         ctx.redirect(ctx.urlGenerator(homeRouterKey));
@@ -537,7 +442,7 @@ function createAuthController({
 
       const strategy = ctx.namedParam('strategy');
       ctx.assert(strategy);
-      const connectedUser = await authenticationService.accessResponse(ctx, strategy);
+      const connectedUser = await authenticationService.accessResponse(ctx, strategy, ctx.state.connected);
       const keyPath = usersManager.store.keyPath;
       await ctx.setConnected(connectedUser[keyPath], connectedUser);
       ctx.state.connected = connectedUser;
@@ -557,6 +462,7 @@ const createRoutes = controller => ({
     segment.add('/response', controller.loginResponse, 'loginResponse');
     segment.defaultRoute(controller.login, 'login');
   }],
+  addScope: ['/auth/add-scope/:strategy/:scopeKey', controller.addScope],
   logout: ['/logout', controller.logout]
 });
 
@@ -649,6 +555,107 @@ class MongoUsersManager {
 
 }
 
+/* global fetch */
+class UserAccountGoogleService {
+  constructor(scopeKeyToScope) {
+    this.providerKey = 'google';
+    this.scopeKeyToScope = { ...scopeKeyToScope,
+      login: 'openid profile email'
+    };
+  }
+
+  getProfile(tokens) {
+    return fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`).then(response => response.json());
+  }
+
+  getId(profile) {
+    return profile.id;
+  }
+
+  getAccountName(profile) {
+    return profile.email;
+  }
+
+  getEmails(profile) {
+    const emails = [];
+
+    if (profile.email) {
+      emails.push(profile.email);
+    }
+
+    return emails;
+  }
+
+  getDisplayName(profile) {
+    return profile.name;
+  }
+
+  getFullName(profile) {
+    return {
+      givenName: profile.given_name,
+      familyName: profile.family_name
+    };
+  }
+
+  getDefaultScope(newScope) {
+    return this.getScope(undefined, newScope);
+  }
+
+  getScope(oldScope, newScope) {
+    return !oldScope ? newScope.split(' ') : oldScope.concat(newScope.split(' ')).filter((item, i, ar) => ar.indexOf(item) === i);
+  }
+
+}
+
+/* global fetch */
+// https://api.slack.com/methods/users.identity
+class UserAccountSlackService {
+  constructor(scopeKeyToScope) {
+    this.providerKey = 'google';
+    this.scopeKeyToScope = { ...scopeKeyToScope,
+      login: 'identity.basic identity.email identity.avatar'
+    };
+  }
+
+  getProfile(tokens) {
+    console.log(tokens);
+    return fetch(`https://slack.com/api/users.identity?token=${tokens.accessToken}`).then(response => response.json());
+  }
+
+  getId(profile) {
+    if (!profile || !profile.team || !profile.team.id || !profile.user || !profile.user.id) {
+      return null;
+    }
+
+    return `team:${profile.team.id};user:${profile.user.id}`;
+  }
+
+  getAccountName(profile) {
+    return profile.user.email;
+  }
+
+  getEmails(profile) {
+    return [profile.user.email];
+  }
+
+  getDisplayName(profile) {
+    return profile.user.name;
+  }
+
+  getFullName(profile) {
+    return null;
+  }
+
+  getDefaultScope(newScope) {
+    return this.getScope(undefined, newScope);
+  }
+
+  getScope(oldScope, newScope) {
+    return !oldScope ? newScope.split(' ') : oldScope.concat(newScope.split(' ')).filter((item, i, ar) => ar.indexOf(item) === i);
+  }
+
+}
+
 const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
 const authSocketIO = (app, usersManager, io, options) => {
@@ -695,10 +702,11 @@ const signPromisified = promisify(sign);
 function init({
   usersManager,
   strategies,
+  strategyToService,
   homeRouterKey
 }) {
   return app => {
-    const userAccountsService = new UserAccountsService(usersManager);
+    const userAccountsService = new UserAccountsService(usersManager, strategyToService);
     const authenticationService = new AuthenticationService(app.config, strategies, userAccountsService);
     const controller = createAuthController({
       usersManager,
@@ -796,5 +804,5 @@ function init({
 }
 
 export default init;
-export { MongoUsersManager, STATUSES, authSocketIO };
+export { MongoUsersManager, STATUSES, UserAccountGoogleService, UserAccountSlackService, authSocketIO };
 //# sourceMappingURL=index-node10-dev.es.js.map

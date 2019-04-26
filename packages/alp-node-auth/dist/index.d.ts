@@ -4,14 +4,19 @@ import { Strategies } from './services/authentification/AuthenticationService';
 import { AuthController as AuthControllerType } from './createAuthController';
 import { AuthRoutes as AuthRoutesType } from './createRoutes';
 import MongoUsersManager from './MongoUsersManager';
+import { AllowedStrategyKeys } from './services/authentification/types';
+import { AccountService } from './services/user/types';
 export { default as MongoUsersManager } from './MongoUsersManager';
+export { default as UserAccountGoogleService, } from './services/user/UserAccountGoogleService';
+export { default as UserAccountSlackService, } from './services/user/UserAccountSlackService';
 export { authSocketIO } from './authSocketIO';
 export { STATUSES } from './services/user/UserAccountsService';
 export declare type AuthController = AuthControllerType;
 export declare type AuthRoutes = AuthRoutesType;
-export default function init<U extends User = User>({ usersManager, strategies, homeRouterKey, }: {
+export default function init<U extends User = User, StrategyKeys extends AllowedStrategyKeys = 'google'>({ usersManager, strategies, strategyToService, homeRouterKey, }: {
     homeRouterKey?: string;
-    strategies: Strategies;
+    strategies: Strategies<StrategyKeys>;
+    strategyToService: Record<StrategyKeys, AccountService<any>>;
     usersManager: MongoUsersManager<U>;
 }): (app: NodeApplication) => {
     routes: AuthRoutesType;

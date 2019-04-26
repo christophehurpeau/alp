@@ -8,6 +8,7 @@
     "@pob/eslint-config-typescript"
   ],
   "rules": {
-    "prefer-destructuring": "off"
+    "prefer-destructuring": "off",
+    "prefer-class-properties/prefer-class-properties": "off"
   }
 }

@@ -14,8 +14,16 @@ import {
 import { createRoutes, AuthRoutes as AuthRoutesType } from './createRoutes';
 import MongoUsersManager from './MongoUsersManager';
 import { createDecodeJWT } from './utils/createDecodeJWT';
+import { AllowedStrategyKeys } from './services/authentification/types';
+import { AccountService } from './services/user/types';
 
 export { default as MongoUsersManager } from './MongoUsersManager';
+export {
+  default as UserAccountGoogleService,
+} from './services/user/UserAccountGoogleService';
+export {
+  default as UserAccountSlackService,
+} from './services/user/UserAccountSlackService';
 export { authSocketIO } from './authSocketIO';
 export { STATUSES } from './services/user/UserAccountsService';
 
@@ -27,17 +35,25 @@ const signPromisified: any = promisify(sign);
 export type AuthController = AuthControllerType;
 export type AuthRoutes = AuthRoutesType;
 
-export default function init<U extends User = User>({
+export default function init<
+  U extends User = User,
+  StrategyKeys extends AllowedStrategyKeys = 'google'
+>({
   usersManager,
   strategies,
+  strategyToService,
   homeRouterKey,
 }: {
   homeRouterKey?: string;
-  strategies: Strategies;
+  strategies: Strategies<StrategyKeys>;
+  strategyToService: Record<StrategyKeys, AccountService<any>>;
   usersManager: MongoUsersManager<U>;
 }) {
   return (app: NodeApplication) => {
-    const userAccountsService = new UserAccountsService(usersManager);
+    const userAccountsService = new UserAccountsService(
+      usersManager,
+      strategyToService,
+    );
 
     const authenticationService = new AuthenticationService(
       app.config,

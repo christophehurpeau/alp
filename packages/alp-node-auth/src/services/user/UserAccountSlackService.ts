@@ -1,13 +1,19 @@
 /* global fetch */
-import EventEmitter from 'events';
 import { Tokens } from '../authentification/types';
+import { AccountService } from './types';
 
 // https://api.slack.com/methods/users.identity
 
-export default new (class UserAccountSlackService extends EventEmitter {
-  static scopeKeyToScope = {
-    login: 'identity.basic identity.email identity.avatar',
-  };
+export default class UserAccountSlackService<ScopeKeys extends 'login'>
+  implements AccountService<ScopeKeys> {
+  scopeKeyToScope: Record<ScopeKeys, string>;
+
+  constructor(scopeKeyToScope: Record<Exclude<'login', ScopeKeys>, string>) {
+    this.scopeKeyToScope = {
+      ...scopeKeyToScope,
+      login: 'identity.basic identity.email identity.avatar',
+    };
+  }
 
   providerKey = 'google';
 
@@ -58,4 +64,4 @@ export default new (class UserAccountSlackService extends EventEmitter {
           .concat(newScope.split(' '))
           .filter((item: any, i: any, ar: string[]) => ar.indexOf(item) === i);
   }
-})();
+}

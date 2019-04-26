@@ -4,7 +4,7 @@ import { OAuthClient } from 'simple-oauth2';
 import { NodeConfig } from 'alp-types';
 import UserAccountsService from '../user/UserAccountsService';
 import { AccountId, User, Account } from '../../../types.d';
-import { Tokens } from './types';
+import { AllowedStrategyKeys, Tokens } from './types';
 export interface GenerateAuthUrlOptions {
     accessType?: string;
     grantType?: string;
@@ -26,14 +26,12 @@ export interface Strategy {
 export interface Oauth2Strategy extends Strategy {
     oauth2: OAuthClient;
 }
-export interface Strategies {
-    [strategy: string]: Strategy;
-}
-export default class AuthenticationService extends EventEmitter {
+export declare type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<StrategyKeys, Strategy>;
+export default class AuthenticationService<StrategyKeys extends AllowedStrategyKeys> extends EventEmitter {
     config: NodeConfig;
-    strategies: Strategies;
-    userAccountsService: UserAccountsService;
-    constructor(config: NodeConfig, strategies: Strategies, userAccountsService: UserAccountsService);
+    strategies: Strategies<StrategyKeys>;
+    userAccountsService: UserAccountsService<StrategyKeys>;
+    constructor(config: NodeConfig, strategies: Strategies<StrategyKeys>, userAccountsService: UserAccountsService<StrategyKeys>);
     /**
      * @param {string} strategy
      * @param {Object} options
@@ -55,9 +53,9 @@ export default class AuthenticationService extends EventEmitter {
      * to this user/application combination for other scopes
      * @returns {string}
      */
-    generateAuthUrl(strategy: string, options?: GenerateAuthUrlOptions): any;
-    getTokens(strategy: string, options?: GetTokensOptions): Promise<Tokens>;
-    refreshToken(strategy: string, tokensParam: {
+    generateAuthUrl(strategy: StrategyKeys, options?: GenerateAuthUrlOptions): any;
+    getTokens(strategy: StrategyKeys, options?: GetTokensOptions): Promise<Tokens>;
+    refreshToken(strategy: StrategyKeys, tokensParam: {
         refreshToken: string;
     }): Promise<{
         accessToken: any;
@@ -77,14 +75,14 @@ export default class AuthenticationService extends EventEmitter {
      * @param accountId
      * @returns {*}
      */
-    redirectAuthUrl(ctx: any, strategy: string, refreshToken?: string | undefined, scopeKey?: string | undefined, user?: User, accountId?: AccountId): Promise<any>;
+    redirectAuthUrl(ctx: any, strategy: StrategyKeys, refreshToken?: string | undefined, scopeKey?: string | undefined, user?: User, accountId?: AccountId): Promise<any>;
     /**
      * @param {Koa.Context} ctx
      * @param {string} strategy
      * @param {boolean} isConnected
      * @returns {*}
      */
-    accessResponse(ctx: any, strategy: string, isConnected?: boolean): Promise<any>;
+    accessResponse(ctx: any, strategy: StrategyKeys, isConnected?: boolean): Promise<any>;
     refreshAccountTokens(user: User, account: Account): Promise<boolean>;
 }
 //# sourceMappingURL=AuthenticationService.d.ts.map

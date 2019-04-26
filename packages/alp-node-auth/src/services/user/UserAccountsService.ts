@@ -2,16 +2,8 @@ import EventEmitter from 'events';
 import Logger from 'nightingale-logger';
 import { AccountId, User, Account } from '../../../types.d';
 import MongoUsersManager from '../../MongoUsersManager';
-import userAccountGoogleService from './userAccountGoogleService';
-import userAccountSlackService from './userAccountSlackService';
-
-interface TokensObject {
-  accessToken: string;
-  expireDate: Date;
-  idToken: string;
-  refreshToken?: string;
-  tokenType: string;
-}
+import { AllowedStrategyKeys } from '../authentification/types';
+import { AccountService, TokensObject } from './types';
 
 const logger = new Logger('alp:auth:userAccounts');
 
@@ -20,32 +12,35 @@ export const STATUSES = {
   DELETED: 'deleted',
 };
 
-export default class UserAccountsService extends EventEmitter {
-  static strategyToService: { [key: string]: any } = {
-    google: userAccountGoogleService,
-    slack: userAccountSlackService,
-  };
+export default class UserAccountsService<
+  StrategyKeys extends AllowedStrategyKeys
+> extends EventEmitter {
+  private strategyToService: Record<StrategyKeys, AccountService<any>>;
 
   usersManager: MongoUsersManager;
 
-  constructor(usersManager: MongoUsersManager) {
+  constructor(
+    usersManager: MongoUsersManager,
+    strategyToService: Record<StrategyKeys, AccountService<any>>,
+  ) {
     super();
     this.usersManager = usersManager;
+    this.strategyToService = strategyToService;
   }
 
   getScope(
-    strategy: string,
+    strategy: StrategyKeys,
     scopeKey: string,
     user?: User,
     accountId?: AccountId,
   ) {
     logger.debug('getScope', { strategy, userId: user && user._id });
-    const service = UserAccountsService.strategyToService[strategy];
+    const service = this.strategyToService[strategy];
     if (!service) {
       throw new Error('Strategy not supported');
     }
 
-    const newScope = service.constructor.scopeKeyToScope[scopeKey];
+    const newScope = service.scopeKeyToScope[scopeKey];
     if (!user || !accountId) {
       return newScope;
     }
@@ -62,12 +57,12 @@ export default class UserAccountsService extends EventEmitter {
 
   async update(
     user: User,
-    strategy: string,
+    strategy: StrategyKeys,
     tokens: TokensObject,
     scope: string,
     subservice: string,
   ) {
-    const service = UserAccountsService.strategyToService[strategy];
+    const service = this.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
     const account = user.accounts.find(
@@ -98,12 +93,12 @@ export default class UserAccountsService extends EventEmitter {
   }
 
   async findOrCreateFromStrategy(
-    strategy: string,
+    strategy: StrategyKeys,
     tokens: TokensObject,
     scope: string,
     subservice: string,
   ): Promise<User> {
-    const service = UserAccountsService.strategyToService[strategy];
+    const service = this.strategyToService[strategy];
     if (!service) throw new Error('Strategy not supported');
 
     const profile = await service.getProfile(tokens);

@@ -1,3 +1,4 @@
+export declare type AllowedStrategyKeys = 'google' | 'slack';
 export interface Tokens {
     accessToken: string;
     refreshToken?: string;

@@ -6,7 +6,7 @@ import { NodeConfig } from 'alp-types';
 import { randomHex } from '../../utils/generators';
 import UserAccountsService from '../user/UserAccountsService';
 import { AccountId, User, Account } from '../../../types.d';
-import { Tokens } from './types';
+import { AllowedStrategyKeys, Tokens } from './types';
 
 const logger = new Logger('alp:auth:authentication');
 
@@ -35,21 +35,24 @@ export interface Oauth2Strategy extends Strategy {
   oauth2: OAuthClient;
 }
 
-export interface Strategies {
-  [strategy: string]: Strategy;
-}
+export type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<
+  StrategyKeys,
+  Strategy
+>;
 
-export default class AuthenticationService extends EventEmitter {
+export default class AuthenticationService<
+  StrategyKeys extends AllowedStrategyKeys
+> extends EventEmitter {
   config: NodeConfig;
 
-  strategies: Strategies;
+  strategies: Strategies<StrategyKeys>;
 
-  userAccountsService: UserAccountsService;
+  userAccountsService: UserAccountsService<StrategyKeys>;
 
   constructor(
     config: NodeConfig,
-    strategies: Strategies,
-    userAccountsService: UserAccountsService,
+    strategies: Strategies<StrategyKeys>,
+    userAccountsService: UserAccountsService<StrategyKeys>,
   ) {
     super();
     this.config = config;
@@ -78,7 +81,10 @@ export default class AuthenticationService extends EventEmitter {
    * to this user/application combination for other scopes
    * @returns {string}
    */
-  generateAuthUrl(strategy: string, options: GenerateAuthUrlOptions = {}) {
+  generateAuthUrl(
+    strategy: StrategyKeys,
+    options: GenerateAuthUrlOptions = {},
+  ) {
     logger.debug('generateAuthUrl', { strategy, options });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
@@ -96,7 +102,7 @@ export default class AuthenticationService extends EventEmitter {
   }
 
   async getTokens(
-    strategy: string,
+    strategy: StrategyKeys,
     options: GetTokensOptions = {},
   ): Promise<Tokens> {
     logger.debug('getTokens', { strategy, options });
@@ -130,7 +136,10 @@ export default class AuthenticationService extends EventEmitter {
     }
   }
 
-  async refreshToken(strategy: string, tokensParam: { refreshToken: string }) {
+  async refreshToken(
+    strategy: StrategyKeys,
+    tokensParam: { refreshToken: string },
+  ) {
     logger.debug('refreshToken', { strategy });
     if (!tokensParam.refreshToken) {
       throw new Error('Missing refresh token');
@@ -180,7 +189,7 @@ export default class AuthenticationService extends EventEmitter {
    */
   async redirectAuthUrl(
     ctx: any,
-    strategy: string,
+    strategy: StrategyKeys,
     refreshToken?: string | undefined,
     scopeKey?: string | undefined,
     user?: User,
@@ -225,7 +234,11 @@ export default class AuthenticationService extends EventEmitter {
    * @param {boolean} isConnected
    * @returns {*}
    */
-  async accessResponse(ctx: any, strategy: string, isConnected?: boolean) {
+  async accessResponse(
+    ctx: any,
+    strategy: StrategyKeys,
+    isConnected?: boolean,
+  ) {
     if (ctx.query.error) {
       const error: any = new Error(ctx.query.error);
       error.status = 403;
@@ -268,8 +281,7 @@ export default class AuthenticationService extends EventEmitter {
       return user;
     }
 
-    ctx.cookies.set(cookieName, '', { expires: new Date(1) });
-    const connectedUser = ctx.state.connected;
+    const connectedUser = ctx.state.user;
     await this.userAccountsService.update(
       connectedUser,
       strategy,
@@ -287,7 +299,7 @@ export default class AuthenticationService extends EventEmitter {
     ) {
       return Promise.resolve(false);
     }
-    return this.refreshToken(account.provider, {
+    return this.refreshToken(account.provider as StrategyKeys, {
       // accessToken: account.accessToken,
       refreshToken: account.refreshToken as string,
     }).then((tokens: Tokens) => {
