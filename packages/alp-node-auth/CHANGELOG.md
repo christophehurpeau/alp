@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.2.3...alp-node-auth@2.3.0) (2019-04-26)
+
+
+### Features
+
+* add scope ([97269f9](https://github.com/christophehurpeau/alp/commit/97269f9))
+
+
+
+
+
 ## [2.2.3](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.2.2...alp-node-auth@2.2.3) (2019-04-20)
 
 **Note:** Version bump only for package alp-node-auth
