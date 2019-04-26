@@ -43,6 +43,15 @@ function AlpModuleBrowser(props) {
   }, props.children);
 }
 
+function BrowserSuspenseWrapper({
+  children
+}) {
+  const loader = useContext(LoadingFallbackContext);
+  return React__default.createElement(Suspense, {
+    fallback: loader
+  }, children);
+}
+
 const Body = (function ({
   children
 }) {
@@ -82,5 +91,5 @@ const browser = (function (app // loading: (state: number = 0, action: ReduxActi
 });
 
 export default browser;
-export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext };
+export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext, BrowserSuspenseWrapper as SuspenseWrapper };
 //# sourceMappingURL=index-browsermodern.es.js.map

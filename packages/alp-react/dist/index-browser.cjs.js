@@ -67,6 +67,14 @@ function AlpModuleBrowser(props) {
   }, props.children);
 }
 
+function BrowserSuspenseWrapper(_ref2) {
+  var children = _ref2.children;
+  var loader = React.useContext(LoadingFallbackContext);
+  return React__default.createElement(React.Suspense, {
+    fallback: loader
+  }, children);
+}
+
 var Body = (function (_ref) {
   var children = _ref.children;
   return React__default.createElement("div", null, children);
@@ -134,5 +142,6 @@ exports.AlpModule = AlpModuleBrowser;
 exports.AppContainer = AppContainer;
 exports.Body = Body;
 exports.LoadingFallbackContext = LoadingFallbackContext;
+exports.SuspenseWrapper = BrowserSuspenseWrapper;
 exports.default = browser;
 //# sourceMappingURL=index-browser.cjs.js.map

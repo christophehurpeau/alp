@@ -86,12 +86,27 @@ function AlpModuleBrowser(props) {
   }, props.children);
 }
 
-var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
+var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/SuspenseWrapper.tsx";
+
+function BrowserSuspenseWrapper(_ref2) {
+  var children = _ref2.children;
+  var loader = React.useContext(LoadingFallbackContext);
+  return React__default.createElement(React.Suspense, {
+    fallback: loader,
+    __source: {
+      fileName: _jsxFileName$2,
+      lineNumber: 15
+    },
+    __self: this
+  }, children);
+}
+
+var _jsxFileName$3 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
 var Body = (function (_ref) {
   var children = _ref.children;
   return React__default.createElement("div", {
     __source: {
-      fileName: _jsxFileName$2,
+      fileName: _jsxFileName$3,
       lineNumber: 8
     },
     __self: this
@@ -160,5 +175,6 @@ exports.AlpModule = AlpModuleBrowser;
 exports.AppContainer = AppContainer;
 exports.Body = Body;
 exports.LoadingFallbackContext = LoadingFallbackContext;
+exports.SuspenseWrapper = BrowserSuspenseWrapper;
 exports.default = browser;
 //# sourceMappingURL=index-browser-dev.cjs.js.map

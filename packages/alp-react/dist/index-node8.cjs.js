@@ -146,6 +146,12 @@ function AlpModuleNode(props) {
   return React__default.createElement(React__default.Fragment, null, props.children);
 }
 
+function NodeSuspenseWrapper({
+  children
+}) {
+  return children;
+}
+
 const Body = (({
   children
 }) => React__default.createElement("div", null, children));
@@ -184,5 +190,6 @@ exports.AlpModule = AlpModuleNode;
 exports.AppContainer = AppContainer;
 exports.Body = Body;
 exports.LoadingFallbackContext = LoadingFallbackContext;
+exports.SuspenseWrapper = NodeSuspenseWrapper;
 exports.default = index;
 //# sourceMappingURL=index-node8.cjs.js.map

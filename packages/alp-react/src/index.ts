@@ -10,6 +10,7 @@ import createAlpAppWrapper from './createAlpAppWrapper';
 export { Helmet };
 
 export { default as AlpModule } from './module/AlpModule';
+export { default as SuspenseWrapper } from './module/SuspenseWrapper';
 export { default as Body } from './layout/Body';
 export { default as AppContainer } from './layout/AppContainer';
 export {
