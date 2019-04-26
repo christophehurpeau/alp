@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.1.0...alp-dev@12.2.0) (2019-04-26)
+
+
+### Features
+
+* add app def file with file-loader extensions ([cf12f24](https://github.com/christophehurpeau/alp/commit/cf12f24))
+
+
+
+
+
 # [12.1.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.0.0...alp-dev@12.1.0) (2019-04-20)
 
 

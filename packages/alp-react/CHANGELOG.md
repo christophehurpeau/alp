@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.4.0](https://github.com/christophehurpeau/alp/compare/alp-react@15.3.5...alp-react@15.4.0) (2019-04-26)
+
+
+### Features
+
+* add component SuspenseWrapper ([a593c2b](https://github.com/christophehurpeau/alp/commit/a593c2b))
+
+
+
+
+
 ## [15.3.5](https://github.com/christophehurpeau/alp/compare/alp-react@15.3.4...alp-react@15.3.5) (2019-04-20)
 
 **Note:** Version bump only for package alp-react
