@@ -106,6 +106,7 @@ export default function init<
     );
     return {
       routes: createRoutes(controller),
+      authenticationService,
 
       middleware: async (ctx: any, next: any) => {
         const token = ctx.cookies.get(COOKIE_NAME);

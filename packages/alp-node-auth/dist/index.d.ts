@@ -1,6 +1,6 @@
 import { NodeApplication } from 'alp-types';
 import { User } from '../types.d';
-import { Strategies } from './services/authentification/AuthenticationService';
+import AuthenticationService, { Strategies } from './services/authentification/AuthenticationService';
 import { AuthController as AuthControllerType } from './createAuthController';
 import { AuthRoutes as AuthRoutesType } from './createRoutes';
 import MongoUsersManager from './MongoUsersManager';
@@ -20,6 +20,7 @@ export default function init<U extends User = User, StrategyKeys extends Allowed
     usersManager: MongoUsersManager<U>;
 }): (app: NodeApplication) => {
     routes: AuthRoutesType;
+    authenticationService: AuthenticationService<StrategyKeys>;
     middleware: (ctx: any, next: any) => Promise<any>;
 };
 //# sourceMappingURL=index.d.ts.map

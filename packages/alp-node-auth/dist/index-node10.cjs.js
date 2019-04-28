@@ -756,6 +756,7 @@ function init({
     const decodeJwt = createDecodeJWT(app.config.get('authentication').get('secretKey'));
     return {
       routes: createRoutes(controller),
+      authenticationService,
       middleware: async (ctx, next) => {
         const token = ctx.cookies.get(COOKIE_NAME$1);
         logger$3.debug('middleware', {
