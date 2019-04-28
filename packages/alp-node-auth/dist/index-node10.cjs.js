@@ -200,7 +200,7 @@ class AuthenticationService extends EventEmitter {
       const user = await this.userAccountsService.findOrCreateFromStrategy(strategy, tokens, cookie.scope, cookie.scopeKey);
 
       if (hooks.afterLoginSuccess) {
-        hooks.afterLoginSuccess(strategy, user);
+        await hooks.afterLoginSuccess(strategy, user);
       }
 
       return user;
@@ -213,7 +213,7 @@ class AuthenticationService extends EventEmitter {
     } = await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
 
     if (hooks.afterScopeUpdate) {
-      hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
+      await hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
     }
 
     return connectedUser;

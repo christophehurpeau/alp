@@ -262,7 +262,7 @@ export default class AuthenticationService<
       );
 
       if (hooks.afterLoginSuccess) {
-        hooks.afterLoginSuccess(strategy, user);
+        await hooks.afterLoginSuccess(strategy, user);
       }
 
       return user;
@@ -278,7 +278,7 @@ export default class AuthenticationService<
     );
 
     if (hooks.afterScopeUpdate) {
-      hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
+      await hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
     }
 
     return connectedUser;
