@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.5.0...alp-node-auth@2.6.0) (2019-04-28)
+
+
+### Features
+
+* **alp-node-auth:** paramsForLogin add ctx ([122b49b](https://github.com/christophehurpeau/alp/commit/122b49b))
+
+
+
+
+
 # [2.5.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.4.0...alp-node-auth@2.5.0) (2019-04-28)
 
 
