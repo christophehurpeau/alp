@@ -22,23 +22,36 @@ export interface GenerateAuthUrlOptions {
 }
 
 export interface GetTokensOptions {
-  code?: string;
-  redirectUri?: string;
+  code: string;
+  redirectUri: string;
 }
 
 export interface Strategy {
   type: string;
-  [key: string]: any;
 }
 
-export interface Oauth2Strategy extends Strategy {
-  oauth2: OAuthClient;
+export interface Oauth2Strategy<Params extends string> extends Strategy {
+  oauth2: OAuthClient<Params>;
 }
 
 export type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<
   StrategyKeys,
-  Strategy
+  Oauth2Strategy<any>
 >;
+
+export interface AccessResponseHooks<StrategyKeys> {
+  afterLoginSuccess?: <StrategyKey extends StrategyKeys>(
+    strategy: StrategyKey,
+    connectedUser: any,
+  ) => void | Promise<void>;
+
+  afterScopeUpdate?: <StrategyKey extends StrategyKeys>(
+    strategy: StrategyKey,
+    scopeKey: string,
+    account: Account,
+    user: User,
+  ) => void | Promise<void>;
+}
 
 export default class AuthenticationService<
   StrategyKeys extends AllowedStrategyKeys
@@ -60,50 +73,20 @@ export default class AuthenticationService<
     this.userAccountsService = userAccountsService;
   }
 
-  /**
-   * @param {string} strategy
-   * @param {Object} options
-   * @param {string} [options.redirectUri]
-   * @param {string} [options.scope]
-   * Space-delimited set of permissions that the application requests.
-   * @param {string} [options.state]
-   * Any string that might be useful to your application upon receipt of the response
-   * @param {string} [options.grantType]
-   * @param {string} [options.accessType = 'online']
-   * online or offline
-   * @param {string} [options.prompt]
-   * Space-delimited, case-sensitive list of prompts to present the user.
-   * Values: none, consent, select_account
-   * @param {string} [options.loginHint] email address or sub identifier
-   * @param {boolean} [options.includeGrantedScopes]
-   * If this is provided with the value true, and the authorization request is granted,
-   * the authorization will include any previous authorizations granted
-   * to this user/application combination for other scopes
-   * @returns {string}
-   */
-  generateAuthUrl(
-    strategy: StrategyKeys,
-    options: GenerateAuthUrlOptions = {},
-  ) {
-    logger.debug('generateAuthUrl', { strategy, options });
+  generateAuthUrl<T extends StrategyKeys>(strategy: T, params: any) {
+    logger.debug('generateAuthUrl', { strategy, params });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2':
-        return strategyInstance.oauth2.authorizationCode.authorizeURL({
-          redirect_uri: options.redirectUri,
-          scope: options.scope,
-          state: options.state,
-          grant_type: options.grantType,
-          access_type: options.accessType,
-          login_hint: options.loginHint,
-          include_granted_scopes: options.includeGrantedScopes,
-        });
+        return strategyInstance.oauth2.authorizationCode.authorizeURL(params);
+      default:
+        throw new Error('Invalid strategy');
     }
   }
 
   async getTokens(
     strategy: StrategyKeys,
-    options: GetTokensOptions = {},
+    options: GetTokensOptions,
   ): Promise<Tokens> {
     logger.debug('getTokens', { strategy, options });
     const strategyInstance = this.strategies[strategy];
@@ -177,23 +160,21 @@ export default class AuthenticationService<
     return `${host}${ctx.urlGenerator('loginResponse', { strategy })}`;
   }
 
-  /**
-   *
-   * @param {Koa.Context} ctx
-   * @param {string} strategy
-   * @param {string} [refreshToken]
-   * @param {string} [scopeKey='login']
-   * @param user
-   * @param accountId
-   * @returns {*}
-   */
   async redirectAuthUrl(
     ctx: any,
     strategy: StrategyKeys,
-    refreshToken?: string | undefined,
-    scopeKey?: string | undefined,
-    user?: User,
-    accountId?: AccountId,
+    {
+      refreshToken,
+      scopeKey,
+      user,
+      accountId,
+    }: {
+      refreshToken?: string | undefined;
+      scopeKey?: string | undefined;
+      user?: User;
+      accountId?: AccountId;
+    },
+    params?: any,
   ) {
     logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
     const state = await randomHex(8);
@@ -204,6 +185,10 @@ export default class AuthenticationService<
       user,
       accountId,
     );
+
+    if (!scope) {
+      throw new Error('Invalid empty scope');
+    }
 
     ctx.cookies.set(
       `auth_${strategy}_${state}`,
@@ -219,25 +204,22 @@ export default class AuthenticationService<
       },
     );
     const redirectUri = this.generateAuthUrl(strategy, {
-      redirectUri: this.redirectUri(ctx, strategy),
+      redirect_uri: this.redirectUri(ctx, strategy),
       scope,
       state,
-      accessType: refreshToken ? 'offline' : 'online',
+      access_type: refreshToken ? 'offline' : 'online',
+      ...params,
     });
+    console.log(redirectUri, params);
 
     return ctx.redirect(redirectUri);
   }
 
-  /**
-   * @param {Koa.Context} ctx
-   * @param {string} strategy
-   * @param {boolean} isConnected
-   * @returns {*}
-   */
-  async accessResponse(
+  async accessResponse<StrategyKey extends StrategyKeys>(
     ctx: any,
-    strategy: StrategyKeys,
-    isConnected?: boolean,
+    strategy: StrategyKey,
+    isConnected: undefined | boolean,
+    hooks: AccessResponseHooks<StrategyKeys>,
   ) {
     if (ctx.query.error) {
       const error: any = new Error(ctx.query.error);
@@ -278,17 +260,27 @@ export default class AuthenticationService<
         cookie.scope,
         cookie.scopeKey,
       );
+
+      if (hooks.afterLoginSuccess) {
+        hooks.afterLoginSuccess(strategy, user);
+      }
+
       return user;
     }
 
     const connectedUser = ctx.state.user;
-    await this.userAccountsService.update(
+    const { account, user } = await this.userAccountsService.update(
       connectedUser,
       strategy,
       tokens,
       cookie.scope,
       cookie.scopeKey,
     );
+
+    if (hooks.afterScopeUpdate) {
+      hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
+    }
+
     return connectedUser;
   }
 

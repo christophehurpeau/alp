@@ -16,45 +16,27 @@ export interface GenerateAuthUrlOptions {
     state?: string;
 }
 export interface GetTokensOptions {
-    code?: string;
-    redirectUri?: string;
+    code: string;
+    redirectUri: string;
 }
 export interface Strategy {
     type: string;
-    [key: string]: any;
 }
-export interface Oauth2Strategy extends Strategy {
-    oauth2: OAuthClient;
+export interface Oauth2Strategy<Params extends string> extends Strategy {
+    oauth2: OAuthClient<Params>;
 }
-export declare type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<StrategyKeys, Strategy>;
+export declare type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<StrategyKeys, Oauth2Strategy<any>>;
+export interface AccessResponseHooks<StrategyKeys> {
+    afterLoginSuccess?: <StrategyKey extends StrategyKeys>(strategy: StrategyKey, connectedUser: any) => void | Promise<void>;
+    afterScopeUpdate?: <StrategyKey extends StrategyKeys>(strategy: StrategyKey, scopeKey: string, account: Account, user: User) => void | Promise<void>;
+}
 export default class AuthenticationService<StrategyKeys extends AllowedStrategyKeys> extends EventEmitter {
     config: NodeConfig;
     strategies: Strategies<StrategyKeys>;
     userAccountsService: UserAccountsService<StrategyKeys>;
     constructor(config: NodeConfig, strategies: Strategies<StrategyKeys>, userAccountsService: UserAccountsService<StrategyKeys>);
-    /**
-     * @param {string} strategy
-     * @param {Object} options
-     * @param {string} [options.redirectUri]
-     * @param {string} [options.scope]
-     * Space-delimited set of permissions that the application requests.
-     * @param {string} [options.state]
-     * Any string that might be useful to your application upon receipt of the response
-     * @param {string} [options.grantType]
-     * @param {string} [options.accessType = 'online']
-     * online or offline
-     * @param {string} [options.prompt]
-     * Space-delimited, case-sensitive list of prompts to present the user.
-     * Values: none, consent, select_account
-     * @param {string} [options.loginHint] email address or sub identifier
-     * @param {boolean} [options.includeGrantedScopes]
-     * If this is provided with the value true, and the authorization request is granted,
-     * the authorization will include any previous authorizations granted
-     * to this user/application combination for other scopes
-     * @returns {string}
-     */
-    generateAuthUrl(strategy: StrategyKeys, options?: GenerateAuthUrlOptions): any;
-    getTokens(strategy: StrategyKeys, options?: GetTokensOptions): Promise<Tokens>;
+    generateAuthUrl<T extends StrategyKeys>(strategy: T, params: any): string;
+    getTokens(strategy: StrategyKeys, options: GetTokensOptions): Promise<Tokens>;
     refreshToken(strategy: StrategyKeys, tokensParam: {
         refreshToken: string;
     }): Promise<{
@@ -65,24 +47,13 @@ export default class AuthenticationService<StrategyKeys extends AllowedStrategyK
         idToken: any;
     }>;
     redirectUri(ctx: any, strategy: string): string;
-    /**
-     *
-     * @param {Koa.Context} ctx
-     * @param {string} strategy
-     * @param {string} [refreshToken]
-     * @param {string} [scopeKey='login']
-     * @param user
-     * @param accountId
-     * @returns {*}
-     */
-    redirectAuthUrl(ctx: any, strategy: StrategyKeys, refreshToken?: string | undefined, scopeKey?: string | undefined, user?: User, accountId?: AccountId): Promise<any>;
-    /**
-     * @param {Koa.Context} ctx
-     * @param {string} strategy
-     * @param {boolean} isConnected
-     * @returns {*}
-     */
-    accessResponse(ctx: any, strategy: StrategyKeys, isConnected?: boolean): Promise<any>;
+    redirectAuthUrl(ctx: any, strategy: StrategyKeys, { refreshToken, scopeKey, user, accountId, }: {
+        refreshToken?: string | undefined;
+        scopeKey?: string | undefined;
+        user?: User;
+        accountId?: AccountId;
+    }, params?: any): Promise<any>;
+    accessResponse<StrategyKey extends StrategyKeys>(ctx: any, strategy: StrategyKey, isConnected: undefined | boolean, hooks: AccessResponseHooks<StrategyKeys>): Promise<any>;
     refreshAccountTokens(user: User, account: Account): Promise<boolean>;
 }
 //# sourceMappingURL=AuthenticationService.d.ts.map

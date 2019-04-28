@@ -55,3 +55,6 @@ export interface HtmlError extends Error {
   status: number;
   expose?: true;
 }
+
+export type GoogleParams = 'access_type' | 'include_granted_scopes' | 'login_hint' | 'prompt';
+export type SlackParams = 'client_id' | 'team';

@@ -89,7 +89,7 @@ export default class UserAccountsService<
     }
 
     await this.usersManager.replaceOne(user);
-    return user;
+    return { user, account };
   }
 
   async findOrCreateFromStrategy(

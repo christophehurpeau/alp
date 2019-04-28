@@ -10,6 +10,7 @@ import UserAccountsService from './services/user/UserAccountsService';
 import {
   createAuthController,
   AuthController as AuthControllerType,
+  AuthHooks,
 } from './createAuthController';
 import { createRoutes, AuthRoutes as AuthRoutesType } from './createRoutes';
 import MongoUsersManager from './MongoUsersManager';
@@ -17,6 +18,7 @@ import { createDecodeJWT } from './utils/createDecodeJWT';
 import { AllowedStrategyKeys } from './services/authentification/types';
 import { AccountService } from './services/user/types';
 
+export { AuthenticationService };
 export { default as MongoUsersManager } from './MongoUsersManager';
 export {
   default as UserAccountGoogleService,
@@ -39,15 +41,19 @@ export default function init<
   U extends User = User,
   StrategyKeys extends AllowedStrategyKeys = 'google'
 >({
+  homeRouterKey,
   usersManager,
   strategies,
+  defaultStrategy,
   strategyToService,
-  homeRouterKey,
+  authHooks,
 }: {
   homeRouterKey?: string;
-  strategies: Strategies<StrategyKeys>;
-  strategyToService: Record<StrategyKeys, AccountService<any>>;
   usersManager: MongoUsersManager<U>;
+  strategies: Strategies<StrategyKeys>;
+  defaultStrategy?: StrategyKeys;
+  strategyToService: Record<StrategyKeys, AccountService<any>>;
+  authHooks?: AuthHooks<StrategyKeys>;
 }) {
   return (app: NodeApplication) => {
     const userAccountsService = new UserAccountsService(
@@ -65,6 +71,8 @@ export default function init<
       usersManager,
       authenticationService,
       homeRouterKey,
+      defaultStrategy,
+      authHooks,
     });
 
     app.context.setConnected = async function(
@@ -106,7 +114,6 @@ export default function init<
     );
     return {
       routes: createRoutes(controller),
-      authenticationService,
 
       middleware: async (ctx: any, next: any) => {
         const token = ctx.cookies.get(COOKIE_NAME);

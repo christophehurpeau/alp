@@ -1,49 +1,74 @@
-import AuthenticationService from './services/authentification/AuthenticationService';
+import { Context } from 'alp-node';
+import AuthenticationService, {
+  AccessResponseHooks,
+} from './services/authentification/AuthenticationService';
 import MongoUsersManager from './MongoUsersManager';
+import {
+  AllowedStrategyKeys,
+  AllowedMapParamsStrategy,
+} from './services/authentification/types';
 
-export interface CreateAuthControllerParams {
-  authenticationService: AuthenticationService<any>;
+export interface CreateAuthControllerParams<
+  StrategyKeys extends AllowedStrategyKeys
+> {
+  authenticationService: AuthenticationService<StrategyKeys>;
   homeRouterKey?: string;
   usersManager: MongoUsersManager;
+  defaultStrategy?: StrategyKeys;
+  authHooks?: AuthHooks<StrategyKeys>;
 }
 
 export interface AuthController {
-  login(ctx: any): Promise<void>;
-  addScope(ctx: any): Promise<void>;
-  loginResponse(ctx: any): Promise<void>;
-  logout(ctx: any): Promise<void>;
+  login(ctx: Context): Promise<void>;
+  addScope(ctx: Context): Promise<void>;
+  loginResponse(ctx: Context): Promise<void>;
+  logout(ctx: Context): Promise<void>;
 }
 
-export function createAuthController({
+type OptionalRecord<K extends keyof any, T> = { [P in K]?: T };
+
+export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys>
+  extends AccessResponseHooks<StrategyKeys> {
+  paramsForLogin?: <StrategyKey extends StrategyKeys>(
+    strategy: StrategyKey,
+  ) =>
+    | void
+    | Promise<void>
+    | OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>
+    | Promise<OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>>;
+}
+
+export function createAuthController<StrategyKeys extends AllowedStrategyKeys>({
   usersManager,
   authenticationService,
   homeRouterKey = '/',
-}: CreateAuthControllerParams): AuthController {
+  defaultStrategy,
+  authHooks = {},
+}: CreateAuthControllerParams<StrategyKeys>): AuthController {
   return {
-    async login(ctx: any) {
-      const strategy = ctx.namedParam('strategy');
+    async login(ctx: Context): Promise<void> {
+      const strategy = ctx.namedParam('strategy') || defaultStrategy;
       if (!strategy) throw new Error('Strategy missing');
-      await authenticationService.redirectAuthUrl(ctx, strategy);
+      const params =
+        (authHooks.paramsForLogin &&
+          (await authHooks.paramsForLogin(strategy))) ||
+        {};
+      await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
     },
 
-    async addScope(ctx: any) {
+    async addScope(ctx: Context): Promise<void> {
       if (ctx.state.connected) {
         ctx.redirect(ctx.urlGenerator(homeRouterKey));
       }
 
-      const strategy = ctx.namedParam('strategy');
+      const strategy = ctx.namedParam('strategy') || defaultStrategy;
       if (!strategy) throw new Error('Strategy missing');
       const scopeKey = ctx.namedParam('scopeKey');
       if (!scopeKey) throw new Error('Scope missing');
-      await authenticationService.redirectAuthUrl(
-        ctx,
-        strategy,
-        undefined,
-        scopeKey,
-      );
+      await authenticationService.redirectAuthUrl(ctx, strategy, { scopeKey });
     },
 
-    async loginResponse(ctx: any) {
+    async loginResponse(ctx: Context): Promise<void> {
       if (ctx.state.connected) {
         ctx.redirect(ctx.urlGenerator(homeRouterKey));
       }
@@ -55,6 +80,10 @@ export function createAuthController({
         ctx,
         strategy,
         ctx.state.connected,
+        {
+          afterLoginSuccess: authHooks.afterLoginSuccess,
+          afterScopeUpdate: authHooks.afterScopeUpdate,
+        },
       );
       const keyPath: string = usersManager.store.keyPath;
       await ctx.setConnected(connectedUser[keyPath], connectedUser);
@@ -62,7 +91,7 @@ export function createAuthController({
       await ctx.redirect(ctx.urlGenerator(homeRouterKey));
     },
 
-    async logout(ctx: any) {
+    async logout(ctx: Context): Promise<void> {
       ctx.logout();
       await ctx.redirect(ctx.urlGenerator(homeRouterKey));
     },

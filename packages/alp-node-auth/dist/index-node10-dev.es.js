@@ -20,51 +20,24 @@ class AuthenticationService extends EventEmitter {
     this.strategies = strategies;
     this.userAccountsService = userAccountsService;
   }
-  /**
-   * @param {string} strategy
-   * @param {Object} options
-   * @param {string} [options.redirectUri]
-   * @param {string} [options.scope]
-   * Space-delimited set of permissions that the application requests.
-   * @param {string} [options.state]
-   * Any string that might be useful to your application upon receipt of the response
-   * @param {string} [options.grantType]
-   * @param {string} [options.accessType = 'online']
-   * online or offline
-   * @param {string} [options.prompt]
-   * Space-delimited, case-sensitive list of prompts to present the user.
-   * Values: none, consent, select_account
-   * @param {string} [options.loginHint] email address or sub identifier
-   * @param {boolean} [options.includeGrantedScopes]
-   * If this is provided with the value true, and the authorization request is granted,
-   * the authorization will include any previous authorizations granted
-   * to this user/application combination for other scopes
-   * @returns {string}
-   */
 
-
-  generateAuthUrl(strategy, options = {}) {
+  generateAuthUrl(strategy, params) {
     logger.debug('generateAuthUrl', {
       strategy,
-      options
+      params
     });
     const strategyInstance = this.strategies[strategy];
 
     switch (strategyInstance.type) {
       case 'oauth2':
-        return strategyInstance.oauth2.authorizationCode.authorizeURL({
-          redirect_uri: options.redirectUri,
-          scope: options.scope,
-          state: options.state,
-          grant_type: options.grantType,
-          access_type: options.accessType,
-          login_hint: options.loginHint,
-          include_granted_scopes: options.includeGrantedScopes
-        });
+        return strategyInstance.oauth2.authorizationCode.authorizeURL(params);
+
+      default:
+        throw new Error('Invalid strategy');
     }
   }
 
-  async getTokens(strategy, options = {}) {
+  async getTokens(strategy, options) {
     logger.debug('getTokens', {
       strategy,
       options
@@ -141,19 +114,13 @@ class AuthenticationService extends EventEmitter {
       strategy
     })}`;
   }
-  /**
-   *
-   * @param {Koa.Context} ctx
-   * @param {string} strategy
-   * @param {string} [refreshToken]
-   * @param {string} [scopeKey='login']
-   * @param user
-   * @param accountId
-   * @returns {*}
-   */
 
-
-  async redirectAuthUrl(ctx, strategy, refreshToken, scopeKey, user, accountId) {
+  async redirectAuthUrl(ctx, strategy, {
+    refreshToken,
+    scopeKey,
+    user,
+    accountId
+  }, params) {
     logger.debug('redirectAuthUrl', {
       strategy,
       scopeKey,
@@ -161,6 +128,11 @@ class AuthenticationService extends EventEmitter {
     });
     const state = await randomHex(8);
     const scope = this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
+
+    if (!scope) {
+      throw new Error('Invalid empty scope');
+    }
+
     ctx.cookies.set(`auth_${strategy}_${state}`, JSON.stringify({
       scopeKey,
       scope,
@@ -171,22 +143,17 @@ class AuthenticationService extends EventEmitter {
       secure: this.config.get('allowHttps')
     });
     const redirectUri = this.generateAuthUrl(strategy, {
-      redirectUri: this.redirectUri(ctx, strategy),
+      redirect_uri: this.redirectUri(ctx, strategy),
       scope,
       state,
-      accessType: refreshToken ? 'offline' : 'online'
+      access_type: refreshToken ? 'offline' : 'online',
+      ...params
     });
+    console.log(redirectUri, params);
     return ctx.redirect(redirectUri);
   }
-  /**
-   * @param {Koa.Context} ctx
-   * @param {string} strategy
-   * @param {boolean} isConnected
-   * @returns {*}
-   */
 
-
-  async accessResponse(ctx, strategy, isConnected) {
+  async accessResponse(ctx, strategy, isConnected, hooks) {
     if (ctx.query.error) {
       const error = new Error(ctx.query.error);
       error.status = 403;
@@ -225,11 +192,24 @@ class AuthenticationService extends EventEmitter {
 
     if (cookie.isLoginAccess) {
       const user = await this.userAccountsService.findOrCreateFromStrategy(strategy, tokens, cookie.scope, cookie.scopeKey);
+
+      if (hooks.afterLoginSuccess) {
+        hooks.afterLoginSuccess(strategy, user);
+      }
+
       return user;
     }
 
     const connectedUser = ctx.state.user;
-    await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
+    const {
+      account,
+      user
+    } = await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
+
+    if (hooks.afterScopeUpdate) {
+      hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
+    }
+
     return connectedUser;
   }
 
@@ -324,7 +304,10 @@ class UserAccountsService extends EventEmitter {
     }
 
     await this.usersManager.replaceOne(user);
-    return user;
+    return {
+      user,
+      account
+    };
   }
 
   async findOrCreateFromStrategy(strategy, tokens, scope, subservice) {
@@ -414,13 +397,16 @@ class UserAccountsService extends EventEmitter {
 function createAuthController({
   usersManager,
   authenticationService,
-  homeRouterKey = '/'
+  homeRouterKey = '/',
+  defaultStrategy,
+  authHooks = {}
 }) {
   return {
     async login(ctx) {
-      const strategy = ctx.namedParam('strategy');
+      const strategy = ctx.namedParam('strategy') || defaultStrategy;
       if (!strategy) throw new Error('Strategy missing');
-      await authenticationService.redirectAuthUrl(ctx, strategy);
+      const params = authHooks.paramsForLogin && (await authHooks.paramsForLogin(strategy)) || {};
+      await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
     },
 
     async addScope(ctx) {
@@ -428,11 +414,13 @@ function createAuthController({
         ctx.redirect(ctx.urlGenerator(homeRouterKey));
       }
 
-      const strategy = ctx.namedParam('strategy');
+      const strategy = ctx.namedParam('strategy') || defaultStrategy;
       if (!strategy) throw new Error('Strategy missing');
       const scopeKey = ctx.namedParam('scopeKey');
       if (!scopeKey) throw new Error('Scope missing');
-      await authenticationService.redirectAuthUrl(ctx, strategy, undefined, scopeKey);
+      await authenticationService.redirectAuthUrl(ctx, strategy, {
+        scopeKey
+      });
     },
 
     async loginResponse(ctx) {
@@ -442,7 +430,10 @@ function createAuthController({
 
       const strategy = ctx.namedParam('strategy');
       ctx.assert(strategy);
-      const connectedUser = await authenticationService.accessResponse(ctx, strategy, ctx.state.connected);
+      const connectedUser = await authenticationService.accessResponse(ctx, strategy, ctx.state.connected, {
+        afterLoginSuccess: authHooks.afterLoginSuccess,
+        afterScopeUpdate: authHooks.afterScopeUpdate
+      });
       const keyPath = usersManager.store.keyPath;
       await ctx.setConnected(connectedUser[keyPath], connectedUser);
       ctx.state.connected = connectedUser;
@@ -458,7 +449,7 @@ function createAuthController({
 }
 
 const createRoutes = controller => ({
-  login: ['/login/:strategy', segment => {
+  login: ['/login/:strategy?', segment => {
     segment.add('/response', controller.loginResponse, 'loginResponse');
     segment.defaultRoute(controller.login, 'login');
   }],
@@ -700,10 +691,12 @@ const COOKIE_NAME$1 = 'connectedUser';
 const logger$3 = new Logger('alp:auth');
 const signPromisified = promisify(sign);
 function init({
+  homeRouterKey,
   usersManager,
   strategies,
+  defaultStrategy,
   strategyToService,
-  homeRouterKey
+  authHooks
 }) {
   return app => {
     const userAccountsService = new UserAccountsService(usersManager, strategyToService);
@@ -711,7 +704,9 @@ function init({
     const controller = createAuthController({
       usersManager,
       authenticationService,
-      homeRouterKey
+      homeRouterKey,
+      defaultStrategy,
+      authHooks
     });
 
     app.context.setConnected = async function (connected, user) {
@@ -750,7 +745,6 @@ function init({
     const decodeJwt = createDecodeJWT(app.config.get('authentication').get('secretKey'));
     return {
       routes: createRoutes(controller),
-      authenticationService,
       middleware: async (ctx, next) => {
         const token = ctx.cookies.get(COOKIE_NAME$1);
         logger$3.debug('middleware', {
@@ -805,5 +799,5 @@ function init({
 }
 
 export default init;
-export { MongoUsersManager, STATUSES, UserAccountGoogleService, UserAccountSlackService, authSocketIO };
+export { AuthenticationService, MongoUsersManager, STATUSES, UserAccountGoogleService, UserAccountSlackService, authSocketIO };
 //# sourceMappingURL=index-node10-dev.es.js.map

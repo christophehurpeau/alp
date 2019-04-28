@@ -36,6 +36,7 @@
     "arrowParens": "always"
   },
   "peerDependencies": {
+    "alp-node": "^1.1.3",
     "liwi-mongo": "^4.1.0",
     "liwi-store": "^4.1.0"
   },

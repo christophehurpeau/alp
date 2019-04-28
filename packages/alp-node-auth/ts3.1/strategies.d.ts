@@ -1,4 +1,4 @@
-import { Config } from 'alp-types';
+import { Config, SlackParams } from 'alp-types';
 import { OAuthClient } from 'simple-oauth2';
 
 declare module 'alp-node-auth/strategies/dropbox' {
@@ -44,7 +44,7 @@ declare module 'alp-node-auth/strategies/google' {
 declare module 'alp-node-auth/strategies/slack' {
   export interface SlackStrategy {
     type: 'oauth2';
-    oauth2: OAuthClient;
+    oauth2: OAuthClient<SlackParams>;
   }
 
   export default function createSlackStrategy(config: Config): SlackStrategy;

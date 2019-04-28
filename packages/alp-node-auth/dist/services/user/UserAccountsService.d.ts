@@ -13,7 +13,10 @@ export default class UserAccountsService<StrategyKeys extends AllowedStrategyKey
     usersManager: MongoUsersManager;
     constructor(usersManager: MongoUsersManager, strategyToService: Record<StrategyKeys, AccountService<any>>);
     getScope(strategy: StrategyKeys, scopeKey: string, user?: User, accountId?: AccountId): string;
-    update(user: User, strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
+    update(user: User, strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<{
+        user: User;
+        account: Account;
+    }>;
     findOrCreateFromStrategy(strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
     updateAccount(user: User, account: Account): Promise<User>;
 }

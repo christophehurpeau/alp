@@ -1,4 +1,11 @@
+import { GoogleParams, SlackParams } from 'alp-types';
+
 export type AllowedStrategyKeys = 'google' | 'slack';
+
+export interface AllowedMapParamsStrategy {
+  google: GoogleParams;
+  slack: SlackParams;
+}
 
 export interface Tokens {
   accessToken: string;

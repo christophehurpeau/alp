@@ -8,7 +8,7 @@ export interface AuthRoutes {
 
 export const createRoutes = (controller: AuthController): AuthRoutes => ({
   login: [
-    '/login/:strategy',
+    '/login/:strategy?',
     (segment: any) => {
       segment.add('/response', controller.loginResponse, 'loginResponse');
       segment.defaultRoute(controller.login, 'login');

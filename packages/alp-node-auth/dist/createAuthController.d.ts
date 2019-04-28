@@ -1,15 +1,26 @@
-import AuthenticationService from './services/authentification/AuthenticationService';
+import { Context } from 'alp-node';
+import AuthenticationService, { AccessResponseHooks } from './services/authentification/AuthenticationService';
 import MongoUsersManager from './MongoUsersManager';
-export interface CreateAuthControllerParams {
-    authenticationService: AuthenticationService<any>;
+import { AllowedStrategyKeys, AllowedMapParamsStrategy } from './services/authentification/types';
+export interface CreateAuthControllerParams<StrategyKeys extends AllowedStrategyKeys> {
+    authenticationService: AuthenticationService<StrategyKeys>;
     homeRouterKey?: string;
     usersManager: MongoUsersManager;
+    defaultStrategy?: StrategyKeys;
+    authHooks?: AuthHooks<StrategyKeys>;
 }
 export interface AuthController {
-    login(ctx: any): Promise<void>;
-    addScope(ctx: any): Promise<void>;
-    loginResponse(ctx: any): Promise<void>;
-    logout(ctx: any): Promise<void>;
+    login(ctx: Context): Promise<void>;
+    addScope(ctx: Context): Promise<void>;
+    loginResponse(ctx: Context): Promise<void>;
+    logout(ctx: Context): Promise<void>;
 }
-export declare function createAuthController({ usersManager, authenticationService, homeRouterKey, }: CreateAuthControllerParams): AuthController;
+declare type OptionalRecord<K extends keyof any, T> = {
+    [P in K]?: T;
+};
+export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys> extends AccessResponseHooks<StrategyKeys> {
+    paramsForLogin?: <StrategyKey extends StrategyKeys>(strategy: StrategyKey) => void | Promise<void> | OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any> | Promise<OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>>;
+}
+export declare function createAuthController<StrategyKeys extends AllowedStrategyKeys>({ usersManager, authenticationService, homeRouterKey, defaultStrategy, authHooks, }: CreateAuthControllerParams<StrategyKeys>): AuthController;
+export {};
 //# sourceMappingURL=createAuthController.d.ts.map
