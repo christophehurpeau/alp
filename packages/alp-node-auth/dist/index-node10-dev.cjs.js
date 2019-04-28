@@ -411,7 +411,7 @@ function createAuthController({
     async login(ctx) {
       const strategy = ctx.namedParam('strategy') || defaultStrategy;
       if (!strategy) throw new Error('Strategy missing');
-      const params = authHooks.paramsForLogin && (await authHooks.paramsForLogin(strategy)) || {};
+      const params = authHooks.paramsForLogin && (await authHooks.paramsForLogin(strategy, ctx)) || {};
       await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
     },
 

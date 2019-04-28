@@ -19,7 +19,7 @@ declare type OptionalRecord<K extends keyof any, T> = {
     [P in K]?: T;
 };
 export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys> extends AccessResponseHooks<StrategyKeys> {
-    paramsForLogin?: <StrategyKey extends StrategyKeys>(strategy: StrategyKey) => void | Promise<void> | OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any> | Promise<OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>>;
+    paramsForLogin?: <StrategyKey extends StrategyKeys>(strategy: StrategyKey, ctx: Context) => void | Promise<void> | OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any> | Promise<OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>>;
 }
 export declare function createAuthController<StrategyKeys extends AllowedStrategyKeys>({ usersManager, authenticationService, homeRouterKey, defaultStrategy, authHooks, }: CreateAuthControllerParams<StrategyKeys>): AuthController;
 export {};

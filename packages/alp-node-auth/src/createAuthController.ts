@@ -31,6 +31,7 @@ export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys>
   extends AccessResponseHooks<StrategyKeys> {
   paramsForLogin?: <StrategyKey extends StrategyKeys>(
     strategy: StrategyKey,
+    ctx: Context,
   ) =>
     | void
     | Promise<void>
@@ -51,7 +52,7 @@ export function createAuthController<StrategyKeys extends AllowedStrategyKeys>({
       if (!strategy) throw new Error('Strategy missing');
       const params =
         (authHooks.paramsForLogin &&
-          (await authHooks.paramsForLogin(strategy))) ||
+          (await authHooks.paramsForLogin(strategy, ctx))) ||
         {};
       await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
     },
