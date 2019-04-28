@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.6.0...alp-node-auth@2.6.1) (2019-04-28)
+
+
+### Bug Fixes
+
+* wait for hook to finish ([98d9027](https://github.com/christophehurpeau/alp/commit/98d9027))
+
+
+
+
+
 # [2.6.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.5.0...alp-node-auth@2.6.0) (2019-04-28)
 
 
