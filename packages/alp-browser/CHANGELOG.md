@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/christophehurpeau/alp/compare/alp-browser@1.1.5...alp-browser@1.1.6) (2019-04-28)
+
+**Note:** Version bump only for package alp-browser
+
+
+
+
+
 ## [1.1.5](https://github.com/christophehurpeau/alp/compare/alp-browser@1.1.4...alp-browser@1.1.5) (2019-04-20)
 
 **Note:** Version bump only for package alp-browser

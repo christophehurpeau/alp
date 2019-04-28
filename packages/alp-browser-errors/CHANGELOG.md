@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/christophehurpeau/alp/compare/alp-browser-errors@1.1.3...alp-browser-errors@1.1.4) (2019-04-28)
+
+**Note:** Version bump only for package alp-browser-errors
+
+
+
+
+
 ## [1.1.3](https://github.com/christophehurpeau/alp/compare/alp-browser-errors@1.1.2...alp-browser-errors@1.1.3) (2019-04-20)
 
 **Note:** Version bump only for package alp-browser-errors
