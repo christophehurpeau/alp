@@ -39,7 +39,15 @@ export default (
     hmr: !production,
     typescript: true,
 
-    whitelistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
+    whitelistExternalExtensions: [
+      'png',
+      'jpg',
+      'jpeg',
+      'gif',
+      'svg',
+      'scss',
+      'css',
+    ],
     includeModules: [],
 
     paths: {
