@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.2.0...alp-dev@12.3.0) (2019-04-29)
+
+
+### Features
+
+* add css and scss in whitelistExternalExtensions ([be84040](https://github.com/christophehurpeau/alp/commit/be84040))
+
+
+
+
+
 # [12.2.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.1.0...alp-dev@12.2.0) (2019-04-26)
 
 

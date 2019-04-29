@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.0.8...alp-hello-react-example@2.1.0) (2019-04-29)
+
+
+### Features
+
+* add css and scss in whitelistExternalExtensions ([be84040](https://github.com/christophehurpeau/alp/commit/be84040))
+
+
+
+
+
 ## [2.0.8](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.0.7...alp-hello-react-example@2.0.8) (2019-04-28)
 
 **Note:** Version bump only for package alp-hello-react-example
