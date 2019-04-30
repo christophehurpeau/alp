@@ -1,4 +1,6 @@
 import argv from 'minimist-argv';
+import { configure, Level } from 'nightingale';
+import ConsoleLogger from 'nightingale-console';
 import path from 'path';
 import { createAppBrowserCompiler, MODERN, runDevServer as runDevServer$1 } from 'pobpack-browser';
 import fs from 'fs';
@@ -153,6 +155,11 @@ const runDevServer = (compiler, port, proxyPort, options) => runDevServer$1(comp
 });
 
 const browserCompiler = createModernBrowserCompiler(false);
+configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Level.NOTICE),
+  stop: true
+}]);
 runDevServer(browserCompiler, argv.port, argv['proxy-port'], {
   host: argv.host
 });

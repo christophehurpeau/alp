@@ -1,4 +1,6 @@
 import argv from 'minimist-argv';
+import { configure, Level } from 'nightingale';
+import ConsoleLogger from 'nightingale-console';
 import path from 'path';
 import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
 import fs from 'fs';
@@ -138,11 +140,17 @@ const createPobpackConfig = ((target, production = false) => {
 
 const createNodeCompiler = production => createAppNodeCompiler(createPobpackConfig('node', production));
 const watchAndRun = (nodeCompiler, port) => watchAndRunCompiler(nodeCompiler, {
-  key: 'alp-dev:watch',
+  key: 'alp-dev:node:watchAndRun',
+  displayName: 'node:watchAndRun',
   args: ['--trace-warnings', '--port', port, '--version', Date.now()],
   cwd: path.resolve('.')
 });
 
+configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Level.NOTICE),
+  stop: true
+}]);
 const nodeCompiler = createNodeCompiler(false);
 let watching = watchAndRun(nodeCompiler, argv.port);
 process.on('SIGUSR2', () => {

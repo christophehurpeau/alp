@@ -3,6 +3,8 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 const argv = _interopDefault(require('minimist-argv'));
+const nightingale = require('nightingale');
+const ConsoleLogger = _interopDefault(require('nightingale-console'));
 const path = _interopDefault(require('path'));
 const pobpackNode = require('pobpack-node');
 const fs = _interopDefault(require('fs'));
@@ -142,11 +144,17 @@ const createPobpackConfig = ((target, production = false) => {
 
 const createNodeCompiler = production => pobpackNode.createAppNodeCompiler(createPobpackConfig('node', production));
 const watchAndRun = (nodeCompiler, port) => pobpackNode.watchAndRunCompiler(nodeCompiler, {
-  key: 'alp-dev:watch',
+  key: 'alp-dev:node:watchAndRun',
+  displayName: 'node:watchAndRun',
   args: ['--trace-warnings', '--port', port, '--version', Date.now()],
   cwd: path.resolve('.')
 });
 
+nightingale.configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(nightingale.Level.NOTICE),
+  stop: true
+}]);
 const nodeCompiler = createNodeCompiler(false);
 let watching = watchAndRun(nodeCompiler, argv.port);
 process.on('SIGUSR2', () => {

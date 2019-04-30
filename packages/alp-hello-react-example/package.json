@@ -28,12 +28,14 @@
     "nightingale-app-console": "3.2.2",
     "react": "16.8.6",
     "react-alp-context": "^1.1.4",
-    "react-alp-translate": "^2.0.2"
+    "react-alp-translate": "^2.0.2",
+    "react-hot-loader": "^4.8.4"
   },
   "devDependencies": {
-    "@pob/eslint-config-babel": "29.2.0",
-    "@pob/eslint-config-typescript": "29.2.0",
-    "@pob/eslint-config-typescript-react": "29.2.0",
+    "@hot-loader/react-dom": "^16.8.6",
+    "@pob/eslint-config-babel": "31.0.0",
+    "@pob/eslint-config-typescript": "31.1.0",
+    "@pob/eslint-config-typescript-react": "31.0.0",
     "alp-dev": "^12.3.0",
     "eslint": "5.16.0",
     "prettier": "1.17.0"

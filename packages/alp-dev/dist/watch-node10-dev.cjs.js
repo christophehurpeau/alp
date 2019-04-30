@@ -7,7 +7,9 @@ const path = require('path');
 const path__default = _interopDefault(path);
 const portscanner = _interopDefault(require('portscanner'));
 const argv = _interopDefault(require('minimist-argv'));
+const ConsoleLogger = _interopDefault(require('nightingale-console'));
 const createChild = _interopDefault(require('springbokjs-daemon'));
+const nightingale = require('nightingale');
 const fs = require('fs');
 const fs__default = _interopDefault(fs);
 const glob = _interopDefault(require('glob'));
@@ -114,6 +116,11 @@ const startProxyPort = argv.browserSyncStartPort || 3000;
 const startAppPort = argv.startAppPort || 3050;
 const endProxyPort = startProxyPort + 49;
 const endAppPort = startAppPort + 49;
+nightingale.configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(nightingale.Level.NOTICE),
+  stop: true
+}]);
 child_process.execSync(`rm -Rf ${path__default.resolve('public')}/* ${path__default.resolve('build')}/*`);
 let nodeChild;
 Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portscanner.findAPortNotInUse(startAppPort, endAppPort), build('./src/config', () => {
@@ -124,11 +131,15 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
   }
 
   nodeChild = createChild({
+    key: 'alp-dev:watch:watch-node',
+    displayName: 'watch-node',
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port]
   });
   nodeChild.start();
   createChild({
+    key: 'alp-dev:watch:watch-browser',
+    displayName: 'watch-browser',
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']
   }).start();

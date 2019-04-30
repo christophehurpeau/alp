@@ -49,5 +49,10 @@
     "type": {
       "type": "lib"
     }
+  },
+  "react-alp-connection-state": {
+    "type": {
+      "type": "lib"
+    }
   }
 }

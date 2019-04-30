@@ -3,6 +3,8 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 const argv = _interopDefault(require('minimist-argv'));
+const nightingale = require('nightingale');
+const ConsoleLogger = _interopDefault(require('nightingale-console'));
 const path = _interopDefault(require('path'));
 const pobpackBrowser = require('pobpack-browser');
 const fs = _interopDefault(require('fs'));
@@ -157,6 +159,11 @@ const runDevServer = (compiler, port, proxyPort, options) => pobpackBrowser.runD
 });
 
 const browserCompiler = createModernBrowserCompiler(false);
+nightingale.configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(nightingale.Level.NOTICE),
+  stop: true
+}]);
 runDevServer(browserCompiler, argv.port, argv['proxy-port'], {
   host: argv.host
 });

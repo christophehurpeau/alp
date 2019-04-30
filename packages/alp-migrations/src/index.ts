@@ -40,7 +40,7 @@ export default async function migrate({
   await readRecursiveDirectory(dirname, (res: CallbackParam) => {
     const fileName = res.path.substr(dirname.length + 1);
 
-    if (fileName.slice(-3) !== '.js') {
+    if (!fileName.endsWith('.js')) {
       return;
     }
 

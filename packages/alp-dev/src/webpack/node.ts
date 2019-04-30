@@ -12,7 +12,8 @@ export const watchAndRun = (
   port: string | number,
 ): Watching =>
   watchAndRunCompiler(nodeCompiler, {
-    key: 'alp-dev:watch',
+    key: 'alp-dev:node:watchAndRun',
+    displayName: 'node:watchAndRun',
     args: ['--trace-warnings', '--port', port, '--version', Date.now()],
     cwd: path.resolve('.'),
   });

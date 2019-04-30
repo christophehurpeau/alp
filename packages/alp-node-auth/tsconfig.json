@@ -36,6 +36,7 @@
     // "types": [],                           /* Type declaration files to be included in compilation. */
   },
   "references": [
+    { "path": "../alp-node" }
   ]
 
 }
