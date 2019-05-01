@@ -90,7 +90,7 @@
     "node-sass": "^4.11.0",
     "offline-plugin": "^5.0.6",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "pob-babel": "23.12.0",
+    "pob-babel": "23.15.0",
     "pobpack-browser": "^7.7.1",
     "pobpack-node": "^7.6.1",
     "pobpack-types": "^3.5.0",
