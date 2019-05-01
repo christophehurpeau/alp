@@ -46,7 +46,7 @@
     "koa-compress": "^3.0.0",
     "koa-static": "^5.0.0",
     "nightingale-logger": "^6.2.1",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.5.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",

@@ -56,8 +56,8 @@
     "@pob/eslint-config-typescript": "31.1.0",
     "babel-preset-latest-node": "3.1.1",
     "eslint": "5.16.0",
-    "liwi-mongo": "4.1.0",
-    "liwi-store": "4.1.0",
+    "liwi-mongo": "4.2.0",
+    "liwi-store": "4.2.0",
     "pob-babel": "23.15.0",
     "prettier": "1.17.0"
   }
