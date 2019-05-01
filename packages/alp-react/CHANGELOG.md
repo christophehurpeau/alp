@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.7.0](https://github.com/christophehurpeau/alp/compare/alp-react@15.6.1...alp-react@15.7.0) (2019-05-01)
+
+
+### Features
+
+* improve progress bar and server log ([d7ef7dc](https://github.com/christophehurpeau/alp/commit/d7ef7dc))
+
+
+
+
+
 ## [15.6.1](https://github.com/christophehurpeau/alp/compare/alp-react@15.6.0...alp-react@15.6.1) (2019-05-01)
 
 

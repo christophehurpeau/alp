@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/christophehurpeau/alp/compare/alp-browser@1.2.1...alp-browser@1.3.0) (2019-05-01)
+
+
+### Features
+
+* improve progress bar and server log ([d7ef7dc](https://github.com/christophehurpeau/alp/commit/d7ef7dc))
+
+
+
+
+
 ## [1.2.1](https://github.com/christophehurpeau/alp/compare/alp-browser@1.2.0...alp-browser@1.2.1) (2019-05-01)
 
 

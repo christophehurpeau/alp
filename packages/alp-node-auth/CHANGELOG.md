@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.8.1...alp-node-auth@2.9.0) (2019-05-01)
+
+
+### Features
+
+* improve progress bar and server log ([d7ef7dc](https://github.com/christophehurpeau/alp/commit/d7ef7dc))
+
+
+
+
+
 ## [2.8.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.8.0...alp-node-auth@2.8.1) (2019-05-01)
 
 
