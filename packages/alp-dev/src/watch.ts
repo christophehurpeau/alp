@@ -1,12 +1,11 @@
-/* eslint-disable global-require */
+import './configure-logger';
 import { execSync } from 'child_process';
 import path from 'path';
+import Logger from 'nightingale';
 import portscanner from 'portscanner';
 import argv from 'minimist-argv';
-import ConsoleLogger from 'nightingale-console';
 import createChild, { Daemon } from 'springbokjs-daemon';
 // import watchServer from './server';
-import { configure, Level } from 'nightingale';
 import * as configBuild from './config-build';
 
 const startProxyPort: number = argv.browserSyncStartPort || 3000;
@@ -14,13 +13,7 @@ const startAppPort: number = argv.startAppPort || 3050;
 const endProxyPort: number = startProxyPort + 49;
 const endAppPort: number = startAppPort + 49;
 
-configure([
-  {
-    pattern: /^springbokjs-daemon/,
-    handler: new ConsoleLogger(Level.NOTICE),
-    stop: true,
-  },
-]);
+const logger = new Logger('alp-dev:watch', 'alp-dev');
 
 execSync(`rm -Rf ${path.resolve('public')}/* ${path.resolve('build')}/*`);
 
@@ -30,6 +23,7 @@ Promise.all([
   portscanner.findAPortNotInUse(startProxyPort, endProxyPort),
   portscanner.findAPortNotInUse(startAppPort, endAppPort),
   configBuild.build('./src/config', () => {
+    logger.warn('config changed, restarting server');
     if (nodeChild) nodeChild.sendSIGUSR2();
   }),
 ])
@@ -42,7 +36,7 @@ Promise.all([
 
     nodeChild = createChild({
       key: 'alp-dev:watch:watch-node',
-      displayName: 'watch-node',
+      displayName: 'alp-dev:watch-node',
       autoRestart: true,
       args: [
         require.resolve(__filename.replace('/watch-', '/watch-node-')),
@@ -50,11 +44,10 @@ Promise.all([
         port,
       ],
     });
-    nodeChild.start();
 
-    createChild({
+    const browserChild = createChild({
       key: 'alp-dev:watch:watch-browser',
-      displayName: 'watch-browser',
+      displayName: 'alp-dev:watch-browser',
       autoRestart: true,
       args: [
         require.resolve(__filename.replace('/watch-', '/watch-browser-')),
@@ -65,6 +58,10 @@ Promise.all([
         '--host',
         argv.host || '',
       ],
-    }).start();
+    });
+
+    Promise.all([nodeChild.start(), browserChild.start()]).then(() => {
+      logger.success('ready', { port: proxyPort, serverPort: port });
+    });
   })
   .catch((err) => console.log(err.stack));

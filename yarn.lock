@@ -4040,9 +4040,9 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
     delayed-stream "~1.0.0"
 
 commander@^2.10.0, commander@^2.11.0, commander@^2.14.1, commander@^2.9.0:
-  version "2.19.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
-  integrity sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg==
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
+  integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
 
 commander@~2.17.1:
   version "2.17.1"
@@ -10328,29 +10328,29 @@ pob-lcov-reporter@1.2.0:
   dependencies:
     istanbul-reports "^2.1.1"
 
-pobpack-browser@^7.7.1:
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/pobpack-browser/-/pobpack-browser-7.7.2.tgz#661cac19ce68ae26858c3eb6e65bef154dcb8c4c"
-  integrity sha512-koZZ5W34jzXvbeTAE1v33b9FcK6CnVVKX3R0tJjXSiL8Yfec7rJQIKJpxJW5D5YSrq98pWsHIm4ox3Fuwt0vSg==
+pobpack-browser@^7.7.3:
+  version "7.7.3"
+  resolved "https://registry.yarnpkg.com/pobpack-browser/-/pobpack-browser-7.7.3.tgz#538f53df171358ada367e9d38e9bef169df9d57b"
+  integrity sha512-QQ0lEsZ+e2LEoCGdpjllDVLNawrsqKvZg9Xq5PrGke/AiO9agT/0IzQeOstg/puZ1/aJTPoV+6pvfsV2ylSw8w==
   dependencies:
     "@babel/preset-env" "^7.4.3"
     "@types/react-hot-loader" "^4.1.0"
     pobpack-types "^3.5.1"
-    pobpack-utils "^7.6.1"
+    pobpack-utils "^7.7.0"
     react-dev-utils "^8.0.0"
     react-error-html "^0.2.2"
     regenerator-runtime "^0.13.2"
     source-map-support "^0.5.11"
     webpack-dev-server "3.2.1"
 
-pobpack-node@^7.6.1:
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-7.6.2.tgz#a75b4895e78126f8c1e4b2af598e5f60b6d76f35"
-  integrity sha512-icFd3iFAVlcAGeV6SwCKUyVAYIh4RRkKLlLz5bx1MArdyEs/PcTIOlPbB7dELLHpXqQgWReD5mXgrb9KJsRKsw==
+pobpack-node@^7.6.3:
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-7.6.3.tgz#5bb8ecb0682be10b9596d161c742293a6eb1ef47"
+  integrity sha512-Y1tO7seiFcg4nIaBHoGV7L7K3Y+h6qEjB7KLtom102gxIk3zCE2YjgtAiA+PpepdRvpl4iasYG//kRiQorVAmQ==
   dependencies:
     babel-preset-latest-node "^3.0.1"
     pobpack-types "^3.5.1"
-    pobpack-utils "^7.6.1"
+    pobpack-utils "^7.7.0"
     source-map-support "^0.5.11"
     springbokjs-daemon "^3.1.0"
     webpack-node-externals "^1.7.2"
@@ -10365,10 +10365,10 @@ pobpack-types@^3.5.0, pobpack-types@^3.5.1:
     "@types/babel__template" "^7.0.2"
     "@types/babel__traverse" "^7.0.6"
 
-pobpack-utils@^7.6.1:
-  version "7.6.1"
-  resolved "https://registry.yarnpkg.com/pobpack-utils/-/pobpack-utils-7.6.1.tgz#083dc1d49187d4fd12b2c39d5b73d07dc2bbb9d7"
-  integrity sha512-ycoaQJFwhh3NwcSegHiAmIcM63Z9BQkoCpfURKgg1v9k7mCGVFTPop4HPbWIHtM93cpxaj2F3aO+2gaomZB2mA==
+pobpack-utils@^7.7.0:
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/pobpack-utils/-/pobpack-utils-7.7.0.tgz#28238e63253ac4cc7aff51b3e02ad2738a51e85b"
+  integrity sha512-XQ2gZHcHGWiUkk6Z8BFRgB3VX601dV+BHJ4VuCImmIqGVEEjR06Qi9jWuCpISbDaWh/I1sV2wWeWizzM8v/ofg==
   dependencies:
     "@types/webpack" "^4.4.27"
     babel-loader "^8.0.5"
@@ -13867,6 +13867,13 @@ yarn-update-lock@0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/yarn-update-lock/-/yarn-update-lock-0.6.0.tgz#fcbdf330d1a7e12ea6da6599f0daee7d0d1214f3"
   integrity sha512-1zbGhHSphZze+blavFqv4jDpXAB9d9nEC1OrvLrAwcbxk8s91DS9JFfDdrGhw830UDPbNst4n2+9SGYB7TGULg==
+  dependencies:
+    yarn-deduplicate "^1.1.1"
+
+yarn-update-lock@0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/yarn-update-lock/-/yarn-update-lock-0.6.1.tgz#a14dc7e807abcdfc4ab5417e663ddf2494a931a0"
+  integrity sha512-P+2kG+ty+1HqsBB36bfXbvKgMxk35jUfM3SMtE3wE7U2EIbQ3mJdTJAodSthn63flRLDGS43KcA/7yhu4WgNoA==
   dependencies:
     yarn-deduplicate "^1.1.1"
 

@@ -1,5 +1,5 @@
 import argv from 'minimist-argv';
-import { configure, Level } from 'nightingale';
+import { addConfig, Level } from 'nightingale';
 import ConsoleLogger from 'nightingale-console';
 import path from 'path';
 import { createAppBrowserCompiler, MODERN, runDevServer as runDevServer$1 } from 'pobpack-browser';
@@ -8,6 +8,17 @@ import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
 import { createModuleRules, createCssModuleUse } from 'ynnub-webpack-config';
+
+addConfig({
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Level.NOTICE),
+  stop: true
+}, true);
+addConfig({
+  pattern: /^alp-dev/,
+  handler: new ConsoleLogger(Level.INFO),
+  stop: true
+}, true);
 
 /* eslint-disable max-lines */
 const ExcludesFalsy = Boolean;
@@ -155,11 +166,6 @@ const runDevServer = (compiler, port, proxyPort, options) => runDevServer$1(comp
 });
 
 const browserCompiler = createModernBrowserCompiler(false);
-configure([{
-  pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Level.NOTICE),
-  stop: true
-}]);
 runDevServer(browserCompiler, argv.port, argv['proxy-port'], {
   host: argv.host
 });

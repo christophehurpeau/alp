@@ -2,19 +2,31 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+const Logger = require('nightingale');
+const Logger__default = _interopDefault(Logger);
+const ConsoleLogger = _interopDefault(require('nightingale-console'));
 const child_process = require('child_process');
 const path = require('path');
 const path__default = _interopDefault(path);
 const portscanner = _interopDefault(require('portscanner'));
 const argv = _interopDefault(require('minimist-argv'));
-const ConsoleLogger = _interopDefault(require('nightingale-console'));
 const createChild = _interopDefault(require('springbokjs-daemon'));
-const nightingale = require('nightingale');
 const fs = require('fs');
 const fs__default = _interopDefault(fs);
 const glob = _interopDefault(require('glob'));
 const mkdirp = _interopDefault(require('mkdirp'));
 const jsYaml = require('js-yaml');
+
+Logger.addConfig({
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Logger.Level.NOTICE),
+  stop: true
+}, true);
+Logger.addConfig({
+  pattern: /^alp-dev/,
+  handler: new ConsoleLogger(Logger.Level.INFO),
+  stop: true
+}, true);
 
 function readFile(target) {
   return new Promise((resolve, reject) => {
@@ -115,19 +127,15 @@ const build = (src = './src/config', onChanged) => Promise.all(glob.sync(path.jo
   closeFns.forEach(closeFn => closeFn());
 });
 
-/* eslint-disable global-require */
 const startProxyPort = argv.browserSyncStartPort || 3000;
 const startAppPort = argv.startAppPort || 3050;
 const endProxyPort = startProxyPort + 49;
 const endAppPort = startAppPort + 49;
-nightingale.configure([{
-  pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(nightingale.Level.NOTICE),
-  stop: true
-}]);
+const logger = new Logger__default('alp-dev:watch', 'alp-dev');
 child_process.execSync(`rm -Rf ${path__default.resolve('public')}/* ${path__default.resolve('build')}/*`);
 let nodeChild;
 Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portscanner.findAPortNotInUse(startAppPort, endAppPort), build('./src/config', () => {
+  logger.warn('config changed, restarting server');
   if (nodeChild) nodeChild.sendSIGUSR2();
 })]).then(([proxyPort, port]) => {
   if (proxyPort === port) {
@@ -136,16 +144,21 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
 
   nodeChild = createChild({
     key: 'alp-dev:watch:watch-node',
-    displayName: 'watch-node',
+    displayName: 'alp-dev:watch-node',
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port]
   });
-  nodeChild.start();
-  createChild({
+  const browserChild = createChild({
     key: 'alp-dev:watch:watch-browser',
-    displayName: 'watch-browser',
+    displayName: 'alp-dev:watch-browser',
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']
-  }).start();
+  });
+  Promise.all([nodeChild.start(), browserChild.start()]).then(() => {
+    logger.success('ready', {
+      port: proxyPort,
+      serverPort: port
+    });
+  });
 }).catch(err => console.log(err.stack));
 //# sourceMappingURL=watch-node8-dev.cjs.js.map

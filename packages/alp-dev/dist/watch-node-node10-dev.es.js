@@ -1,5 +1,5 @@
 import argv from 'minimist-argv';
-import { configure, Level } from 'nightingale';
+import { addConfig, Level } from 'nightingale';
 import ConsoleLogger from 'nightingale-console';
 import path from 'path';
 import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
@@ -8,6 +8,17 @@ import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
 import { createModuleRules, createCssModuleUse } from 'ynnub-webpack-config';
+
+addConfig({
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Level.NOTICE),
+  stop: true
+}, true);
+addConfig({
+  pattern: /^alp-dev/,
+  handler: new ConsoleLogger(Level.INFO),
+  stop: true
+}, true);
 
 /* eslint-disable max-lines */
 const ExcludesFalsy = Boolean;
@@ -146,11 +157,6 @@ const watchAndRun = (nodeCompiler, port) => watchAndRunCompiler(nodeCompiler, {
   cwd: path.resolve('.')
 });
 
-configure([{
-  pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Level.NOTICE),
-  stop: true
-}]);
 const nodeCompiler = createNodeCompiler(false);
 let watching = watchAndRun(nodeCompiler, argv.port);
 process.on('SIGUSR2', () => {

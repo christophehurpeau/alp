@@ -13,6 +13,17 @@ const MiniCssExtractPlugin = _interopDefault(require('mini-css-extract-plugin'))
 const autoprefixer = _interopDefault(require('autoprefixer'));
 const ynnubWebpackConfig = require('ynnub-webpack-config');
 
+nightingale.addConfig({
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(nightingale.Level.NOTICE),
+  stop: true
+}, true);
+nightingale.addConfig({
+  pattern: /^alp-dev/,
+  handler: new ConsoleLogger(nightingale.Level.INFO),
+  stop: true
+}, true);
+
 /* eslint-disable max-lines */
 const ExcludesFalsy = Boolean;
 function createPobpackConfig(target, production = false) {
@@ -150,11 +161,6 @@ const watchAndRun = (nodeCompiler, port) => pobpackNode.watchAndRunCompiler(node
   cwd: path.resolve('.')
 });
 
-nightingale.configure([{
-  pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(nightingale.Level.NOTICE),
-  stop: true
-}]);
 const nodeCompiler = createNodeCompiler(false);
 let watching = watchAndRun(nodeCompiler, argv.port);
 process.on('SIGUSR2', () => {
