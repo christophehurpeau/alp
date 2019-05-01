@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/christophehurpeau/alp/compare/alp-node@1.2.0...alp-node@1.3.0) (2019-05-01)
+
+
+### Features
+
+* update dependencies ([9663e2d](https://github.com/christophehurpeau/alp/commit/9663e2d))
+
+
+
+
+
 # [1.2.0](https://github.com/christophehurpeau/alp/compare/alp-node@1.1.4...alp-node@1.2.0) (2019-05-01)
 
 

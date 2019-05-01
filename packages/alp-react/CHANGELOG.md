@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.6.0](https://github.com/christophehurpeau/alp/compare/alp-react@15.5.0...alp-react@15.6.0) (2019-05-01)
+
+
+### Features
+
+* update dependencies ([9663e2d](https://github.com/christophehurpeau/alp/commit/9663e2d))
+
+
+
+
+
 # [15.5.0](https://github.com/christophehurpeau/alp/compare/alp-react@15.4.3...alp-react@15.5.0) (2019-05-01)
 
 

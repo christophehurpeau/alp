@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.5.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.4.0...alp-dev@12.5.0) (2019-05-01)
+
+
+### Features
+
+* update dependencies ([9663e2d](https://github.com/christophehurpeau/alp/commit/9663e2d))
+
+
+
+
+
 # [12.4.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.3.0...alp-dev@12.4.0) (2019-05-01)
 
 
