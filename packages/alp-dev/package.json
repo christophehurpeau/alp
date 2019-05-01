@@ -86,7 +86,7 @@
     "minimist-argv": "^1.1.0",
     "mkdirp": "^0.5.1",
     "nightingale": "^9.2.2",
-    "nightingale-console": "^5.2.1",
+    "nightingale-console": "^6.0.0",
     "node-sass": "^4.11.0",
     "offline-plugin": "^5.0.6",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
