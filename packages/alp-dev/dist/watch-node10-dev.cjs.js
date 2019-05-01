@@ -8,9 +8,12 @@ const ConsoleLogger = _interopDefault(require('nightingale-console'));
 const child_process = require('child_process');
 const path = require('path');
 const path__default = _interopDefault(path);
+const formatterANSI = _interopDefault(require('nightingale-ansi-formatter'));
 const portscanner = _interopDefault(require('portscanner'));
 const argv = _interopDefault(require('minimist-argv'));
 const createChild = _interopDefault(require('springbokjs-daemon'));
+const colorette = _interopDefault(require('colorette'));
+const ProgressBar = _interopDefault(require('progress'));
 const fs = require('fs');
 const fs__default = _interopDefault(fs);
 const glob = _interopDefault(require('glob'));
@@ -20,11 +23,6 @@ const jsYaml = require('js-yaml');
 Logger.addConfig({
   pattern: /^springbokjs-daemon/,
   handler: new ConsoleLogger(Logger.Level.NOTICE),
-  stop: true
-}, true);
-Logger.addConfig({
-  pattern: /^alp-dev/,
-  handler: new ConsoleLogger(Logger.Level.INFO),
   stop: true
 }, true);
 
@@ -134,6 +132,52 @@ const endAppPort = startAppPort + 49;
 const logger = new Logger__default('alp-dev:watch', 'alp-dev');
 child_process.execSync(`rm -Rf ${path__default.resolve('public')}/* ${path__default.resolve('build')}/*`);
 let nodeChild;
+const bar = new ProgressBar(`${colorette.bold(colorette.yellow('Building...'))} ${colorette.bold(':percent')} [:bar] → :msg`, {
+  incomplete: ' ',
+  complete: '▇',
+  total: 100,
+  width: 1024,
+  // max width possible
+  clear: true,
+  stream: process.stdout
+});
+
+const output = param => {
+  if (bar.complete) {
+    process.stdout.write(`${param}\n`);
+  } else {
+    bar.interrupt(param);
+  }
+};
+
+const formatterSimplified = ({
+  key,
+  datetime,
+  ...restRecord
+}) => formatterANSI(restRecord);
+
+Logger.addConfig({
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Logger.Level.NOTICE, {
+    output
+  }),
+  stop: true
+}, true);
+Logger.addConfig({
+  pattern: /^alp-dev/,
+  handler: new ConsoleLogger(Logger.Level.INFO, {
+    output
+  }),
+  stop: true
+}, true);
+Logger.addConfig({
+  pattern: /^springbokjs-daemon:alp-dev:watch:output/,
+  handler: new ConsoleLogger(Logger.Level.INFO, {
+    output,
+    formatter: formatterSimplified
+  }),
+  stop: true
+}, true);
 Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portscanner.findAPortNotInUse(startAppPort, endAppPort), build('./src/config', () => {
   logger.warn('config changed, restarting server');
   if (nodeChild) nodeChild.sendSIGUSR2();
@@ -141,18 +185,43 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
   if (proxyPort === port) {
     throw new Error(`"proxyPort" and "port" cannot have the same value: ${port}`);
   }
+  const percentages = {
+    node: 0,
+    browser: 0
+  };
+
+  const handleMessage = (source, msg) => {
+    if (msg === 'ready') ; else if (msg && msg.type === 'webpack-progress') {
+      percentages[source] = msg.percentage;
+      const message = msg.message;
+      bar.update((percentages.node + percentages.browser) / 2, {
+        msg: message.length > 20 ? `${message.substr(0, 20)}...` : message
+      });
+    }
+  };
 
   nodeChild = createChild({
-    key: 'alp-dev:watch:watch-node',
-    displayName: 'alp-dev:watch-node',
+    key: 'alp-dev:watch:watch-server',
+    displayName: 'alp-dev:watch-server',
+    prefixStdout: true,
+    outputKey: 'alp-dev:watch:output:watch-server',
+    outputDisplayName: 'SERVER:',
     autoRestart: true,
-    args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port]
+    args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port],
+    env: { ...process.env,
+      NIGHTINGALE_CONSOLE_FORMATTER: 'ansi'
+    },
+    onMessage: msg => handleMessage('node', msg)
   });
   const browserChild = createChild({
     key: 'alp-dev:watch:watch-browser',
     displayName: 'alp-dev:watch-browser',
     autoRestart: true,
-    args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']
+    args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || ''],
+    env: { ...process.env,
+      NIGHTINGALE_CONSOLE_FORMATTER: 'ansi'
+    },
+    onMessage: msg => handleMessage('browser', msg)
   });
   Promise.all([nodeChild.start(), browserChild.start()]).then(() => {
     logger.success('ready', {

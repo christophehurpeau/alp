@@ -5,7 +5,9 @@ import { Watching } from 'webpack';
 import createPobpackConfig from './createPobpackConfig';
 
 export const createNodeCompiler = (production: boolean) =>
-  createAppNodeCompiler(createPobpackConfig('node', production));
+  createAppNodeCompiler(createPobpackConfig('node', production), {
+    progressBar: false,
+  });
 
 export const watchAndRun = (
   nodeCompiler: PobpackCompiler,

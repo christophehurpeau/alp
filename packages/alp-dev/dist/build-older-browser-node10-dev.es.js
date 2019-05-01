@@ -1,6 +1,7 @@
 import path from 'path';
 import { createAppBrowserCompiler, ALL } from 'pobpack-browser';
 import fs from 'fs';
+import webpack from 'webpack';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
@@ -131,7 +132,13 @@ function createPobpackConfig(target, production = false) {
       // disable: target === 'node',
       filename: `${// eslint-disable-next-line no-nested-ternary
       target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
-    }), new OptimizeCssAssetsPlugin()].filter(ExcludesFalsy)
+    }), new OptimizeCssAssetsPlugin(), process.send && new webpack.ProgressPlugin((percentage, message) => {
+      process.send({
+        type: 'webpack-progress',
+        percentage,
+        message
+      });
+    })].filter(ExcludesFalsy)
   };
 }
 

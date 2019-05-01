@@ -63,7 +63,7 @@
     "@types/socket.io": "^2.1.2",
     "@types/socket.io-client": "^1.4.32",
     "alp-types": "^1.1.0",
-    "nightingale-logger": "^6.2.1",
+    "nightingale-logger": "^6.2.2",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0"
   },

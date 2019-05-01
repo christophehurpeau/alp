@@ -45,7 +45,7 @@
     "koa": "^2.7.0",
     "koa-compress": "^3.0.0",
     "koa-static": "^5.0.0",
-    "nightingale-logger": "^6.2.1",
+    "nightingale-logger": "^6.2.2",
     "node-fetch": "^2.5.0"
   },
   "devDependencies": {

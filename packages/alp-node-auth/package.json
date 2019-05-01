@@ -46,7 +46,7 @@
     "alp-types": "^1.1.0",
     "cookies": "^0.7.3",
     "jsonwebtoken": "^8.5.1",
-    "nightingale-logger": "^6.2.1",
+    "nightingale-logger": "^6.2.2",
     "simple-oauth2": "^2.2.1"
   },
   "devDependencies": {

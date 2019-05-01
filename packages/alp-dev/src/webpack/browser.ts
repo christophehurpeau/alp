@@ -14,6 +14,7 @@ export const createModernBrowserCompiler = (production: boolean) =>
   createAppBrowserCompiler(
     MODERN,
     createPobpackConfig('modern-browser', production),
+    { progressBar: false },
   );
 
 export const createOlderBrowserCompiler = (production: boolean) =>

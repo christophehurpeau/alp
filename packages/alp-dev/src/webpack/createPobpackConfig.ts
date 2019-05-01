@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import webpack from 'webpack';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
@@ -203,6 +204,15 @@ export default function createPobpackConfig(
         }.css`,
       }),
       new OptimizeCssAssetsPlugin(),
+
+      process.send &&
+        new webpack.ProgressPlugin((percentage: number, message: string) => {
+          (process.send as NonNullable<typeof process.send>)({
+            type: 'webpack-progress',
+            percentage,
+            message,
+          });
+        }),
 
       // target === 'browser' &&
       // target !== 'node' &&

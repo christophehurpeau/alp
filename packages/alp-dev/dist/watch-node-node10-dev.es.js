@@ -4,6 +4,7 @@ import ConsoleLogger from 'nightingale-console';
 import path from 'path';
 import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
 import fs from 'fs';
+import webpack from 'webpack';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
@@ -12,11 +13,6 @@ import { createModuleRules, createCssModuleUse } from 'ynnub-webpack-config';
 addConfig({
   pattern: /^springbokjs-daemon/,
   handler: new ConsoleLogger(Level.NOTICE),
-  stop: true
-}, true);
-addConfig({
-  pattern: /^alp-dev/,
-  handler: new ConsoleLogger(Level.INFO),
   stop: true
 }, true);
 
@@ -145,11 +141,19 @@ function createPobpackConfig(target, production = false) {
       // disable: target === 'node',
       filename: `${// eslint-disable-next-line no-nested-ternary
       target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
-    }), new OptimizeCssAssetsPlugin()].filter(ExcludesFalsy)
+    }), new OptimizeCssAssetsPlugin(), process.send && new webpack.ProgressPlugin((percentage, message) => {
+      process.send({
+        type: 'webpack-progress',
+        percentage,
+        message
+      });
+    })].filter(ExcludesFalsy)
   };
 }
 
-const createNodeCompiler = production => createAppNodeCompiler(createPobpackConfig('node', production));
+const createNodeCompiler = production => createAppNodeCompiler(createPobpackConfig('node', production), {
+  progressBar: false
+});
 const watchAndRun = (nodeCompiler, port) => watchAndRunCompiler(nodeCompiler, {
   key: 'alp-dev:node:watchAndRun',
   displayName: 'node:watchAndRun',

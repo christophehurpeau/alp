@@ -9,12 +9,3 @@ addConfig(
   },
   true,
 );
-
-addConfig(
-  {
-    pattern: /^alp-dev/,
-    handler: new ConsoleLogger(Level.INFO),
-    stop: true,
-  },
-  true,
-);

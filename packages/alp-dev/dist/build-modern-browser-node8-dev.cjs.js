@@ -5,6 +5,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 const path = _interopDefault(require('path'));
 const pobpackBrowser = require('pobpack-browser');
 const fs = _interopDefault(require('fs'));
+const webpack = _interopDefault(require('webpack'));
 const OptimizeCssAssetsPlugin = _interopDefault(require('optimize-css-assets-webpack-plugin'));
 const MiniCssExtractPlugin = _interopDefault(require('mini-css-extract-plugin'));
 const autoprefixer = _interopDefault(require('autoprefixer'));
@@ -135,11 +136,19 @@ function createPobpackConfig(target, production = false) {
       // disable: target === 'node',
       filename: `${// eslint-disable-next-line no-nested-ternary
       target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
-    }), new OptimizeCssAssetsPlugin()].filter(ExcludesFalsy)
+    }), new OptimizeCssAssetsPlugin(), process.send && new webpack.ProgressPlugin((percentage, message) => {
+      process.send({
+        type: 'webpack-progress',
+        percentage,
+        message
+      });
+    })].filter(ExcludesFalsy)
   };
 }
 
-const createModernBrowserCompiler = production => pobpackBrowser.createAppBrowserCompiler(pobpackBrowser.MODERN, createPobpackConfig('modern-browser', production));
+const createModernBrowserCompiler = production => pobpackBrowser.createAppBrowserCompiler(pobpackBrowser.MODERN, createPobpackConfig('modern-browser', production), {
+  progressBar: false
+});
 
 const browserCompiler = createModernBrowserCompiler(process.env.NODE_ENV === 'production');
 browserCompiler.run();
