@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.5.0](https://github.com/christophehurpeau/alp/compare/alp-react@15.4.3...alp-react@15.5.0) (2019-05-01)
+
+
+### Features
+
+* update deps and pobpack ([1e19ea4](https://github.com/christophehurpeau/alp/commit/1e19ea4))
+
+
+
+
+
 ## [15.4.3](https://github.com/christophehurpeau/alp/compare/alp-react@15.4.2...alp-react@15.4.3) (2019-04-29)
 
 **Note:** Version bump only for package alp-react

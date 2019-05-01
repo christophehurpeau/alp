@@ -1,6 +1,6 @@
 {
   "name": "alp-node-auth",
-  "version": "2.6.1",
+  "version": "2.7.0",
   "description": "authentication with alp",
   "keywords": ["alp"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",

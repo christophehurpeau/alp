@@ -1,6 +1,6 @@
 {
   "name": "react-alp-translate",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "react translate",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -45,7 +45,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "alp-types": "^1.1.0",
-    "react-alp-context": "^1.1.4"
+    "react-alp-context": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",

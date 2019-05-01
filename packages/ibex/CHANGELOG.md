@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/christophehurpeau/alp/compare/ibex@5.1.3...ibex@5.2.0) (2019-05-01)
+
+
+### Features
+
+* update deps and pobpack ([1e19ea4](https://github.com/christophehurpeau/alp/commit/1e19ea4))
+
+
+
+
+
 ## [5.1.3](https://github.com/christophehurpeau/alp/compare/ibex@5.1.2...ibex@5.1.3) (2019-04-20)
 
 **Note:** Version bump only for package ibex

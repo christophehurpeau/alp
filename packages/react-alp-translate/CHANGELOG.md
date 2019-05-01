@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/christophehurpeau/alp/compare/react-alp-translate@2.0.2...react-alp-translate@2.1.0) (2019-05-01)
+
+
+### Features
+
+* update deps and pobpack ([1e19ea4](https://github.com/christophehurpeau/alp/commit/1e19ea4))
+
+
+
+
+
 ## [2.0.2](https://github.com/christophehurpeau/alp/compare/react-alp-translate@2.0.1...react-alp-translate@2.0.2) (2019-04-28)
 
 **Note:** Version bump only for package react-alp-translate

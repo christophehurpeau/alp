@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.6.1...alp-node-auth@2.7.0) (2019-05-01)
+
+
+### Features
+
+* update deps and pobpack ([1e19ea4](https://github.com/christophehurpeau/alp/commit/1e19ea4))
+
+
+
+
+
 ## [2.6.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.6.0...alp-node-auth@2.6.1) (2019-04-28)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.1.0...alp-hello-react-example@2.2.0) (2019-05-01)
+
+
+### Features
+
+* update deps and pobpack ([1e19ea4](https://github.com/christophehurpeau/alp/commit/1e19ea4))
+
+
+
+
+
 # [2.1.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.0.8...alp-hello-react-example@2.1.0) (2019-04-29)
 
 
