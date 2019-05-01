@@ -1,3 +1,2 @@
-declare const _default: (target: string, content: string) => Promise<void>;
-export default _default;
+export default function writeFile(target: string, content: string): Promise<void>;
 //# sourceMappingURL=writeFile.d.ts.map

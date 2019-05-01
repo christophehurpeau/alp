@@ -23,14 +23,8 @@ declare global {
   }
 }
 
-export default (app: BrowserApplication) =>
-  // loading: (state: number = 0, action: ReduxActionType) => {
-  //   if (action.meta && action.meta.loading !== undefined) {
-  //     return state + (action.meta.loading ? 1 : -1);
-  //   }
-  //   return state;
-  // },
-  async function renderApp(App: ElementType<{}>) {
+export default function alpReactBrowser(app: BrowserApplication) {
+  return async function renderApp(App: ElementType<{}>) {
     const initialData = window.__INITIAL_DATA__ || {};
     const ctx = app.createContext();
     if (initialData.sanitizedState) {
@@ -48,3 +42,4 @@ export default (app: BrowserApplication) =>
 
     // container.updateSanitizedState({ loading: false });
   };
+}

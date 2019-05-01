@@ -14,6 +14,5 @@ export declare class Config {
     existsConfigSync(name: string): boolean;
     loadConfigSync(name: string): Map<string, any>;
 }
-declare const _default: (app: NodeApplication, config: Config & NodeConfig) => Config & NodeConfig;
-export default _default;
+export default function getConfig(app: NodeApplication, config: Config & NodeConfig): Config & NodeConfig;
 //# sourceMappingURL=index.d.ts.map

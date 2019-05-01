@@ -2,8 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp';
 
-export default (target: string, content: string): Promise<void> =>
-  new Promise((resolve, reject) => {
+export default function writeFile(
+  target: string,
+  content: string,
+): Promise<void> {
+  return new Promise((resolve, reject) => {
     mkdirp(path.dirname(target), () => {
       fs.writeFile(target, content, (err) => {
         if (err) {
@@ -18,3 +21,4 @@ export default (target: string, content: string): Promise<void> =>
       });
     });
   });
+}

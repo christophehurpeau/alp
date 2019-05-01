@@ -6,6 +6,5 @@ export interface LayoutOptions {
     initialData?: any;
     polyfillFeatures?: string;
 }
-declare const _default: (helmet: HelmetData, content: string, { version, scriptName, styleName, initialData, polyfillFeatures, }: LayoutOptions) => string;
-export default _default;
+export default function htmlLayout(helmet: HelmetData, content: string, { version, scriptName, styleName, initialData, polyfillFeatures, }: LayoutOptions): string;
 //# sourceMappingURL=htmlLayout.d.ts.map

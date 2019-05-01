@@ -112,4 +112,9 @@ export class Config {
   }
 }
 
-export default (app: NodeApplication, config: Config & NodeConfig) => config;
+export default function getConfig(
+  app: NodeApplication,
+  config: Config & NodeConfig,
+): Config & NodeConfig {
+  return config;
+}

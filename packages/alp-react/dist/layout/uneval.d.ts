@@ -1,3 +1,2 @@
-declare const _default: (value: any) => string;
-export default _default;
+export default function unevalValue(value: any): string;
 //# sourceMappingURL=uneval.d.ts.map

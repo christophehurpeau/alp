@@ -11,7 +11,7 @@ export interface LayoutOptions {
   polyfillFeatures?: string;
 }
 
-export default (
+export default function htmlLayout(
   helmet: HelmetData,
   content: string,
   {
@@ -21,8 +21,8 @@ export default (
     initialData,
     polyfillFeatures = 'default,es6,es7,localStorage,fetch,Intl',
   }: LayoutOptions,
-): string =>
-  `<!doctype html>
+): string {
+  return `<!doctype html>
 <html ${helmet.htmlAttributes.toString()}>
   <head>
     ${helmet.title.toString()}
@@ -51,3 +51,4 @@ window.__INITIAL_DATA__=${uneval(initialData)};
     <div id="react-app">${content}</div>
   </body>
 </html>`;
+}

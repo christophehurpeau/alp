@@ -1,3 +1,2 @@
-declare const _default: (target: string) => Promise<string>;
-export default _default;
+export default function readFile(target: string): Promise<string>;
 //# sourceMappingURL=readFile.d.ts.map

@@ -1,4 +1,4 @@
-import React from 'react';
+import { ElementType } from 'react';
 import Helmet from 'react-helmet';
 import { Context } from 'alp-types';
 export { Helmet };
@@ -13,6 +13,5 @@ interface Options {
     styleName?: string | false;
 }
 export declare type ReactAppCallback = (ctx: Context) => Promise<void>;
-declare const _default: (App: React.ElementType<{}>, options?: Options) => ReactAppCallback;
-export default _default;
+export default function alpReact(App: ElementType<{}>, options?: Options): ReactAppCallback;
 //# sourceMappingURL=index.d.ts.map

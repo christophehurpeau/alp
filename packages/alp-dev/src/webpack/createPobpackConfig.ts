@@ -16,10 +16,10 @@ const ExcludesFalsy = (Boolean as any) as <T>(
   x: T | false | null | undefined,
 ) => x is T;
 
-export default (
+export default function createPobpackConfig(
   target: TargetType,
   production: boolean = false,
-): Partial<Options> => {
+): Partial<Options> {
   const pkg = JSON.parse(
     fs.readFileSync(path.resolve('package.json'), 'utf-8'),
   );
@@ -223,4 +223,4 @@ export default (
       // TODO https://github.com/NekR/offline-plugin
     ].filter(ExcludesFalsy),
   };
-};
+}

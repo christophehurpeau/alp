@@ -4,6 +4,6 @@ export interface BodyProps {
   children: ReactNode;
 }
 
-export default ({ children }: BodyProps): ReactElement<'div'> => (
-  <div>{children}</div>
-);
+export default function Body({ children }: BodyProps): ReactElement<'div'> {
+  return <div>{children}</div>;
+}

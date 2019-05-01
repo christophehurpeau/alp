@@ -12,27 +12,31 @@ const glob = _interopDefault(require('glob'));
 const mkdirp = _interopDefault(require('mkdirp'));
 const jsYaml = require('js-yaml');
 
-const readFile = (target => new Promise((resolve, reject) => {
-  fs__default.readFile(target, 'utf-8', (err, content) => {
-    if (err) {
-      return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
-    }
-
-    resolve(content);
-  });
-}));
-
-const writeFile = ((target, content) => new Promise((resolve, reject) => {
-  mkdirp(path__default.dirname(target), () => {
-    fs__default.writeFile(target, content, err => {
+function readFile(target) {
+  return new Promise((resolve, reject) => {
+    fs__default.readFile(target, 'utf-8', (err, content) => {
       if (err) {
-        return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
+        return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
       }
 
-      resolve();
+      resolve(content);
     });
   });
-}));
+}
+
+function writeFile(target, content) {
+  return new Promise((resolve, reject) => {
+    mkdirp(path__default.dirname(target), () => {
+      fs__default.writeFile(target, content, err => {
+        if (err) {
+          return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
+        }
+
+        resolve();
+      });
+    });
+  });
+}
 
 function loadConfigFile(content, dirname) {
   const data = jsYaml.safeLoad(content) || {};

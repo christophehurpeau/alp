@@ -9,13 +9,14 @@ declare global {
 }
 
 interface AlpAppProps {}
+
 interface AlpAppState {
   error: null | Error;
   appState: any;
 }
 
-export default (app: ReactChild, context: Context) =>
-  class AlpAppWrapper extends Component<AlpAppProps, AlpAppState> {
+export default function createAlpAppWrapper(app: ReactChild, context: Context) {
+  return class AlpAppWrapper extends Component<AlpAppProps, AlpAppState> {
     state = {
       error: null,
       appState: context.sanitizedState,
@@ -23,8 +24,9 @@ export default (app: ReactChild, context: Context) =>
 
     componentDidCatch(error: Error, errorInfo: any) {
       console.error(error, errorInfo);
-      if (window.Raven)
+      if (window.Raven) {
         window.Raven.captureException(error, { extra: errorInfo });
+      }
     }
 
     render() {
@@ -36,3 +38,4 @@ export default (app: ReactChild, context: Context) =>
       );
     }
   };
+}

@@ -1,4 +1,6 @@
 import argv from 'minimist-argv';
+import { configure, Level } from 'nightingale';
+import ConsoleLogger from 'nightingale-console';
 import path from 'path';
 import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
 import fs from 'fs';
@@ -9,7 +11,7 @@ import { createModuleRules, createCssModuleUse } from 'ynnub-webpack-config';
 
 /* eslint-disable max-lines */
 const ExcludesFalsy = Boolean;
-const createPobpackConfig = ((target, production = false) => {
+function createPobpackConfig(target, production = false) {
   const pkg = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf-8'));
   const deps = pkg.dependencies || {};
   const devdeps = pkg.devDependencies || {};
@@ -134,15 +136,21 @@ const createPobpackConfig = ((target, production = false) => {
       target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
     }), new OptimizeCssAssetsPlugin()].filter(ExcludesFalsy)
   };
-});
+}
 
 const createNodeCompiler = production => createAppNodeCompiler(createPobpackConfig('node', production));
 const watchAndRun = (nodeCompiler, port) => watchAndRunCompiler(nodeCompiler, {
-  key: 'alp-dev:watch',
+  key: 'alp-dev:node:watchAndRun',
+  displayName: 'node:watchAndRun',
   args: ['--trace-warnings', '--port', port, '--version', Date.now()],
   cwd: path.resolve('.')
 });
 
+configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Level.NOTICE),
+  stop: true
+}]);
 const nodeCompiler = createNodeCompiler(false);
 let watching = watchAndRun(nodeCompiler, argv.port);
 process.on('SIGUSR2', () => {

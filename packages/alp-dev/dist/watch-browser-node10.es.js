@@ -1,4 +1,6 @@
 import argv from 'minimist-argv';
+import { configure, Level } from 'nightingale';
+import ConsoleLogger from 'nightingale-console';
 import path from 'path';
 import { createAppBrowserCompiler, MODERN, runDevServer as runDevServer$1 } from 'pobpack-browser';
 import fs from 'fs';
@@ -9,7 +11,7 @@ import { createModuleRules, createCssModuleUse } from 'ynnub-webpack-config';
 
 /* eslint-disable max-lines */
 const ExcludesFalsy = Boolean;
-const createPobpackConfig = ((target, production = false) => {
+function createPobpackConfig(target, production = false) {
   const pkg = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf-8'));
   const deps = pkg.dependencies || {};
   const devdeps = pkg.devDependencies || {};
@@ -134,7 +136,7 @@ const createPobpackConfig = ((target, production = false) => {
       target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
     }), new OptimizeCssAssetsPlugin()].filter(ExcludesFalsy)
   };
-});
+}
 
 const createModernBrowserCompiler = production => createAppBrowserCompiler(MODERN, createPobpackConfig('modern-browser', production));
 const runDevServer = (compiler, port, proxyPort, options) => runDevServer$1(compiler, {
@@ -153,6 +155,11 @@ const runDevServer = (compiler, port, proxyPort, options) => runDevServer$1(comp
 });
 
 const browserCompiler = createModernBrowserCompiler(false);
+configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Level.NOTICE),
+  stop: true
+}]);
 runDevServer(browserCompiler, argv.port, argv['proxy-port'], {
   host: argv.host
 });

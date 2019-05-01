@@ -33,6 +33,7 @@
         "alp-types",
         "alp-websocket",
         "ibex",
+        "react-alp-connection-state",
         "react-alp-context",
         "react-alp-loading-bar",
         "react-alp-translate"

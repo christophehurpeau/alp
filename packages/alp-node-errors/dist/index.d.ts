@@ -1,4 +1,3 @@
 import { Context } from 'alp-types';
-declare const _default: (ctx: Context, next: () => void) => Promise<void>;
-export default _default;
+export default function alpNodeErrors(ctx: Context, next: () => void): Promise<void>;
 //# sourceMappingURL=index.d.ts.map

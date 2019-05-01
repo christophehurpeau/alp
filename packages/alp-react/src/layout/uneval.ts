@@ -84,8 +84,9 @@ const ESCAPED_CHARS = {
 const escapeUnsafeChars = (unsafeChar: keyof typeof ESCAPED_CHARS): string =>
   ESCAPED_CHARS[unsafeChar];
 
-export default (value: any) =>
-  uneval(value, PRODUCTION ? undefined : 'obj').replace(
+export default function unevalValue(value: any): string {
+  return uneval(value, PRODUCTION ? undefined : 'obj').replace(
     UNSAFE_CHARS_REGEXP,
     escapeUnsafeChars as (unsafeChar: string) => string,
   );
+}

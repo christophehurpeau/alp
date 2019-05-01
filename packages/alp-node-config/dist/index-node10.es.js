@@ -87,8 +87,10 @@ class Config {
   }
 
 }
-const index = ((app, config) => config);
+function getConfig(app, config) {
+  return config;
+}
 
-export default index;
+export default getConfig;
 export { Config };
 //# sourceMappingURL=index-node10.es.js.map

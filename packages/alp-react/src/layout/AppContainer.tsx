@@ -4,4 +4,6 @@ export interface AppContainerProps {
   children: React.ReactNode;
 }
 
-export default ({ children }: AppContainerProps) => <>{children}</>;
+export default function AppContainer({ children }: AppContainerProps) {
+  return <>{children}</>;
+}

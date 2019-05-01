@@ -74,16 +74,19 @@ const ESCAPED_CHARS = {
 
 const escapeUnsafeChars = unsafeChar => ESCAPED_CHARS[unsafeChar];
 
-const uneval$1 = (value => uneval(value, undefined).replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars));
+function unevalValue(value) {
+  return uneval(value, undefined).replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
+}
 
 /* eslint-disable jsx-a11y/html-has-lang */
-const htmlLayout = ((helmet, content, {
+function htmlLayout(helmet, content, {
   version,
   scriptName,
   styleName,
   initialData,
   polyfillFeatures = 'default,es6,es7,localStorage,fetch,Intl'
-}) => `<!doctype html>
+}) {
+  return `<!doctype html>
 <html ${helmet.htmlAttributes.toString()}>
   <head>
     ${helmet.title.toString()}
@@ -96,16 +99,17 @@ const htmlLayout = ((helmet, content, {
     ${helmet.script.toString()}
     ${scriptName === false ? '' : `<script>
 window.__VERSION__='${version}';
-window.__INITIAL_DATA__=${uneval$1(initialData)};
+window.__INITIAL_DATA__=${unevalValue(initialData)};
 </script>
 <script defer src="${assetUrl(`/${scriptName}.js`, version)}"></script>`}
   </head>
   <body ${helmet.bodyAttributes.toString()}>
     <div id="react-app">${content}</div>
   </body>
-</html>`);
+</html>`;
+}
 
-const createAlpAppWrapper = ((app, context) => {
+function createAlpAppWrapper(app, context) {
   var _temp;
 
   return _temp = class AlpAppWrapper extends Component {
@@ -119,9 +123,12 @@ const createAlpAppWrapper = ((app, context) => {
 
     componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
-      if (window.Raven) window.Raven.captureException(error, {
-        extra: errorInfo
-      });
+
+      if (window.Raven) {
+        window.Raven.captureException(error, {
+          extra: errorInfo
+        });
+      }
     }
 
     render() {
@@ -132,7 +139,7 @@ const createAlpAppWrapper = ((app, context) => {
     }
 
   }, _temp;
-});
+}
 
 const LoadingFallbackContext = createContext('Loading...');
 
@@ -146,13 +153,17 @@ function NodeSuspenseWrapper({
   return children;
 }
 
-const Body = (({
+function Body({
   children
-}) => React__default.createElement("div", null, children));
+}) {
+  return React__default.createElement("div", null, children);
+}
 
-const AppContainer = (({
+function AppContainer({
   children
-}) => createElement(Fragment, null, children));
+}) {
+  return createElement(Fragment, null, children);
+}
 
 const renderHtml = (app, options) => {
   const content = renderToString(app);
@@ -161,24 +172,26 @@ const renderHtml = (app, options) => {
 };
 
 const isModernBrowser = createIsModernBrowser();
-const index = ((App, options = {}) => async ctx => {
-  const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
+function alpReact(App, options = {}) {
+  return async ctx => {
+    const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
 
-  const ua = ctx.req.headers['user-agent'];
-  const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-  const app = React__default.createElement(App);
-  const WrappedApp = createAlpAppWrapper(app, ctx);
-  ctx.body = await renderHtml(React__default.createElement(WrappedApp), {
-    version,
-    scriptName: options.scriptName !== undefined ? options.scriptName : name,
-    styleName: options.styleName !== undefined ? options.styleName : name,
-    polyfillFeatures: options.polyfillFeatures,
-    initialData: {
-      sanitizedState: ctx.sanitizedState
-    }
-  });
-});
+    const ua = ctx.req.headers['user-agent'];
+    const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+    const app = React__default.createElement(App);
+    const WrappedApp = createAlpAppWrapper(app, ctx);
+    ctx.body = await renderHtml(React__default.createElement(WrappedApp), {
+      version,
+      scriptName: options.scriptName !== undefined ? options.scriptName : name,
+      styleName: options.styleName !== undefined ? options.styleName : name,
+      polyfillFeatures: options.polyfillFeatures,
+      initialData: {
+        sanitizedState: ctx.sanitizedState
+      }
+    });
+  };
+}
 
-export default index;
+export default alpReact;
 export { AlpModuleNode as AlpModule, AppContainer, Body, LoadingFallbackContext, NodeSuspenseWrapper as SuspenseWrapper };
 //# sourceMappingURL=index-node10.es.js.map

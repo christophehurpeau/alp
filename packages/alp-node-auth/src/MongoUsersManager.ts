@@ -24,7 +24,7 @@ export default class MongoUsersManager<
     return this.store.replaceOne(user);
   }
 
-  public sanitize(user: U): USanitized {
+  sanitize(user: U): USanitized {
     return this.sanitizeBaseUser(user) as USanitized;
   }
 

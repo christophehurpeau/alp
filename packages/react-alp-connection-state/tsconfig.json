@@ -36,7 +36,8 @@
     // "types": [],                           /* Type declaration files to be included in compilation. */
   },
   "references": [
-    { "path": "../react-alp-context" }
+    { "path": "../react-alp-context" },
+    { "path": "../react-alp-translate" }
   ]
 
 }

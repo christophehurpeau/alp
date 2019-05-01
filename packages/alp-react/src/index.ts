@@ -35,25 +35,27 @@ interface Options {
 
 export type ReactAppCallback = (ctx: Context) => Promise<void>;
 
-export default (
+export default function alpReact(
   App: ElementType<{}>,
   options: Options = {},
-): ReactAppCallback => async (ctx: Context) => {
-  const version: string = ctx.config.get('version');
-  // TODO create alp-useragent with getter in context
-  const ua = ctx.req.headers['user-agent'];
-  const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+): ReactAppCallback {
+  return async (ctx: Context) => {
+    const version: string = ctx.config.get('version');
+    // TODO create alp-useragent with getter in context
+    const ua = ctx.req.headers['user-agent'];
+    const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
-  const app = React.createElement(App);
-  const WrappedApp = createAlpAppWrapper(app, ctx);
+    const app = React.createElement(App);
+    const WrappedApp = createAlpAppWrapper(app, ctx);
 
-  ctx.body = await renderHtml(React.createElement(WrappedApp), {
-    version,
-    scriptName: options.scriptName !== undefined ? options.scriptName : name,
-    styleName: options.styleName !== undefined ? options.styleName : name,
-    polyfillFeatures: options.polyfillFeatures,
-    initialData: {
-      sanitizedState: ctx.sanitizedState,
-    },
-  });
-};
+    ctx.body = await renderHtml(React.createElement(WrappedApp), {
+      version,
+      scriptName: options.scriptName !== undefined ? options.scriptName : name,
+      styleName: options.styleName !== undefined ? options.styleName : name,
+      polyfillFeatures: options.polyfillFeatures,
+      initialData: {
+        sanitizedState: ctx.sanitizedState,
+      },
+    });
+  };
+}

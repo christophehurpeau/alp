@@ -15,7 +15,7 @@ var _inheritsLoose = _interopDefault(require('@babel/runtime/helpers/esm/inherit
 var ReactAlpContext = _interopDefault(require('react-alp-context'));
 var reactHelmet = _interopDefault(require('react-helmet'));
 
-var createAlpAppWrapper = (function (app, context) {
+function createAlpAppWrapper(app, context) {
   var _temp;
 
   return _temp =
@@ -42,9 +42,12 @@ var createAlpAppWrapper = (function (app, context) {
 
     _proto.componentDidCatch = function componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
-      if (window.Raven) window.Raven.captureException(error, {
-        extra: errorInfo
-      });
+
+      if (window.Raven) {
+        window.Raven.captureException(error, {
+          extra: errorInfo
+        });
+      }
     };
 
     _proto.render = function render() {
@@ -56,7 +59,7 @@ var createAlpAppWrapper = (function (app, context) {
 
     return AlpAppWrapper;
   }(React.Component), _temp;
-});
+}
 
 var LoadingFallbackContext = React.createContext('Loading...');
 
@@ -75,24 +78,18 @@ function BrowserSuspenseWrapper(_ref2) {
   }, children);
 }
 
-var Body = (function (_ref) {
+function Body(_ref) {
   var children = _ref.children;
   return React__default.createElement("div", null, children);
-});
+}
 
-var AppContainer = (function (_ref) {
+function AppContainer(_ref) {
   var children = _ref.children;
   return React.createElement(React.Fragment, null, children);
-});
+}
 
 var logger = new Logger('alp:react');
-var browser = (function (app // loading: (state: number = 0, action: ReduxActionType) => {
-//   if (action.meta && action.meta.loading !== undefined) {
-//     return state + (action.meta.loading ? 1 : -1);
-//   }
-//   return state;
-// },
-) {
+function alpReactBrowser(app) {
   return (
     /*#__PURE__*/
     function () {
@@ -135,7 +132,7 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
       };
     }()
   );
-});
+}
 
 exports.Helmet = reactHelmet;
 exports.AlpModule = AlpModuleBrowser;
@@ -143,5 +140,5 @@ exports.AppContainer = AppContainer;
 exports.Body = Body;
 exports.LoadingFallbackContext = LoadingFallbackContext;
 exports.SuspenseWrapper = BrowserSuspenseWrapper;
-exports.default = browser;
+exports.default = alpReactBrowser;
 //# sourceMappingURL=index-browser.cjs.js.map

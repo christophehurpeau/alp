@@ -6,7 +6,7 @@ import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
 var _jsxFileName = "/Users/chris/Work/alp/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
-const createAlpAppWrapper = (function (app, context) {
+function createAlpAppWrapper(app, context) {
   var _temp;
 
   return _temp = class AlpAppWrapper extends Component {
@@ -20,16 +20,19 @@ const createAlpAppWrapper = (function (app, context) {
 
     componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
-      if (window.Raven) window.Raven.captureException(error, {
-        extra: errorInfo
-      });
+
+      if (window.Raven) {
+        window.Raven.captureException(error, {
+          extra: errorInfo
+        });
+      }
     }
 
     render() {
       if (this.state.error) return React__default.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 33
         },
         __self: this
       }, "An unexpected error occured");
@@ -37,14 +40,14 @@ const createAlpAppWrapper = (function (app, context) {
         value: context,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 35
         },
         __self: this
       }, app);
     }
 
   }, _temp;
-});
+}
 
 const LoadingFallbackContext = createContext('Loading...');
 
@@ -79,7 +82,7 @@ function BrowserSuspenseWrapper({
 }
 
 var _jsxFileName$3 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
-const Body = (function ({
+function Body({
   children
 }) {
   return React__default.createElement("div", {
@@ -89,22 +92,16 @@ const Body = (function ({
     },
     __self: this
   }, children);
-});
+}
 
-const AppContainer = (function ({
+function AppContainer({
   children
 }) {
   return createElement(Fragment, null, children);
-});
+}
 
 const logger = new Logger('alp:react');
-const browser = (function (app // loading: (state: number = 0, action: ReduxActionType) => {
-//   if (action.meta && action.meta.loading !== undefined) {
-//     return state + (action.meta.loading ? 1 : -1);
-//   }
-//   return state;
-// },
-) {
+function alpReactBrowser(app) {
   return async function renderApp(App) {
     const initialData = window.__INITIAL_DATA__ || {};
     const ctx = app.createContext();
@@ -121,8 +118,8 @@ const browser = (function (app // loading: (state: number = 0, action: ReduxActi
     hydrate(appElement, document.getElementById('react-app'));
     logger.success('rendered'); // container.updateSanitizedState({ loading: false });
   };
-});
+}
 
-export default browser;
+export default alpReactBrowser;
 export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext, BrowserSuspenseWrapper as SuspenseWrapper };
 //# sourceMappingURL=index-browsermodern-dev.es.js.map

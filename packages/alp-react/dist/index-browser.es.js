@@ -8,7 +8,7 @@ import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
-var createAlpAppWrapper = (function (app, context) {
+function createAlpAppWrapper(app, context) {
   var _temp;
 
   return _temp =
@@ -35,9 +35,12 @@ var createAlpAppWrapper = (function (app, context) {
 
     _proto.componentDidCatch = function componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
-      if (window.Raven) window.Raven.captureException(error, {
-        extra: errorInfo
-      });
+
+      if (window.Raven) {
+        window.Raven.captureException(error, {
+          extra: errorInfo
+        });
+      }
     };
 
     _proto.render = function render() {
@@ -49,7 +52,7 @@ var createAlpAppWrapper = (function (app, context) {
 
     return AlpAppWrapper;
   }(Component), _temp;
-});
+}
 
 var LoadingFallbackContext = createContext('Loading...');
 
@@ -68,24 +71,18 @@ function BrowserSuspenseWrapper(_ref2) {
   }, children);
 }
 
-var Body = (function (_ref) {
+function Body(_ref) {
   var children = _ref.children;
   return React__default.createElement("div", null, children);
-});
+}
 
-var AppContainer = (function (_ref) {
+function AppContainer(_ref) {
   var children = _ref.children;
   return createElement(Fragment, null, children);
-});
+}
 
 var logger = new Logger('alp:react');
-var browser = (function (app // loading: (state: number = 0, action: ReduxActionType) => {
-//   if (action.meta && action.meta.loading !== undefined) {
-//     return state + (action.meta.loading ? 1 : -1);
-//   }
-//   return state;
-// },
-) {
+function alpReactBrowser(app) {
   return (
     /*#__PURE__*/
     function () {
@@ -128,8 +125,8 @@ var browser = (function (app // loading: (state: number = 0, action: ReduxAction
       };
     }()
   );
-});
+}
 
-export default browser;
+export default alpReactBrowser;
 export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext, BrowserSuspenseWrapper as SuspenseWrapper };
 //# sourceMappingURL=index-browser.es.js.map

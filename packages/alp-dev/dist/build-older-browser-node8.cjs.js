@@ -12,7 +12,7 @@ const ynnubWebpackConfig = require('ynnub-webpack-config');
 
 /* eslint-disable max-lines */
 const ExcludesFalsy = Boolean;
-const createPobpackConfig = ((target, production = false) => {
+function createPobpackConfig(target, production = false) {
   const pkg = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf-8'));
   const deps = pkg.dependencies || {};
   const devdeps = pkg.devDependencies || {};
@@ -137,7 +137,7 @@ const createPobpackConfig = ((target, production = false) => {
       target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
     }), new OptimizeCssAssetsPlugin()].filter(ExcludesFalsy)
   };
-});
+}
 
 const createOlderBrowserCompiler = production => pobpackBrowser.createAppBrowserCompiler(pobpackBrowser.ALL, createPobpackConfig('browser', production));
 

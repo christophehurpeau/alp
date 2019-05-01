@@ -8,7 +8,10 @@ const errorHtmlRenderer = new ErrorHtmlRenderer({
   appPath: `${process.cwd()}/`,
 });
 
-export default async (ctx: Context, next: () => void) => {
+export default async function alpNodeErrors(
+  ctx: Context,
+  next: () => void,
+): Promise<void> {
   try {
     await next();
   } catch (err) {
@@ -54,4 +57,4 @@ export default async (ctx: Context, next: () => void) => {
         break;
     }
   }
-};
+}

@@ -6,7 +6,7 @@ const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer({
   appPath: `${process.cwd()}/`
 });
-const index = (async (ctx, next) => {
+async function alpNodeErrors(ctx, next) {
   try {
     await next();
   } catch (err) {
@@ -58,7 +58,7 @@ const index = (async (ctx, next) => {
         break;
     }
   }
-});
+}
 
-export default index;
+export default alpNodeErrors;
 //# sourceMappingURL=index-node10.es.js.map

@@ -3,14 +3,24 @@ import { execSync } from 'child_process';
 import path from 'path';
 import portscanner from 'portscanner';
 import argv from 'minimist-argv';
+import ConsoleLogger from 'nightingale-console';
 import createChild, { Daemon } from 'springbokjs-daemon';
 // import watchServer from './server';
+import { configure, Level } from 'nightingale';
 import * as configBuild from './config-build';
 
 const startProxyPort: number = argv.browserSyncStartPort || 3000;
 const startAppPort: number = argv.startAppPort || 3050;
 const endProxyPort: number = startProxyPort + 49;
 const endAppPort: number = startAppPort + 49;
+
+configure([
+  {
+    pattern: /^springbokjs-daemon/,
+    handler: new ConsoleLogger(Level.NOTICE),
+    stop: true,
+  },
+]);
 
 execSync(`rm -Rf ${path.resolve('public')}/* ${path.resolve('build')}/*`);
 
@@ -31,6 +41,8 @@ Promise.all([
     }
 
     nodeChild = createChild({
+      key: 'alp-dev:watch:watch-node',
+      displayName: 'watch-node',
       autoRestart: true,
       args: [
         require.resolve(__filename.replace('/watch-', '/watch-node-')),
@@ -41,6 +53,8 @@ Promise.all([
     nodeChild.start();
 
     createChild({
+      key: 'alp-dev:watch:watch-browser',
+      displayName: 'watch-browser',
       autoRestart: true,
       args: [
         require.resolve(__filename.replace('/watch-', '/watch-browser-')),

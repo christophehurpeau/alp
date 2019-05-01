@@ -3,6 +3,8 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 const argv = _interopDefault(require('minimist-argv'));
+const nightingale = require('nightingale');
+const ConsoleLogger = _interopDefault(require('nightingale-console'));
 const path = _interopDefault(require('path'));
 const pobpackBrowser = require('pobpack-browser');
 const fs = _interopDefault(require('fs'));
@@ -13,7 +15,7 @@ const ynnubWebpackConfig = require('ynnub-webpack-config');
 
 /* eslint-disable max-lines */
 const ExcludesFalsy = Boolean;
-const createPobpackConfig = ((target, production = false) => {
+function createPobpackConfig(target, production = false) {
   const pkg = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf-8'));
   const deps = pkg.dependencies || {};
   const devdeps = pkg.devDependencies || {};
@@ -138,7 +140,7 @@ const createPobpackConfig = ((target, production = false) => {
       target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
     }), new OptimizeCssAssetsPlugin()].filter(ExcludesFalsy)
   };
-});
+}
 
 const createModernBrowserCompiler = production => pobpackBrowser.createAppBrowserCompiler(pobpackBrowser.MODERN, createPobpackConfig('modern-browser', production));
 const runDevServer = (compiler, port, proxyPort, options) => pobpackBrowser.runDevServer(compiler, {
@@ -157,6 +159,11 @@ const runDevServer = (compiler, port, proxyPort, options) => pobpackBrowser.runD
 });
 
 const browserCompiler = createModernBrowserCompiler(false);
+nightingale.configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(nightingale.Level.NOTICE),
+  stop: true
+}]);
 runDevServer(browserCompiler, argv.port, argv['proxy-port'], {
   host: argv.host
 });

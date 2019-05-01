@@ -1,7 +1,7 @@
 import fs from 'fs';
 
-export default (target: string): Promise<string> =>
-  new Promise((resolve, reject) => {
+export default function readFile(target: string): Promise<string> {
+  return new Promise((resolve, reject) => {
     fs.readFile(target, 'utf-8', (err, content) => {
       if (err) {
         return reject(
@@ -12,3 +12,4 @@ export default (target: string): Promise<string> =>
       resolve(content);
     });
   });
+}

@@ -2,33 +2,39 @@ import { execSync } from 'child_process';
 import path, { join, dirname } from 'path';
 import portscanner from 'portscanner';
 import argv from 'minimist-argv';
+import ConsoleLogger from 'nightingale-console';
 import createChild from 'springbokjs-daemon';
+import { configure, Level } from 'nightingale';
 import fs, { readFileSync, watch } from 'fs';
 import glob from 'glob';
 import mkdirp from 'mkdirp';
 import { safeLoad } from 'js-yaml';
 
-const readFile = (target => new Promise((resolve, reject) => {
-  fs.readFile(target, 'utf-8', (err, content) => {
-    if (err) {
-      return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
-    }
-
-    resolve(content);
-  });
-}));
-
-const writeFile = ((target, content) => new Promise((resolve, reject) => {
-  mkdirp(path.dirname(target), () => {
-    fs.writeFile(target, content, err => {
+function readFile(target) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(target, 'utf-8', (err, content) => {
       if (err) {
-        return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
+        return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
       }
 
-      resolve();
+      resolve(content);
     });
   });
-}));
+}
+
+function writeFile(target, content) {
+  return new Promise((resolve, reject) => {
+    mkdirp(path.dirname(target), () => {
+      fs.writeFile(target, content, err => {
+        if (err) {
+          return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
+        }
+
+        resolve();
+      });
+    });
+  });
+}
 
 function loadConfigFile(content, dirname) {
   const data = safeLoad(content) || {};
@@ -108,6 +114,11 @@ const startProxyPort = argv.browserSyncStartPort || 3000;
 const startAppPort = argv.startAppPort || 3050;
 const endProxyPort = startProxyPort + 49;
 const endAppPort = startAppPort + 49;
+configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Level.NOTICE),
+  stop: true
+}]);
 execSync(`rm -Rf ${path.resolve('public')}/* ${path.resolve('build')}/*`);
 let nodeChild;
 Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portscanner.findAPortNotInUse(startAppPort, endAppPort), build('./src/config', () => {
@@ -118,11 +129,15 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
   }
 
   nodeChild = createChild({
+    key: 'alp-dev:watch:watch-node',
+    displayName: 'watch-node',
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port]
   });
   nodeChild.start();
   createChild({
+    key: 'alp-dev:watch:watch-browser',
+    displayName: 'watch-browser',
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']
   }).start();

@@ -93,8 +93,10 @@ class Config {
   }
 
 }
-const index = ((app, config) => config);
+function getConfig(app, config) {
+  return config;
+}
 
 exports.Config = Config;
-exports.default = index;
+exports.default = getConfig;
 //# sourceMappingURL=index-node8-dev.cjs.js.map

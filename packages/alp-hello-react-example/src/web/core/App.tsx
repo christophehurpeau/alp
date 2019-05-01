@@ -1,4 +1,7 @@
-import React from 'react';
+import { hot } from 'react-hot-loader/root';
+import React, { ReactElement } from 'react';
 import HelloModule from '../hello/HelloModule';
 
-export default () => <HelloModule />;
+const App = (): ReactElement => <HelloModule />;
+
+export default hot(App);

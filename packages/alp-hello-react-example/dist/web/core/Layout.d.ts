@@ -1,4 +1,3 @@
 /// <reference types="react" />
-declare const _default: () => JSX.Element;
-export default _default;
+export default function Layout(): JSX.Element;
 //# sourceMappingURL=Layout.d.ts.map

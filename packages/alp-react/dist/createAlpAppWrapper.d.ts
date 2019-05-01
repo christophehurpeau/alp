@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
 import { Context } from 'alp-types';
 declare global {
     interface Window {
@@ -11,7 +11,7 @@ interface AlpAppState {
     error: null | Error;
     appState: any;
 }
-declare const _default: (app: React.ReactChild, context: Context) => {
+export default function createAlpAppWrapper(app: ReactChild, context: Context): {
     new (props: Readonly<AlpAppProps>): {
         state: {
             error: null;
@@ -48,5 +48,5 @@ declare const _default: (app: React.ReactChild, context: Context) => {
     };
     contextType?: React.Context<any> | undefined;
 };
-export default _default;
+export {};
 //# sourceMappingURL=createAlpAppWrapper.d.ts.map

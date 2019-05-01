@@ -1,4 +1,3 @@
-/// <reference types="react" />
-declare const _default: () => JSX.Element;
-export default _default;
+import { ReactElement } from 'react';
+export default function HelloModule(): ReactElement;
 //# sourceMappingURL=HelloModule.d.ts.map

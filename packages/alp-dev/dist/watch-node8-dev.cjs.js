@@ -7,34 +7,40 @@ const path = require('path');
 const path__default = _interopDefault(path);
 const portscanner = _interopDefault(require('portscanner'));
 const argv = _interopDefault(require('minimist-argv'));
+const ConsoleLogger = _interopDefault(require('nightingale-console'));
 const createChild = _interopDefault(require('springbokjs-daemon'));
+const nightingale = require('nightingale');
 const fs = require('fs');
 const fs__default = _interopDefault(fs);
 const glob = _interopDefault(require('glob'));
 const mkdirp = _interopDefault(require('mkdirp'));
 const jsYaml = require('js-yaml');
 
-const readFile = (target => new Promise((resolve, reject) => {
-  fs__default.readFile(target, 'utf-8', (err, content) => {
-    if (err) {
-      return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
-    }
-
-    resolve(content);
-  });
-}));
-
-const writeFile = ((target, content) => new Promise((resolve, reject) => {
-  mkdirp(path__default.dirname(target), () => {
-    fs__default.writeFile(target, content, err => {
+function readFile(target) {
+  return new Promise((resolve, reject) => {
+    fs__default.readFile(target, 'utf-8', (err, content) => {
       if (err) {
-        return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
+        return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
       }
 
-      resolve();
+      resolve(content);
     });
   });
-}));
+}
+
+function writeFile(target, content) {
+  return new Promise((resolve, reject) => {
+    mkdirp(path__default.dirname(target), () => {
+      fs__default.writeFile(target, content, err => {
+        if (err) {
+          return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
+        }
+
+        resolve();
+      });
+    });
+  });
+}
 
 function loadConfigFile(content, dirname) {
   const data = jsYaml.safeLoad(content) || {};
@@ -114,6 +120,11 @@ const startProxyPort = argv.browserSyncStartPort || 3000;
 const startAppPort = argv.startAppPort || 3050;
 const endProxyPort = startProxyPort + 49;
 const endAppPort = startAppPort + 49;
+nightingale.configure([{
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(nightingale.Level.NOTICE),
+  stop: true
+}]);
 child_process.execSync(`rm -Rf ${path__default.resolve('public')}/* ${path__default.resolve('build')}/*`);
 let nodeChild;
 Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portscanner.findAPortNotInUse(startAppPort, endAppPort), build('./src/config', () => {
@@ -124,11 +135,15 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
   }
 
   nodeChild = createChild({
+    key: 'alp-dev:watch:watch-node',
+    displayName: 'watch-node',
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-node-')), '--port', port]
   });
   nodeChild.start();
   createChild({
+    key: 'alp-dev:watch:watch-browser',
+    displayName: 'watch-browser',
     autoRestart: true,
     args: [require.resolve(__filename.replace('/watch-', '/watch-browser-')), '--port', port, '--proxy-port', proxyPort, '--host', argv.host || '']
   }).start();
