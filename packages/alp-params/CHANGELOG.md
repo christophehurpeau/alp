@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/christophehurpeau/alp/compare/alp-params@1.2.0...alp-params@1.2.1) (2019-05-01)
+
+
+### Bug Fixes
+
+* hot loader ([c880769](https://github.com/christophehurpeau/alp/commit/c880769))
+
+
+
+
+
 # [1.2.0](https://github.com/christophehurpeau/alp/compare/alp-params@1.1.4...alp-params@1.2.0) (2019-05-01)
 
 

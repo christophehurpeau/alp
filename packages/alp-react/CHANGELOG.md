@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.6.1](https://github.com/christophehurpeau/alp/compare/alp-react@15.6.0...alp-react@15.6.1) (2019-05-01)
+
+
+### Bug Fixes
+
+* hot loader ([c880769](https://github.com/christophehurpeau/alp/commit/c880769))
+
+
+
+
+
 # [15.6.0](https://github.com/christophehurpeau/alp/compare/alp-react@15.5.0...alp-react@15.6.0) (2019-05-01)
 
 

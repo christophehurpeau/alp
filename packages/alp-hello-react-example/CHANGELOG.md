@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.2.1...alp-hello-react-example@2.2.2) (2019-05-01)
+
+
+### Bug Fixes
+
+* hot loader ([c880769](https://github.com/christophehurpeau/alp/commit/c880769))
+
+
+
+
+
 ## [2.2.1](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.2.0...alp-hello-react-example@2.2.1) (2019-05-01)
 
 **Note:** Version bump only for package alp-hello-react-example

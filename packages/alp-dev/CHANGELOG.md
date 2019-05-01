@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1](https://github.com/christophehurpeau/alp/compare/alp-dev@12.5.0...alp-dev@12.5.1) (2019-05-01)
+
+
+### Bug Fixes
+
+* hot loader ([c880769](https://github.com/christophehurpeau/alp/commit/c880769))
+* logger config alp-dev ([f81762e](https://github.com/christophehurpeau/alp/commit/f81762e))
+
+
+
+
+
 # [12.5.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.4.0...alp-dev@12.5.0) (2019-05-01)
 
 

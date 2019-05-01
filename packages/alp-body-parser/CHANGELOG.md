@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/christophehurpeau/alp/compare/alp-body-parser@3.2.0...alp-body-parser@3.2.1) (2019-05-01)
+
+
+### Bug Fixes
+
+* hot loader ([c880769](https://github.com/christophehurpeau/alp/commit/c880769))
+
+
+
+
+
 # [3.2.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@3.1.3...alp-body-parser@3.2.0) (2019-05-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.8.0...alp-node-auth@2.8.1) (2019-05-01)
+
+
+### Bug Fixes
+
+* hot loader ([c880769](https://github.com/christophehurpeau/alp/commit/c880769))
+
+
+
+
+
 # [2.8.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.7.0...alp-node-auth@2.8.0) (2019-05-01)
 
 

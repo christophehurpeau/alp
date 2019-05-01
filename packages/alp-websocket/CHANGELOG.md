@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/christophehurpeau/alp/compare/alp-websocket@5.3.0...alp-websocket@5.3.1) (2019-05-01)
+
+
+### Bug Fixes
+
+* hot loader ([c880769](https://github.com/christophehurpeau/alp/commit/c880769))
+
+
+
+
+
 # [5.3.0](https://github.com/christophehurpeau/alp/compare/alp-websocket@5.2.2...alp-websocket@5.3.0) (2019-05-01)
 
 
