@@ -3,7 +3,8 @@
     "pob-config": {
       "entries": [
         "index",
-        "browser"
+        "browser",
+        "hot"
       ],
       "documentation": false,
       "testing": false,

@@ -35,17 +35,27 @@
   "module:browser-dev": "./dist/index-browser-dev.es.js",
   "module:modern-browsers": "./dist/index-browsermodern.es.js",
   "module:modern-browsers-dev": "./dist/index-browsermodern-dev.es.js",
+  "module:aliases-node": {
+    "./hot.js": "./dist/hot-node10.es.js"
+  },
+  "module:aliases-node-dev": {
+    "./hot.js": "./dist/hot-node10-dev.es.js"
+  },
   "module:aliases-browser": {
-    "./browser.js": "./dist/index-browser.es.js"
+    "./browser.js": "./dist/index-browser.es.js",
+    "./hot.js": "./dist/hot-browser.es.js"
   },
   "module:aliases-browser-dev": {
-    "./browser.js": "./dist/index-browser-dev.es.js"
+    "./browser.js": "./dist/index-browser-dev.es.js",
+    "./hot.js": "./dist/hot-browser-dev.es.js"
   },
   "module:aliases-modern-browsers": {
-    "./browser.js": "./dist/index-browsermodern.es.js"
+    "./browser.js": "./dist/index-browsermodern.es.js",
+    "./hot.js": "./dist/hot-browsermodern.es.js"
   },
   "module:aliases-modern-browsers-dev": {
-    "./browser.js": "./dist/index-browsermodern-dev.es.js"
+    "./browser.js": "./dist/index-browsermodern-dev.es.js",
+    "./hot.js": "./dist/hot-browsermodern-dev.es.js"
   },
   "scripts": {
     "build": "pob-build",
@@ -88,7 +98,7 @@
     "babel-preset-latest-node": "3.1.1",
     "babel-preset-modern-browsers": "14.0.0",
     "eslint": "5.16.0",
-    "pob-babel": "23.15.0",
+    "pob-babel": "23.16.0",
     "prettier": "1.17.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
