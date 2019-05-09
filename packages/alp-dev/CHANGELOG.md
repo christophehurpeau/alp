@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.6.1](https://github.com/christophehurpeau/alp/compare/alp-dev@12.6.0...alp-dev@12.6.1) (2019-05-09)
+
+
+### Bug Fixes
+
+* remove console.log ([bd802d4](https://github.com/christophehurpeau/alp/commit/bd802d4))
+
+
+
+
+
 # [12.6.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.5.1...alp-dev@12.6.0) (2019-05-01)
 
 

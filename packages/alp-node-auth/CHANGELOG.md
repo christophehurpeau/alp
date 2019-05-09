@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.9.0...alp-node-auth@2.9.1) (2019-05-09)
+
+
+### Bug Fixes
+
+* remove console.log ([bd802d4](https://github.com/christophehurpeau/alp/commit/bd802d4))
+
+
+
+
+
 # [2.9.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.8.1...alp-node-auth@2.9.0) (2019-05-01)
 
 
