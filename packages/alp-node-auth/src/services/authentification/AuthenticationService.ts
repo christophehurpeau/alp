@@ -210,7 +210,6 @@ export default class AuthenticationService<
       access_type: refreshToken ? 'offline' : 'online',
       ...params,
     });
-    console.log(redirectUri, params);
 
     return ctx.redirect(redirectUri);
   }

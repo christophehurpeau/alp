@@ -155,7 +155,6 @@ class AuthenticationService extends EventEmitter {
       access_type: refreshToken ? 'offline' : 'online',
       ...params
     });
-    console.log(redirectUri, params);
     return ctx.redirect(redirectUri);
   }
 
@@ -615,7 +614,6 @@ class UserAccountSlackService {
   }
 
   getProfile(tokens) {
-    console.log(tokens);
     return fetch(`https://slack.com/api/users.identity?token=${tokens.accessToken}`).then(response => response.json());
   }
 
