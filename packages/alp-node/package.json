@@ -58,7 +58,7 @@
     "@types/koa-static": "^4.0.1",
     "@types/minimist": "^1.2.0",
     "babel-preset-latest-node": "3.1.1",
-    "eslint": "5.16.0",
+    "eslint": "6.1.0",
     "pob-babel": "23.16.0",
     "prettier": "1.17.0"
   }

@@ -37,7 +37,7 @@
     "@pob/eslint-config-typescript": "31.1.0",
     "@pob/eslint-config-typescript-react": "31.0.0",
     "alp-dev": "^12.6.1",
-    "eslint": "5.16.0",
+    "eslint": "6.1.0",
     "prettier": "1.17.0"
   }
 }

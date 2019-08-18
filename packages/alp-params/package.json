@@ -71,7 +71,7 @@
     "babel-jest": "24.7.1",
     "babel-preset-latest-node": "3.1.1",
     "babel-preset-modern-browsers": "14.0.0",
-    "eslint": "5.16.0",
+    "eslint": "6.1.0",
     "jest": "24.7.1",
     "pob-babel": "23.16.0",
     "pob-lcov-reporter": "1.2.0",
