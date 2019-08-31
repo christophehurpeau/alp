@@ -10,16 +10,17 @@ const fs = require('fs');
 
 function readRecursiveDirectory(directory, callback) {
   return new Promise((resolve, reject) => {
-    fs.readdir(directory, (err, files) => {
-      if (err) return reject(err);
+    fs.readdir(directory, (errReadDir, files) => {
+      if (errReadDir) return reject(errReadDir);
       Promise.all(files.map(file => {
         const path = `${directory}/${file}`;
         return new Promise((resolve, reject) => {
-          fs.stat(path, (err, stat) => {
-            if (err) return reject(err);
+          fs.stat(path, (errFsStat, stat) => {
+            if (errFsStat) return reject(errFsStat);
 
             if (stat && stat.isDirectory()) {
-              return readRecursiveDirectory(path, callback).then(resolve).catch(reject);
+              readRecursiveDirectory(path, callback).then(resolve).catch(reject);
+              return;
             }
 
             try {
@@ -29,8 +30,8 @@ function readRecursiveDirectory(directory, callback) {
                 path,
                 stat
               })).then(() => resolve()).catch(reject);
-            } catch (err2) {
-              return reject(err2);
+            } catch (err) {
+              return reject(err);
             }
           });
         });

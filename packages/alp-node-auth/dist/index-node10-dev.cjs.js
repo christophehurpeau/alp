@@ -348,7 +348,8 @@ class UserAccountsService extends EventEmitter {
       account = {
         provider: strategy,
         accountId
-      }; // @ts-ignore
+      }; // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
 
       user.accounts.push(account);
     }

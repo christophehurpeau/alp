@@ -19,7 +19,8 @@ function load(translations, language) {
 function alpTranslate(dirname) {
   dirname = dirname.replace(/\/*$/, '/');
   return function (app) {
-    const language = app.context.language; // @ts-ignore
+    const language = app.context.language; // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
 
     return app.loadConfig(dirname + language).then(function (map) {
       const translations = load(map, language);

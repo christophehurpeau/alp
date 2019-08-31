@@ -12,6 +12,6 @@ interface Options {
     scriptName?: string | false;
     styleName?: string | false;
 }
-export declare type ReactAppCallback = (ctx: Context) => Promise<void>;
+export declare type ReactAppCallback = (ctx: Context) => void;
 export default function alpReact(App: ElementType<{}>, options?: Options): ReactAppCallback;
 //# sourceMappingURL=index.d.ts.map

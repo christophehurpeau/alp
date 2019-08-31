@@ -67,7 +67,7 @@ var request = {
   },
 
   get query() {
-    return querystring.parse(window.location.search);
+    return window.location.search.length === 0 ? {} : querystring.parse(window.location.search.substr(1));
   },
 
   get searchParams() {

@@ -44,10 +44,6 @@ class LoadingBar extends PureComponent {
     };
   }
 
-  getWebsocket() {
-    return this.context.app.websocket;
-  }
-
   componentDidMount() {
     var _this = this;
 
@@ -77,23 +73,6 @@ class LoadingBar extends PureComponent {
     });
   }
 
-  render() {
-    const LoadingBarComponent = this.props.LoadingBarComponent;
-    return React.createElement("div", {
-      hidden: this.state.hidden,
-      style: {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 4,
-        pointerEvents: 'none'
-      }
-    }, React.createElement(LoadingBarComponent, {
-      progress: this.state.progress
-    }));
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (this.state.loading !== prevState.loading) {
       if (this.state.loading) {
@@ -109,6 +88,10 @@ class LoadingBar extends PureComponent {
     clearTimeout(this.resetTimeout);
     clearTimeout(this.first20Timeout);
     clearInterval(this.progressTimer);
+  }
+
+  getWebsocket() {
+    return this.context.app.websocket;
   }
 
   showBar() {
@@ -147,6 +130,23 @@ class LoadingBar extends PureComponent {
         progress: 1
       });
     }, 1000);
+  }
+
+  render() {
+    const LoadingBarComponent = this.props.LoadingBarComponent;
+    return React.createElement("div", {
+      hidden: this.state.hidden,
+      style: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 4,
+        pointerEvents: 'none'
+      }
+    }, React.createElement(LoadingBarComponent, {
+      progress: this.state.progress
+    }));
   }
 
 }

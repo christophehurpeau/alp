@@ -25,6 +25,7 @@ declare global {
 
 export default function alpReactBrowser(app: BrowserApplication) {
   return async function renderApp(App: ElementType<{}>) {
+    // eslint-disable-next-line no-underscore-dangle
     const initialData = window.__INITIAL_DATA__ || {};
     const ctx = app.createContext();
     if (initialData.sanitizedState) {

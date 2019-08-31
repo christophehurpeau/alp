@@ -15,7 +15,7 @@
     "url": "https://github.com/alpjs/alp-dev/issues"
   },
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=8.6.0"
   },
   "main": "./index.js",
   "types": "./dist/index.d.ts",
@@ -58,6 +58,30 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
+  "pob": {
+    "babelEnvs": [
+      {
+        "target": "node",
+        "version": "10",
+        "formats": ["cjs", "es"]
+      },
+      {
+        "target": "node",
+        "version": "8",
+        "formats": ["cjs"]
+      }
+    ],
+    "entries": [
+      "watch",
+      "watch-browser",
+      "watch-node",
+      "build",
+      "build-modern-browser",
+      "build-node",
+      "build-older-browser"
+    ],
+    "withReact": false
+  },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
   },
@@ -92,7 +116,7 @@
     "node-sass": "^4.11.0",
     "offline-plugin": "^5.0.6",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "pob-babel": "23.16.0",
+    "pob-babel": "^23.20.0",
     "pobpack-browser": "^7.7.4",
     "pobpack-node": "^7.7.1",
     "pobpack-types": "^3.5.0",
@@ -111,10 +135,9 @@
     "ynnub-webpack-config": "2.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@pob/eslint-config-babel": "31.0.0",
-    "@pob/eslint-config-babel-node": "31.0.0",
-    "@pob/eslint-config-typescript": "31.1.0",
+    "@babel/core": "7.5.5",
+    "@pob/eslint-config-babel-node": "32.0.7",
+    "@pob/eslint-config-typescript": "32.0.8",
     "@types/autoprefixer": "^9.4.0",
     "@types/execa": "^0.9.0",
     "@types/glob": "^7.1.1",
@@ -125,11 +148,10 @@
     "@types/portscanner": "^2.1.0",
     "@types/progress": "^2.0.3",
     "@types/webpack-dev-server": "^3.1.5",
-    "eslint": "5.16.0",
+    "eslint": "6.3.0",
     "less": "^3.9.0",
-    "prettier": "1.17.0",
+    "prettier": "1.18.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "yarn-update-lock": "0.6.1"
+    "react-dom": "^16.8.6"
   }
 }

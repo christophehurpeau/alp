@@ -24,7 +24,7 @@ export class Config {
 
   private _map: Map<string, any>;
 
-  private _dirname: string;
+  private readonly _dirname: string;
 
   constructor(dirname: string, options?: ConfigOptions) {
     this._map = new Map();
@@ -91,7 +91,7 @@ export class Config {
                 (config, partialKey) => config.get(partialKey),
                 config,
               );
-        map.set(last as string, value);
+        map.set(last, value);
       }
     });
 

@@ -15,7 +15,7 @@ export const STATUSES = {
 export default class UserAccountsService<
   StrategyKeys extends AllowedStrategyKeys
 > extends EventEmitter {
-  private strategyToService: Record<StrategyKeys, AccountService<any>>;
+  private readonly strategyToService: Record<StrategyKeys, AccountService<any>>;
 
   usersManager: MongoUsersManager;
 
@@ -136,6 +136,7 @@ export default class UserAccountsService<
 
     if (!account) {
       account = { provider: strategy, accountId };
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       user.accounts.push(account);
     }

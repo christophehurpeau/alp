@@ -112,6 +112,7 @@ function close() {
  */
 
 function alpWebsocket(app, dirname) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   start(app.config, dirname || app.certPath);
   const appWithWebsocket = Object.assign(app, {

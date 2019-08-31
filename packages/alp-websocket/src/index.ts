@@ -13,26 +13,17 @@ const logger = new Logger('alp:websocket');
 let io: Server;
 
 export function initNamespace(config: NodeConfig, ns: Namespace | Server) {
-  ns.on(
-    'connection',
-    (socket): void => {
-      logger.debug('connected', { id: socket.id });
-      socket.emit('hello', { version: config.get('version') });
+  ns.on('connection', (socket): void => {
+    logger.debug('connected', { id: socket.id });
+    socket.emit('hello', { version: config.get('version') });
 
-      socket.on(
-        'error',
-        (err): void => {
-          logger.error(err);
-        },
-      );
-      socket.on(
-        'disconnect',
-        (): void => {
-          logger.debug('disconnected', { id: socket.id });
-        },
-      );
-    },
-  );
+    socket.on('error', (err): void => {
+      logger.error(err);
+    });
+    socket.on('disconnect', (): void => {
+      logger.debug('disconnected', { id: socket.id });
+    });
+  });
 }
 
 function start(config: NodeConfig, dirname: string): Promise<Server> {
@@ -112,6 +103,7 @@ export function close(): void {
  * @param {string} [dirname] for tls, dirname of server.key server.crt. If undefined: app.certPath
  */
 export default function alpWebsocket(app: NodeApplication, dirname?: string) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   start(app.config, dirname || app.certPath);
 

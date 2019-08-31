@@ -7,7 +7,7 @@ export interface ConfigOptions {
 export declare class Config {
     packageConfig?: PackageConfig;
     private _map;
-    private _dirname;
+    private readonly _dirname;
     constructor(dirname: string, options?: ConfigOptions);
     loadSync(options?: ConfigOptions): Config & NodeConfig;
     get(key: string): any;

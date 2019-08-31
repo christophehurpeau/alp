@@ -33,11 +33,10 @@
   },
   "devDependencies": {
     "@hot-loader/react-dom": "^16.8.6",
-    "@pob/eslint-config-babel": "31.0.0",
-    "@pob/eslint-config-typescript": "31.1.0",
-    "@pob/eslint-config-typescript-react": "31.0.0",
+    "@pob/eslint-config-typescript": "32.0.8",
+    "@pob/eslint-config-typescript-react": "32.0.9",
     "alp-dev": "^12.6.1",
-    "eslint": "5.16.0",
-    "prettier": "1.17.0"
+    "eslint": "6.3.0",
+    "prettier": "1.18.2"
   }
 }

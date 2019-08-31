@@ -28,6 +28,17 @@ export default function createAlpAppWrapper(app: ReactChild, context: Context): 
         refs: {
             [key: string]: React.ReactInstance;
         };
+        componentDidMount?(): void;
+        shouldComponentUpdate?(nextProps: Readonly<AlpAppProps>, nextState: Readonly<AlpAppState>, nextContext: any): boolean;
+        componentWillUnmount?(): void;
+        getSnapshotBeforeUpdate?(prevProps: Readonly<AlpAppProps>, prevState: Readonly<AlpAppState>): any;
+        componentDidUpdate?(prevProps: Readonly<AlpAppProps>, prevState: Readonly<AlpAppState>, snapshot?: any): void;
+        componentWillMount?(): void;
+        UNSAFE_componentWillMount?(): void;
+        componentWillReceiveProps?(nextProps: Readonly<AlpAppProps>, nextContext: any): void;
+        UNSAFE_componentWillReceiveProps?(nextProps: Readonly<AlpAppProps>, nextContext: any): void;
+        componentWillUpdate?(nextProps: Readonly<AlpAppProps>, nextState: Readonly<AlpAppState>, nextContext: any): void;
+        UNSAFE_componentWillUpdate?(nextProps: Readonly<AlpAppProps>, nextState: Readonly<AlpAppState>, nextContext: any): void;
     };
     new (props: AlpAppProps, context?: any): {
         state: {
@@ -45,6 +56,17 @@ export default function createAlpAppWrapper(app: ReactChild, context: Context): 
         refs: {
             [key: string]: React.ReactInstance;
         };
+        componentDidMount?(): void;
+        shouldComponentUpdate?(nextProps: Readonly<AlpAppProps>, nextState: Readonly<AlpAppState>, nextContext: any): boolean;
+        componentWillUnmount?(): void;
+        getSnapshotBeforeUpdate?(prevProps: Readonly<AlpAppProps>, prevState: Readonly<AlpAppState>): any;
+        componentDidUpdate?(prevProps: Readonly<AlpAppProps>, prevState: Readonly<AlpAppState>, snapshot?: any): void;
+        componentWillMount?(): void;
+        UNSAFE_componentWillMount?(): void;
+        componentWillReceiveProps?(nextProps: Readonly<AlpAppProps>, nextContext: any): void;
+        UNSAFE_componentWillReceiveProps?(nextProps: Readonly<AlpAppProps>, nextContext: any): void;
+        componentWillUpdate?(nextProps: Readonly<AlpAppProps>, nextState: Readonly<AlpAppState>, nextContext: any): void;
+        UNSAFE_componentWillUpdate?(nextProps: Readonly<AlpAppProps>, nextState: Readonly<AlpAppState>, nextContext: any): void;
     };
     contextType?: React.Context<any> | undefined;
 };

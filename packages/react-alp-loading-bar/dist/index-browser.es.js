@@ -58,10 +58,6 @@ function (_PureComponent) {
 
   var _proto = LoadingBar.prototype;
 
-  _proto.getWebsocket = function getWebsocket() {
-    return this.context.app.websocket;
-  };
-
   _proto.componentDidMount = function componentDidMount() {
     var _this2 = this;
 
@@ -91,23 +87,6 @@ function (_PureComponent) {
     });
   };
 
-  _proto.render = function render() {
-    var LoadingBarComponent = this.props.LoadingBarComponent;
-    return React.createElement("div", {
-      hidden: this.state.hidden,
-      style: {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 4,
-        pointerEvents: 'none'
-      }
-    }, React.createElement(LoadingBarComponent, {
-      progress: this.state.progress
-    }));
-  };
-
   _proto.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
     if (this.state.loading !== prevState.loading) {
       if (this.state.loading) {
@@ -123,6 +102,10 @@ function (_PureComponent) {
     clearTimeout(this.resetTimeout);
     clearTimeout(this.first20Timeout);
     clearInterval(this.progressTimer);
+  };
+
+  _proto.getWebsocket = function getWebsocket() {
+    return this.context.app.websocket;
   };
 
   _proto.showBar = function showBar() {
@@ -161,6 +144,23 @@ function (_PureComponent) {
         progress: 1
       });
     }, 1000);
+  };
+
+  _proto.render = function render() {
+    var LoadingBarComponent = this.props.LoadingBarComponent;
+    return React.createElement("div", {
+      hidden: this.state.hidden,
+      style: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 4,
+        pointerEvents: 'none'
+      }
+    }, React.createElement(LoadingBarComponent, {
+      progress: this.state.progress
+    }));
   };
 
   return LoadingBar;

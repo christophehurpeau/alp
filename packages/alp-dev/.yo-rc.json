@@ -1,35 +1,8 @@
 {
   "pob": {
     "pob-config": {
-      "envs": [
-        {
-          "target": "node",
-          "version": "10",
-          "formats": [
-            "cjs",
-            "es"
-          ]
-        },
-        {
-          "target": "node",
-          "version": "8",
-          "formats": [
-            "cjs"
-          ]
-        }
-      ],
       "testing": false,
-      "documentation": false,
-      "entries": [
-        "watch",
-        "watch-browser",
-        "watch-node",
-        "build",
-        "build-modern-browser",
-        "build-node",
-        "build-older-browser"
-      ],
-      "withReact": false
+      "documentation": false
     }
   },
   "alp-dev": {

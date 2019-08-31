@@ -1,4 +1,7 @@
 {
+  "include": [
+    "src/**/*.ts"
+  ],
   "compilerOptions": {
     /* in monorepo */
     "composite": true,
@@ -36,10 +39,10 @@
     // "types": [],                           /* Type declaration files to be included in compilation. */
   },
   "references": [
+    { "path": "../ibex" },
     { "path": "../alp-browser-config" },
     { "path": "../alp-browser-language" },
-    { "path": "../alp-translate" },
-    { "path": "../ibex" }
+    { "path": "../alp-translate" }
   ]
 
 }

@@ -15,7 +15,7 @@
     "url": "https://github.com/alpjs/alp-node/issues"
   },
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=8.6.0"
   },
   "main": "./index.js",
   "types": "./dist/index.d.ts",
@@ -33,6 +33,22 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
+  "pob": {
+    "babelEnvs": [
+      {
+        "target": "node",
+        "version": "10",
+        "formats": ["cjs", "es"]
+      },
+      {
+        "target": "node",
+        "version": "8",
+        "formats": ["cjs"]
+      }
+    ],
+    "entries": ["index"],
+    "withReact": false
+  },
   "dependencies": {
     "alp-listen": "^2.3.0",
     "alp-node-config": "^4.2.1",
@@ -49,17 +65,16 @@
     "node-fetch": "^2.5.0"
   },
   "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@pob/eslint-config-babel": "31.0.0",
-    "@pob/eslint-config-babel-node": "31.0.0",
-    "@pob/eslint-config-typescript": "31.1.0",
+    "@babel/core": "7.5.5",
+    "@pob/eslint-config-babel-node": "32.0.7",
+    "@pob/eslint-config-typescript": "32.0.8",
     "@types/findup-sync": "^2.0.1",
     "@types/koa-compress": "^2.0.9",
     "@types/koa-static": "^4.0.1",
     "@types/minimist": "^1.2.0",
-    "babel-preset-latest-node": "3.1.1",
-    "eslint": "5.16.0",
-    "pob-babel": "23.16.0",
-    "prettier": "1.17.0"
+    "babel-preset-latest-node": "3.2.1",
+    "eslint": "6.3.0",
+    "pob-babel": "23.20.0",
+    "prettier": "1.18.2"
   }
 }

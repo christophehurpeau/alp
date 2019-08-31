@@ -85,7 +85,7 @@ function Body(_ref) {
 
 function AppContainer(_ref) {
   var children = _ref.children;
-  return React.createElement(React.Fragment, null, children);
+  return React__default.createElement(React__default.Fragment, null, children);
 }
 
 var logger = new Logger('alp:react');
@@ -101,6 +101,7 @@ function alpReactBrowser(app) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                // eslint-disable-next-line no-underscore-dangle
                 initialData = window.__INITIAL_DATA__ || {};
                 ctx = app.createContext();
 

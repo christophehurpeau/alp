@@ -91,7 +91,7 @@ function htmlLayout(helmet, content, {
   scriptName,
   styleName,
   initialData,
-  polyfillFeatures = 'default,es6,es7,localStorage,fetch,Intl'
+  polyfillFeatures = 'default,es2015,es2016,es2017,localStorage,fetch,Intl'
 }) {
   return `<!doctype html>
 <html ${helmet.htmlAttributes.toString()}>
@@ -188,7 +188,7 @@ function Body({
 function AppContainer({
   children
 }) {
-  return React.createElement(React.Fragment, null, children);
+  return React__default.createElement(React__default.Fragment, null, children);
 }
 
 const renderHtml = (app, options) => {
@@ -199,14 +199,14 @@ const renderHtml = (app, options) => {
 
 const isModernBrowser = createIsModernBrowser();
 function alpReact(App, options = {}) {
-  return async ctx => {
+  return ctx => {
     const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
 
     const ua = ctx.req.headers['user-agent'];
     const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
     const app = React__default.createElement(App);
     const WrappedApp = createAlpAppWrapper(app, ctx);
-    ctx.body = await renderHtml(React__default.createElement(WrappedApp), {
+    ctx.body = renderHtml(React__default.createElement(WrappedApp), {
       version,
       scriptName: options.scriptName !== undefined ? options.scriptName : name,
       styleName: options.styleName !== undefined ? options.styleName : name,

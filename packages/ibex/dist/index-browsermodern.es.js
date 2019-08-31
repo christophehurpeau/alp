@@ -58,7 +58,7 @@ const request = {
   },
 
   get query() {
-    return parse(window.location.search);
+    return window.location.search.length === 0 ? {} : parse(window.location.search.substr(1));
   },
 
   get searchParams() {

@@ -10,7 +10,7 @@ const errorHtmlRenderer = new ErrorHtmlRenderer({
 
 export default async function alpNodeErrors(
   ctx: Context,
-  next: () => void,
+  next: () => void | Promise<void>,
 ): Promise<void> {
   try {
     await next();

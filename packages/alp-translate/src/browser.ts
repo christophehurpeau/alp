@@ -5,6 +5,7 @@ export default function alpTranslate(dirname: string) {
   dirname = dirname.replace(/\/*$/, '/');
   return (app: BrowserApplicationInCreation) => {
     const language = app.context.language;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     return app.loadConfig(dirname + language).then((map) => {
       const translations = load(map, language);

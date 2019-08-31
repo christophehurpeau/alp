@@ -19,7 +19,7 @@ export default function htmlLayout(
     scriptName,
     styleName,
     initialData,
-    polyfillFeatures = 'default,es6,es7,localStorage,fetch,Intl',
+    polyfillFeatures = 'default,es2015,es2016,es2017,localStorage,fetch,Intl',
   }: LayoutOptions,
 ): string {
   return `<!doctype html>

@@ -6,7 +6,8 @@ function useT(id, params, deps) {
   const ctx = useContext(ReactAlpContext);
   return useMemo(function () {
     return ctx.t(id, params);
-  }, !deps ? [id] : [id, ...deps]);
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+  !deps ? [id] : [id, ...deps]);
 }
 
 // for params: 2 solutions: params that are send to all or mapped params.
@@ -16,7 +17,7 @@ function useTs(ids) {
   return useMemo(function () {
     return ids.map(function (id) {
       return ctx.t(id);
-    });
+    }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ids.join(',')]);
 }
 

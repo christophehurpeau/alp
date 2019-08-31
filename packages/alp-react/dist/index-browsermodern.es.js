@@ -1,5 +1,5 @@
 import contentLoaded from 'content-loaded';
-import React__default, { Component, createContext, useContext, Suspense, createElement, Fragment } from 'react';
+import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
@@ -28,8 +28,8 @@ function createAlpAppWrapper(app, context) {
     }
 
     render() {
-      if (this.state.error) return React__default.createElement("div", null, "An unexpected error occured");
-      return React__default.createElement(ReactAlpContext.Provider, {
+      if (this.state.error) return React.createElement("div", null, "An unexpected error occured");
+      return React.createElement(ReactAlpContext.Provider, {
         value: context
       }, app);
     }
@@ -41,7 +41,7 @@ const LoadingFallbackContext = createContext('Loading...');
 
 function AlpModuleBrowser(props) {
   const loadingFallback = useContext(LoadingFallbackContext);
-  return React__default.createElement(Suspense, {
+  return React.createElement(Suspense, {
     fallback: loadingFallback
   }, props.children);
 }
@@ -50,7 +50,7 @@ function BrowserSuspenseWrapper({
   children
 }) {
   const loader = useContext(LoadingFallbackContext);
-  return React__default.createElement(Suspense, {
+  return React.createElement(Suspense, {
     fallback: loader
   }, children);
 }
@@ -58,18 +58,19 @@ function BrowserSuspenseWrapper({
 function Body({
   children
 }) {
-  return React__default.createElement("div", null, children);
+  return React.createElement("div", null, children);
 }
 
 function AppContainer({
   children
 }) {
-  return createElement(Fragment, null, children);
+  return React.createElement(React.Fragment, null, children);
 }
 
 const logger = new Logger('alp:react');
 function alpReactBrowser(app) {
   return async function renderApp(App) {
+    // eslint-disable-next-line no-underscore-dangle
     const initialData = window.__INITIAL_DATA__ || {};
     const ctx = app.createContext();
 
@@ -78,8 +79,8 @@ function alpReactBrowser(app) {
     }
 
     logger.success('render called');
-    const WrappedApp = createAlpAppWrapper(React__default.createElement(App), ctx);
-    const appElement = React__default.createElement(WrappedApp);
+    const WrappedApp = createAlpAppWrapper(React.createElement(App), ctx);
+    const appElement = React.createElement(WrappedApp);
     await contentLoaded(); // const container =
 
     hydrate(appElement, document.getElementById('react-app'));

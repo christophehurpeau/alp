@@ -10,22 +10,23 @@ export interface CallbackParam {
 export default function readRecursiveDirectory(
   directory: string,
   callback: (param: CallbackParam) => void | Promise<void>,
-) {
-  return new Promise((resolve, reject) => {
-    readdir(directory, (err, files) => {
-      if (err) return reject(err);
+): Promise<void> {
+  return new Promise((resolve, reject): void => {
+    readdir(directory, (errReadDir, files) => {
+      if (errReadDir) return reject(errReadDir);
 
       Promise.all(
         files.map((file) => {
           const path = `${directory}/${file}`;
-          return new Promise((resolve, reject) => {
-            fsStat(path, (err, stat) => {
-              if (err) return reject(err);
+          return new Promise((resolve, reject): void => {
+            fsStat(path, (errFsStat, stat): void => {
+              if (errFsStat) return reject(errFsStat);
 
               if (stat && stat.isDirectory()) {
-                return readRecursiveDirectory(path, callback)
+                readRecursiveDirectory(path, callback)
                   .then(resolve)
                   .catch(reject);
+                return;
               }
               try {
                 Promise.resolve(
@@ -38,8 +39,8 @@ export default function readRecursiveDirectory(
                 )
                   .then(() => resolve())
                   .catch(reject);
-              } catch (err2) {
-                return reject(err2);
+              } catch (err) {
+                return reject(err);
               }
             });
           });

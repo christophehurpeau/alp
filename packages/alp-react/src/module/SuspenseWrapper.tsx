@@ -15,6 +15,6 @@ function BrowserSuspenseWrapper({ children }: SuspenseWrapperProps) {
   return <Suspense fallback={loader}>{children}</Suspense>;
 }
 
-export default (POB_TARGET === 'node'
+export default POB_TARGET === 'node'
   ? NodeSuspenseWrapper
-  : BrowserSuspenseWrapper);
+  : BrowserSuspenseWrapper;

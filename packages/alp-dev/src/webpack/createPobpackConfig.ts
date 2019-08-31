@@ -19,7 +19,7 @@ const ExcludesFalsy = (Boolean as any) as <T>(
 
 export default function createPobpackConfig(
   target: TargetType,
-  production: boolean = false,
+  production = false,
 ): Partial<Options> {
   const pkg = JSON.parse(
     fs.readFileSync(path.resolve('package.json'), 'utf-8'),
@@ -207,7 +207,7 @@ export default function createPobpackConfig(
 
       process.send &&
         new webpack.ProgressPlugin((percentage: number, message: string) => {
-          (process.send as NonNullable<typeof process.send>)({
+          process.send({
             type: 'webpack-progress',
             percentage,
             message,

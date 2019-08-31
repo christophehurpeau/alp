@@ -30,6 +30,7 @@ function alpTranslate(dirname) {
     const appTranslations = new Map();
     Object.assign(app.context, {
       t(id, args) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         const msg = appTranslations.get(this.language).get(id);
 
@@ -44,9 +45,11 @@ function alpTranslate(dirname) {
         return msg.format(args);
       }
 
-    }); // @ts-ignore
+    }); // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
 
     app.config.get('availableLanguages').forEach(language => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const translations = app.config.loadConfigSync(dirname + language);
       appTranslations.set(language, load(translations, language));

@@ -17,9 +17,7 @@ export default class UserAccountGoogleService<ScopeKeys extends 'login'>
 
   getProfile(tokens: Tokens) {
     return fetch(
-      `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${
-        tokens.accessToken
-      }`,
+      `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`,
     ).then((response) => response.json());
   }
 

@@ -30,26 +30,26 @@ function ConnectionState() {
       websocket.off('connected', connectedHandler);
       websocket.off('disconnected', disconnectedHandler);
     };
-  });
+  }, [ctx.app.websocket]);
   return React.createElement("div", {
     hidden: !connectionState || notConnected || connectionState === 'connected',
     className: "alp-connection-state",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 38
     },
     __self: this
   }, !connectionState || notConnected ? null : React.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56
+      lineNumber: 45
     },
     __self: this
   }, React.createElement(T, {
     id: "connectionState." + connectionState,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 57
+      lineNumber: 46
     },
     __self: this
   })));

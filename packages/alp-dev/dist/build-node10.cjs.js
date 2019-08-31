@@ -94,12 +94,13 @@ const build = (src = './src/config', onChanged) => Promise.all(glob.sync(path.jo
     const fsWatcher = fs.watch(filename, {
       persistent: false,
       recursive: false
-    }, async eventType => {
+    }, eventType => {
       console.log(eventType, filename);
 
       if (eventType === 'change') {
-        await compileYml(filename);
-        onChanged();
+        compileYml(filename).then(() => {
+          onChanged();
+        });
       }
     });
     await compilePromise;

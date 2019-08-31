@@ -15,4 +15,4 @@ function AlpModuleBrowser(props: AlpModuleProps): ReactElement {
   return <Suspense fallback={loadingFallback}>{props.children}</Suspense>;
 }
 
-export default (POB_TARGET === 'node' ? AlpModuleNode : AlpModuleBrowser);
+export default POB_TARGET === 'node' ? AlpModuleNode : AlpModuleBrowser;

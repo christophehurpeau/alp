@@ -21,6 +21,7 @@ export default function alpTranslate(dirname: string) {
 
     Object.assign(app.context, {
       t(this: Context, id: string, args: Args): string {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         const msg = appTranslations.get(this.language).get(id);
         if (!msg) {
@@ -32,8 +33,10 @@ export default function alpTranslate(dirname: string) {
       },
     });
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     app.config.get('availableLanguages').forEach((language: string) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const translations = app.config.loadConfigSync(dirname + language);
       appTranslations.set(language, load(translations, language));

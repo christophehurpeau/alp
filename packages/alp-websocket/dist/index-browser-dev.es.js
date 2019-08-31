@@ -77,7 +77,8 @@ function start(app, namespaceName) {
     }
   });
   socket.on('redux:action', function (action) {
-    logger.debug('dispatch action from websocket', action); // @ts-ignore
+    logger.debug('dispatch action from websocket', action); // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
 
     app.store.dispatch(action);
   });

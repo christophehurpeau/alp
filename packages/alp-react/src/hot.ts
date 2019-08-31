@@ -11,18 +11,20 @@ const devHot = () => {
     .hot;
   const cache = require.cache;
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   if (!module.parents || !module.parents[0]) {
     throw new Error('alp-react: hot is not supported on your system.');
   }
   // access parent
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   const parent = cache[module.parents[0]];
   // remove itself from a cache
   delete cache[module.id];
 
   // setup hot for caller
-  return hotLoader(Object.assign({ id: parent.i }, parent));
+  return hotLoader({ id: parent.i, ...parent });
 };
 
 export const hot = (!PRODUCTION && module.hot

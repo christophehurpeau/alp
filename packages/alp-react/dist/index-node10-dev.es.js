@@ -1,4 +1,4 @@
-import React__default, { Component, createContext, createElement, Fragment } from 'react';
+import React, { Component, createContext } from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 export { default as Helmet } from 'react-helmet';
@@ -85,7 +85,7 @@ function htmlLayout(helmet, content, {
   scriptName,
   styleName,
   initialData,
-  polyfillFeatures = 'default,es6,es7,localStorage,fetch,Intl'
+  polyfillFeatures = 'default,es2015,es2016,es2017,localStorage,fetch,Intl'
 }) {
   return `<!doctype html>
 <html ${helmet.htmlAttributes.toString()}>
@@ -134,14 +134,14 @@ function createAlpAppWrapper(app, context) {
     }
 
     render() {
-      if (this.state.error) return React__default.createElement("div", {
+      if (this.state.error) return React.createElement("div", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 33
         },
         __self: this
       }, "An unexpected error occured");
-      return React__default.createElement(ReactAlpContext.Provider, {
+      return React.createElement(ReactAlpContext.Provider, {
         value: context,
         __source: {
           fileName: _jsxFileName,
@@ -157,7 +157,7 @@ function createAlpAppWrapper(app, context) {
 const LoadingFallbackContext = createContext('Loading...');
 
 function AlpModuleNode(props) {
-  return React__default.createElement(React__default.Fragment, null, props.children);
+  return React.createElement(React.Fragment, null, props.children);
 }
 
 function NodeSuspenseWrapper({
@@ -170,7 +170,7 @@ var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Bo
 function Body({
   children
 }) {
-  return React__default.createElement("div", {
+  return React.createElement("div", {
     __source: {
       fileName: _jsxFileName$1,
       lineNumber: 8
@@ -182,7 +182,7 @@ function Body({
 function AppContainer({
   children
 }) {
-  return createElement(Fragment, null, children);
+  return React.createElement(React.Fragment, null, children);
 }
 
 const renderHtml = (app, options) => {
@@ -193,14 +193,14 @@ const renderHtml = (app, options) => {
 
 const isModernBrowser = createIsModernBrowser();
 function alpReact(App, options = {}) {
-  return async ctx => {
+  return ctx => {
     const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
 
     const ua = ctx.req.headers['user-agent'];
     const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-    const app = React__default.createElement(App);
+    const app = React.createElement(App);
     const WrappedApp = createAlpAppWrapper(app, ctx);
-    ctx.body = await renderHtml(React__default.createElement(WrappedApp), {
+    ctx.body = renderHtml(React.createElement(WrappedApp), {
       version,
       scriptName: options.scriptName !== undefined ? options.scriptName : name,
       styleName: options.styleName !== undefined ? options.styleName : name,

@@ -36,7 +36,7 @@ function ConnectionState() {
       websocket.off('connected', connectedHandler);
       websocket.off('disconnected', disconnectedHandler);
     };
-  });
+  }, [ctx.app.websocket]);
   return React__default.createElement("div", {
     hidden: !connectionState || notConnected || connectionState === 'connected',
     className: "alp-connection-state"

@@ -50,7 +50,6 @@ export default class LoadingBar extends PureComponent<
 > {
   static contextType = ReactAlpContext;
 
-  // eslint-disable-next-line react/sort-comp
   context!: React.ContextType<typeof ReactAlpContext>;
 
   state = {
@@ -67,10 +66,6 @@ export default class LoadingBar extends PureComponent<
 
   progressTimer?: any;
 
-  getWebsocket() {
-    return this.context.app.websocket;
-  }
-
   componentDidMount(): void {
     const websocket = this.getWebsocket();
     if (websocket.isConnected()) {
@@ -86,26 +81,6 @@ export default class LoadingBar extends PureComponent<
     websocket.on('disconnect', () => {
       this.setState({ loading: true, progress: 1, hidden: false });
     });
-  }
-
-  render() {
-    const LoadingBarComponent = this.props.LoadingBarComponent;
-
-    return (
-      <div
-        hidden={this.state.hidden}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 4,
-          pointerEvents: 'none',
-        }}
-      >
-        <LoadingBarComponent progress={this.state.progress} />
-      </div>
-    );
   }
 
   componentDidUpdate(
@@ -126,6 +101,10 @@ export default class LoadingBar extends PureComponent<
     clearTimeout(this.resetTimeout);
     clearTimeout(this.first20Timeout);
     clearInterval(this.progressTimer);
+  }
+
+  getWebsocket() {
+    return this.context.app.websocket;
   }
 
   private showBar() {
@@ -160,5 +139,25 @@ export default class LoadingBar extends PureComponent<
         progress: 1,
       });
     }, 1000);
+  }
+
+  render() {
+    const LoadingBarComponent = this.props.LoadingBarComponent;
+
+    return (
+      <div
+        hidden={this.state.hidden}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 4,
+          pointerEvents: 'none',
+        }}
+      >
+        <LoadingBarComponent progress={this.state.progress} />
+      </div>
+    );
   }
 }

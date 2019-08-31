@@ -1,7 +1,7 @@
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import contentLoaded from 'content-loaded';
-import React__default, { Component, createContext, useContext, Suspense, createElement, Fragment } from 'react';
+import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
@@ -45,14 +45,14 @@ function createAlpAppWrapper(app, context) {
     };
 
     _proto.render = function render() {
-      if (this.state.error) return React__default.createElement("div", {
+      if (this.state.error) return React.createElement("div", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 33
         },
         __self: this
       }, "An unexpected error occured");
-      return React__default.createElement(ReactAlpContext.Provider, {
+      return React.createElement(ReactAlpContext.Provider, {
         value: context,
         __source: {
           fileName: _jsxFileName,
@@ -72,7 +72,7 @@ var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/Al
 
 function AlpModuleBrowser(props) {
   var loadingFallback = useContext(LoadingFallbackContext);
-  return React__default.createElement(Suspense, {
+  return React.createElement(Suspense, {
     fallback: loadingFallback,
     __source: {
       fileName: _jsxFileName$1,
@@ -87,7 +87,7 @@ var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/Su
 function BrowserSuspenseWrapper(_ref2) {
   var children = _ref2.children;
   var loader = useContext(LoadingFallbackContext);
-  return React__default.createElement(Suspense, {
+  return React.createElement(Suspense, {
     fallback: loader,
     __source: {
       fileName: _jsxFileName$2,
@@ -100,7 +100,7 @@ function BrowserSuspenseWrapper(_ref2) {
 var _jsxFileName$3 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
 function Body(_ref) {
   var children = _ref.children;
-  return React__default.createElement("div", {
+  return React.createElement("div", {
     __source: {
       fileName: _jsxFileName$3,
       lineNumber: 8
@@ -111,7 +111,7 @@ function Body(_ref) {
 
 function AppContainer(_ref) {
   var children = _ref.children;
-  return createElement(Fragment, null, children);
+  return React.createElement(React.Fragment, null, children);
 }
 
 var logger = new Logger('alp:react');
@@ -127,6 +127,7 @@ function alpReactBrowser(app) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                // eslint-disable-next-line no-underscore-dangle
                 initialData = window.__INITIAL_DATA__ || {};
                 ctx = app.createContext();
 
@@ -135,8 +136,8 @@ function alpReactBrowser(app) {
                 }
 
                 logger.success('render called');
-                WrappedApp = createAlpAppWrapper(React__default.createElement(App), ctx);
-                appElement = React__default.createElement(WrappedApp);
+                WrappedApp = createAlpAppWrapper(React.createElement(App), ctx);
+                appElement = React.createElement(WrappedApp);
                 _context.next = 8;
                 return contentLoaded();
 

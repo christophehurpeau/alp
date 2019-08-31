@@ -30,7 +30,9 @@ const request: Request = {
     return window.location.protocol;
   },
   get query() {
-    return parseQueryString(window.location.search);
+    return window.location.search.length === 0
+      ? {}
+      : parseQueryString(window.location.search.substr(1));
   },
   get searchParams() {
     return new URLSearchParams(

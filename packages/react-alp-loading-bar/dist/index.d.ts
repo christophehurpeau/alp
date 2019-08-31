@@ -22,13 +22,13 @@ export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBa
     resetTimeout?: any;
     first20Timeout?: any;
     progressTimer?: any;
-    getWebsocket(): any;
     componentDidMount(): void;
-    render(): JSX.Element;
     componentDidUpdate(prevProps: LoadingBarProps, prevState: LoadingBarState): void;
     componentWillUnmount(): void;
+    getWebsocket(): any;
     private showBar;
     private hideBar;
+    render(): JSX.Element;
 }
 export {};
 //# sourceMappingURL=index.d.ts.map

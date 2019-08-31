@@ -9,7 +9,7 @@ export declare const STATUSES: {
     DELETED: string;
 };
 export default class UserAccountsService<StrategyKeys extends AllowedStrategyKeys> extends EventEmitter {
-    private strategyToService;
+    private readonly strategyToService;
     usersManager: MongoUsersManager;
     constructor(usersManager: MongoUsersManager, strategyToService: Record<StrategyKeys, AccountService<any>>);
     getScope(strategy: StrategyKeys, scopeKey: string, user?: User, accountId?: AccountId): string;

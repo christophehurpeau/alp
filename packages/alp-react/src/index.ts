@@ -19,7 +19,10 @@ export {
 
 // const logger = new Logger( 'alp:react');
 
-const renderHtml = (app: React.ReactElement<any>, options: LayoutOptions) => {
+const renderHtml = (
+  app: React.ReactElement,
+  options: LayoutOptions,
+): string => {
   const content = renderToString(app);
   const helmet = Helmet.renderStatic();
   return htmlLayout(helmet, content, options);
@@ -33,13 +36,13 @@ interface Options {
   styleName?: string | false;
 }
 
-export type ReactAppCallback = (ctx: Context) => Promise<void>;
+export type ReactAppCallback = (ctx: Context) => void;
 
 export default function alpReact(
   App: ElementType<{}>,
   options: Options = {},
 ): ReactAppCallback {
-  return async (ctx: Context) => {
+  return (ctx: Context): void => {
     const version: string = ctx.config.get('version');
     // TODO create alp-useragent with getter in context
     const ua = ctx.req.headers['user-agent'];
@@ -48,7 +51,7 @@ export default function alpReact(
     const app = React.createElement(App);
     const WrappedApp = createAlpAppWrapper(app, ctx);
 
-    ctx.body = await renderHtml(React.createElement(WrappedApp), {
+    ctx.body = renderHtml(React.createElement(WrappedApp), {
       version,
       scriptName: options.scriptName !== undefined ? options.scriptName : name,
       styleName: options.styleName !== undefined ? options.styleName : name,

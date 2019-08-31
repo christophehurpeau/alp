@@ -10,6 +10,6 @@ app.start(async () => {
   const browserApp = await app.init();
 
   // react app
-  const renderApp = await createReactApp(browserApp);
+  const renderApp = createReactApp(browserApp);
   renderApp(App);
 });

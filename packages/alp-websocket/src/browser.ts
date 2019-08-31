@@ -84,7 +84,7 @@ function start(app: BrowserApplication, namespaceName: string): Socket {
   socket.on('connect_error', callbackFirstConnectionError);
 
   socket.on('connect', () => {
-    (socket as Socket).off('connect_error', callbackFirstConnectionError);
+    socket.off('connect_error', callbackFirstConnectionError);
     logger.success('connected');
     successfulConnection = true;
     connected = true;
@@ -116,6 +116,7 @@ function start(app: BrowserApplication, namespaceName: string): Socket {
 
   socket.on('redux:action', (action: any) => {
     logger.debug('dispatch action from websocket', action);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     app.store.dispatch(action);
   });
@@ -132,17 +133,13 @@ function emit(event: string, ...args: any[]): Promise<any> {
       reject(new Error('websocket response timeout'));
     }, 10000);
 
-    (socket as Socket).emit(
-      event,
-      ...args,
-      (error: Error | string | null, result: any) => {
-        clearTimeout(resolved);
-        if (error != null) {
-          return reject(typeof error === 'string' ? new Error(error) : error);
-        }
-        resolve(result);
-      },
-    );
+    socket.emit(event, ...args, (error: Error | string | null, result: any) => {
+      clearTimeout(resolved);
+      if (error != null) {
+        return reject(typeof error === 'string' ? new Error(error) : error);
+      }
+      resolve(result);
+    });
   });
 }
 
@@ -168,7 +165,7 @@ function isDisconnected(): boolean {
 
 export default function alpWebsocket(
   app: BrowserApplication,
-  namespaceName: string = '',
+  namespaceName = '',
 ): Socket {
   const socket = start(app, namespaceName);
   app.websocket = websocket;

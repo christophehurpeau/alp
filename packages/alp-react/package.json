@@ -15,7 +15,7 @@
     "url": "https://github.com/alpjs/alp-react/issues"
   },
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=8.6.0"
   },
   "browserslist": ["> 0.1%", "Firefox ESR", "not ie < 9", "not dead"],
   "main": "./index.js",
@@ -69,6 +69,31 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
+  "pob": {
+    "babelEnvs": [
+      {
+        "target": "node",
+        "version": "10",
+        "formats": ["cjs", "es"]
+      },
+      {
+        "target": "node",
+        "version": "8",
+        "formats": ["cjs"]
+      },
+      {
+        "target": "browser",
+        "version": "modern",
+        "formats": ["es"]
+      },
+      {
+        "target": "browser",
+        "formats": ["cjs", "es"]
+      }
+    ],
+    "entries": ["index", "browser", "hot"],
+    "withReact": true
+  },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
@@ -77,7 +102,7 @@
     "alp-dev": "*"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
+    "@babel/runtime": "^7.5.5",
     "@types/react-dom": "^16.8.3",
     "@types/react-helmet": "^5.0.8",
     "alp-types": "^1.1.0",
@@ -88,18 +113,17 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@babel/preset-env": "7.4.4",
+    "@babel/core": "7.5.5",
+    "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
-    "@pob/eslint-config-babel": "31.0.0",
-    "@pob/eslint-config-typescript": "31.1.0",
-    "@pob/eslint-config-typescript-react": "31.0.0",
+    "@pob/eslint-config-typescript": "32.0.8",
+    "@pob/eslint-config-typescript-react": "32.0.9",
     "alp-dev": "^12.6.1",
-    "babel-preset-latest-node": "3.1.1",
+    "babel-preset-latest-node": "3.2.1",
     "babel-preset-modern-browsers": "14.0.0",
-    "eslint": "5.16.0",
-    "pob-babel": "23.16.0",
-    "prettier": "1.17.0",
+    "eslint": "6.3.0",
+    "pob-babel": "23.20.0",
+    "prettier": "1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

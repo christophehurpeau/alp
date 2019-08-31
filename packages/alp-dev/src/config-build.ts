@@ -23,7 +23,7 @@ const compileYml = async (filename: string) => {
 };
 
 export const build = (
-  src: string = './src/config',
+  src = './src/config',
   onChanged?: () => void,
 ): Promise<any> =>
   Promise.all(
@@ -35,11 +35,12 @@ export const build = (
           const fsWatcher: FSWatcher = fsWatch(
             filename,
             { persistent: false, recursive: false },
-            async (eventType: string) => {
+            (eventType: string): void => {
               console.log(eventType, filename);
               if (eventType === 'change') {
-                await compileYml(filename);
-                onChanged();
+                compileYml(filename).then(() => {
+                  onChanged();
+                });
               }
             },
           );

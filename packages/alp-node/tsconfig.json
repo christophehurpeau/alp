@@ -1,4 +1,7 @@
 {
+  "include": [
+    "src/**/*.ts"
+  ],
   "compilerOptions": {
     /* in monorepo */
     "composite": true,
@@ -36,11 +39,11 @@
     // "types": [],                           /* Type declaration files to be included in compilation. */
   },
   "references": [
-    { "path": "../alp-listen" },
     { "path": "../alp-node-config" },
     { "path": "../alp-node-errors" },
     { "path": "../alp-node-language" },
     { "path": "../alp-params" },
+    { "path": "../alp-listen" },
     { "path": "../alp-translate" }
   ]
 

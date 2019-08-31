@@ -8,11 +8,13 @@ const productionHot = a => a;
 const devHot = () => {
   const hotLoader = require('react-hot-loader/dist/react-hot-loader.development.js').hot;
 
-  const cache = require.cache; // @ts-ignore
+  const cache = require.cache; // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
 
   if (!module.parents || !module.parents[0]) {
     throw new Error('alp-react: hot is not supported on your system.');
   } // access parent
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
 
 
@@ -20,9 +22,10 @@ const devHot = () => {
 
   delete cache[module.id]; // setup hot for caller
 
-  return hotLoader(Object.assign({
-    id: parent.i
-  }, parent));
+  return hotLoader({
+    id: parent.i,
+    ...parent
+  });
 };
 
 const hot = module.hot ? devHot() : productionHot;

@@ -10,40 +10,29 @@ export default function ConnectionState(): ReactElement {
   const notConnected = !ctx.sanitizedState.user;
 
   const [connectionState, setConnectionState] = useState<State>(null);
-  useEffect(
-    (): (() => void) => {
-      const websocket = ctx.app.websocket;
-      let unloading = false;
+  useEffect((): (() => void) => {
+    const websocket = ctx.app.websocket;
+    let unloading = false;
 
-      window.addEventListener(
-        'beforeunload',
-        (): void => {
-          unloading = true;
-        },
-      );
+    window.addEventListener('beforeunload', (): void => {
+      unloading = true;
+    });
 
-      const connectedHandler = websocket.on(
-        'connect',
-        (): void => {
-          setConnectionState('connected');
-        },
-      );
-      const disconnectedHandler = websocket.on(
-        'disconnect',
-        (): void => {
-          if (unloading) return;
-          setConnectionState('disconnected');
-        },
-      );
+    const connectedHandler = websocket.on('connect', (): void => {
+      setConnectionState('connected');
+    });
+    const disconnectedHandler = websocket.on('disconnect', (): void => {
+      if (unloading) return;
+      setConnectionState('disconnected');
+    });
 
-      setConnectionState(websocket.connected ? 'connected' : 'connecting');
+    setConnectionState(websocket.connected ? 'connected' : 'connecting');
 
-      return (): void => {
-        websocket.off('connected', connectedHandler);
-        websocket.off('disconnected', disconnectedHandler);
-      };
-    },
-  );
+    return (): void => {
+      websocket.off('connected', connectedHandler);
+      websocket.off('disconnected', disconnectedHandler);
+    };
+  }, [ctx.app.websocket]);
 
   return (
     <div

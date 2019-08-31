@@ -42,9 +42,7 @@ export default function loadConfigFile(
                 Object.assign(config[key], include[key]);
               } else {
                 throw new TypeError(
-                  `Unexpected override "${key}", filename = ${
-                    includePaths[key]
-                  }`,
+                  `Unexpected override "${key}", filename = ${includePaths[key]}`,
                 );
               }
             }),
