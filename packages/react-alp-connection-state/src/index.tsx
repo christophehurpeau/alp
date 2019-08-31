@@ -14,9 +14,10 @@ export default function ConnectionState(): ReactElement {
     const websocket = ctx.app.websocket;
     let unloading = false;
 
-    window.addEventListener('beforeunload', (): void => {
+    const beforeUnloadHandler = (): void => {
       unloading = true;
-    });
+    };
+    window.addEventListener('beforeunload', beforeUnloadHandler);
 
     const connectedHandler = websocket.on('connect', (): void => {
       setConnectionState('connected');
@@ -31,6 +32,7 @@ export default function ConnectionState(): ReactElement {
     return (): void => {
       websocket.off('connected', connectedHandler);
       websocket.off('disconnected', disconnectedHandler);
+      window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, [ctx.app.websocket]);
 
