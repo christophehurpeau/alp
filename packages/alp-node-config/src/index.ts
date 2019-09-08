@@ -83,7 +83,7 @@ export class Config {
           argv,
         );
       if (value !== undefined) {
-        const last = splitted.pop();
+        const last = splitted.pop() as string;
         const map =
           splitted.length === 0
             ? config

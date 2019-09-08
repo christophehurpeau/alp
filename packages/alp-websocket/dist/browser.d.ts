@@ -21,7 +21,7 @@ declare global {
     }
 }
 export declare const websocket: Websocket;
-declare function emit(event: string, ...args: any[]): Promise<any>;
+declare function emit<Result>(event: string, ...args: any[]): Promise<Result>;
 declare function on<T extends Function>(event: string, handler: T): T;
 declare function off(event: string, handler: Function): void;
 export default function alpWebsocket(app: BrowserApplication, namespaceName?: string): Socket;

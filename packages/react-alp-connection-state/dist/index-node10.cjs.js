@@ -16,9 +16,12 @@ function ConnectionState() {
   React.useEffect(() => {
     const websocket = ctx.app.websocket;
     let unloading = false;
-    window.addEventListener('beforeunload', () => {
+
+    const beforeUnloadHandler = () => {
       unloading = true;
-    });
+    };
+
+    window.addEventListener('beforeunload', beforeUnloadHandler);
     const connectedHandler = websocket.on('connect', () => {
       setConnectionState('connected');
     });
@@ -30,6 +33,7 @@ function ConnectionState() {
     return () => {
       websocket.off('connected', connectedHandler);
       websocket.off('disconnected', disconnectedHandler);
+      window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, [ctx.app.websocket]);
   return React__default.createElement("div", {

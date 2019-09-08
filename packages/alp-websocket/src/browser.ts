@@ -65,7 +65,7 @@ function start(app: BrowserApplication, namespaceName: string): Socket {
   const secure = webSocketConfig.get('secure');
   const port = webSocketConfig.get('port');
 
-  socket = socketio(
+  const createdSocket = socketio(
     `http${secure ? 's' : ''}://${
       window.location.hostname
     }:${port}/${namespaceName}`,
@@ -76,31 +76,32 @@ function start(app: BrowserApplication, namespaceName: string): Socket {
       transports: ['websocket'],
     },
   );
+  socket = createdSocket;
 
   const callbackFirstConnectionError = () => {
     successfulConnection = false;
   };
 
-  socket.on('connect_error', callbackFirstConnectionError);
+  createdSocket.on('connect_error', callbackFirstConnectionError);
 
-  socket.on('connect', () => {
-    socket.off('connect_error', callbackFirstConnectionError);
+  createdSocket.on('connect', () => {
+    createdSocket.off('connect_error', callbackFirstConnectionError);
     logger.success('connected');
     successfulConnection = true;
     connected = true;
   });
 
-  socket.on('reconnect', () => {
+  createdSocket.on('reconnect', () => {
     logger.success('reconnected');
     connected = true;
   });
 
-  socket.on('disconnect', () => {
+  createdSocket.on('disconnect', () => {
     logger.warn('disconnected');
     connected = false;
   });
 
-  socket.on('hello', ({ version }: { version: string }) => {
+  createdSocket.on('hello', ({ version }: { version: string }) => {
     if (version !== window.__VERSION__) {
       // eslint-disable-next-line no-alert
       if (PRODUCTION && window.confirm(context.t('newversion'))) {
@@ -114,18 +115,19 @@ function start(app: BrowserApplication, namespaceName: string): Socket {
     }
   });
 
-  socket.on('redux:action', (action: any) => {
+  createdSocket.on('redux:action', (action: any) => {
     logger.debug('dispatch action from websocket', action);
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     app.store.dispatch(action);
   });
 
-  return socket;
+  return createdSocket;
 }
 
-function emit(event: string, ...args: any[]): Promise<any> {
+function emit<Result>(event: string, ...args: any[]): Promise<Result> {
   if (!socket) throw new Error('Cannot call emit() before start()');
+  const existingSocket = socket;
   logger.debug('emit', { args });
   return new Promise((resolve, reject) => {
     const resolved = setTimeout(() => {
@@ -133,13 +135,17 @@ function emit(event: string, ...args: any[]): Promise<any> {
       reject(new Error('websocket response timeout'));
     }, 10000);
 
-    socket.emit(event, ...args, (error: Error | string | null, result: any) => {
-      clearTimeout(resolved);
-      if (error != null) {
-        return reject(typeof error === 'string' ? new Error(error) : error);
-      }
-      resolve(result);
-    });
+    existingSocket.emit(
+      event,
+      ...args,
+      (error: Error | string | null, result: Result): void => {
+        clearTimeout(resolved);
+        if (error != null) {
+          return reject(typeof error === 'string' ? new Error(error) : error);
+        }
+        resolve(result);
+      },
+    );
   });
 }
 

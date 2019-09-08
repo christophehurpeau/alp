@@ -2039,17 +2039,17 @@
     eslint-config-airbnb-base "^14.0.0"
     eslint-plugin-prefer-class-properties "^1.0.0"
 
-"@pob/eslint-config-babel-node@32.0.7":
-  version "32.0.7"
-  resolved "https://registry.yarnpkg.com/@pob/eslint-config-babel-node/-/eslint-config-babel-node-32.0.7.tgz#cc2ea12f4e3b7413ca4f37314f3be83864bae3ea"
-  integrity sha512-/CNoW8TWdVHNc9CkqMLwftmlOjcUpUkapdPv0uukQ0xjmsUZnEIaXpLdNhzznHzGc0pDAFNCPx17N5lGSgVfog==
+"@pob/eslint-config-babel-node@32.0.13":
+  version "32.0.13"
+  resolved "https://registry.yarnpkg.com/@pob/eslint-config-babel-node/-/eslint-config-babel-node-32.0.13.tgz#e2090ef73d537f1cd56c58925e9d4dd92df19460"
+  integrity sha512-7H3cyQptdOR9wYbN7Z/cXC4kAXh2YjSj5Cd+1XejtgE4dcMj8ahUwzW7ccdClUNr2TZAbO2IP4GI8vbwTbfplQ==
   dependencies:
-    eslint-plugin-node "^9.2.0"
+    eslint-plugin-node "^10.0.0"
 
-"@pob/eslint-config-react@^32.0.9":
-  version "32.0.9"
-  resolved "https://registry.yarnpkg.com/@pob/eslint-config-react/-/eslint-config-react-32.0.9.tgz#145ad13dabeca280cd3e66353f0c9640572155b7"
-  integrity sha512-pZk4AHEzPJ+yZ5WmUe0Le3NcgHgDw5KmECykvXP8/rkybbrfxIOIvkpJ7MrqRfnQ8hVUH+PMeA2hROeBv2J8og==
+"@pob/eslint-config-react@^32.0.10":
+  version "32.0.10"
+  resolved "https://registry.yarnpkg.com/@pob/eslint-config-react/-/eslint-config-react-32.0.10.tgz#746f5e641581608972b49defbce54863a852b132"
+  integrity sha512-/A3SZdzAoutic/AiMoGRYlxoMF9th4dAoMuRmNIAWPjHyonfvnTasaZAbZtI5DKFOSvnOb7tvYoiuYdflclg1w==
   dependencies:
     eslint-config-airbnb "^18.0.1"
     eslint-config-prettier "^6.1.0"
@@ -2057,17 +2057,17 @@
     eslint-plugin-react "^7.14.3"
     eslint-plugin-react-hooks "^2.0.1"
 
-"@pob/eslint-config-typescript-react@32.0.9":
-  version "32.0.9"
-  resolved "https://registry.yarnpkg.com/@pob/eslint-config-typescript-react/-/eslint-config-typescript-react-32.0.9.tgz#76e59214e69170bf10ac804052364b58e77ca528"
-  integrity sha512-oV8ryZZel/o1bc5Ha8YwyWVbKMox/tfYs17iwnKOGQwK5lnNbEn4X4r+Xhtvm0gT4EiYmxBNdhB9ZZ7xu5OgTA==
+"@pob/eslint-config-typescript-react@32.0.10":
+  version "32.0.10"
+  resolved "https://registry.yarnpkg.com/@pob/eslint-config-typescript-react/-/eslint-config-typescript-react-32.0.10.tgz#5fc35315c616b57a14209fb94811337a69f43875"
+  integrity sha512-kFiaeYw5l4zpXU57jBclUpo9jbb498telVEgBnK1bg76Q2iT0SaJuzy2JJrXksr/Lq9J5mf5ISgn6VMNzGcCew==
   dependencies:
-    "@pob/eslint-config-react" "^32.0.9"
+    "@pob/eslint-config-react" "^32.0.10"
 
-"@pob/eslint-config-typescript@32.0.8":
-  version "32.0.8"
-  resolved "https://registry.yarnpkg.com/@pob/eslint-config-typescript/-/eslint-config-typescript-32.0.8.tgz#ceae8113c9b3f2d296cbf6394a7cbca9f6cbf290"
-  integrity sha512-c+NSZmVGOBXVsz/8PfIu+MdZvjacjj1jxOVelmKnTgIJDEezDfvPiIOhin97MqzdYIzxbFegnUveGo3lFPTzuw==
+"@pob/eslint-config-typescript@32.0.13":
+  version "32.0.13"
+  resolved "https://registry.yarnpkg.com/@pob/eslint-config-typescript/-/eslint-config-typescript-32.0.13.tgz#8e2452a5b5f74d66da69296ca6df72999b4a81b6"
+  integrity sha512-tXmI6nvGpdcFOkwOK7uZR/PmvU+Nsp0MwJpl1rJzqcXDS/Z/HxZSnwiVADQadoMxZohJobI+8HF2IrrT8fJwIQ==
   dependencies:
     "@pob/eslint-config-babel-common" "^32.0.3"
     "@typescript-eslint/eslint-plugin" "^2.0.0"
@@ -5705,13 +5705,13 @@ eslint-module-utils@^2.4.0:
     debug "^2.6.8"
     pkg-dir "^2.0.0"
 
-eslint-plugin-es@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-es/-/eslint-plugin-es-1.4.1.tgz#12acae0f4953e76ba444bfd1b2271081ac620998"
-  integrity sha512-5fa/gR2yR3NxQf+UXkeLeP8FBBl6tSgdrAz1+cF84v1FMM4twGwQoqTnn+QxFLcPOrF4pdKEJKDB/q9GoyJrCA==
+eslint-plugin-es@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-es/-/eslint-plugin-es-2.0.0.tgz#0f5f5da5f18aa21989feebe8a73eadefb3432976"
+  integrity sha512-f6fceVtg27BR02EYnBhgWLFQfK6bN4Ll0nQFrBHOlCsAyxeZkn0NHns5O0YZOPrV1B3ramd6cgFwaoFLcSkwEQ==
   dependencies:
     eslint-utils "^1.4.2"
-    regexpp "^2.0.1"
+    regexpp "^3.0.0"
 
 eslint-plugin-import@^2.18.2:
   version "2.18.2"
@@ -5745,12 +5745,12 @@ eslint-plugin-jsx-a11y@^6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
-eslint-plugin-node@^9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-node/-/eslint-plugin-node-9.2.0.tgz#b1911f111002d366c5954a6d96d3cd5bf2a3036a"
-  integrity sha512-2abNmzAH/JpxI4gEOwd6K8wZIodK3BmHbTxz4s79OIYwwIt2gkpEXlAouJXu4H1c9ySTnRso0tsuthSOZbUMlA==
+eslint-plugin-node@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-node/-/eslint-plugin-node-10.0.0.tgz#fd1adbc7a300cf7eb6ac55cf4b0b6fc6e577f5a6"
+  integrity sha512-1CSyM/QCjs6PXaT18+zuAXsjXGIGo5Rw630rSKwokSs2jrYURQc4R5JZpoanNCqwNmepg+0eZ9L7YiRUJb8jiQ==
   dependencies:
-    eslint-plugin-es "^1.4.1"
+    eslint-plugin-es "^2.0.0"
     eslint-utils "^1.4.2"
     ignore "^5.1.1"
     minimatch "^3.0.4"
@@ -11869,6 +11869,11 @@ regexpp@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/regexpp/-/regexpp-2.0.1.tgz#8d19d31cf632482b589049f8281f93dbcba4d07f"
   integrity sha512-lv0M6+TkDVniA3aD1Eg0DVpfU/booSu7Eev3TDO/mZKHBfVjgCGTV4t4buppESEYDtkArYFOxTJWv6S5C+iaNw==
+
+regexpp@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/regexpp/-/regexpp-3.0.0.tgz#dd63982ee3300e67b41c1956f850aa680d9d330e"
+  integrity sha512-Z+hNr7RAVWxznLPuA7DIh8UNX1j9CDrUQxskw9IrBE1Dxue2lyXT+shqEIeLUjrokxIP8CMy1WkjgG3rTsd5/g==
 
 regexpu-core@^1.0.0:
   version "1.0.0"

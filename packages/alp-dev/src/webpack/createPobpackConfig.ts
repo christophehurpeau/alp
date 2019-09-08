@@ -206,13 +206,15 @@ export default function createPobpackConfig(
       new OptimizeCssAssetsPlugin(),
 
       process.send &&
-        new webpack.ProgressPlugin((percentage: number, message: string) => {
-          process.send({
-            type: 'webpack-progress',
-            percentage,
-            message,
-          });
-        }),
+        new webpack.ProgressPlugin(
+          (percentage: number, message: string): void => {
+            (process.send as NonNullable<typeof process.send>)({
+              type: 'webpack-progress',
+              percentage,
+              message,
+            });
+          },
+        ),
 
       // target === 'browser' &&
       // target !== 'node' &&

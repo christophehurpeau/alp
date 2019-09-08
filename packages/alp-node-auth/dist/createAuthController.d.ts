@@ -1,4 +1,4 @@
-import { Context } from 'alp-node';
+import { Context } from 'alp-types';
 import AuthenticationService, { AccessResponseHooks } from './services/authentification/AuthenticationService';
 import MongoUsersManager from './MongoUsersManager';
 import { AllowedStrategyKeys, AllowedMapParamsStrategy } from './services/authentification/types';

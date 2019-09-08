@@ -39,33 +39,34 @@ function start(app, namespaceName) {
 
   var secure = webSocketConfig.get('secure');
   var port = webSocketConfig.get('port');
-  socket = socketio("http" + (secure ? 's' : '') + "://" + window.location.hostname + ":" + port + "/" + namespaceName, {
+  var createdSocket = socketio("http" + (secure ? 's' : '') + "://" + window.location.hostname + ":" + port + "/" + namespaceName, {
     reconnectionDelay: 500,
     reconnectionDelayMax: 2500,
     timeout: 4000,
     transports: ['websocket']
   });
+  socket = createdSocket;
 
   var callbackFirstConnectionError = function callbackFirstConnectionError() {
     successfulConnection = false;
   };
 
-  socket.on('connect_error', callbackFirstConnectionError);
-  socket.on('connect', function () {
-    socket.off('connect_error', callbackFirstConnectionError);
+  createdSocket.on('connect_error', callbackFirstConnectionError);
+  createdSocket.on('connect', function () {
+    createdSocket.off('connect_error', callbackFirstConnectionError);
     logger.success('connected');
     successfulConnection = true;
     connected = true;
   });
-  socket.on('reconnect', function () {
+  createdSocket.on('reconnect', function () {
     logger.success('reconnected');
     connected = true;
   });
-  socket.on('disconnect', function () {
+  createdSocket.on('disconnect', function () {
     logger.warn('disconnected');
     connected = false;
   });
-  socket.on('hello', function (_ref) {
+  createdSocket.on('hello', function (_ref) {
     var version = _ref.version;
 
     if (version !== window.__VERSION__) {
@@ -76,37 +77,38 @@ function start(app, namespaceName) {
       });
     }
   });
-  socket.on('redux:action', function (action) {
+  createdSocket.on('redux:action', function (action) {
     logger.debug('dispatch action from websocket', action); // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
 
     app.store.dispatch(action);
   });
-  return socket;
+  return createdSocket;
 }
 
 function emit(event) {
-  var _len, args, _key;
-
   for (_len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     args[_key - 1] = arguments[_key];
   }
 
   if (!socket) throw new Error('Cannot call emit() before start()');
+
+  var existingSocket = socket,
+      _len,
+      args,
+      _key;
+
   logger.debug('emit', {
     args: args
   });
   return new Promise(function (resolve, reject) {
-    var _ref2;
-
     var resolved = setTimeout(function () {
       logger.warn('websocket emit timeout', {
         args: args
       });
       reject(new Error('websocket response timeout'));
     }, 10000);
-
-    (_ref2 = socket).emit.apply(_ref2, [event].concat(args, [function (error, result) {
+    existingSocket.emit.apply(existingSocket, [event].concat(args, [function (error, result) {
       clearTimeout(resolved);
 
       if (error != null) {

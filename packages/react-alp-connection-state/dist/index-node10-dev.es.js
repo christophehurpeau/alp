@@ -10,9 +10,12 @@ function ConnectionState() {
   useEffect(() => {
     const websocket = ctx.app.websocket;
     let unloading = false;
-    window.addEventListener('beforeunload', () => {
+
+    const beforeUnloadHandler = () => {
       unloading = true;
-    });
+    };
+
+    window.addEventListener('beforeunload', beforeUnloadHandler);
     const connectedHandler = websocket.on('connect', () => {
       setConnectionState('connected');
     });
@@ -24,6 +27,7 @@ function ConnectionState() {
     return () => {
       websocket.off('connected', connectedHandler);
       websocket.off('disconnected', disconnectedHandler);
+      window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, [ctx.app.websocket]);
   return React.createElement("div", {
@@ -31,20 +35,20 @@ function ConnectionState() {
     className: "alp-connection-state",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 40
     },
     __self: this
   }, !connectionState || notConnected ? null : React.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 47
     },
     __self: this
   }, React.createElement(T, {
     id: `connectionState.${connectionState}`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 48
     },
     __self: this
   })));

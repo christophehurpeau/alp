@@ -5,13 +5,15 @@ interface Params {
   [key: string]: any;
 }
 
-interface AlpContext {
-  t: (id: string, params?: Params) => string;
+declare module 'alp-types' {
+  export interface Context {
+    t: (id: string, params?: Params) => string;
+  }
 }
 
 export default function useT(
   id: string,
-  params?: { [key: string]: any },
+  params?: Params,
   deps?: readonly any[],
 ): string {
   const ctx = useContext(ReactAlpContext);

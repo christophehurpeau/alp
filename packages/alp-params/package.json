@@ -91,7 +91,7 @@
   "devDependencies": {
     "@babel/core": "7.5.5",
     "@babel/preset-env": "7.5.5",
-    "@pob/eslint-config-typescript": "32.0.8",
+    "@pob/eslint-config-typescript": "32.0.13",
     "@types/jest": "24.0.18",
     "babel-jest": "24.9.0",
     "babel-preset-latest-node": "3.2.1",

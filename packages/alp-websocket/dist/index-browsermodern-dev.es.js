@@ -41,33 +41,34 @@ function start(app, namespaceName) {
 
   const secure = webSocketConfig.get('secure');
   const port = webSocketConfig.get('port');
-  socket = socketio(`http${secure ? 's' : ''}://${window.location.hostname}:${port}/${namespaceName}`, {
+  const createdSocket = socketio(`http${secure ? 's' : ''}://${window.location.hostname}:${port}/${namespaceName}`, {
     reconnectionDelay: 500,
     reconnectionDelayMax: 2500,
     timeout: 4000,
     transports: ['websocket']
   });
+  socket = createdSocket;
 
   const callbackFirstConnectionError = function callbackFirstConnectionError() {
     successfulConnection = false;
   };
 
-  socket.on('connect_error', callbackFirstConnectionError);
-  socket.on('connect', function () {
-    socket.off('connect_error', callbackFirstConnectionError);
+  createdSocket.on('connect_error', callbackFirstConnectionError);
+  createdSocket.on('connect', function () {
+    createdSocket.off('connect_error', callbackFirstConnectionError);
     logger.success('connected');
     successfulConnection = true;
     connected = true;
   });
-  socket.on('reconnect', function () {
+  createdSocket.on('reconnect', function () {
     logger.success('reconnected');
     connected = true;
   });
-  socket.on('disconnect', function () {
+  createdSocket.on('disconnect', function () {
     logger.warn('disconnected');
     connected = false;
   });
-  socket.on('hello', function ({
+  createdSocket.on('hello', function ({
     version
   }) {
     if (version !== window.__VERSION__) {
@@ -78,17 +79,18 @@ function start(app, namespaceName) {
       });
     }
   });
-  socket.on('redux:action', function (action) {
+  createdSocket.on('redux:action', function (action) {
     logger.debug('dispatch action from websocket', action); // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
 
     app.store.dispatch(action);
   });
-  return socket;
+  return createdSocket;
 }
 
 function emit(event, ...args) {
   if (!socket) throw new Error('Cannot call emit() before start()');
+  const existingSocket = socket;
   logger.debug('emit', {
     args
   });
@@ -99,7 +101,7 @@ function emit(event, ...args) {
       });
       reject(new Error('websocket response timeout'));
     }, 10000);
-    socket.emit(event, ...args, function (error, result) {
+    existingSocket.emit(event, ...args, function (error, result) {
       clearTimeout(resolved);
 
       if (error != null) {
