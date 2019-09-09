@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.9.1...alp-node-auth@2.9.2) (2019-09-09)
+
+
+### Bug Fixes
+
+* pob update ([ffe6857](https://github.com/christophehurpeau/alp/commit/ffe6857))
+* typescript issues ([23246f6](https://github.com/christophehurpeau/alp/commit/23246f6))
+
+
+
+
+
 ## [2.9.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.9.0...alp-node-auth@2.9.1) (2019-05-09)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/christophehurpeau/alp/compare/react-alp-translate@2.1.1...react-alp-translate@2.1.2) (2019-09-09)
+
+
+### Bug Fixes
+
+* pob update ([ffe6857](https://github.com/christophehurpeau/alp/commit/ffe6857))
+* typescript issues ([23246f6](https://github.com/christophehurpeau/alp/commit/23246f6))
+
+
+
+
+
 ## [2.1.1](https://github.com/christophehurpeau/alp/compare/react-alp-translate@2.1.0...react-alp-translate@2.1.1) (2019-05-01)
 
 

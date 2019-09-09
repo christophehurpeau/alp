@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@1.1.1...react-alp-connection-state@1.1.2) (2019-09-09)
+
+
+### Bug Fixes
+
+* pob update ([ffe6857](https://github.com/christophehurpeau/alp/commit/ffe6857))
+* removeEventListener(beforeunload in ConnectionState ([0028dc2](https://github.com/christophehurpeau/alp/commit/0028dc2))
+* typescript issues ([23246f6](https://github.com/christophehurpeau/alp/commit/23246f6))
+
+
+
+
+
 ## [1.1.1](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@1.1.0...react-alp-connection-state@1.1.1) (2019-05-01)
 
 

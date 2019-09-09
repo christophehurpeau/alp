@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.7.2](https://github.com/christophehurpeau/alp/compare/alp-react@15.7.1...alp-react@15.7.2) (2019-09-09)
+
+
+### Bug Fixes
+
+* pob update ([ffe6857](https://github.com/christophehurpeau/alp/commit/ffe6857))
+* typescript issues ([23246f6](https://github.com/christophehurpeau/alp/commit/23246f6))
+
+
+
+
+
 ## [15.7.1](https://github.com/christophehurpeau/alp/compare/alp-react@15.7.0...alp-react@15.7.1) (2019-05-09)
 
 **Note:** Version bump only for package alp-react

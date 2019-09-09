@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/christophehurpeau/alp/compare/alp-migrations@2.4.0...alp-migrations@2.4.1) (2019-09-09)
+
+
+### Bug Fixes
+
+* pob update ([ffe6857](https://github.com/christophehurpeau/alp/commit/ffe6857))
+* typescript issues ([23246f6](https://github.com/christophehurpeau/alp/commit/23246f6))
+
+
+
+
+
 # [2.4.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@2.3.1...alp-migrations@2.4.0) (2019-05-01)
 
 
