@@ -116,7 +116,7 @@
     "node-sass": "^4.11.0",
     "offline-plugin": "^5.0.6",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "pob-babel": "^23.20.0",
+    "pob-babel": "^23.22.1",
     "pobpack-browser": "^7.7.4",
     "pobpack-node": "^7.7.1",
     "pobpack-types": "^3.5.0",
@@ -135,9 +135,9 @@
     "ynnub-webpack-config": "2.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.5.5",
-    "@pob/eslint-config-babel-node": "32.0.13",
-    "@pob/eslint-config-typescript": "32.0.13",
+    "@babel/core": "7.6.0",
+    "@pob/eslint-config-babel-node": "32.1.0",
+    "@pob/eslint-config-typescript": "32.1.0",
     "@types/autoprefixer": "^9.4.0",
     "@types/execa": "^0.9.0",
     "@types/glob": "^7.1.1",

@@ -138,7 +138,24 @@ function createPobpackConfig(target, production = false) {
         percentage,
         message
       });
-    })].filter(ExcludesFalsy)
+    }) // target === 'browser' &&
+    // target !== 'node' &&
+    //   production &&
+    //   new optimize.UglifyJsPlugin({
+    //     compress: {
+    //       warnings: false,
+    //     },
+    //     sourcleMap: !production,
+    //   }),!== 'node' &&
+    //   production &&
+    //   new optimize.UglifyJsPlugin({
+    //     compress: {
+    //       warnings: false,
+    //     },
+    //     sourceMap: !production,
+    //   }),
+    // TODO https://github.com/NekR/offline-plugin
+    ].filter(ExcludesFalsy)
   };
 }
 

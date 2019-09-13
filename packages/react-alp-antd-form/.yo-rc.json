@@ -1,0 +1,18 @@
+{
+  "alp": {
+    "type": {
+      "type": "lib"
+    }
+  },
+  "pob": {
+    "pob-config": {
+      "documentation": false,
+      "testing": false
+    }
+  },
+  "react-alp-antd-form": {
+    "type": {
+      "type": "lib"
+    }
+  }
+}

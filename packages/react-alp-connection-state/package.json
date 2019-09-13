@@ -69,21 +69,21 @@
     "ynnub": "^1.4.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
+    "@babel/runtime": "^7.6.0",
     "alp-types": "^1.1.0",
     "react-alp-context": "^1.2.2",
     "react-alp-translate": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.5.5",
-    "@babel/preset-env": "7.5.5",
+    "@babel/core": "7.6.0",
+    "@babel/preset-env": "7.6.0",
     "@babel/preset-react": "7.0.0",
-    "@pob/eslint-config-typescript": "32.0.13",
-    "@pob/eslint-config-typescript-react": "32.0.10",
+    "@pob/eslint-config-typescript": "32.1.0",
+    "@pob/eslint-config-typescript-react": "32.1.0",
     "babel-preset-latest-node": "3.2.1",
     "babel-preset-modern-browsers": "14.0.0",
     "eslint": "6.3.0",
-    "pob-babel": "23.20.0",
+    "pob-babel": "23.22.1",
     "prettier": "1.18.2",
     "react": "^16.8.6",
     "ynnub": "^1.4.0"

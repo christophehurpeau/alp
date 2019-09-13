@@ -16,6 +16,7 @@
         "alp-dev",
         "alp-types",
         "ibex",
+        "react-alp-antd-form",
         "alp-browser-config",
         "alp-browser-errors",
         "alp-browser-language",
