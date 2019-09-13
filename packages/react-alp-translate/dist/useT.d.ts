@@ -6,6 +6,7 @@ declare module 'alp-types' {
         t: (id: string, params?: Params) => string;
     }
 }
-export default function useT(id: string, params?: Params, deps?: readonly any[]): string;
-export {};
+declare function useT(id: string): string;
+declare function useT(id: string, params: Params, deps: readonly any[]): string;
+export default useT;
 //# sourceMappingURL=useT.d.ts.map

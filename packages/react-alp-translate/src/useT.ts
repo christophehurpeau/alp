@@ -11,11 +11,9 @@ declare module 'alp-types' {
   }
 }
 
-export default function useT(
-  id: string,
-  params?: Params,
-  deps?: readonly any[],
-): string {
+function useT(id: string): string;
+function useT(id: string, params: Params, deps: readonly any[]): string;
+function useT(id: string, params?: Params, deps?: readonly any[]): string {
   const ctx = useContext(ReactAlpContext);
   return useMemo(
     () => {
@@ -25,3 +23,5 @@ export default function useT(
     !deps ? [id] : [id, ...deps],
   );
 }
+
+export default useT;
