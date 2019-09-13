@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@1.1.3...react-alp-connection-state@1.2.0) (2019-09-13)
+
+
+### Features
+
+* add react-alp-antd-form and update dependencies ([6f60e46](https://github.com/christophehurpeau/alp/commit/6f60e46))
+
+
+
+
+
 ## [1.1.3](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@1.1.2...react-alp-connection-state@1.1.3) (2019-09-13)
 
 **Note:** Version bump only for package react-alp-connection-state

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/christophehurpeau/alp/compare/alp-browser-errors@1.3.1...alp-browser-errors@1.4.0) (2019-09-13)
+
+
+### Features
+
+* add react-alp-antd-form and update dependencies ([6f60e46](https://github.com/christophehurpeau/alp/commit/6f60e46))
+
+
+
+
+
 ## [1.3.1](https://github.com/christophehurpeau/alp/compare/alp-browser-errors@1.3.0...alp-browser-errors@1.3.1) (2019-09-09)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "alp-dev",
-  "version": "12.6.2",
+  "version": "12.7.0",
   "description": "Config for webpack/browsersync/makefile for alp server",
   "keywords": ["alp", "framework", "webpack"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",

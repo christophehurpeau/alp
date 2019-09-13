@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/christophehurpeau/alp/compare/alp-browser-language@2.2.2...alp-browser-language@2.3.0) (2019-09-13)
+
+
+### Features
+
+* add react-alp-antd-form and update dependencies ([6f60e46](https://github.com/christophehurpeau/alp/commit/6f60e46))
+
+
+
+
+
 ## [2.2.2](https://github.com/christophehurpeau/alp/compare/alp-browser-language@2.2.1...alp-browser-language@2.2.2) (2019-09-09)
 
 

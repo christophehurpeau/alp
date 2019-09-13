@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.7.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.6.2...alp-dev@12.7.0) (2019-09-13)
+
+
+### Features
+
+* add react-alp-antd-form and update dependencies ([6f60e46](https://github.com/christophehurpeau/alp/commit/6f60e46))
+
+
+
+
+
 ## [12.6.2](https://github.com/christophehurpeau/alp/compare/alp-dev@12.6.1...alp-dev@12.6.2) (2019-09-09)
 
 
