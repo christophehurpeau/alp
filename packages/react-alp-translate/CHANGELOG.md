@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-translate@2.1.2...react-alp-translate@3.0.0) (2019-09-13)
+
+
+### Features
+
+* **react-alp-translate:** force useT deps when params ([171d214](https://github.com/christophehurpeau/alp/commit/171d214))
+
+
+### BREAKING CHANGES
+
+* **react-alp-translate:** typescript should throw errors
+
+
+
+
+
 ## [2.1.2](https://github.com/christophehurpeau/alp/compare/react-alp-translate@2.1.1...react-alp-translate@2.1.2) (2019-09-09)
 
 

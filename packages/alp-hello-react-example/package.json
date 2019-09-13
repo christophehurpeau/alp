@@ -1,7 +1,7 @@
 {
   "name": "alp-hello-react-example",
   "private": true,
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Say hello, with alp and react",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
@@ -28,7 +28,7 @@
     "nightingale-app-console": "3.2.5",
     "react": "16.8.6",
     "react-alp-context": "^1.2.2",
-    "react-alp-translate": "^2.1.2",
+    "react-alp-translate": "^3.0.0",
     "react-hot-loader": "^4.8.4"
   },
   "devDependencies": {
