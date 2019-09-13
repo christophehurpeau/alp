@@ -9,7 +9,7 @@ export default function alpLanguage(app: ApplicationInCreation): void {
   }
 
   defineLazyProperty(app.context, 'language', function(this: Context) {
-    return this.acceptsLanguages(availableLanguages);
+    return this.acceptsLanguages(availableLanguages) || availableLanguages[0];
   });
 
   defineLazyProperty(app.context, 'firstAcceptedLanguage', function(

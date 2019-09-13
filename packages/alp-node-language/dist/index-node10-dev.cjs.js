@@ -13,7 +13,7 @@ function alpLanguage(app) {
   }
 
   objectProperties.defineLazyProperty(app.context, 'language', function () {
-    return this.acceptsLanguages(availableLanguages);
+    return this.acceptsLanguages(availableLanguages) || availableLanguages[0];
   });
   objectProperties.defineLazyProperty(app.context, 'firstAcceptedLanguage', function () {
     return this.acceptsLanguages()[0] || availableLanguages[0];
