@@ -47,7 +47,7 @@
     "withReact": false
   },
   "peerDependencies": {
-    "liwi-mongo": "^4.1.0"
+    "liwi-mongo": "^4.1.0 || ^5.0.0"
   },
   "dependencies": {
     "alp-types": "^1.1.0",
@@ -61,7 +61,7 @@
     "@types/semver": "6.0.1",
     "babel-preset-latest-node": "3.2.1",
     "eslint": "6.4.0",
-    "liwi-mongo": "4.2.1",
+    "liwi-mongo": "5.0.4",
     "pob-babel": "23.22.2",
     "prettier": "1.18.2"
   }
