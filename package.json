@@ -17,7 +17,8 @@
     "release": "cross-env GH_TOKEN=$POB_GITHUB_TOKEN lerna version --conventional-commits --conventional-graduate --create-release=github -m 'chore: release' && lerna publish from-git",
     "test": "lerna run --stream test",
     "typescript-check": "lerna run --parallel typescript-check",
-    "watch": "lerna run --parallel --ignore \"*-example\" watch"
+    "watch": "lerna run --parallel --ignore \"*-example\" watch",
+    "start:hello-react": "yarn --cwd packages/alp-hello-react-example start"
   },
   "commitlint": {
     "extends": ["@commitlint/config-conventional"]
