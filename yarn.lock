@@ -9065,10 +9065,10 @@ listr@^0.14.3:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
-liwi-mongo@4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-4.2.0.tgz#869e107c7067129ba4db2d7a6a4dddf69b0ad066"
-  integrity sha512-LVNZKsDN7uSPETCq0d/c//rW+HyRMtDMFpsGOmwenjbf/bFJu6CuieVBlivZxtSk7o7wna98PfENnupAkAmlJg==
+liwi-mongo@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-4.2.1.tgz#596651449703b720db64e4057f613073b561c5b7"
+  integrity sha512-U0iTc+gEuFWc5PZVH03HK7pR1Qm9JSibzxVMM23Qna+abyTll2IRcG0FBtBbjUVlgyc97CJ3Pj/ENw7yQ4GQNg==
   dependencies:
     "@types/mongodb" "^2.0.0"
     liwi-store "^4.2.0"
