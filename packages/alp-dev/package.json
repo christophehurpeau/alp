@@ -99,7 +99,7 @@
     "colorette": "^1.0.7",
     "console-loader": "^1.0.0",
     "css-loader": "^2.1.1",
-    "execa": "^1.0.0",
+    "execa": "^2.0.0",
     "extracted-loader": "^1.0.7",
     "file-loader": "^3.0.1",
     "glob": "^7.1.3",
