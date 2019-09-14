@@ -6,6 +6,7 @@
     { "path": "packages/alp-types/tsconfig.json" },
     { "path": "packages/ibex/tsconfig.json" },
     { "path": "packages/react-alp-antd-form/tsconfig.json" },
+    { "path": "packages/react-alp-route-match-transition/tsconfig.json" },
     { "path": "packages/alp-browser-config/tsconfig.json" },
     { "path": "packages/alp-browser-errors/tsconfig.json" },
     { "path": "packages/alp-browser-language/tsconfig.json" },

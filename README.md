@@ -36,5 +36,6 @@ This repository is a monorepo that we manage using [Lerna](https://github.com/le
 | [react-alp-connection-state](packages/react-alp-connection-state) | <a href="https://npmjs.org/package/react-alp-connection-state"><img src="https://img.shields.io/npm/v/react-alp-connection-state.svg?style=flat-square"></a>  | connection state
 | [react-alp-context](packages/react-alp-context) | <a href="https://npmjs.org/package/react-alp-context"><img src="https://img.shields.io/npm/v/react-alp-context.svg?style=flat-square"></a>  | react alp context
 | [react-alp-loading-bar](packages/react-alp-loading-bar) | <a href="https://npmjs.org/package/react-alp-loading-bar"><img src="https://img.shields.io/npm/v/react-alp-loading-bar.svg?style=flat-square"></a>  | loading bar
+| [react-alp-route-match-transition](packages/react-alp-route-match-transition) | <a href="https://npmjs.org/package/react-alp-route-match-transition"><img src="https://img.shields.io/npm/v/react-alp-route-match-transition.svg?style=flat-square"></a>  | route match with transition
 | [react-alp-translate](packages/react-alp-translate) | <a href="https://npmjs.org/package/react-alp-translate"><img src="https://img.shields.io/npm/v/react-alp-translate.svg?style=flat-square"></a>  | react translate
 

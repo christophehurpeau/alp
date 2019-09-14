@@ -17,6 +17,7 @@
         "alp-types",
         "ibex",
         "react-alp-antd-form",
+        "react-alp-route-match-transition",
         "alp-browser-config",
         "alp-browser-errors",
         "alp-browser-language",
