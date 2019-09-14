@@ -96,9 +96,9 @@
     "babel-jest": "24.9.0",
     "babel-preset-latest-node": "3.2.1",
     "babel-preset-modern-browsers": "14.0.0",
-    "eslint": "6.3.0",
+    "eslint": "6.4.0",
     "jest": "24.9.0",
-    "pob-babel": "23.22.1",
+    "pob-babel": "23.22.2",
     "pob-lcov-reporter": "1.2.3",
     "prettier": "1.18.2",
     "xunit-file": "^1.0.0"

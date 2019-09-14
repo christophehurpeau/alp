@@ -2127,10 +2127,10 @@
     yarn-deduplicate "1.1.1"
     yarnhook "^0.4.2"
 
-"@pob/version@4.33.3":
-  version "4.33.3"
-  resolved "https://registry.yarnpkg.com/@pob/version/-/version-4.33.3.tgz#5d949bd593f0fe556a5fccd0d71bc50e7817c72f"
-  integrity sha512-0meBosJarnrESCZOXCkVNh6E3hvMl0E+2EQLhvOUkPEv3wvUO/0uEG9sGPtgcmQT+l7sszH05x5pUtKQrorYwg==
+"@pob/version@4.33.4":
+  version "4.33.4"
+  resolved "https://registry.yarnpkg.com/@pob/version/-/version-4.33.4.tgz#5f7730eed78c9403e230669ad288c512862dc303"
+  integrity sha512-UKj4KiPDa0fCLuE/BH9uapnlipZgi7W9rqhTw5Kg8OXIw4TdU9fb2oYJ9TMSazxtKu8jUYs8BkLr6A+kN7ygDg==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -3471,10 +3471,10 @@ babel-plugin-dynamic-import-node@^2.3.0:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-fix-class-properties-uninitialized@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-fix-class-properties-uninitialized/-/babel-plugin-fix-class-properties-uninitialized-1.7.1.tgz#b803bcfbd98da52abb7819b1f62c44813ceb2dd0"
-  integrity sha512-bPcvFnuu7Qy9omyQjSbJaVEQsh8D3CSNh2bFfRS9hQaEQnHQRyk5tMC5AH8CNlha/QOkJbBW4TSqUptqEhWp0Q==
+babel-plugin-fix-class-properties-uninitialized@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-fix-class-properties-uninitialized/-/babel-plugin-fix-class-properties-uninitialized-1.7.2.tgz#ecd769607d748e15a98c36298d224ba050bb1a4d"
+  integrity sha512-c5NvCczA2myaUPNns+kxbSZkeNWU4nRVR7W6dczqYeO0wtNY064c4KXO2gQC4LmLGMAiygR+JMdVvUid7IE5xQ==
 
 babel-plugin-import-export-rename@^1.0.1:
   version "1.0.1"
@@ -3548,15 +3548,15 @@ babel-plugin-minify-simplify@^0.5.0:
     babel-helper-is-nodes-equiv "^0.0.1"
     babel-helper-to-multiple-sequence-expressions "^0.5.0"
 
-babel-plugin-pob-babel@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-pob-babel/-/babel-plugin-pob-babel-0.12.1.tgz#e1eae254c154a72d9d8d5ec412debf27de21308c"
-  integrity sha512-CmZ+jS/niyCcietIJ/MVOAsonEFM0kCWnp1XBuewh6AT3EchO0r/Ub9rtaG5aizf/oqrfwhc17ZG2zkH1y/ZeQ==
+babel-plugin-pob-babel@^0.12.2:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-pob-babel/-/babel-plugin-pob-babel-0.12.2.tgz#820e3286b8d5ad65a809108d527372c75fafab7a"
+  integrity sha512-Lk4YjqbsKfCTK43pRsFGGSy8jL/88A+egEKvzxVmlsFEKc8YuFsLDas3KmkmDnb6y4g5JkCLSM9W5XCsEllCZg==
 
-babel-plugin-transform-builtins@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-builtins/-/babel-plugin-transform-builtins-1.5.1.tgz#a01df3a022dfdcf860695bcc1f6414cee6d7bc87"
-  integrity sha512-nt/9SrzdQ65/XzucqKwDiSIeCm40pN7512mjzyKzyotqR7vN+83AHe0eEfYQDS/BR80y1NP4m+PQmggxbnxBUw==
+babel-plugin-transform-builtins@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-builtins/-/babel-plugin-transform-builtins-1.5.2.tgz#b74f18d3b06ba1067bff1591932bdf304fb2a5ff"
+  integrity sha512-gM+joUutmn3lwobq4OmCsRbIhYlpP08tc4ZFbt5FvN59FGqc5WE9EM7w/i9q3TjFGrppe53rvfJtsQBlEkTI8g==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
 
@@ -3644,10 +3644,10 @@ babel-preset-optimizations@^1.7.0:
     babel-plugin-transform-inline-consecutive-adds "^0.4.3"
     babel-plugin-transform-undefined-to-void "^6.9.4"
 
-babel-preset-pob-env@^2.24.0, babel-preset-pob-env@^2.30.0:
-  version "2.30.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-pob-env/-/babel-preset-pob-env-2.30.0.tgz#3209c0b92c7b90caab5c8fc2853d8973e87042d4"
-  integrity sha512-lCuU6e3I3vRhMrFYt6g55+00H/9eVT/Wwo7nc9+Yk9pSEVdvucmTxQSNvnEPG/r+uOlXRcUoGgo2NEKJrf3uaA==
+babel-preset-pob-env@^2.24.0, babel-preset-pob-env@^2.30.1:
+  version "2.30.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-pob-env/-/babel-preset-pob-env-2.30.1.tgz#3e88c02f25f7082a948e7b33513c57ca8f2af68e"
+  integrity sha512-+uIaYkRwPYRchZCDB98JYWWzuP2bvtMMfJ8Bq1DnVI6x6eD9hwBMpVUd7dTBO8vakkbvt2LHE54Ri4n1xcFqDg==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.5.5"
     "@babel/plugin-proposal-export-default-from" "^7.5.2"
@@ -3655,10 +3655,10 @@ babel-preset-pob-env@^2.24.0, babel-preset-pob-env@^2.30.0:
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/preset-typescript" "^7.6.0"
     babel-plugin-discard-module-references "^1.1.2"
-    babel-plugin-fix-class-properties-uninitialized "^1.7.1"
+    babel-plugin-fix-class-properties-uninitialized "^1.7.2"
     babel-plugin-import-export-rename "^1.0.1"
     babel-plugin-minify-replace "^0.5.0"
-    babel-plugin-pob-babel "^0.12.1"
+    babel-plugin-pob-babel "^0.12.2"
     babel-plugin-transform-name-export-default "^1.0.0"
     babel-preset-optimizations "^1.7.0"
 
@@ -6060,10 +6060,10 @@ eslint-visitor-keys@^1.0.0, eslint-visitor-keys@^1.1.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.1.0.tgz#e2a82cea84ff246ad6fb57f9bde5b46621459ec2"
   integrity sha512-8y9YjtM1JBJU/A9Kc+SbaOV4y29sSWckBwMHa+FGtVj5gN/sbnKDf6xJUl+8g7FAij9LVaP8C24DUiH/f/2Z9A==
 
-eslint@6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-6.3.0.tgz#1f1a902f67bfd4c354e7288b81e40654d927eb6a"
-  integrity sha512-ZvZTKaqDue+N8Y9g0kp6UPZtS4FSY3qARxBs7p4f0H0iof381XHduqVerFWtK8DPtKmemqbqCFENWSQgPR/Gow==
+eslint@6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-6.4.0.tgz#5aa9227c3fbe921982b2eda94ba0d7fae858611a"
+  integrity sha512-WTVEzK3lSFoXUovDHEbkJqCVPEPwbhCq4trDktNI6ygs7aO41d4cDT0JFAT5MivzZeVLWlg7vHL+bgrQv/t3vA==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     ajv "^6.10.0"
@@ -11115,14 +11115,14 @@ pn@^1.1.0:
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
-pob-babel@23.22.1, pob-babel@^23.22.1:
-  version "23.22.1"
-  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-23.22.1.tgz#5da07f62f2e73f15a1bad135548a8d4844f96e2a"
-  integrity sha512-KFpez1ivFX4/29BkWAgzt/jz3bAm5fpt27sgcxsyMflScBgPBytnTYn7Oj8BBkVhEmieise/M/sO8F1XwePf3Q==
+pob-babel@23.22.2, pob-babel@^23.22.2:
+  version "23.22.2"
+  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-23.22.2.tgz#8d1da9750c4275ec8548d710e044b73911a9009d"
+  integrity sha512-zjqw9FMfXce21Mvz+Ftm7OkGHz56e9TS/Hqy0CT5xS60LvZ0ees6bPu9aCqsedPSaFBJ2TRW80ExPLvXjH6pUg==
   dependencies:
     "@babel/preset-flow" "^7.0.0"
-    babel-plugin-transform-builtins "^1.5.1"
-    babel-preset-pob-env "^2.30.0"
+    babel-plugin-transform-builtins "^1.5.2"
+    babel-preset-pob-env "^2.30.1"
     rollup "^1.21.2"
     rollup-config-external-dependencies "^1.1.0"
     rollup-plugin-babel "^5.0.0-alpha.0"

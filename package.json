@@ -15,17 +15,17 @@
     "postbuild": "yarn run build:definitions",
     "preversion": "yarn run lint --since && yarn run build --since -- -- --no-clean && repository-check-dirty",
     "release": "cross-env GH_TOKEN=$POB_GITHUB_TOKEN lerna version --conventional-commits --conventional-graduate --create-release=github -m 'chore: release' && lerna publish from-git",
+    "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
     "test": "lerna run --stream test",
     "typescript-check": "lerna run --parallel typescript-check",
-    "watch": "lerna run --parallel --ignore \"*-example\" watch",
-    "start:hello-react": "yarn --cwd packages/alp-hello-react-example start"
+    "watch": "lerna run --parallel --ignore \"*-example\" watch"
   },
   "commitlint": {
     "extends": ["@commitlint/config-conventional"]
   },
   "devDependencies": {
     "@pob/repo-config": "1.0.2",
-    "@pob/version": "4.33.3",
+    "@pob/version": "4.33.4",
     "husky": "3.0.5",
     "lerna": "3.16.4",
     "repository-check-dirty": "1.0.2",
