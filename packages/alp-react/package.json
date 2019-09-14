@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
-    "@types/react-dom": "^16.8.3",
+    "@types/react-dom": "^16.9.0",
     "@types/react-helmet": "^5.0.8",
     "alp-types": "^1.1.0",
     "content-loaded": "^1.2.1",
@@ -125,6 +125,6 @@
     "pob-babel": "23.22.2",
     "prettier": "1.18.2",
     "react": "16.9.0",
-    "react-dom": "16.8.6"
+    "react-dom": "16.9.0"
   }
 }
