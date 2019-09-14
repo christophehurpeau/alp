@@ -68,7 +68,7 @@
     "@babel/core": "7.6.0",
     "@pob/eslint-config-babel-node": "32.1.0",
     "@pob/eslint-config-typescript": "32.1.0",
-    "@types/findup-sync": "2.0.1",
+    "@types/findup-sync": "2.0.2",
     "@types/koa-compress": "2.0.9",
     "@types/koa-static": "4.0.1",
     "@types/minimist": "1.2.0",
