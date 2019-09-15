@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/christophehurpeau/alp/compare/alp-node-errors@3.4.0...alp-node-errors@3.4.1) (2019-09-15)
+
+**Note:** Version bump only for package alp-node-errors
+
+
+
+
+
 # [3.4.0](https://github.com/christophehurpeau/alp/compare/alp-node-errors@3.3.1...alp-node-errors@3.4.0) (2019-09-13)
 
 

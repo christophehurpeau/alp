@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@1.2.0...react-alp-connection-state@1.2.1) (2019-09-15)
+
+
+### Bug Fixes
+
+* update ynnub to support sass-loader ([9c62b49](https://github.com/christophehurpeau/alp/commit/9c62b49))
+
+
+
+
+
 # [1.2.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@1.1.3...react-alp-connection-state@1.2.0) (2019-09-13)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "alp-browser",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "framework for browser based on ibex",
   "keywords": ["springbokjs", "alp", "framework", "ibex"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -53,11 +53,11 @@
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "@types/webpack-env": "^1.13.9",
-    "alp-browser-config": "^4.3.0",
-    "alp-browser-language": "^2.3.0",
-    "alp-translate": "^3.4.0",
+    "alp-browser-config": "^4.3.1",
+    "alp-browser-language": "^2.3.1",
+    "alp-translate": "^3.4.1",
     "alp-types": "^1.1.0",
-    "ibex": "^5.4.0",
+    "ibex": "^5.4.1",
     "nightingale-logger": "^6.2.2"
   },
   "devDependencies": {

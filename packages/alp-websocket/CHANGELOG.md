@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.5.1](https://github.com/christophehurpeau/alp/compare/alp-websocket@5.5.0...alp-websocket@5.5.1) (2019-09-15)
+
+**Note:** Version bump only for package alp-websocket
+
+
+
+
+
 # [5.5.0](https://github.com/christophehurpeau/alp/compare/alp-websocket@5.4.1...alp-websocket@5.5.0) (2019-09-13)
 
 

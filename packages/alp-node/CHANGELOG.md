@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/christophehurpeau/alp/compare/alp-node@1.5.0...alp-node@1.5.1) (2019-09-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency findup-sync to v4 ([#76](https://github.com/christophehurpeau/alp/issues/76)) ([d4ab59d](https://github.com/christophehurpeau/alp/commit/d4ab59d))
+
+
+
+
+
 # [1.5.0](https://github.com/christophehurpeau/alp/compare/alp-node@1.4.2...alp-node@1.5.0) (2019-09-13)
 
 

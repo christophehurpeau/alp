@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.7.1](https://github.com/christophehurpeau/alp/compare/alp-dev@12.7.0...alp-dev@12.7.1) (2019-09-15)
+
+
+### Bug Fixes
+
+* update webpack and webpack-dev-server ([daf7509](https://github.com/christophehurpeau/alp/commit/daf7509))
+* update ynnub to support sass-loader ([9c62b49](https://github.com/christophehurpeau/alp/commit/9c62b49))
+* **deps:** update dependency css-loader to v3 ([#72](https://github.com/christophehurpeau/alp/issues/72)) ([9a173eb](https://github.com/christophehurpeau/alp/commit/9a173eb))
+* **deps:** update dependency execa to v2 ([#73](https://github.com/christophehurpeau/alp/issues/73)) ([c58dff4](https://github.com/christophehurpeau/alp/commit/c58dff4))
+* **deps:** update dependency file-loader to v4 ([#70](https://github.com/christophehurpeau/alp/issues/70)) ([b1fd64c](https://github.com/christophehurpeau/alp/commit/b1fd64c))
+* **deps:** update dependency mini-css-extract-plugin to ^0.8.0 ([#67](https://github.com/christophehurpeau/alp/issues/67)) ([165a8d6](https://github.com/christophehurpeau/alp/commit/165a8d6))
+* **deps:** update dependency sass-loader to v8 ([#79](https://github.com/christophehurpeau/alp/issues/79)) ([eef2a3e](https://github.com/christophehurpeau/alp/commit/eef2a3e))
+* **deps:** update dependency url-loader to v2 ([#71](https://github.com/christophehurpeau/alp/issues/71)) ([56cc1e1](https://github.com/christophehurpeau/alp/commit/56cc1e1))
+* update pobpack ([2e350a2](https://github.com/christophehurpeau/alp/commit/2e350a2))
+
+
+
+
+
 # [12.7.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.6.2...alp-dev@12.7.0) (2019-09-13)
 
 
