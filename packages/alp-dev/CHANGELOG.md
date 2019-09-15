@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.7.2](https://github.com/christophehurpeau/alp/compare/alp-dev@12.7.1...alp-dev@12.7.2) (2019-09-15)
+
+
+### Bug Fixes
+
+* css-loader 3 ([c988a2b](https://github.com/christophehurpeau/alp/commit/c988a2b))
+* ynnub-webpack-config 3.0.1 ([5006185](https://github.com/christophehurpeau/alp/commit/5006185))
+
+
+
+
+
 ## [12.7.1](https://github.com/christophehurpeau/alp/compare/alp-dev@12.7.0...alp-dev@12.7.1) (2019-09-15)
 
 
