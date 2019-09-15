@@ -132,7 +132,7 @@
     "url-loader": "^2.0.0",
     "webpack": "^4.40.2",
     "webpack-dev-server": "^3.8.0",
-    "ynnub-webpack-config": "3.0.0"
+    "ynnub-webpack-config": "3.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.6.0",
