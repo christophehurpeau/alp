@@ -98,7 +98,7 @@
     "babel-preset-pob-env": "^2.24.0",
     "colorette": "^1.0.7",
     "console-loader": "^1.0.0",
-    "css-loader": "^3.0.0",
+    "css-loader": "^3.2.0",
     "execa": "^2.0.0",
     "extracted-loader": "^1.0.7",
     "file-loader": "^4.0.0",
@@ -132,7 +132,7 @@
     "url-loader": "^2.0.0",
     "webpack": "^4.40.2",
     "webpack-dev-server": "^3.8.0",
-    "ynnub-webpack-config": "3.0.1"
+    "ynnub-webpack-config": "3.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.6.0",

@@ -4812,7 +4812,7 @@ css-declaration-sorter@^4.0.1:
     postcss "^7.0.1"
     timsort "^0.3.0"
 
-css-loader@^3.0.0:
+css-loader@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-3.2.0.tgz#bb570d89c194f763627fcf1f80059c6832d009b2"
   integrity sha512-QTF3Ud5H7DaZotgdcJjGMvyDj5F3Pn1j/sC6VBEOVp94cbwqyIBdcs/quzj4MC1BKQSrTpQznegH/5giYbhnCQ==
@@ -15263,10 +15263,10 @@ ylru@^1.2.0:
   resolved "https://registry.yarnpkg.com/ylru/-/ylru-1.2.1.tgz#f576b63341547989c1de7ba288760923b27fe84f"
   integrity sha512-faQrqNMzcPCHGVC2aaOINk13K+aaBDUPjGWl0teOXywElLjyVAB6Oe2jj62jHYtwsU49jXhScYbvPENK+6zAvQ==
 
-ynnub-webpack-config@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/ynnub-webpack-config/-/ynnub-webpack-config-3.0.1.tgz#5028620d541279b36b4e25f6dda06b5055d971a8"
-  integrity sha512-mVsn9HKUeBUyDgdCHTCQux2xbK/RcjLpDbNuDYGxzNj79KjVChkn70G7WvnL5nNtgjwAHiX6Xbe3tPOQ3VaBYg==
+ynnub-webpack-config@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ynnub-webpack-config/-/ynnub-webpack-config-3.1.0.tgz#51587b9a443505cc6720822f9c8f8daecee052b5"
+  integrity sha512-NgTM0HACkvRlxdRAWzH2ZuiSaanFk0up9gXqQoABMWCaONChp52M03FPIiBr+kw4KOIhLjKds13NskAKDZQJUQ==
 
 ynnub@2.0.0:
   version "2.0.0"
