@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.3](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.4.2...alp-hello-react-example@2.4.3) (2019-09-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency nightingale-app-console to v3.2.6 ([#60](https://github.com/christophehurpeau/alp/issues/60)) ([7fbd4f9](https://github.com/christophehurpeau/alp/commit/7fbd4f9))
+
+
+
+
+
 ## [2.4.2](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.4.1...alp-hello-react-example@2.4.2) (2019-09-15)
 
 **Note:** Version bump only for package alp-hello-react-example
