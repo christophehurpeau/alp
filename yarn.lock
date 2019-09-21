@@ -2383,13 +2383,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/mongodb@^2.0.0":
-  version "2.2.23"
-  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-2.2.23.tgz#2a50071a1ef2f93c87e71cbf1a07a46df094c958"
-  integrity sha512-zK2txG9cGIxHZLRKq59mmb4uYbfl/b+G3RcSuW7HHEvUj/O0gsRLgprQu6n/Gn5Mh+PbnAIgrgh4Zhj+OjsRBQ==
+"@types/mongodb@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.3.1.tgz#9569ffcb356fbb5313ae2d3afa88c230bf8cf0d1"
+  integrity sha512-Va7o1fN3zeabmIJSQ6yuAWkqPvrT38HSTIi4YbVOb2UL7FJ4diXrWt+OUuuEFWAVPtF9VZV5h+7LDYdzgXWgQA==
   dependencies:
     "@types/bson" "*"
-    "@types/events" "*"
     "@types/node" "*"
 
 "@types/node@*", "@types/node@>=8.0.0", "@types/node@^12.0.2", "@types/node@^12.7.4":
@@ -3843,10 +3842,10 @@ bser@^2.0.0:
   dependencies:
     node-int64 "^0.4.0"
 
-bson@~1.0.4:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/bson/-/bson-1.0.9.tgz#12319f8323b1254739b7c6bef8d3e89ae05a2f57"
-  integrity sha512-IQX9/h7WdMBIW/q/++tGd+emQr0XMdeZ6icnT/74Xk9fnabWn+gZgpE+9V+gujL3hhJOoNrnDVY7tWdzc7NUTg==
+bson@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-1.1.1.tgz#4330f5e99104c4e751e7351859e2d408279f2f13"
+  integrity sha512-jCGVYLoYMHDkOsbwJZBCqwMHyH4c+wzgI9hG7Z6SZJRXWr+x58pdIbm2i9a/jFGCkRJqRUr8eoI7lDWa0hTkxg==
 
 btoa-lite@^1.0.0:
   version "1.0.0"
@@ -3867,11 +3866,6 @@ buffer-indexof@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-indexof/-/buffer-indexof-1.1.1.tgz#52fabcc6a606d1a00302802648ef68f639da268c"
   integrity sha512-4/rOEg86jivtPTeOUUT61jJO1Ya1TrR/OkqCSZDyq84WJh3LuuiphBYJN+fm5xufIk4XAFcEwte/8WzC8If/1g==
-
-buffer-shims@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
-  integrity sha1-mXjOMXOIxkmth5MCjDR37wRKi1E=
 
 buffer-xor@^1.0.3:
   version "1.0.3"
@@ -5715,11 +5709,6 @@ es-to-primitive@^1.2.0:
     is-callable "^1.1.4"
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
-
-es6-promise@3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.2.1.tgz#ec56233868032909207170c39448e24449dd1fc4"
-  integrity sha1-7FYjOGgDKQkgcXDDlEjiREndH8Q=
 
 es6-promise@^4.0.3:
   version "4.2.5"
@@ -8951,20 +8940,20 @@ listr@^0.14.3:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
-liwi-mongo@4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-4.2.1.tgz#596651449703b720db64e4057f613073b561c5b7"
-  integrity sha512-U0iTc+gEuFWc5PZVH03HK7pR1Qm9JSibzxVMM23Qna+abyTll2IRcG0FBtBbjUVlgyc97CJ3Pj/ENw7yQ4GQNg==
+liwi-mongo@5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-5.0.4.tgz#5d7c4906bff2987d714a599c4ba970d18b9b0653"
+  integrity sha512-0NEOrBcoXLPizdBW/HBOS97OzJ2GOxw7tFKKaB50KtN1Jyy7e6OSTQLHR3G8X+bFAd+SnN5q5kyA1YPSmbe4Bw==
   dependencies:
-    "@types/mongodb" "^2.0.0"
-    liwi-store "^4.2.0"
-    liwi-subscribe-store "^2.2.0"
-    liwi-types "^2.1.0"
-    mingo "^2.2.10"
-    mongodb "^2.2.33"
-    nightingale-logger "^6.0.0"
+    "@types/mongodb" "^3.3.1"
+    liwi-store "^4.3.2"
+    liwi-subscribe-store "^2.4.0"
+    liwi-types "^3.0.2"
+    mingo "^2.3.5"
+    mongodb "^3.3.2"
+    nightingale-logger "^6.2.2"
 
-liwi-store@4.3.2, liwi-store@^4.2.0:
+liwi-store@4.3.2, liwi-store@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-4.3.2.tgz#dbf04ec949c55c01053460048d244144f9d42b78"
   integrity sha512-sUUIFTflvrQVzII87FJPjcQlIMY/MrIoiyqYFoEy2DvNKBgoFTef9Z1h5pBphn2bj1i6L9AgE2m1e3GHhLv3eA==
@@ -8972,18 +8961,14 @@ liwi-store@4.3.2, liwi-store@^4.2.0:
     "@babel/runtime" "^7.5.5"
     liwi-types "^3.0.2"
 
-liwi-subscribe-store@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-2.2.0.tgz#ee84ca0f771282bf586976dc796578714b686d1c"
-  integrity sha512-Kcy3yBhHNtLDqIwIRsU0ctx+v7OFpRZu/5DBHS6dldTgmpvyWWHR5yi6XnLa4QmmWzNoacrgyziXVxW6hRy6+Q==
+liwi-subscribe-store@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-2.4.0.tgz#1f848398fb4439d9754d56f1dbcb9641367200b8"
+  integrity sha512-ctFsBQxzP1eIyBQtpwD6yarGr5pMYjCPkQFuuQQfcokDaSivSMsc5U2L5MrZDiPRVT63IzIpAZyMUETKoXxoKA==
   dependencies:
-    liwi-store "^4.2.0"
-    liwi-types "^2.1.0"
-
-liwi-types@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-2.1.0.tgz#eae728f05b2e3bb1fadfcea688e401f89f5d51e9"
-  integrity sha512-R5A7GUiOHT+ES2E3erI+AmSXD5d1lIS+/hkh/CIMfu6PLt4lmlSAQ/suUsncB7703wohnskaRP4oInpVNcB5Xw==
+    "@babel/runtime" "^7.5.5"
+    liwi-store "^4.3.2"
+    liwi-types "^3.0.2"
 
 liwi-types@^3.0.2:
   version "3.0.2"
@@ -9592,10 +9577,10 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-mingo@^2.2.10:
-  version "2.2.10"
-  resolved "https://registry.yarnpkg.com/mingo/-/mingo-2.2.10.tgz#4b96607f23a69f9d83f3bb9efbf1db607c9d8368"
-  integrity sha512-V2NKMKao/xcEZEMsdokjQ5+Ow58eWoDYOeYOqk6xOtJkCJjDMSTPRbNFtj/9RI87cxvIggUxep+/asE+djcMXQ==
+mingo@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/mingo/-/mingo-2.3.5.tgz#9cc0846eb97701ceed7871ba5ccb3733075332b1"
+  integrity sha512-4pxrOnIhWTPBSlF3Pv53wPwbIm3tDOFjZ+yb7L6TM2+46Mwll+OoQoDXt7ZpxfAO36UQNDq0mgn/fo4BWPCj+g==
 
 mini-create-react-context@^0.3.0:
   version "0.3.2"
@@ -9742,22 +9727,14 @@ moment@2.x, moment@^2.24.0:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
-mongodb-core@2.1.20:
-  version "2.1.20"
-  resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-2.1.20.tgz#fece8dd76b59ee7d7f2d313b65322c160492d8f1"
-  integrity sha512-IN57CX5/Q1bhDq6ShAR6gIv4koFsZP7L8WOK1S0lR0pVDQaScffSMV5jxubLsmZ7J+UdqmykKw4r9hG3XQEGgQ==
+mongodb@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.3.2.tgz#ff086b5f552cf07e24ce098694210f3d42d668b2"
+  integrity sha512-fqJt3iywelk4yKu/lfwQg163Bjpo5zDKhXiohycvon4iQHbrfflSAz9AIlRE6496Pm/dQKQK5bMigdVo2s6gBg==
   dependencies:
-    bson "~1.0.4"
-    require_optional "~1.0.0"
-
-mongodb@^2.2.33:
-  version "2.2.36"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.36.tgz#1c573680b2849fb0f47acbba3dc5fa228de975f5"
-  integrity sha512-P2SBLQ8Z0PVx71ngoXwo12+FiSfbNfGOClAao03/bant5DgLNkOPAck5IaJcEk4gKlQhDEURzfR3xuBG1/B+IA==
-  dependencies:
-    es6-promise "3.2.1"
-    mongodb-core "2.1.20"
-    readable-stream "2.2.7"
+    bson "^1.1.1"
+    require_optional "^1.0.1"
+    safe-buffer "^5.1.2"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -11533,11 +11510,6 @@ private@^0.1.6:
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
   integrity sha512-VvivMrbvd2nKkiG38qjULzlc+4Vx4wm/whI9pQD35YrARNnhxeiRktSOhSukRLFNlzg6Br/cJPet5J/u19r/mg==
 
-process-nextick-args@~1.0.6:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
-  integrity sha1-FQ4gt1ZZCtP5EJPyWk8q2L/zC6M=
-
 process-nextick-args@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
@@ -12518,19 +12490,6 @@ read@1, read@~1.0.1:
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
 
-readable-stream@2.2.7:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.7.tgz#07057acbe2467b22042d36f98c5ad507054e95b1"
-  integrity sha1-BwV6y+JGeyIELTb5jFrVBwVOlbE=
-  dependencies:
-    buffer-shims "~1.0.0"
-    core-util-is "~1.0.0"
-    inherits "~2.0.1"
-    isarray "~1.0.0"
-    process-nextick-args "~1.0.6"
-    string_decoder "~1.0.0"
-    util-deprecate "~1.0.1"
-
 readdir-scoped-modules@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/readdir-scoped-modules/-/readdir-scoped-modules-1.0.2.tgz#9fafa37d286be5d92cbaebdee030dc9b5f406747"
@@ -12771,7 +12730,7 @@ require-main-filename@^2.0.0:
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-2.0.0.tgz#d0b329ecc7cc0f61649f62215be69af54aa8989b"
   integrity sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==
 
-require_optional@~1.0.0:
+require_optional@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require_optional/-/require_optional-1.0.1.tgz#4cf35a4247f64ca3df8c2ef208cc494b1ca8fc2e"
   integrity sha512-qhM/y57enGWHAe3v/NcwML6a3/vfESLe/sGM2dII+gEO0BpKRUkWZow/tyloNqJyN6kXSl3RyyM8Ll5D/sJP8g==
@@ -13830,13 +13789,6 @@ string_decoder@^1.0.0, string_decoder@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.2.0.tgz#fe86e738b19544afe70469243b2a1ee9240eae8d"
   integrity sha512-6YqyX6ZWEYguAxgZzHGL7SsCeGx3V2TtOTqZz1xSTSWnqsbWwbptafNyvf/ACquZUXV3DANr5BDIwNYe1mN42w==
-  dependencies:
-    safe-buffer "~5.1.0"
-
-string_decoder@~1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
-  integrity sha512-4AH6Z5fzNNBcH+6XDMfA/BTt87skxqJlO0lAh3Dker5zThcAxG6mKz+iGu308UKoPPQ8Dcqx/4JhujzltRa+hQ==
   dependencies:
     safe-buffer "~5.1.0"
 
