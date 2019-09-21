@@ -149,7 +149,7 @@
     "@types/progress": "2.0.3",
     "@types/webpack-dev-server": "3.1.5",
     "eslint": "6.4.0",
-    "less": "3.9.0",
+    "less": "3.10.3",
     "prettier": "1.18.2",
     "react": "16.9.0",
     "react-dom": "16.9.0"
