@@ -9889,14 +9889,14 @@ nightingale-ansi-formatter@^4.2.2:
     nightingale-formatter "^5.2.2"
     nightingale-types "^2.2.2"
 
-nightingale-app-console@3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/nightingale-app-console/-/nightingale-app-console-3.2.5.tgz#f3052e18901c8258312c1cf98827ed6ace28e873"
-  integrity sha512-XJHfl7NrA/Ctj+OLPTlU4IGHTaruZl97T+5wjN1zdZJvow0bHDz5nSXYHzGKOwtEf0H6TLNexUltImxBV620nw==
+nightingale-app-console@3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/nightingale-app-console/-/nightingale-app-console-3.2.6.tgz#2d8faa1858aebb83b65ba9e77cfd3597f36e5a6a"
+  integrity sha512-GDd0AGgQ1PhTLxNtdgxRoSgiilPie0Bs0bQgp7gNujNshLuvxmD1aE+HYqgS/1YGg0dXtTfEVxwlhdEMTKK58g==
   dependencies:
     nightingale "^9.2.3"
     nightingale-browser-console "^4.2.2"
-    nightingale-console "^6.1.0"
+    nightingale-console "^6.1.1"
     source-map-support "^0.4.14"
 
 nightingale-browser-console-formatter@^4.2.2:
@@ -9925,15 +9925,15 @@ nightingale-console-output@^4.2.2:
     nightingale-levels "^4.2.2"
     nightingale-types "^2.2.2"
 
-nightingale-console@^6.0.1, nightingale-console@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/nightingale-console/-/nightingale-console-6.1.0.tgz#822748551e0856b170b01e75e9938749671be880"
-  integrity sha512-jzBQqtrfwqhNHnqslZ5yyzJsC8aZaXcQe8mG0DQSKFr+4l0z3s8aX6LgJSeCGHvJrnQmt1b12lLnkbVYFSntuw==
+nightingale-console@^6.0.1, nightingale-console@^6.1.0, nightingale-console@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/nightingale-console/-/nightingale-console-6.1.1.tgz#9e44c11a1a17876e4e8bac33e85b39930a6922dc"
+  integrity sha512-LPdxJGnolL6g7AJhBXQ6q9zygNNAIXlRj+fV7qc/eeIndlr7OjUiMTroS/2vrdQhuc6eibbiZaF0Xs4jGdIJNw==
   dependencies:
     nightingale-ansi-formatter "^4.2.2"
     nightingale-console-output "^4.2.2"
     nightingale-debug "^5.2.2"
-    nightingale-json-formatter "^4.2.2"
+    nightingale-json-formatter "^4.3.0"
     nightingale-types "^2.2.2"
 
 nightingale-debug@^5.2.2:
@@ -9951,10 +9951,10 @@ nightingale-formatter@^5.2.2:
     nightingale-levels "^4.2.2"
     nightingale-types "^2.2.2"
 
-nightingale-json-formatter@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/nightingale-json-formatter/-/nightingale-json-formatter-4.2.2.tgz#2c14c0af151154e2c4f60db822179db2b089ba77"
-  integrity sha512-Ziv2k7WEWfNAxitC17mS/pCgMKnHr5h0zI4AQmgKTtIEQC7dkvevmv2ty7REHfJOUHnBJQM5sgmot/YEqvuCsA==
+nightingale-json-formatter@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/nightingale-json-formatter/-/nightingale-json-formatter-4.3.0.tgz#c4429a2dbd6cb5860936edc0220649f03a077562"
+  integrity sha512-3FRI8fO/d0asArGaOLa1evvOHdBH3BmQ5Z6AxeUMOx8cyWqh7lGz8NjCLgpb/IG4+hI8qpGa8fWtvRqsgbUA4Q==
   dependencies:
     nightingale-formatter "^5.2.2"
     nightingale-types "^2.2.2"
