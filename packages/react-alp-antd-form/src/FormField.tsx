@@ -7,10 +7,11 @@ export default function FormField({
   label,
   name,
   id = name,
+  help,
   ...props
 }: any): ReactElement {
   return (
-    <Form.Item htmlFor={id} label={label}>
+    <Form.Item htmlFor={id} label={label} help={help}>
       <Field
         id={id}
         name={name}
