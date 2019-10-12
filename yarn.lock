@@ -8946,20 +8946,20 @@ listr@^0.14.3:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
-liwi-mongo@5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-5.0.4.tgz#5d7c4906bff2987d714a599c4ba970d18b9b0653"
-  integrity sha512-0NEOrBcoXLPizdBW/HBOS97OzJ2GOxw7tFKKaB50KtN1Jyy7e6OSTQLHR3G8X+bFAd+SnN5q5kyA1YPSmbe4Bw==
+liwi-mongo@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-5.1.0.tgz#3d11536485ab5cdfd01932c8354d3fe220f1a014"
+  integrity sha512-DbI82na4QHV52U0oyJN66yx4FD1LDw+4zS+3xzC/vjN5LeTILQu4cWiSswdftHZAWmdMUQPcYMtHyoEksvz/qQ==
   dependencies:
     "@types/mongodb" "^3.3.1"
-    liwi-store "^4.3.2"
-    liwi-subscribe-store "^2.4.0"
+    liwi-store "^4.4.0"
+    liwi-subscribe-store "^2.5.0"
     liwi-types "^3.0.2"
     mingo "^2.3.5"
     mongodb "^3.3.2"
     nightingale-logger "^6.2.2"
 
-liwi-store@4.3.2, liwi-store@^4.3.2:
+liwi-store@4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-4.3.2.tgz#dbf04ec949c55c01053460048d244144f9d42b78"
   integrity sha512-sUUIFTflvrQVzII87FJPjcQlIMY/MrIoiyqYFoEy2DvNKBgoFTef9Z1h5pBphn2bj1i6L9AgE2m1e3GHhLv3eA==
@@ -8967,13 +8967,21 @@ liwi-store@4.3.2, liwi-store@^4.3.2:
     "@babel/runtime" "^7.5.5"
     liwi-types "^3.0.2"
 
-liwi-subscribe-store@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-2.4.0.tgz#1f848398fb4439d9754d56f1dbcb9641367200b8"
-  integrity sha512-ctFsBQxzP1eIyBQtpwD6yarGr5pMYjCPkQFuuQQfcokDaSivSMsc5U2L5MrZDiPRVT63IzIpAZyMUETKoXxoKA==
+liwi-store@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-4.4.0.tgz#53e45430651994233280b99a2fc7e7f852daa18d"
+  integrity sha512-w9bvbUIhbc85Et9Fpwcb8nioeZPfGsrmzTIvnpZh9pL5yjP9bddCR0txz+5Qm94beaE6bElpwmpYyr5RCLAIpw==
   dependencies:
     "@babel/runtime" "^7.5.5"
-    liwi-store "^4.3.2"
+    liwi-types "^3.0.2"
+
+liwi-subscribe-store@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-2.5.0.tgz#341a543d3f51c5a46bd90cb6f7d79e64da810a16"
+  integrity sha512-HaX8MImkDHBM90De91/eyqWmy4ZsARFQTmcZSz4Nyg3S0JbGDKtcJZ3MExIZyZShPLwNT+5iT46q9dEF970JMg==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    liwi-store "^4.4.0"
     liwi-types "^3.0.2"
 
 liwi-types@^3.0.2:
