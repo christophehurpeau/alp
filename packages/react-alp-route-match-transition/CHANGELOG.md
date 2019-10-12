@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/christophehurpeau/alp/compare/react-alp-route-match-transition@0.1.0...react-alp-route-match-transition@0.1.1) (2019-10-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency type-fest to ^0.8.0 ([#91](https://github.com/christophehurpeau/alp/issues/91)) ([28bbdc0](https://github.com/christophehurpeau/alp/commit/28bbdc0))
+
+
+
+
+
 # 0.1.0 (2019-09-15)
 
 
