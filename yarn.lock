@@ -8959,10 +8959,10 @@ liwi-mongo@5.0.4:
     mongodb "^3.3.2"
     nightingale-logger "^6.2.2"
 
-liwi-store@4.3.2, liwi-store@^4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-4.3.2.tgz#dbf04ec949c55c01053460048d244144f9d42b78"
-  integrity sha512-sUUIFTflvrQVzII87FJPjcQlIMY/MrIoiyqYFoEy2DvNKBgoFTef9Z1h5pBphn2bj1i6L9AgE2m1e3GHhLv3eA==
+liwi-store@4.4.0, liwi-store@^4.3.2:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-4.4.0.tgz#53e45430651994233280b99a2fc7e7f852daa18d"
+  integrity sha512-w9bvbUIhbc85Et9Fpwcb8nioeZPfGsrmzTIvnpZh9pL5yjP9bddCR0txz+5Qm94beaE6bElpwmpYyr5RCLAIpw==
   dependencies:
     "@babel/runtime" "^7.5.5"
     liwi-types "^3.0.2"
