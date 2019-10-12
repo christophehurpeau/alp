@@ -10,14 +10,16 @@ function FormField(_ref) {
       name = _ref.name,
       _ref$id = _ref.id,
       id = _ref$id === void 0 ? name : _ref$id,
-      props = _objectWithoutPropertiesLoose(_ref, ["component", "label", "name", "id"]);
+      help = _ref.help,
+      props = _objectWithoutPropertiesLoose(_ref, ["component", "label", "name", "id", "help"]);
 
   return React.createElement(Form.Item, {
     htmlFor: id,
     label: label,
+    help: help,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 14
     },
     __self: this
   }, React.createElement(Field, Object.assign({
@@ -31,7 +33,7 @@ function FormField(_ref) {
       return React.createElement(Component, Object.assign({}, input, rest, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 18
+          lineNumber: 19
         },
         __self: this
       }));
@@ -39,7 +41,7 @@ function FormField(_ref) {
   }, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 15
     },
     __self: this
   })));

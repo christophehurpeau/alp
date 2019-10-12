@@ -15,11 +15,13 @@ function FormField(_ref) {
       name = _ref.name,
       _ref$id = _ref.id,
       id = _ref$id === void 0 ? name : _ref$id,
-      props = _objectWithoutPropertiesLoose(_ref, ["component", "label", "name", "id"]);
+      help = _ref.help,
+      props = _objectWithoutPropertiesLoose(_ref, ["component", "label", "name", "id", "help"]);
 
   return React.createElement(antd.Form.Item, {
     htmlFor: id,
-    label: label
+    label: label,
+    help: help
   }, React.createElement(reactFinalForm.Field, Object.assign({
     id: id,
     name: name,

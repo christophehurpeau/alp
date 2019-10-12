@@ -14,14 +14,16 @@ function FormField({
   label,
   name,
   id = name,
+  help,
   ...props
 }) {
   return React.createElement(antd.Form.Item, {
     htmlFor: id,
     label: label,
+    help: help,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 14
     },
     __self: this
   }, React.createElement(reactFinalForm.Field, Object.assign({
@@ -34,14 +36,14 @@ function FormField({
     }) => React.createElement(Component, Object.assign({}, input, rest, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
+        lineNumber: 19
       },
       __self: this
     }))
   }, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 15
     },
     __self: this
   })));

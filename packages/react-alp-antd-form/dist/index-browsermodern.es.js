@@ -8,13 +8,15 @@ function FormField(_ref) {
     component: Component,
     label,
     name,
-    id = name
+    id = name,
+    help
   } = _ref,
-      props = _objectWithoutPropertiesLoose(_ref, ["component", "label", "name", "id"]);
+      props = _objectWithoutPropertiesLoose(_ref, ["component", "label", "name", "id", "help"]);
 
   return React.createElement(Form.Item, {
     htmlFor: id,
-    label: label
+    label: label,
+    help: help
   }, React.createElement(Field, Object.assign({
     id: id,
     name: name,

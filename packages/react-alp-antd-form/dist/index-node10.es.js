@@ -7,11 +7,13 @@ function FormField({
   label,
   name,
   id = name,
+  help,
   ...props
 }) {
   return React.createElement(Form.Item, {
     htmlFor: id,
-    label: label
+    label: label,
+    help: help
   }, React.createElement(Field, Object.assign({
     id: id,
     name: name,
