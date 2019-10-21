@@ -128,7 +128,7 @@
     "sass-loader": "^8.0.0",
     "source-map-loader": "^0.2.4",
     "springbokjs-daemon": "^3.6.0",
-    "typed-css-modules-loader": "^0.0.17",
+    "typed-css-modules-loader": "^0.0.18",
     "url-loader": "^2.0.0",
     "webpack": "^4.40.2",
     "webpack-dev-server": "^3.8.0",
