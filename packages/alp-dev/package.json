@@ -147,7 +147,7 @@
     "@types/optimize-css-assets-webpack-plugin": "5.0.1",
     "@types/portscanner": "2.1.0",
     "@types/progress": "2.0.3",
-    "@types/webpack-dev-server": "3.1.5",
+    "@types/webpack-dev-server": "3.9.0",
     "eslint": "6.4.0",
     "less": "3.10.3",
     "prettier": "1.18.2",
