@@ -95,7 +95,7 @@
     "babel-plugin-inline-classnames-babel7": "^1.1.9",
     "babel-preset-latest-node": "^3.0.1",
     "babel-preset-modern-browsers": "^14.0.0",
-    "babel-preset-pob-env": "^2.24.0",
+    "babel-preset-pob-env": "^3.0.0",
     "colorette": "^1.1.0",
     "console-loader": "^1.0.0",
     "css-loader": "^3.2.1",
