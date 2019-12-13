@@ -12,8 +12,10 @@ export interface NodeConfig extends Config {
   readonly packageConfig: PackageConfig
 }
 
-export interface Context {
-  [key: string]: any
+export interface Context<State = {}, SanitizedState = {}> {
+  state: State;
+  sanitizedState: SanitizedState;
+  [key: string]: any;
 }
 
 export type Middleware = (context: Context, next: () => Promise<any>) => any;

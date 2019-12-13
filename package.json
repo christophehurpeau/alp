@@ -17,7 +17,7 @@
     "release": "cross-env GH_TOKEN=$POB_GITHUB_TOKEN lerna version --conventional-commits --conventional-graduate --create-release=github -m 'chore: release' && lerna publish from-git",
     "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
     "test": "lerna run --stream test",
-    "typescript-check": "lerna run --parallel typescript-check",
+    "tsc": "tsc -b",
     "watch": "lerna run --parallel --ignore \"*-example\" watch"
   },
   "commitlint": {
@@ -27,8 +27,8 @@
     "@pob/repo-config": "1.0.2",
     "@pob/version": "4.33.4",
     "husky": "3.1.0",
-    "lerna": "3.16.4",
+    "lerna": "3.19.0",
     "repository-check-dirty": "1.0.2",
-    "typescript": "3.6.3"
+    "typescript": "3.7.3"
   }
 }

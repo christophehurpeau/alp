@@ -4,7 +4,9 @@
   "compilerOptions": {
     "noEmit": false,
     "emitDeclarationOnly": true,
+    "rootDirs": ["src"],
     "outDir": "dist",
+    "composite": true,
     "tsBuildInfoFile": "dist/tsbuildinfo",
     "isolatedModules": false,
     "declaration": true,
@@ -16,5 +18,8 @@
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
     "src/**/__tests__/**"
-  ]
-}
+  ],
+  "references": [
+    { "path": "../alp-dev/tsconfig.build.json" },
+    { "path": "../react-alp-context/tsconfig.build.json" }
+]}

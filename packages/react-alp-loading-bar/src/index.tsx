@@ -48,6 +48,7 @@ export default class LoadingBar extends PureComponent<
   LoadingBarProps,
   LoadingBarState
 > {
+  // eslint-disable-next-line react/sort-comp
   static contextType = ReactAlpContext;
 
   context!: React.ContextType<typeof ReactAlpContext>;

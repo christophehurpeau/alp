@@ -58,9 +58,7 @@ export class Config {
 
     config.set(
       'version',
-      String(
-        version || argv.version || (packageConfig && packageConfig.version),
-      ),
+      String(version || argv.version || packageConfig?.version),
     );
 
     const socketPath = argv['socket-path'] || argv.socketPath;
@@ -78,10 +76,7 @@ export class Config {
       const splitted = key.split('.');
       const value =
         splitted.length !== 0 &&
-        splitted.reduce(
-          (config, partialKey) => config && config[partialKey],
-          argv,
-        );
+        splitted.reduce((config, partialKey) => config?.[partialKey], argv);
       if (value !== undefined) {
         const last = splitted.pop() as string;
         const map =

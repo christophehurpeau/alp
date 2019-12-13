@@ -22,7 +22,7 @@ export default function readRecursiveDirectory(
             fsStat(path, (errFsStat, stat): void => {
               if (errFsStat) return reject(errFsStat);
 
-              if (stat && stat.isDirectory()) {
+              if (stat?.isDirectory()) {
                 readRecursiveDirectory(path, callback)
                   .then(resolve)
                   .catch(reject);

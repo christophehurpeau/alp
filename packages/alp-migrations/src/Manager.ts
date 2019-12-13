@@ -16,9 +16,7 @@ export default class MigrationsManager {
   }
 
   findLastVersion() {
-    return this.store
-      .findOne({}, { created: -1 })
-      .then((row) => row && row.version);
+    return this.store.findOne({}, { created: -1 }).then((row) => row?.version);
   }
 
   addMigrationDone(migration: MongoInsertType<Migration>) {

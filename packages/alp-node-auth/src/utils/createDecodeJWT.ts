@@ -11,5 +11,5 @@ export const createDecodeJWT = (secretKey: string) => async (
     algorithm: 'HS512',
     audience: userAgent,
   });
-  return result && result.connected;
+  return result?.connected;
 };

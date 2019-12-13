@@ -32,13 +32,13 @@ const request: Request = {
   get query() {
     return window.location.search.length === 0
       ? {}
-      : parseQueryString(window.location.search.substr(1));
+      : parseQueryString(window.location.search.slice(1));
   },
   get searchParams() {
     return new URLSearchParams(
       window.location.search.length === 0
         ? window.location.search
-        : window.location.search.substr(1),
+        : window.location.search.slice(1),
     );
   },
   get href() {

@@ -38,7 +38,7 @@ export default async function migrate({
   logger.info('migrate', { packageVersion, currentVersion });
 
   await readRecursiveDirectory(dirname, (res: CallbackParam) => {
-    const fileName = res.path.substr(dirname.length + 1);
+    const fileName = res.path.slice(dirname.length + 1);
 
     if (!fileName.endsWith('.js')) {
       return;

@@ -58,10 +58,10 @@ export default function createPobpackConfig(
     entries: [
       {
         key:
-          // eslint-disable-next-line no-nested-ternary
           target === 'node'
             ? 'index'
-            : target === 'browser'
+            : // eslint-disable-next-line unicorn/no-nested-ternary
+            target === 'browser'
             ? 'es5'
             : 'modern-browsers',
         path: target === 'node' ? 'index.server.ts' : 'index.browser.ts',
@@ -94,10 +94,10 @@ export default function createPobpackConfig(
             optimizations: true,
             target: target === 'node' ? 'node' : 'browser',
             version:
-              // eslint-disable-next-line no-nested-ternary
               target === 'node'
                 ? 8.3
-                : target === 'modern-browser'
+                : // eslint-disable-next-line unicorn/no-nested-ternary
+                target === 'modern-browser'
                 ? 'modern'
                 : undefined,
             loose: true,
@@ -195,10 +195,10 @@ export default function createPobpackConfig(
       new MiniCssExtractPlugin({
         // disable: target === 'node',
         filename: `${
-          // eslint-disable-next-line no-nested-ternary
           target === 'node'
             ? 'server'
-            : target === 'browser'
+            : // eslint-disable-next-line unicorn/no-nested-ternary
+            target === 'browser'
             ? 'es5'
             : 'modern-browsers'
         }.css`,

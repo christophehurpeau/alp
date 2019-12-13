@@ -13,7 +13,7 @@ export default function alpParams(app: NodeApplicationInCreation) {
 
     namedParam(this: Context, name: string): string | undefined {
       const namedParams = this.route.namedParams;
-      return namedParams && namedParams.get(name);
+      return namedParams?.get(name);
     },
 
     otherParam(this: Context, position: number): string | undefined {
@@ -23,7 +23,7 @@ export default function alpParams(app: NodeApplicationInCreation) {
 
     paramGET(this: Context, name: string): string | undefined {
       const query = this.query;
-      return query && query[name];
+      return query?.[name];
     },
 
     paramGETorPOST(this: Context, name: string): any | undefined {

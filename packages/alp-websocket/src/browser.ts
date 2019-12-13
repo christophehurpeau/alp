@@ -33,6 +33,10 @@ declare global {
   }
 }
 
+const callbackFirstConnectionError = () => {
+  successfulConnection = false;
+};
+
 export const websocket: Websocket = {
   get connected() {
     return connected;
@@ -77,10 +81,6 @@ function start(app: BrowserApplication, namespaceName: string): Socket {
     },
   );
   socket = createdSocket;
-
-  const callbackFirstConnectionError = () => {
-    successfulConnection = false;
-  };
 
   createdSocket.on('connect_error', callbackFirstConnectionError);
 

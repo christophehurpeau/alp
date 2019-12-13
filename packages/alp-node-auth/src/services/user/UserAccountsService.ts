@@ -34,7 +34,7 @@ export default class UserAccountsService<
     user?: User,
     accountId?: AccountId,
   ) {
-    logger.debug('getScope', { strategy, userId: user && user._id });
+    logger.debug('getScope', { strategy, userId: user?._id });
     const service = this.strategyToService[strategy];
     if (!service) {
       throw new Error('Strategy not supported');

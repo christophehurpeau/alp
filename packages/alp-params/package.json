@@ -15,7 +15,7 @@
     "url": "https://github.com/alpjs/alp-params/issues"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=8.9.0"
   },
   "browserslist": ["> 0.1%", "Firefox ESR", "not ie < 9", "not dead"],
   "main": "./index.js",
@@ -35,7 +35,7 @@
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_ENV=production BABEL_ENV=test jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
-    "lint": "eslint --ext .ts --quiet src/",
+    "lint": "eslint --ext .js,.ts --quiet src",
     "test": "jest",
     "test:watch": "jest",
     "watch": "pob-watch"
@@ -84,23 +84,23 @@
     "withReact": false
   },
   "dependencies": {
-    "@babel/runtime": "^7.6.0",
+    "@babel/runtime": "^7.7.6",
     "alp-types": "^1.1.0",
     "object-properties": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.6.0",
-    "@babel/preset-env": "7.6.0",
-    "@pob/eslint-config-typescript": "32.1.0",
-    "@types/jest": "24.0.18",
+    "@babel/core": "7.7.5",
+    "@babel/preset-env": "7.7.6",
+    "@pob/eslint-config-typescript": "33.0.8",
+    "@types/jest": "24.0.23",
     "babel-jest": "24.9.0",
     "babel-preset-latest-node": "3.2.1",
     "babel-preset-modern-browsers": "14.0.0",
-    "eslint": "6.4.0",
+    "eslint": "6.7.2",
     "jest": "24.9.0",
     "pob-babel": "23.22.2",
     "pob-lcov-reporter": "1.2.3",
-    "prettier": "1.18.2",
+    "prettier": "1.19.1",
     "xunit-file": "1.0.0"
   }
 }

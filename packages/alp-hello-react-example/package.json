@@ -13,7 +13,7 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "scripts": {
     "build": "alp-dev-build",
-    "lint": "eslint --ext .ts,.tsx --quiet src/",
+    "lint": "eslint --ext .js,.ts,.tsx --quiet src",
     "start": "alp-dev"
   },
   "prettier": {
@@ -26,17 +26,17 @@
     "alp-node": "^1.5.1",
     "alp-react": "^15.8.4",
     "nightingale-app-console": "3.2.6",
-    "react": "16.9.0",
+    "react": "16.11.0",
     "react-alp-context": "^1.3.1",
     "react-alp-translate": "^3.1.1",
-    "react-hot-loader": "^4.8.4"
+    "react-hot-loader": "^4.12.18"
   },
   "devDependencies": {
-    "@hot-loader/react-dom": "16.9.0",
-    "@pob/eslint-config-typescript": "32.1.0",
-    "@pob/eslint-config-typescript-react": "32.1.0",
+    "@hot-loader/react-dom": "16.11.0",
+    "@pob/eslint-config-typescript": "33.0.8",
+    "@pob/eslint-config-typescript-react": "33.0.8",
     "alp-dev": "^12.7.4",
-    "eslint": "6.4.0",
-    "prettier": "1.18.2"
+    "eslint": "6.7.2",
+    "prettier": "1.19.1"
   }
 }

@@ -15,7 +15,7 @@
     "url": "https://github.com/alpjs/alp-body-parser/issues"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=8.9.0"
   },
   "main": "./index.js",
   "types": "./dist/index.d.ts",
@@ -25,7 +25,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
-    "lint": "eslint --ext .ts --quiet src/",
+    "lint": "eslint --ext .js,.ts --quiet src",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -54,17 +54,17 @@
   },
   "dependencies": {
     "@types/co-body": "^0.0.3",
-    "@types/koa": "^2.0.48",
+    "@types/koa": "^2.11.0",
     "co-body": "^6.0.0",
-    "koa": "^2.7.0"
+    "koa": "^2.11.0"
   },
   "devDependencies": {
-    "@babel/core": "7.6.0",
-    "@pob/eslint-config-babel-node": "32.1.0",
-    "@pob/eslint-config-typescript": "32.1.0",
+    "@babel/core": "7.7.5",
+    "@pob/eslint-config-babel-node": "33.0.0",
+    "@pob/eslint-config-typescript": "33.0.8",
     "babel-preset-latest-node": "3.2.1",
-    "eslint": "6.4.0",
+    "eslint": "6.7.2",
     "pob-babel": "23.22.2",
-    "prettier": "1.18.2"
+    "prettier": "1.19.1"
   }
 }

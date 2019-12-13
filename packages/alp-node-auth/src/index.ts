@@ -20,12 +20,8 @@ import { AccountService } from './services/user/types';
 
 export { AuthenticationService };
 export { default as MongoUsersManager } from './MongoUsersManager';
-export {
-  default as UserAccountGoogleService,
-} from './services/user/UserAccountGoogleService';
-export {
-  default as UserAccountSlackService,
-} from './services/user/UserAccountSlackService';
+export { default as UserAccountGoogleService } from './services/user/UserAccountGoogleService';
+export { default as UserAccountSlackService } from './services/user/UserAccountSlackService';
 export { authSocketIO } from './authSocketIO';
 export { STATUSES } from './services/user/UserAccountsService';
 

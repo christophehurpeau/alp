@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'fs';
 import { IncomingMessage, Server, ServerResponse } from 'http';
 import path from 'path';
 import { deprecate } from 'util';
-import Koa, { BaseContext } from 'koa';
+import Koa, { BaseContext, DefaultState, ParameterizedContext } from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
 import _config, { Config } from 'alp-node-config';
@@ -48,7 +48,11 @@ declare module 'koa' {
   interface BaseContext extends AlpContext {}
 }
 
-export type Context = AlpContext;
+export type Context<State = {}, SanitizedState = {}> = AlpContext<
+  State,
+  SanitizedState
+> &
+  ParameterizedContext<State>;
 
 export default class Alp extends Koa implements NodeApplication {
   dirname: string;
@@ -113,10 +117,19 @@ export default class Alp extends Koa implements NodeApplication {
     return this.env === 'prod' || this.env === 'production';
   }
 
-  createContext(req: IncomingMessage, res: ServerResponse) {
-    const ctx = super.createContext(req, res);
-    ctx.sanitizedState = {};
-    return ctx;
+  createContext<State = DefaultState, SanitizedState = DefaultState>(
+    req: IncomingMessage,
+    res: ServerResponse,
+  ): Context<State, SanitizedState> {
+    const ctx: ParameterizedContext<State> = super.createContext<State>(
+      req,
+      res,
+    );
+    (ctx as Context<
+      State,
+      SanitizedState
+    >).sanitizedState = {} as SanitizedState;
+    return ctx as Context<State, SanitizedState>;
   }
 
   servePublic() {
