@@ -95,7 +95,7 @@
     "@babel/preset-env": "7.7.6",
     "@pob/eslint-config-typescript": "33.0.8",
     "babel-preset-latest-node": "3.2.1",
-    "babel-preset-modern-browsers": "14.0.0",
+    "babel-preset-modern-browsers": "14.1.1",
     "eslint": "6.7.2",
     "pob-babel": "23.22.2",
     "prettier": "1.19.1"
