@@ -110,7 +110,7 @@ window.__INITIAL_DATA__=${unevalValue(initialData)};
 </html>`;
 }
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
 function createAlpAppWrapper(app, context) {
   var _temp;
 
@@ -166,7 +166,7 @@ function NodeSuspenseWrapper({
   return children;
 }
 
-var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
+var _jsxFileName$1 = "/home/chris/libs/alp/packages/alp-react/src/layout/Body.tsx";
 function Body({
   children
 }) {

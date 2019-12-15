@@ -2,7 +2,7 @@ import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import React, { PureComponent } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/react-alp-loading-bar/src/index.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-loading-bar/src/index.tsx";
 /*
 Example with antd:
 import { Progress } from 'antd';

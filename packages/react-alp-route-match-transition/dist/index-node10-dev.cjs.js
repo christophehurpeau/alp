@@ -8,7 +8,7 @@ const reactRouter = require('react-router');
 const React = _interopDefault(require('react'));
 const reactTransitionGroup = require('react-transition-group');
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/react-alp-route-match-transition/src/index.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-route-match-transition/src/index.tsx";
 
 const DefaultWrapperComponent = ({
   children,

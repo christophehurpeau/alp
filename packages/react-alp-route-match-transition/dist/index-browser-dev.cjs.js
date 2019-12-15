@@ -9,7 +9,7 @@ var reactRouter = require('react-router');
 var React = _interopDefault(require('react'));
 var reactTransitionGroup = require('react-transition-group');
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/react-alp-route-match-transition/src/index.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-route-match-transition/src/index.tsx";
 
 function RouteMatchTransition(_ref2) {
   var path = _ref2.path,

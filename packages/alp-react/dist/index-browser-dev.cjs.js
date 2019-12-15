@@ -14,7 +14,7 @@ var _inheritsLoose = _interopDefault(require('@babel/runtime/helpers/esm/inherit
 var ReactAlpContext = _interopDefault(require('react-alp-context'));
 var reactHelmet = _interopDefault(require('react-helmet'));
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
 function createAlpAppWrapper(app, context) {
   var _temp;
 
@@ -74,7 +74,7 @@ function createAlpAppWrapper(app, context) {
 
 var LoadingFallbackContext = React.createContext('Loading...');
 
-var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/AlpModule.tsx";
+var _jsxFileName$1 = "/home/chris/libs/alp/packages/alp-react/src/module/AlpModule.tsx";
 
 function AlpModuleBrowser(props) {
   var loadingFallback = React.useContext(LoadingFallbackContext);
@@ -88,7 +88,7 @@ function AlpModuleBrowser(props) {
   }, props.children);
 }
 
-var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/SuspenseWrapper.tsx";
+var _jsxFileName$2 = "/home/chris/libs/alp/packages/alp-react/src/module/SuspenseWrapper.tsx";
 
 function BrowserSuspenseWrapper(_ref2) {
   var children = _ref2.children;
@@ -103,7 +103,7 @@ function BrowserSuspenseWrapper(_ref2) {
   }, children);
 }
 
-var _jsxFileName$3 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
+var _jsxFileName$3 = "/home/chris/libs/alp/packages/alp-react/src/layout/Body.tsx";
 function Body(_ref) {
   var children = _ref.children;
   return React__default.createElement("div", {

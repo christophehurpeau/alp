@@ -10,7 +10,7 @@ var ReactAlpContext = _interopDefault(require('react-alp-context'));
 var reactAlpTranslate = require('react-alp-translate');
 require('../ConnectionState.global.scss');
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/react-alp-connection-state/src/index.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-connection-state/src/index.tsx";
 function ConnectionState() {
   var ctx = React.useContext(ReactAlpContext);
   var notConnected = !ctx.sanitizedState.user;

@@ -3,7 +3,7 @@ import { Form } from 'antd';
 import { Field } from 'react-final-form';
 import React from 'react';
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/react-alp-antd-form/src/FormField.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-antd-form/src/FormField.tsx";
 function FormField(_ref) {
   var Component = _ref.component,
       label = _ref.label,

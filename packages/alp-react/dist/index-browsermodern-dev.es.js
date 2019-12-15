@@ -5,7 +5,7 @@ import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
 function createAlpAppWrapper(app, context) {
   var _temp;
 
@@ -51,7 +51,7 @@ function createAlpAppWrapper(app, context) {
 
 const LoadingFallbackContext = createContext('Loading...');
 
-var _jsxFileName$1 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/AlpModule.tsx";
+var _jsxFileName$1 = "/home/chris/libs/alp/packages/alp-react/src/module/AlpModule.tsx";
 
 function AlpModuleBrowser(props) {
   const loadingFallback = useContext(LoadingFallbackContext);
@@ -65,7 +65,7 @@ function AlpModuleBrowser(props) {
   }, props.children);
 }
 
-var _jsxFileName$2 = "/Users/chris/Work/alp/alp/packages/alp-react/src/module/SuspenseWrapper.tsx";
+var _jsxFileName$2 = "/home/chris/libs/alp/packages/alp-react/src/module/SuspenseWrapper.tsx";
 
 function BrowserSuspenseWrapper({
   children
@@ -81,7 +81,7 @@ function BrowserSuspenseWrapper({
   }, children);
 }
 
-var _jsxFileName$3 = "/Users/chris/Work/alp/alp/packages/alp-react/src/layout/Body.tsx";
+var _jsxFileName$3 = "/home/chris/libs/alp/packages/alp-react/src/layout/Body.tsx";
 function Body({
   children
 }) {

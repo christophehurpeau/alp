@@ -3,7 +3,7 @@ import ReactAlpContext from 'react-alp-context';
 import { T } from 'react-alp-translate';
 import '../ConnectionState.global.scss';
 
-var _jsxFileName = "/Users/chris/Work/alp/alp/packages/react-alp-connection-state/src/index.tsx";
+var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-connection-state/src/index.tsx";
 function ConnectionState() {
   var ctx = useContext(ReactAlpContext);
   var notConnected = !ctx.sanitizedState.user;
