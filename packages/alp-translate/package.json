@@ -81,7 +81,7 @@
   },
   "dependencies": {
     "alp-types": "^2.0.0",
-    "intl-messageformat": "^2.2.0",
+    "intl-messageformat": "^7.0.0",
     "nightingale-logger": "^6.2.2",
     "react-alp-context": "^2.0.0"
   },
