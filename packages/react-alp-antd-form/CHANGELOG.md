@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-antd-form@0.2.0...react-alp-antd-form@1.0.0) (2019-12-15)
+
+
+### Features
+
+* update dependencies ([2d1539c](https://github.com/christophehurpeau/alp/commit/2d1539c))
+* update dependencies and pob ([edee8ce](https://github.com/christophehurpeau/alp/commit/edee8ce))
+
+
+### BREAKING CHANGES
+
+* drop node 8
+
+
+
+
+
 # [0.2.0](https://github.com/christophehurpeau/alp/compare/react-alp-antd-form@0.1.2...react-alp-antd-form@0.2.0) (2019-10-12)
 
 

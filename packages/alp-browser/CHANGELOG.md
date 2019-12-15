@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/christophehurpeau/alp/compare/alp-browser@1.4.2...alp-browser@2.0.0) (2019-12-15)
+
+
+### Features
+
+* update dependencies ([2d1539c](https://github.com/christophehurpeau/alp/commit/2d1539c))
+* update dependencies and pob ([edee8ce](https://github.com/christophehurpeau/alp/commit/edee8ce))
+
+
+### BREAKING CHANGES
+
+* drop node 8
+
+
+
+
+
 ## [1.4.2](https://github.com/christophehurpeau/alp/compare/alp-browser@1.4.1...alp-browser@1.4.2) (2019-10-12)
 
 **Note:** Version bump only for package alp-browser

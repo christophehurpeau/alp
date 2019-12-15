@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@1.5.1...alp-node@2.0.0) (2019-12-15)
+
+
+### Features
+
+* update dependencies ([2d1539c](https://github.com/christophehurpeau/alp/commit/2d1539c))
+* update dependencies and pob ([edee8ce](https://github.com/christophehurpeau/alp/commit/edee8ce))
+
+
+### BREAKING CHANGES
+
+* drop node 8
+
+
+
+
+
 ## [1.5.1](https://github.com/christophehurpeau/alp/compare/alp-node@1.5.0...alp-node@1.5.1) (2019-09-15)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.10.2...alp-node-auth@3.0.0) (2019-12-15)
+
+
+### Features
+
+* update dependencies ([2d1539c](https://github.com/christophehurpeau/alp/commit/2d1539c))
+* update dependencies and pob ([edee8ce](https://github.com/christophehurpeau/alp/commit/edee8ce))
+
+
+### BREAKING CHANGES
+
+* drop node 8
+
+
+
+
+
 ## [2.10.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@2.10.1...alp-node-auth@2.10.2) (2019-09-21)
 
 **Note:** Version bump only for package alp-node-auth

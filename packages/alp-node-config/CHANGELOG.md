@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@4.3.1...alp-node-config@5.0.0) (2019-12-15)
+
+
+### Features
+
+* update dependencies ([2d1539c](https://github.com/christophehurpeau/alp/commit/2d1539c))
+* update dependencies and pob ([edee8ce](https://github.com/christophehurpeau/alp/commit/edee8ce))
+
+
+### BREAKING CHANGES
+
+* drop node 8
+
+
+
+
+
 ## [4.3.1](https://github.com/christophehurpeau/alp/compare/alp-node-config@4.3.0...alp-node-config@4.3.1) (2019-09-15)
 
 **Note:** Version bump only for package alp-node-config

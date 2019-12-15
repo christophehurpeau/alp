@@ -1,6 +1,6 @@
 {
   "name": "alp-browser-language",
-  "version": "2.3.1",
+  "version": "3.0.0",
   "description": "language context in alp framework",
   "keywords": ["alp", "accepts-languages"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -53,7 +53,7 @@
     "withReact": false
   },
   "dependencies": {
-    "alp-types": "^1.1.0"
+    "alp-types": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.7.5",

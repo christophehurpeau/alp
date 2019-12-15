@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0](https://github.com/christophehurpeau/alp/compare/alp-react@15.8.4...alp-react@16.0.0) (2019-12-15)
+
+
+### Features
+
+* update dependencies ([2d1539c](https://github.com/christophehurpeau/alp/commit/2d1539c))
+* update dependencies and pob ([edee8ce](https://github.com/christophehurpeau/alp/commit/edee8ce))
+
+
+### BREAKING CHANGES
+
+* drop node 8
+
+
+
+
+
 ## [15.8.4](https://github.com/christophehurpeau/alp/compare/alp-react@15.8.3...alp-react@15.8.4) (2019-10-12)
 
 **Note:** Version bump only for package alp-react
