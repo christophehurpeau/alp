@@ -95,7 +95,7 @@ export default function createPobpackConfig(
             target: target === 'node' ? 'node' : 'browser',
             version:
               target === 'node'
-                ? 8.3
+                ? 10.13
                 : // eslint-disable-next-line unicorn/no-nested-ternary
                 target === 'modern-browser'
                 ? 'modern'
