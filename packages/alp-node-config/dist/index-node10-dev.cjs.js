@@ -53,7 +53,7 @@ class Config {
       throw new Error('Cannot have "version", in config.');
     }
 
-    config.set('version', String(version || argv.version || packageConfig && packageConfig.version));
+    config.set('version', String(version || argv.version || (packageConfig === null || packageConfig === void 0 ? void 0 : packageConfig.version)));
     const socketPath = argv['socket-path'] || argv.socketPath;
 
     if (socketPath) {
@@ -68,7 +68,7 @@ class Config {
 
     argvOverrides.forEach(key => {
       const splitted = key.split('.');
-      const value = splitted.length !== 0 && splitted.reduce((config, partialKey) => config && config[partialKey], argv);
+      const value = splitted.length !== 0 && splitted.reduce((config, partialKey) => config === null || config === void 0 ? void 0 : config[partialKey], argv);
 
       if (value !== undefined) {
         const last = splitted.pop();

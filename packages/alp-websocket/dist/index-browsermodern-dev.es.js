@@ -6,6 +6,11 @@ const logger = new Logger('alp:websocket');
 let socket;
 let successfulConnection = null;
 let connected = false;
+
+const callbackFirstConnectionError = function callbackFirstConnectionError() {
+  successfulConnection = false;
+};
+
 const websocket = {
   get connected() {
     return connected;
@@ -48,11 +53,6 @@ function start(app, namespaceName) {
     transports: ['websocket']
   });
   socket = createdSocket;
-
-  const callbackFirstConnectionError = function callbackFirstConnectionError() {
-    successfulConnection = false;
-  };
-
   createdSocket.on('connect_error', callbackFirstConnectionError);
   createdSocket.on('connect', function () {
     createdSocket.off('connect_error', callbackFirstConnectionError);

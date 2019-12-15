@@ -15,7 +15,7 @@
     "url": "https://github.com/alpjs/alp-language/issues"
   },
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=10.13.0"
   },
   "main": "./index.js",
   "types": "./dist/index.d.ts",
@@ -39,11 +39,6 @@
         "target": "node",
         "version": "10",
         "formats": ["cjs", "es"]
-      },
-      {
-        "target": "node",
-        "version": "8",
-        "formats": ["cjs"]
       }
     ],
     "entries": ["index"],
@@ -57,9 +52,9 @@
     "@babel/core": "7.7.5",
     "@pob/eslint-config-babel-node": "33.0.0",
     "@pob/eslint-config-typescript": "33.0.8",
-    "babel-preset-latest-node": "3.2.1",
+    "babel-preset-latest-node": "4.0.1",
     "eslint": "6.7.2",
-    "pob-babel": "23.22.2",
+    "pob-babel": "24.0.1",
     "prettier": "1.19.1"
   }
 }

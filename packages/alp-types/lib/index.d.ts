@@ -13,8 +13,8 @@ export interface NodeConfig extends Config {
 }
 
 export interface Context<State = {}, SanitizedState = {}> {
-  state: State;
-  sanitizedState: SanitizedState;
+  state: State | any;
+  sanitizedState: SanitizedState | any;
   [key: string]: any;
 }
 

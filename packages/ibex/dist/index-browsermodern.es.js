@@ -58,11 +58,11 @@ const request = {
   },
 
   get query() {
-    return window.location.search.length === 0 ? {} : parse(window.location.search.substr(1));
+    return window.location.search.length === 0 ? {} : parse(window.location.search.slice(1));
   },
 
   get searchParams() {
-    return new URLSearchParams(window.location.search.length === 0 ? window.location.search : window.location.search.substr(1));
+    return new URLSearchParams(window.location.search.length === 0 ? window.location.search : window.location.search.slice(1));
   },
 
   get href() {

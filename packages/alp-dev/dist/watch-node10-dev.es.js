@@ -189,7 +189,7 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
       percentages[source] = msg.percentage;
       const message = msg.message;
       bar.update((percentages.node + percentages.browser) / 2, {
-        msg: message.length > 20 ? `${message.substr(0, 20)}...` : message
+        msg: message.length > 20 ? `${message.slice(0, 20)}...` : message
       });
     }
   };

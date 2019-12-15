@@ -1,1 +1,0 @@
-{"version":3,"file":"index-node8.cjs.js","sources":["../src/index.tsx"],"sourcesContent":["import React from 'react';\nimport { Context } from 'alp-types';\n\nexport type AlpContext = Context;\n\nexport default React.createContext<Context>({});\n"],"names":["React","createContext"],"mappings":";;;;;;;;AAKA,cAAeA,KAAK,CAACC,aAAN,CAA6B,EAA7B,CAAf;;;;"}

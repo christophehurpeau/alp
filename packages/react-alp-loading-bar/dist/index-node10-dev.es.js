@@ -137,14 +137,14 @@ class LoadingBar extends PureComponent {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 148
+        lineNumber: 149
       },
       __self: this
     }, React.createElement(LoadingBarComponent, {
       progress: this.state.progress,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 159
+        lineNumber: 160
       },
       __self: this
     }));

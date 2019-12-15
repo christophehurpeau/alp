@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { IncomingMessage, Server, ServerResponse } from 'http';
-import Koa, { BaseContext } from 'koa';
+import Koa, { BaseContext, DefaultState, ParameterizedContext } from 'koa';
 import { Config } from 'alp-node-config';
 import { NodeApplication, NodeConfig, Context as AlpContext } from 'alp-types';
 export { Config };
@@ -16,7 +16,7 @@ declare module 'koa' {
     interface BaseContext extends AlpContext {
     }
 }
-export declare type Context = AlpContext;
+export declare type Context<State = any, SanitizedState = any> = AlpContext<State, SanitizedState> & ParameterizedContext<State>;
 export default class Alp extends Koa implements NodeApplication {
     dirname: string;
     certPath: string;
@@ -32,9 +32,9 @@ export default class Alp extends Koa implements NodeApplication {
     constructor(options?: Options);
     existsConfigSync(name: string): boolean;
     loadConfigSync(name: string): Map<string, any>;
-    readonly environment: string;
-    readonly production: boolean;
-    createContext(req: IncomingMessage, res: ServerResponse): Koa.ParameterizedContext<any, {}>;
+    get environment(): string;
+    get production(): boolean;
+    createContext<State = DefaultState, SanitizedState = DefaultState>(req: IncomingMessage, res: ServerResponse): Context<State, SanitizedState>;
     servePublic(): void;
     catchErrors(): void;
     listen(): Server;

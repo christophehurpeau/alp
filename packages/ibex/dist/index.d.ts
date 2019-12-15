@@ -26,7 +26,7 @@ export default class Application extends EventEmitter {
     context: Context;
     callback?: Composed<Context>;
     constructor();
-    readonly environment: void;
+    get environment(): void;
     use(fn: Middleware): this;
     onerror(e: any): void;
     run(url?: string): void;

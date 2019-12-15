@@ -48,7 +48,7 @@ declare module 'koa' {
   interface BaseContext extends AlpContext {}
 }
 
-export type Context<State = {}, SanitizedState = {}> = AlpContext<
+export type Context<State = any, SanitizedState = any> = AlpContext<
   State,
   SanitizedState
 > &

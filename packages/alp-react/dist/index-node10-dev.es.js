@@ -64,7 +64,7 @@ function uneval(value, keys, objects = new Set()) {
 } // https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw
 
 
-const UNSAFE_CHARS_REGEXP = /[<>/\u2028\u2029]/g;
+const UNSAFE_CHARS_REGEXP = /[/<>\u2028\u2029]/g;
 const ESCAPED_CHARS = {
   '<': '\\u003C',
   '>': '\\u003E',

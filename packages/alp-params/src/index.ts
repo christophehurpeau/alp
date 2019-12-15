@@ -5,9 +5,19 @@ import ParamValidatorValid from './ParamValidatorValid';
 
 export { ParamValidator };
 
+declare module 'alp-types' {
+  interface Context {
+    param(name: string): string | undefined;
+    namedParam(name: string): string | undefined;
+    otherParam(position: number): string | undefined;
+    paramGET(name: string): string | undefined;
+    paramGETorPOST(name: string): any | undefined;
+  }
+}
+
 export default function alpParams(app: NodeApplicationInCreation) {
   Object.assign(app.context, {
-    param(name: string): string | undefined {
+    param(this: Context, name: string): string | undefined {
       return this.namedParam(name) || this.paramGET(name);
     },
 

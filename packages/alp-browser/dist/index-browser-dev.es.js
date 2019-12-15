@@ -1,5 +1,4 @@
 import _regeneratorRuntime from '@babel/runtime/regenerator';
-import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import Ibex from 'ibex';
 import config, { existsConfig, getConfig } from 'alp-browser-config';
@@ -34,39 +33,29 @@ function (_Ibex) {
 
   var _proto = AlpBrowser.prototype;
 
-  _proto.init =
-  /*#__PURE__*/
-  function () {
-    var _init = _asyncToGenerator(
-    /*#__PURE__*/
-    _regeneratorRuntime.mark(function _callee() {
-      return _regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return config(this, configPath);
+  _proto.init = function init() {
+    return _regeneratorRuntime.async(function init$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _regeneratorRuntime.awrap(config(this, configPath));
 
-            case 2:
-              language(this);
-              _context.next = 5;
-              return translate('/locales')(this);
+          case 2:
+            language(this);
+            _context.next = 5;
+            return _regeneratorRuntime.awrap(translate('/locales')(this));
 
-            case 5:
-              return _context.abrupt("return", this);
+          case 5:
+            return _context.abrupt("return", this);
 
-            case 6:
-            case "end":
-              return _context.stop();
-          }
+          case 6:
+          case "end":
+            return _context.stop();
         }
-      }, _callee, this);
-    }));
-
-    return function init() {
-      return _init.apply(this, arguments);
-    };
-  }();
+      }
+    }, null, this);
+  };
 
   _proto.existsConfig = function existsConfig$1(name) {
     return existsConfig("/config" + name);

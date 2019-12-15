@@ -255,7 +255,7 @@ class UserAccountsService extends EventEmitter {
   getScope(strategy, scopeKey, user, accountId) {
     logger$1.debug('getScope', {
       strategy,
-      userId: user && user._id
+      userId: user === null || user === void 0 ? void 0 : user._id
     });
     const service = this.strategyToService[strategy];
 
@@ -469,7 +469,7 @@ const createDecodeJWT = secretKey => async (token, userAgent) => {
     algorithm: 'HS512',
     audience: userAgent
   });
-  return result && result.connected;
+  return result === null || result === void 0 ? void 0 : result.connected;
 };
 
 class MongoUsersManager {

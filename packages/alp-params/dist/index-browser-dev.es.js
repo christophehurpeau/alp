@@ -117,7 +117,7 @@ function alpParams(app) {
     },
     namedParam: function namedParam(name) {
       var namedParams = this.route.namedParams;
-      return namedParams && namedParams.get(name);
+      return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
     },
     otherParam: function otherParam(position) {
       var otherParams = this.route.otherParams;
@@ -125,7 +125,7 @@ function alpParams(app) {
     },
     paramGET: function paramGET(name) {
       var query = this.query;
-      return query && query[name];
+      return query === null || query === void 0 ? void 0 : query[name];
     },
     paramGETorPOST: function paramGETorPOST(name) {
       return this.body[name] !== undefined ? this.body[name] : this.query[name];

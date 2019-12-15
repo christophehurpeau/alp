@@ -1,5 +1,4 @@
 import _regeneratorRuntime from '@babel/runtime/regenerator';
-import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import contentLoaded from 'content-loaded';
 import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
@@ -83,49 +82,38 @@ function AppContainer(_ref) {
 
 var logger = new Logger('alp:react');
 function alpReactBrowser(app) {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _renderApp = _asyncToGenerator(
-      /*#__PURE__*/
-      _regeneratorRuntime.mark(function _callee(App) {
-        var initialData, ctx, WrappedApp, appElement;
-        return _regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                // eslint-disable-next-line no-underscore-dangle
-                initialData = window.__INITIAL_DATA__ || {};
-                ctx = app.createContext();
+  return function renderApp(App) {
+    var initialData, ctx, WrappedApp, appElement;
+    return _regeneratorRuntime.async(function renderApp$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            // eslint-disable-next-line no-underscore-dangle
+            initialData = window.__INITIAL_DATA__ || {};
+            ctx = app.createContext();
 
-                if (initialData.sanitizedState) {
-                  ctx.sanitizedState = initialData.sanitizedState;
-                }
-
-                logger.success('render called');
-                WrappedApp = createAlpAppWrapper(React.createElement(App), ctx);
-                appElement = React.createElement(WrappedApp);
-                _context.next = 8;
-                return contentLoaded();
-
-              case 8:
-                // const container =
-                hydrate(appElement, document.getElementById('react-app'));
-                logger.success('rendered'); // container.updateSanitizedState({ loading: false });
-
-              case 10:
-              case "end":
-                return _context.stop();
+            if (initialData.sanitizedState) {
+              ctx.sanitizedState = initialData.sanitizedState;
             }
-          }
-        }, _callee);
-      }));
 
-      return function renderApp() {
-        return _renderApp.apply(this, arguments);
-      };
-    }()
-  );
+            logger.success('render called');
+            WrappedApp = createAlpAppWrapper(React.createElement(App), ctx);
+            appElement = React.createElement(WrappedApp);
+            _context.next = 8;
+            return _regeneratorRuntime.awrap(contentLoaded());
+
+          case 8:
+            // const container =
+            hydrate(appElement, document.getElementById('react-app'));
+            logger.success('rendered'); // container.updateSanitizedState({ loading: false });
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    });
+  };
 }
 
 export default alpReactBrowser;

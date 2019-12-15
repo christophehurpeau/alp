@@ -35,8 +35,8 @@ function createPobpackConfig(target, production = false) {
       build: target === 'node' ? 'build' : 'public'
     },
     entries: [{
-      key: // eslint-disable-next-line no-nested-ternary
-      target === 'node' ? 'index' : target === 'browser' ? 'es5' : 'modern-browsers',
+      key: target === 'node' ? 'index' : // eslint-disable-next-line unicorn/no-nested-ternary
+      target === 'browser' ? 'es5' : 'modern-browsers',
       path: target === 'node' ? 'index.server.ts' : 'index.browser.ts'
     }],
     resolveLoaderModules: [path.join(__dirname, '../..', 'node_modules'), 'node_modules'],
@@ -55,8 +55,8 @@ function createPobpackConfig(target, production = false) {
         exportDefaultName: false,
         optimizations: true,
         target: target === 'node' ? 'node' : 'browser',
-        version: // eslint-disable-next-line no-nested-ternary
-        target === 'node' ? 8.3 : target === 'modern-browser' ? 'modern' : undefined,
+        version: target === 'node' ? 8.3 : // eslint-disable-next-line unicorn/no-nested-ternary
+        target === 'modern-browser' ? 'modern' : undefined,
         loose: true,
         modules: false
       }]],
@@ -134,8 +134,8 @@ function createPobpackConfig(target, production = false) {
     // },
     plugins: [new MiniCssExtractPlugin({
       // disable: target === 'node',
-      filename: `${// eslint-disable-next-line no-nested-ternary
-      target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`
+      filename: `${target === 'node' ? 'server' : // eslint-disable-next-line unicorn/no-nested-ternary
+      target === 'browser' ? 'es5' : 'modern-browsers'}.css`
     }), new OptimizeCssAssetsPlugin(), process.send && new webpack.ProgressPlugin((percentage, message) => {
       process.send({
         type: 'webpack-progress',

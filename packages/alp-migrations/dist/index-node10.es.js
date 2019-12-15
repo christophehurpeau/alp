@@ -12,7 +12,7 @@ function readRecursiveDirectory(directory, callback) {
           stat(path, (errFsStat, stat) => {
             if (errFsStat) return reject(errFsStat);
 
-            if (stat && stat.isDirectory()) {
+            if (stat === null || stat === void 0 ? void 0 : stat.isDirectory()) {
               readRecursiveDirectory(path, callback).then(resolve).catch(reject);
               return;
             }
@@ -42,7 +42,7 @@ class MigrationsManager {
   findLastVersion() {
     return this.store.findOne({}, {
       created: -1
-    }).then(row => row && row.version);
+    }).then(row => row === null || row === void 0 ? void 0 : row.version);
   }
 
   addMigrationDone(migration) {
@@ -75,7 +75,7 @@ async function migrate({
     currentVersion
   });
   await readRecursiveDirectory(dirname, res => {
-    const fileName = res.path.substr(dirname.length + 1);
+    const fileName = res.path.slice(dirname.length + 1);
 
     if (!fileName.endsWith('.js')) {
       return;
