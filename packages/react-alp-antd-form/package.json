@@ -72,7 +72,7 @@
     "@babel/preset-react": "7.7.4",
     "@pob/eslint-config-typescript": "33.0.8",
     "@pob/eslint-config-typescript-react": "33.0.8",
-    "antd": "3.26.2",
+    "antd": "3.26.3",
     "babel-preset-latest-node": "4.0.1",
     "babel-preset-modern-browsers": "14.1.1",
     "eslint": "6.7.2",
