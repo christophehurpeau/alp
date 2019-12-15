@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.1](https://github.com/christophehurpeau/alp/compare/alp-dev@13.0.0...alp-dev@13.0.1) (2019-12-15)
+
+
+### Bug Fixes
+
+* node version ([9b507ae](https://github.com/christophehurpeau/alp/commit/9b507ae))
+
+
+
+
+
 # [13.0.0](https://github.com/christophehurpeau/alp/compare/alp-dev@12.7.4...alp-dev@13.0.0) (2019-12-15)
 
 
