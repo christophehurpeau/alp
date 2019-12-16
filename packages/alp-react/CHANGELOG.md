@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2](https://github.com/christophehurpeau/alp/compare/alp-react@16.0.1...alp-react@16.0.2) (2019-12-16)
+
+
+### Bug Fixes
+
+* alp-react hot ([2f0138c](https://github.com/christophehurpeau/alp/commit/2f0138c))
+* update pobpack ([6e0b501](https://github.com/christophehurpeau/alp/commit/6e0b501))
+
+
+
+
+
 ## [16.0.1](https://github.com/christophehurpeau/alp/compare/alp-react@16.0.0...alp-react@16.0.1) (2019-12-15)
 
 **Note:** Version bump only for package alp-react

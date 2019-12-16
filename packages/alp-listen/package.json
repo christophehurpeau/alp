@@ -1,6 +1,6 @@
 {
   "name": "alp-listen",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Listen function, using config and logger for alp server",
   "keywords": ["alp"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -45,7 +45,7 @@
     "withReact": false
   },
   "dependencies": {
-    "alp-node-config": "^5.0.0",
+    "alp-node-config": "^5.0.1",
     "nightingale-logger": "^6.2.2"
   },
   "devDependencies": {

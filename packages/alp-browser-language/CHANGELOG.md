@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/christophehurpeau/alp/compare/alp-browser-language@3.0.0...alp-browser-language@3.0.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* update pobpack ([6e0b501](https://github.com/christophehurpeau/alp/commit/6e0b501))
+
+
+
+
+
 # [3.0.0](https://github.com/christophehurpeau/alp/compare/alp-browser-language@2.3.1...alp-browser-language@3.0.0) (2019-12-15)
 
 

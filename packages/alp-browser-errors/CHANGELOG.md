@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/christophehurpeau/alp/compare/alp-browser-errors@2.0.0...alp-browser-errors@2.0.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* update pobpack ([6e0b501](https://github.com/christophehurpeau/alp/commit/6e0b501))
+
+
+
+
+
 # [2.0.0](https://github.com/christophehurpeau/alp/compare/alp-browser-errors@1.4.1...alp-browser-errors@2.0.0) (2019-12-15)
 
 

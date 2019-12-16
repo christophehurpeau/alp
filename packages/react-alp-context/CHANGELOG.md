@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/christophehurpeau/alp/compare/react-alp-context@2.0.0...react-alp-context@2.0.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* update pobpack ([6e0b501](https://github.com/christophehurpeau/alp/commit/6e0b501))
+
+
+
+
+
 # [2.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-context@1.3.1...react-alp-context@2.0.0) (2019-12-15)
 
 
