@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.3](https://github.com/christophehurpeau/alp/compare/alp-react@16.0.2...alp-react@16.0.3) (2019-12-16)
+
+**Note:** Version bump only for package alp-react
+
+
+
+
+
 ## [16.0.2](https://github.com/christophehurpeau/alp/compare/alp-react@16.0.1...alp-react@16.0.2) (2019-12-16)
 
 

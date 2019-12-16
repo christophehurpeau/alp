@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://github.com/christophehurpeau/alp/compare/alp-dev@13.0.2...alp-dev@13.1.0) (2019-12-16)
+
+
+### Features
+
+* update url-loader ([f75c8d5](https://github.com/christophehurpeau/alp/commit/f75c8d5))
+
+
+
+
+
 ## [13.0.2](https://github.com/christophehurpeau/alp/compare/alp-dev@13.0.1...alp-dev@13.0.2) (2019-12-16)
 
 

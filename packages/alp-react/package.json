@@ -1,6 +1,6 @@
 {
   "name": "alp-react",
-  "version": "16.0.2",
+  "version": "16.0.3",
   "description": "render with react in alp framework",
   "keywords": ["alp", "auk"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
@@ -113,7 +113,7 @@
     "@babel/preset-react": "7.7.4",
     "@pob/eslint-config-typescript": "33.0.8",
     "@pob/eslint-config-typescript-react": "33.0.8",
-    "alp-dev": "^13.0.2",
+    "alp-dev": "^13.1.0",
     "babel-preset-latest-node": "4.0.1",
     "babel-preset-modern-browsers": "14.1.1",
     "eslint": "6.7.2",
