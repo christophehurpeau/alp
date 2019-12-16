@@ -13,7 +13,7 @@ const devHot = () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
-  if (!module.parents || !module.parents[0]) {
+  if (!module.parents || module.parents.length === 0) {
     throw new Error('alp-react: hot is not supported on your system.');
   }
   // access parent
@@ -24,7 +24,7 @@ const devHot = () => {
   delete cache[module.id];
 
   // setup hot for caller
-  return hotLoader({ id: parent.i, ...parent });
+  return hotLoader(parent);
 };
 
 export const hot = (!PRODUCTION && module.hot
