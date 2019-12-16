@@ -69,7 +69,7 @@
     "@types/minimist": "1.2.0",
     "babel-preset-latest-node": "4.0.1",
     "eslint": "6.7.2",
-    "pob-babel": "24.0.1",
+    "pob-babel": "24.1.0",
     "prettier": "1.19.1"
   }
 }

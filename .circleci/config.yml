@@ -24,12 +24,6 @@ jobs:
           name: tests
           command: yarn run test
       - run:
-          name: Generate Coverage doc
-          command: yarn run generate:test-coverage
-      - run:
-          name: Send results to codecov
-          command: bash <(curl -s https://codecov.io/bash)
-      - run:
           name: Check nothing was forget before commit
           command: yarn run repository-check-dirty
 
