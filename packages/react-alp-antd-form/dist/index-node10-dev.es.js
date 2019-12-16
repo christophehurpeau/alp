@@ -2,7 +2,6 @@ import { Form } from 'antd';
 import { Field } from 'react-final-form';
 import React from 'react';
 
-var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-antd-form/src/FormField.tsx";
 function FormField({
   component: Component,
   label,
@@ -14,12 +13,7 @@ function FormField({
   return React.createElement(Form.Item, {
     htmlFor: id,
     label: label,
-    help: help,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
+    help: help
   }, React.createElement(Field, Object.assign({
     id: id,
     name: name,
@@ -27,20 +21,8 @@ function FormField({
       input,
       meta,
       ...rest
-    }) => React.createElement(Component, Object.assign({}, input, rest, {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 19
-      },
-      __self: this
-    }))
-  }, props, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: this
-  })));
+    }) => React.createElement(Component, Object.assign({}, input, rest))
+  }, props)));
 }
 
 export { FormField };

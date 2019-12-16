@@ -2,8 +2,6 @@ import { Route } from 'react-router';
 import React from 'react';
 import { Transition } from 'react-transition-group';
 
-var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-route-match-transition/src/index.tsx";
-
 const DefaultWrapperComponent = ({
   children,
   visible
@@ -18,12 +16,7 @@ function RouteMatchTransition({
   ...otherProps
 }) {
   return React.createElement(Route, {
-    path: path,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 56
-    },
-    __self: this
+    path: path
   }, ({
     match,
     history
@@ -36,12 +29,7 @@ function RouteMatchTransition({
       exit: true,
       enter: false,
       in: Boolean(match !== null),
-      timeout: timeout,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 62
-      },
-      __self: this
+      timeout: timeout
     }, state => {
       switch (state) {
         case 'entering':
@@ -51,13 +39,7 @@ function RouteMatchTransition({
             match: match,
             exiting: state === 'exiting',
             onClose: handleClose
-          }, otherProps, {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 74
-            },
-            __self: this
-          }));
+          }, otherProps));
 
         case 'exited':
         case 'unmounted':

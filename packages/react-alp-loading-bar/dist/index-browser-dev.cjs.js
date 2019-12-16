@@ -9,7 +9,6 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var ReactAlpContext = _interopDefault(require('react-alp-context'));
 
-var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-loading-bar/src/index.tsx";
 /*
 Example with antd:
 import { Progress } from 'antd';
@@ -165,19 +164,9 @@ function (_PureComponent) {
         right: 0,
         zIndex: 4,
         pointerEvents: 'none'
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 149
-      },
-      __self: this
+      }
     }, React__default.createElement(LoadingBarComponent, {
-      progress: this.state.progress,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 160
-      },
-      __self: this
+      progress: this.state.progress
     }));
   };
 

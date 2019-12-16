@@ -116,7 +116,6 @@ window.__INITIAL_DATA__=${unevalValue(initialData)};
 </html>`;
 }
 
-var _jsxFileName = "/home/chris/libs/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
 function createAlpAppWrapper(app, context) {
   var _temp;
 
@@ -140,20 +139,9 @@ function createAlpAppWrapper(app, context) {
     }
 
     render() {
-      if (this.state.error) return React__default.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 33
-        },
-        __self: this
-      }, "An unexpected error occured");
+      if (this.state.error) return React__default.createElement("div", null, "An unexpected error occured");
       return React__default.createElement(ReactAlpContext.Provider, {
-        value: context,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 35
-        },
-        __self: this
+        value: context
       }, app);
     }
 
@@ -172,17 +160,10 @@ function NodeSuspenseWrapper({
   return children;
 }
 
-var _jsxFileName$1 = "/home/chris/libs/alp/packages/alp-react/src/layout/Body.tsx";
 function Body({
   children
 }) {
-  return React__default.createElement("div", {
-    __source: {
-      fileName: _jsxFileName$1,
-      lineNumber: 8
-    },
-    __self: this
-  }, children);
+  return React__default.createElement("div", null, children);
 }
 
 function AppContainer({

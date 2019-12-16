@@ -5,7 +5,6 @@ import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
-var _jsxFileName = "/home/chris/libs/alp/packages/alp-react/src/createAlpAppWrapper.tsx";
 function createAlpAppWrapper(app, context) {
   var _temp;
 
@@ -29,20 +28,9 @@ function createAlpAppWrapper(app, context) {
     }
 
     render() {
-      if (this.state.error) return React.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 33
-        },
-        __self: this
-      }, "An unexpected error occured");
+      if (this.state.error) return React.createElement("div", null, "An unexpected error occured");
       return React.createElement(ReactAlpContext.Provider, {
-        value: context,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 35
-        },
-        __self: this
+        value: context
       }, app);
     }
 
@@ -51,47 +39,26 @@ function createAlpAppWrapper(app, context) {
 
 const LoadingFallbackContext = createContext('Loading...');
 
-var _jsxFileName$1 = "/home/chris/libs/alp/packages/alp-react/src/module/AlpModule.tsx";
-
 function AlpModuleBrowser(props) {
   const loadingFallback = useContext(LoadingFallbackContext);
   return React.createElement(Suspense, {
-    fallback: loadingFallback,
-    __source: {
-      fileName: _jsxFileName$1,
-      lineNumber: 15
-    },
-    __self: this
+    fallback: loadingFallback
   }, props.children);
 }
-
-var _jsxFileName$2 = "/home/chris/libs/alp/packages/alp-react/src/module/SuspenseWrapper.tsx";
 
 function BrowserSuspenseWrapper({
   children
 }) {
   const loader = useContext(LoadingFallbackContext);
   return React.createElement(Suspense, {
-    fallback: loader,
-    __source: {
-      fileName: _jsxFileName$2,
-      lineNumber: 15
-    },
-    __self: this
+    fallback: loader
   }, children);
 }
 
-var _jsxFileName$3 = "/home/chris/libs/alp/packages/alp-react/src/layout/Body.tsx";
 function Body({
   children
 }) {
-  return React.createElement("div", {
-    __source: {
-      fileName: _jsxFileName$3,
-      lineNumber: 8
-    },
-    __self: this
-  }, children);
+  return React.createElement("div", null, children);
 }
 
 function AppContainer({

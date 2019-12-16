@@ -10,7 +10,6 @@ var ReactAlpContext = _interopDefault(require('react-alp-context'));
 var reactAlpTranslate = require('react-alp-translate');
 require('../ConnectionState.global.scss');
 
-var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-connection-state/src/index.tsx";
 function ConnectionState() {
   var ctx = React.useContext(ReactAlpContext);
   var notConnected = !ctx.sanitizedState.user;
@@ -44,25 +43,9 @@ function ConnectionState() {
   }, [ctx.app.websocket]);
   return React__default.createElement("div", {
     hidden: !connectionState || notConnected || connectionState === 'connected',
-    className: "alp-connection-state",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 40
-    },
-    __self: this
-  }, !connectionState || notConnected ? null : React__default.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    },
-    __self: this
-  }, React__default.createElement(reactAlpTranslate.T, {
-    id: "connectionState." + connectionState,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 48
-    },
-    __self: this
+    className: "alp-connection-state"
+  }, !connectionState || notConnected ? null : React__default.createElement("div", null, React__default.createElement(reactAlpTranslate.T, {
+    id: "connectionState." + connectionState
   })));
 }
 

@@ -3,7 +3,6 @@ import ReactAlpContext from 'react-alp-context';
 import { T } from 'react-alp-translate';
 import '../ConnectionState.global.scss';
 
-var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-connection-state/src/index.tsx";
 function ConnectionState() {
   var ctx = useContext(ReactAlpContext);
   var notConnected = !ctx.sanitizedState.user;
@@ -37,25 +36,9 @@ function ConnectionState() {
   }, [ctx.app.websocket]);
   return React.createElement("div", {
     hidden: !connectionState || notConnected || connectionState === 'connected',
-    className: "alp-connection-state",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 40
-    },
-    __self: this
-  }, !connectionState || notConnected ? null : React.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    },
-    __self: this
-  }, React.createElement(T, {
-    id: "connectionState." + connectionState,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 48
-    },
-    __self: this
+    className: "alp-connection-state"
+  }, !connectionState || notConnected ? null : React.createElement("div", null, React.createElement(T, {
+    id: "connectionState." + connectionState
   })));
 }
 

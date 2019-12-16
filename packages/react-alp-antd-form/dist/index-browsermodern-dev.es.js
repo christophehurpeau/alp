@@ -3,7 +3,6 @@ import { Form } from 'antd';
 import { Field } from 'react-final-form';
 import React from 'react';
 
-var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-antd-form/src/FormField.tsx";
 function FormField(_ref) {
   let {
     component: Component,
@@ -17,12 +16,7 @@ function FormField(_ref) {
   return React.createElement(Form.Item, {
     htmlFor: id,
     label: label,
-    help: help,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
+    help: help
   }, React.createElement(Field, Object.assign({
     id: id,
     name: name,
@@ -32,21 +26,9 @@ function FormField(_ref) {
       } = _ref2,
           rest = _objectWithoutPropertiesLoose(_ref2, ["input", "meta"]);
 
-      return React.createElement(Component, Object.assign({}, input, rest, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 19
-        },
-        __self: this
-      }));
+      return React.createElement(Component, Object.assign({}, input, rest));
     }
-  }, props, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: this
-  })));
+  }, props)));
 }
 
 export { FormField };

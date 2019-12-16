@@ -9,7 +9,7 @@ var devHot = function devHot() {
   var cache = require.cache; // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
 
-  if (!module.parents || !module.parents[0]) {
+  if (!module.parents || module.parents.length === 0) {
     throw new Error('alp-react: hot is not supported on your system.');
   } // access parent
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -20,9 +20,7 @@ var devHot = function devHot() {
 
   delete cache[module.id]; // setup hot for caller
 
-  return hotLoader(Object.assign({
-    id: parent.i
-  }, parent));
+  return hotLoader(parent);
 };
 
 var hot = module.hot ? devHot() : productionHot;

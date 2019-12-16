@@ -8,8 +8,6 @@ const reactRouter = require('react-router');
 const React = _interopDefault(require('react'));
 const reactTransitionGroup = require('react-transition-group');
 
-var _jsxFileName = "/home/chris/libs/alp/packages/react-alp-route-match-transition/src/index.tsx";
-
 const DefaultWrapperComponent = ({
   children,
   visible
@@ -24,12 +22,7 @@ function RouteMatchTransition({
   ...otherProps
 }) {
   return React.createElement(reactRouter.Route, {
-    path: path,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 56
-    },
-    __self: this
+    path: path
   }, ({
     match,
     history
@@ -42,12 +35,7 @@ function RouteMatchTransition({
       exit: true,
       enter: false,
       in: Boolean(match !== null),
-      timeout: timeout,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 62
-      },
-      __self: this
+      timeout: timeout
     }, state => {
       switch (state) {
         case 'entering':
@@ -57,13 +45,7 @@ function RouteMatchTransition({
             match: match,
             exiting: state === 'exiting',
             onClose: handleClose
-          }, otherProps, {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 74
-            },
-            __self: this
-          }));
+          }, otherProps));
 
         case 'exited':
         case 'unmounted':
