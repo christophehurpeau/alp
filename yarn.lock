@@ -11091,15 +11091,15 @@ pobpack-browser@8.0.1:
     source-map-support "^0.5.16"
     webpack-dev-server "3.9.0"
 
-pobpack-node@8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-8.0.1.tgz#f4dd2286166c34e3a62068ce0bb91b6f42ac5f64"
-  integrity sha512-vrf4jjATspHY6YQBwAdxQcGJWLZED4WU7/QeMc9kescyfAvjMDcFbNiidsLft5gWxAMls1QxWnLEX2oblmM+7w==
+pobpack-node@8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/pobpack-node/-/pobpack-node-8.0.3.tgz#df55d532f5c7e60b5ed4a7d6851873de4df5e01c"
+  integrity sha512-g/87SW7s8RFrvjL+YLQJaFGN5dqXDyGBgQogsM5sc5cQkRtcVBp4aaeTxnGWiGHczxPk2XLkGORuXZlYQX4aNQ==
   dependencies:
     babel-preset-latest-node "^4.0.1"
     debounce "^1.2.0"
-    pobpack-types "^4.0.1"
-    pobpack-utils "^8.0.1"
+    pobpack-types "^4.1.1"
+    pobpack-utils "^8.2.0"
     source-map-support "^0.5.16"
     springbokjs-daemon "^4.0.0"
     webpack-node-externals "^1.7.2"
@@ -11114,20 +11114,20 @@ pobpack-types@4.0.1:
     "@types/babel__template" "^7.0.2"
     "@types/babel__traverse" "^7.0.8"
 
-pobpack-types@^4.0.1, pobpack-types@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/pobpack-types/-/pobpack-types-4.1.0.tgz#0dabb3694c2c78826e35ea814b4b6cc41c0ce3da"
-  integrity sha512-BJJquEeKoIhpJ5/kVaBYk8nuTLUgakeeCG9of+ByQ4hzsDVn0gzP7ihy9NjXFSRERoXUeI+Oupz/CV/Z61tLAg==
+pobpack-types@^4.0.1, pobpack-types@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/pobpack-types/-/pobpack-types-4.1.1.tgz#9c92d7adb31777e620d993d615105775cefc3f44"
+  integrity sha512-A0ESn2g4hWCI0mmXVShq34YrJ6TSwxjw8YQpRNHfDeo8jyrCOZkvz+g9VB5p1j0OtZ4/iWsveLFhRz/1OvY5Zg==
   dependencies:
     "@types/babel__core" "^7.1.3"
     "@types/babel__generator" "^7.6.1"
     "@types/babel__template" "^7.0.2"
     "@types/babel__traverse" "^7.0.8"
 
-pobpack-utils@^8.0.1:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/pobpack-utils/-/pobpack-utils-8.1.0.tgz#40e8eb920fb8c898173d19b27812d9db0a7adb4f"
-  integrity sha512-FW4KaOjNb+Zx5UrmRbpYpi6alBuJsoxoocKs2LWxXNLEWI6Wc54HGCVO4AXNGPV/oNmd7XhqVf6IsBNcYKwL5A==
+pobpack-utils@^8.0.1, pobpack-utils@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/pobpack-utils/-/pobpack-utils-8.2.0.tgz#acc1720d04cfb7366e6d2ad2715cae2733831568"
+  integrity sha512-hhfidKhHwqqKUZdumOoNwZQ8lsyVPwzAnirWJsfYgAHrG5KANtxn5FX46uE7JYdWT6Ryh5YOWQReUS8rES2pcw==
   dependencies:
     "@types/webpack" "^4.41.0"
     babel-loader "^8.0.6"
@@ -11137,7 +11137,7 @@ pobpack-utils@^8.0.1:
     nightingale "^9.2.3"
     nightingale-console "^6.1.1"
     nightingale-logger "^6.2.2"
-    pobpack-types "^4.1.0"
+    pobpack-types "^4.1.1"
     progress "^2.0.3"
     react-dev-utils "^10.0.0"
     resolve-from "^5.0.0"
