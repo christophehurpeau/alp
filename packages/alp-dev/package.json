@@ -112,7 +112,7 @@
     "offline-plugin": "^5.0.7",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "pob-babel": "^24.1.0",
-    "pobpack-browser": "8.0.1",
+    "pobpack-browser": "8.0.4",
     "pobpack-node": "8.0.1",
     "pobpack-types": "4.0.1",
     "portscanner": "^2.2.0",
