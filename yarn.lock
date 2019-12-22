@@ -11104,20 +11104,10 @@ pobpack-node@8.0.1:
     springbokjs-daemon "^4.0.0"
     webpack-node-externals "^1.7.2"
 
-pobpack-types@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/pobpack-types/-/pobpack-types-4.0.1.tgz#4390589ada04649e553c673435b7047051e34c3f"
-  integrity sha512-V1r4ad6rD9VGXLO9g9bvIHhpUVBSlHDDtBwPv7q4GDydWmZZIKEu/HjxJiJykuQHz2Ewn/cpVAYMpaaggQvpjg==
-  dependencies:
-    "@types/babel__core" "^7.1.3"
-    "@types/babel__generator" "^7.6.1"
-    "@types/babel__template" "^7.0.2"
-    "@types/babel__traverse" "^7.0.8"
-
-pobpack-types@^4.0.1, pobpack-types@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/pobpack-types/-/pobpack-types-4.1.0.tgz#0dabb3694c2c78826e35ea814b4b6cc41c0ce3da"
-  integrity sha512-BJJquEeKoIhpJ5/kVaBYk8nuTLUgakeeCG9of+ByQ4hzsDVn0gzP7ihy9NjXFSRERoXUeI+Oupz/CV/Z61tLAg==
+pobpack-types@4.1.1, pobpack-types@^4.0.1, pobpack-types@^4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/pobpack-types/-/pobpack-types-4.1.1.tgz#9c92d7adb31777e620d993d615105775cefc3f44"
+  integrity sha512-A0ESn2g4hWCI0mmXVShq34YrJ6TSwxjw8YQpRNHfDeo8jyrCOZkvz+g9VB5p1j0OtZ4/iWsveLFhRz/1OvY5Zg==
   dependencies:
     "@types/babel__core" "^7.1.3"
     "@types/babel__generator" "^7.6.1"

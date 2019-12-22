@@ -114,7 +114,7 @@
     "pob-babel": "^24.1.0",
     "pobpack-browser": "8.0.1",
     "pobpack-node": "8.0.1",
-    "pobpack-types": "4.0.1",
+    "pobpack-types": "4.1.1",
     "portscanner": "^2.2.0",
     "postcss": "^7.0.23",
     "postcss-loader": "^3.0.0",
