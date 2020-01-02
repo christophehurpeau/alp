@@ -742,10 +742,30 @@ function init({
     };
 
     const decodeJwt = createDecodeJWT(app.config.get('authentication').get('secretKey'));
+
+    const getConnectedAndUser = async (userAgent, token) => {
+      if (!token) return [null, null];
+      let connected;
+
+      try {
+        connected = await decodeJwt(token, userAgent);
+      } catch (err) {
+        logger$3.info('failed to verify authentification', {
+          err
+        });
+      }
+
+      if (connected == null) return [null, null];
+      const user = await usersManager.findConnected(connected);
+      return [connected, user];
+    };
+
     return {
       routes: createRoutes(controller),
+      getConnectedAndUser,
       middleware: async (ctx, next) => {
         const token = ctx.cookies.get(COOKIE_NAME$1);
+        const userAgent = ctx.request.headers['user-agent'];
         logger$3.debug('middleware', {
           token
         });
@@ -762,29 +782,13 @@ function init({
           return next();
         };
 
-        if (!token) return notConnected();
-        let connected;
-
-        try {
-          connected = await decodeJwt(token, ctx.request.headers['user-agent']);
-        } catch (err) {
-          logger$3.info('failed to verify authentification', {
-            err
-          });
-          ctx.cookies.set(COOKIE_NAME$1, '', {
-            expires: new Date(1)
-          });
-          return notConnected();
-        }
-
+        const [connected, user] = await getConnectedAndUser(userAgent, token);
         logger$3.debug('middleware', {
           connected
         });
-        if (!connected) return notConnected();
-        const user = await usersManager.findConnected(connected);
 
-        if (!user) {
-          ctx.cookies.set(COOKIE_NAME$1, '', {
+        if (connected == null || user == null) {
+          if (token) ctx.cookies.set(COOKIE_NAME$1, '', {
             expires: new Date(1)
           });
           return notConnected();
@@ -798,5 +802,5 @@ function init({
 }
 
 export default init;
-export { AuthenticationService, MongoUsersManager, STATUSES, UserAccountGoogleService, UserAccountSlackService, authSocketIO };
+export { AuthenticationService, COOKIE_NAME$1 as COOKIE_NAME, MongoUsersManager, STATUSES, UserAccountGoogleService, UserAccountSlackService, authSocketIO };
 //# sourceMappingURL=index-node10.es.js.map

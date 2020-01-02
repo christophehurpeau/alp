@@ -25,7 +25,7 @@ export { default as UserAccountSlackService } from './services/user/UserAccountS
 export { authSocketIO } from './authSocketIO';
 export { STATUSES } from './services/user/UserAccountsService';
 
-const COOKIE_NAME = 'connectedUser';
+export const COOKIE_NAME = 'connectedUser';
 const logger = new Logger('alp:auth');
 
 const signPromisified: any = promisify(sign);
@@ -108,14 +108,38 @@ export default function init<
     const decodeJwt = createDecodeJWT(
       app.config.get('authentication').get('secretKey'),
     );
+
+    const getConnectedAndUser = async (
+      userAgent: string,
+      token?: string,
+    ): Promise<[null | string | number, null | undefined | U]> => {
+      if (!token) return [null, null];
+
+      let connected;
+      try {
+        connected = await decodeJwt(token, userAgent);
+      } catch (err) {
+        logger.info('failed to verify authentification', { err });
+      }
+
+      if (connected == null) return [null, null];
+
+      const user = await usersManager.findConnected(connected);
+
+      return [connected, user];
+    };
+
     return {
       routes: createRoutes(controller),
 
+      getConnectedAndUser,
+
       middleware: async (ctx: any, next: any) => {
         const token = ctx.cookies.get(COOKIE_NAME);
+        const userAgent = ctx.request.headers['user-agent'];
         logger.debug('middleware', { token });
 
-        const setState = (connected: any, user: any) => {
+        const setState = (connected: any, user: null | undefined | U): void => {
           ctx.state.connected = connected;
           ctx.state.user = user;
           ctx.sanitizedState.connected = connected;
@@ -127,24 +151,11 @@ export default function init<
           return next();
         };
 
-        if (!token) return notConnected();
-
-        let connected;
-        try {
-          connected = await decodeJwt(token, ctx.request.headers['user-agent']);
-        } catch (err) {
-          logger.info('failed to verify authentification', { err });
-          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-          return notConnected();
-        }
+        const [connected, user] = await getConnectedAndUser(userAgent, token);
         logger.debug('middleware', { connected });
 
-        if (!connected) return notConnected();
-
-        const user = await usersManager.findConnected(connected);
-
-        if (!user) {
-          ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+        if (connected == null || user == null) {
+          if (token) ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
           return notConnected();
         }
 
