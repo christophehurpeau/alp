@@ -1,1 +1,0 @@
-{"version":3,"file":"authSocketIO.d.ts","sourceRoot":"","sources":["../src/authSocketIO.ts"],"names":[],"mappings":"AAAA,OAAO,OAAmB,MAAM,SAAS,CAAC;AAE1C,OAAO,EAAE,eAAe,EAAE,MAAM,WAAW,CAAC;AAC5C,OAAO,EAAE,IAAI,EAAE,MAAM,YAAY,CAAC;AAElC,OAAO,iBAAiB,MAAM,qBAAqB,CAAC;AAKpD,eAAO,MAAM,YAAY,0LA8CxB,CAAC"}

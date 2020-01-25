@@ -23,6 +23,7 @@ export { default as MongoUsersManager } from './MongoUsersManager';
 export { default as UserAccountGoogleService } from './services/user/UserAccountGoogleService';
 export { default as UserAccountSlackService } from './services/user/UserAccountSlackService';
 export { authSocketIO } from './authSocketIO';
+export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
 
 export const COOKIE_NAME = 'connectedUser';

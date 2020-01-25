@@ -694,6 +694,46 @@ const authSocketIO = (app, usersManager, io, options) => {
 
 const COOKIE_NAME$1 = 'connectedUser';
 const logger$3 = new Logger('alp:auth');
+const createAuthApolloContext = (config, usersManager) => {
+  const decodeJwt = createDecodeJWT(config.get('authentication').get('secretKey'));
+  return async ({
+    req
+  }) => {
+    const token = req.cookies[COOKIE_NAME$1];
+    logger$3.debug('middleware websocket', {
+      token
+    });
+    if (!token) return {
+      user: undefined
+    };
+    let connected;
+
+    try {
+      connected = await decodeJwt(token, req.headers['user-agent']);
+    } catch (err) {
+      logger$3.info('failed to verify authentication', {
+        err
+      });
+      return {
+        user: undefined
+      };
+    }
+
+    logger$3.debug('middleware websocket', {
+      connected
+    });
+    if (!connected) return {
+      user: undefined
+    };
+    const user = await usersManager.findConnected(connected);
+    return {
+      user
+    };
+  };
+};
+
+const COOKIE_NAME$2 = 'connectedUser';
+const logger$4 = new Logger('alp:auth');
 const signPromisified = util.promisify(jsonwebtoken.sign);
 function init({
   homeRouterKey,
@@ -715,7 +755,7 @@ function init({
     });
 
     app.context.setConnected = async function (connected, user) {
-      logger$3.debug('setConnected', {
+      logger$4.debug('setConnected', {
         connected
       });
 
@@ -733,7 +773,7 @@ function init({
         audience: this.request.headers['user-agent'],
         expiresIn: '30 days'
       });
-      this.cookies.set(COOKIE_NAME$1, token, {
+      this.cookies.set(COOKIE_NAME$2, token, {
         httpOnly: true,
         secure: this.config.get('allowHttps')
       });
@@ -742,7 +782,7 @@ function init({
     app.context.logout = function () {
       delete this.state.connected;
       delete this.state.user;
-      this.cookies.set(COOKIE_NAME$1, '', {
+      this.cookies.set(COOKIE_NAME$2, '', {
         expires: new Date(1)
       });
     };
@@ -756,7 +796,7 @@ function init({
       try {
         connected = await decodeJwt(token, userAgent);
       } catch (err) {
-        logger$3.info('failed to verify authentification', {
+        logger$4.info('failed to verify authentification', {
           err
         });
       }
@@ -770,9 +810,9 @@ function init({
       routes: createRoutes(controller),
       getConnectedAndUser,
       middleware: async (ctx, next) => {
-        const token = ctx.cookies.get(COOKIE_NAME$1);
+        const token = ctx.cookies.get(COOKIE_NAME$2);
         const userAgent = ctx.request.headers['user-agent'];
-        logger$3.debug('middleware', {
+        logger$4.debug('middleware', {
           token
         });
 
@@ -789,12 +829,12 @@ function init({
         };
 
         const [connected, user] = await getConnectedAndUser(userAgent, token);
-        logger$3.debug('middleware', {
+        logger$4.debug('middleware', {
           connected
         });
 
         if (connected == null || user == null) {
-          if (token) ctx.cookies.set(COOKIE_NAME$1, '', {
+          if (token) ctx.cookies.set(COOKIE_NAME$2, '', {
             expires: new Date(1)
           });
           return notConnected();
@@ -808,11 +848,12 @@ function init({
 }
 
 exports.AuthenticationService = AuthenticationService;
-exports.COOKIE_NAME = COOKIE_NAME$1;
+exports.COOKIE_NAME = COOKIE_NAME$2;
 exports.MongoUsersManager = MongoUsersManager;
 exports.STATUSES = STATUSES;
 exports.UserAccountGoogleService = UserAccountGoogleService;
 exports.UserAccountSlackService = UserAccountSlackService;
 exports.authSocketIO = authSocketIO;
+exports.createAuthApolloContext = createAuthApolloContext;
 exports.default = init;
 //# sourceMappingURL=index-node10-dev.cjs.js.map
