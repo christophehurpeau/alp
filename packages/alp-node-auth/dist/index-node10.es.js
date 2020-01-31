@@ -688,12 +688,31 @@ const authSocketIO = (app, usersManager, io, options) => {
 
 const COOKIE_NAME$1 = 'connectedUser';
 const logger$3 = new Logger('alp:auth');
+
+const getTokenFromReq = (req, options) => {
+  if (req.cookies) return req.cookies[COOKIE_NAME$1];
+  const cookies = new Cookies(req, null, { ...options,
+    secure: true
+  });
+  return cookies.get(COOKIE_NAME$1);
+};
+
 const createAuthApolloContext = (config, usersManager) => {
   const decodeJwt = createDecodeJWT(config.get('authentication').get('secretKey'));
   return async ({
-    req
+    req,
+    connection
   }) => {
-    const token = req.cookies[COOKIE_NAME$1];
+    if (connection) console.log(Object.keys(connection));
+
+    if (connection && connection.user) {
+      return {
+        user: connection.user
+      };
+    }
+
+    if (!req) return null;
+    const token = getTokenFromReq(req);
     logger$3.debug('middleware websocket', {
       token
     });
