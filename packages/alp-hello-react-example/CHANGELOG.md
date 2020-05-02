@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.4](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.5.3...alp-hello-react-example@2.5.4) (2020-05-02)
+
+
+### Bug Fixes
+
+* remove dollar sign ([db173b0](https://github.com/christophehurpeau/alp/commit/db173b0))
+
+
+
+
+
 ## [2.5.3](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.5.2...alp-hello-react-example@2.5.3) (2019-12-16)
 
 **Note:** Version bump only for package alp-hello-react-example
