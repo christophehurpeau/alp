@@ -2,7 +2,9 @@
   "name": "alp-node-auth",
   "version": "3.1.0",
   "description": "authentication with alp",
-  "keywords": ["alp"],
+  "keywords": [
+    "alp"
+  ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
   "license": "ISC",
   "repository": {
@@ -18,7 +20,9 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     ">=3.1": {
-      "strategies/*": ["ts3.1/strategies.d.ts"]
+      "strategies/*": [
+        "ts3.1/strategies.d.ts"
+      ]
     }
   },
   "module:node": "./dist/index-node10.es.js",
@@ -27,7 +31,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
-    "lint": "eslint --ext .js,.ts --quiet src scripts",
+    "lint": "eslint --ext .js,.ts --quiet *.js src scripts",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -40,10 +44,15 @@
       {
         "target": "node",
         "version": "10",
-        "formats": ["cjs", "es"]
+        "formats": [
+          "cjs",
+          "es"
+        ]
       }
     ],
-    "entries": ["index"],
+    "entries": [
+      "index"
+    ],
     "withReact": false
   },
   "peerDependencies": {
@@ -61,16 +70,10 @@
     "simple-oauth2": "^2.2.1"
   },
   "devDependencies": {
-    "@babel/core": "7.7.5",
-    "@pob/eslint-config": "33.0.8",
-    "@pob/eslint-config-babel-node": "33.0.0",
-    "@pob/eslint-config-node": "33.0.0",
-    "@pob/eslint-config-typescript": "33.0.8",
-    "babel-preset-latest-node": "4.0.1",
-    "eslint": "6.7.2",
+    "@babel/core": "7.9.6",
+    "babel-preset-latest-node": "4.1.0",
     "liwi-mongo": "5.1.0",
     "liwi-store": "4.4.0",
-    "pob-babel": "24.1.0",
-    "prettier": "1.19.1"
+    "pob-babel": "24.9.0"
   }
 }

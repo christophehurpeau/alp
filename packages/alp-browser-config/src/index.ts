@@ -34,7 +34,7 @@ export function existsConfig(path: string): Promise<boolean> | boolean {
   return fetchConfig(path).then((result) => result !== undefined);
 }
 
-const getOrFetchAppConfig = function(
+const getOrFetchAppConfig = function (
   version: string,
   environment: string,
   configPath: string,

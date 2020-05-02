@@ -15,7 +15,7 @@ function RouteMatchTransition({
   wrapperComponent: WrapperComponent = DefaultWrapperComponent,
   ...otherProps
 }) {
-  return React.createElement(Route, {
+  return /*#__PURE__*/React.createElement(Route, {
     path: path
   }, ({
     match,
@@ -25,7 +25,7 @@ function RouteMatchTransition({
       history.push(closePath);
     };
 
-    return React.createElement(Transition, {
+    return /*#__PURE__*/React.createElement(Transition, {
       exit: true,
       enter: false,
       in: Boolean(match !== null),
@@ -35,7 +35,7 @@ function RouteMatchTransition({
         case 'entering':
         case 'entered':
         case 'exiting':
-          return React.createElement(Component, Object.assign({
+          return /*#__PURE__*/React.createElement(Component, Object.assign({
             match: match,
             exiting: state === 'exiting',
             onClose: handleClose

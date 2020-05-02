@@ -139,8 +139,8 @@ function createAlpAppWrapper(app, context) {
     }
 
     render() {
-      if (this.state.error) return React__default.createElement("div", null, "An unexpected error occured");
-      return React__default.createElement(ReactAlpContext.Provider, {
+      if (this.state.error) return /*#__PURE__*/React__default.createElement("div", null, "An unexpected error occured");
+      return /*#__PURE__*/React__default.createElement(ReactAlpContext.Provider, {
         value: context
       }, app);
     }
@@ -151,7 +151,7 @@ function createAlpAppWrapper(app, context) {
 const LoadingFallbackContext = React.createContext('Loading...');
 
 function AlpModuleNode(props) {
-  return React__default.createElement(React__default.Fragment, null, props.children);
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, props.children);
 }
 
 function NodeSuspenseWrapper({
@@ -163,13 +163,13 @@ function NodeSuspenseWrapper({
 function Body({
   children
 }) {
-  return React__default.createElement("div", null, children);
+  return /*#__PURE__*/React__default.createElement("div", null, children);
 }
 
 function AppContainer({
   children
 }) {
-  return React__default.createElement(React__default.Fragment, null, children);
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, children);
 }
 
 const renderHtml = (app, options) => {

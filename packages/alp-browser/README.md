@@ -32,10 +32,12 @@ app.start(async () => {
   app.catchErrors();
 
   if (window.MODULE_IDENTIFIER) {
-    await app.initialRender(moduleDescriptors[window.MODULE_IDENTIFIER], window.initialData);
+    await app.initialRender(
+      moduleDescriptors[window.MODULE_IDENTIFIER],
+      window.initialData
+    );
   }
 
   await app.run();
 });
-
 ```

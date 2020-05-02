@@ -41,13 +41,13 @@ export default function alpParams(app: NodeApplicationInCreation) {
     },
   });
 
-  defineLazyProperty(app.context, 'params', function(
+  defineLazyProperty(app.context, 'params', function (
     this: Context,
   ): ParamValidator {
     return new ParamValidator(this);
   });
 
-  defineLazyProperty(app.context, 'validParams', function(
+  defineLazyProperty(app.context, 'validParams', function (
     this: Context,
   ): ParamValidatorValid {
     return new ParamValidatorValid(this);

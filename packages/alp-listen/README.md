@@ -33,13 +33,14 @@ logger(app);
 app.use(errors);
 
 listen(`${__dirname}/../cert/`)(app).then((server) => {
-    console.log('Listening !');
+  console.log('Listening !');
 });
 ```
 
 config:
- - `socketPath` OR `port` (+ `hostname`)
- - `tls`: boolean
+
+- `socketPath` OR `port` (+ `hostname`)
+- `tls`: boolean
 
 If `tls` is true, the files `server.key` and `server.crt`
 will be loaded from the path given in the first param

@@ -17,8 +17,7 @@
 
 ```yaml
 common:
-  'Hello %s!': "Hello %s!"
-
+  'Hello %s!': 'Hello %s!'
 ```
 
 ### With Koa

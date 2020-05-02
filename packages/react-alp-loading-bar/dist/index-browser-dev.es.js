@@ -35,9 +35,7 @@ var calculatePercent = function calculatePercent(percent) {
   if (percent < 70) return percent + random() * 10 + 3;else if (percent < 80) return percent + random() + 5;else if (percent < 90) return percent + random() + 1;else if (percent < 95) return percent + 0.1;else return percent;
 };
 
-var LoadingBar =
-/*#__PURE__*/
-function (_PureComponent) {
+var LoadingBar = /*#__PURE__*/function (_PureComponent) {
   _inheritsLoose(LoadingBar, _PureComponent);
 
   function LoadingBar() {
@@ -148,7 +146,7 @@ function (_PureComponent) {
 
   _proto.render = function render() {
     var LoadingBarComponent = this.props.LoadingBarComponent;
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       hidden: this.state.hidden,
       style: {
         position: 'fixed',
@@ -158,7 +156,7 @@ function (_PureComponent) {
         zIndex: 4,
         pointerEvents: 'none'
       }
-    }, React.createElement(LoadingBarComponent, {
+    }, /*#__PURE__*/React.createElement(LoadingBarComponent, {
       progress: this.state.progress
     }));
   };

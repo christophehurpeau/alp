@@ -11,7 +11,7 @@ function RouteMatchTransition(_ref2) {
       _ref2$wrapperComponen = _ref2.wrapperComponent,
       otherProps = _objectWithoutPropertiesLoose(_ref2, ["path", "closePath", "timeout", "component", "wrapperComponent"]);
 
-  return React.createElement(Route, {
+  return /*#__PURE__*/React.createElement(Route, {
     path: path
   }, function (_ref3) {
     var match = _ref3.match,
@@ -21,7 +21,7 @@ function RouteMatchTransition(_ref2) {
       history.push(closePath);
     };
 
-    return React.createElement(Transition, {
+    return /*#__PURE__*/React.createElement(Transition, {
       exit: true,
       enter: false,
       in: Boolean(match !== null),
@@ -31,7 +31,7 @@ function RouteMatchTransition(_ref2) {
         case 'entering':
         case 'entered':
         case 'exiting':
-          return React.createElement(Component, Object.assign({
+          return /*#__PURE__*/React.createElement(Component, Object.assign({
             match: match,
             exiting: state === 'exiting',
             onClose: handleClose

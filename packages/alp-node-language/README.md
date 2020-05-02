@@ -15,7 +15,7 @@
 
 ```yaml
 common:
-    availableLanguages: [en, fr]
+  availableLanguages: [en, fr]
 ```
 
 ## With koa

@@ -10,18 +10,18 @@ function FormField({
   help,
   ...props
 }) {
-  return React.createElement(Form.Item, {
+  return /*#__PURE__*/React.createElement(Form.Item, {
     htmlFor: id,
     label: label,
     help: help
-  }, React.createElement(Field, Object.assign({
+  }, /*#__PURE__*/React.createElement(Field, Object.assign({
     id: id,
     name: name,
     render: ({
       input,
       meta,
       ...rest
-    }) => React.createElement(Component, Object.assign({}, input, rest))
+    }) => /*#__PURE__*/React.createElement(Component, Object.assign({}, input, rest))
   }, props)));
 }
 

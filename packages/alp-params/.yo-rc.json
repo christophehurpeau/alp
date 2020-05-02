@@ -6,10 +6,8 @@
         "circleci": true,
         "codecov": true
       }
-    }
-  },
-  "alp-params": {
-    "type": {
+    },
+    "project": {
       "type": "lib"
     }
   }

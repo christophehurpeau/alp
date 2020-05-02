@@ -22,7 +22,7 @@ app.use(...);
 ```
 
 ## API
- 
+
 ### context
 
 - context.app Application instance reference.

@@ -3,10 +3,8 @@
     "pob-config": {
       "documentation": false,
       "testing": false
-    }
-  },
-  "alp-body-parser": {
-    "type": {
+    },
+    "project": {
       "type": "lib"
     }
   }

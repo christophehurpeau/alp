@@ -29,10 +29,10 @@ function ConnectionState() {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, [ctx.app.websocket]);
-  return React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     hidden: !connectionState || notConnected || connectionState === 'connected',
     className: "alp-connection-state"
-  }, !connectionState || notConnected ? null : React.createElement("div", null, React.createElement(T, {
+  }, !connectionState || notConnected ? null : /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(T, {
     id: `connectionState.${connectionState}`
   })));
 }

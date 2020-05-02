@@ -23,7 +23,6 @@ config(`${__dirname}/config`, { packageConfig })(app);
 const io = websocket(app);
 ```
 
-
 ## Browser-side
 
 ```js
@@ -40,7 +39,7 @@ const socket = websocket(app);
 
 ```yaml
 common:
-    websocket:
-        secure: true
-        port: 3001
+  websocket:
+    secure: true
+    port: 3001
 ```

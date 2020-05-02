@@ -41,10 +41,10 @@ function ConnectionState() {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, [ctx.app.websocket]);
-  return React__default.createElement("div", {
+  return /*#__PURE__*/React__default.createElement("div", {
     hidden: !connectionState || notConnected || connectionState === 'connected',
     className: "alp-connection-state"
-  }, !connectionState || notConnected ? null : React__default.createElement("div", null, React__default.createElement(reactAlpTranslate.T, {
+  }, !connectionState || notConnected ? null : /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(reactAlpTranslate.T, {
     id: "connectionState." + connectionState
   })));
 }

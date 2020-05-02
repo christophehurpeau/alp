@@ -12,7 +12,7 @@ export type Middleware<Context> = ComposeMiddleware<Context>;
 export default function compose<Context>(
   middlewares: Middleware<Context>[],
 ): Composed<Context> {
-  return function(ctx: Context): Promise<any> {
+  return function (ctx: Context): Promise<any> {
     let index = -1;
     return (function dispatch(i: number): Promise<any> {
       if (i <= index) {

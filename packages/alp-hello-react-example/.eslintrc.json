@@ -1,18 +1,15 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json",
-    "createDefaultProgram": true
-  },
-  "plugins": ["@typescript-eslint"],
   "extends": [
-    "@pob/eslint-config-typescript",
-    "@pob/eslint-config-typescript-react"
+    "@pob/eslint-config",
+    "@pob/eslint-config-node"
   ],
   "overrides": [
     {
-      "files": ["src/index.browser.ts", "src/web/**/*"],
+      "files": [
+        "src/index.browser.ts",
+        "src/web/**/*"
+      ],
       "env": {
         "browser": true
       }

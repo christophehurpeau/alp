@@ -29,10 +29,9 @@ npm install --save alp-node-auth
 
 ```yml
 server:
-    google:
-        clientId: xxxx
-        clientSecret: xxxx
-
+  google:
+    clientId: xxxx
+    clientSecret: xxxx
 ```
 
 > models/user/usersManager.server.js
@@ -74,13 +73,13 @@ app.use(authMiddleware);
 import { routes as authRoutes } from 'alp-node-auth';
 
 export default function buildRouter(builder) {
-    builder
-        .add('home', '/', 'home.index')
-        .add(...authRoutes.login)
-        .add(...authRoutes.logout)
-        .addDefaultRoutes();
+  builder
+    .add('home', '/', 'home.index')
+    .add(...authRoutes.login)
+    .add(...authRoutes.logout)
+    .addDefaultRoutes();
 }
-````
+```
 
 > modules/auth/login/index.js
 
@@ -100,12 +99,13 @@ import Header from '../components/HeaderComponent';
 
 export default (): ReactNode => (
   <div className="login-view">
-    <T id="title">{title => <Helmet title="Login" titleTemplate={`${title} - %s`} />}</T>
+    <T id="title">
+      {(title) => <Helmet title="Login" titleTemplate={`${title} - %s`} />}
+    </T>
     <Header />
     <LoginButtons />
   </div>
 );
-
 ```
 
 > modules/common/components/HeaderUserComponent.js

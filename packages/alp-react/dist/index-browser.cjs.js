@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var _regeneratorRuntime = _interopDefault(require('@babel/runtime/regenerator'));
+var _asyncToGenerator = _interopDefault(require('@babel/runtime/helpers/esm/asyncToGenerator'));
 var contentLoaded = _interopDefault(require('content-loaded'));
 var React = require('react');
 var React__default = _interopDefault(React);
@@ -17,9 +18,7 @@ var reactHelmet = _interopDefault(require('react-helmet'));
 function createAlpAppWrapper(app, context) {
   var _temp;
 
-  return _temp =
-  /*#__PURE__*/
-  function (_Component) {
+  return _temp = /*#__PURE__*/function (_Component) {
     _inheritsLoose(AlpAppWrapper, _Component);
 
     function AlpAppWrapper() {
@@ -50,8 +49,8 @@ function createAlpAppWrapper(app, context) {
     };
 
     _proto.render = function render() {
-      if (this.state.error) return React__default.createElement("div", null, "An unexpected error occured");
-      return React__default.createElement(ReactAlpContext.Provider, {
+      if (this.state.error) return /*#__PURE__*/React__default.createElement("div", null, "An unexpected error occured");
+      return /*#__PURE__*/React__default.createElement(ReactAlpContext.Provider, {
         value: context
       }, app);
     };
@@ -64,7 +63,7 @@ var LoadingFallbackContext = React.createContext('Loading...');
 
 function AlpModuleBrowser(props) {
   var loadingFallback = React.useContext(LoadingFallbackContext);
-  return React__default.createElement(React.Suspense, {
+  return /*#__PURE__*/React__default.createElement(React.Suspense, {
     fallback: loadingFallback
   }, props.children);
 }
@@ -72,55 +71,61 @@ function AlpModuleBrowser(props) {
 function BrowserSuspenseWrapper(_ref2) {
   var children = _ref2.children;
   var loader = React.useContext(LoadingFallbackContext);
-  return React__default.createElement(React.Suspense, {
+  return /*#__PURE__*/React__default.createElement(React.Suspense, {
     fallback: loader
   }, children);
 }
 
 function Body(_ref) {
   var children = _ref.children;
-  return React__default.createElement("div", null, children);
+  return /*#__PURE__*/React__default.createElement("div", null, children);
 }
 
 function AppContainer(_ref) {
   var children = _ref.children;
-  return React__default.createElement(React__default.Fragment, null, children);
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, children);
 }
 
 var logger = new Logger('alp:react');
 function alpReactBrowser(app) {
-  return function renderApp(App) {
-    var initialData, ctx, WrappedApp, appElement;
-    return _regeneratorRuntime.async(function renderApp$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            // eslint-disable-next-line no-underscore-dangle
-            initialData = window.__INITIAL_DATA__ || {};
-            ctx = app.createContext();
+  return /*#__PURE__*/function () {
+    var _renderApp = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(App) {
+      var initialData, ctx, WrappedApp, appElement;
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              // eslint-disable-next-line no-underscore-dangle
+              initialData = window.__INITIAL_DATA__ || {};
+              ctx = app.createContext();
 
-            if (initialData.sanitizedState) {
-              ctx.sanitizedState = initialData.sanitizedState;
-            }
+              if (initialData.sanitizedState) {
+                ctx.sanitizedState = initialData.sanitizedState;
+              }
 
-            logger.success('render called');
-            WrappedApp = createAlpAppWrapper(React__default.createElement(App), ctx);
-            appElement = React__default.createElement(WrappedApp);
-            _context.next = 8;
-            return _regeneratorRuntime.awrap(contentLoaded());
+              logger.success('render called');
+              WrappedApp = createAlpAppWrapper(React__default.createElement(App), ctx);
+              appElement = React__default.createElement(WrappedApp);
+              _context.next = 8;
+              return contentLoaded();
 
-          case 8:
-            // const container =
-            reactDom.hydrate(appElement, document.getElementById('react-app'));
-            logger.success('rendered'); // container.updateSanitizedState({ loading: false });
+            case 8:
+              // const container =
+              reactDom.hydrate(appElement, document.getElementById('react-app'));
+              logger.success('rendered'); // container.updateSanitizedState({ loading: false });
 
-          case 10:
-          case "end":
-            return _context.stop();
+            case 10:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    });
-  };
+      }, _callee);
+    }));
+
+    return function renderApp() {
+      return _renderApp.apply(this, arguments);
+    };
+  }();
 }
 
 exports.Helmet = reactHelmet;

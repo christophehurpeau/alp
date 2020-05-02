@@ -3,10 +3,8 @@
     "pob-config": {
       "testing": false,
       "documentation": false
-    }
-  },
-  "alp-browser-config": {
-    "type": {
+    },
+    "project": {
       "type": "lib"
     }
   }

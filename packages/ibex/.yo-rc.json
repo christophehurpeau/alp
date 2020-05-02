@@ -3,10 +3,8 @@
     "pob-config": {
       "testing": false,
       "documentation": false
-    }
-  },
-  "ibex": {
-    "type": {
+    },
+    "project": {
       "type": "lib"
     }
   }

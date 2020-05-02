@@ -14,7 +14,7 @@ const createErrorInstanceIfNeeded = (
   return err;
 };
 
-const errorMiddleware: Middleware = async function(ctx: Context, next) {
+const errorMiddleware: Middleware = async function (ctx: Context, next) {
   try {
     await next();
   } catch (err) {

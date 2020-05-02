@@ -19,17 +19,18 @@
 npm install --save alp-params
 ```
 
-
 ## API
 
 [https://.github.io/alp-params/docs](http://.github.io/alp-params/docs)
 
-
 ### Validator
 
 ##### .isValid()
+
 ##### .hasErrors()
+
 ##### .getErrors()
+
 ##### .string(name, position)
 
 ### ValueStringValidator

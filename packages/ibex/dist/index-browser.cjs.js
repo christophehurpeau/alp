@@ -9,7 +9,6 @@ var _assertThisInitialized = _interopDefault(require('@babel/runtime/helpers/esm
 var _inheritsLoose = _interopDefault(require('@babel/runtime/helpers/esm/inheritsLoose'));
 var events = require('events');
 var Logger = _interopDefault(require('nightingale-logger'));
-var delegate = _interopDefault(require('delegates'));
 var querystring = require('querystring');
 
 // TODO create lib
@@ -42,8 +41,53 @@ function compose(middlewares) {
 }
 
 var proto = {};
-delegate(proto, 'response').access('body').method('redirect');
-delegate(proto, 'request').getter('host').getter('hostname').getter('href').getter('origin').getter('path').getter('protocol').getter('query').getter('url').getter('search').getter('searchParams');
+
+var defineGetter = function defineGetter(target, name) {
+  Object.defineProperty(proto, name, {
+    get: function get() {
+      return this[target][name];
+    }
+  });
+};
+
+var defineAccess = function defineAccess(target, name) {
+  Object.defineProperty(proto, name, {
+    get: function get() {
+      return this[target][name];
+    },
+    set: function set(value) {
+      this[target][name] = value;
+      return value;
+    }
+  });
+};
+
+var defineMethod = function defineMethod(target, name) {
+  Object.defineProperty(proto, name, {
+    value: function value() {
+      var _this$target$name, _len, args, _key;
+
+      for (_len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return (_this$target$name = this[target][name]).call.apply(_this$target$name, [this[target]].concat(args));
+    }
+  });
+};
+
+defineAccess('response', 'body');
+defineMethod('response', 'redirect');
+defineGetter('request', 'host');
+defineGetter('request', 'hostname');
+defineGetter('request', 'href');
+defineGetter('request', 'origin');
+defineGetter('request', 'path');
+defineGetter('request', 'protocol');
+defineGetter('request', 'query');
+defineGetter('request', 'url');
+defineGetter('request', 'search');
+defineGetter('request', 'searchParams');
 
 var request = {
   get search() {
@@ -120,9 +164,7 @@ function respond(ctx) {
   throw new Error('Invalid body result');
 }
 
-var Application =
-/*#__PURE__*/
-function (_EventEmitter) {
+var Application = /*#__PURE__*/function (_EventEmitter) {
   _inheritsLoose(Application, _EventEmitter);
 
   function Application() {

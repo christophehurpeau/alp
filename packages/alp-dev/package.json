@@ -2,7 +2,11 @@
   "name": "alp-dev",
   "version": "13.1.0",
   "description": "Config for webpack/browsersync/makefile for alp server",
-  "keywords": ["alp", "framework", "webpack"],
+  "keywords": [
+    "alp",
+    "framework",
+    "webpack"
+  ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
   "repository": {
@@ -50,7 +54,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
-    "lint": "eslint --ext .js,.ts --quiet src",
+    "lint": "eslint --ext .js,.ts --quiet *.js src",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -63,7 +67,10 @@
       {
         "target": "node",
         "version": "10",
-        "formats": ["cjs", "es"]
+        "formats": [
+          "cjs",
+          "es"
+        ]
       }
     ],
     "entries": [
@@ -111,10 +118,10 @@
     "node-sass": "^4.13.0",
     "offline-plugin": "^5.0.7",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "pob-babel": "^24.1.0",
-    "pobpack-browser": "8.0.1",
-    "pobpack-node": "8.0.1",
-    "pobpack-types": "4.0.1",
+    "pob-babel": "^24.9.0",
+    "pobpack-browser": "8.0.4",
+    "pobpack-node": "8.0.3",
+    "pobpack-types": "4.1.1",
     "portscanner": "^2.2.0",
     "postcss": "^7.0.23",
     "postcss-loader": "^3.0.0",
@@ -130,9 +137,7 @@
     "ynnub-webpack-config": "3.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.7.5",
-    "@pob/eslint-config-babel-node": "33.0.0",
-    "@pob/eslint-config-typescript": "33.0.8",
+    "@babel/core": "7.9.6",
     "@types/autoprefixer": "9.6.1",
     "@types/execa": "2.0.0",
     "@types/glob": "7.1.1",
@@ -143,9 +148,7 @@
     "@types/portscanner": "2.1.0",
     "@types/progress": "2.0.3",
     "@types/webpack-dev-server": "3.9.0",
-    "eslint": "6.7.2",
     "less": "3.10.3",
-    "prettier": "1.19.1",
     "react": "16.11.0",
     "react-dom": "16.11.0"
   }

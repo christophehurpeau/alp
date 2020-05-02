@@ -3,10 +3,8 @@
     "pob-config": {
       "testing": false,
       "documentation": false
-    }
-  },
-  "alp-translate": {
-    "type": {
+    },
+    "project": {
       "type": "lib"
     }
   }

@@ -18,11 +18,11 @@ function FormField(_ref) {
       help = _ref.help,
       props = _objectWithoutPropertiesLoose(_ref, ["component", "label", "name", "id", "help"]);
 
-  return React.createElement(antd.Form.Item, {
+  return /*#__PURE__*/React.createElement(antd.Form.Item, {
     htmlFor: id,
     label: label,
     help: help
-  }, React.createElement(reactFinalForm.Field, Object.assign({
+  }, /*#__PURE__*/React.createElement(reactFinalForm.Field, Object.assign({
     id: id,
     name: name,
     render: function render(_ref2) {
@@ -30,7 +30,7 @@ function FormField(_ref) {
           meta = _ref2.meta,
           rest = _objectWithoutPropertiesLoose(_ref2, ["input", "meta"]);
 
-      return React.createElement(Component, Object.assign({}, input, rest));
+      return /*#__PURE__*/React.createElement(Component, Object.assign({}, input, rest));
     }
   }, props)));
 }

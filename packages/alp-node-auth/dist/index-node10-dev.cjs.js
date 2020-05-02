@@ -638,7 +638,7 @@ class UserAccountSlackService {
     return profile.user.name;
   }
 
-  getFullName(profile) {
+  getFullName() {
     return null;
   }
 

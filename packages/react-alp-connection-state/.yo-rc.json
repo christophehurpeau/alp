@@ -3,6 +3,9 @@
     "pob-config": {
       "testing": false,
       "documentation": false
+    },
+    "project": {
+      "type": "lib"
     }
   },
   "react-alp-translate": {
@@ -11,11 +14,6 @@
     }
   },
   "react-alp-loading-bar": {
-    "type": {
-      "type": "lib"
-    }
-  },
-  "react-alp-connection-state": {
     "type": {
       "type": "lib"
     }

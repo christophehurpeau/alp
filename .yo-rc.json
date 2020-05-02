@@ -8,6 +8,7 @@
     "monorepo": {
       "ci": true,
       "testing": true,
+      "eslint": true,
       "codecov": false,
       "documentation": false,
       "typescript": true,
@@ -43,6 +44,10 @@
     },
     "renovate": {
       "enable": true
+    },
+    "project": {
+      "type": "lib",
+      "yarn2": false
     }
   }
 }

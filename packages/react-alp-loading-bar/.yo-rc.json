@@ -3,14 +3,12 @@
     "pob-config": {
       "testing": false,
       "documentation": false
-    }
-  },
-  "react-alp-translate": {
-    "type": {
+    },
+    "project": {
       "type": "lib"
     }
   },
-  "react-alp-loading-bar": {
+  "react-alp-translate": {
     "type": {
       "type": "lib"
     }

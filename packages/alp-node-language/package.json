@@ -2,7 +2,10 @@
   "name": "alp-node-language",
   "version": "3.0.1",
   "description": "language context in alp framework",
-  "keywords": ["alp", "accepts-languages"],
+  "keywords": [
+    "alp",
+    "accepts-languages"
+  ],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
   "repository": {
@@ -25,7 +28,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
-    "lint": "eslint --ext .js,.ts --quiet src",
+    "lint": "eslint --ext .js,.ts --quiet *.js src",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -38,10 +41,15 @@
       {
         "target": "node",
         "version": "10",
-        "formats": ["cjs", "es"]
+        "formats": [
+          "cjs",
+          "es"
+        ]
       }
     ],
-    "entries": ["index"],
+    "entries": [
+      "index"
+    ],
     "withReact": false
   },
   "dependencies": {
@@ -49,12 +57,8 @@
     "object-properties": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.7.5",
-    "@pob/eslint-config-babel-node": "33.0.0",
-    "@pob/eslint-config-typescript": "33.0.8",
-    "babel-preset-latest-node": "4.0.1",
-    "eslint": "6.7.2",
-    "pob-babel": "24.1.0",
-    "prettier": "1.19.1"
+    "@babel/core": "7.9.6",
+    "babel-preset-latest-node": "4.1.0",
+    "pob-babel": "24.9.0"
   }
 }

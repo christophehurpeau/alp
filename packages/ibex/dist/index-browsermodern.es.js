@@ -1,6 +1,5 @@
 import { EventEmitter } from 'events';
 import Logger from 'nightingale-logger';
-import delegate from 'delegates';
 import { parse } from 'querystring';
 
 // TODO create lib
@@ -33,8 +32,51 @@ function compose(middlewares) {
 }
 
 const proto = {};
-delegate(proto, 'response').access('body').method('redirect');
-delegate(proto, 'request').getter('host').getter('hostname').getter('href').getter('origin').getter('path').getter('protocol').getter('query').getter('url').getter('search').getter('searchParams');
+
+const defineGetter = function defineGetter(target, name) {
+  Object.defineProperty(proto, name, {
+    get() {
+      return this[target][name];
+    }
+
+  });
+};
+
+const defineAccess = function defineAccess(target, name) {
+  Object.defineProperty(proto, name, {
+    get() {
+      return this[target][name];
+    },
+
+    set(value) {
+      this[target][name] = value;
+      return value;
+    }
+
+  });
+};
+
+const defineMethod = function defineMethod(target, name) {
+  Object.defineProperty(proto, name, {
+    value(...args) {
+      return this[target][name].call(this[target], ...args);
+    }
+
+  });
+};
+
+defineAccess('response', 'body');
+defineMethod('response', 'redirect');
+defineGetter('request', 'host');
+defineGetter('request', 'hostname');
+defineGetter('request', 'href');
+defineGetter('request', 'origin');
+defineGetter('request', 'path');
+defineGetter('request', 'protocol');
+defineGetter('request', 'query');
+defineGetter('request', 'url');
+defineGetter('request', 'search');
+defineGetter('request', 'searchParams');
 
 const request = {
   get search() {

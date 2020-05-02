@@ -131,7 +131,7 @@ class LoadingBar extends React.PureComponent {
 
   render() {
     const LoadingBarComponent = this.props.LoadingBarComponent;
-    return React__default.createElement("div", {
+    return /*#__PURE__*/React__default.createElement("div", {
       hidden: this.state.hidden,
       style: {
         position: 'fixed',
@@ -141,7 +141,7 @@ class LoadingBar extends React.PureComponent {
         zIndex: 4,
         pointerEvents: 'none'
       }
-    }, React__default.createElement(LoadingBarComponent, {
+    }, /*#__PURE__*/React__default.createElement(LoadingBarComponent, {
       progress: this.state.progress
     }));
   }

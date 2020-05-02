@@ -45,7 +45,6 @@ app.appVersion = '1.0.0';
 config('/config')(app);
 ```
 
-
 ## With Alp
 
 ```js

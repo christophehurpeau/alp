@@ -3,10 +3,8 @@
     "pob-config": {
       "documentation": false,
       "testing": false
-    }
-  },
-  "alp-react": {
-    "type": {
+    },
+    "project": {
       "type": "lib"
     }
   }

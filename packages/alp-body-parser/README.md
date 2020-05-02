@@ -30,18 +30,17 @@ bodyParser(app);
 ```
 
 ```js
-
 export default {
-    async form(ctx) {
-        const body = await ctx.parseBody();
-    },
+  async form(ctx) {
+    const body = await ctx.parseBody();
+  },
 
-    async json(ctx) {
-        const body = await ctx.parseBodyJson();
-    },
+  async json(ctx) {
+    const body = await ctx.parseBodyJson();
+  },
 
-    async text(ctx) {
-        const body = await ctx.parseBodyText();
-    },
+  async text(ctx) {
+    const body = await ctx.parseBodyText();
+  },
 };
 ```

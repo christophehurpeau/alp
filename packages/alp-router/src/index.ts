@@ -20,11 +20,14 @@ export default function alpRouter(router: Router): ReturnType {
   return (app: NodeApplication) => {
     app.router = router;
 
-    app.context.urlGenerator = function(routeKey: string, params: any): string {
+    app.context.urlGenerator = function (
+      routeKey: string,
+      params: any,
+    ): string {
       return router.toLocalizedPath(this.language, routeKey, params);
     };
 
-    app.context.redirectTo = function(to: string, params: any): any {
+    app.context.redirectTo = function (to: string, params: any): any {
       return this.redirect(router.toLocalizedPath(this.language, to, params));
     };
 

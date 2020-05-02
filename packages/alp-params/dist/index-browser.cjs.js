@@ -7,9 +7,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var objectProperties = require('object-properties');
 var _inheritsLoose = _interopDefault(require('@babel/runtime/helpers/esm/inheritsLoose'));
 
-var ParamValueValidator =
-/*#__PURE__*/
-function () {
+var ParamValueValidator = /*#__PURE__*/function () {
   function ParamValueValidator(validator, name, value) {
     this.validator = validator;
     this.name = name;
@@ -25,9 +23,7 @@ function () {
   return ParamValueValidator;
 }();
 
-var ParamValueStringValidator =
-/*#__PURE__*/
-function (_ParamValueValidator) {
+var ParamValueStringValidator = /*#__PURE__*/function (_ParamValueValidator) {
   _inheritsLoose(ParamValueStringValidator, _ParamValueValidator);
 
   function ParamValueStringValidator() {
@@ -47,9 +43,7 @@ function (_ParamValueValidator) {
   return ParamValueStringValidator;
 }(ParamValueValidator);
 
-var ParamValidator =
-/*#__PURE__*/
-function () {
+var ParamValidator = /*#__PURE__*/function () {
   function ParamValidator(context) {
     this.context = context;
   }
@@ -96,9 +90,7 @@ function () {
   return ParamValidator;
 }();
 
-var ParamValidatorValid =
-/*#__PURE__*/
-function (_ParamValidator) {
+var ParamValidatorValid = /*#__PURE__*/function (_ParamValidator) {
   _inheritsLoose(ParamValidatorValid, _ParamValidator);
 
   function ParamValidatorValid() {
