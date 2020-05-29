@@ -7,7 +7,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 const util = require('util');
 const jsonwebtoken = require('jsonwebtoken');
 const Logger = _interopDefault(require('nightingale-logger'));
-const EventEmitter = _interopDefault(require('events'));
+const events = require('events');
 const crypto = require('crypto');
 const Cookies = _interopDefault(require('cookies'));
 
@@ -19,7 +19,7 @@ async function randomHex(size) {
 
 /* eslint-disable camelcase, max-lines, @typescript-eslint/camelcase */
 const logger = new Logger('alp:auth:authentication');
-class AuthenticationService extends EventEmitter {
+class AuthenticationService extends events.EventEmitter {
   constructor(config, strategies, userAccountsService) {
     super();
     this.config = config;
@@ -245,7 +245,7 @@ const STATUSES = {
   VALIDATED: 'validated',
   DELETED: 'deleted'
 };
-class UserAccountsService extends EventEmitter {
+class UserAccountsService extends events.EventEmitter {
   constructor(usersManager, strategyToService) {
     super();
     this.usersManager = usersManager;

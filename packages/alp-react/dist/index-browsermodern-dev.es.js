@@ -79,8 +79,8 @@ function alpReactBrowser(app) {
     }
 
     logger.success('render called');
-    const WrappedApp = createAlpAppWrapper(React.createElement(App), ctx);
-    const appElement = React.createElement(WrappedApp);
+    const WrappedApp = createAlpAppWrapper( /*#__PURE__*/React.createElement(App), ctx);
+    const appElement = /*#__PURE__*/React.createElement(WrappedApp);
     await contentLoaded(); // const container =
 
     hydrate(appElement, document.getElementById('react-app'));

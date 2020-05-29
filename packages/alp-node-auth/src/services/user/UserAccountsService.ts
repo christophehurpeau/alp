@@ -1,4 +1,4 @@
-import EventEmitter from 'events';
+import { EventEmitter } from 'events';
 import Logger from 'nightingale-logger';
 import { AccountId, User, Account } from '../../../types.d';
 import MongoUsersManager from '../../MongoUsersManager';

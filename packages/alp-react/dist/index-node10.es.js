@@ -178,9 +178,9 @@ function alpReact(App, options = {}) {
 
     const ua = ctx.req.headers['user-agent'];
     const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
-    const app = React.createElement(App);
+    const app = /*#__PURE__*/React.createElement(App);
     const WrappedApp = createAlpAppWrapper(app, ctx);
-    ctx.body = renderHtml(React.createElement(WrappedApp), {
+    ctx.body = renderHtml( /*#__PURE__*/React.createElement(WrappedApp), {
       version,
       scriptName: options.scriptName !== undefined ? options.scriptName : name,
       styleName: options.styleName !== undefined ? options.styleName : name,

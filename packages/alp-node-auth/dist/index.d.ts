@@ -24,7 +24,7 @@ export default function init<U extends User = User, StrategyKeys extends Allowed
     authHooks?: AuthHooks<StrategyKeys>;
 }): (app: NodeApplication) => {
     routes: AuthRoutesType;
-    getConnectedAndUser: (userAgent: string, token?: string | undefined) => Promise<[string | number | null, U | null | undefined]>;
+    getConnectedAndUser: (userAgent: string, token?: string | undefined) => Promise<[null | string | number, null | undefined | U]>;
     middleware: (ctx: any, next: any) => Promise<any>;
 };
 //# sourceMappingURL=index.d.ts.map

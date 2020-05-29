@@ -1,4 +1,4 @@
-import React from 'react';
+import { ElementType } from 'react';
 import { BrowserApplication } from 'alp-types';
 export { default as Helmet } from 'react-helmet';
 export { default as AlpModule } from './module/AlpModule';
@@ -11,5 +11,5 @@ declare global {
         __INITIAL_DATA__: any;
     }
 }
-export default function alpReactBrowser(app: BrowserApplication): (App: React.ElementType<{}>) => Promise<void>;
+export default function alpReactBrowser(app: BrowserApplication): (App: ElementType<{}>) => Promise<void>;
 //# sourceMappingURL=browser.d.ts.map

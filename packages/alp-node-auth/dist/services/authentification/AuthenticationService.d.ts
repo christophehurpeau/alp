@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import EventEmitter from 'events';
+import { EventEmitter } from 'events';
 import { OAuthClient } from 'simple-oauth2';
 import { NodeConfig } from 'alp-types';
 import UserAccountsService from '../user/UserAccountsService';

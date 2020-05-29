@@ -1,7 +1,7 @@
 import { promisify } from 'util';
 import { verify, sign } from 'jsonwebtoken';
 import Logger from 'nightingale-logger';
-import EventEmitter from 'events';
+import { EventEmitter } from 'events';
 import { randomBytes } from 'crypto';
 import Cookies from 'cookies';
 

@@ -97,8 +97,8 @@ function alpReactBrowser(app) {
               }
 
               logger.success('render called');
-              WrappedApp = createAlpAppWrapper(React.createElement(App), ctx);
-              appElement = React.createElement(WrappedApp);
+              WrappedApp = createAlpAppWrapper( /*#__PURE__*/React.createElement(App), ctx);
+              appElement = /*#__PURE__*/React.createElement(WrappedApp);
               _context.next = 8;
               return contentLoaded();
 

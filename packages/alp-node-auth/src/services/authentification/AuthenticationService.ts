@@ -1,5 +1,5 @@
 /* eslint-disable camelcase, max-lines, @typescript-eslint/camelcase */
-import EventEmitter from 'events';
+import { EventEmitter } from 'events';
 import Logger from 'nightingale-logger';
 import { OAuthClient } from 'simple-oauth2';
 import { NodeConfig } from 'alp-types';
