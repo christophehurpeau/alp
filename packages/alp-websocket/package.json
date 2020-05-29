@@ -99,22 +99,21 @@
     "entries": [
       "index",
       "browser"
-    ],
-    "withReact": false
+    ]
   },
   "dependencies": {
     "@types/socket.io": "^2.1.4",
     "@types/socket.io-client": "^1.4.32",
     "alp-types": "^2.0.0",
-    "nightingale-logger": "^6.2.2",
+    "nightingale-logger": "^10.0.1",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
-    "@babel/preset-env": "7.9.6",
+    "@babel/core": "7.10.1",
+    "@babel/preset-env": "7.10.1",
     "babel-preset-latest-node": "4.1.0",
     "babel-preset-modern-browsers": "14.2.1",
-    "pob-babel": "24.9.0"
+    "pob-babel": "24.12.0"
   }
 }

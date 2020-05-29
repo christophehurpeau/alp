@@ -37,7 +37,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
-    "lint": "eslint --ext .js,.ts --quiet *.js src",
+    "lint": "eslint --ext .js,.ts --quiet src",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -64,16 +64,15 @@
     ],
     "entries": [
       "index"
-    ],
-    "withReact": false
+    ]
   },
   "dependencies": {
     "alp-types": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
-    "@babel/preset-env": "7.9.6",
+    "@babel/core": "7.10.1",
+    "@babel/preset-env": "7.10.1",
     "babel-preset-modern-browsers": "14.2.1",
-    "pob-babel": "24.9.0"
+    "pob-babel": "24.12.0"
   }
 }

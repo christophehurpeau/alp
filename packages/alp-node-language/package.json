@@ -49,16 +49,15 @@
     ],
     "entries": [
       "index"
-    ],
-    "withReact": false
+    ]
   },
   "dependencies": {
     "alp-types": "^2.0.0",
     "object-properties": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
+    "@babel/core": "7.10.1",
     "babel-preset-latest-node": "4.1.0",
-    "pob-babel": "24.9.0"
+    "pob-babel": "24.12.0"
   }
 }

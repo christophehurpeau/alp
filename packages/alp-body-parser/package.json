@@ -49,8 +49,7 @@
     ],
     "entries": [
       "index"
-    ],
-    "withReact": false
+    ]
   },
   "peerDependencies": {
     "alp-node": "^1.0.0"
@@ -62,8 +61,8 @@
     "koa": "^2.11.0"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
+    "@babel/core": "7.10.1",
     "babel-preset-latest-node": "4.1.0",
-    "pob-babel": "24.9.0"
+    "pob-babel": "24.12.0"
   }
 }

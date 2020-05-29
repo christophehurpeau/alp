@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "alp-dev-build",
-    "lint": "eslint --ext .js,.ts,.tsx --quiet *.js src",
+    "lint": "eslint --ext .js,.ts,.tsx --quiet src",
     "start": "alp-dev"
   },
   "prettier": {
@@ -28,7 +28,7 @@
     "alp-browser": "^2.0.2",
     "alp-node": "^2.0.2",
     "alp-react": "^16.0.4",
-    "nightingale-app-console": "3.2.6",
+    "nightingale-app-console": "10.0.1",
     "react": "16.11.0",
     "react-alp-context": "^2.0.2",
     "react-alp-translate": "^4.0.2",

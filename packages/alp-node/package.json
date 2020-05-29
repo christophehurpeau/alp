@@ -52,8 +52,7 @@
     ],
     "entries": [
       "index"
-    ],
-    "withReact": false
+    ]
   },
   "dependencies": {
     "alp-listen": "^3.0.2",
@@ -67,16 +66,16 @@
     "koa": "^2.11.0",
     "koa-compress": "^3.0.0",
     "koa-static": "^5.0.0",
-    "nightingale-logger": "^6.2.2",
+    "nightingale-logger": "^10.0.1",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
+    "@babel/core": "7.10.1",
     "@types/findup-sync": "2.0.2",
     "@types/koa-compress": "2.0.9",
     "@types/koa-static": "4.0.1",
     "@types/minimist": "1.2.0",
     "babel-preset-latest-node": "4.1.0",
-    "pob-babel": "24.9.0"
+    "pob-babel": "24.12.0"
   }
 }

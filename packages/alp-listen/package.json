@@ -48,16 +48,15 @@
     ],
     "entries": [
       "index"
-    ],
-    "withReact": false
+    ]
   },
   "dependencies": {
     "alp-node-config": "^5.0.2",
-    "nightingale-logger": "^6.2.2"
+    "nightingale-logger": "^10.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
+    "@babel/core": "7.10.1",
     "babel-preset-latest-node": "4.1.0",
-    "pob-babel": "24.9.0"
+    "pob-babel": "24.12.0"
   }
 }
