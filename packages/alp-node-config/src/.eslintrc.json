@@ -4,6 +4,11 @@
   "parserOptions": {
     "project": "packages/alp-node-config/tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["@pob/eslint-config-typescript", "@pob/eslint-config-babel-node"]
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "@pob/eslint-config-typescript",
+    "@pob/eslint-config-babel-node"
+  ]
 }

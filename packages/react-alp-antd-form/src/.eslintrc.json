@@ -4,7 +4,9 @@
   "parserOptions": {
     "project": "packages/react-alp-antd-form/tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "extends": [
     "@pob/eslint-config-typescript",
     "@pob/eslint-config-typescript-react"

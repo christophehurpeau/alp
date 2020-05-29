@@ -4,6 +4,10 @@
   "parserOptions": {
     "project": "packages/alp-browser-errors/tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["@pob/eslint-config-typescript"]
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "@pob/eslint-config-typescript"
+  ]
 }
