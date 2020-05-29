@@ -181,7 +181,10 @@ const runDevServer = (compiler, port, proxyPort, options) => runDevServer$1(comp
     'Access-Control-Expose-Headers': 'SourceMap,X-SourceMap'
   },
   proxy: {
-    '**': `http://localhost:${port}`
+    '**': {
+      target: `http://localhost:${port}`,
+      ws: true
+    }
   },
   ...options
 });
