@@ -56,8 +56,8 @@ test('.string() not empty', () => {
   contextMock.param.mockReturnValue('testValue');
   const paramValidator = new ParamValidator(contextMock);
 
-  expect(contextMock.param).toHaveBeenNthCalledWith(1, 'slug');
   paramValidator.string('slug').notEmpty();
+  expect(contextMock.param).toHaveBeenNthCalledWith(1, 'slug');
   expect(paramValidator.hasErrors()).toBe(false);
   expect(paramValidator.isValid()).toBe(true);
   expect(paramValidator.getErrors()).toBe(undefined);
