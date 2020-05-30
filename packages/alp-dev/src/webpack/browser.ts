@@ -44,7 +44,8 @@ export const runDevServer = (
     },
 
     proxy: {
-      '**': { target: `http://localhost:${port}`, ws: true },
+      '**': { target: `http://localhost:${port}` },
+      '/ws': { target: `http://localhost:${port}`, ws: true },
     },
 
     ...options,

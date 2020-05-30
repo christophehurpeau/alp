@@ -182,6 +182,9 @@ const runDevServer = (compiler, port, proxyPort, options) => runDevServer$1(comp
   },
   proxy: {
     '**': {
+      target: `http://localhost:${port}`
+    },
+    '/ws': {
       target: `http://localhost:${port}`,
       ws: true
     }

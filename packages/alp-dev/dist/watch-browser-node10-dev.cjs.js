@@ -186,6 +186,9 @@ const runDevServer = (compiler, port, proxyPort, options) => pobpackBrowser.runD
   },
   proxy: {
     '**': {
+      target: `http://localhost:${port}`
+    },
+    '/ws': {
       target: `http://localhost:${port}`,
       ws: true
     }
