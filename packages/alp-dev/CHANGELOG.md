@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.1](https://github.com/christophehurpeau/alp/compare/alp-dev@13.2.0...alp-dev@13.2.1) (2020-05-30)
+
+
+### Bug Fixes
+
+* only allow ws proxy on /ws ([e537976](https://github.com/christophehurpeau/alp/commit/e537976))
+
+
+
+
+
 # [13.2.0](https://github.com/christophehurpeau/alp/compare/alp-dev@13.1.1...alp-dev@13.2.0) (2020-05-30)
 
 
