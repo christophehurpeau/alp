@@ -185,12 +185,12 @@ const runDevServer = (compiler, port, proxyPort, options) => pobpackBrowser.runD
     'Access-Control-Expose-Headers': 'SourceMap,X-SourceMap'
   },
   proxy: {
-    '**': {
-      target: `http://localhost:${port}`
-    },
     '/ws': {
       target: `http://localhost:${port}`,
       ws: true
+    },
+    '**': {
+      target: `http://localhost:${port}`
     }
   },
   ...options
