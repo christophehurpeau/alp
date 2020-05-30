@@ -43,6 +43,8 @@ export const runDevServer = (
       'Access-Control-Expose-Headers': 'SourceMap,X-SourceMap',
     },
 
+    transportMode: 'ws',
+
     proxy: {
       '/ws': { target: `http://localhost:${port}`, ws: true },
       '**': { target: `http://localhost:${port}` },
