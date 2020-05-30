@@ -34,8 +34,10 @@ export default function htmlLayout(
       version,
     )}" />
     ${helmet.style.toString()}
-    ${polyfillFeatures &&
-      `<script defer src="${`https://polyfill.io/v2/polyfill.min.js?features=${polyfillFeatures}&unknown=polyfill`}"></script>`}
+    ${
+      polyfillFeatures &&
+      `<script defer src="${`https://polyfill.io/v2/polyfill.min.js?features=${polyfillFeatures}&unknown=polyfill`}"></script>`
+    }
     ${helmet.script.toString()}
     ${
       scriptName === false

@@ -3,7 +3,6 @@
   "references": [
     { "path": "packages/alp-body-parser/tsconfig.json" },
     { "path": "packages/alp-dev/tsconfig.json" },
-    { "path": "packages/alp-types/tsconfig.json" },
     { "path": "packages/ibex/tsconfig.json" },
     { "path": "packages/react-alp-antd-form/tsconfig.json" },
     { "path": "packages/react-alp-route-match-transition/tsconfig.json" },

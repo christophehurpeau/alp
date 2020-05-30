@@ -71,7 +71,7 @@ export default function init<
       authHooks,
     });
 
-    app.context.setConnected = async function(
+    app.context.setConnected = async function (
       connected: number | string,
       user: U,
     ) {
@@ -99,7 +99,7 @@ export default function init<
       });
     };
 
-    app.context.logout = function() {
+    app.context.logout = function () {
       delete this.state.connected;
       delete this.state.user;
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
