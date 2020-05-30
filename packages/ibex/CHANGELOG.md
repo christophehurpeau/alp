@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/christophehurpeau/alp/compare/ibex@6.0.2...ibex@6.1.0) (2020-05-30)
+
+
+### Features
+
+* update dependencies ([70b1f7f](https://github.com/christophehurpeau/alp/commit/70b1f7f))
+* update eslint and router-segment ([93f0089](https://github.com/christophehurpeau/alp/commit/93f0089))
+
+
+
+
+
 ## [6.0.2](https://github.com/christophehurpeau/alp/compare/ibex@6.0.1...ibex@6.0.2) (2020-05-02)
 
 **Note:** Version bump only for package ibex

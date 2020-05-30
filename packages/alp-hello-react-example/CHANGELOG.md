@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.5.4...alp-hello-react-example@2.6.0) (2020-05-30)
+
+
+### Features
+
+* update dependencies ([70b1f7f](https://github.com/christophehurpeau/alp/commit/70b1f7f))
+
+
+
+
+
 ## [2.5.4](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.5.3...alp-hello-react-example@2.5.4) (2020-05-02)
 
 

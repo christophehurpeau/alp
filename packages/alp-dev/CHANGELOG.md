@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://github.com/christophehurpeau/alp/compare/alp-dev@13.1.1...alp-dev@13.2.0) (2020-05-30)
+
+
+### Bug Fixes
+
+* import EventEmitter ([d58ed84](https://github.com/christophehurpeau/alp/commit/d58ed84))
+
+
+### Features
+
+* allow proxy ws ([9728526](https://github.com/christophehurpeau/alp/commit/9728526))
+* update dependencies ([70b1f7f](https://github.com/christophehurpeau/alp/commit/70b1f7f))
+
+
+
+
+
 ## [13.1.1](https://github.com/christophehurpeau/alp/compare/alp-dev@13.1.0...alp-dev@13.1.1) (2020-05-02)
 
 **Note:** Version bump only for package alp-dev

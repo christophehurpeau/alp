@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/christophehurpeau/alp/compare/alp-browser-config@5.0.2...alp-browser-config@5.1.0) (2020-05-30)
+
+
+### Features
+
+* update dependencies ([70b1f7f](https://github.com/christophehurpeau/alp/commit/70b1f7f))
+
+
+
+
+
 ## [5.0.2](https://github.com/christophehurpeau/alp/compare/alp-browser-config@5.0.1...alp-browser-config@5.0.2) (2020-05-02)
 
 **Note:** Version bump only for package alp-browser-config
