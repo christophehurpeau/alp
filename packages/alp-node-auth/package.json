@@ -63,7 +63,7 @@
     "@types/jsonwebtoken": "^8.3.5",
     "@types/simple-oauth2": "^2.5.1",
     "alp-types": "^2.0.0",
-    "cookies": "^0.7.3",
+    "cookies": "^0.8.0",
     "jsonwebtoken": "^8.5.1",
     "nightingale-logger": "^10.0.1",
     "simple-oauth2": "^2.2.1"
