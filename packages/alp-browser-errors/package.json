@@ -29,7 +29,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
-    "lint": "eslint --ext .js,.ts --quiet src",
+    "lint": "yarn --cwd ../.. lint packages/alp-browser-errors",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -58,14 +58,14 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "^7.10.1",
+    "@babel/runtime": "^7.10.2",
     "alp-types": "^2.0.0",
     "error-html": "^0.3.5",
     "nightingale-logger": "^10.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.10.1",
-    "@babel/preset-env": "7.10.1",
+    "@babel/core": "7.10.2",
+    "@babel/preset-env": "7.10.2",
     "babel-preset-modern-browsers": "14.2.1",
     "pob-babel": "24.12.0"
   }

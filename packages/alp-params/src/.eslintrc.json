@@ -4,14 +4,21 @@
   "parserOptions": {
     "project": "packages/alp-params/tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["@pob/eslint-config-typescript"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "@pob/eslint-config-typescript"
+  ],
   "rules": {
     "import/no-cycle": "off"
   },
   "overrides": [
     {
-      "files": ["**/*.test.ts", "__tests__/**/*.ts"],
+      "files": [
+        "**/*.test.ts",
+        "__tests__/**/*.ts"
+      ],
       "env": {
         "jest": true
       },

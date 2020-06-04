@@ -31,7 +31,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
-    "lint": "eslint --ext .js,.ts --quiet *.js src",
+    "lint": "yarn --cwd ../.. lint packages/alp-node",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -70,7 +70,7 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.1",
+    "@babel/core": "7.10.2",
     "@types/findup-sync": "2.0.2",
     "@types/koa-compress": "2.0.9",
     "@types/koa-static": "4.0.1",

@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "alp-dev-build",
-    "lint": "eslint --ext .js,.ts,.tsx --quiet src",
+    "lint": "yarn --cwd ../.. lint packages/alp-hello-react-example",
     "start": "alp-dev"
   },
   "prettier": {

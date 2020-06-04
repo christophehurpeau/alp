@@ -42,7 +42,7 @@
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_ENV=production BABEL_ENV=test jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
-    "lint": "eslint --ext .js,.ts --quiet *.js src",
+    "lint": "yarn --cwd ../.. lint packages/alp-params",
     "test": "jest",
     "test:watch": "jest",
     "watch": "pob-watch"
@@ -100,13 +100,13 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "^7.10.1",
+    "@babel/runtime": "^7.10.2",
     "alp-types": "^2.0.0",
     "object-properties": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.1",
-    "@babel/preset-env": "7.10.1",
+    "@babel/core": "7.10.2",
+    "@babel/preset-env": "7.10.2",
     "@types/jest": "25.2.3",
     "babel-jest": "26.0.1",
     "babel-preset-latest-node": "4.1.0",

@@ -27,7 +27,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
-    "lint": "eslint --ext .js,.ts --quiet *.js src",
+    "lint": "yarn --cwd ../.. lint packages/alp-node-config",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -58,7 +58,7 @@
     "stringify-json": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.1",
+    "@babel/core": "7.10.2",
     "babel-preset-latest-node": "4.1.0",
     "pob-babel": "24.12.0"
   }

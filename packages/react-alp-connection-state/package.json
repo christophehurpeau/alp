@@ -36,7 +36,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
-    "lint": "eslint --ext .js,.ts,.tsx --quiet *.js src",
+    "lint": "yarn --cwd ../.. lint packages/react-alp-connection-state",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -79,14 +79,14 @@
     "ynnub": "^1.0.0 || ^2.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.10.1",
+    "@babel/runtime": "^7.10.2",
     "alp-types": "^2.0.0",
     "react-alp-context": "^2.1.0",
     "react-alp-translate": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.1",
-    "@babel/preset-env": "7.10.1",
+    "@babel/core": "7.10.2",
+    "@babel/preset-env": "7.10.2",
     "@babel/preset-react": "7.10.1",
     "babel-preset-latest-node": "4.1.0",
     "babel-preset-modern-browsers": "14.2.1",

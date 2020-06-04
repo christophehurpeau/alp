@@ -28,7 +28,7 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
-    "lint": "eslint --ext .js,.ts --quiet *.js src",
+    "lint": "yarn --cwd ../.. lint packages/alp-body-parser",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -61,7 +61,7 @@
     "koa": "^2.11.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.1",
+    "@babel/core": "7.10.2",
     "babel-preset-latest-node": "4.1.0",
     "pob-babel": "24.12.0"
   }
