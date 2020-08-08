@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.6.4...alp-hello-react-example@2.7.0) (2020-08-08)
+
+
+### Features
+
+* css-loader 4 and extract-css-chunks-webpack-plugin ([0ece313](https://github.com/christophehurpeau/alp/commit/0ece313))
+
+
+
+
+
 ## [2.6.4](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.6.3...alp-hello-react-example@2.6.4) (2020-08-08)
 
 **Note:** Version bump only for package alp-hello-react-example
