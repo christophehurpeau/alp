@@ -10,7 +10,7 @@ const pobpackNode = require('pobpack-node');
 const fs = _interopDefault(require('fs'));
 const webpack = _interopDefault(require('webpack'));
 const OptimizeCssAssetsPlugin = _interopDefault(require('optimize-css-assets-webpack-plugin'));
-const MiniCssExtractPlugin = _interopDefault(require('mini-css-extract-plugin'));
+const CssExtractPlugin = _interopDefault(require('extract-css-chunks-webpack-plugin'));
 const autoprefixer = _interopDefault(require('autoprefixer'));
 
 nightingale.addConfig({
@@ -26,9 +26,9 @@ const resolveLoader = loader => require.resolve(loader);
 
 const cssLoaderOptions = function (importLoaders, global, production, targetIsNode) {
   return {
-    onlyLocals: targetIsNode,
     sourceMap: !production,
     modules: global ? false : {
+      exportOnlyLocals: targetIsNode,
       localIdentName: production !== false ? '[hash:base64]' : '[name]__[local]___[hash:base64:5]'
     },
     importLoaders
@@ -49,9 +49,7 @@ const createCssModuleUse = function ({
     }];
   }
 
-  return [!production && target !== 'node' && {
-    loader: resolveLoader('extracted-loader')
-  }, target !== 'node' && extractLoader, {
+  return [target !== 'node' && extractLoader, {
     loader: resolveLoader('css-loader'),
     options: cssLoaderOptions(otherLoaders.length + 1 + (!global && !production ? 1 : 0), global, production, target === 'node')
   }, !global && !production && target !== 'node' && {
@@ -208,9 +206,10 @@ function createPobpackConfig(target, production = false) {
     ...createModuleRules({
       target,
       extractLoader: {
-        loader: MiniCssExtractPlugin.loader,
+        loader: CssExtractPlugin.loader,
         options: {
-          hmr: false
+          hmr: !production && target !== 'node',
+          esModule: true
         }
       },
       production,
@@ -224,9 +223,10 @@ function createPobpackConfig(target, production = false) {
         global: true,
         target,
         extractLoader: {
-          loader: MiniCssExtractPlugin.loader,
+          loader: CssExtractPlugin.loader,
           options: {
-            hmr: false
+            hmr: !production && target !== 'node',
+            esModule: true
           }
         },
         production,
@@ -268,7 +268,7 @@ function createPobpackConfig(target, production = false) {
     //     },
     //   },
     // },
-    plugins: [new MiniCssExtractPlugin({
+    plugins: [new CssExtractPlugin({
       // disable: target === 'node',
       filename: `${target === 'node' ? 'server' : // eslint-disable-next-line unicorn/no-nested-ternary
       target === 'browser' ? 'es5' : 'modern-browsers'}.css`

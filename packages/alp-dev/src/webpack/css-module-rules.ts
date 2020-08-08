@@ -61,11 +61,11 @@ const cssLoaderOptions = function (
   targetIsNode: boolean,
 ): any {
   return {
-    onlyLocals: targetIsNode,
     sourceMap: !production,
     modules: global
       ? false
       : {
+          exportOnlyLocals: targetIsNode,
           localIdentName:
             production !== false
               ? '[hash:base64]'
@@ -88,8 +88,6 @@ export const createCssModuleUse: CreateCssModuleUseFn = function ({
   }
 
   return [
-    !production &&
-      target !== 'node' && { loader: resolveLoader('extracted-loader') },
     target !== 'node' && extractLoader,
     {
       loader: resolveLoader('css-loader'),

@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssExtractPlugin from 'extract-css-chunks-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import { Options } from 'pobpack-types';
 import { createModuleRules, createCssModuleUse } from './css-module-rules';
@@ -123,8 +123,8 @@ export default function createPobpackConfig(
       ...createModuleRules({
         target,
         extractLoader: {
-          loader: MiniCssExtractPlugin.loader,
-          options: { hmr: false },
+          loader: CssExtractPlugin.loader,
+          options: { hmr: !production && target !== 'node', esModule: true },
         },
         production,
         themeFile: './src/theme.scss',
@@ -139,8 +139,8 @@ export default function createPobpackConfig(
           global: true,
           target,
           extractLoader: {
-            loader: MiniCssExtractPlugin.loader,
-            options: { hmr: false },
+            loader: CssExtractPlugin.loader,
+            options: { hmr: !production && target !== 'node', esModule: true },
           },
           production,
           plugins: [autoprefixer],
@@ -190,7 +190,7 @@ export default function createPobpackConfig(
     // },
 
     plugins: [
-      new MiniCssExtractPlugin({
+      new CssExtractPlugin({
         // disable: target === 'node',
         filename: `${
           target === 'node'
