@@ -8,7 +8,6 @@ import webpack from 'webpack';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
-import { createModuleRules, createCssModuleUse } from 'ynnub-webpack-config';
 
 addConfig({
   pattern: /^springbokjs-daemon/,
@@ -16,8 +15,138 @@ addConfig({
   stop: true
 }, true);
 
-/* eslint-disable max-lines */
+/* eslint-disable max-lines, complexity */
 const ExcludesFalsy = Boolean;
+
+const resolveLoader = loader => require.resolve(loader);
+
+const cssLoaderOptions = function (importLoaders, global, production, targetIsNode) {
+  return {
+    onlyLocals: targetIsNode,
+    sourceMap: !production,
+    modules: global ? false : {
+      localIdentName: production !== false ? '[hash:base64]' : '[name]__[local]___[hash:base64:5]'
+    },
+    importLoaders
+  };
+};
+
+const createCssModuleUse = function ({
+  target,
+  extractLoader,
+  global = false,
+  plugins,
+  production,
+  otherLoaders = []
+}) {
+  if (global && target === 'node') {
+    return [{
+      loader: resolveLoader('ignore-loader')
+    }];
+  }
+
+  return [!production && target !== 'node' && {
+    loader: resolveLoader('extracted-loader')
+  }, target !== 'node' && extractLoader, {
+    loader: resolveLoader('css-loader'),
+    options: cssLoaderOptions(otherLoaders.length + 1 + (!global && !production ? 1 : 0), global, production, target === 'node')
+  }, !global && !production && target !== 'node' && {
+    loader: resolveLoader('typed-css-modules-loader'),
+    options: {
+      noEmit: true
+    }
+  }, {
+    loader: resolveLoader('postcss-loader'),
+    options: {
+      ident: 'postcss',
+      sourceMap: !production,
+      plugins: () => plugins
+    }
+  }, ...otherLoaders].filter(ExcludesFalsy);
+};
+
+const createScssModuleUse = function ({
+  target,
+  extractLoader,
+  global = false,
+  plugins,
+  production,
+  themeFile,
+  includePaths = []
+}) {
+  return createCssModuleUse({
+    target,
+    extractLoader,
+    global,
+    plugins,
+    production,
+    otherLoaders: [{
+      loader: resolveLoader('sass-loader'),
+      options: {
+        sourceMap: !production,
+        prependData: `$env: ${process.env.NODE_ENV};${themeFile ? `@import '${path.resolve(themeFile)}';` : ''}`,
+        sassOptions: {
+          outputStyle: production !== false && 'compressed',
+          includePaths
+        }
+      }
+    }]
+  });
+};
+
+const createCssModuleRule = function (options) {
+  return {
+    test: /\.css$/,
+    sideEffects: true,
+    use: createCssModuleUse(options)
+  };
+};
+const createModuleRules = function ({
+  target,
+  extractLoader,
+  plugins,
+  production,
+  themeFile,
+  includePaths
+}) {
+  return [{
+    test: /\.scss$/,
+    oneOf: [{
+      test: /\.global\.scss$/,
+      sideEffects: true,
+      use: createScssModuleUse({
+        target,
+        extractLoader,
+        global: true,
+        plugins,
+        production,
+        themeFile,
+        includePaths
+      })
+    }, {
+      sideEffects: true,
+      use: createScssModuleUse({
+        target,
+        extractLoader,
+        global: false,
+        plugins,
+        production,
+        themeFile,
+        includePaths
+      })
+    }]
+  }, createCssModuleRule({
+    target,
+    extractLoader,
+    global: false,
+    plugins,
+    production
+  })];
+};
+
+/* eslint-disable complexity, max-lines */
+
+const ExcludesFalsy$1 = Boolean;
 function createPobpackConfig(target, production = false) {
   const pkg = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf-8'));
   const deps = pkg.dependencies || {};
@@ -69,7 +198,7 @@ function createPobpackConfig(target, production = false) {
         libraryName: 'antd',
         libraryDirectory: target === 'node' ? 'lib' : 'es',
         style: target !== 'node'
-      }]].filter(ExcludesFalsy)
+      }]].filter(ExcludesFalsy$1)
     },
     moduleRules: [// SCSS RULE, CSS RULE
     ...createModuleRules({
@@ -83,8 +212,7 @@ function createPobpackConfig(target, production = false) {
       production,
       themeFile: './src/theme.scss',
       plugins: [autoprefixer],
-      includePaths: [path.resolve('./node_modules')],
-      resolveLoader: loader => require.resolve(loader)
+      includePaths: [path.resolve('./node_modules')]
     }), // LESS RULE (antd)
     {
       test: /\.less$/,
@@ -99,7 +227,6 @@ function createPobpackConfig(target, production = false) {
         },
         production,
         plugins: [autoprefixer],
-        resolveLoader: loader => require.resolve(loader),
         otherLoaders: [{
           loader: require.resolve('less-loader'),
           options: {
@@ -164,7 +291,7 @@ function createPobpackConfig(target, production = false) {
     //     sourceMap: !production,
     //   }),
     // TODO https://github.com/NekR/offline-plugin
-    ].filter(ExcludesFalsy)
+    ].filter(ExcludesFalsy$1)
   };
 }
 

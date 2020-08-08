@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+/* eslint-disable complexity, max-lines */
 
 import fs from 'fs';
 import path from 'path';
@@ -6,8 +6,8 @@ import webpack from 'webpack';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
-import { createModuleRules, createCssModuleUse } from 'ynnub-webpack-config';
 import { Options } from 'pobpack-types';
+import { createModuleRules, createCssModuleUse } from './css-module-rules';
 
 // stylesCacheGroups
 
@@ -123,14 +123,13 @@ export default function createPobpackConfig(
       ...createModuleRules({
         target,
         extractLoader: {
-          loader: MiniCssExtractPlugin.loader as any,
+          loader: MiniCssExtractPlugin.loader,
           options: { hmr: false },
         },
         production,
         themeFile: './src/theme.scss',
         plugins: [autoprefixer],
         includePaths: [path.resolve('./node_modules')],
-        resolveLoader: (loader: string): string => require.resolve(loader),
       }),
 
       // LESS RULE (antd)
@@ -140,12 +139,11 @@ export default function createPobpackConfig(
           global: true,
           target,
           extractLoader: {
-            loader: MiniCssExtractPlugin.loader as any,
+            loader: MiniCssExtractPlugin.loader,
             options: { hmr: false },
           },
           production,
           plugins: [autoprefixer],
-          resolveLoader: (loader: string): string => require.resolve(loader),
           otherLoaders: [
             {
               loader: require.resolve('less-loader'),

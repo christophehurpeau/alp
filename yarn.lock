@@ -15436,11 +15436,6 @@ ylru@^1.2.0:
   resolved "https://registry.yarnpkg.com/ylru/-/ylru-1.2.1.tgz#f576b63341547989c1de7ba288760923b27fe84f"
   integrity sha512-faQrqNMzcPCHGVC2aaOINk13K+aaBDUPjGWl0teOXywElLjyVAB6Oe2jj62jHYtwsU49jXhScYbvPENK+6zAvQ==
 
-ynnub-webpack-config@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ynnub-webpack-config/-/ynnub-webpack-config-3.1.0.tgz#51587b9a443505cc6720822f9c8f8daecee052b5"
-  integrity sha512-NgTM0HACkvRlxdRAWzH2ZuiSaanFk0up9gXqQoABMWCaONChp52M03FPIiBr+kw4KOIhLjKds13NskAKDZQJUQ==
-
 ynnub@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ynnub/-/ynnub-2.0.0.tgz#20bd39f85345446b64fc713f420736eae322651d"
