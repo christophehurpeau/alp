@@ -174,7 +174,7 @@ export default class UserAccountsService<
       ),
     ];
 
-    const keyPath: string = this.usersManager.store.keyPath;
+    const keyPath = this.usersManager.store.keyPath;
 
     if (user[keyPath]) {
       await this.usersManager.replaceOne(user as User);

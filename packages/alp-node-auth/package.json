@@ -57,8 +57,7 @@
   },
   "peerDependencies": {
     "alp-node": "^2.1.1",
-    "liwi-mongo": "^4.1.0 || ^5.0.0",
-    "liwi-store": "^4.1.0"
+    "liwi-mongo": "^7.0.0"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.3.5",
@@ -72,8 +71,7 @@
   "devDependencies": {
     "@babel/core": "7.10.2",
     "babel-preset-latest-node": "4.1.0",
-    "liwi-mongo": "5.1.0",
-    "liwi-store": "4.4.0",
+    "liwi-mongo": "7.0.0",
     "pob-babel": "24.12.0"
   }
 }

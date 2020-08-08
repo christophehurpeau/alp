@@ -1,4 +1,4 @@
-import { MongoModel } from 'liwi-mongo';
+import { MongoBaseModel } from 'liwi-mongo';
 
 /* eslint-disable no-restricted-globals */
 export interface UserName {
@@ -21,7 +21,7 @@ export interface Account {
   tokenExpireDate: Date;
 }
 
-export interface User extends MongoModel {
+export interface User extends MongoBaseModel {
   accounts: Account[];
   displayName: string;
   emailDomains: string[];
@@ -38,7 +38,7 @@ export interface AccountSanitized {
   profile?: any;
 }
 
-export interface UserSanitized extends MongoModel {
+export interface UserSanitized extends MongoBaseModel {
   accounts: AccountSanitized[];
   displayName: string;
   emailDomains: string[];
