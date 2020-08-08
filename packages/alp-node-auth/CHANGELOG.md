@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@3.2.0...alp-node-auth@3.3.0) (2020-08-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency cookies to ^0.8.0 ([#104](https://github.com/christophehurpeau/alp/issues/104)) ([9e7cd20](https://github.com/christophehurpeau/alp/commit/9e7cd20))
+
+
+### Features
+
+* **alp-node-auth:** add getConnectedAndUserFromRequest and authApolloContext ([074bb2b](https://github.com/christophehurpeau/alp/commit/074bb2b))
+
+
+
+
+
 # [3.2.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@3.1.1...alp-node-auth@3.2.0) (2020-05-30)
 
 

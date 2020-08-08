@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/christophehurpeau/alp/compare/alp-node-config@5.1.0...alp-node-config@5.1.1) (2020-08-08)
+
+**Note:** Version bump only for package alp-node-config
+
+
+
+
+
 # [5.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@5.0.2...alp-node-config@5.1.0) (2020-05-30)
 
 
