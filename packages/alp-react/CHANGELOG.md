@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0](https://github.com/christophehurpeau/alp/compare/alp-react@16.1.3...alp-react@16.2.0) (2020-08-08)
+
+
+### Features
+
+* update react-helmet ([db48f50](https://github.com/christophehurpeau/alp/commit/db48f50))
+
+
+
+
+
 ## [16.1.3](https://github.com/christophehurpeau/alp/compare/alp-react@16.1.2...alp-react@16.1.3) (2020-08-08)
 
 **Note:** Version bump only for package alp-react

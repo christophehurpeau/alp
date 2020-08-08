@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@2.1.1...react-alp-connection-state@3.0.0) (2020-08-08)
+
+
+### Features
+
+* **react-alp-connection-state:** pass state as prop ([936cc62](https://github.com/christophehurpeau/alp/commit/936cc62))
+
+
+### BREAKING CHANGES
+
+* **react-alp-connection-state:** requies to pass state as prop
+
+
+
+
+
 ## [2.1.1](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@2.1.0...react-alp-connection-state@2.1.1) (2020-08-08)
 
 **Note:** Version bump only for package react-alp-connection-state
