@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@3.3.0...alp-node-auth@4.0.0) (2020-08-08)
+
+
+### Bug Fixes
+
+* **alp-node-auth:** peer dep alp-node ([4eabc29](https://github.com/christophehurpeau/alp/commit/4eabc29))
+
+
+### Features
+
+* update to liwi 7 ([bb7da62](https://github.com/christophehurpeau/alp/commit/bb7da62))
+
+
+### BREAKING CHANGES
+
+* requires liwi 7
+
+
+
+
+
 # [3.3.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@3.2.0...alp-node-auth@3.3.0) (2020-08-08)
 
 

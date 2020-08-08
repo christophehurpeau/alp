@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@3.1.1...alp-migrations@4.0.0) (2020-08-08)
+
+
+### Features
+
+* update to liwi 7 ([bb7da62](https://github.com/christophehurpeau/alp/commit/bb7da62))
+
+
+### BREAKING CHANGES
+
+* requires liwi 7
+
+
+
+
+
 ## [3.1.1](https://github.com/christophehurpeau/alp/compare/alp-migrations@3.1.0...alp-migrations@3.1.1) (2020-08-08)
 
 **Note:** Version bump only for package alp-migrations
