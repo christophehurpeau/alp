@@ -1,3 +1,4 @@
+import { IncomingMessage } from 'http';
 import { NodeApplication } from 'alp-types';
 import { User } from '../types.d';
 import AuthenticationService, { Strategies } from './services/authentification/AuthenticationService';
@@ -11,8 +12,8 @@ export { default as MongoUsersManager } from './MongoUsersManager';
 export { default as UserAccountGoogleService } from './services/user/UserAccountGoogleService';
 export { default as UserAccountSlackService } from './services/user/UserAccountSlackService';
 export { authSocketIO } from './authSocketIO';
+export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
-export declare const COOKIE_NAME = "connectedUser";
 export declare type AuthController = AuthControllerType;
 export declare type AuthRoutes = AuthRoutesType;
 export default function init<U extends User = User, StrategyKeys extends AllowedStrategyKeys = 'google'>({ homeRouterKey, usersManager, strategies, defaultStrategy, strategyToService, authHooks, }: {
@@ -24,7 +25,8 @@ export default function init<U extends User = User, StrategyKeys extends Allowed
     authHooks?: AuthHooks<StrategyKeys>;
 }): (app: NodeApplication) => {
     routes: AuthRoutesType;
-    getConnectedAndUser: (userAgent: string, token?: string | undefined) => Promise<[null | string | number, null | undefined | U]>;
+    getConnectedAndUserFromRequest: (req: IncomingMessage) => Promise<[string | number | null, U | null | undefined]>;
+    getConnectedAndUser: import("./utils/createFindConnectedAndUser").FindConnectedAndUser<U>;
     middleware: (ctx: any, next: any) => Promise<any>;
 };
 //# sourceMappingURL=index.d.ts.map

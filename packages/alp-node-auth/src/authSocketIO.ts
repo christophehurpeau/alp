@@ -1,11 +1,11 @@
-import Cookies, { Option } from 'cookies';
+import { Option } from 'cookies';
 import Logger from 'nightingale-logger';
 import { NodeApplication } from 'alp-types';
 import { User } from '../types.d';
-import { createDecodeJWT } from './utils/createDecodeJWT';
+import { getTokenFromRequest } from './utils/cookies';
+import { createFindConnectedAndUser } from './utils/createFindConnectedAndUser';
 import MongoUsersManager from './MongoUsersManager';
 
-const COOKIE_NAME = 'connectedUser';
 const logger = new Logger('alp:auth');
 
 export const authSocketIO = <U extends User = User>(
@@ -13,9 +13,11 @@ export const authSocketIO = <U extends User = User>(
   usersManager: MongoUsersManager<U>,
   io: any,
   options?: Pick<Option, Exclude<keyof Option, 'secure'>>,
-) => {
-  const decodeJwt = createDecodeJWT(
+): void => {
+  const findConnectedAndUser = createFindConnectedAndUser(
     app.config.get('authentication').get('secretKey'),
+    usersManager,
+    logger,
   );
 
   const users = new Map();
@@ -23,29 +25,16 @@ export const authSocketIO = <U extends User = User>(
 
   io.use(async (socket: any, next: any) => {
     const handshakeData = socket.request;
-    const cookies = new Cookies(handshakeData, (null as unknown) as any, {
-      ...options,
-      secure: true,
-    });
-    const token = cookies.get(COOKIE_NAME);
-    logger.debug('middleware websocket', { token });
+    const token = getTokenFromRequest(handshakeData);
 
     if (!token) return next();
 
-    let connected;
-    try {
-      connected = await decodeJwt(token, handshakeData.headers['user-agent']);
-    } catch (err) {
-      logger.info('failed to verify authentication', { err });
-      return next();
-    }
-    logger.debug('middleware websocket', { connected });
+    const [connected, user] = await findConnectedAndUser(
+      handshakeData.headers['user-agent'],
+      token,
+    );
 
-    if (!connected) return next();
-
-    const user = await usersManager.findConnected(connected);
-
-    if (!user) return next();
+    if (!connected || !user) return next();
 
     socket.user = user;
     users.set(socket.client.id, user);

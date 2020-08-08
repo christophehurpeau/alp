@@ -7,9 +7,47 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 const util = require('util');
 const jsonwebtoken = require('jsonwebtoken');
 const Logger = _interopDefault(require('nightingale-logger'));
+const Cookies = _interopDefault(require('cookies'));
 const events = require('events');
 const crypto = require('crypto');
-const Cookies = _interopDefault(require('cookies'));
+
+const verifyPromisified = util.promisify(jsonwebtoken.verify);
+
+const createDecodeJWT = secretKey => async (token, userAgent) => {
+  const result = await verifyPromisified(token, secretKey, {
+    algorithm: 'HS512',
+    audience: userAgent
+  });
+  return result === null || result === void 0 ? void 0 : result.connected;
+};
+
+const createFindConnectedAndUser = (secretKey, usersManager, logger) => {
+  const decodeJwt = createDecodeJWT(secretKey);
+  return async (userAgent, token) => {
+    if (!token || !userAgent) return [null, null];
+    let connected;
+
+    try {
+      connected = await decodeJwt(token, userAgent);
+    } catch (err) {
+      logger.debug('failed to verify authentification', {
+        err
+      });
+    }
+
+    if (connected == null) return [null, null];
+    const user = await usersManager.findConnected(connected);
+    return [connected, user];
+  };
+};
+
+const COOKIE_NAME = 'connectedUser';
+const getTokenFromRequest = (req, options) => {
+  const cookies = new Cookies(req, null, { ...options,
+    secure: true
+  });
+  return cookies.get(COOKIE_NAME);
+};
 
 const randomBytesPromisified = util.promisify(crypto.randomBytes);
 async function randomHex(size) {
@@ -463,15 +501,6 @@ const createRoutes = controller => ({
   logout: ['/logout', controller.logout]
 });
 
-const verifyPromisified = util.promisify(jsonwebtoken.verify);
-const createDecodeJWT = secretKey => async (token, userAgent) => {
-  const result = await verifyPromisified(token, secretKey, {
-    algorithm: 'HS512',
-    audience: userAgent
-  });
-  return result === null || result === void 0 ? void 0 : result.connected;
-};
-
 class MongoUsersManager {
   constructor(store) {
     this.store = store;
@@ -652,39 +681,17 @@ class UserAccountSlackService {
 
 }
 
-const COOKIE_NAME = 'connectedUser';
 const logger$2 = new Logger('alp:auth');
-const authSocketIO = (app, usersManager, io, options) => {
-  const decodeJwt = createDecodeJWT(app.config.get('authentication').get('secretKey'));
+const authSocketIO = (app, usersManager, io) => {
+  const findConnectedAndUser = createFindConnectedAndUser(app.config.get('authentication').get('secretKey'), usersManager, logger$2);
   const users = new Map();
   io.users = users;
   io.use(async (socket, next) => {
     const handshakeData = socket.request;
-    const cookies = new Cookies(handshakeData, null, { ...options,
-      secure: true
-    });
-    const token = cookies.get(COOKIE_NAME);
-    logger$2.debug('middleware websocket', {
-      token
-    });
+    const token = getTokenFromRequest(handshakeData);
     if (!token) return next();
-    let connected;
-
-    try {
-      connected = await decodeJwt(token, handshakeData.headers['user-agent']);
-    } catch (err) {
-      logger$2.info('failed to verify authentication', {
-        err
-      });
-      return next();
-    }
-
-    logger$2.debug('middleware websocket', {
-      connected
-    });
-    if (!connected) return next();
-    const user = await usersManager.findConnected(connected);
-    if (!user) return next();
+    const [connected, user] = await findConnectedAndUser(handshakeData.headers['user-agent'], token);
+    if (!connected || !user) return next();
     socket.user = user;
     users.set(socket.client.id, user);
     socket.on('disconnected', () => users.delete(socket.client.id));
@@ -692,8 +699,44 @@ const authSocketIO = (app, usersManager, io, options) => {
   });
 };
 
-const COOKIE_NAME$1 = 'connectedUser';
 const logger$3 = new Logger('alp:auth');
+
+const getTokenFromReq = req => {
+  if (req.cookies) return req.cookies[COOKIE_NAME];
+  return getTokenFromRequest(req);
+};
+/*
+ * Not tested yet.
+ * @internal
+ */
+
+
+const createAuthApolloContext = (config, usersManager) => {
+  const findConnectedAndUser = createFindConnectedAndUser(config.get('authentication').get('secretKey'), usersManager, logger$3);
+  return async ({
+    req,
+    connection
+  }) => {
+    // if (connection) console.log(Object.keys(connection));
+    if (connection === null || connection === void 0 ? void 0 : connection.user) {
+      return {
+        user: connection.user
+      };
+    }
+
+    if (!req) return null;
+    const token = getTokenFromReq(req);
+    if (!token) return {
+      user: undefined
+    };
+    const [, user] = await findConnectedAndUser(req.headers['user-agent'], token);
+    return {
+      user
+    };
+  };
+};
+
+const logger$4 = new Logger('alp:auth');
 const signPromisified = util.promisify(jsonwebtoken.sign);
 function init({
   homeRouterKey,
@@ -715,7 +758,7 @@ function init({
     });
 
     app.context.setConnected = async function (connected, user) {
-      logger$3.debug('setConnected', {
+      logger$4.debug('setConnected', {
         connected
       });
 
@@ -733,7 +776,7 @@ function init({
         audience: this.request.headers['user-agent'],
         expiresIn: '30 days'
       });
-      this.cookies.set(COOKIE_NAME$1, token, {
+      this.cookies.set(COOKIE_NAME, token, {
         httpOnly: true,
         secure: this.config.get('allowHttps')
       });
@@ -742,37 +785,23 @@ function init({
     app.context.logout = function () {
       delete this.state.connected;
       delete this.state.user;
-      this.cookies.set(COOKIE_NAME$1, '', {
+      this.cookies.set(COOKIE_NAME, '', {
         expires: new Date(1)
       });
     };
 
-    const decodeJwt = createDecodeJWT(app.config.get('authentication').get('secretKey'));
-
-    const getConnectedAndUser = async (userAgent, token) => {
-      if (!token) return [null, null];
-      let connected;
-
-      try {
-        connected = await decodeJwt(token, userAgent);
-      } catch (err) {
-        logger$3.info('failed to verify authentification', {
-          err
-        });
-      }
-
-      if (connected == null) return [null, null];
-      const user = await usersManager.findConnected(connected);
-      return [connected, user];
-    };
-
+    const getConnectedAndUser = createFindConnectedAndUser(app.config.get('authentication').get('secretKey'), usersManager, logger$4);
     return {
       routes: createRoutes(controller),
+      getConnectedAndUserFromRequest: req => {
+        const token = getTokenFromRequest(req);
+        return getConnectedAndUser(req.headers['user-agent'], token);
+      },
       getConnectedAndUser,
       middleware: async (ctx, next) => {
-        const token = ctx.cookies.get(COOKIE_NAME$1);
+        const token = ctx.cookies.get(COOKIE_NAME);
         const userAgent = ctx.request.headers['user-agent'];
-        logger$3.debug('middleware', {
+        logger$4.debug('middleware', {
           token
         });
 
@@ -789,12 +818,12 @@ function init({
         };
 
         const [connected, user] = await getConnectedAndUser(userAgent, token);
-        logger$3.debug('middleware', {
+        logger$4.debug('middleware', {
           connected
         });
 
         if (connected == null || user == null) {
-          if (token) ctx.cookies.set(COOKIE_NAME$1, '', {
+          if (token) ctx.cookies.set(COOKIE_NAME, '', {
             expires: new Date(1)
           });
           return notConnected();
@@ -808,11 +837,11 @@ function init({
 }
 
 exports.AuthenticationService = AuthenticationService;
-exports.COOKIE_NAME = COOKIE_NAME$1;
 exports.MongoUsersManager = MongoUsersManager;
 exports.STATUSES = STATUSES;
 exports.UserAccountGoogleService = UserAccountGoogleService;
 exports.UserAccountSlackService = UserAccountSlackService;
 exports.authSocketIO = authSocketIO;
+exports.createAuthApolloContext = createAuthApolloContext;
 exports.default = init;
 //# sourceMappingURL=index-node10-dev.cjs.js.map
