@@ -1,51 +1,46 @@
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import React, { ReactElement, useContext, useEffect, useRef } from 'react';
 import ReactAlpContext from 'react-alp-context';
 import { T } from 'react-alp-translate';
 import '../ConnectionState.global.scss';
 
 type State = null | 'connecting' | 'connected' | 'disconnected';
 
-export default function ConnectionState(): ReactElement {
+interface ConnectionStateProps {
+  state: State;
+}
+
+export default function ConnectionState({
+  state,
+}: ConnectionStateProps): ReactElement {
   const ctx = useContext(ReactAlpContext);
-  const notConnected = !ctx.sanitizedState.user;
+  const notLoggedIn = !ctx.sanitizedState.user;
 
-  const [connectionState, setConnectionState] = useState<State>(null);
+  const unloadingRef = useRef<boolean>(false);
+  const currentStateRef = useRef(state);
+  if (unloadingRef.current === false) {
+    currentStateRef.current = state;
+  }
+  const currentState = currentStateRef.current;
+
   useEffect((): (() => void) => {
-    const websocket = ctx.app.websocket;
-    let unloading = false;
-
     const beforeUnloadHandler = (): void => {
-      unloading = true;
+      unloadingRef.current = true;
     };
     window.addEventListener('beforeunload', beforeUnloadHandler);
 
-    const connectedHandler = websocket.on('connect', (): void => {
-      setConnectionState('connected');
-    });
-    const disconnectedHandler = websocket.on('disconnect', (): void => {
-      if (unloading) return;
-      setConnectionState('disconnected');
-    });
-
-    setConnectionState(websocket.connected ? 'connected' : 'connecting');
-
     return (): void => {
-      websocket.off('connected', connectedHandler);
-      websocket.off('disconnected', disconnectedHandler);
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
-  }, [ctx.app.websocket]);
+  }, []);
 
   return (
     <div
-      hidden={
-        !connectionState || notConnected || connectionState === 'connected'
-      }
+      hidden={!state || notLoggedIn || currentState === 'connected'}
       className="alp-connection-state"
     >
-      {!connectionState || notConnected ? null : (
+      {!state || notLoggedIn ? null : (
         <div>
-          <T id={`connectionState.${connectionState}`} />
+          <T id={`connectionState.${currentState}`} />
         </div>
       )}
     </div>

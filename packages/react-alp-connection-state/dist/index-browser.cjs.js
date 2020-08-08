@@ -10,42 +10,33 @@ var ReactAlpContext = _interopDefault(require('react-alp-context'));
 var reactAlpTranslate = require('react-alp-translate');
 require('../ConnectionState.global.scss');
 
-function ConnectionState() {
+function ConnectionState(_ref) {
+  var state = _ref.state;
   var ctx = React.useContext(ReactAlpContext);
-  var notConnected = !ctx.sanitizedState.user;
+  var notLoggedIn = !ctx.sanitizedState.user;
+  var unloadingRef = React.useRef(false);
+  var currentStateRef = React.useRef(state);
 
-  var _useState = React.useState(null),
-      connectionState = _useState[0],
-      setConnectionState = _useState[1];
+  if (unloadingRef.current === false) {
+    currentStateRef.current = state;
+  }
 
+  var currentState = currentStateRef.current;
   React.useEffect(function () {
-    var websocket = ctx.app.websocket;
-    var unloading = false;
-
     var beforeUnloadHandler = function beforeUnloadHandler() {
-      unloading = true;
+      unloadingRef.current = true;
     };
 
     window.addEventListener('beforeunload', beforeUnloadHandler);
-    var connectedHandler = websocket.on('connect', function () {
-      setConnectionState('connected');
-    });
-    var disconnectedHandler = websocket.on('disconnect', function () {
-      if (unloading) return;
-      setConnectionState('disconnected');
-    });
-    setConnectionState(websocket.connected ? 'connected' : 'connecting');
     return function () {
-      websocket.off('connected', connectedHandler);
-      websocket.off('disconnected', disconnectedHandler);
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
-  }, [ctx.app.websocket]);
+  }, []);
   return /*#__PURE__*/React__default.createElement("div", {
-    hidden: !connectionState || notConnected || connectionState === 'connected',
+    hidden: !state || notLoggedIn || currentState === 'connected',
     className: "alp-connection-state"
-  }, !connectionState || notConnected ? null : /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(reactAlpTranslate.T, {
-    id: "connectionState." + connectionState
+  }, !state || notLoggedIn ? null : /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(reactAlpTranslate.T, {
+    id: "connectionState." + currentState
   })));
 }
 
