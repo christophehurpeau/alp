@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react';
 import { Helmet, AppContainer } from 'alp-react';
-import { hot } from 'alp-react/hot';
 import App from './App';
 
-export default hot(function Layout(): ReactElement {
+export default function Layout(): ReactElement {
   return (
     <AppContainer>
       <Helmet>
@@ -14,4 +13,4 @@ export default hot(function Layout(): ReactElement {
       <App />
     </AppContainer>
   );
-});
+}

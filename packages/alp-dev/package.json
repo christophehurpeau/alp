@@ -116,14 +116,13 @@
     "offline-plugin": "^5.0.7",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "pob-babel": "^24.12.0",
-    "pobpack-browser": "8.1.1",
-    "pobpack-node": "8.1.1",
+    "pobpack-browser": "9.0.0",
+    "pobpack-node": "9.0.0",
     "pobpack-types": "4.1.2",
     "portscanner": "^2.2.0",
     "postcss": "^7.0.23",
     "postcss-loader": "^3.0.0",
     "progress": "^2.0.3",
-    "react-hot-loader": "^4.12.18",
     "sass-loader": "^8.0.0",
     "source-map-loader": "^0.2.4",
     "springbokjs-daemon": "^5.1.0",
@@ -144,7 +143,7 @@
     "@types/progress": "2.0.3",
     "@types/webpack-dev-server": "3.11.0",
     "less": "3.10.3",
-    "react": "16.11.0",
-    "react-dom": "16.11.0"
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   }
 }
