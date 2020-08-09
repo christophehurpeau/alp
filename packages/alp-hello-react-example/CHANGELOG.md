@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.7.1...alp-hello-react-example@3.0.0) (2020-08-09)
+
+
+### Features
+
+* simplify alp-browser with startApp ([cf5fc3e](https://github.com/christophehurpeau/alp/commit/cf5fc3e))
+* update pobpack and enable fast-refresh ([faaf37c](https://github.com/christophehurpeau/alp/commit/faaf37c))
+
+
+### BREAKING CHANGES
+
+* drop react-hot-loader and alp-react/hot, updated react
+
+
+
+
+
 ## [2.7.1](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@2.7.0...alp-hello-react-example@2.7.1) (2020-08-09)
 
 **Note:** Version bump only for package alp-hello-react-example

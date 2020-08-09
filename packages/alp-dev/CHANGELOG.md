@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.0.0](https://github.com/christophehurpeau/alp/compare/alp-dev@13.4.1...alp-dev@14.0.0) (2020-08-09)
+
+
+### Features
+
+* update pobpack and enable fast-refresh ([faaf37c](https://github.com/christophehurpeau/alp/commit/faaf37c))
+
+
+### BREAKING CHANGES
+
+* drop react-hot-loader and alp-react/hot, updated react
+
+
+
+
+
 ## [13.4.1](https://github.com/christophehurpeau/alp/compare/alp-dev@13.4.0...alp-dev@13.4.1) (2020-08-09)
 
 

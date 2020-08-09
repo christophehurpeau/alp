@@ -1,6 +1,6 @@
 {
   "name": "react-alp-connection-state",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "connection state",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -81,8 +81,8 @@
   "dependencies": {
     "@babel/runtime": "^7.10.2",
     "alp-types": "^2.0.0",
-    "react-alp-context": "^2.1.1",
-    "react-alp-translate": "^4.1.1"
+    "react-alp-context": "^2.1.2",
+    "react-alp-translate": "^4.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
