@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.4.1](https://github.com/christophehurpeau/alp/compare/alp-dev@13.4.0...alp-dev@13.4.1) (2020-08-09)
+
+
+### Bug Fixes
+
+* update pobpack ([62ed982](https://github.com/christophehurpeau/alp/commit/62ed982))
+
+
+
+
+
 # [13.4.0](https://github.com/christophehurpeau/alp/compare/alp-dev@13.3.0...alp-dev@13.4.0) (2020-08-08)
 
 
