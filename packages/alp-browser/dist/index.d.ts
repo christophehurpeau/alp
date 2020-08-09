@@ -18,5 +18,6 @@ export default class AlpBrowser extends Ibex implements BrowserApplicationInCrea
     loadConfig(name: string): Promise<Map<string, any>>;
     start(fn: Function): void;
 }
+export declare const startApp: (callback: (app: BrowserApplication) => unknown) => void;
 export {};
 //# sourceMappingURL=index.d.ts.map

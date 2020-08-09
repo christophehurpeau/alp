@@ -66,3 +66,15 @@ export default class AlpBrowser extends Ibex
     }
   }
 }
+
+export const startApp = (
+  callback: (app: BrowserApplication) => unknown,
+): void => {
+  const app = new AlpBrowser();
+
+  return app.start(async () => {
+    // init
+    const browserApp = await app.init();
+    await callback(browserApp);
+  });
+};

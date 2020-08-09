@@ -88,6 +88,31 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
 
   return AlpBrowser;
 }(Ibex);
+var startApp = function startApp(callback) {
+  var app = new AlpBrowser();
+  return app.start( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+    var browserApp;
+    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return app.init();
+
+          case 2:
+            browserApp = _context2.sent;
+            _context2.next = 5;
+            return callback(browserApp);
+
+          case 5:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  })));
+};
 
 export default AlpBrowser;
+export { startApp };
 //# sourceMappingURL=index-browser.es.js.map

@@ -47,6 +47,15 @@ class AlpBrowser extends Ibex {
   }
 
 }
+const startApp = function startApp(callback) {
+  const app = new AlpBrowser();
+  return app.start(async function () {
+    // init
+    const browserApp = await app.init();
+    await callback(browserApp);
+  });
+};
 
 export default AlpBrowser;
+export { startApp };
 //# sourceMappingURL=index-browsermodern.es.js.map
