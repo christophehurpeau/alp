@@ -35,7 +35,7 @@
     "react-hot-loader": "^4.12.18"
   },
   "devDependencies": {
-    "@hot-loader/react-dom": "16.11.0",
+    "@hot-loader/react-dom": "16.13.0",
     "alp-dev": "^13.4.1"
   }
 }
