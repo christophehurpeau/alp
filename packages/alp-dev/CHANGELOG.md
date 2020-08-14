@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.1](https://github.com/christophehurpeau/alp/compare/alp-dev@14.0.0...alp-dev@14.0.1) (2020-08-14)
+
+
+### Bug Fixes
+
+* **alp-dev:** try to cleanup watch child on SIGINT/SIGTERM ([ff89989](https://github.com/christophehurpeau/alp/commit/ff89989))
+
+
+
+
+
 # [14.0.0](https://github.com/christophehurpeau/alp/compare/alp-dev@13.4.1...alp-dev@14.0.0) (2020-08-09)
 
 
