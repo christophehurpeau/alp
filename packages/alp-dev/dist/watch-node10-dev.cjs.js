@@ -230,5 +230,16 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
       serverPort: port
     });
   });
+
+  const cleanup = () => {
+    var _nodeChild;
+
+    Promise.all([(_nodeChild = nodeChild) === null || _nodeChild === void 0 ? void 0 : _nodeChild.stop().catch(() => {}), browserChild === null || browserChild === void 0 ? void 0 : browserChild.stop().catch(() => {})]).then(() => {
+      process.exit(0);
+    });
+  };
+
+  process.on('SIGINT', cleanup);
+  process.on('SIGTERM', cleanup);
 }).catch(err => console.log(err.stack));
 //# sourceMappingURL=watch-node10-dev.cjs.js.map

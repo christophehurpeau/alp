@@ -159,5 +159,17 @@ Promise.all([
     Promise.all([nodeChild.start(), browserChild.start()]).then(() => {
       logger.success('ready', { port: proxyPort, serverPort: port });
     });
+
+    const cleanup = (): void => {
+      Promise.all([
+        nodeChild?.stop().catch((err) => {}),
+        browserChild?.stop().catch((err) => {}),
+      ]).then(() => {
+        process.exit(0);
+      });
+    };
+
+    process.on('SIGINT', cleanup);
+    process.on('SIGTERM', cleanup);
   })
   .catch((err) => console.log(err.stack));

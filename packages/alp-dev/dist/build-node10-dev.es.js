@@ -114,8 +114,7 @@ Promise.all([build(), ...['build-node', 'build-modern-browser', 'build-older-bro
 })]).then(() => {
   console.log('done !');
 }, err => {
-  console.error(err); // eslint-disable-next-line unicorn/no-process-exit
-
+  console.error(err);
   process.exit(1);
 });
 //# sourceMappingURL=build-node10-dev.es.js.map
