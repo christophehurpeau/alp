@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/christophehurpeau/alp/compare/alp-translate@4.1.2...alp-translate@4.2.0) (2020-10-07)
+
+
+### Features
+
+* update intl-messageformat ([f0957b3](https://github.com/christophehurpeau/alp/commit/f0957b3))
+
+
+
+
+
 ## [4.1.2](https://github.com/christophehurpeau/alp/compare/alp-translate@4.1.1...alp-translate@4.1.2) (2020-08-09)
 
 **Note:** Version bump only for package alp-translate
