@@ -9321,34 +9321,34 @@ listr2@^3.2.2:
     rxjs "^6.6.3"
     through "^2.3.8"
 
-liwi-mongo@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-7.0.0.tgz#38430c30186dc4b0afdf62d9b9a3f095c74ef894"
-  integrity sha512-8+0/IML+/kIQNhYllvIYkqRDPB8GZ1oaXwHlpDZLY6UoloPddVjPkNvvVTfKtRn+WbWLiMeQMruu4zzSx6v3iQ==
+liwi-mongo@7.4.2:
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-7.4.2.tgz#815f204849a4ca0e53ea0fcc85129fc72919b11a"
+  integrity sha512-DotGnvY5nf0Ql3rGo2yqFPJ22KJbzN01debUOKcvllpMvDzaxJYwRwtJO64QURKUwNIJ4vqNV4N1/M8YPob5ug==
   dependencies:
     "@types/mongodb" "^3.5.20"
-    liwi-store "^7.0.0"
-    liwi-subscribe-store "^7.0.0"
+    liwi-store "^7.2.3"
+    liwi-subscribe-store "^7.2.3"
     liwi-types "^7.0.0"
     mingo "^3.0.2"
     mongodb "^3.5.8"
     nightingale-logger "^10.0.1"
 
-liwi-store@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-7.0.0.tgz#8e6aab0d9879071f9557f353fe71609d15bc75b4"
-  integrity sha512-R6Ayg43hnTMfAX/eSU7z/0jpYloI200vVv+vOsJOKQAs66q1B9dae5AL1jxaqxQ3mbxaG8/Z0XfI9xT93h/3rg==
+liwi-store@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-7.2.3.tgz#b9d34c292a9bd4e1f7362bd38208eb9374d126d0"
+  integrity sha512-3boxL1pxyIIUPlrRgQhcVHjuxMqHkcyRJPS5tmn5I17iq//ewaS79BVMcXiwxUrZr9AGQMx7T/JZbxkVfNjcCA==
   dependencies:
     "@babel/runtime" "^7.10.5"
     liwi-types "^7.0.0"
 
-liwi-subscribe-store@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-7.0.0.tgz#b126e83803679bc078e926935999fb2ccea463c7"
-  integrity sha512-JDc0t832PaGsg8KCA01E6EsvIkSTAbSQaLNks2LPezbgMYilxl89vD9vJlgYjB8GKBeLAVY3jcsfDWZxFgX5dA==
+liwi-subscribe-store@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-7.2.3.tgz#9d8df1155b6cba9f6236fff14a53bfb2a98959c8"
+  integrity sha512-scj67v3+EXz4PDyXvz6Cks8JfrM53WV4LNgv6CGdz+fwJjWRVu4yUNnwi1TdralRJC/3mO6+MgUp0Dr5a9UlUw==
   dependencies:
     "@babel/runtime" "^7.10.5"
-    liwi-store "^7.0.0"
+    liwi-store "^7.2.3"
     liwi-types "^7.0.0"
 
 liwi-types@^7.0.0:
