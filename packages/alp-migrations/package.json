@@ -51,11 +51,11 @@
   "dependencies": {
     "alp-types": "^2.0.0",
     "nightingale-logger": "^10.0.1",
-    "semver": "^6.0.0"
+    "semver": "^7.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
-    "@types/semver": "6.2.2",
+    "@types/semver": "7.3.4",
     "babel-preset-latest-node": "4.1.0",
     "liwi-mongo": "7.0.0",
     "pob-babel": "24.12.0"
