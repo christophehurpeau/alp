@@ -61,7 +61,7 @@
     "koa": "^2.11.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.2",
+    "@babel/core": "7.12.10",
     "babel-preset-latest-node": "4.1.0",
     "pob-babel": "24.12.0"
   }
