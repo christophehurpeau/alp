@@ -74,7 +74,7 @@
     "@types/findup-sync": "2.0.2",
     "@types/koa-compress": "2.0.9",
     "@types/koa-static": "4.0.1",
-    "@types/minimist": "1.2.0",
+    "@types/minimist": "1.2.1",
     "babel-preset-latest-node": "4.1.0",
     "pob-babel": "24.12.0"
   }
