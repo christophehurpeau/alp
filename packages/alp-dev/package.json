@@ -141,7 +141,7 @@
     "@types/optimize-css-assets-webpack-plugin": "5.0.1",
     "@types/portscanner": "2.1.0",
     "@types/progress": "2.0.3",
-    "@types/webpack-dev-server": "3.11.0",
+    "@types/webpack-dev-server": "3.11.1",
     "less": "3.10.3",
     "react": "16.13.1",
     "react-dom": "16.13.1"
