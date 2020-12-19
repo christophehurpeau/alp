@@ -132,7 +132,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.2",
+    "@babel/core": "7.12.10",
     "@types/autoprefixer": "9.6.1",
     "@types/execa": "2.0.0",
     "@types/glob": "7.1.1",
