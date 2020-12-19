@@ -135,7 +135,7 @@
     "@babel/core": "7.12.10",
     "@types/autoprefixer": "9.6.1",
     "@types/execa": "2.0.0",
-    "@types/glob": "7.1.1",
+    "@types/glob": "7.1.3",
     "@types/js-yaml": "3.12.5",
     "@types/mkdirp": "0.5.2",
     "@types/optimize-css-assets-webpack-plugin": "5.0.1",
