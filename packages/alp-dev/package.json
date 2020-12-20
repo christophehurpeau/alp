@@ -142,7 +142,7 @@
     "@types/portscanner": "2.1.0",
     "@types/progress": "2.0.3",
     "@types/webpack-dev-server": "3.11.1",
-    "less": "3.10.3",
+    "less": "3.13.1",
     "react": "16.14.0",
     "react-dom": "16.14.0"
   }
