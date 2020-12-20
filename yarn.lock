@@ -2219,10 +2219,10 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@pob/commitlint-config@1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@pob/commitlint-config/-/commitlint-config-1.1.3.tgz#d91f5378f3d099cee3476eeb3e337a3897992e64"
-  integrity sha512-yC2WNwN0H3LgjR3fJ6DdhoTPH3sIn2FyP9viM6Iyb6iq/i4ZFTmeLn7LmcZeLiJoMZccroUWwpWcLLEEbIKT4Q==
+"@pob/commitlint-config@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@pob/commitlint-config/-/commitlint-config-2.0.1.tgz#8e7e23a14515b55614a859b630cd946364064c1f"
+  integrity sha512-rURaaTQNh2T4qjgQLGgVf5uU8ynFUBvy5RBxDgY9qArsP8TptASZCtbS4QFLAhTzMCuH7xQ7r7/rfvum6lGVpg==
   dependencies:
     "@commitlint/config-conventional" "^11.0.0"
 
