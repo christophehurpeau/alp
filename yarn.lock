@@ -2292,19 +2292,19 @@
     eslint-plugin-prettier "^3.1.3"
     eslint-plugin-unicorn "^18.0.1"
 
-"@pob/root@2.4.5":
-  version "2.4.5"
-  resolved "https://registry.yarnpkg.com/@pob/root/-/root-2.4.5.tgz#1fbe1aa91fbde40e7e3d4cf7e9e72675d9d27b36"
-  integrity sha512-c25DrpDXjo7vzLZ39pYw6X8CZN5f2hZGSNymRSEnAvMvkJ3eohUhe2KD0ndB9vHCxxlZUPtxAlQkCA5F6CV5gw==
+"@pob/root@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@pob/root/-/root-3.0.3.tgz#6982e2757bf73b33057904349698ec470c1ad665"
+  integrity sha512-k7rPQ6tMoTMJBuwEMvARczEpD1wiMu7wLAn+wO791Gjwwe2qsAZtq4J+TiKmxiR0MapPuT2cjYNnP9gEYKxslg==
   dependencies:
     "@commitlint/cli" "11.0.0"
     cross-env "^7.0.2"
-    lint-staged "10.5.1"
-    repository-check-dirty "^1.2.2"
+    lint-staged "10.5.3"
+    repository-check-dirty "^2.0.1"
     semver "^7.1.2"
     which-pm-runs "1.0.0"
     yarn-deduplicate "3.1.0"
-    yarnhook "^0.4.3"
+    yarnhook "^0.5.0"
 
 "@pob/use-eslint-plugin@^37.2.0":
   version "37.2.0"
@@ -5172,15 +5172,6 @@ cross-spawn@^3.0.0:
     lru-cache "^4.0.1"
     which "^1.2.9"
 
-cross-spawn@^5.0.1:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
-  integrity sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=
-  dependencies:
-    lru-cache "^4.0.1"
-    shebang-command "^1.2.0"
-    which "^1.2.9"
-
 cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -6507,7 +6498,7 @@ exec-sh@^0.3.2:
   resolved "https://registry.yarnpkg.com/exec-sh/-/exec-sh-0.3.2.tgz#6738de2eb7c8e671d0366aea0b0db8c6f7d7391b"
   integrity sha512-9sLAvzhI5nc8TpuQUh4ahMdCrWT00wPWz7j47/emR5+2qEfoZP5zzUXvx+vdx+H6ohhnsYC31iX04QLYJK8zTg==
 
-execa@*, execa@^4.0.0, execa@^4.1.0:
+execa@*, execa@^4.0.0, execa@^4.0.3, execa@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-4.1.0.tgz#4e5491ad1572f2f17a77d388c6c857135b22847a"
   integrity sha512-j5W0//W7f8UxAn8hXVnwG8tLwdiUy4FJLcSupCg6maBYZDpyBvTApK7KyuI4bKj8KOh1r2YH+6ucuYtJv1bTZA==
@@ -6528,19 +6519,6 @@ execa@^0.10.0:
   integrity sha512-7XOMnz8Ynx1gGo/3hyV9loYNPWM94jG3+3T3Y8tsfSstFmETmENCMU/A/zj8Lyaj1lkgEepKepvd6240tBRvlw==
   dependencies:
     cross-spawn "^6.0.0"
-    get-stream "^3.0.0"
-    is-stream "^1.1.0"
-    npm-run-path "^2.0.0"
-    p-finally "^1.0.0"
-    signal-exit "^3.0.0"
-    strip-eof "^1.0.0"
-
-execa@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
-  integrity sha1-2NdrvBtVIX7RkP1t1J08d07PyNo=
-  dependencies:
-    cross-spawn "^5.0.1"
     get-stream "^3.0.0"
     is-stream "^1.1.0"
     npm-run-path "^2.0.0"
@@ -9333,10 +9311,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lint-staged@10.5.1:
-  version "10.5.1"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-10.5.1.tgz#901e915c2360072dded0e7d752a0d9a49e079daa"
-  integrity sha512-fTkTGFtwFIJJzn/PbUO3RXyEBHIhbfYBE7+rJyLcOXabViaO/h6OslgeK6zpeUtzkDrzkgyAYDTLAwx6JzDTHw==
+lint-staged@10.5.3:
+  version "10.5.3"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-10.5.3.tgz#c682838b3eadd4c864d1022da05daa0912fb1da5"
+  integrity sha512-TanwFfuqUBLufxCc3RUtFEkFraSPNR3WzWcGF39R3f2J7S9+iF9W0KTVLfSy09lYGmZS5NDCxjNvhGMSJyFCWg==
   dependencies:
     chalk "^4.1.0"
     cli-truncate "^2.1.0"
@@ -12859,10 +12837,10 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-repository-check-dirty@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/repository-check-dirty/-/repository-check-dirty-1.2.2.tgz#e8ae314e93b40fb90df996a4d03d3b8a446104d7"
-  integrity sha512-RVIsmdqjhBy48/ipXo1FQRMMFHlF3PKsWx7INHPrLkvHbnrLw8Tz/BILQZIUpulokI/rBwn4auLZS4S2R99RXA==
+repository-check-dirty@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/repository-check-dirty/-/repository-check-dirty-2.0.1.tgz#011a5a869b53dc164e2a0313b657c4f1ac6afc68"
+  integrity sha512-/w3RHNDvSCGWIqxxtA8TT8QLLoPsc6HyCHq34PCM3LXV1ltle3Ckib+QhaanDKpyclaY9GKmxJXDxby/+jyXFg==
 
 request-promise-core@1.1.3:
   version "1.1.3"
@@ -15570,12 +15548,12 @@ yarn-deduplicate@3.1.0:
     commander "^6.1.0"
     semver "^7.3.2"
 
-yarnhook@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/yarnhook/-/yarnhook-0.4.3.tgz#d80443f86596f72cf58ddf16f69d9b8f9584f056"
-  integrity sha512-GIAWEJ/iBv5ywDGmEJp1qHPydof7pysgAyU8UYM5Z0Izm2mJAbJPbT4PIXFCh2e2ia1TYSUy+uwbD80mtBuK8w==
+yarnhook@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/yarnhook/-/yarnhook-0.5.1.tgz#27d47947412bd124874d56aa75725b76b68cc398"
+  integrity sha512-YPLLXO/PzsFXKvRfsOG/r60WBz8RT7VbkkQv2oHDb6o+EjX0vcUSeA3aw5el2AEWjbcg1sgemjHyCwRIvQxZWw==
   dependencies:
-    execa "^0.8.0"
+    execa "^4.0.3"
     find-parent-dir "^0.3.0"
 
 yeast@0.1.2:
