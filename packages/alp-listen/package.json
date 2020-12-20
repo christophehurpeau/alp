@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
-    "babel-preset-latest-node": "4.1.0",
+    "babel-preset-latest-node": "5.2.0",
     "pob-babel": "24.12.0"
   }
 }

@@ -93,7 +93,7 @@
     "babel-plugin-discard-module-references": "^1.1.2",
     "babel-plugin-import": "^1.13.0",
     "babel-plugin-inline-classnames-babel7": "^1.1.9",
-    "babel-preset-latest-node": "^4.0.1",
+    "babel-preset-latest-node": "^5.0.0",
     "babel-preset-modern-browsers": "^14.1.1",
     "babel-preset-pob-env": "^3.7.1",
     "colorette": "^1.1.0",
