@@ -671,7 +671,7 @@
     "@babel/helper-plugin-utils" "^7.10.4"
     babel-plugin-dynamic-import-node "^2.3.3"
 
-"@babel/plugin-transform-modules-commonjs@^7.12.1", "@babel/plugin-transform-modules-commonjs@^7.9.0":
+"@babel/plugin-transform-modules-commonjs@^7.10.4", "@babel/plugin-transform-modules-commonjs@^7.12.1", "@babel/plugin-transform-modules-commonjs@^7.9.0":
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.12.1.tgz#fa403124542636c786cf9b460a0ffbb48a86e648"
   integrity sha512-dY789wq6l0uLY8py9c1B48V8mVL5gZh/+PQ5ZPrylPYsnAvnEMjqsUXkuoDVPeVK+0VyGar+D08107LzDQ6pag==
@@ -3864,7 +3864,15 @@ babel-preset-latest-node@4.1.0, babel-preset-latest-node@^4.0.1, babel-preset-la
     "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
     "@babel/plugin-transform-modules-commonjs" "^7.9.0"
 
-babel-preset-modern-browsers@14.2.1, babel-preset-modern-browsers@^14.1.1, babel-preset-modern-browsers@^14.2.1:
+babel-preset-modern-browsers@15.0.2, babel-preset-modern-browsers@^15.0.0:
+  version "15.0.2"
+  resolved "https://registry.yarnpkg.com/babel-preset-modern-browsers/-/babel-preset-modern-browsers-15.0.2.tgz#cf4cfb7b27d37dc28ebf3d602269b101df6c685a"
+  integrity sha512-grJeZfDN75ZYferYEMZqcukh1nmYlzbGYrC+kXcbfKKgmfabKP/HNTGw7gzlQ1DAY8pU0hzSq8XI9tf7f0MdEA==
+  dependencies:
+    "@babel/plugin-syntax-numeric-separator" "^7.10.4"
+    "@babel/plugin-transform-modules-commonjs" "^7.10.4"
+
+babel-preset-modern-browsers@^14.2.1:
   version "14.2.1"
   resolved "https://registry.yarnpkg.com/babel-preset-modern-browsers/-/babel-preset-modern-browsers-14.2.1.tgz#176319e59f0483743a527c8f106e6d0fde5c89bf"
   integrity sha512-dlK/7ttZgp4jPi45QuMt4HRqNXX663Fg7us+BcUbgko7911KS7FE3Z5szN8BBPA+BSjbLlFB69bhM7k7nKoPKA==
