@@ -10,7 +10,7 @@ export default function loadConfigFile(
   content: string,
   dirname: string,
 ): [Config, Config] {
-  const data = saveLoadYml(content) || {};
+  const data: any = saveLoadYml(content) || {};
 
   const config = data.shared || data.common || {};
   const serverConfig = { ...config, ...data.server };
