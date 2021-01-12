@@ -1,13 +1,10 @@
-import { readFileSync, existsSync } from 'fs';
 import path from 'path';
-import _config, { Config } from 'alp-node-config';
-export { Config } from 'alp-node-config';
-import Logger from 'nightingale-logger';
-import findUp from 'findup-sync';
 import { deprecate } from 'util';
 import Koa from 'koa';
+import Logger from 'nightingale-logger';
 import compress from 'koa-compress';
 import serve from 'koa-static';
+import _config from 'alp-node-config';
 import errors from 'alp-node-errors';
 import params from 'alp-params';
 import language from 'alp-node-language';
@@ -112,40 +109,5 @@ class AlpNodeApp extends Koa {
 
 }
 
-const logger$1 = new Logger('alp'); // see alp-dev
-
-const appDirname = path.resolve('build');
-const packagePath = findUp('package.json', {
-  cwd: appDirname
-});
-
-if (!packagePath) {
-  throw new Error(`Could not find package.json: "${packagePath}"`);
-}
-
-const packageDirname = path.dirname(packagePath);
-logger$1.debug('init', {
-  appDirname,
-  packageDirname
-}); // eslint-disable-next-line import/no-dynamic-require, global-require
-
-const packageConfig = JSON.parse(readFileSync(packagePath, 'utf-8'));
-const buildedConfigPath = `${appDirname}/build/config/`;
-const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
-const config = new Config(configPath).loadSync({
-  packageConfig
-});
-class App extends AlpNodeApp {
-  constructor(options) {
-    super({ ...options,
-      appDirname,
-      packageDirname,
-      config
-    });
-  }
-
-}
-
-export default App;
-export { appDirname, config, packageConfig, packageDirname };
-//# sourceMappingURL=index-node10-dev.es.js.map
+export { AlpNodeApp };
+//# sourceMappingURL=AlpNodeApp-node10.es.js.map

@@ -6,51 +6,35 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 const fs = require('fs');
 const path = _interopDefault(require('path'));
+const _config = require('alp-node-config');
+const _config__default = _interopDefault(_config);
+const Logger = _interopDefault(require('nightingale-logger'));
+const findUp = _interopDefault(require('findup-sync'));
 const util = require('util');
 const Koa = require('koa');
 const Koa__default = _interopDefault(Koa);
 const compress = _interopDefault(require('koa-compress'));
 const serve = _interopDefault(require('koa-static'));
-const _config = require('alp-node-config');
-const _config__default = _interopDefault(_config);
 const errors = _interopDefault(require('alp-node-errors'));
 const params = _interopDefault(require('alp-params'));
 const language = _interopDefault(require('alp-node-language'));
 const translate = _interopDefault(require('alp-translate'));
 const _listen = _interopDefault(require('alp-listen'));
-const Logger = _interopDefault(require('nightingale-logger'));
-const findUp = _interopDefault(require('findup-sync'));
 
-const logger = new Logger('alp'); // see alp-dev
-
-const appDirname = path.resolve('build');
-const packagePath = findUp('package.json', {
-  cwd: appDirname
-});
-
-if (!packagePath) {
-  throw new Error(`Could not find package.json: "${packagePath}"`);
-}
-
-const packageDirname = path.dirname(packagePath);
-logger.debug('init', {
-  appDirname,
-  packageDirname
-}); // eslint-disable-next-line import/no-dynamic-require, global-require
-
-const packageConfig = JSON.parse(fs.readFileSync(packagePath, 'utf-8'));
-const buildedConfigPath = `${appDirname}/build/config/`;
-const configPath = fs.existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
-const config = new _config.Config(configPath).loadSync({
-  packageConfig
-});
-class Alp extends Koa__default {
+const logger = new Logger('alp');
+class AlpNodeApp extends Koa__default {
   /**
    * @param {Object} [options]
    * @param {string} [options.certPath] directory of the ssl certificates
    * @param {string} [options.publicPath] directory of public files
    */
-  constructor(options = {}) {
+  constructor({
+    appDirname,
+    packageDirname,
+    config,
+    certPath,
+    publicPath
+  }) {
     super();
     this.dirname = path.normalize(appDirname);
     Object.defineProperty(this, 'packageDirname', {
@@ -58,8 +42,8 @@ class Alp extends Koa__default {
       configurable: false,
       enumerable: false
     });
-    this.certPath = options.certPath || `${packageDirname}/config/cert`;
-    this.publicPath = options.publicPath || `${packageDirname}/public/`;
+    this.certPath = certPath || `${packageDirname}/config/cert`;
+    this.publicPath = publicPath || `${packageDirname}/public/`;
     this.config = _config__default(this, config);
     this.context.config = this.config;
     params(this);
@@ -69,11 +53,11 @@ class Alp extends Koa__default {
   }
 
   existsConfigSync(name) {
-    return config.existsConfigSync(name);
+    return this.context.config.existsConfigSync(name);
   }
 
   loadConfigSync(name) {
-    return config.loadConfigSync(name);
+    return this.context.config.loadConfigSync(name);
   }
 
   get environment() {
@@ -135,6 +119,40 @@ class Alp extends Koa__default {
 
 }
 
+const logger$1 = new Logger('alp'); // see alp-dev
+
+const appDirname = path.resolve('build');
+const packagePath = findUp('package.json', {
+  cwd: appDirname
+});
+
+if (!packagePath) {
+  throw new Error(`Could not find package.json: "${packagePath}"`);
+}
+
+const packageDirname = path.dirname(packagePath);
+logger$1.debug('init', {
+  appDirname,
+  packageDirname
+}); // eslint-disable-next-line import/no-dynamic-require, global-require
+
+const packageConfig = JSON.parse(fs.readFileSync(packagePath, 'utf-8'));
+const buildedConfigPath = `${appDirname}/build/config/`;
+const configPath = fs.existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
+const config = new _config.Config(configPath).loadSync({
+  packageConfig
+});
+class App extends AlpNodeApp {
+  constructor(options) {
+    super({ ...options,
+      appDirname,
+      packageDirname,
+      config
+    });
+  }
+
+}
+
 Object.defineProperty(exports, 'Config', {
   enumerable: true,
   get: function () {
@@ -143,7 +161,7 @@ Object.defineProperty(exports, 'Config', {
 });
 exports.appDirname = appDirname;
 exports.config = config;
-exports.default = Alp;
+exports.default = App;
 exports.packageConfig = packageConfig;
 exports.packageDirname = packageDirname;
 //# sourceMappingURL=index-node10-dev.cjs.js.map

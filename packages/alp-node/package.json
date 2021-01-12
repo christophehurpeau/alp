@@ -51,7 +51,8 @@
       }
     ],
     "entries": [
-      "index"
+      "index",
+      "AlpNodeApp"
     ]
   },
   "dependencies": {
