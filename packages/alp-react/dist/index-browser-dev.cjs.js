@@ -59,7 +59,7 @@ function createAlpAppWrapper(app, context) {
   }(React.Component), _temp;
 }
 
-var LoadingFallbackContext = React.createContext('Loading...');
+var LoadingFallbackContext = /*#__PURE__*/React.createContext('Loading...');
 
 function AlpModuleBrowser(props) {
   var loadingFallback = React.useContext(LoadingFallbackContext);

@@ -37,7 +37,7 @@ function createAlpAppWrapper(app, context) {
   }, _temp;
 }
 
-const LoadingFallbackContext = createContext('Loading...');
+const LoadingFallbackContext = /*#__PURE__*/createContext('Loading...');
 
 function AlpModuleBrowser(props) {
   const loadingFallback = useContext(LoadingFallbackContext);

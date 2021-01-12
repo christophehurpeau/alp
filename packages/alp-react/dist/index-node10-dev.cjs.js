@@ -148,7 +148,7 @@ function createAlpAppWrapper(app, context) {
   }, _temp;
 }
 
-const LoadingFallbackContext = React.createContext('Loading...');
+const LoadingFallbackContext = /*#__PURE__*/React.createContext('Loading...');
 
 function AlpModuleNode(props) {
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, props.children);
