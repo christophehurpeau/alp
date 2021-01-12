@@ -12,7 +12,7 @@ function readRecursiveDirectory(directory, callback) {
           stat(path, (errFsStat, stat) => {
             if (errFsStat) return reject(errFsStat);
 
-            if (stat === null || stat === void 0 ? void 0 : stat.isDirectory()) {
+            if (stat !== null && stat !== void 0 && stat.isDirectory()) {
               readRecursiveDirectory(path, callback).then(resolve).catch(reject);
               return;
             }
