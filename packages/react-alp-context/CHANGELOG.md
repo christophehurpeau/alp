@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/christophehurpeau/alp/compare/react-alp-context@2.1.2...react-alp-context@2.1.3) (2021-01-12)
+
+**Note:** Version bump only for package react-alp-context
+
+
+
+
+
 ## [2.1.2](https://github.com/christophehurpeau/alp/compare/react-alp-context@2.1.1...react-alp-context@2.1.2) (2020-08-09)
 
 **Note:** Version bump only for package react-alp-context

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@4.0.0...alp-migrations@4.1.0) (2021-01-12)
+
+
+### Features
+
+* **deps:** update dependency semver to v7 ([#120](https://github.com/christophehurpeau/alp/issues/120)) ([6d6e49b](https://github.com/christophehurpeau/alp/commit/6d6e49b8aff784dceebbf62a488a5461626e6dbf))
+
+
+
+
+
 # [4.0.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@3.1.1...alp-migrations@4.0.0) (2020-08-08)
 
 

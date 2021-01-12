@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.2](https://github.com/christophehurpeau/alp/compare/alp-dev@14.0.1...alp-dev@14.0.2) (2021-01-12)
+
+
+### Bug Fixes
+
+* alp-dev tsc check ([9203c19](https://github.com/christophehurpeau/alp/commit/9203c1937c5d78a5623b40f0b55082b7e4214b26))
+
+
+
+
+
 ## [14.0.1](https://github.com/christophehurpeau/alp/compare/alp-dev@14.0.0...alp-dev@14.0.1) (2020-08-14)
 
 

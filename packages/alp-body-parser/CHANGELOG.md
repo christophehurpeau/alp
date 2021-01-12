@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@4.1.1...alp-body-parser@4.2.0) (2021-01-12)
+
+
+### Features
+
+* **deps:** update dependency @types/co-body to ^0.0.4 [skip ci] ([#168](https://github.com/christophehurpeau/alp/issues/168)) ([472da72](https://github.com/christophehurpeau/alp/commit/472da72e3939127b26d5ce7b26751636bbca6770))
+
+
+
+
+
 ## [4.1.1](https://github.com/christophehurpeau/alp/compare/alp-body-parser@4.1.0...alp-body-parser@4.1.1) (2020-08-08)
 
 **Note:** Version bump only for package alp-body-parser

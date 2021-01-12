@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/christophehurpeau/alp/compare/alp-node@2.1.3...alp-node@2.2.0) (2021-01-12)
+
+
+### Bug Fixes
+
+* **alp-node:** missing defs ([d697b96](https://github.com/christophehurpeau/alp/commit/d697b96bda76f38d319e24e70ec59342842365ee))
+
+
+### Features
+
+* **alp-node:** allow require AlpNodeApp directly ([235429d](https://github.com/christophehurpeau/alp/commit/235429d69b9078cfe52c6bd95094b9ec319f2547))
+
+
+
+
+
 ## [2.1.3](https://github.com/christophehurpeau/alp/compare/alp-node@2.1.2...alp-node@2.1.3) (2020-10-07)
 
 **Note:** Version bump only for package alp-node
