@@ -712,7 +712,7 @@ const createAuthApolloContext = (config, usersManager) => {
     connection
   }) => {
     // if (connection) console.log(Object.keys(connection));
-    if (connection === null || connection === void 0 ? void 0 : connection.user) {
+    if (connection !== null && connection !== void 0 && connection.user) {
       return {
         user: connection.user
       };
