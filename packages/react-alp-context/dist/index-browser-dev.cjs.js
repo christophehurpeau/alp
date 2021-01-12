@@ -6,7 +6,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var React = _interopDefault(require('react'));
 
-var index = React.createContext({});
+var index = /*#__PURE__*/React.createContext({});
 
 exports.default = index;
 //# sourceMappingURL=index-browser-dev.cjs.js.map
