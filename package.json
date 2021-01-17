@@ -19,7 +19,7 @@
     "lint": "yarn run lint:prettier && yarn run lint:eslint",
     "lint:eslint": "NODE_OPTIONS=\"--max-old-space-size=4096\" eslint --report-unused-disable-directives --quiet --resolve-plugins-relative-to . --ext js,ts,tsx .",
     "lint:prettier": "prettier --check .",
-    "preversion": "yarn run lint && yarn run build && repository-check-dirty",
+    "preversion": "yarn run build && repository-check-dirty",
     "release": "cross-env GH_TOKEN=$POB_GITHUB_TOKEN lerna version --conventional-commits --conventional-graduate --create-release=github -m 'chore: release' && lerna publish from-git",
     "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
     "test": "lerna run --stream test",
