@@ -35,9 +35,7 @@ export default function alpParams(app: NodeApplicationInCreation): void {
     },
 
     paramGET(this: Context, name: string): string | undefined {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const query = this.request.query;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
       return query?.[name] as string | undefined;
     },
 
@@ -46,8 +44,7 @@ export default function alpParams(app: NodeApplicationInCreation): void {
       return this.body[name] !== undefined
         ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           this.body[name]
-        : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          this.request.query[name];
+        : this.request.query[name];
     },
   });
 

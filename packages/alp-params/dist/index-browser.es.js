@@ -120,17 +120,14 @@ function alpParams(app) {
     },
 
     paramGET(name) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      var query = this.request.query; // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
-
+      var query = this.request.query;
       return query == null ? void 0 : query[name];
     },
 
     paramGETorPOST(name) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
       return this.body[name] !== undefined ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      this.body[name] : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      this.request.query[name];
+      this.body[name] : this.request.query[name];
     }
 
   });
