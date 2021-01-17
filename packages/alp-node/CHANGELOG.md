@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/christophehurpeau/alp/compare/alp-node@3.0.0...alp-node@3.0.1) (2021-01-17)
+
+
+### Bug Fixes
+
+* **alp-node:** export fetch ([9fba668](https://github.com/christophehurpeau/alp/commit/9fba668adc86acac83c8af3b4eb44bbc5cb6fa36))
+
+
+
+
+
 # [3.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@2.2.0...alp-node@3.0.0) (2021-01-17)
 
 
