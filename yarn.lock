@@ -9677,10 +9677,10 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "^1.2.5"
 
-modern-browsers@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/modern-browsers/-/modern-browsers-1.3.0.tgz#49b7885056a227cdf274a1bc726d176ca2814932"
-  integrity sha512-b82BHrX5Ax9nMwN2yhD7gbJLHxl0VsKvb3hvSTxTgAa/iRA/BHmDcbWt0d4Ns3+nJx87qF/jR5jeWnGCgrS4xg==
+modern-browsers@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/modern-browsers/-/modern-browsers-2.0.0.tgz#80e578cd1d8f02b0f7717ae788ce11dc5cdcee3e"
+  integrity sha512-zdCGxdadUIATuSKfM3wFchz0uSfd49PJFEGRPkn+TGIvsNdK7Fs1Fh2ONMpwaJOkqP73cIysNFCcsrYBexRR+Q==
 
 modify-values@^1.0.0:
   version "1.0.1"
