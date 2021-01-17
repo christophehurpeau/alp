@@ -45,6 +45,10 @@
         "import": "./dist/AlpNodeApp-node12.mjs",
         "require": "./dist/AlpNodeApp-node12.cjs.js"
       }
+    },
+    "./fetch": {
+      "import": "./fetch.mjs",
+      "require": "./fetch.js"
     }
   },
   "sideEffects": false,
@@ -75,6 +79,9 @@
     "entries": [
       "index",
       "AlpNodeApp"
+    ],
+    "extraEntries": [
+      "fetch"
     ]
   },
   "dependencies": {
