@@ -2208,10 +2208,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/co-body@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@types/co-body/-/co-body-0.0.4.tgz#c64ebdb7ff008a3e4ac9b253af1ec2a205393788"
-  integrity sha512-JxT3Zc8gOotKxGZbB8ldTKZ9s+NiwpbLPParVc7YqwwxWYmF3FMV0VYg6klIIvplI+w6jQ0SBUtZ1gphe16rYw==
+"@types/co-body@^5.0.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@types/co-body/-/co-body-5.1.0.tgz#69c505dd759d619a8c78b1a88222e63014c9f417"
+  integrity sha512-iRL97yYTJNGFv495U63ikKG9r60thDtQ403jEzBEFR4IY6kMxw2IfcPoxI8+HY3nRNLrwHFYuCnWGEB/0hFVwg==
   dependencies:
     "@types/node" "*"
     "@types/qs" "*"
