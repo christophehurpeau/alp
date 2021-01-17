@@ -4,7 +4,6 @@ import execa from 'execa';
 import fs, { readFileSync, watch } from 'fs';
 import glob from 'glob';
 import { safeLoad } from 'js-yaml';
-import mkdirp from 'mkdirp';
 
 /* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 function loadConfigFile(content, dirname) {
@@ -64,7 +63,9 @@ function readFile(target) {
 
 function writeFile(target, content) {
   return new Promise((resolve, reject) => {
-    mkdirp(path.dirname(target), () => {
+    fs.mkdir(path.dirname(target), {
+      recursive: true
+    }, () => {
       fs.writeFile(target, content, err => {
         if (err) {
           return reject(new Error( // eslint-disable-next-line @typescript-eslint/restrict-template-expressions

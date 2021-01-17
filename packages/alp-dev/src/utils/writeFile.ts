@@ -1,13 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import mkdirp from 'mkdirp';
 
 export default function writeFile(
   target: string,
   content: string,
 ): Promise<void> {
   return new Promise((resolve, reject) => {
-    mkdirp(path.dirname(target), () => {
+    fs.mkdir(path.dirname(target), { recursive: true }, () => {
       fs.writeFile(target, content, (err) => {
         if (err) {
           return reject(

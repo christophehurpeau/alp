@@ -6,7 +6,6 @@ const execa = require('execa');
 const fs = require('fs');
 const glob = require('glob');
 const jsYaml = require('js-yaml');
-const mkdirp = require('mkdirp');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
 
@@ -14,7 +13,6 @@ const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 const execa__default = /*#__PURE__*/_interopDefaultLegacy(execa);
 const fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
 const glob__default = /*#__PURE__*/_interopDefaultLegacy(glob);
-const mkdirp__default = /*#__PURE__*/_interopDefaultLegacy(mkdirp);
 
 /* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 function loadConfigFile(content, dirname) {
@@ -74,7 +72,9 @@ function readFile(target) {
 
 function writeFile(target, content) {
   return new Promise((resolve, reject) => {
-    mkdirp__default(path__default.dirname(target), () => {
+    fs__default.mkdir(path__default.dirname(target), {
+      recursive: true
+    }, () => {
       fs__default.writeFile(target, content, err => {
         if (err) {
           return reject(new Error( // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
