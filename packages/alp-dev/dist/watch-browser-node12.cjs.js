@@ -192,7 +192,7 @@ function createPobpackConfig(target, production = false) {
         typescript: true,
         optimizations: true,
         target: target === 'node' ? 'node' : 'browser',
-        version: target === 'node' ? 10.13 : // eslint-disable-next-line unicorn/no-nested-ternary
+        version: target === 'node' ? '12.10' : // eslint-disable-next-line unicorn/no-nested-ternary
         target === 'modern-browser' ? 'modern' : undefined,
         loose: true,
         modules: false
