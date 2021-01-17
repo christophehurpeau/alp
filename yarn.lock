@@ -9859,6 +9859,16 @@ nightingale-ansi-formatter@^10.0.1:
     nightingale-formatter "^10.0.1"
     nightingale-types "^10.0.1"
 
+nightingale-ansi-formatter@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/nightingale-ansi-formatter/-/nightingale-ansi-formatter-11.0.0.tgz#5af7edae57323e6d00d2b43c4299e3bccfc3baa5"
+  integrity sha512-sbK/1IIWtTggUoORH7s2DtVtpS8aoXACgXnULJrKFJphCtwvNQEm+cOATpsiYajvcrJeu2aDd1VXBeKC4m0a6w==
+  dependencies:
+    "@types/ansi-styles" "^3.2.1"
+    ansi-styles "^4.0.0"
+    nightingale-formatter "^11.0.0"
+    nightingale-types "^11.0.0"
+
 nightingale-app-console@10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/nightingale-app-console/-/nightingale-app-console-10.0.1.tgz#ef9aafb9570cab6d243e991f598686b0559c1d22"
@@ -9920,6 +9930,14 @@ nightingale-formatter@^10.0.1:
   dependencies:
     nightingale-levels "^10.0.1"
     nightingale-types "^10.0.1"
+
+nightingale-formatter@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/nightingale-formatter/-/nightingale-formatter-11.0.0.tgz#d2692d30b8f5af57fa9268fc658b9a45e13f327a"
+  integrity sha512-Jib60S/soFiBGSoPPzNepVMsQlEEiVAyZdgxpsvVgJtsdOuGhbumqdnHPDqJGHmdqDzrVOlW1go+9/pr8QvNTQ==
+  dependencies:
+    nightingale-levels "^11.0.0"
+    nightingale-types "^11.0.0"
 
 nightingale-json-formatter@^10.0.1:
   version "10.0.1"
