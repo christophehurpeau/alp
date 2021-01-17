@@ -106,7 +106,7 @@
     "@babel/core": "7.12.10",
     "@babel/preset-env": "7.12.11",
     "@babel/preset-react": "7.12.10",
-    "@types/react-router": "5.1.8",
+    "@types/react-router": "5.1.11",
     "@types/react-transition-group": "4.4.0",
     "babel-preset-latest-node": "5.2.0",
     "babel-preset-modern-browsers": "15.0.2",
