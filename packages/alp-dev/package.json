@@ -190,7 +190,7 @@
     "@types/execa": "2.0.0",
     "@types/glob": "7.1.3",
     "@types/js-yaml": "3.12.6",
-    "@types/optimize-css-assets-webpack-plugin": "5.0.1",
+    "@types/optimize-css-assets-webpack-plugin": "5.0.2",
     "@types/portscanner": "2.1.0",
     "@types/progress": "2.0.3",
     "@types/webpack-dev-server": "3.11.1",
