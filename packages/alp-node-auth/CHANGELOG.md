@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.1...alp-node-auth@5.0.2) (2021-01-17)
+
+
+### Bug Fixes
+
+* **alp-node-auth:** export strategies ([b322a17](https://github.com/christophehurpeau/alp/commit/b322a176b0ba0c5454d8d85cfdd5caeb35f0c20a))
+
+
+
+
+
 ## [5.0.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.0...alp-node-auth@5.0.1) (2021-01-17)
 
 **Note:** Version bump only for package alp-node-auth
