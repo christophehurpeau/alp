@@ -1,5 +1,5 @@
 import type { Context } from 'alp-types';
-import createIsModernBrowser from 'modern-browsers';
+import isModernBrowser from 'modern-browsers';
 import type { ElementType } from 'react';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -27,8 +27,6 @@ const renderHtml = (
   const helmet = Helmet.renderStatic();
   return htmlLayout(helmet, content, options);
 };
-
-const isModernBrowser = createIsModernBrowser();
 
 interface Options {
   polyfillFeatures?: string;

@@ -1,4 +1,4 @@
-import createIsModernBrowser from 'modern-browsers';
+import isModernBrowser from 'modern-browsers';
 import React, { Component, createContext } from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
@@ -173,7 +173,6 @@ const renderHtml = (app, options) => {
   return htmlLayout(helmet, content, options);
 };
 
-const isModernBrowser = createIsModernBrowser();
 function alpReact(App, options = {}) {
   return ctx => {
     const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context

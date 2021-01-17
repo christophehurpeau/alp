@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const createIsModernBrowser = require('modern-browsers');
+const isModernBrowser = require('modern-browsers');
 const React = require('react');
 const server = require('react-dom/server');
 const Helmet = require('react-helmet');
@@ -10,7 +10,7 @@ const ReactAlpContext = require('react-alp-context');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
 
-const createIsModernBrowser__default = /*#__PURE__*/_interopDefaultLegacy(createIsModernBrowser);
+const isModernBrowser__default = /*#__PURE__*/_interopDefaultLegacy(isModernBrowser);
 const React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 const Helmet__default = /*#__PURE__*/_interopDefaultLegacy(Helmet);
 const ReactAlpContext__default = /*#__PURE__*/_interopDefaultLegacy(ReactAlpContext);
@@ -183,13 +183,12 @@ const renderHtml = (app, options) => {
   return htmlLayout(helmet, content, options);
 };
 
-const isModernBrowser = createIsModernBrowser__default();
 function alpReact(App, options = {}) {
   return ctx => {
     const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
 
     const ua = ctx.request.headers['user-agent'];
-    const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
+    const name = isModernBrowser__default(ua) ? 'modern-browsers' : 'es5';
     const app = /*#__PURE__*/React__default.createElement(App);
     const WrappedApp = createAlpAppWrapper(app, ctx);
     ctx.body = renderHtml( /*#__PURE__*/React__default.createElement(WrappedApp), {
