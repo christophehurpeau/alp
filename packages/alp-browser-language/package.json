@@ -51,7 +51,7 @@
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.ts --report-unused-disable-directives --quiet packages/alp-browser-language",
+    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-browser-language",
     "watch": "pob-watch"
   },
   "prettier": {

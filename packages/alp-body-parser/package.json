@@ -40,7 +40,7 @@
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.ts --report-unused-disable-directives --quiet packages/alp-body-parser",
+    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-body-parser",
     "watch": "pob-watch"
   },
   "prettier": {

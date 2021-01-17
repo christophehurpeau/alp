@@ -10,12 +10,13 @@
   },
 
   // eslint config
+  "eslint.enable": false,
   "eslint.workingDirectories": ["."],
   "eslint.options": {
     "resolvePluginsRelativeTo": ".",
     "reportUnusedDisableDirectives": true
   },
-  "eslint.lintTask.enable": true,
+  "eslint.lintTask.enable": false,
 
   // eslint & prettier formatter
   "eslint.format.enable": false,
