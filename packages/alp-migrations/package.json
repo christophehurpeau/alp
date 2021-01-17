@@ -1,6 +1,6 @@
 {
   "name": "alp-migrations",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "description": "migrations scripts in alp",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -61,7 +61,7 @@
     "liwi-mongo": "^8.0.1"
   },
   "dependencies": {
-    "alp-types": "^2.0.0",
+    "alp-types": "^3.0.0",
     "nightingale-logger": "^11.0.0",
     "semver": "^7.0.0"
   },

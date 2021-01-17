@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@3.0.3...alp-hello-react-example@4.0.0) (2021-01-17)
+
+
+### Bug Fixes
+
+* prettier ([043b296](https://github.com/christophehurpeau/alp/commit/043b296321ebeaeadc10cbf9a085e0e0fc223e10))
+
+
+### Code Refactoring
+
+* update dev deps and typescript and eslint ([8cdc20e](https://github.com/christophehurpeau/alp/commit/8cdc20e030769d98d637b9580931cc5cc608278d))
+
+
+### Features
+
+* **deps:** update dependency nightingale-app-console to v11 ([#191](https://github.com/christophehurpeau/alp/issues/191)) ([950ef62](https://github.com/christophehurpeau/alp/commit/950ef62f2a339150af0a4d596aed77cf80956569))
+
+
+### BREAKING CHANGES
+
+* requires node 12
+
+
+
+
+
 ## [3.0.3](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@3.0.2...alp-hello-react-example@3.0.3) (2021-01-12)
 
 **Note:** Version bump only for package alp-hello-react-example

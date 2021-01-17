@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.0.0](https://github.com/christophehurpeau/alp/compare/alp-react@17.0.2...alp-react@18.0.0) (2021-01-17)
+
+
+### Bug Fixes
+
+* isModernBrowser ([a6fd91e](https://github.com/christophehurpeau/alp/commit/a6fd91ec6dee06fbde34c45503b101d990e0dcb9))
+
+
+### Code Refactoring
+
+* update dev deps and typescript and eslint ([8cdc20e](https://github.com/christophehurpeau/alp/commit/8cdc20e030769d98d637b9580931cc5cc608278d))
+
+
+### Features
+
+* update modern-browsers lib ([3c2015a](https://github.com/christophehurpeau/alp/commit/3c2015ac3dc02cabb5553cc2cc17778ddf185b4a))
+* update nightingale ([359ef19](https://github.com/christophehurpeau/alp/commit/359ef1971d717af996b447768d5f8efc31b4c4d3))
+
+
+### BREAKING CHANGES
+
+* requires node 12
+
+
+
+
+
 ## [17.0.2](https://github.com/christophehurpeau/alp/compare/alp-react@17.0.1...alp-react@17.0.2) (2021-01-12)
 
 **Note:** Version bump only for package alp-react

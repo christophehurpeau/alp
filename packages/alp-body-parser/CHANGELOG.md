@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@4.2.0...alp-body-parser@5.0.0) (2021-01-17)
+
+
+### Code Refactoring
+
+* update dev deps and typescript and eslint ([8cdc20e](https://github.com/christophehurpeau/alp/commit/8cdc20e030769d98d637b9580931cc5cc608278d))
+
+
+### BREAKING CHANGES
+
+* requires node 12
+
+
+
+
+
 # [4.2.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@4.1.1...alp-body-parser@4.2.0) (2021-01-12)
 
 

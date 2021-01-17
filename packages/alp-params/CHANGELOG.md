@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/christophehurpeau/alp/compare/alp-params@2.1.2...alp-params@3.0.0) (2021-01-17)
+
+
+### Bug Fixes
+
+* **alp-params:** lint ([1266325](https://github.com/christophehurpeau/alp/commit/12663259768e74e1b0306f8d3cf8da6e7f5986a2))
+
+
+### Code Refactoring
+
+* update dev deps and typescript and eslint ([8cdc20e](https://github.com/christophehurpeau/alp/commit/8cdc20e030769d98d637b9580931cc5cc608278d))
+
+
+### BREAKING CHANGES
+
+* requires node 12
+
+
+
+
+
 ## [2.1.2](https://github.com/christophehurpeau/alp/compare/alp-params@2.1.1...alp-params@2.1.2) (2021-01-12)
 
 **Note:** Version bump only for package alp-params

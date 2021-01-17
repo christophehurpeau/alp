@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/alpjs/alp/compare/alp-types@2.0.0...alp-types@3.0.0) (2021-01-17)
+
+
+### Code Refactoring
+
+* update dev deps and typescript and eslint ([8cdc20e](https://github.com/alpjs/alp/commit/8cdc20e030769d98d637b9580931cc5cc608278d))
+
+
+### Features
+
+* update eslint and router-segment ([93f0089](https://github.com/alpjs/alp/commit/93f0089b71d816a19bdaf2ebcab45f0b08b577db))
+
+
+### BREAKING CHANGES
+
+* requires node 12
+
+
+
+
+
 # [2.0.0](https://github.com/alpjs/alp/compare/alp-types@1.1.0...alp-types@2.0.0) (2019-12-15)
 
 

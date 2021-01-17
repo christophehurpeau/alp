@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-translate@4.2.1...alp-translate@5.0.0) (2021-01-17)
+
+
+### Code Refactoring
+
+* update dev deps and typescript and eslint ([8cdc20e](https://github.com/christophehurpeau/alp/commit/8cdc20e030769d98d637b9580931cc5cc608278d))
+
+
+### Features
+
+* update nightingale ([359ef19](https://github.com/christophehurpeau/alp/commit/359ef1971d717af996b447768d5f8efc31b4c4d3))
+
+
+### BREAKING CHANGES
+
+* requires node 12
+
+
+
+
+
 ## [4.2.1](https://github.com/christophehurpeau/alp/compare/alp-translate@4.2.0...alp-translate@4.2.1) (2021-01-12)
 
 **Note:** Version bump only for package alp-translate

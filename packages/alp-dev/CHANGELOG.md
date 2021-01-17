@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.0.0](https://github.com/christophehurpeau/alp/compare/alp-dev@14.0.2...alp-dev@15.0.0) (2021-01-17)
+
+
+### Bug Fixes
+
+* remove removed option exportDefaultName ([53dbbb5](https://github.com/christophehurpeau/alp/commit/53dbbb5426497462b1bd09a14e05a9bcc3c32905))
+
+
+### Code Refactoring
+
+* update dev deps and typescript and eslint ([8cdc20e](https://github.com/christophehurpeau/alp/commit/8cdc20e030769d98d637b9580931cc5cc608278d))
+
+
+### Features
+
+* **deps:** update dependency execa to v5 ([#194](https://github.com/christophehurpeau/alp/issues/194)) ([b18276f](https://github.com/christophehurpeau/alp/commit/b18276fb7a568b16383669d5e2326e1e5b8e09e8))
+* update babel-preset-pob-env ([b7b2a5e](https://github.com/christophehurpeau/alp/commit/b7b2a5e968bf5487405c2cd447987dbf2e5e7320))
+* update nightingale ([359ef19](https://github.com/christophehurpeau/alp/commit/359ef1971d717af996b447768d5f8efc31b4c4d3))
+* update springbokjs-daemon ([55bbf2f](https://github.com/christophehurpeau/alp/commit/55bbf2fea0a11dfabc15e1e7fa1ad18ab111e82d))
+
+
+### BREAKING CHANGES
+
+* requires node 12
+
+
+
+
+
 ## [14.0.2](https://github.com/christophehurpeau/alp/compare/alp-dev@14.0.1...alp-dev@14.0.2) (2021-01-12)
 
 

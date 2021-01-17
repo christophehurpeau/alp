@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@4.1.0...alp-migrations@5.0.0) (2021-01-17)
+
+
+### Code Refactoring
+
+* update dev deps and typescript and eslint ([8cdc20e](https://github.com/christophehurpeau/alp/commit/8cdc20e030769d98d637b9580931cc5cc608278d))
+
+
+### Features
+
+* update liwi-mongo ([00988b4](https://github.com/christophehurpeau/alp/commit/00988b4cf15607edf1306567c28ccf9fa6f07b87))
+* update nightingale ([359ef19](https://github.com/christophehurpeau/alp/commit/359ef1971d717af996b447768d5f8efc31b4c4d3))
+
+
+### BREAKING CHANGES
+
+* requires node 12
+
+
+
+
+
 # [4.1.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@4.0.0...alp-migrations@4.1.0) (2021-01-12)
 
 

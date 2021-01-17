@@ -1,6 +1,6 @@
 {
   "name": "alp-browser-language",
-  "version": "3.1.2",
+  "version": "4.0.0",
   "description": "language context in alp framework",
   "keywords": [
     "alp",
@@ -81,7 +81,7 @@
     ]
   },
   "dependencies": {
-    "alp-types": "^2.0.0"
+    "alp-types": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
