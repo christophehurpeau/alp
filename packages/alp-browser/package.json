@@ -87,7 +87,7 @@
     "alp-translate": "^4.2.1",
     "alp-types": "^2.0.0",
     "ibex": "^6.1.2",
-    "nightingale-logger": "^10.0.1"
+    "nightingale-logger": "^11.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",

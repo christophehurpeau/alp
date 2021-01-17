@@ -75,7 +75,7 @@
     "@babel/runtime": "^7.12.5",
     "alp-types": "^2.0.0",
     "error-html": "^0.3.5",
-    "nightingale-logger": "^10.0.1"
+    "nightingale-logger": "^11.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
