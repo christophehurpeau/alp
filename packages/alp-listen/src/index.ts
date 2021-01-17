@@ -1,5 +1,11 @@
 import { chmodSync, unlinkSync, readFileSync } from 'fs';
-import type { Server, IncomingMessage, ServerResponse } from 'http';
+import type {
+  Server,
+  IncomingMessage,
+  ServerResponse,
+  createServer as createServerHttp,
+} from 'http';
+import type { createServer as createServerHttps } from 'https';
 import type { Config } from 'alp-node-config';
 import Logger from 'nightingale-logger';
 
@@ -11,14 +17,14 @@ const createServer = (
   callback: RequestListener,
   socketPath?: string,
   tls?: boolean,
-  dirname?: string,
+  dirname = '',
 ): Server => {
-  const createServer =
+  const createServer: typeof createServerHttp =
     !socketPath && tls
-      ? // eslint-disable-next-line  import/no-dynamic-require
-        require('https').createServer
-      : // eslint-disable-next-line  import/no-dynamic-require
-        require('http').createServer;
+      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
+        (require('https').createServer as typeof createServerHttp)
+      : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
+        (require('http').createServer as typeof createServerHttp);
 
   if (!tls) {
     return createServer(callback);
@@ -29,7 +35,7 @@ const createServer = (
     cert: readFileSync(`${dirname}/server.crt`),
   };
 
-  return createServer(options, callback);
+  return (createServer as typeof createServerHttps)(options, callback);
 };
 
 export default function alpListen(

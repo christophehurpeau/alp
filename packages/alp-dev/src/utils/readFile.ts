@@ -5,6 +5,7 @@ export default function readFile(target: string): Promise<string> {
     fs.readFile(target, 'utf-8', (err, content) => {
       if (err) {
         return reject(
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
           new Error(`Failed to read file "${target}": ${err.message || err}`),
         );
       }

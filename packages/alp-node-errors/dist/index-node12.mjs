@@ -17,7 +17,7 @@ async function alpNodeErrors(ctx, next) {
     ctx.status = err.status || 500;
     logger.error(err);
 
-    switch (ctx.accepts('html', 'text', 'json')) {
+    switch (ctx.request.accepts('html', 'text', 'json')) {
       case 'text':
         ctx.type = 'text/plain';
 

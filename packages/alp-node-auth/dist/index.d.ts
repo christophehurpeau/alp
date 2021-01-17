@@ -1,4 +1,5 @@
 import type { IncomingMessage } from 'http';
+import type { Context } from 'alp-node';
 import type { ContextUser, NodeApplication } from 'alp-types';
 import type { User, UserSanitized } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
@@ -45,6 +46,6 @@ export default function init<StrategyKeys extends AllowedStrategyKeys = 'google'
     routes: AuthRoutesType;
     getConnectedAndUserFromRequest: (req: IncomingMessage) => Promise<[string | number | null, User | null | undefined]>;
     getConnectedAndUser: import("./utils/createFindConnectedAndUser").FindConnectedAndUser<User>;
-    middleware: <T>(ctx: any, next: () => T | Promise<T>) => Promise<T>;
+    middleware: <T>(ctx: Context, next: () => T | Promise<T>) => Promise<T>;
 };
 //# sourceMappingURL=index.d.ts.map

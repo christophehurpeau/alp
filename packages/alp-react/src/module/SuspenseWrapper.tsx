@@ -8,7 +8,6 @@ interface SuspenseWrapperProps {
 }
 
 function NodeSuspenseWrapper({ children }: SuspenseWrapperProps): ReactElement {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return (children as unknown) as ReactElement;
 }
 

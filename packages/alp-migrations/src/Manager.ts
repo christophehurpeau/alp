@@ -1,11 +1,8 @@
-import type { MongoStore, MongoInsertType } from 'liwi-mongo';
+import type { MongoStore, MongoInsertType, MongoBaseModel } from 'liwi-mongo';
 
-export interface Migration {
-  _id: string;
+export interface Migration extends MongoBaseModel {
   version: string;
   fileName: string;
-  created: Date;
-  updated: Date;
 }
 
 export default class MigrationsManager {
@@ -15,11 +12,11 @@ export default class MigrationsManager {
     this.store = store;
   }
 
-  findLastVersion() {
+  findLastVersion(): Promise<string | undefined> {
     return this.store.findOne({}, { created: -1 }).then((row) => row?.version);
   }
 
-  addMigrationDone(migration: MongoInsertType<Migration>) {
+  addMigrationDone(migration: MongoInsertType<Migration>): Promise<Migration> {
     return this.store.insertOne(migration);
   }
 }

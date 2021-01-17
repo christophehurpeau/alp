@@ -231,7 +231,7 @@ export class AuthenticationService<
 
     const code = ctx.query.code;
     const state = ctx.query.state;
-    const cookieName = `auth_${strategy}_${state}`;
+    const cookieName = `auth_${strategy}_${state as string}`;
     let cookie = ctx.cookies.get(cookieName);
     ctx.cookies.set(cookieName, '', { expires: new Date(1) });
     if (!cookie) {

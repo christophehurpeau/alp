@@ -1,5 +1,6 @@
 import type { ParsedUrlQuery } from 'querystring';
 import { parse as parseQueryString } from 'querystring';
+import type { BaseRequest as KoaBaseRequest } from 'koa';
 import type Application from '.';
 
 export interface BaseRequest {
@@ -9,11 +10,15 @@ export interface BaseRequest {
   readonly path: string;
   readonly searchParams: URLSearchParams;
   readonly query: ParsedUrlQuery;
+  readonly querystring: string;
   readonly search: string;
   readonly host: string;
   readonly protocol: string;
   readonly hostname: string;
   readonly headers: Record<string, string>;
+
+  accepts: KoaBaseRequest['accepts'];
+  acceptsLanguages: KoaBaseRequest['acceptsLanguages'];
 }
 
 export interface Request extends BaseRequest {
@@ -41,6 +46,9 @@ const request: BaseRequest = {
       ? {}
       : parseQueryString(window.location.search.slice(1));
   },
+  get querystring() {
+    return window.location.search;
+  },
   get searchParams() {
     return new URLSearchParams(
       window.location.search.length === 0
@@ -59,6 +67,12 @@ const request: BaseRequest = {
   },
   get headers(): never {
     throw new Error('Headers not available in ibex request.');
+  },
+  get accepts(): never {
+    throw new Error('Not implemented.');
+  },
+  get acceptsLanguages(): never {
+    throw new Error('Not implemented.');
   },
 };
 

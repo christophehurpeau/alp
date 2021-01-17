@@ -13,17 +13,17 @@
     { "path": "packages/alp-node-config/tsconfig.build.json" },
     { "path": "packages/alp-node-errors/tsconfig.build.json" },
     { "path": "packages/alp-node-language/tsconfig.build.json" },
-    { "path": "packages/alp-params/tsconfig.build.json" },
     { "path": "packages/alp-router/tsconfig.build.json" },
     { "path": "packages/react-alp-context/tsconfig.build.json" },
     { "path": "packages/alp-listen/tsconfig.build.json" },
-    { "path": "packages/alp-node-auth/tsconfig.build.json" },
+    { "path": "packages/alp-params/tsconfig.build.json" },
     { "path": "packages/alp-react/tsconfig.build.json" },
     { "path": "packages/alp-translate/tsconfig.build.json" },
     { "path": "packages/react-alp-loading-bar/tsconfig.build.json" },
     { "path": "packages/react-alp-translate/tsconfig.build.json" },
     { "path": "packages/alp-browser/tsconfig.build.json" },
     { "path": "packages/alp-node/tsconfig.build.json" },
-    { "path": "packages/react-alp-connection-state/tsconfig.build.json" }
+    { "path": "packages/react-alp-connection-state/tsconfig.build.json" },
+    { "path": "packages/alp-node-auth/tsconfig.build.json" }
   ]
 }

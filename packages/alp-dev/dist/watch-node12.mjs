@@ -13,6 +13,7 @@ import glob from 'glob';
 import { safeLoad } from 'js-yaml';
 import mkdirp from 'mkdirp';
 
+/* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 function loadConfigFile(content, dirname) {
   const data = safeLoad(content) || {};
   const config = data.shared || data.common || {};
@@ -59,7 +60,8 @@ function readFile(target) {
   return new Promise((resolve, reject) => {
     fs.readFile(target, 'utf-8', (err, content) => {
       if (err) {
-        return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
+        return reject( // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        new Error(`Failed to read file "${target}": ${err.message || err}`));
       }
 
       resolve(content);
@@ -72,7 +74,8 @@ function writeFile(target, content) {
     mkdirp(path.dirname(target), () => {
       fs.writeFile(target, content, err => {
         if (err) {
-          return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
+          return reject(new Error( // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          `Failed to write file "${target}": ${err.message || err}`));
         }
 
         resolve();
@@ -85,7 +88,7 @@ const compileYml = async filename => {
   const content = await readFile(filename);
   const [serverConfig, browserConfig] = loadConfigFile(content, dirname(filename));
   const destFile = `${filename.slice(4, -3)}json`;
-  return Promise.all([writeFile(`build/${destFile}`, JSON.stringify(serverConfig)), writeFile(`public/${destFile}`, JSON.stringify(browserConfig))]);
+  await Promise.all([writeFile(`build/${destFile}`, JSON.stringify(serverConfig)), writeFile(`public/${destFile}`, JSON.stringify(browserConfig))]);
 };
 
 const build = (src = './src/config', onChanged) => Promise.all(glob.sync(join(src, '**/*.yml')).map(async filename => {
@@ -99,6 +102,7 @@ const build = (src = './src/config', onChanged) => Promise.all(glob.sync(join(sr
       console.log(eventType, filename);
 
       if (eventType === 'change') {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         compileYml(filename).then(() => {
           onChanged();
         });
@@ -180,7 +184,9 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
 
   const handleMessage = (source, msg) => {
     if (msg === 'ready') ; else if (msg && msg.type === 'webpack-progress') {
-      percentages[source] = msg.percentage;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      percentages[source] = msg.percentage; // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+
       const message = msg.message;
       bar.update((percentages.node + percentages.browser) / 2, {
         msg: message.length > 20 ? `${message.slice(0, 20)}...` : message
@@ -210,7 +216,8 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
       NIGHTINGALE_CONSOLE_FORMATTER: 'ansi'
     },
     onMessage: msg => handleMessage('browser', msg)
-  });
+  }); // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
   Promise.all([nodeChild.start(), browserChild.start()]).then(() => {
     logger.success('ready', {
       port: proxyPort,
@@ -221,6 +228,7 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
   const cleanup = () => {
     var _nodeChild;
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     Promise.all([(_nodeChild = nodeChild) === null || _nodeChild === void 0 ? void 0 : _nodeChild.stop().catch(() => {}), browserChild === null || browserChild === void 0 ? void 0 : browserChild.stop().catch(() => {})]).then(() => {
       process.exit(0);
     });
@@ -228,5 +236,6 @@ Promise.all([portscanner.findAPortNotInUse(startProxyPort, endProxyPort), portsc
 
   process.on('SIGINT', cleanup);
   process.on('SIGTERM', cleanup);
-}).catch(err => console.log(err.stack));
+}) // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+.catch(err => console.log(err.stack));
 //# sourceMappingURL=watch-node12.mjs.map

@@ -14,7 +14,7 @@ declare module 'alp-types' {
     namedParam: (name: string) => string | undefined;
     otherParam: (position: number) => string | undefined;
     paramGET: (name: string) => string | undefined;
-    paramGETorPOST: (name: string) => any | undefined;
+    paramGETorPOST: <T>(name: string) => T | undefined;
   }
 }
 
@@ -35,12 +35,19 @@ export default function alpParams(app: NodeApplicationInCreation): void {
     },
 
     paramGET(this: Context, name: string): string | undefined {
-      const query = this.query;
-      return query?.[name];
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const query = this.request.query;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
+      return query?.[name] as string | undefined;
     },
 
-    paramGETorPOST(this: Context, name: string): any | undefined {
-      return this.body[name] !== undefined ? this.body[name] : this.query[name];
+    paramGETorPOST<T>(this: Context, name: string): T | undefined {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
+      return this.body[name] !== undefined
+        ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          this.body[name]
+        : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          this.request.query[name];
     },
   });
 

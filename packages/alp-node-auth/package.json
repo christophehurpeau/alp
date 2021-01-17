@@ -67,7 +67,7 @@
     ]
   },
   "peerDependencies": {
-    "alp-node": "^2.1.1",
+    "alp-node": "^2.2.0",
     "alp-router": "^3.1.2",
     "liwi-mongo": "^7.0.0"
   },
@@ -82,6 +82,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
+    "alp-node": "2.2.0",
     "alp-router": "^3.1.2",
     "babel-preset-latest-node": "5.2.0",
     "liwi-mongo": "7.4.2",

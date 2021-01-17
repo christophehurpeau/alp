@@ -85,12 +85,11 @@ async function migrate({
   migrations = migrations.sort((a, b) => semver.gt(a.version, b.version) ? 1 : -1);
 
   try {
-    // eslint-disable-next-line no-restricted-syntax
     for (const migration of migrations) {
       logger.info(`Migration to ${migration.fileName}`);
 
       try {
-        // eslint-disable-next-line global-require, import/no-dynamic-require, no-await-in-loop
+        // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-var-requires
         await require(`${dirname}/${migration.fileName}`).default();
       } catch (err) {
         logger.error(`Migration to ${migration.version} Failed !`);

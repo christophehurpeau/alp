@@ -1,39 +1,43 @@
-import type { ChangeEvent, KeyboardEvent } from 'react';
-import React, { Component } from 'react';
+import type {
+  ChangeEventHandler,
+  KeyboardEventHandler,
+  ReactElement} from 'react';
+import React, {
+  useState,
+} from 'react';
 import s from './InputNameComponent.scss';
 
-interface Props {
+interface InputNameComponentProps {
   value: undefined | string;
   onChange: (name: string) => void;
 }
 
-export default class InputNameComponent extends Component<Props> {
-  state = {
-    value: this.props.value,
-  };
+export default function InputNameComponent({
+  value: initialValue,
+  onChange,
+}: InputNameComponentProps): ReactElement {
+  const [value, setValue] = useState(initialValue);
 
-  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     console.log('handleChange');
-    this.setState({ value: e.target.value });
-    this.props.onChange(e.target.value);
+    setValue(e.target.value);
+    onChange(e.target.value);
   };
 
-  handleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (e) => {
     console.log('handleKeyUp');
-    this.props.onChange(e.currentTarget.value);
+    setValue(e.currentTarget.value);
   };
 
-  render() {
-    console.log('render InputNameComponent');
-    return (
-      <input
-        type="text"
-        autoComplete="off"
-        className={s.input}
-        value={this.state.value}
-        onChange={this.handleChange}
-        onKeyUp={this.handleKeyUp}
-      />
-    );
-  }
+  console.log('render InputNameComponent');
+  return (
+    <input
+      type="text"
+      autoComplete="off"
+      className={s.input}
+      value={value}
+      onChange={handleChange}
+      onKeyUp={handleKeyUp}
+    />
+  );
 }

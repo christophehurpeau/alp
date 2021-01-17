@@ -1,10 +1,7 @@
-import type { MongoStore, MongoInsertType } from 'liwi-mongo';
-export interface Migration {
-    _id: string;
+import type { MongoStore, MongoInsertType, MongoBaseModel } from 'liwi-mongo';
+export interface Migration extends MongoBaseModel {
     version: string;
     fileName: string;
-    created: Date;
-    updated: Date;
 }
 export default class MigrationsManager {
     store: MongoStore<Migration>;

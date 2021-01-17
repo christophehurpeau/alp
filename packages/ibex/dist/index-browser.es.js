@@ -116,6 +116,10 @@ var request = {
     return window.location.search.length === 0 ? {} : parse(window.location.search.slice(1));
   },
 
+  get querystring() {
+    return window.location.search;
+  },
+
   get searchParams() {
     return new URLSearchParams(window.location.search.length === 0 ? window.location.search : window.location.search.slice(1));
   },
@@ -134,6 +138,14 @@ var request = {
 
   get headers() {
     throw new Error('Headers not available in ibex request.');
+  },
+
+  get accepts() {
+    throw new Error('Not implemented.');
+  },
+
+  get acceptsLanguages() {
+    throw new Error('Not implemented.');
   }
 
 };

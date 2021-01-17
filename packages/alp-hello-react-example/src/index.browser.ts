@@ -3,8 +3,8 @@ import { startApp } from 'alp-browser';
 import createReactApp from 'alp-react/browser';
 import App from './web/core/Layout';
 
-startApp((browserApp) => {
+startApp(async (browserApp) => {
   // react app
   const renderApp = createReactApp(browserApp);
-  renderApp(App);
+  await renderApp(App);
 });

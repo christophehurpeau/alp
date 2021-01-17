@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 import { readFileSync } from 'fs';
 import path from 'path';
 import { safeLoad as saveLoadYml } from 'js-yaml';
@@ -51,5 +52,5 @@ export default function loadConfigFile(
       );
   }
 
-  return [serverConfig, browserConfig];
+  return [serverConfig as Config, browserConfig as Config];
 }

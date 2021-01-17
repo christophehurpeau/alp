@@ -40,14 +40,13 @@ class Config {
       version
     } = options;
     this.packageConfig = packageConfig;
-    const config = this.loadConfigSync('common'); // eslint-disable-next-line no-restricted-syntax
+    const config = this.loadConfigSync('common');
 
     for (const [key, value] of this.loadConfigSync(env)) {
       config.set(key, value);
     }
 
     if (this.existsConfigSync('local')) {
-      // eslint-disable-next-line no-restricted-syntax
       for (const [key, value] of this.loadConfigSync('local')) {
         config.set(key, value);
       }
@@ -72,7 +71,8 @@ class Config {
 
     argvOverrides.forEach(key => {
       const splitted = key.split('.');
-      const value = splitted.length > 0 && splitted.reduce((config, partialKey) => config === null || config === void 0 ? void 0 : config[partialKey], argv__default);
+      const value = splitted.length > 0 && // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      splitted.reduce((config, partialKey) => config === null || config === void 0 ? void 0 : config[partialKey], argv__default);
 
       if (value !== undefined) {
         const last = splitted.pop();

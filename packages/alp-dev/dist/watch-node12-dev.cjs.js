@@ -30,6 +30,7 @@ const fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
 const glob__default = /*#__PURE__*/_interopDefaultLegacy(glob);
 const mkdirp__default = /*#__PURE__*/_interopDefaultLegacy(mkdirp);
 
+/* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 function loadConfigFile(content, dirname) {
   const data = jsYaml.safeLoad(content) || {};
   const config = data.shared || data.common || {};
@@ -76,7 +77,8 @@ function readFile(target) {
   return new Promise((resolve, reject) => {
     fs__default.readFile(target, 'utf-8', (err, content) => {
       if (err) {
-        return reject(new Error(`Failed to read file "${target}": ${err.message || err}`));
+        return reject( // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        new Error(`Failed to read file "${target}": ${err.message || err}`));
       }
 
       resolve(content);
@@ -89,7 +91,8 @@ function writeFile(target, content) {
     mkdirp__default(path__default.dirname(target), () => {
       fs__default.writeFile(target, content, err => {
         if (err) {
-          return reject(new Error(`Failed to write file "${target}": ${err.message || err}`));
+          return reject(new Error( // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          `Failed to write file "${target}": ${err.message || err}`));
         }
 
         resolve();
@@ -102,7 +105,7 @@ const compileYml = async filename => {
   const content = await readFile(filename);
   const [serverConfig, browserConfig] = loadConfigFile(content, path.dirname(filename));
   const destFile = `${filename.slice(4, -3)}json`;
-  return Promise.all([writeFile(`build/${destFile}`, JSON.stringify(serverConfig)), writeFile(`public/${destFile}`, JSON.stringify(browserConfig))]);
+  await Promise.all([writeFile(`build/${destFile}`, JSON.stringify(serverConfig)), writeFile(`public/${destFile}`, JSON.stringify(browserConfig))]);
 };
 
 const build = (src = './src/config', onChanged) => Promise.all(glob__default.sync(path.join(src, '**/*.yml')).map(async filename => {
@@ -116,6 +119,7 @@ const build = (src = './src/config', onChanged) => Promise.all(glob__default.syn
       console.log(eventType, filename);
 
       if (eventType === 'change') {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         compileYml(filename).then(() => {
           onChanged();
         });
@@ -197,7 +201,9 @@ Promise.all([portscanner__default.findAPortNotInUse(startProxyPort, endProxyPort
 
   const handleMessage = (source, msg) => {
     if (msg === 'ready') ; else if (msg && msg.type === 'webpack-progress') {
-      percentages[source] = msg.percentage;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      percentages[source] = msg.percentage; // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+
       const message = msg.message;
       bar.update((percentages.node + percentages.browser) / 2, {
         msg: message.length > 20 ? `${message.slice(0, 20)}...` : message
@@ -227,7 +233,8 @@ Promise.all([portscanner__default.findAPortNotInUse(startProxyPort, endProxyPort
       NIGHTINGALE_CONSOLE_FORMATTER: 'ansi'
     },
     onMessage: msg => handleMessage('browser', msg)
-  });
+  }); // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
   Promise.all([nodeChild.start(), browserChild.start()]).then(() => {
     logger.success('ready', {
       port: proxyPort,
@@ -238,6 +245,7 @@ Promise.all([portscanner__default.findAPortNotInUse(startProxyPort, endProxyPort
   const cleanup = () => {
     var _nodeChild;
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     Promise.all([(_nodeChild = nodeChild) === null || _nodeChild === void 0 ? void 0 : _nodeChild.stop().catch(() => {}), browserChild === null || browserChild === void 0 ? void 0 : browserChild.stop().catch(() => {})]).then(() => {
       process.exit(0);
     });
@@ -245,5 +253,6 @@ Promise.all([portscanner__default.findAPortNotInUse(startProxyPort, endProxyPort
 
   process.on('SIGINT', cleanup);
   process.on('SIGTERM', cleanup);
-}).catch(err => console.log(err.stack));
+}) // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+.catch(err => console.log(err.stack));
 //# sourceMappingURL=watch-node12-dev.cjs.js.map

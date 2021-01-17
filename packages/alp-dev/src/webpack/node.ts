@@ -4,7 +4,7 @@ import type { PobpackCompiler } from 'pobpack-types';
 import type { Watching } from 'webpack';
 import createPobpackConfig from './createPobpackConfig';
 
-export const createNodeCompiler = (production: boolean) =>
+export const createNodeCompiler = (production: boolean): PobpackCompiler =>
   createAppNodeCompiler(createPobpackConfig('node', production), {
     progressBar: false,
   });

@@ -1,6 +1,8 @@
 import ParamValueValidator from './ParamValueValidator';
 
-export default class ParamValueModelValidator extends ParamValueValidator {
+export default class ParamValueModelValidator<
+  T
+> extends ParamValueValidator<T> {
   /*
   required() {
       if (this.value == null) {

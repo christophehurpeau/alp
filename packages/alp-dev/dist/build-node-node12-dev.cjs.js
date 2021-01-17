@@ -49,6 +49,7 @@ const createCssModuleUse = function ({
 
   return [target !== 'node' && extractLoader, {
     loader: resolveLoader('css-loader'),
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     options: cssLoaderOptions(otherLoaders.length + 1 + (!global && !production ? 1 : 0), global, production, target === 'node')
   }, !global && !production && target !== 'node' && {
     loader: resolveLoader('typed-css-modules-loader'),
@@ -60,6 +61,7 @@ const createCssModuleUse = function ({
     options: {
       ident: 'postcss',
       sourceMap: !production,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       plugins: () => plugins
     }
   }, ...otherLoaders].filter(ExcludesFalsy);
@@ -144,7 +146,7 @@ const createModuleRules = function ({
   })];
 };
 
-/* eslint-disable complexity, max-lines */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, complexity, max-lines */
 
 const ExcludesFalsy$1 = Boolean;
 function createPobpackConfig(target, production = false) {
@@ -301,6 +303,7 @@ const createNodeCompiler = production => pobpackNode.createAppNodeCompiler(creat
   progressBar: false
 });
 
-const nodeCompiler = createNodeCompiler(process.env.NODE_ENV === 'production');
+const nodeCompiler = createNodeCompiler(process.env.NODE_ENV === 'production'); // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
 nodeCompiler.run();
 //# sourceMappingURL=build-node-node12-dev.cjs.js.map

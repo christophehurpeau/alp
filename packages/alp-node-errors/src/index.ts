@@ -23,7 +23,7 @@ export default async function alpNodeErrors(
     ctx.status = (err as HtmlError).status || 500;
     logger.error(err as any);
 
-    switch (ctx.accepts('html', 'text', 'json')) {
+    switch (ctx.request.accepts('html', 'text', 'json')) {
       case 'text':
         ctx.type = 'text/plain';
         if (

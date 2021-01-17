@@ -1,3 +1,4 @@
+/// <reference types="koa" />
 import type { Context } from 'alp-node';
 import 'alp-router';
 import type MongoUsersManager from './MongoUsersManager';

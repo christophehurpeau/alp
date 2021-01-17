@@ -1,4 +1,4 @@
-/* eslint-disable complexity, max-lines */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, complexity, max-lines */
 
 import fs from 'fs';
 import path from 'path';

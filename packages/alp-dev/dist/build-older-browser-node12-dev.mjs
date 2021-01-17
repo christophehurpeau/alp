@@ -38,6 +38,7 @@ const createCssModuleUse = function ({
 
   return [target !== 'node' && extractLoader, {
     loader: resolveLoader('css-loader'),
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     options: cssLoaderOptions(otherLoaders.length + 1 + (!global && !production ? 1 : 0), global, production, target === 'node')
   }, !global && !production && target !== 'node' && {
     loader: resolveLoader('typed-css-modules-loader'),
@@ -49,6 +50,7 @@ const createCssModuleUse = function ({
     options: {
       ident: 'postcss',
       sourceMap: !production,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       plugins: () => plugins
     }
   }, ...otherLoaders].filter(ExcludesFalsy);
@@ -133,7 +135,7 @@ const createModuleRules = function ({
   })];
 };
 
-/* eslint-disable complexity, max-lines */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, complexity, max-lines */
 
 const ExcludesFalsy$1 = Boolean;
 function createPobpackConfig(target, production = false) {
@@ -288,6 +290,7 @@ function createPobpackConfig(target, production = false) {
 
 const createOlderBrowserCompiler = production => createAppBrowserCompiler(ALL, createPobpackConfig('browser', production));
 
-const browserCompiler = createOlderBrowserCompiler(process.env.NODE_ENV === 'production');
+const browserCompiler = createOlderBrowserCompiler(process.env.NODE_ENV === 'production'); // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
 browserCompiler.run();
 //# sourceMappingURL=build-older-browser-node12-dev.mjs.map

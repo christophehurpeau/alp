@@ -10,22 +10,22 @@ const logger = appLogger.child('HomePage');
 
 export default function IndexView(): ReactElement {
   const ctx = useContext(ReactAlpContext);
-  const [name, setName] = useState(() => {
-    if (ctx.query.name) {
-      return ctx.query.name;
+  const [name, setName] = useState((): string | undefined => {
+    if (ctx.request.query.name) {
+      return ctx.request.query.name as string | undefined;
     }
     return '';
   });
   logger.info('render', { name });
 
-  const handleChangeName = (newName: string) => {
+  const handleChangeName = (newName: string): void => {
     logger.info('name changed', { newName });
     if (name === newName) return;
     setName(newName);
   };
 
   useEffect(() => {
-    const queryParams = ctx.searchParams;
+    const queryParams = ctx.request.searchParams;
     if (!name) {
       queryParams.delete('name');
     } else {

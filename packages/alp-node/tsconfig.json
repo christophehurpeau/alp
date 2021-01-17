@@ -40,10 +40,10 @@
       "alp-node-errors/*": ["../../../packages/alp-node-errors/src/*"],
       "alp-node-language": ["../../../packages/alp-node-language/src"],
       "alp-node-language/*": ["../../../packages/alp-node-language/src/*"],
-      "alp-params": ["../../../packages/alp-params/src"],
-      "alp-params/*": ["../../../packages/alp-params/src/*"],
       "alp-listen": ["../../../packages/alp-listen/src"],
       "alp-listen/*": ["../../../packages/alp-listen/src/*"],
+      "alp-params": ["../../../packages/alp-params/src"],
+      "alp-params/*": ["../../../packages/alp-params/src/*"],
       "alp-translate": ["../../../packages/alp-translate/src"],
       "alp-translate/*": ["../../../packages/alp-translate/src/*"]
     }

@@ -5,6 +5,7 @@ import App from './web/core/Layout';
 
 const app = new Alp();
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 app.start(() => {
   // init
   // call here any init app

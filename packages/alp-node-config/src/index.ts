@@ -40,13 +40,11 @@ export class Config {
     this.packageConfig = packageConfig;
 
     const config = this.loadConfigSync('common') as Map<string, unknown>;
-    // eslint-disable-next-line no-restricted-syntax
     for (const [key, value] of this.loadConfigSync(env)) {
       config.set(key, value);
     }
 
     if (this.existsConfigSync('local')) {
-      // eslint-disable-next-line no-restricted-syntax
       for (const [key, value] of this.loadConfigSync('local')) {
         config.set(key, value);
       }
@@ -77,6 +75,7 @@ export class Config {
       const splitted = key.split('.');
       const value =
         splitted.length > 0 &&
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         splitted.reduce((config, partialKey) => config?.[partialKey], argv);
       if (value !== undefined) {
         const last = splitted.pop() as string;

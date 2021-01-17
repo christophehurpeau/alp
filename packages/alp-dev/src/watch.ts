@@ -13,8 +13,8 @@ import createChild from 'springbokjs-daemon';
 // import watchServer from './server';
 import * as configBuild from './config-build';
 
-const startProxyPort: number = argv.browserSyncStartPort || 3000;
-const startAppPort: number = argv.startAppPort || 3050;
+const startProxyPort: number = (argv.browserSyncStartPort as number) || 3000;
+const startAppPort: number = (argv.startAppPort as number) || 3050;
 const endProxyPort: number = startProxyPort + 49;
 const endAppPort: number = startAppPort + 49;
 
@@ -46,8 +46,11 @@ const output = (param: string | string[]): void => {
   }
 };
 
-const formatterSimplified: any = ({ key, datetime, ...restRecord }: any) =>
-  formatterANSI(restRecord);
+const formatterSimplified: typeof formatterANSI = ({
+  key,
+  datetime,
+  ...restRecord
+}) => formatterANSI(restRecord as Parameters<typeof formatterANSI>[0]);
 
 addConfig(
   {
@@ -87,7 +90,7 @@ Promise.all([
     if (nodeChild) nodeChild.sendSIGUSR2();
   }),
 ])
-  .then(([proxyPort, port]: [number, number, void]) => {
+  .then(([proxyPort, port]: [number, number, undefined]) => {
     if (proxyPort === port) {
       throw new Error(
         `"proxyPort" and "port" cannot have the same value: ${port}`,
@@ -103,15 +106,18 @@ Promise.all([
         | 'ready'
         | { type: 'webpack-progress'; percentage: number; message: string }
         | any,
-    ) => {
+    ): void => {
       if (msg === 'ready') {
         building[source] = false;
         //
         // if (Object.values(building).every(Boolean)) {
         // }
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       } else if (msg && msg.type === 'webpack-progress') {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         percentages[source] = msg.percentage;
-        const message = msg.message;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        const message: string = msg.message;
         bar.update((percentages.node + percentages.browser) / 2, {
           msg: message.length > 20 ? `${message.slice(0, 20)}...` : message,
         });
@@ -157,11 +163,13 @@ Promise.all([
       onMessage: (msg) => handleMessage('browser', msg),
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     Promise.all([nodeChild.start(), browserChild.start()]).then(() => {
       logger.success('ready', { port: proxyPort, serverPort: port });
     });
 
     const cleanup = (): void => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       Promise.all([
         nodeChild?.stop().catch((err) => {}),
         browserChild?.stop().catch((err) => {}),
@@ -173,4 +181,5 @@ Promise.all([
     process.on('SIGINT', cleanup);
     process.on('SIGTERM', cleanup);
   })
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   .catch((err) => console.log(err.stack));

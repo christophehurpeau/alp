@@ -6,9 +6,9 @@ import loadConfigFile from './utils/loadConfigFile';
 import readFile from './utils/readFile';
 import writeFile from './utils/writeFile';
 
-export const clean = () => {};
+export const clean = (): void => {};
 
-const compileYml = async (filename: string) => {
+const compileYml = async (filename: string): Promise<void> => {
   const content = await readFile(filename);
 
   const [serverConfig, browserConfig] = loadConfigFile(
@@ -17,7 +17,7 @@ const compileYml = async (filename: string) => {
   );
   const destFile = `${filename.slice('src/'.length, -'yml'.length)}json`;
 
-  return Promise.all([
+  await Promise.all([
     writeFile(`build/${destFile}`, JSON.stringify(serverConfig)),
     writeFile(`public/${destFile}`, JSON.stringify(browserConfig)),
   ]);
@@ -39,6 +39,7 @@ export const build = (
             (eventType: string): void => {
               console.log(eventType, filename);
               if (eventType === 'change') {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 compileYml(filename).then(() => {
                   onChanged();
                 });
@@ -58,4 +59,4 @@ export const build = (
     closeFns.forEach((closeFn) => closeFn());
   });
 
-export const watch = (envs: string[]) => {};
+export const watch = (envs: string[]): void => {};

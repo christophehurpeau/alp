@@ -10,7 +10,7 @@ declare module 'alp-types' {
         namedParam: (name: string) => string | undefined;
         otherParam: (position: number) => string | undefined;
         paramGET: (name: string) => string | undefined;
-        paramGETorPOST: (name: string) => any | undefined;
+        paramGETorPOST: <T>(name: string) => T | undefined;
     }
 }
 export default function alpParams(app: NodeApplicationInCreation): void;

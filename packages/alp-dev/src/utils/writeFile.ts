@@ -12,6 +12,7 @@ export default function writeFile(
         if (err) {
           return reject(
             new Error(
+              // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
               `Failed to write file "${target}": ${err.message || err}`,
             ),
           );

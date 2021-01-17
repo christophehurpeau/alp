@@ -15,7 +15,22 @@ export interface NodeConfig extends Config {
 
 interface ContextRequest {
   headers: Record<string, string>;
+  origin: string;
+  href: string;
+  path: string;
+  query: Record<string, string | string[] | undefined>;
+  querystring: string;
+  search: string;
+  searchParams: URLSearchParams;
   host: string;
+
+  accepts(): string[] | boolean;
+  accepts(...types: string[]): string | boolean;
+  accepts(types: string[]): string | boolean;
+
+  acceptsLanguages(): string[] | boolean;
+  acceptsLanguages(...langs: string[]): string | boolean;
+  acceptsLanguages(langs: string[]): string | boolean;
 }
 
 export interface ContextState {}
@@ -32,7 +47,11 @@ export interface Context extends BaseContext {
   request: ContextRequest;
   response: any;
   redirect: (url: string) => Promise<void>;
-  path: string;
+
+  throw(message: string, code?: number, properties?: {}): never;
+  throw(status: number): never;
+  throw(...properties: Array<number | string | {}>): never;
+
   [key: string]: any;
 }
 

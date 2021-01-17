@@ -52,7 +52,7 @@ const ExcludesFalsy = (Boolean as any) as <T>(
   x: T | false | null | undefined,
 ) => x is T;
 
-const resolveLoader = (loader: string) => require.resolve(loader);
+const resolveLoader = (loader: string): string => require.resolve(loader);
 
 const cssLoaderOptions = function (
   importLoaders: number,
@@ -91,6 +91,7 @@ export const createCssModuleUse: CreateCssModuleUseFn = function ({
     target !== 'node' && extractLoader,
     {
       loader: resolveLoader('css-loader'),
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       options: cssLoaderOptions(
         otherLoaders.length + 1 + (!global && !production ? 1 : 0),
         global,
@@ -109,6 +110,7 @@ export const createCssModuleUse: CreateCssModuleUseFn = function ({
       options: {
         ident: 'postcss',
         sourceMap: !production,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         plugins: () => plugins,
       },
     },
@@ -136,7 +138,7 @@ const createScssModuleUse: CreateScssModuleUseFn = function ({
         loader: resolveLoader('sass-loader'),
         options: {
           sourceMap: !production,
-          prependData: `$env: ${process.env.NODE_ENV};${
+          prependData: `$env: ${process.env.NODE_ENV as string};${
             themeFile ? `@import '${path.resolve(themeFile)}';` : ''
           }`,
           sassOptions: {

@@ -95,12 +95,17 @@ function alpParams(app) {
     },
 
     paramGET(name) {
-      const query = this.query;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const query = this.request.query; // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
+
       return query === null || query === void 0 ? void 0 : query[name];
     },
 
     paramGETorPOST(name) {
-      return this.body[name] !== undefined ? this.body[name] : this.query[name];
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
+      return this.body[name] !== undefined ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      this.body[name] : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      this.request.query[name];
     }
 
   });

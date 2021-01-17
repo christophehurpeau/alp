@@ -3,9 +3,9 @@ import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp:listen');
 
-const createServer = (callback, socketPath, tls, dirname) => {
-  const createServer = !socketPath && tls ? // eslint-disable-next-line  import/no-dynamic-require
-  require('https').createServer : // eslint-disable-next-line  import/no-dynamic-require
+const createServer = (callback, socketPath, tls, dirname = '') => {
+  const createServer = !socketPath && tls ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
+  require('https').createServer : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
   require('http').createServer;
 
   if (!tls) {

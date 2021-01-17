@@ -33,9 +33,7 @@ export default function alpBodyParser(app: Application): void {
     this.request.body = body;
   };
 
-  app.context.parseBodyText = async function <T extends string>(
-    this: Context,
-  ): Promise<void> {
+  app.context.parseBodyText = async function (this: Context): Promise<void> {
     assertBodyNotParsed(this);
     const body: unknown = await parse.text(this);
     this.request.body = body;

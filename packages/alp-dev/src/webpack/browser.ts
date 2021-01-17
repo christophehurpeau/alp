@@ -10,14 +10,18 @@ import type { PobpackCompiler } from 'pobpack-types';
 import type WebpackDevServer from 'webpack-dev-server';
 import createPobpackConfig from './createPobpackConfig';
 
-export const createModernBrowserCompiler = (production: boolean) =>
+export const createModernBrowserCompiler = (
+  production: boolean,
+): PobpackCompiler =>
   createAppBrowserCompiler(
     MODERN,
     createPobpackConfig('modern-browser', production),
     { progressBar: false },
   );
 
-export const createOlderBrowserCompiler = (production: boolean) =>
+export const createOlderBrowserCompiler = (
+  production: boolean,
+): PobpackCompiler =>
   createAppBrowserCompiler(ALL, createPobpackConfig('browser', production));
 
 export type RunDevServerOptions = Pick<

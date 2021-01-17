@@ -26,11 +26,10 @@
         "alp-node-config",
         "alp-node-errors",
         "alp-node-language",
-        "alp-params",
         "alp-router",
         "react-alp-context",
         "alp-listen",
-        "alp-node-auth",
+        "alp-params",
         "alp-react",
         "alp-translate",
         "react-alp-loading-bar",
@@ -38,7 +37,8 @@
         "alp-browser",
         "alp-node",
         "react-alp-connection-state",
-        "alp-hello-react-example"
+        "alp-hello-react-example",
+        "alp-node-auth"
       ]
     },
     "renovate": {

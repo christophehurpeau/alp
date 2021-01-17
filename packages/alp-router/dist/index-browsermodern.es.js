@@ -11,11 +11,11 @@ function alpRouter(router) {
     };
 
     return ctx => {
-      const routeMatch = router.find(ctx.path, ctx.language);
+      const routeMatch = router.find(ctx.request.path, ctx.language);
 
       if (!routeMatch) {
         ctx.status = 404;
-        throw new Error(`Route not found: ${ctx.path}`);
+        throw new Error(`Route not found: ${ctx.request.path}`);
       }
 
       ctx.route = routeMatch;
