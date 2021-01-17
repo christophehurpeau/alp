@@ -153,7 +153,7 @@
     "colorette": "^1.1.0",
     "console-loader": "^1.0.0",
     "css-loader": "^4.2.1",
-    "execa": "^2.0.0",
+    "execa": "^5.0.0",
     "extract-css-chunks-webpack-plugin": "^4.7.5",
     "file-loader": "^4.0.0",
     "glob": "^7.1.6",
