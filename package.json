@@ -45,7 +45,7 @@
     "@pob/eslint-config-typescript-react": "42.0.1",
     "@pob/lerna-light": "3.23.0",
     "@pob/root": "3.0.3",
-    "eslint": "7.17.0",
+    "eslint": "7.18.0",
     "husky": "4.3.7",
     "prettier": "2.2.1",
     "typescript": "4.1.3"
