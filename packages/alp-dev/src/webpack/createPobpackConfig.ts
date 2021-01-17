@@ -90,7 +90,6 @@ export default function createPobpackConfig(
             resolvePreset: (preset: string): string => require.resolve(preset),
             production,
             typescript: true,
-            exportDefaultName: false,
             optimizations: true,
             target: target === 'node' ? 'node' : 'browser',
             version:

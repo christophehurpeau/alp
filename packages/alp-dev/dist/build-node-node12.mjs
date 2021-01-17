@@ -177,7 +177,6 @@ function createPobpackConfig(target, production = false) {
         resolvePreset: preset => require.resolve(preset),
         production,
         typescript: true,
-        exportDefaultName: false,
         optimizations: true,
         target: target === 'node' ? 'node' : 'browser',
         version: target === 'node' ? 10.13 : // eslint-disable-next-line unicorn/no-nested-ternary
