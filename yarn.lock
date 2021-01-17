@@ -7055,6 +7055,14 @@ graceful-kill@^3.0.0:
     "@types/node" ">=10.0.0"
     nightingale-logger "^10.0.1"
 
+graceful-kill@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/graceful-kill/-/graceful-kill-4.0.1.tgz#91ab7c1ffae5d853e9f8317d6684e52ae79ca87b"
+  integrity sha512-OtlUWkQCgFXl4RqyT0NDQYtJ7FhULMHdUAI+H94dhv3LxqIHrRr6i0mOFfeI2vHTcq+oKFAeQEU1dZanQgqclg==
+  dependencies:
+    "@types/node" ">=12.0.0"
+    nightingale-logger "^11.0.0"
+
 growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
@@ -13435,6 +13443,18 @@ springbokjs-daemon@^5.1.0:
     nightingale "^10.0.1"
     nightingale-console "^10.0.1"
     nightingale-logger "^10.0.1"
+    split "^1.0.1"
+
+springbokjs-daemon@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/springbokjs-daemon/-/springbokjs-daemon-6.0.0.tgz#babaee60324edc2f8207a8ad479f58eee43d0a6c"
+  integrity sha512-jbHJw5RxmCr8xWt8Wj61vedBvuobvSaST5qQR9/+ccBVsOhjXAXbqC6ASC1IyAyWc5TwYijMOOQ1DyTSlDoKbA==
+  dependencies:
+    "@types/node" ">=12.0.0"
+    graceful-kill "^4.0.0"
+    nightingale "^11.0.0"
+    nightingale-console "^11.0.0"
+    nightingale-logger "^11.0.0"
     split "^1.0.1"
 
 sprintf-js@~1.0.2:
