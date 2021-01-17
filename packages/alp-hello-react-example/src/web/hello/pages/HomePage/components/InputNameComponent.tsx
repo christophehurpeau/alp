@@ -1,10 +1,9 @@
 import type {
   ChangeEventHandler,
   KeyboardEventHandler,
-  ReactElement} from 'react';
-import React, {
-  useState,
+  ReactElement,
 } from 'react';
+import React, { useState } from 'react';
 import s from './InputNameComponent.scss';
 
 interface InputNameComponentProps {
