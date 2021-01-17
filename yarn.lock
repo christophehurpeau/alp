@@ -9980,6 +9980,16 @@ nightingale@^10.0.1:
     nightingale-logger "^10.0.1"
     nightingale-types "^10.0.1"
 
+nightingale@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/nightingale/-/nightingale-11.0.0.tgz#db5295c5dcac7cf34b814916c9956acaa6a64c11"
+  integrity sha512-MZsEzAe4yk1oGWS/cRSx8Pi7jxmsc1XDK2Snhel2rU4wYFSm2kOkyNKaU1XcAq8N4WatZgoFxbgNWpRJlyq0ew==
+  dependencies:
+    "@types/node" ">=12.0.0"
+    nightingale-levels "^11.0.0"
+    nightingale-logger "^11.0.0"
+    nightingale-types "^11.0.0"
+
 node-fetch-npm@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/node-fetch-npm/-/node-fetch-npm-2.0.2.tgz#7258c9046182dca345b4208eda918daf33697ff7"
