@@ -100,6 +100,6 @@
     "@types/minimist": "1.2.1",
     "babel-preset-latest-node": "5.2.0",
     "pob-babel": "26.3.0",
-    "rollup": "2.36.1"
+    "rollup": "2.36.2"
   }
 }
