@@ -1,36 +1,38 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
-import { BaseContext } from 'koa';
-import { Composed, Middleware as ComposeMiddleware } from './compose';
-import { Request } from './request';
-import { Response } from './response';
-export interface Context extends BaseContext {
+import type { BaseContext as KoaBaseContext } from 'koa';
+import type { Composed, Middleware as ComposeMiddleware } from './compose';
+import type { Request } from './request';
+import type { Response } from './response';
+export interface BaseContext extends KoaBaseContext {
     app: Application;
+    redirect: (url: string) => Promise<void>;
+}
+export interface DefaultState {
+}
+export interface DefaultSanitizedState {
+}
+export interface Context extends BaseContext {
     request: Request;
     response: Response;
     req: never;
     res: never;
     originalUrl: string;
     cookies: never;
-    state: {
-        [key: string]: any;
-    };
-    sanitizedState: {
-        [key: string]: any;
-    };
+    state: DefaultState;
+    sanitizedState: DefaultSanitizedState;
     respond?: boolean;
 }
 export declare type Middleware = ComposeMiddleware<Context>;
 export default class Application extends EventEmitter {
     middleware: Middleware[];
-    context: Context;
+    context: BaseContext;
     callback?: Composed<Context>;
     constructor();
-    get environment(): void;
     use(fn: Middleware): this;
     onerror(e: any): void;
     run(url?: string): void;
-    createContext(): any;
-    load(url: string): Promise<boolean | void>;
+    createContext(): Context;
+    load(url: string): Promise<void>;
 }
 //# sourceMappingURL=index.d.ts.map

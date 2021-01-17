@@ -7,7 +7,9 @@ declare module 'alp-node-auth/strategies/dropbox' {
     oauth2: OAuthClient;
   }
 
-  export default function createDropboxStrategy(config: Config): DropboxStrategy;
+  export default function createDropboxStrategy(
+    config: Config,
+  ): DropboxStrategy;
 }
 declare module 'alp-node-auth/strategies/facebook' {
   export interface FacebookStrategy {
@@ -15,7 +17,9 @@ declare module 'alp-node-auth/strategies/facebook' {
     oauth2: OAuthClient;
   }
 
-  export default function createFacebookStrategy(config: Config): FacebookStrategy;
+  export default function createFacebookStrategy(
+    config: Config,
+  ): FacebookStrategy;
 }
 declare module 'alp-node-auth/strategies/foursquare' {
   export interface FoursquareStrategy {
@@ -23,7 +27,9 @@ declare module 'alp-node-auth/strategies/foursquare' {
     oauth2: OAuthClient;
   }
 
-  export default function createFoursquareStrategy(config: Config): FoursquareStrategy;
+  export default function createFoursquareStrategy(
+    config: Config,
+  ): FoursquareStrategy;
 }
 declare module 'alp-node-auth/strategies/github' {
   export interface GithubStrategy {

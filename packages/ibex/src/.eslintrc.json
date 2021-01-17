@@ -4,15 +4,12 @@
   "parserOptions": {
     "project": "packages/ibex/tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "extends": [
-    "@pob/eslint-config-typescript"
-  ],
+  "plugins": ["@typescript-eslint"],
+  "extends": ["@pob/eslint-config-typescript"],
   "env": {
     "browser": true
   },
+  "ignorePatterns": ["*.d.ts"],
   "rules": {
     "import/no-cycle": "off"
   }

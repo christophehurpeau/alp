@@ -9,14 +9,13 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com:christophehurpeau/alp.git",
+    "url": "https://github.com/christophehurpeau/alp.git",
     "directory": "packages/alp-node-auth"
   },
   "homepage": "https://github.com/christophehurpeau/alp",
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=12.10.0"
   },
-  "sideEffects": false,
   "main": "./index.js",
   "types": "./dist/index.d.ts",
   "typesVersions": {
@@ -26,13 +25,25 @@
       ]
     }
   },
-  "module:node": "./dist/index-node10.es.js",
-  "module:node-dev": "./dist/index-node10-dev.es.js",
+  "exports": {
+    ".": {
+      "node": {
+        "development": {
+          "import": "./dist/index-node12-dev.mjs",
+          "require": "./dist/index-node12-dev.cjs.js"
+        },
+        "import": "./dist/index-node12.mjs",
+        "require": "./dist/index-node12.cjs.js"
+      }
+    }
+  },
+  "sideEffects": false,
   "scripts": {
-    "build": "pob-build",
+    "build": "pob-build && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
-    "lint": "yarn --cwd ../.. lint packages/alp-node-auth",
+    "lint": "yarn run lint:eslint",
+    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.ts --report-unused-disable-directives --quiet packages/alp-node-auth",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -44,7 +55,7 @@
     "babelEnvs": [
       {
         "target": "node",
-        "version": "10",
+        "version": "12",
         "formats": [
           "cjs",
           "es"
@@ -57,6 +68,7 @@
   },
   "peerDependencies": {
     "alp-node": "^2.1.1",
+    "alp-router": "^3.1.2",
     "liwi-mongo": "^7.0.0"
   },
   "dependencies": {
@@ -70,8 +82,10 @@
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
-    "babel-preset-latest-node": "4.1.0",
+    "alp-router": "^3.1.2",
+    "babel-preset-latest-node": "5.2.0",
     "liwi-mongo": "7.4.2",
-    "pob-babel": "24.12.0"
+    "pob-babel": "26.3.0",
+    "rollup": "2.36.1"
   }
 }

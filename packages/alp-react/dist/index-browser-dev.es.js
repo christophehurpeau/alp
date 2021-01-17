@@ -1,9 +1,9 @@
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import contentLoaded from 'content-loaded';
+import Logger from 'nightingale-logger';
 import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
-import Logger from 'nightingale-logger';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
@@ -23,8 +23,7 @@ function createAlpAppWrapper(app, context) {
 
       _this = _Component.call.apply(_Component, [this].concat(args)) || this;
       _this.state = {
-        error: null,
-        appState: context.sanitizedState
+        error: null
       };
       return _this;
     }
@@ -34,9 +33,13 @@ function createAlpAppWrapper(app, context) {
     _proto.componentDidCatch = function componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
 
-      if (window.Raven) {
-        window.Raven.captureException(error, {
-          extra: errorInfo
+      if (window.Sentry) {
+        window.Sentry.captureException(error, {
+          contexts: {
+            react: {
+              componentStack: errorInfo.componentStack
+            }
+          }
         });
       }
     };
@@ -88,7 +91,6 @@ function alpReactBrowser(app) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              // eslint-disable-next-line no-underscore-dangle
               initialData = window.__INITIAL_DATA__ || {};
               ctx = app.createContext();
 

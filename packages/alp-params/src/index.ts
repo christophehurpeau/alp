@@ -1,5 +1,6 @@
+import type { Context, NodeApplicationInCreation } from 'alp-types';
+import 'alp-router';
 import { defineLazyProperty } from 'object-properties';
-import { Context, NodeApplicationInCreation } from 'alp-types';
 import ParamValidator from './ParamValidator';
 import ParamValidatorValid from './ParamValidatorValid';
 
@@ -7,15 +8,17 @@ export { ParamValidator };
 
 declare module 'alp-types' {
   interface Context {
-    param(name: string): string | undefined;
-    namedParam(name: string): string | undefined;
-    otherParam(position: number): string | undefined;
-    paramGET(name: string): string | undefined;
-    paramGETorPOST(name: string): any | undefined;
+    params: ParamValidator;
+    validParams: ParamValidator;
+    param: (name: string) => string | undefined;
+    namedParam: (name: string) => string | undefined;
+    otherParam: (position: number) => string | undefined;
+    paramGET: (name: string) => string | undefined;
+    paramGETorPOST: (name: string) => any | undefined;
   }
 }
 
-export default function alpParams(app: NodeApplicationInCreation) {
+export default function alpParams(app: NodeApplicationInCreation): void {
   Object.assign(app.context, {
     param(this: Context, name: string): string | undefined {
       return this.namedParam(name) || this.paramGET(name);
@@ -41,15 +44,19 @@ export default function alpParams(app: NodeApplicationInCreation) {
     },
   });
 
-  defineLazyProperty(app.context, 'params', function (
-    this: Context,
-  ): ParamValidator {
-    return new ParamValidator(this);
-  });
+  defineLazyProperty(
+    app.context,
+    'params',
+    function (this: Context): ParamValidator {
+      return new ParamValidator(this);
+    },
+  );
 
-  defineLazyProperty(app.context, 'validParams', function (
-    this: Context,
-  ): ParamValidatorValid {
-    return new ParamValidatorValid(this);
-  });
+  defineLazyProperty(
+    app.context,
+    'validParams',
+    function (this: Context): ParamValidatorValid {
+      return new ParamValidatorValid(this);
+    },
+  );
 }

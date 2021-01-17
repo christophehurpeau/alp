@@ -1,7 +1,8 @@
-import { Context } from 'alp-types';
-import AuthenticationService, { AccessResponseHooks } from './services/authentification/AuthenticationService';
-import MongoUsersManager from './MongoUsersManager';
-import { AllowedStrategyKeys, AllowedMapParamsStrategy } from './services/authentification/types';
+import type { Context } from 'alp-node';
+import 'alp-router';
+import type MongoUsersManager from './MongoUsersManager';
+import type { AuthenticationService, AccessResponseHooks } from './services/authentification/AuthenticationService';
+import type { AllowedStrategyKeys, AllowedMapParamsStrategy } from './services/authentification/types';
 export interface CreateAuthControllerParams<StrategyKeys extends AllowedStrategyKeys> {
     authenticationService: AuthenticationService<StrategyKeys>;
     homeRouterKey?: string;
@@ -10,10 +11,10 @@ export interface CreateAuthControllerParams<StrategyKeys extends AllowedStrategy
     authHooks?: AuthHooks<StrategyKeys>;
 }
 export interface AuthController {
-    login(ctx: Context): Promise<void>;
-    addScope(ctx: Context): Promise<void>;
-    loginResponse(ctx: Context): Promise<void>;
-    logout(ctx: Context): Promise<void>;
+    login: (ctx: Context) => Promise<void>;
+    addScope: (ctx: Context) => Promise<void>;
+    loginResponse: (ctx: Context) => Promise<void>;
+    logout: (ctx: Context) => Promise<void>;
 }
 declare type OptionalRecord<K extends keyof any, T> = {
     [P in K]?: T;

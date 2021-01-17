@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/html-has-lang */
-import { HelmetData } from 'react-helmet';
+import type { HelmetData } from 'react-helmet';
 import assetUrl from './assetUrl';
 import uneval from './uneval';
 

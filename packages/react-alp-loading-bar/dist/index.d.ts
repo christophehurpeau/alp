@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import React, { PureComponent } from 'react';
 import ReactAlpContext from 'react-alp-context';
 interface LoadingBarProps {
@@ -10,8 +11,12 @@ interface LoadingBarState {
     hidden: boolean;
     progress: number;
 }
+interface WebsocketInterface {
+    isConnected: () => boolean;
+    on: (event: 'connect' | 'disconnect', callback: () => unknown) => void;
+}
 export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBarState> {
-    static contextType: React.Context<import("alp-types").Context<{}, {}>>;
+    static contextType: React.Context<import("alp-types").Context>;
     context: React.ContextType<typeof ReactAlpContext>;
     state: {
         loading: boolean;
@@ -25,10 +30,10 @@ export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBa
     componentDidMount(): void;
     componentDidUpdate(prevProps: LoadingBarProps, prevState: LoadingBarState): void;
     componentWillUnmount(): void;
-    getWebsocket(): any;
+    getWebsocket(): WebsocketInterface;
     private showBar;
     private hideBar;
-    render(): JSX.Element;
+    render(): ReactElement;
 }
 export {};
 //# sourceMappingURL=index.d.ts.map

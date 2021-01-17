@@ -2,12 +2,15 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var _inheritsLoose = _interopDefault(require('@babel/runtime/helpers/esm/inheritsLoose'));
+var _inheritsLoose = require('@babel/runtime/helpers/esm/inheritsLoose');
 var React = require('react');
-var React__default = _interopDefault(React);
-var ReactAlpContext = _interopDefault(require('react-alp-context'));
+var ReactAlpContext = require('react-alp-context');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
+
+var _inheritsLoose__default = /*#__PURE__*/_interopDefaultLegacy(_inheritsLoose);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var ReactAlpContext__default = /*#__PURE__*/_interopDefaultLegacy(ReactAlpContext);
 
 /*
 Example with antd:
@@ -43,7 +46,7 @@ var calculatePercent = function calculatePercent(percent) {
 };
 
 var LoadingBar = /*#__PURE__*/function (_PureComponent) {
-  _inheritsLoose(LoadingBar, _PureComponent);
+  _inheritsLoose__default(LoadingBar, _PureComponent);
 
   function LoadingBar() {
     var _this, _len, args, _key;
@@ -110,6 +113,7 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
   };
 
   _proto.getWebsocket = function getWebsocket() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
     return this.context.app.websocket;
   };
 
@@ -171,7 +175,7 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
   return LoadingBar;
 }(React.PureComponent);
 
-LoadingBar.contextType = ReactAlpContext;
+LoadingBar.contextType = ReactAlpContext__default;
 
 exports.default = LoadingBar;
 //# sourceMappingURL=index-browser-dev.cjs.js.map

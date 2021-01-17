@@ -3,13 +3,13 @@ import IntlMessageFormat from 'intl-messageformat';
 export type Translations = ReadonlyMap<string, IntlMessageFormat>;
 
 export default function load(
-  translations: Map<string, any>,
+  translations: ReadonlyMap<string, unknown>,
   language: string,
 ): Translations {
   const result = new Map();
 
   (function loadMap(map, prefix) {
-    map.forEach((value, key) => {
+    map.forEach((value: any, key) => {
       if (typeof value === 'object') {
         return loadMap(value, `${prefix}${key}.`);
       }

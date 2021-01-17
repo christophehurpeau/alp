@@ -1,10 +1,10 @@
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
-import Ibex from 'ibex';
 import config, { existsConfig, getConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
 import translate from 'alp-translate/browser';
+import Ibex from 'ibex';
 import Logger from 'nightingale-logger';
 
 var logger = new Logger('alp');
@@ -34,6 +34,7 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
 
   _proto.init = /*#__PURE__*/function () {
     var _init = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+      var configInstance;
       return _regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -42,14 +43,16 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
               return config(this, configPath);
 
             case 2:
+              configInstance = _context.sent;
+              this.context.config = configInstance;
               language(this);
-              _context.next = 5;
+              _context.next = 7;
               return translate('/locales')(this);
 
-            case 5:
+            case 7:
               return _context.abrupt("return", this);
 
-            case 6:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -62,12 +65,29 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
     };
   }();
 
-  _proto.existsConfig = function existsConfig$1(name) {
-    return existsConfig("/config" + name);
-  };
+  _proto.existsConfig = /*#__PURE__*/function () {
+    var _existsConfig2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(name) {
+      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              return _context2.abrupt("return", existsConfig(`${configPath}${name}`));
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function existsConfig() {
+      return _existsConfig2.apply(this, arguments);
+    };
+  }();
 
   _proto.loadConfig = function loadConfig(name) {
-    return getConfig("/config" + name);
+    return getConfig(`${configPath}${name}`);
   };
 
   _proto.start = function start(fn) {
@@ -76,12 +96,12 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
         return logger.success('started');
       }).catch(function (err) {
         return logger.error('start fail', {
-          err: err
+          err
         });
       });
     } catch (err) {
       logger.error('start fail', {
-        err: err
+        err
       });
     }
   };
@@ -90,26 +110,26 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
 }(Ibex);
 var startApp = function startApp(callback) {
   var app = new AlpBrowser();
-  return app.start( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+  return app.start( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3() {
     var browserApp;
-    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+    return _regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
-            _context2.next = 2;
+            _context3.next = 2;
             return app.init();
 
           case 2:
-            browserApp = _context2.sent;
-            _context2.next = 5;
+            browserApp = _context3.sent;
+            _context3.next = 5;
             return callback(browserApp);
 
           case 5:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   })));
 };
 

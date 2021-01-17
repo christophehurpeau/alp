@@ -1,11 +1,13 @@
-import React, { ElementType } from 'react';
+import type { Context } from 'alp-types';
+import createIsModernBrowser from 'modern-browsers';
+import type { ElementType } from 'react';
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 // import Logger from 'nightingale-logger';
-import createIsModernBrowser from 'modern-browsers';
-import { Context } from 'alp-types';
-import htmlLayout, { LayoutOptions } from './layout/htmlLayout';
 import createAlpAppWrapper from './createAlpAppWrapper';
+import type { LayoutOptions } from './layout/htmlLayout';
+import htmlLayout from './layout/htmlLayout';
 
 export { Helmet };
 
@@ -37,13 +39,13 @@ interface Options {
 export type ReactAppCallback = (ctx: Context) => void;
 
 export default function alpReact(
-  App: ElementType<{}>,
+  App: ElementType<Record<string, never>>,
   options: Options = {},
 ): ReactAppCallback {
   return (ctx: Context): void => {
     const version: string = ctx.config.get('version');
     // TODO create alp-useragent with getter in context
-    const ua = ctx.req.headers['user-agent'];
+    const ua = ctx.request.headers['user-agent'];
     const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
 
     const app = React.createElement(App);

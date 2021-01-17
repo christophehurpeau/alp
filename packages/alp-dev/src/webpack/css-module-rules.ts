@@ -1,6 +1,6 @@
 /* eslint-disable max-lines, complexity */
 import path from 'path';
-import { RuleSetLoader, RuleSetRule } from 'webpack';
+import type { RuleSetLoader, RuleSetRule } from 'webpack';
 
 type Target = 'node' | 'modern-browser' | 'browser';
 

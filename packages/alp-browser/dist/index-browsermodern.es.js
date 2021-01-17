@@ -1,7 +1,7 @@
-import Ibex from 'ibex';
 import config, { existsConfig, getConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
 import translate from 'alp-translate/browser';
+import Ibex from 'ibex';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp');
@@ -16,13 +16,14 @@ class AlpBrowser extends Ibex {
   }
 
   async init() {
-    await config(this, `/${this.appVersion}${configPath}`);
+    const configInstance = await config(this, `/${this.appVersion}${configPath}`);
+    this.context.config = configInstance;
     language(this);
     await translate('/locales')(this);
     return this;
   }
 
-  existsConfig(name) {
+  async existsConfig(name) {
     return existsConfig(`${configPath}${name}`);
   }
 
@@ -32,13 +33,9 @@ class AlpBrowser extends Ibex {
 
   start(fn) {
     try {
-      fn().then(function () {
-        return logger.success('started');
-      }).catch(function (err) {
-        return logger.error('start fail', {
-          err
-        });
-      });
+      fn().then(() => logger.success('started')).catch(err => logger.error('start fail', {
+        err
+      }));
     } catch (err) {
       logger.error('start fail', {
         err
@@ -47,9 +44,9 @@ class AlpBrowser extends Ibex {
   }
 
 }
-const startApp = function startApp(callback) {
+const startApp = callback => {
   const app = new AlpBrowser();
-  return app.start(async function () {
+  return app.start(async () => {
     // init
     const browserApp = await app.init();
     await callback(browserApp);

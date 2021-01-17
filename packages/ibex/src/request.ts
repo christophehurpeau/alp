@@ -1,6 +1,8 @@
-import { parse as parseQueryString, ParsedUrlQuery } from 'querystring';
+import type { ParsedUrlQuery } from 'querystring';
+import { parse as parseQueryString } from 'querystring';
+import type Application from '.';
 
-export interface Request {
+export interface BaseRequest {
   readonly url: string;
   readonly origin: string;
   readonly href: string;
@@ -11,9 +13,14 @@ export interface Request {
   readonly host: string;
   readonly protocol: string;
   readonly hostname: string;
+  readonly headers: Record<string, string>;
 }
 
-const request: Request = {
+export interface Request extends BaseRequest {
+  readonly app: Application;
+}
+
+const request: BaseRequest = {
   get search() {
     return window.location.search;
   },
@@ -49,6 +56,9 @@ const request: Request = {
   },
   get hostname() {
     return window.location.hostname;
+  },
+  get headers(): never {
+    throw new Error('Headers not available in ibex request.');
   },
 };
 

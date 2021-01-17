@@ -1,6 +1,9 @@
-import React, { ReactElement } from 'react';
+import type { ReactElement } from 'react';
+import React from 'react';
 import HelloModule from '../hello/HelloModule';
 
-const App = (): ReactElement => <HelloModule />;
+function App(): ReactElement {
+  return <HelloModule />;
+}
 
 export default App;

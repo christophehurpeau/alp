@@ -5,7 +5,11 @@
     "project": "packages/alp-dev/tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
-  "extends": ["@pob/eslint-config-typescript", "@pob/eslint-config-babel-node"],
+  "extends": [
+    "@pob/eslint-config-typescript",
+    "@pob/eslint-config-typescript-node"
+  ],
+  "ignorePatterns": ["*.d.ts"],
   "rules": {
     "unicorn/no-process-exit": "off"
   }

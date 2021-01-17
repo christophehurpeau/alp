@@ -16,13 +16,13 @@ function ConnectionState({
   }
 
   const currentState = currentStateRef.current;
-  useEffect(function () {
-    const beforeUnloadHandler = function beforeUnloadHandler() {
+  useEffect(() => {
+    const beforeUnloadHandler = () => {
       unloadingRef.current = true;
     };
 
     window.addEventListener('beforeunload', beforeUnloadHandler);
-    return function () {
+    return () => {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, []);

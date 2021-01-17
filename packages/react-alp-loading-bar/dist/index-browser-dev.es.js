@@ -103,6 +103,7 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
   };
 
   _proto.getWebsocket = function getWebsocket() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
     return this.context.app.websocket;
   };
 

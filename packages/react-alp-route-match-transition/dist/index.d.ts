@@ -1,6 +1,6 @@
-import { match as Match } from 'react-router';
-import { ComponentType, ReactElement, ReactNode } from 'react';
-import { Except } from 'type-fest';
+import type { ComponentType, ReactElement, ReactNode } from 'react';
+import type { match as Match } from 'react-router';
+import type { Except } from 'type-fest';
 export interface BaseComponentProps<Params> {
     match: Match<Params> | null;
     exiting: boolean;

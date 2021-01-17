@@ -1,20 +1,38 @@
 import { promisify } from 'util';
+import type {
+  GetPublicKeyOrSecret,
+  Secret,
+  VerifyCallback,
+  VerifyOptions,
+} from 'jsonwebtoken';
 import { verify } from 'jsonwebtoken';
-import Logger from 'nightingale-logger';
-import { User } from '../../types.d';
-import MongoUsersManager from '../MongoUsersManager';
+import type Logger from 'nightingale-logger';
+import type { User } from '../../types.d';
+import type MongoUsersManager from '../MongoUsersManager';
 
-const verifyPromisified: any = promisify(verify);
+type Verify = (
+  token: string,
+  secretOrPublicKey: Secret | GetPublicKeyOrSecret,
+  options?: VerifyOptions,
+  callback?: VerifyCallback,
+) => void;
+
+const verifyPromisified = promisify<
+  Parameters<Verify>[0],
+  Parameters<Verify>[1],
+  Parameters<Verify>[2],
+  Parameters<VerifyCallback>[1]
+>(verify as Verify);
 
 const createDecodeJWT = (secretKey: string) => async (
   token: string,
   userAgent: string,
-) => {
+): Promise<string | undefined> => {
   const result = await verifyPromisified(token, secretKey, {
-    algorithm: 'HS512',
+    algorithms: ['HS512'],
     audience: userAgent,
   });
-  return result?.connected;
+  return (result as any)?.connected as string | undefined;
 };
 
 export type FindConnectedAndUser<U> = (
@@ -38,7 +56,7 @@ export const createFindConnectedAndUser = <U extends User>(
     let connected;
     try {
       connected = await decodeJwt(token, userAgent);
-    } catch (err) {
+    } catch (err: unknown) {
       logger.debug('failed to verify authentification', { err });
     }
 

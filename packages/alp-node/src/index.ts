@@ -1,10 +1,12 @@
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import { Config } from 'alp-node-config';
-import Logger from 'nightingale-logger';
 import findUp from 'findup-sync';
-import { AlpNodeApp, AlpNodeAppOptions } from './AlpNodeApp';
+import Logger from 'nightingale-logger';
+import type { AlpNodeAppOptions, Context } from './AlpNodeApp';
+import { AlpNodeApp } from './AlpNodeApp';
 
+export type { Context };
 export { Config };
 
 const logger = new Logger('alp');
@@ -14,14 +16,15 @@ export const appDirname = path.resolve('build');
 
 const packagePath = findUp('package.json', { cwd: appDirname });
 if (!packagePath) {
-  throw new Error(`Could not find package.json: "${packagePath}"`);
+  throw new Error(`Could not find package.json: "${String(packagePath)}"`);
 }
 export const packageDirname = path.dirname(packagePath);
 
 logger.debug('init', { appDirname, packageDirname });
 
-// eslint-disable-next-line import/no-dynamic-require, global-require
-export const packageConfig = JSON.parse(readFileSync(packagePath, 'utf-8'));
+export const packageConfig: Record<string, unknown> = JSON.parse(
+  readFileSync(packagePath, 'utf-8'),
+) as Record<string, unknown>;
 
 const buildedConfigPath = `${appDirname}/build/config/`;
 const configPath = existsSync(buildedConfigPath)
@@ -36,7 +39,7 @@ export type AppOptions = Omit<
 >;
 
 export default class App extends AlpNodeApp {
-  constructor(options: AppOptions) {
+  constructor(options?: AppOptions) {
     super({
       ...options,
       appDirname,

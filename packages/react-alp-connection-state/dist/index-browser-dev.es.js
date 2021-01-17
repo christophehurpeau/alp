@@ -29,7 +29,7 @@ function ConnectionState(_ref) {
     hidden: !state || notLoggedIn || currentState === 'connected',
     className: "alp-connection-state"
   }, !state || notLoggedIn ? null : /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(T, {
-    id: "connectionState." + currentState
+    id: `connectionState.${currentState}`
   })));
 }
 

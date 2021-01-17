@@ -1,4 +1,5 @@
-import React, { ChangeEvent, Component, KeyboardEvent } from 'react';
+import type { ChangeEvent, KeyboardEvent } from 'react';
+import React, { Component } from 'react';
 import s from './InputNameComponent.scss';
 
 interface Props {

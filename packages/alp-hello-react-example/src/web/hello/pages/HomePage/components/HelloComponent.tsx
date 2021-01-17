@@ -1,7 +1,7 @@
 import React from 'react';
 import { T } from 'react-alp-translate';
-import InputName from './InputNameComponent';
 import s from './HelloComponent.scss';
+import InputName from './InputNameComponent';
 
 interface Props {
   name: undefined | string;

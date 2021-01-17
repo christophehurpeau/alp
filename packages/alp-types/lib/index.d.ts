@@ -1,7 +1,7 @@
-type RawConfig = Map<string, any>;
+type RawConfig = ReadonlyMap<string, any>;
 
 export interface Config {
-  get(key: string): any,
+  get<T>(key: string): T;
 }
 
 export interface PackageConfig {
@@ -9,12 +9,30 @@ export interface PackageConfig {
 }
 
 export interface NodeConfig extends Config {
-  readonly packageConfig: PackageConfig
+  loadConfigSync(name: string): RawConfig;
+  readonly packageConfig: PackageConfig;
 }
 
-export interface Context<State = {}, SanitizedState = {}> {
-  state: State | any;
-  sanitizedState: SanitizedState | any;
+interface ContextRequest {
+  headers: Record<string, string>;
+  host: string;
+}
+
+export interface ContextState {}
+export interface ContextSanitizedState {}
+
+export interface BaseContext {
+  config: Config;
+}
+
+export interface Context extends BaseContext {
+  state: ContextState;
+  sanitizedState: ContextSanitizedState;
+  status: number;
+  request: ContextRequest;
+  response: any;
+  redirect: (url: string) => Promise<void>;
+  path: string;
   [key: string]: any;
 }
 
@@ -22,15 +40,15 @@ export type Middleware = (context: Context, next: () => Promise<any>) => any;
 
 export interface ApplicationInCreation {
   config?: Config;
-  context: Context,
+  context: BaseContext;
 }
 
 export interface Application extends ApplicationInCreation {
   config: Config;
-
 }
 
 export interface NodeApplicationInCreation extends ApplicationInCreation {
+  loadConfigSync(name: string): RawConfig;
 }
 
 export interface BrowserApplicationInCreation extends ApplicationInCreation {
@@ -40,13 +58,14 @@ export interface BrowserApplicationInCreation extends ApplicationInCreation {
   createContext(): Context;
 }
 
-
-export interface NodeApplication extends Application {
+export interface NodeApplication
+  extends Application,
+    NodeApplicationInCreation {
   config: NodeConfig;
   dirname: string;
   on(event: 'close', callback: () => void): void;
   existsConfigSync(name: string): boolean;
-  loadConfigSync(name: string): ReadonlyMap<string, any>;
+  loadConfigSync(name: string): RawConfig;
 }
 
 export interface BrowserApplication extends BrowserApplicationInCreation {
@@ -58,5 +77,9 @@ export interface HtmlError extends Error {
   expose?: true;
 }
 
-export type GoogleParams = 'access_type' | 'include_granted_scopes' | 'login_hint' | 'prompt';
+export type GoogleParams =
+  | 'access_type'
+  | 'include_granted_scopes'
+  | 'login_hint'
+  | 'prompt';
 export type SlackParams = 'client_id' | 'team';

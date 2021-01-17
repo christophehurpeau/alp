@@ -1,6 +1,5 @@
 import { PRODUCTION } from 'pob-babel';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import {
+import type {
   Middleware as ComposeMiddleware,
   ComposedMiddleware,
 } from 'koa-compose';

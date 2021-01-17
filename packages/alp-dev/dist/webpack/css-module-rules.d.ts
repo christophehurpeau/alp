@@ -1,4 +1,4 @@
-import { RuleSetLoader, RuleSetRule } from 'webpack';
+import type { RuleSetLoader, RuleSetRule } from 'webpack';
 declare type Target = 'node' | 'modern-browser' | 'browser';
 export interface CreateCssModuleUseOptions {
     target: Target;

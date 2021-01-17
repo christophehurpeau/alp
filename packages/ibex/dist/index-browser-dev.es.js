@@ -1,4 +1,3 @@
-import _createClass from '@babel/runtime/helpers/esm/createClass';
 import _assertThisInitialized from '@babel/runtime/helpers/esm/assertThisInitialized';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import { EventEmitter } from 'events';
@@ -38,35 +37,44 @@ var proto = {};
 
 var defineGetter = function defineGetter(target, name) {
   Object.defineProperty(proto, name, {
-    get: function get() {
+    get() {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
       return this[target][name];
     }
+
   });
 };
 
 var defineAccess = function defineAccess(target, name) {
   Object.defineProperty(proto, name, {
-    get: function get() {
+    get() {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
       return this[target][name];
     },
-    set: function set(value) {
-      this[target][name] = value;
+
+    set(value) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,  @typescript-eslint/no-unsafe-member-access
+      this[target][name] = value; // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
       return value;
     }
+
   });
 };
 
 var defineMethod = function defineMethod(target, name) {
   Object.defineProperty(proto, name, {
-    value: function value() {
+    value() {
       var _this$target$name, _len, args, _key;
 
       for (_len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
       return (_this$target$name = this[target][name]).call.apply(_this$target$name, [this[target]].concat(args));
     }
+
   });
 };
 
@@ -122,16 +130,25 @@ var request = {
 
   get hostname() {
     return window.location.hostname;
+  },
+
+  get headers() {
+    throw new Error('Headers not available in ibex request.');
   }
 
 };
 
 var response = {
-  redirect: function redirect(url) {
+  redirect(url) {
     if (this.app.emit('redirect', url) === false) {
       window.location.href = url;
+      return new Promise(function () {// promise that never resolves.
+      });
     }
+
+    return Promise.resolve();
   }
+
 };
 
 var logger = new Logger('ibex');
@@ -192,6 +209,7 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
     this.callback = compose(this.middleware);
 
     if (url) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.load(url);
     }
   };
@@ -199,9 +217,13 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
   _proto.createContext = function createContext() {
     var context = Object.create(this.context);
     context.request = Object.create(request);
-    context.response = Object.create(response); // eslint-disable-next-line no-multi-assign
-
-    context.request.app = context.response.app = this;
+    context.response = Object.create(response);
+    Object.assign(context.request, {
+      app: this
+    });
+    Object.assign(context.response, {
+      app: this
+    });
     context.state = {};
     context.sanitizedState = {};
     return context;
@@ -211,7 +233,7 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
     var _this2 = this;
 
     logger.debug('load', {
-      url: url
+      url
     });
 
     if (url.startsWith('?')) {
@@ -226,16 +248,9 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
     return this.callback(context).then(function () {
       return respond(context);
     }).catch(function (err) {
-      return _this2.emit('error', err);
+      _this2.emit('error', err);
     });
   };
-
-  _createClass(Application, [{
-    key: "environment",
-    get: function get() {
-      throw new Error('use process.env or POB_ENV instead');
-    }
-  }]);
 
   return Application;
 }(EventEmitter);

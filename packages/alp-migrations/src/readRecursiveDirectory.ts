@@ -1,4 +1,5 @@
-import { readdir, stat as fsStat, Stats } from 'fs';
+import type { Stats } from 'fs';
+import { readdir, stat as fsStat } from 'fs/promises';
 
 export interface CallbackParam {
   filename: string;
@@ -7,45 +8,29 @@ export interface CallbackParam {
   stat: Stats;
 }
 
-export default function readRecursiveDirectory(
+export default async function readRecursiveDirectory(
   directory: string,
   callback: (param: CallbackParam) => void | Promise<void>,
 ): Promise<void> {
-  return new Promise((resolve, reject): void => {
-    readdir(directory, (errReadDir, files) => {
-      if (errReadDir) return reject(errReadDir);
+  const files = await readdir(directory);
 
-      Promise.all(
-        files.map((file) => {
-          const path = `${directory}/${file}`;
-          return new Promise((resolve, reject): void => {
-            fsStat(path, (errFsStat, stat): void => {
-              if (errFsStat) return reject(errFsStat);
+  await Promise.all(
+    files.map(
+      async (file): Promise<void> => {
+        const path = `${directory}/${file}`;
+        const stat = await fsStat(path);
 
-              if (stat?.isDirectory()) {
-                readRecursiveDirectory(path, callback)
-                  .then(resolve)
-                  .catch(reject);
-                return;
-              }
-              try {
-                Promise.resolve(
-                  callback({
-                    filename: file,
-                    basedir: directory,
-                    path,
-                    stat,
-                  }),
-                )
-                  .then(() => resolve())
-                  .catch(reject);
-              } catch (err) {
-                return reject(err);
-              }
-            });
-          });
-        }),
-      ).then(() => resolve());
-    });
-  });
+        if (stat?.isDirectory()) {
+          await readRecursiveDirectory(path, callback);
+          return;
+        }
+        await callback({
+          filename: file,
+          basedir: directory,
+          path,
+          stat,
+        });
+      },
+    ),
+  );
 }

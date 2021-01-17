@@ -23,4 +23,5 @@
   "references": [
     { "path": "../react-alp-context/tsconfig.build.json" },
     { "path": "../react-alp-translate/tsconfig.build.json" }
-]}
+  ]
+}

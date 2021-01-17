@@ -1,3 +1,4 @@
+import 'alp-router';
 import { defineLazyProperty } from 'object-properties';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 
@@ -51,7 +52,7 @@ var ParamValidator = /*#__PURE__*/function () {
 
     this._errors[name] = {
       error: key,
-      value: value
+      value
     };
   };
 
@@ -104,24 +105,29 @@ var ParamValidatorValid = /*#__PURE__*/function (_ParamValidator) {
 
 function alpParams(app) {
   Object.assign(app.context, {
-    param: function param(name) {
+    param(name) {
       return this.namedParam(name) || this.paramGET(name);
     },
-    namedParam: function namedParam(name) {
+
+    namedParam(name) {
       var namedParams = this.route.namedParams;
-      return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
+      return namedParams == null ? void 0 : namedParams.get(name);
     },
-    otherParam: function otherParam(position) {
+
+    otherParam(position) {
       var otherParams = this.route.otherParams;
       return otherParams && otherParams[position - 1];
     },
-    paramGET: function paramGET(name) {
+
+    paramGET(name) {
       var query = this.query;
-      return query === null || query === void 0 ? void 0 : query[name];
+      return query == null ? void 0 : query[name];
     },
-    paramGETorPOST: function paramGETorPOST(name) {
+
+    paramGETorPOST(name) {
       return this.body[name] !== undefined ? this.body[name] : this.query[name];
     }
+
   });
   defineLazyProperty(app.context, 'params', function () {
     return new ParamValidator(this);

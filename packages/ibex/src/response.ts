@@ -1,18 +1,23 @@
-import Application from '.';
+import type Application from '.';
 
 export interface BaseResponse {
-  redirect(url: string): void;
+  redirect: (url: string) => Promise<void>;
 }
 
 export interface Response extends BaseResponse {
-  app: Application;
+  readonly app: Application;
 }
 
 const response: BaseResponse = {
-  redirect(this: Response, url: string) {
+  redirect(this: Response, url: string): Promise<void> {
     if (this.app.emit('redirect', url) === false) {
       window.location.href = url;
+      return new Promise(() => {
+        // promise that never resolves.
+      });
     }
+
+    return Promise.resolve();
   },
 };
 

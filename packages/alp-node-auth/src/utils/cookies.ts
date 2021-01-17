@@ -1,5 +1,6 @@
-import { IncomingMessage } from 'http';
-import Cookies, { Option } from 'cookies';
+import type { IncomingMessage } from 'http';
+import type { Option } from 'cookies';
+import Cookies from 'cookies';
 
 export const COOKIE_NAME = 'connectedUser';
 

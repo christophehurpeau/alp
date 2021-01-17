@@ -1,5 +1,6 @@
+import type { NodeApplicationInCreation, Context } from 'alp-types';
 import Logger from 'nightingale-logger';
-import { NodeApplicationInCreation, Context } from 'alp-types';
+import type { Translations } from './load';
 import load from './load';
 
 const logger = new Logger('alp:translate');
@@ -9,36 +10,39 @@ interface Args {
 }
 
 declare module 'alp-types' {
-  interface Context {
+  interface BaseContext {
     t: (id: string, args: Args) => string;
+  }
+  interface Context {
+    readonly language: string;
   }
 }
 
-export default function alpTranslate(dirname: string) {
+export default function alpTranslate(
+  dirname: string,
+): (app: NodeApplicationInCreation) => void {
   dirname = dirname.replace(/\/*$/, '/');
   return (app: NodeApplicationInCreation) => {
-    const appTranslations = new Map();
+    const appTranslations = new Map<string, Translations>();
 
     Object.assign(app.context, {
       t(this: Context, id: string, args: Args): string {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        const msg = appTranslations.get(this.language).get(id);
+        const msg = (appTranslations.get(this.language) as Translations).get(
+          id,
+        );
         if (!msg) {
           logger.warn('invalid msg', { language: this.language, id });
           return id;
         }
 
-        return msg.format(args);
+        return msg.format(args) as string;
       },
     });
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    app.config.get('availableLanguages').forEach((language: string) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      const translations = app.config.loadConfigSync(dirname + language);
+    const config = app.config as NonNullable<typeof app.config>;
+
+    config.get<string[]>('availableLanguages').forEach((language) => {
+      const translations = app.loadConfigSync(dirname + language);
       appTranslations.set(language, load(translations, language));
     });
 

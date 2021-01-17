@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import React, { PureComponent } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
@@ -16,7 +17,7 @@ const LoadingBarComponent = ({ progress }) => (
 */
 
 /* number between 0 and 1 */
-const random = () => Math.ceil(Math.random() * 100) / 100;
+const random = (): number => Math.ceil(Math.random() * 100) / 100;
 
 /**
  * around:
@@ -25,7 +26,7 @@ const random = () => Math.ceil(Math.random() * 100) / 100;
  * at 2s 60%
  * at 3s 80%
  */
-const calculatePercent = (percent: number) => {
+const calculatePercent = (percent: number): number => {
   if (percent < 60) return percent + random() * 10 + 5;
   if (percent < 70) return percent + random() * 10 + 3;
   else if (percent < 80) return percent + random() + 5;
@@ -44,11 +45,15 @@ interface LoadingBarState {
   progress: number;
 }
 
+interface WebsocketInterface {
+  isConnected: () => boolean;
+  on: (event: 'connect' | 'disconnect', callback: () => unknown) => void;
+}
+
 export default class LoadingBar extends PureComponent<
   LoadingBarProps,
   LoadingBarState
 > {
-  // eslint-disable-next-line react/sort-comp
   static contextType = ReactAlpContext;
 
   context!: React.ContextType<typeof ReactAlpContext>;
@@ -97,18 +102,19 @@ export default class LoadingBar extends PureComponent<
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     clearTimeout(this.fadeOffTimeout);
     clearTimeout(this.resetTimeout);
     clearTimeout(this.first20Timeout);
     clearInterval(this.progressTimer);
   }
 
-  getWebsocket() {
+  getWebsocket(): WebsocketInterface {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
     return this.context.app.websocket;
   }
 
-  private showBar() {
+  private showBar(): void {
     clearTimeout(this.fadeOffTimeout);
     clearTimeout(this.resetTimeout);
 
@@ -124,7 +130,7 @@ export default class LoadingBar extends PureComponent<
     }, 500);
   }
 
-  private hideBar() {
+  private hideBar(): void {
     clearTimeout(this.first20Timeout);
     clearInterval(this.progressTimer);
 
@@ -142,7 +148,7 @@ export default class LoadingBar extends PureComponent<
     }, 1000);
   }
 
-  render() {
+  render(): ReactElement {
     const LoadingBarComponent = this.props.LoadingBarComponent;
 
     return (

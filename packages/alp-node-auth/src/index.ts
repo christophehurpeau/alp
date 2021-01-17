@@ -1,24 +1,25 @@
-import { IncomingMessage } from 'http';
+import type { IncomingMessage } from 'http';
 import { promisify } from 'util';
+import type { Context } from 'alp-node';
+import type { ContextConnected, ContextUser, NodeApplication } from 'alp-types';
 import { sign } from 'jsonwebtoken';
 import Logger from 'nightingale-logger';
-import { NodeApplication } from 'alp-types';
-import { User } from '../types.d';
-import { createFindConnectedAndUser } from './utils/createFindConnectedAndUser';
-import { getTokenFromRequest, COOKIE_NAME } from './utils/cookies';
-import AuthenticationService, {
-  Strategies,
-} from './services/authentification/AuthenticationService';
-import UserAccountsService from './services/user/UserAccountsService';
-import {
-  createAuthController,
+import type { User, UserSanitized } from '../types.d';
+import type MongoUsersManager from './MongoUsersManager';
+import type {
   AuthController as AuthControllerType,
   AuthHooks,
 } from './createAuthController';
-import { createRoutes, AuthRoutes as AuthRoutesType } from './createRoutes';
-import MongoUsersManager from './MongoUsersManager';
-import { AllowedStrategyKeys } from './services/authentification/types';
-import { AccountService } from './services/user/types';
+import { createAuthController } from './createAuthController';
+import type { AuthRoutes as AuthRoutesType } from './createRoutes';
+import { createRoutes } from './createRoutes';
+import type { Strategies } from './services/authentification/AuthenticationService';
+import { AuthenticationService } from './services/authentification/AuthenticationService';
+import type { AllowedStrategyKeys } from './services/authentification/types';
+import UserAccountsService from './services/user/UserAccountsService';
+import type { AccountService } from './services/user/types';
+import { getTokenFromRequest, COOKIE_NAME } from './utils/cookies';
+import { createFindConnectedAndUser } from './utils/createFindConnectedAndUser';
 
 export { AuthenticationService };
 export { default as MongoUsersManager } from './MongoUsersManager';
@@ -28,6 +29,27 @@ export { authSocketIO } from './authSocketIO';
 export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
 
+declare module 'alp-types' {
+  type ContextUser = User;
+  type ContextConnected = ContextUser['_id'];
+  type ContextUserSanitized = UserSanitized;
+
+  interface ContextState {
+    connected: ContextConnected | null | undefined;
+    user: ContextUser | null | undefined;
+  }
+
+  interface ContextSanitizedState {
+    connected: ContextConnected | null | undefined;
+    user: ContextUserSanitized | null | undefined;
+  }
+
+  interface BaseContext {
+    setConnected: (connected: ContextConnected, user: ContextUser) => void;
+    logout: () => void;
+  }
+}
+
 const logger = new Logger('alp:auth');
 
 const signPromisified: any = promisify(sign);
@@ -36,7 +58,6 @@ export type AuthController = AuthControllerType;
 export type AuthRoutes = AuthRoutesType;
 
 export default function init<
-  U extends User = User,
   StrategyKeys extends AllowedStrategyKeys = 'google'
 >({
   homeRouterKey,
@@ -47,7 +68,7 @@ export default function init<
   authHooks,
 }: {
   homeRouterKey?: string;
-  usersManager: MongoUsersManager<U>;
+  usersManager: MongoUsersManager<ContextUser>;
   strategies: Strategies<StrategyKeys>;
   defaultStrategy?: StrategyKeys;
   strategyToService: Record<StrategyKeys, AccountService<any>>;
@@ -74,8 +95,9 @@ export default function init<
     });
 
     app.context.setConnected = async function (
-      connected: number | string,
-      user: U,
+      this: Context,
+      connected: ContextConnected,
+      user: ContextUser,
     ): Promise<void> {
       logger.debug('setConnected', { connected });
       if (!connected) {
@@ -87,7 +109,9 @@ export default function init<
 
       const token = await signPromisified(
         { connected, time: Date.now() },
-        this.config.get('authentication').get('secretKey'),
+        this.config
+          .get<Map<string, unknown>>('authentication')
+          .get('secretKey'),
         {
           algorithm: 'HS512',
           audience: this.request.headers['user-agent'],
@@ -101,14 +125,16 @@ export default function init<
       });
     };
 
-    app.context.logout = function (): void {
+    app.context.logout = function (this: Context): void {
       delete this.state.connected;
       delete this.state.user;
       this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
     };
 
     const getConnectedAndUser = createFindConnectedAndUser(
-      app.config.get('authentication').get('secretKey'),
+      app.config
+        .get<Map<string, unknown>>('authentication')
+        .get('secretKey') as string,
       usersManager,
       logger,
     );
@@ -124,21 +150,22 @@ export default function init<
       },
       getConnectedAndUser,
 
-      middleware: async (ctx: any, next: any) => {
+      middleware: async <T>(
+        ctx: Context,
+        next: () => T | Promise<T>,
+      ): Promise<T> => {
         const token = ctx.cookies.get(COOKIE_NAME);
         const userAgent = ctx.request.headers['user-agent'];
         logger.debug('middleware', { token });
 
-        const setState = (connected: any, user: null | undefined | U): void => {
+        const setState = (
+          connected: any,
+          user: null | undefined | ContextUser,
+        ): void => {
           ctx.state.connected = connected;
           ctx.state.user = user;
           ctx.sanitizedState.connected = connected;
           ctx.sanitizedState.user = user && usersManager.sanitize(user);
-        };
-
-        const notConnected = () => {
-          setState(null, null);
-          return next();
         };
 
         const [connected, user] = await getConnectedAndUser(userAgent, token);
@@ -146,7 +173,8 @@ export default function init<
 
         if (connected == null || user == null) {
           if (token) ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
-          return notConnected();
+          setState(null, null);
+          return next();
         }
 
         setState(connected, user);

@@ -7,16 +7,17 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com:christophehurpeau/alp.git",
+    "url": "https://github.com/christophehurpeau/alp.git",
     "directory": "packages/alp-hello-react-example"
   },
   "homepage": "https://github.com/christophehurpeau/alp",
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=12.10.0"
   },
   "scripts": {
     "build": "alp-dev-build",
-    "lint": "yarn --cwd ../.. lint packages/alp-hello-react-example",
+    "lint": "yarn run lint:eslint",
+    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.ts,.tsx --report-unused-disable-directives --quiet packages/alp-hello-react-example",
     "start": "alp-dev"
   },
   "prettier": {

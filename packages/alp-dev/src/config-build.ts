@@ -1,9 +1,10 @@
+import type { FSWatcher } from 'fs';
+import { watch as fsWatch } from 'fs';
 import { dirname, join } from 'path';
-import { FSWatcher, watch as fsWatch } from 'fs';
 import glob from 'glob';
+import loadConfigFile from './utils/loadConfigFile';
 import readFile from './utils/readFile';
 import writeFile from './utils/writeFile';
-import loadConfigFile from './utils/loadConfigFile';
 
 export const clean = () => {};
 

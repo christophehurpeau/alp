@@ -15,7 +15,7 @@ function alpRouter(router) {
 
       if (!routeMatch) {
         ctx.status = 404;
-        throw new Error("Route not found: " + ctx.path);
+        throw new Error(`Route not found: ${ctx.path}`);
       }
 
       ctx.route = routeMatch;

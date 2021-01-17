@@ -1,5 +1,5 @@
-import { MongoInsertType, MongoStore, Update } from 'liwi-mongo';
-import { User, Account, UserSanitized } from '../types.d';
+import type { MongoInsertType, MongoStore, Update } from 'liwi-mongo';
+import type { User, Account, UserSanitized } from '../types.d';
 
 export default class MongoUsersManager<
   U extends User = User,
@@ -41,7 +41,7 @@ export default class MongoUsersManager<
       'accounts.accountId': accountId,
     };
 
-    if (emails && emails.length !== 0) {
+    if (emails && emails.length > 0) {
       query = {
         $or: [
           query,
@@ -55,7 +55,7 @@ export default class MongoUsersManager<
     return this.store.findOne(query);
   }
 
-  updateAccount(user: U, account: Account) {
+  updateAccount(user: U, account: Account): Promise<U> {
     const accountIndex = user.accounts.indexOf(account);
     if (accountIndex === -1) {
       throw new Error('Invalid account');

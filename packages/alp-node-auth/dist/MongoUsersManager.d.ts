@@ -1,5 +1,5 @@
-import { MongoInsertType, MongoStore } from 'liwi-mongo';
-import { User, Account, UserSanitized } from '../types.d';
+import type { MongoInsertType, MongoStore } from 'liwi-mongo';
+import type { User, Account, UserSanitized } from '../types.d';
 export default class MongoUsersManager<U extends User = User, USanitized extends UserSanitized = UserSanitized> {
     store: MongoStore<U>;
     constructor(store: MongoStore<U>);

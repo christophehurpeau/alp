@@ -1,7 +1,7 @@
 import { PRODUCTION } from 'pob-babel';
+import type { Context, Middleware, HtmlError } from 'alp-types';
 import ErrorHtmlRenderer from 'error-html';
 import Logger from 'nightingale-logger';
-import { Context, Middleware, HtmlError } from 'alp-types';
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer();
@@ -18,15 +18,17 @@ const errorMiddleware: Middleware = async function (ctx: Context, next) {
   try {
     await next();
   } catch (err) {
-    const errInstance: any = createErrorInstanceIfNeeded(err);
+    const errInstance: Error | HtmlError = createErrorInstanceIfNeeded(err);
 
-    ctx.status = errInstance.status ? errInstance.status : 500;
+    ctx.status = (errInstance as HtmlError).status
+      ? (errInstance as HtmlError).status
+      : 500;
 
     logger.error(errInstance);
 
     if (!PRODUCTION) {
       ctx.body = errorHtmlRenderer.render(errInstance);
-    } else if (errInstance.expose) {
+    } else if ((errInstance as HtmlError).expose) {
       ctx.body = errInstance.message;
     } else {
       throw errInstance;

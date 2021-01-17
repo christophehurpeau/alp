@@ -1,7 +1,7 @@
 import contentLoaded from 'content-loaded';
+import Logger from 'nightingale-logger';
 import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
-import Logger from 'nightingale-logger';
 import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
@@ -12,17 +12,20 @@ function createAlpAppWrapper(app, context) {
     constructor(...args) {
       super(...args);
       this.state = {
-        error: null,
-        appState: context.sanitizedState
+        error: null
       };
     }
 
     componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
 
-      if (window.Raven) {
-        window.Raven.captureException(error, {
-          extra: errorInfo
+      if (window.Sentry) {
+        window.Sentry.captureException(error, {
+          contexts: {
+            react: {
+              componentStack: errorInfo.componentStack
+            }
+          }
         });
       }
     }
@@ -70,7 +73,6 @@ function AppContainer({
 const logger = new Logger('alp:react');
 function alpReactBrowser(app) {
   return async function renderApp(App) {
-    // eslint-disable-next-line no-underscore-dangle
     const initialData = window.__INITIAL_DATA__ || {};
     const ctx = app.createContext();
 

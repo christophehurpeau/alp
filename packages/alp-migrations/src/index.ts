@@ -1,11 +1,10 @@
 /* eslint-disable unicorn/no-process-exit */
-import semver from 'semver';
+import type { NodeApplication, NodeConfig } from 'alp-types';
 import Logger from 'nightingale-logger';
-import { NodeApplication, NodeConfig } from 'alp-types';
-import readRecursiveDirectory, {
-  CallbackParam,
-} from './readRecursiveDirectory';
-import MigrationsManager from './Manager';
+import semver from 'semver';
+import type MigrationsManager from './Manager';
+import type { CallbackParam } from './readRecursiveDirectory';
+import readRecursiveDirectory from './readRecursiveDirectory';
 
 const logger = new Logger('alp:migrations');
 

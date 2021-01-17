@@ -2,10 +2,13 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
+require('alp-router');
 var objectProperties = require('object-properties');
-var _inheritsLoose = _interopDefault(require('@babel/runtime/helpers/esm/inheritsLoose'));
+var _inheritsLoose = require('@babel/runtime/helpers/esm/inheritsLoose');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
+
+var _inheritsLoose__default = /*#__PURE__*/_interopDefaultLegacy(_inheritsLoose);
 
 var ParamValueValidator = /*#__PURE__*/function () {
   function ParamValueValidator(validator, name, value) {
@@ -24,7 +27,7 @@ var ParamValueValidator = /*#__PURE__*/function () {
 }();
 
 var ParamValueStringValidator = /*#__PURE__*/function (_ParamValueValidator) {
-  _inheritsLoose(ParamValueStringValidator, _ParamValueValidator);
+  _inheritsLoose__default(ParamValueStringValidator, _ParamValueValidator);
 
   function ParamValueStringValidator() {
     return _ParamValueValidator.apply(this, arguments) || this;
@@ -57,7 +60,7 @@ var ParamValidator = /*#__PURE__*/function () {
 
     this._errors[name] = {
       error: key,
-      value: value
+      value
     };
   };
 
@@ -91,7 +94,7 @@ var ParamValidator = /*#__PURE__*/function () {
 }();
 
 var ParamValidatorValid = /*#__PURE__*/function (_ParamValidator) {
-  _inheritsLoose(ParamValidatorValid, _ParamValidator);
+  _inheritsLoose__default(ParamValidatorValid, _ParamValidator);
 
   function ParamValidatorValid() {
     return _ParamValidator.apply(this, arguments) || this;
@@ -110,24 +113,29 @@ var ParamValidatorValid = /*#__PURE__*/function (_ParamValidator) {
 
 function alpParams(app) {
   Object.assign(app.context, {
-    param: function param(name) {
+    param(name) {
       return this.namedParam(name) || this.paramGET(name);
     },
-    namedParam: function namedParam(name) {
+
+    namedParam(name) {
       var namedParams = this.route.namedParams;
-      return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
+      return namedParams == null ? void 0 : namedParams.get(name);
     },
-    otherParam: function otherParam(position) {
+
+    otherParam(position) {
       var otherParams = this.route.otherParams;
       return otherParams && otherParams[position - 1];
     },
-    paramGET: function paramGET(name) {
+
+    paramGET(name) {
       var query = this.query;
-      return query === null || query === void 0 ? void 0 : query[name];
+      return query == null ? void 0 : query[name];
     },
-    paramGETorPOST: function paramGETorPOST(name) {
+
+    paramGETorPOST(name) {
       return this.body[name] !== undefined ? this.body[name] : this.query[name];
     }
+
   });
   objectProperties.defineLazyProperty(app.context, 'params', function () {
     return new ParamValidator(this);

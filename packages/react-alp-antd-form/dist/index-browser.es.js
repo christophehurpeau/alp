@@ -1,7 +1,7 @@
 import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 import { Form } from 'antd';
-import { Field } from 'react-final-form';
 import React from 'react';
+import { Field } from 'react-final-form';
 
 function FormField(_ref) {
   var Component = _ref.component,

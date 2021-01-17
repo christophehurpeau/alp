@@ -19,7 +19,7 @@ function useT(id: string, params?: Params, deps?: readonly any[]): string {
     () => {
       return ctx.t(id, params);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/no-unsafe-assignment
     !deps ? [id] : [id, ...deps],
   );
 }

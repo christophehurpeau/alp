@@ -6,7 +6,7 @@ function useT(id, params, deps) {
   var ctx = useContext(ReactAlpContext);
   return useMemo(function () {
     return ctx.t(id, params);
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/no-unsafe-assignment
   !deps ? [id] : [id].concat(deps));
 }
 

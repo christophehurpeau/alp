@@ -1,5 +1,6 @@
 import { POB_TARGET } from 'pob-babel';
-import React, { ReactElement, ReactNode, Suspense, useContext } from 'react';
+import type { ReactElement, ReactNode } from 'react';
+import React, { Suspense, useContext } from 'react';
 import LoadingFallbackContext from '../contexts/LoadingFallbackContext';
 
 export interface AlpModuleProps {

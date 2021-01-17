@@ -1,9 +1,9 @@
 import { EventEmitter } from 'events';
 import Logger from 'nightingale-logger';
-import { AccountId, User, Account } from '../../../types.d';
-import MongoUsersManager from '../../MongoUsersManager';
-import { AllowedStrategyKeys } from '../authentification/types';
-import { AccountService, TokensObject } from './types';
+import type { AccountId, User, Account } from '../../../types.d';
+import type MongoUsersManager from '../../MongoUsersManager';
+import type { AllowedStrategyKeys } from '../authentification/types';
+import type { AccountService, TokensObject } from './types';
 
 const logger = new Logger('alp:auth:userAccounts');
 
@@ -33,7 +33,7 @@ export default class UserAccountsService<
     scopeKey: string,
     user?: User,
     accountId?: AccountId,
-  ) {
+  ): string {
     logger.debug('getScope', { strategy, userId: user?._id });
     const service = this.strategyToService[strategy];
     if (!service) {
@@ -61,7 +61,7 @@ export default class UserAccountsService<
     tokens: TokensObject,
     scope: string,
     subservice: string,
-  ) {
+  ): Promise<{ user: User; account: User['accounts'][number] }> {
     const service = this.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
@@ -136,8 +136,7 @@ export default class UserAccountsService<
 
     if (!account) {
       account = { provider: strategy, accountId };
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
+      // @ts-expect-error well...
       user.accounts.push(account);
     }
 

@@ -1,6 +1,6 @@
-import { ElementType } from 'react';
+import type { Context } from 'alp-types';
+import type { ElementType } from 'react';
 import Helmet from 'react-helmet';
-import { Context } from 'alp-types';
 export { Helmet };
 export { default as AlpModule } from './module/AlpModule';
 export { default as SuspenseWrapper } from './module/SuspenseWrapper';
@@ -13,5 +13,5 @@ interface Options {
     styleName?: string | false;
 }
 export declare type ReactAppCallback = (ctx: Context) => void;
-export default function alpReact(App: ElementType<{}>, options?: Options): ReactAppCallback;
+export default function alpReact(App: ElementType<Record<string, never>>, options?: Options): ReactAppCallback;
 //# sourceMappingURL=index.d.ts.map

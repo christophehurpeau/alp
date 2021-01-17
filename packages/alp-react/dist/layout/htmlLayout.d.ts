@@ -1,4 +1,4 @@
-import { HelmetData } from 'react-helmet';
+import type { HelmetData } from 'react-helmet';
 export interface LayoutOptions {
     version: string;
     scriptName: string | false;

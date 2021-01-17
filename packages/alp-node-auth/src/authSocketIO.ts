@@ -1,10 +1,10 @@
-import { Option } from 'cookies';
+import type { NodeApplication } from 'alp-types';
+import type { Option } from 'cookies';
 import Logger from 'nightingale-logger';
-import { NodeApplication } from 'alp-types';
-import { User } from '../types.d';
+import type { User } from '../types.d';
+import type MongoUsersManager from './MongoUsersManager';
 import { getTokenFromRequest } from './utils/cookies';
 import { createFindConnectedAndUser } from './utils/createFindConnectedAndUser';
-import MongoUsersManager from './MongoUsersManager';
 
 const logger = new Logger('alp:auth');
 
@@ -15,7 +15,9 @@ export const authSocketIO = <U extends User = User>(
   options?: Pick<Option, Exclude<keyof Option, 'secure'>>,
 ): void => {
   const findConnectedAndUser = createFindConnectedAndUser(
-    app.config.get('authentication').get('secretKey'),
+    app.config
+      .get<Map<string, string>>('authentication')
+      .get('secretKey') as string,
     usersManager,
     logger,
   );

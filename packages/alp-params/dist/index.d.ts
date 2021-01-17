@@ -1,13 +1,16 @@
-import { NodeApplicationInCreation } from 'alp-types';
+import type { NodeApplicationInCreation } from 'alp-types';
+import 'alp-router';
 import ParamValidator from './ParamValidator';
 export { ParamValidator };
 declare module 'alp-types' {
     interface Context {
-        param(name: string): string | undefined;
-        namedParam(name: string): string | undefined;
-        otherParam(position: number): string | undefined;
-        paramGET(name: string): string | undefined;
-        paramGETorPOST(name: string): any | undefined;
+        params: ParamValidator;
+        validParams: ParamValidator;
+        param: (name: string) => string | undefined;
+        namedParam: (name: string) => string | undefined;
+        otherParam: (position: number) => string | undefined;
+        paramGET: (name: string) => string | undefined;
+        paramGETorPOST: (name: string) => any | undefined;
     }
 }
 export default function alpParams(app: NodeApplicationInCreation): void;

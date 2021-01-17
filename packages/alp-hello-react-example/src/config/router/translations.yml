@@ -1,5 +1,5 @@
 common:
-    routeTranslations:
-        turaco:
-            fr: turaco
-            en: turaco
+  routeTranslations:
+    turaco:
+      fr: turaco
+      en: turaco

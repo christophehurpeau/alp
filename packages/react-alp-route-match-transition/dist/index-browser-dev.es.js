@@ -1,6 +1,6 @@
 import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
-import { Route } from 'react-router';
 import React from 'react';
+import { Route } from 'react-router';
 import { Transition } from 'react-transition-group';
 
 function RouteMatchTransition(_ref2) {

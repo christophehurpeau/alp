@@ -1,6 +1,6 @@
 import { chmodSync, unlinkSync, readFileSync } from 'fs';
-import { Server, IncomingMessage, ServerResponse } from 'http';
-import { Config } from 'alp-node-config';
+import type { Server, IncomingMessage, ServerResponse } from 'http';
+import type { Config } from 'alp-node-config';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp:listen');
@@ -13,9 +13,12 @@ const createServer = (
   tls?: boolean,
   dirname?: string,
 ): Server => {
-  // eslint-disable-next-line global-require, import/no-dynamic-require
-  const createServer = require(!socketPath && tls ? 'https' : 'http')
-    .createServer;
+  const createServer =
+    !socketPath && tls
+      ? // eslint-disable-next-line  import/no-dynamic-require
+        require('https').createServer
+      : // eslint-disable-next-line  import/no-dynamic-require
+        require('http').createServer;
 
   if (!tls) {
     return createServer(callback);
@@ -35,10 +38,10 @@ export default function alpListen(
   dirname?: string,
 ): Promise<Server> {
   return new Promise((resolve) => {
-    const socketPath = config.get('socketPath');
-    const port = config.get('port');
-    const hostname = config.get('hostname');
-    const tls = config.get('tls');
+    const socketPath = config.get<string>('socketPath');
+    const port = config.get<number>('port');
+    const hostname = config.get<string>('hostname');
+    const tls = config.get<boolean>('tls');
 
     logger.info('Creating server', socketPath ? { socketPath } : { port });
     const server = createServer(callback, socketPath, tls, dirname);
@@ -46,7 +49,7 @@ export default function alpListen(
     if (socketPath) {
       try {
         unlinkSync(socketPath);
-      } catch (err) {}
+      } catch {}
 
       server.listen(socketPath, () => {
         if (socketPath) {

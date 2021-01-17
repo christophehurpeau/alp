@@ -1,12 +1,14 @@
-import { Route, RouteChildrenProps, match as Match } from 'react-router';
-import React, {
+import type {
   ComponentType,
   FunctionComponent,
   ReactElement,
   ReactNode,
 } from 'react';
+import React from 'react';
+import type { RouteChildrenProps, match as Match } from 'react-router';
+import { Route } from 'react-router';
 import { Transition } from 'react-transition-group';
-import { Except } from 'type-fest';
+import type { Except } from 'type-fest';
 
 export interface BaseComponentProps<Params> {
   match: Match<Params> | null;

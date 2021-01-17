@@ -1,7 +1,7 @@
 import { STATUS_CODES } from 'http';
+import type { Context, HtmlError } from 'alp-types';
 import ErrorHtmlRenderer from 'error-html';
 import Logger from 'nightingale-logger';
-import { Context } from 'alp-types';
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer({
@@ -14,20 +14,23 @@ export default async function alpNodeErrors(
 ): Promise<void> {
   try {
     await next();
-  } catch (err) {
+  } catch (err: unknown) {
     // eslint-disable-next-line no-ex-assign
     if (!err) err = new Error('Unknown error');
     // eslint-disable-next-line no-ex-assign
     if (typeof err === 'string') err = new Error(err);
 
-    ctx.status = err.status || 500;
-    logger.error(err);
+    ctx.status = (err as HtmlError).status || 500;
+    logger.error(err as any);
 
     switch (ctx.accepts('html', 'text', 'json')) {
       case 'text':
         ctx.type = 'text/plain';
-        if (process.env.NODE_ENV !== 'production' || err.expose) {
-          ctx.body = err.message;
+        if (
+          process.env.NODE_ENV !== 'production' ||
+          (err as HtmlError).expose
+        ) {
+          ctx.body = (err as Error).message;
         } else {
           throw err;
         }
@@ -36,8 +39,11 @@ export default async function alpNodeErrors(
 
       case 'json':
         ctx.type = 'application/json';
-        if (process.env.NODE_ENV !== 'production' || err.expose) {
-          ctx.body = { error: err.message };
+        if (
+          process.env.NODE_ENV !== 'production' ||
+          (err as HtmlError).expose
+        ) {
+          ctx.body = { error: (err as Error).message };
         } else {
           ctx.body = { error: STATUS_CODES[ctx.status] };
         }
@@ -47,9 +53,9 @@ export default async function alpNodeErrors(
       case 'html':
         ctx.type = 'text/html';
         if (process.env.NODE_ENV !== 'production') {
-          ctx.body = errorHtmlRenderer.render(err);
-        } else if (err.expose) {
-          ctx.body = err.message;
+          ctx.body = errorHtmlRenderer.render(err as Error);
+        } else if ((err as HtmlError).expose) {
+          ctx.body = (err as Error).message;
         } else {
           throw err;
         }

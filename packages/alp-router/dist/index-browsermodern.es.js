@@ -1,5 +1,5 @@
 function alpRouter(router) {
-  return function (app) {
+  return app => {
     app.router = router;
 
     app.context.urlGenerator = function (routeKey, params) {
@@ -10,7 +10,7 @@ function alpRouter(router) {
       return this.redirect(router.toLocalizedPath(this.language, to, params));
     };
 
-    return function (ctx) {
+    return ctx => {
       const routeMatch = router.find(ctx.path, ctx.language);
 
       if (!routeMatch) {

@@ -1,15 +1,10 @@
 {
   "root": true,
-  "extends": [
-    "@pob/eslint-config",
-    "@pob/eslint-config-node"
-  ],
+  "extends": ["@pob/eslint-config", "@pob/eslint-config-node"],
+  "ignorePatterns": ["/dist", "/build", "/public", "/data"],
   "overrides": [
     {
-      "files": [
-        "src/index.browser.ts",
-        "src/web/**/*"
-      ],
+      "files": ["src/index.browser.ts", "src/web/**/*"],
       "env": {
         "browser": true
       }

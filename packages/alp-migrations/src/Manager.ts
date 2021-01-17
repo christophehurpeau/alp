@@ -1,4 +1,4 @@
-import { MongoStore, MongoInsertType } from 'liwi-mongo';
+import type { MongoStore, MongoInsertType } from 'liwi-mongo';
 
 export interface Migration {
   _id: string;

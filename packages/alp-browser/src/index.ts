@@ -1,13 +1,18 @@
 import { PRODUCTION } from 'pob-babel';
-import Ibex from 'ibex';
 import config, { getConfig, existsConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
 import translate from 'alp-translate/browser';
-import Logger from 'nightingale-logger';
-import {
+import type {
   BrowserApplication as BrowserApplicationType,
   BrowserApplicationInCreation,
+  BaseContext as AlpBaseContext,
+  Context as AlpContext,
+  Config,
+  ContextState,
+  RawConfig,
 } from 'alp-types';
+import Ibex from 'ibex';
+import Logger from 'nightingale-logger';
 
 export type BrowserApplication = BrowserApplicationType;
 
@@ -22,9 +27,17 @@ declare global {
 interface Options {
   version?: string; // default to window.__VERSION__
 }
+
+declare module 'ibex' {
+  interface BaseContext extends AlpBaseContext {}
+  interface DefaultState extends ContextState {}
+  interface Context extends AlpContext {}
+}
+
 const configPath = '/config';
 
-export default class AlpBrowser extends Ibex
+export default class AlpBrowser
+  extends Ibex
   implements BrowserApplicationInCreation {
   path: string;
 
@@ -36,11 +49,14 @@ export default class AlpBrowser extends Ibex
     this.appVersion = version;
   }
 
+  config?: Config | undefined;
+
   async init(): Promise<BrowserApplication> {
-    await config(
+    const configInstance = await config(
       this,
       PRODUCTION ? `/${this.appVersion}${configPath}` : configPath,
     );
+    this.context.config = configInstance;
 
     language(this);
     await translate('/locales')(this);
@@ -48,20 +64,20 @@ export default class AlpBrowser extends Ibex
     return (this as unknown) as BrowserApplication;
   }
 
-  existsConfig(name: string) {
+  async existsConfig(name: string): Promise<boolean> {
     return existsConfig(`${configPath}${name}`);
   }
 
-  loadConfig(name: string) {
+  loadConfig(name: string): Promise<RawConfig> {
     return getConfig(`${configPath}${name}`);
   }
 
-  start(fn: Function) {
+  start(fn: () => Promise<void>): void {
     try {
       fn()
         .then(() => logger.success('started'))
-        .catch((err: any) => logger.error('start fail', { err }));
-    } catch (err) {
+        .catch((err: unknown) => logger.error('start fail', { err }));
+    } catch (err: unknown) {
       logger.error('start fail', { err });
     }
   }

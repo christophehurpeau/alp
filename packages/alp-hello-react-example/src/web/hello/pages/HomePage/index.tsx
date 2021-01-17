@@ -1,8 +1,9 @@
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
-import ReactAlpContext from 'react-alp-context';
 import { Helmet } from 'alp-react';
-import { useT } from 'react-alp-translate';
 import { appLogger } from 'nightingale-app-console';
+import type { ReactElement } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import ReactAlpContext from 'react-alp-context';
+import { useT } from 'react-alp-translate';
 import Hello from './components/HelloComponent';
 
 const logger = appLogger.child('HomePage');

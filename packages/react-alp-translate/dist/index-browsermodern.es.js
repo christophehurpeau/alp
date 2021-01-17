@@ -1,12 +1,11 @@
-import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 import { useContext, useMemo } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
 function useT(id, params, deps) {
   const ctx = useContext(ReactAlpContext);
-  return useMemo(function () {
+  return useMemo(() => {
     return ctx.t(id, params);
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/no-unsafe-assignment
   !deps ? [id] : [id, ...deps]);
 }
 
@@ -14,19 +13,15 @@ function useT(id, params, deps) {
 // in both case it will be more difficult to use memo deps
 function useTs(ids) {
   const ctx = useContext(ReactAlpContext);
-  return useMemo(function () {
-    return ids.map(function (id) {
-      return ctx.t(id);
-    }); // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo(() => {
+    return ids.map(id => ctx.t(id)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ids.join(',')]);
 }
 
-function T(_ref) {
-  let {
-    id
-  } = _ref,
-      props = _objectWithoutPropertiesLoose(_ref, ["id"]);
-
+function T({
+  id,
+  ...props
+}) {
   const t = useT(id, props, Object.values(props));
   return t;
 }

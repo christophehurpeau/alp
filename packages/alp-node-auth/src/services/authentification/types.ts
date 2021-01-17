@@ -1,4 +1,4 @@
-import { GoogleParams, SlackParams } from 'alp-types';
+import type { GoogleParams, SlackParams } from 'alp-types';
 
 export type AllowedStrategyKeys = 'google' | 'slack';
 

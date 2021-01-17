@@ -1,8 +1,8 @@
-/* eslint-disable default-case */
+/* eslint-disable complexity */
 import { PRODUCTION } from 'pob-babel';
 
 function uneval(
-  value: any,
+  value: unknown,
   keys: undefined | string,
   objects = new Set(),
 ): string {
@@ -25,7 +25,7 @@ function uneval(
     case 'function':
       if (!PRODUCTION) console.log(value);
       throw new Error(
-        PRODUCTION ? undefined : `Unsupported function "${keys}".`,
+        PRODUCTION ? undefined : `Unsupported function "${keys as string}".`,
       );
     case 'string':
     case 'number':
@@ -43,7 +43,11 @@ function uneval(
   if (Array.isArray(value)) {
     return `[${value
       .map((o, index) =>
-        uneval(o, PRODUCTION ? undefined : `${keys}[${index}]`, objects),
+        uneval(
+          o,
+          PRODUCTION ? undefined : `${keys as string}[${index}]`,
+          objects,
+        ),
       )
       .join(',')}]`;
   }
@@ -60,12 +64,12 @@ function uneval(
     return `new Map(${uneval([...value], keys)})`;
   }
 
-  return `{${Object.keys(value)
+  return `{${Object.keys(value as Record<any, unknown>)
     .map(
       (key) =>
         `${JSON.stringify(key)}:${uneval(
-          value[key],
-          PRODUCTION ? undefined : `${keys}.${key}`,
+          (value as Record<typeof key, unknown>)[key],
+          PRODUCTION ? undefined : `${keys as string}.${key}`,
         )}`,
     )
     .join(',')}}`;
@@ -84,7 +88,7 @@ const ESCAPED_CHARS = {
 const escapeUnsafeChars = (unsafeChar: keyof typeof ESCAPED_CHARS): string =>
   ESCAPED_CHARS[unsafeChar];
 
-export default function unevalValue(value: any): string {
+export default function unevalValue(value: unknown): string {
   return uneval(value, PRODUCTION ? undefined : 'obj').replace(
     UNSAFE_CHARS_REGEXP,
     escapeUnsafeChars as (unsafeChar: string) => string,

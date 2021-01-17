@@ -1,13 +1,13 @@
 import path from 'path';
+import type { RunOptions } from 'pobpack-browser';
 import {
   createAppBrowserCompiler,
   MODERN,
   ALL,
   runDevServer as runDevServerPobpack,
-  RunOptions,
 } from 'pobpack-browser';
-import { PobpackCompiler } from 'pobpack-types';
-import WebpackDevServer from 'webpack-dev-server';
+import type { PobpackCompiler } from 'pobpack-types';
+import type WebpackDevServer from 'webpack-dev-server';
 import createPobpackConfig from './createPobpackConfig';
 
 export const createModernBrowserCompiler = (production: boolean) =>

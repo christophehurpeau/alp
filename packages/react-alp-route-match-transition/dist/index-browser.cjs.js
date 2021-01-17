@@ -2,12 +2,15 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var _objectWithoutPropertiesLoose = _interopDefault(require('@babel/runtime/helpers/esm/objectWithoutPropertiesLoose'));
+var _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/esm/objectWithoutPropertiesLoose');
+var React = require('react');
 var reactRouter = require('react-router');
-var React = _interopDefault(require('react'));
 var reactTransitionGroup = require('react-transition-group');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
+
+var _objectWithoutPropertiesLoose__default = /*#__PURE__*/_interopDefaultLegacy(_objectWithoutPropertiesLoose);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function RouteMatchTransition(_ref2) {
   var path = _ref2.path,
@@ -15,9 +18,9 @@ function RouteMatchTransition(_ref2) {
       timeout = _ref2.timeout,
       Component = _ref2.component,
       _ref2$wrapperComponen = _ref2.wrapperComponent,
-      otherProps = _objectWithoutPropertiesLoose(_ref2, ["path", "closePath", "timeout", "component", "wrapperComponent"]);
+      otherProps = _objectWithoutPropertiesLoose__default(_ref2, ["path", "closePath", "timeout", "component", "wrapperComponent"]);
 
-  return /*#__PURE__*/React.createElement(reactRouter.Route, {
+  return /*#__PURE__*/React__default.createElement(reactRouter.Route, {
     path: path
   }, function (_ref3) {
     var match = _ref3.match,
@@ -27,7 +30,7 @@ function RouteMatchTransition(_ref2) {
       history.push(closePath);
     };
 
-    return /*#__PURE__*/React.createElement(reactTransitionGroup.Transition, {
+    return /*#__PURE__*/React__default.createElement(reactTransitionGroup.Transition, {
       exit: true,
       enter: false,
       in: Boolean(match !== null),
@@ -37,7 +40,7 @@ function RouteMatchTransition(_ref2) {
         case 'entering':
         case 'entered':
         case 'exiting':
-          return /*#__PURE__*/React.createElement(Component, Object.assign({
+          return /*#__PURE__*/React__default.createElement(Component, Object.assign({
             match: match,
             exiting: state === 'exiting',
             onClose: handleClose

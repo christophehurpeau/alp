@@ -1,9 +1,9 @@
+import type { BrowserApplication, ContextSanitizedState } from 'alp-types';
 import contentLoaded from 'content-loaded';
-import React, { ElementType } from 'react';
-import { hydrate } from 'react-dom';
 import Logger from 'nightingale-logger';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { BrowserApplication } from 'alp-types';
+import type { ElementType } from 'react';
+import React from 'react';
+import { hydrate } from 'react-dom';
 import createAlpAppWrapper from './createAlpAppWrapper';
 
 export { default as Helmet } from 'react-helmet';
@@ -17,13 +17,16 @@ const logger = new Logger('alp:react');
 
 declare global {
   interface Window {
-    __INITIAL_DATA__: any;
+    __INITIAL_DATA__?: {
+      sanitizedState?: ContextSanitizedState;
+    };
   }
 }
 
 export default function alpReactBrowser(app: BrowserApplication) {
-  return async function renderApp(App: ElementType<{}>) {
-    // eslint-disable-next-line no-underscore-dangle
+  return async function renderApp(
+    App: ElementType<Record<string, never>>,
+  ): Promise<void> {
     const initialData = window.__INITIAL_DATA__ || {};
     const ctx = app.createContext();
     if (initialData.sanitizedState) {

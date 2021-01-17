@@ -1,17 +1,25 @@
-import { IncomingMessage, Server, ServerResponse } from 'http';
+import type { IncomingMessage, Server, ServerResponse } from 'http';
 import path from 'path';
 import { deprecate } from 'util';
-import Koa, { BaseContext, DefaultState, ParameterizedContext } from 'koa';
-import Logger from 'nightingale-logger';
+import _listen from 'alp-listen';
+import type { Config } from 'alp-node-config';
+import _config from 'alp-node-config';
+import errors from 'alp-node-errors';
+import language from 'alp-node-language';
+import params from 'alp-params';
+import translate from 'alp-translate';
+import type {
+  NodeApplication,
+  NodeConfig,
+  Context as AlpContext,
+  ContextState,
+  ContextSanitizedState,
+} from 'alp-types';
+import Koa from 'koa';
+import type { ParameterizedContext, DefaultState, Context } from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
-import _config, { Config } from 'alp-node-config';
-import errors from 'alp-node-errors';
-import params from 'alp-params';
-import language from 'alp-node-language';
-import translate from 'alp-translate';
-import _listen from 'alp-listen';
-import { NodeApplication, NodeConfig, Context as AlpContext } from 'alp-types';
+import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp');
 
@@ -24,16 +32,14 @@ export interface AlpNodeAppOptions {
 }
 
 declare module 'koa' {
+  interface DefaultState extends ContextState {}
+  interface DefaultContext extends AlpContext {}
   interface BaseContext extends AlpContext {}
 }
 
-export type Context<State = any, SanitizedState = any> = AlpContext<
-  State,
-  SanitizedState
-> &
-  ParameterizedContext<State>;
+export type { Context };
 
-export class AlpNodeApp extends Koa implements NodeApplication {
+export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
   dirname: string;
 
   certPath: string;
@@ -43,8 +49,6 @@ export class AlpNodeApp extends Koa implements NodeApplication {
   config: NodeConfig & Config;
 
   _server?: Server;
-
-  context!: BaseContext & AlpContext;
 
   /**
    * @param {Object} [options]
@@ -81,47 +85,28 @@ export class AlpNodeApp extends Koa implements NodeApplication {
     this.use(compress());
   }
 
-  existsConfigSync(name: string) {
-    return this.context.config.existsConfigSync(name);
+  existsConfigSync(name: string): ReturnType<Config['existsConfigSync']> {
+    return this.config.existsConfigSync(name);
   }
 
-  loadConfigSync(name: string) {
-    return this.context.config.loadConfigSync(name);
+  loadConfigSync(name: string): ReturnType<Config['loadConfigSync']> {
+    return this.config.loadConfigSync(name);
   }
 
-  get environment() {
-    deprecate(() => () => null, 'app.environment, use app.env instead')();
-    return this.env;
-  }
-
-  get production() {
-    deprecate(
-      () => () => null,
-      'app.production, use global.PRODUCTION instead',
-    )();
-    return this.env === 'prod' || this.env === 'production';
-  }
-
-  createContext<State = DefaultState, SanitizedState = DefaultState>(
+  createContext<StateT = DefaultState>(
     req: IncomingMessage,
     res: ServerResponse,
-  ): Context<State, SanitizedState> {
-    const ctx: ParameterizedContext<State> = super.createContext<State>(
-      req,
-      res,
-    );
-    (ctx as Context<
-      State,
-      SanitizedState
-    >).sanitizedState = {} as SanitizedState;
-    return ctx as Context<State, SanitizedState>;
+  ): ParameterizedContext<StateT> {
+    const ctx = super.createContext<StateT>(req, res);
+    ctx.sanitizedState = {} as ContextSanitizedState;
+    return ctx;
   }
 
-  servePublic() {
+  servePublic(): void {
     this.use(serve(this.publicPath)); // static files
   }
 
-  catchErrors() {
+  catchErrors(): void {
     this.use(errors);
   }
 
@@ -132,14 +117,14 @@ export class AlpNodeApp extends Koa implements NodeApplication {
   /**
    * Close server and emit close event
    */
-  close() {
+  close(): void {
     if (this._server) {
       this._server.close();
       this.emit('close');
     }
   }
 
-  async start(fn: Function): Promise<Server> {
+  async start(fn: () => Promise<void> | void): Promise<Server> {
     await fn();
     try {
       const server = await _listen(this.config, this.callback(), this.certPath);
@@ -147,7 +132,7 @@ export class AlpNodeApp extends Koa implements NodeApplication {
       logger.success('started');
       if (process.send) process.send('ready');
       return server;
-    } catch (err) {
+    } catch (err: unknown) {
       logger.error('start fail', { err });
       throw err;
     }

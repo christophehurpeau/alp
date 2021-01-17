@@ -11,7 +11,7 @@ export type AccountId = string;
 export interface Account {
   accessToken: string;
   accountId: AccountId;
-  name: string;
+  name?: string | null;
   profile?: any;
   provider: string;
   refreshToken?: string;
@@ -32,7 +32,7 @@ export interface User extends MongoBaseModel {
 
 export interface AccountSanitized {
   accountId: string;
-  name: string;
+  name?: string | null;
   provider: string;
   status: string;
   profile?: any;

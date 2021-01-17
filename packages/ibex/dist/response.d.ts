@@ -1,9 +1,9 @@
-import Application from '.';
+import type Application from '.';
 export interface BaseResponse {
-    redirect(url: string): void;
+    redirect: (url: string) => Promise<void>;
 }
 export interface Response extends BaseResponse {
-    app: Application;
+    readonly app: Application;
 }
 declare const response: BaseResponse;
 export default response;

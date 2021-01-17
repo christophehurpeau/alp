@@ -1,18 +1,28 @@
-import { Router } from 'router-segments';
-import { Context, NodeApplication } from 'alp-types';
+import type { Context, NodeApplication } from 'alp-types';
+import type { Router, RouteMatch } from 'router-segments';
 
 type ReturnType = (app: NodeApplication) => (ctx: Context) => Promise<void>;
 
-export type UrlGenerator = (routeKey: string, params: any) => string;
+export type UrlGenerator = <P extends Record<string, unknown> | undefined>(
+  routeKey: string,
+  params?: P,
+) => string;
 
 declare module 'alp-types' {
   interface NodeApplication {
     router?: Router;
   }
 
-  interface Context {
+  interface BaseContext {
     urlGenerator: UrlGenerator;
-    redirectTo: (to: string, params: any) => any;
+    redirectTo: <P extends Record<string, unknown>>(
+      to: string,
+      params?: P,
+    ) => Promise<void>;
+  }
+
+  interface Context {
+    route: RouteMatch<any>;
   }
 }
 
@@ -20,18 +30,19 @@ export default function alpRouter(router: Router): ReturnType {
   return (app: NodeApplication) => {
     app.router = router;
 
-    app.context.urlGenerator = function (
-      routeKey: string,
-      params: any,
-    ): string {
+    app.context.urlGenerator = function <
+      P extends Record<string, unknown> | undefined
+    >(this: Context, routeKey: string, params?: P): string {
       return router.toLocalizedPath(this.language, routeKey, params);
     };
 
-    app.context.redirectTo = function (to: string, params: any): any {
+    app.context.redirectTo = function <
+      P extends Record<string, unknown> | undefined
+    >(this: Context, to: string, params?: P): Promise<void> {
       return this.redirect(router.toLocalizedPath(this.language, to, params));
     };
 
-    return (ctx: Context) => {
+    return (ctx: Context): Promise<void> => {
       const routeMatch = router.find(ctx.path, ctx.language);
 
       if (!routeMatch) {
@@ -41,7 +52,7 @@ export default function alpRouter(router: Router): ReturnType {
 
       ctx.route = routeMatch;
 
-      return routeMatch.ref(ctx);
+      return (routeMatch.ref as (ctx: Context) => Promise<void>)(ctx);
     };
   };
 }

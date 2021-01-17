@@ -1,4 +1,4 @@
-import { AuthController } from './createAuthController';
+import type { AuthController } from './createAuthController';
 
 export interface AuthRoutes {
   login: [string, (segment: any) => void];

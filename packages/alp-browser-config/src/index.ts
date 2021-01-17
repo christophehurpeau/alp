@@ -1,18 +1,23 @@
 import { POB_ENV } from 'pob-babel';
-import { BrowserApplicationInCreation } from 'alp-types';
-import parseJSON from 'parse-json-object-as-map';
+import type { BrowserApplicationInCreation, Config } from 'alp-types';
 import deepFreeze from 'deep-freeze-es6';
+import parseJSON from 'parse-json-object-as-map';
 import * as storedConfig from './browserStoredConfig';
 
-type RawConfig = Map<string, any>;
-const ExcludesFalsy = (Boolean as any) as <T>(
+type RawConfig = Map<string, unknown>;
+
+const ExcludesFalsy = (Boolean as unknown) as <T>(
   x: T | boolean | null | undefined,
 ) => x is T;
 
 function fetchConfig(path: string): Promise<RawConfig> {
   return fetch(`${path}.json`)
     .then((res) => res.text())
-    .then((text) => (text.startsWith('{') ? parseJSON(text) : new Map()));
+    .then((text) =>
+      text.startsWith('{')
+        ? (parseJSON(text) as RawConfig)
+        : new Map<string, unknown>(),
+    );
 }
 
 export function getConfig(path: string): Promise<RawConfig> {
@@ -38,7 +43,7 @@ const getOrFetchAppConfig = function (
   version: string,
   environment: string,
   configPath: string,
-) {
+): Promise<RawConfig> {
   if (storedConfig.getVersion() === version && storedConfig.has('_appConfig')) {
     return Promise.resolve(storedConfig.get('_appConfig'));
   }
@@ -66,19 +71,22 @@ const getOrFetchAppConfig = function (
   );
 };
 
-export default function alpConfig(
+export default async function alpConfig(
   app: BrowserApplicationInCreation,
   configPath: string,
-) {
+): Promise<Config> {
   const version = app.appVersion;
 
   if (!version) {
     throw new Error('Missing appVersion');
   }
 
-  return getOrFetchAppConfig(version, POB_ENV, configPath).then((config) => {
-    app.config = config;
-    app.context.config = config;
-    return config;
-  });
+  const config: Config = (await getOrFetchAppConfig(
+    version,
+    POB_ENV,
+    configPath,
+  )) as Config;
+  app.config = config;
+  app.context.config = config;
+  return config;
 }

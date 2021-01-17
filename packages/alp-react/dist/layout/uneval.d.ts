@@ -1,2 +1,2 @@
-export default function unevalValue(value: any): string;
+export default function unevalValue(value: unknown): string;
 //# sourceMappingURL=uneval.d.ts.map

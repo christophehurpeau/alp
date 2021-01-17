@@ -1,5 +1,5 @@
+import type { Context } from 'alp-types';
 import React from 'react';
-import { Context } from 'alp-types';
 
 export type AlpContext = Context;
 

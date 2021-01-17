@@ -16,7 +16,7 @@ function compose(middlewares) {
       let called = false;
 
       try {
-        return Promise.resolve(fn.call(ctx, ctx, function () {
+        return Promise.resolve(fn.call(ctx, ctx, () => {
           if (called) {
             throw new Error(undefined);
           }
@@ -33,32 +33,37 @@ function compose(middlewares) {
 
 const proto = {};
 
-const defineGetter = function defineGetter(target, name) {
+const defineGetter = (target, name) => {
   Object.defineProperty(proto, name, {
     get() {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
       return this[target][name];
     }
 
   });
 };
 
-const defineAccess = function defineAccess(target, name) {
+const defineAccess = (target, name) => {
   Object.defineProperty(proto, name, {
     get() {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
       return this[target][name];
     },
 
     set(value) {
-      this[target][name] = value;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,  @typescript-eslint/no-unsafe-member-access
+      this[target][name] = value; // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
       return value;
     }
 
   });
 };
 
-const defineMethod = function defineMethod(target, name) {
+const defineMethod = (target, name) => {
   Object.defineProperty(proto, name, {
     value(...args) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
       return this[target][name].call(this[target], ...args);
     }
 
@@ -117,6 +122,10 @@ const request = {
 
   get hostname() {
     return window.location.hostname;
+  },
+
+  get headers() {
+    throw new Error('Headers not available in ibex request.');
   }
 
 };
@@ -125,7 +134,11 @@ const response = {
   redirect(url) {
     if (this.app.emit('redirect', url) === false) {
       window.location.href = url;
+      return new Promise(() => {// promise that never resolves.
+      });
     }
+
+    return Promise.resolve();
   }
 
 };
@@ -162,10 +175,6 @@ class Application extends EventEmitter {
     this.context.app = this;
   }
 
-  get environment() {
-    throw new Error('use process.env or POB_ENV instead');
-  }
-
   use(fn) {
     logger.debug('use', {
       name: fn.name || '-'
@@ -186,6 +195,7 @@ class Application extends EventEmitter {
     this.callback = compose(this.middleware);
 
     if (url) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.load(url);
     }
   }
@@ -193,17 +203,19 @@ class Application extends EventEmitter {
   createContext() {
     const context = Object.create(this.context);
     context.request = Object.create(request);
-    context.response = Object.create(response); // eslint-disable-next-line no-multi-assign
-
-    context.request.app = context.response.app = this;
+    context.response = Object.create(response);
+    Object.assign(context.request, {
+      app: this
+    });
+    Object.assign(context.response, {
+      app: this
+    });
     context.state = {};
     context.sanitizedState = {};
     return context;
   }
 
   load(url) {
-    var _this = this;
-
     logger.debug('load', {
       url
     });
@@ -217,10 +229,8 @@ class Application extends EventEmitter {
     }
 
     const context = this.createContext();
-    return this.callback(context).then(function () {
-      return respond(context);
-    }).catch(function (err) {
-      return _this.emit('error', err);
+    return this.callback(context).then(() => respond(context)).catch(err => {
+      this.emit('error', err);
     });
   }
 

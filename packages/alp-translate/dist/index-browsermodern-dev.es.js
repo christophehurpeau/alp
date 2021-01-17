@@ -4,7 +4,7 @@ function load(translations, language) {
   const result = new Map();
 
   (function loadMap(map, prefix) {
-    map.forEach(function (value, key) {
+    map.forEach((value, key) => {
       if (typeof value === 'object') {
         return loadMap(value, `${prefix}${key}.`);
       }
@@ -18,21 +18,17 @@ function load(translations, language) {
 
 function alpTranslate(dirname) {
   dirname = dirname.replace(/\/*$/, '/');
-  return function (app) {
-    const language = app.context.language; // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
+  return async app => {
+    const language = app.context.language;
+    const map = await app.loadConfig(dirname + language);
+    const translations = load(map, language);
+    Object.assign(app.context, {
+      t(key, args) {
+        const msg = translations.get(key);
+        if (!msg) return key;
+        return msg.format(args);
+      }
 
-    return app.loadConfig(dirname + language).then(function (map) {
-      const translations = load(map, language);
-      Object.assign(app.context, {
-        t(key, args) {
-          const msg = translations.get(key);
-          if (!msg) return key;
-          return msg.format(args);
-        }
-
-      });
-      return map;
     });
   };
 }

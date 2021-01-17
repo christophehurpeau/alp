@@ -1,32 +1,27 @@
-import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
-import { Route } from 'react-router';
 import React from 'react';
+import { Route } from 'react-router';
 import { Transition } from 'react-transition-group';
 
-const DefaultWrapperComponent = function DefaultWrapperComponent({
+const DefaultWrapperComponent = ({
   children,
   visible
+}) => children;
+
+function RouteMatchTransition({
+  path,
+  closePath,
+  timeout,
+  component: Component,
+  wrapperComponent: WrapperComponent = DefaultWrapperComponent,
+  ...otherProps
 }) {
-  return children;
-};
-
-function RouteMatchTransition(_ref) {
-  let {
-    path,
-    closePath,
-    timeout,
-    component: Component,
-    wrapperComponent: WrapperComponent = DefaultWrapperComponent
-  } = _ref,
-      otherProps = _objectWithoutPropertiesLoose(_ref, ["path", "closePath", "timeout", "component", "wrapperComponent"]);
-
   return /*#__PURE__*/React.createElement(Route, {
     path: path
-  }, function ({
+  }, ({
     match,
     history
-  }) {
-    const handleClose = function handleClose() {
+  }) => {
+    const handleClose = () => {
       history.push(closePath);
     };
 
@@ -35,7 +30,7 @@ function RouteMatchTransition(_ref) {
       enter: false,
       in: Boolean(match !== null),
       timeout: timeout
-    }, function (state) {
+    }, state => {
       switch (state) {
         case 'entering':
         case 'entered':

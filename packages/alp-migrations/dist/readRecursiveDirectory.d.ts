@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { Stats } from 'fs';
+import type { Stats } from 'fs';
 export interface CallbackParam {
     filename: string;
     basedir: string;

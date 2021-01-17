@@ -11,7 +11,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com:christophehurpeau/alp.git",
+    "url": "https://github.com/christophehurpeau/alp.git",
     "directory": "packages/alp-dev"
   },
   "homepage": "https://github.com/christophehurpeau/alp",
@@ -19,30 +19,83 @@
     "url": "https://github.com/alpjs/alp-dev/issues"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=12.10.0"
   },
   "main": "./index.js",
   "types": "./dist/index.d.ts",
-  "module:node": "./dist/index-node10.es.js",
-  "module:node-dev": "./dist/index-node10-dev.es.js",
-  "module:aliases-node": {
-    "./watch.js": "./dist/watch-node10.es.js",
-    "./watch-browser.js": "./dist/watch-browser-node10.es.js",
-    "./watch-node.js": "./dist/watch-node-node10.es.js",
-    "./build.js": "./dist/build-node10.es.js",
-    "./build-modern-browser.js": "./dist/build-modern-browser-node10.es.js",
-    "./build-node.js": "./dist/build-node-node10.es.js",
-    "./build-older-browser.js": "./dist/build-older-browser-node10.es.js"
+  "exports": {
+    "./watch": {
+      "node": {
+        "development": {
+          "import": "./dist/watch-node12-dev.mjs",
+          "require": "./dist/watch-node12-dev.cjs.js"
+        },
+        "import": "./dist/watch-node12.mjs",
+        "require": "./dist/watch-node12.cjs.js"
+      }
+    },
+    "./watch-browser": {
+      "node": {
+        "development": {
+          "import": "./dist/watch-browser-node12-dev.mjs",
+          "require": "./dist/watch-browser-node12-dev.cjs.js"
+        },
+        "import": "./dist/watch-browser-node12.mjs",
+        "require": "./dist/watch-browser-node12.cjs.js"
+      }
+    },
+    "./watch-node": {
+      "node": {
+        "development": {
+          "import": "./dist/watch-node-node12-dev.mjs",
+          "require": "./dist/watch-node-node12-dev.cjs.js"
+        },
+        "import": "./dist/watch-node-node12.mjs",
+        "require": "./dist/watch-node-node12.cjs.js"
+      }
+    },
+    "./build": {
+      "node": {
+        "development": {
+          "import": "./dist/build-node12-dev.mjs",
+          "require": "./dist/build-node12-dev.cjs.js"
+        },
+        "import": "./dist/build-node12.mjs",
+        "require": "./dist/build-node12.cjs.js"
+      }
+    },
+    "./build-modern-browser": {
+      "node": {
+        "development": {
+          "import": "./dist/build-modern-browser-node12-dev.mjs",
+          "require": "./dist/build-modern-browser-node12-dev.cjs.js"
+        },
+        "import": "./dist/build-modern-browser-node12.mjs",
+        "require": "./dist/build-modern-browser-node12.cjs.js"
+      }
+    },
+    "./build-node": {
+      "node": {
+        "development": {
+          "import": "./dist/build-node-node12-dev.mjs",
+          "require": "./dist/build-node-node12-dev.cjs.js"
+        },
+        "import": "./dist/build-node-node12.mjs",
+        "require": "./dist/build-node-node12.cjs.js"
+      }
+    },
+    "./build-older-browser": {
+      "node": {
+        "development": {
+          "import": "./dist/build-older-browser-node12-dev.mjs",
+          "require": "./dist/build-older-browser-node12-dev.cjs.js"
+        },
+        "import": "./dist/build-older-browser-node12.mjs",
+        "require": "./dist/build-older-browser-node12.cjs.js"
+      }
+    }
   },
-  "module:aliases-node-dev": {
-    "./watch.js": "./dist/watch-node10-dev.es.js",
-    "./watch-browser.js": "./dist/watch-browser-node10-dev.es.js",
-    "./watch-node.js": "./dist/watch-node-node10-dev.es.js",
-    "./build.js": "./dist/build-node10-dev.es.js",
-    "./build-modern-browser.js": "./dist/build-modern-browser-node10-dev.es.js",
-    "./build-node.js": "./dist/build-node-node10-dev.es.js",
-    "./build-older-browser.js": "./dist/build-older-browser-node10-dev.es.js"
-  },
+  "sideEffects": false,
   "bin": {
     "alp-dev": "./dev",
     "alp-dev-build": "./dev-build",
@@ -51,10 +104,11 @@
     "webpack": "./webpack"
   },
   "scripts": {
-    "build": "pob-build",
+    "build": "pob-build && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
-    "lint": "yarn --cwd ../.. lint packages/alp-dev",
+    "lint": "yarn run lint:eslint",
+    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.ts --report-unused-disable-directives --quiet packages/alp-dev",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -66,7 +120,7 @@
     "babelEnvs": [
       {
         "target": "node",
-        "version": "10",
+        "version": "12",
         "formats": [
           "cjs",
           "es"
@@ -93,8 +147,8 @@
     "babel-plugin-discard-module-references": "^1.1.2",
     "babel-plugin-import": "^1.13.0",
     "babel-plugin-inline-classnames-babel7": "^1.1.9",
-    "babel-preset-latest-node": "^4.0.1",
-    "babel-preset-modern-browsers": "^14.1.1",
+    "babel-preset-latest-node": "^5.2.0",
+    "babel-preset-modern-browsers": "^15.0.2",
     "babel-preset-pob-env": "^3.7.1",
     "colorette": "^1.1.0",
     "console-loader": "^1.0.0",
@@ -115,7 +169,7 @@
     "node-sass": "^4.13.0",
     "offline-plugin": "^5.0.7",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "pob-babel": "^24.12.0",
+    "pob-babel": "^26.3.0",
     "pobpack-browser": "9.0.0",
     "pobpack-node": "9.0.0",
     "pobpack-types": "4.1.2",
@@ -144,6 +198,7 @@
     "@types/webpack-dev-server": "3.11.1",
     "less": "3.13.1",
     "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react-dom": "16.14.0",
+    "rollup": "2.36.1"
   }
 }

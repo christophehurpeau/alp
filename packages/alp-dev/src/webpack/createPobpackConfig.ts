@@ -2,11 +2,11 @@
 
 import fs from 'fs';
 import path from 'path';
-import webpack from 'webpack';
-import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import CssExtractPlugin from 'extract-css-chunks-webpack-plugin';
 import autoprefixer from 'autoprefixer';
-import { Options } from 'pobpack-types';
+import CssExtractPlugin from 'extract-css-chunks-webpack-plugin';
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import type { Options } from 'pobpack-types';
+import webpack from 'webpack';
 import { createModuleRules, createCssModuleUse } from './css-module-rules';
 
 // stylesCacheGroups

@@ -1,4 +1,4 @@
-import { Context } from 'alp-types';
+import type { Context, ContextSanitizedState, ContextState } from 'alp-types';
 import ParamValidator from './ParamValidator';
 
 const createContextMock = (): Context &
@@ -6,15 +6,19 @@ const createContextMock = (): Context &
     'param' | 'namedParam' | 'otherParam' | 'paramGET' | 'paramGETorPOST',
     ReturnType<typeof jest.fn>
   > => {
-  return {
-    state: {},
-    sanitizedState: {},
+  return ({
+    state: {} as ContextState,
+    sanitizedState: {} as ContextSanitizedState,
     param: jest.fn(),
     namedParam: jest.fn(),
     otherParam: jest.fn(),
     paramGET: jest.fn(),
     paramGETorPOST: jest.fn(),
-  };
+  } as unknown) as Context &
+    Record<
+      'param' | 'namedParam' | 'otherParam' | 'paramGET' | 'paramGETorPOST',
+      ReturnType<typeof jest.fn>
+    >;
 };
 
 test('on init is valid', () => {

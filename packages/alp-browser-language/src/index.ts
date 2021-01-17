@@ -1,8 +1,18 @@
-import { BrowserApplicationInCreation } from 'alp-types';
+import type { BrowserApplicationInCreation } from 'alp-types';
 
-export default function alpLanguage(app: BrowserApplicationInCreation) {
+declare module 'alp-types' {
+  interface BaseContext {
+    firstAcceptedLanguage: string;
+    language: string;
+  }
+  interface Context {}
+}
+
+export default function alpLanguage(app: BrowserApplicationInCreation): void {
   const config = app.context.config;
-  const availableLanguages = config.get('availableLanguages');
+  const availableLanguages = config.get<string[] | undefined>(
+    'availableLanguages',
+  );
   if (!availableLanguages) {
     throw new Error('Missing config "availableLanguages"');
   }

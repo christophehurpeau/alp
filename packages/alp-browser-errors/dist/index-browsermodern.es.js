@@ -4,13 +4,13 @@ import Logger from 'nightingale-logger';
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer();
 
-const createErrorInstanceIfNeeded = function createErrorInstanceIfNeeded(err) {
+const createErrorInstanceIfNeeded = err => {
   if (!err) return new Error('Unknown error');
   if (typeof err === 'string') return new Error(err);
   return err;
 };
 
-const errorMiddleware = async function errorMiddleware(ctx, next) {
+const errorMiddleware = async function (ctx, next) {
   try {
     await next();
   } catch (err) {

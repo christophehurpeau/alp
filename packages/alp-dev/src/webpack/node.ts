@@ -1,7 +1,7 @@
 import path from 'path';
 import { createAppNodeCompiler, watchAndRunCompiler } from 'pobpack-node';
-import { PobpackCompiler } from 'pobpack-types';
-import { Watching } from 'webpack';
+import type { PobpackCompiler } from 'pobpack-types';
+import type { Watching } from 'webpack';
 import createPobpackConfig from './createPobpackConfig';
 
 export const createNodeCompiler = (production: boolean) =>

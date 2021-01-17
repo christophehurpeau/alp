@@ -1,14 +1,15 @@
 import './configure-logger';
 import { execSync } from 'child_process';
 import path from 'path';
-import Logger, { addConfig, Level } from 'nightingale';
-import ConsoleLogger from 'nightingale-console';
-import formatterANSI from 'nightingale-ansi-formatter';
-import portscanner from 'portscanner';
-import argv from 'minimist-argv';
-import createChild, { Daemon } from 'springbokjs-daemon';
 import colorette from 'colorette';
+import argv from 'minimist-argv';
+import Logger, { addConfig, Level } from 'nightingale';
+import formatterANSI from 'nightingale-ansi-formatter';
+import ConsoleLogger from 'nightingale-console';
+import portscanner from 'portscanner';
 import ProgressBar from 'progress';
+import type { Daemon } from 'springbokjs-daemon';
+import createChild from 'springbokjs-daemon';
 // import watchServer from './server';
 import * as configBuild from './config-build';
 

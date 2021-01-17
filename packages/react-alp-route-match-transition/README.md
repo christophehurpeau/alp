@@ -8,7 +8,6 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/react-alp-route-match-transition"><img src="https://img.shields.io/npm/v/react-alp-route-match-transition.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/react-alp-route-match-transition"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/react-alp-route-match-transition?style=flat-square"></a>
 </p>
 
 ## Install

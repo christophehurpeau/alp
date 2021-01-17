@@ -1,4 +1,5 @@
-import React, { ReactElement, useContext, useEffect, useRef } from 'react';
+import type { ReactElement } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import ReactAlpContext from 'react-alp-context';
 import { T } from 'react-alp-translate';
 import '../ConnectionState.global.scss';
@@ -13,7 +14,7 @@ export default function ConnectionState({
   state,
 }: ConnectionStateProps): ReactElement {
   const ctx = useContext(ReactAlpContext);
-  const notLoggedIn = !ctx.sanitizedState.user;
+  const notLoggedIn = !(ctx.sanitizedState as { user?: unknown }).user;
 
   const unloadingRef = useRef<boolean>(false);
   const currentStateRef = useRef(state);
@@ -40,7 +41,7 @@ export default function ConnectionState({
     >
       {!state || notLoggedIn ? null : (
         <div>
-          <T id={`connectionState.${currentState}`} />
+          <T id={`connectionState.${currentState as string}`} />
         </div>
       )}
     </div>

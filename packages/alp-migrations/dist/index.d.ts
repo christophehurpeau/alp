@@ -1,5 +1,5 @@
-import { NodeApplication, NodeConfig } from 'alp-types';
-import MigrationsManager from './Manager';
+import type { NodeApplication, NodeConfig } from 'alp-types';
+import type MigrationsManager from './Manager';
 export { default as MigrationsManager } from './Manager';
 export interface Options {
     app: NodeApplication;

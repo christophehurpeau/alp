@@ -2,12 +2,15 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var _objectWithoutPropertiesLoose = _interopDefault(require('@babel/runtime/helpers/esm/objectWithoutPropertiesLoose'));
+var _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/esm/objectWithoutPropertiesLoose');
 var antd = require('antd');
+var React = require('react');
 var reactFinalForm = require('react-final-form');
-var React = _interopDefault(require('react'));
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
+
+var _objectWithoutPropertiesLoose__default = /*#__PURE__*/_interopDefaultLegacy(_objectWithoutPropertiesLoose);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function FormField(_ref) {
   var Component = _ref.component,
@@ -16,21 +19,21 @@ function FormField(_ref) {
       _ref$id = _ref.id,
       id = _ref$id === void 0 ? name : _ref$id,
       help = _ref.help,
-      props = _objectWithoutPropertiesLoose(_ref, ["component", "label", "name", "id", "help"]);
+      props = _objectWithoutPropertiesLoose__default(_ref, ["component", "label", "name", "id", "help"]);
 
-  return /*#__PURE__*/React.createElement(antd.Form.Item, {
+  return /*#__PURE__*/React__default.createElement(antd.Form.Item, {
     htmlFor: id,
     label: label,
     help: help
-  }, /*#__PURE__*/React.createElement(reactFinalForm.Field, Object.assign({
+  }, /*#__PURE__*/React__default.createElement(reactFinalForm.Field, Object.assign({
     id: id,
     name: name,
     render: function render(_ref2) {
       var input = _ref2.input,
           meta = _ref2.meta,
-          rest = _objectWithoutPropertiesLoose(_ref2, ["input", "meta"]);
+          rest = _objectWithoutPropertiesLoose__default(_ref2, ["input", "meta"]);
 
-      return /*#__PURE__*/React.createElement(Component, Object.assign({}, input, rest));
+      return /*#__PURE__*/React__default.createElement(Component, Object.assign({}, input, rest));
     }
   }, props)));
 }

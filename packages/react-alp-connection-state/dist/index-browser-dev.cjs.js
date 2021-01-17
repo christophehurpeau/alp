@@ -2,17 +2,19 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var React = require('react');
-var React__default = _interopDefault(React);
-var ReactAlpContext = _interopDefault(require('react-alp-context'));
+var ReactAlpContext = require('react-alp-context');
 var reactAlpTranslate = require('react-alp-translate');
 require('../ConnectionState.global.scss');
 
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var ReactAlpContext__default = /*#__PURE__*/_interopDefaultLegacy(ReactAlpContext);
+
 function ConnectionState(_ref) {
   var state = _ref.state;
-  var ctx = React.useContext(ReactAlpContext);
+  var ctx = React.useContext(ReactAlpContext__default);
   var notLoggedIn = !ctx.sanitizedState.user;
   var unloadingRef = React.useRef(false);
   var currentStateRef = React.useRef(state);
@@ -36,7 +38,7 @@ function ConnectionState(_ref) {
     hidden: !state || notLoggedIn || currentState === 'connected',
     className: "alp-connection-state"
   }, !state || notLoggedIn ? null : /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(reactAlpTranslate.T, {
-    id: "connectionState." + currentState
+    id: `connectionState.${currentState}`
   })));
 }
 

@@ -1,12 +1,14 @@
-/* eslint-disable camelcase, max-lines, @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable camelcase, max-lines */
 import { EventEmitter } from 'events';
+import 'alp-router';
+import type { Context, NodeConfig } from 'alp-types';
 import Logger from 'nightingale-logger';
-import { OAuthClient } from 'simple-oauth2';
-import { NodeConfig } from 'alp-types';
+import type { OAuthClient } from 'simple-oauth2';
+import type { AccountId, User, Account } from '../../../types.d';
 import { randomHex } from '../../utils/generators';
-import UserAccountsService from '../user/UserAccountsService';
-import { AccountId, User, Account } from '../../../types.d';
-import { AllowedStrategyKeys, Tokens } from './types';
+import type UserAccountsService from '../user/UserAccountsService';
+import type { AllowedStrategyKeys, Tokens } from './types';
 
 const logger = new Logger('alp:auth:authentication');
 
@@ -53,7 +55,7 @@ export interface AccessResponseHooks<StrategyKeys> {
   ) => void | Promise<void>;
 }
 
-export default class AuthenticationService<
+export class AuthenticationService<
   StrategyKeys extends AllowedStrategyKeys
 > extends EventEmitter {
   config: NodeConfig;
@@ -73,7 +75,7 @@ export default class AuthenticationService<
     this.userAccountsService = userAccountsService;
   }
 
-  generateAuthUrl<T extends StrategyKeys>(strategy: T, params: any) {
+  generateAuthUrl<T extends StrategyKeys>(strategy: T, params: any): string {
     logger.debug('generateAuthUrl', { strategy, params });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
@@ -122,7 +124,7 @@ export default class AuthenticationService<
   async refreshToken(
     strategy: StrategyKeys,
     tokensParam: { refreshToken: string },
-  ) {
+  ): Promise<Tokens> {
     logger.debug('refreshToken', { strategy });
     if (!tokensParam.refreshToken) {
       throw new Error('Missing refresh token');
@@ -130,7 +132,7 @@ export default class AuthenticationService<
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2': {
-        const token: any = strategyInstance.oauth2.accessToken.create({
+        const token = strategyInstance.oauth2.accessToken.create({
           refresh_token: tokensParam.refreshToken,
         });
         const result = await token.refresh();
@@ -153,7 +155,7 @@ export default class AuthenticationService<
     }
   }
 
-  redirectUri(ctx: any, strategy: string) {
+  redirectUri(ctx: Context, strategy: string): string {
     const host = `http${this.config.get('allowHttps') ? 's' : ''}://${
       ctx.request.host
     }`;
@@ -161,7 +163,7 @@ export default class AuthenticationService<
   }
 
   async redirectAuthUrl(
-    ctx: any,
+    ctx: Context,
     strategy: StrategyKeys,
     {
       refreshToken,
@@ -175,7 +177,7 @@ export default class AuthenticationService<
       accountId?: AccountId;
     },
     params?: any,
-  ) {
+  ): Promise<void> {
     logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
     const state = await randomHex(8);
     const isLoginAccess = !scopeKey || scopeKey === 'login';
@@ -219,7 +221,7 @@ export default class AuthenticationService<
     strategy: StrategyKey,
     isConnected: undefined | boolean,
     hooks: AccessResponseHooks<StrategyKeys>,
-  ) {
+  ): Promise<User> {
     if (ctx.query.error) {
       const error: any = new Error(ctx.query.error);
       error.status = 403;
@@ -283,7 +285,7 @@ export default class AuthenticationService<
     return connectedUser;
   }
 
-  refreshAccountTokens(user: User, account: Account) {
+  refreshAccountTokens(user: User, account: Account): Promise<boolean> {
     if (
       account.tokenExpireDate &&
       account.tokenExpireDate.getTime() > Date.now()

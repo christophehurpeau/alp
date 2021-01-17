@@ -1,9 +1,0 @@
-**/node_modules/*
-*.d.ts
-
-packages/*/dist
-packages/*/test
-packages/*/public
-packages/*/build
-packages/*/docs
-

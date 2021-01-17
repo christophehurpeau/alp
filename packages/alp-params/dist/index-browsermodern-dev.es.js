@@ -1,3 +1,4 @@
+import 'alp-router';
 import { defineLazyProperty } from 'object-properties';
 
 class ParamValueValidator {
@@ -85,7 +86,7 @@ function alpParams(app) {
 
     namedParam(name) {
       const namedParams = this.route.namedParams;
-      return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
+      return namedParams?.get(name);
     },
 
     otherParam(position) {
@@ -95,7 +96,7 @@ function alpParams(app) {
 
     paramGET(name) {
       const query = this.query;
-      return query === null || query === void 0 ? void 0 : query[name];
+      return query?.[name];
     },
 
     paramGETorPOST(name) {

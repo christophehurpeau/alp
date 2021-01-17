@@ -7,29 +7,43 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com:christophehurpeau/alp.git",
+    "url": "https://github.com/christophehurpeau/alp.git",
     "directory": "packages/alp-browser-errors"
   },
   "homepage": "https://github.com/christophehurpeau/alp",
   "browserslist": [
-    "> 0.1%",
+    "> 0.2%",
     "Firefox ESR",
-    "not ie < 9",
-    "not dead"
+    "not ie < 12",
+    "not dead",
+    "not op_mini all"
   ],
   "main": "./dist/index-browser.es.js",
   "types": "./dist/index.d.ts",
   "module": "./dist/index-browser.es.js",
-  "module-dev": "./dist/index-browser-dev.es.js",
-  "module:browser": "./dist/index-browser.es.js",
-  "module:browser-dev": "./dist/index-browser-dev.es.js",
-  "module:modern-browsers": "./dist/index-browsermodern.es.js",
-  "module:modern-browsers-dev": "./dist/index-browsermodern-dev.es.js",
+  "exports": {
+    ".": {
+      "browser": {
+        "browser:modern": {
+          "development": {
+            "import": "./dist/index-browsermodern-dev.mjs"
+          },
+          "import": "./dist/index-browsermodern.mjs"
+        },
+        "development": {
+          "import": "./dist/index-browser-dev.mjs"
+        },
+        "import": "./dist/index-browser.mjs"
+      }
+    }
+  },
+  "sideEffects": false,
   "scripts": {
-    "build": "pob-build",
+    "build": "pob-build && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist test/node6 coverage",
-    "lint": "yarn --cwd ../.. lint packages/alp-browser-errors",
+    "lint": "yarn run lint:eslint",
+    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.ts --report-unused-disable-directives --quiet packages/alp-browser-errors",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -58,7 +72,7 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "^7.10.2",
+    "@babel/runtime": "^7.12.5",
     "alp-types": "^2.0.0",
     "error-html": "^0.3.5",
     "nightingale-logger": "^10.0.1"
@@ -66,7 +80,8 @@
   "devDependencies": {
     "@babel/core": "7.12.10",
     "@babel/preset-env": "7.12.11",
-    "babel-preset-modern-browsers": "14.2.1",
-    "pob-babel": "24.12.0"
+    "babel-preset-modern-browsers": "15.0.2",
+    "pob-babel": "26.3.0",
+    "rollup": "2.36.1"
   }
 }

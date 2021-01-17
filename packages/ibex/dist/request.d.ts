@@ -1,6 +1,7 @@
 /// <reference types="node" />
-import { ParsedUrlQuery } from 'querystring';
-export interface Request {
+import type { ParsedUrlQuery } from 'querystring';
+import type Application from '.';
+export interface BaseRequest {
     readonly url: string;
     readonly origin: string;
     readonly href: string;
@@ -11,7 +12,11 @@ export interface Request {
     readonly host: string;
     readonly protocol: string;
     readonly hostname: string;
+    readonly headers: Record<string, string>;
 }
-declare const request: Request;
+export interface Request extends BaseRequest {
+    readonly app: Application;
+}
+declare const request: BaseRequest;
 export default request;
 //# sourceMappingURL=request.d.ts.map

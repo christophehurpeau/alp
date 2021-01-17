@@ -1,9 +1,9 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
-import { AccountId, User, Account } from '../../../types.d';
-import MongoUsersManager from '../../MongoUsersManager';
-import { AllowedStrategyKeys } from '../authentification/types';
-import { AccountService, TokensObject } from './types';
+import type { AccountId, User, Account } from '../../../types.d';
+import type MongoUsersManager from '../../MongoUsersManager';
+import type { AllowedStrategyKeys } from '../authentification/types';
+import type { AccountService, TokensObject } from './types';
 export declare const STATUSES: {
     VALIDATED: string;
     DELETED: string;
@@ -15,7 +15,7 @@ export default class UserAccountsService<StrategyKeys extends AllowedStrategyKey
     getScope(strategy: StrategyKeys, scopeKey: string, user?: User, accountId?: AccountId): string;
     update(user: User, strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<{
         user: User;
-        account: Account;
+        account: User['accounts'][number];
     }>;
     findOrCreateFromStrategy(strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
     updateAccount(user: User, account: Account): Promise<User>;

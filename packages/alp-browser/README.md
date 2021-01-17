@@ -8,7 +8,6 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-browser"><img src="https://img.shields.io/npm/v/alp-browser.svg?style=flat-square"></a>
-  <a href="https://david-dm.org/christophehurpeau/alp?path=packages/alp-browser"><img src="https://david-dm.org/christophehurpeau/alp.svg?path=packages/alp-browser?style=flat-square"></a>
 </p>
 
 ## Install
@@ -34,7 +33,7 @@ app.start(async () => {
   if (window.MODULE_IDENTIFIER) {
     await app.initialRender(
       moduleDescriptors[window.MODULE_IDENTIFIER],
-      window.initialData
+      window.initialData,
     );
   }
 

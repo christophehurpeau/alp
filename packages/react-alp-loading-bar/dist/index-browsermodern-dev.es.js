@@ -17,9 +17,7 @@ const LoadingBarComponent = ({ progress }) => (
 
 /* number between 0 and 1 */
 
-const random = function random() {
-  return Math.ceil(Math.random() * 100) / 100;
-};
+const random = () => Math.ceil(Math.random() * 100) / 100;
 /**
  * around:
  * at 100ms 20%
@@ -29,7 +27,7 @@ const random = function random() {
  */
 
 
-const calculatePercent = function calculatePercent(percent) {
+const calculatePercent = percent => {
   if (percent < 60) return percent + random() * 10 + 5;
   if (percent < 70) return percent + random() * 10 + 3;else if (percent < 80) return percent + random() + 5;else if (percent < 90) return percent + random() + 1;else if (percent < 95) return percent + 0.1;else return percent;
 };
@@ -45,27 +43,23 @@ class LoadingBar extends PureComponent {
   }
 
   componentDidMount() {
-    var _this = this;
-
     const websocket = this.getWebsocket();
 
     if (websocket.isConnected()) {
-      this.setState(function (prevState) {
-        return {
-          loading: false,
-          progress: 100,
-          hidden: prevState.hidden || prevState.progress === 100
-        };
-      });
+      this.setState(prevState => ({
+        loading: false,
+        progress: 100,
+        hidden: prevState.hidden || prevState.progress === 100
+      }));
     }
 
-    websocket.on('connect', function () {
-      _this.setState({
+    websocket.on('connect', () => {
+      this.setState({
         loading: false
       });
     });
-    websocket.on('disconnect', function () {
-      _this.setState({
+    websocket.on('disconnect', () => {
+      this.setState({
         loading: true,
         progress: 1,
         hidden: false
@@ -91,21 +85,20 @@ class LoadingBar extends PureComponent {
   }
 
   getWebsocket() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
     return this.context.app.websocket;
   }
 
   showBar() {
-    var _this2 = this;
-
     clearTimeout(this.fadeOffTimeout);
     clearTimeout(this.resetTimeout);
-    this.first20Timeout = setTimeout(function () {
-      _this2.setState({
+    this.first20Timeout = setTimeout(() => {
+      this.setState({
         progress: 20
       });
     }, 100);
-    this.progressTimer = setInterval(function () {
-      _this2.setState(function (prevState) {
+    this.progressTimer = setInterval(() => {
+      this.setState(prevState => {
         const newValue = calculatePercent(prevState.progress);
         return {
           progress: newValue
@@ -115,17 +108,15 @@ class LoadingBar extends PureComponent {
   }
 
   hideBar() {
-    var _this3 = this;
-
     clearTimeout(this.first20Timeout);
     clearInterval(this.progressTimer);
-    this.fadeOffTimeout = setTimeout(function () {
-      _this3.setState({
+    this.fadeOffTimeout = setTimeout(() => {
+      this.setState({
         progress: 100
       });
     }, 500);
-    this.resetTimeout = setTimeout(function () {
-      _this3.setState({
+    this.resetTimeout = setTimeout(() => {
+      this.setState({
         hidden: true,
         progress: 1
       });

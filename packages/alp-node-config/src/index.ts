@@ -1,16 +1,16 @@
 import { existsSync, readFileSync } from 'fs';
-import argv from 'minimist-argv';
+import type { NodeApplication, NodeConfig, PackageConfig } from 'alp-types';
 import deepFreeze from 'deep-freeze-es6';
+import argv from 'minimist-argv';
 import parseJSON from 'parse-json-object-as-map';
-import { NodeApplication, NodeConfig, PackageConfig } from 'alp-types';
 
-function _existsConfigSync(dirname: string, name: string) {
+function _existsConfigSync(dirname: string, name: string): boolean {
   return existsSync(`${dirname}${name}.json`);
 }
 
-function _loadConfigSync(dirname: string, name: string) {
+function _loadConfigSync(dirname: string, name: string): Map<string, unknown> {
   const content = readFileSync(`${dirname}${name}.json`, 'utf-8');
-  return parseJSON(content);
+  return parseJSON(content) as Map<string, unknown>;
 }
 
 export interface ConfigOptions {
@@ -22,12 +22,12 @@ export interface ConfigOptions {
 export class Config {
   packageConfig?: PackageConfig;
 
-  private _map: Map<string, any>;
+  private _map: Map<string, unknown>;
 
   private readonly _dirname: string;
 
   constructor(dirname: string, options?: ConfigOptions) {
-    this._map = new Map();
+    this._map = new Map<string, unknown>();
     this._dirname = dirname.replace(/\/*$/, '/');
     if (options) {
       this.loadSync(options);
@@ -39,7 +39,7 @@ export class Config {
     const { argv: argvOverrides = [], packageConfig, version } = options;
     this.packageConfig = packageConfig;
 
-    const config = this.loadConfigSync('common');
+    const config = this.loadConfigSync('common') as Map<string, unknown>;
     // eslint-disable-next-line no-restricted-syntax
     for (const [key, value] of this.loadConfigSync(env)) {
       config.set(key, value);
@@ -61,7 +61,8 @@ export class Config {
       String(version || argv.version || packageConfig?.version),
     );
 
-    const socketPath = argv['socket-path'] || argv.socketPath;
+    const socketPath: string | undefined = (argv['socket-path'] ||
+      argv.socketPath) as string | undefined;
     if (socketPath) {
       config.set('socketPath', socketPath);
     } else if (argv.port) {
@@ -75,7 +76,7 @@ export class Config {
     argvOverrides.forEach((key) => {
       const splitted = key.split('.');
       const value =
-        splitted.length !== 0 &&
+        splitted.length > 0 &&
         splitted.reduce((config, partialKey) => config?.[partialKey], argv);
       if (value !== undefined) {
         const last = splitted.pop() as string;
@@ -83,7 +84,8 @@ export class Config {
           splitted.length === 0
             ? config
             : splitted.reduce(
-                (config, partialKey) => config.get(partialKey),
+                (config, partialKey) =>
+                  config.get(partialKey) as Map<string, unknown>,
                 config,
               );
         map.set(last, value);
@@ -94,15 +96,15 @@ export class Config {
     return this as Config & NodeConfig;
   }
 
-  get(key: string): any {
-    return this._map.get(key);
+  get<T>(key: string): T {
+    return this._map.get(key) as T;
   }
 
   existsConfigSync(name: string): boolean {
     return _existsConfigSync(this._dirname, name);
   }
 
-  loadConfigSync(name: string): Map<string, any> {
+  loadConfigSync(name: string): ReadonlyMap<string, unknown> {
     return _loadConfigSync(this._dirname, name);
   }
 }
