@@ -42,19 +42,25 @@
       "browser": {
         "browser:modern": {
           "development": {
-            "import": "./dist/index-browsermodern-dev.mjs"
+            "import": "./dist/index-browsermodern-dev.es.js"
           },
-          "import": "./dist/index-browsermodern.mjs"
+          "import": "./dist/index-browsermodern.es.js"
         },
         "development": {
-          "import": "./dist/index-browser-dev.mjs",
+          "import": "./dist/index-browser-dev.es.js",
           "require": "./dist/index-browser-dev.cjs.js"
         },
-        "import": "./dist/index-browser.mjs",
+        "import": "./dist/index-browser.es.js",
         "require": "./dist/index-browser.cjs.js"
       }
     }
   },
+  "module:node": "./dist/index-node12.mjs",
+  "module:node-dev": "./dist/index-node12-dev.mjs",
+  "module:browser": "./dist/index-browser.es.js",
+  "module:browser-dev": "./dist/index-browser-dev.es.js",
+  "module:modern-browsers": "./dist/index-browsermodern.es.js",
+  "module:modern-browsers-dev": "./dist/index-browsermodern-dev.es.js",
   "sideEffects": false,
   "scripts": {
     "build": "pob-build && yarn run build:definitions",
@@ -62,7 +68,7 @@
     "clean": "rm -Rf docs dist",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_ENV=production BABEL_ENV=test jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-params",
+    "lint:eslint": "yarn --cwd ../.. run eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-params",
     "test": "jest",
     "test:watch": "jest",
     "watch": "pob-watch"
@@ -131,7 +137,7 @@
     "@babel/preset-env": "7.12.11",
     "@types/jest": "26.0.20",
     "babel-jest": "26.6.3",
-    "babel-preset-latest-node": "5.2.0",
+    "babel-preset-latest-node": "5.4.0",
     "babel-preset-modern-browsers": "15.0.2",
     "jest": "26.6.3",
     "pob-babel": "26.3.0",

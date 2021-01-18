@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 function alpRouter(router) {
-  return function (app) {
+  return app => {
     app.router = router;
 
     app.context.urlGenerator = function (routeKey, params) {
@@ -14,8 +14,8 @@ function alpRouter(router) {
       return this.redirect(router.toLocalizedPath(this.language, to, params));
     };
 
-    return function (ctx) {
-      var routeMatch = router.find(ctx.request.path, ctx.language);
+    return ctx => {
+      const routeMatch = router.find(ctx.request.path, ctx.language);
 
       if (!routeMatch) {
         ctx.status = 404;

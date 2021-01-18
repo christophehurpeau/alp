@@ -13,10 +13,10 @@ var _asyncToGenerator__default = /*#__PURE__*/_interopDefaultLegacy(_asyncToGene
 var IntlMessageFormat__default = /*#__PURE__*/_interopDefaultLegacy(IntlMessageFormat);
 
 function load(translations, language) {
-  var result = new Map();
+  const result = new Map();
 
   (function loadMap(map, prefix) {
-    map.forEach(function (value, key) {
+    map.forEach((value, key) => {
       if (typeof value === 'object') {
         return loadMap(value, `${prefix}${key}.`);
       }
@@ -34,33 +34,31 @@ function alpTranslate(dirname) {
     var _ref = _asyncToGenerator__default( /*#__PURE__*/_regeneratorRuntime__default.mark(function _callee(app) {
       var language, map, translations, msg;
       return _regeneratorRuntime__default.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              language = app.context.language;
-              _context.next = 3;
-              return app.loadConfig(dirname + language);
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            language = app.context.language;
+            _context.next = 3;
+            return app.loadConfig(dirname + language);
 
-            case 3:
-              map = _context.sent;
-              translations = load(map, language);
-              _context.t0 = Object;
-              _context.t1 = app.context;
-              _context.t2 = {
-                t(key, args) {
-                  msg = translations.get(key);
-                  if (!msg) return key;
-                  return msg.format(args);
-                }
+          case 3:
+            map = _context.sent;
+            translations = load(map, language);
+            _context.t0 = Object;
+            _context.t1 = app.context;
+            _context.t2 = {
+              t(key, args) {
+                msg = translations.get(key);
+                if (!msg) return key;
+                return msg.format(args);
+              }
 
-              };
+            };
 
-              _context.t0.assign.call(_context.t0, _context.t1, _context.t2);
+            _context.t0.assign.call(_context.t0, _context.t1, _context.t2);
 
-            case 9:
-            case "end":
-              return _context.stop();
-          }
+          case 9:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));

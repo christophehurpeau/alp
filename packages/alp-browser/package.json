@@ -34,24 +34,28 @@
       "browser": {
         "browser:modern": {
           "development": {
-            "import": "./dist/index-browsermodern-dev.mjs"
+            "import": "./dist/index-browsermodern-dev.es.js"
           },
-          "import": "./dist/index-browsermodern.mjs"
+          "import": "./dist/index-browsermodern.es.js"
         },
         "development": {
-          "import": "./dist/index-browser-dev.mjs"
+          "import": "./dist/index-browser-dev.es.js"
         },
-        "import": "./dist/index-browser.mjs"
+        "import": "./dist/index-browser.es.js"
       }
     }
   },
+  "module:browser": "./dist/index-browser.es.js",
+  "module:browser-dev": "./dist/index-browser-dev.es.js",
+  "module:modern-browsers": "./dist/index-browsermodern.es.js",
+  "module:modern-browsers-dev": "./dist/index-browsermodern-dev.es.js",
   "sideEffects": false,
   "scripts": {
     "build": "pob-build && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-browser",
+    "lint:eslint": "yarn --cwd ../.. run eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-browser",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -81,7 +85,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
-    "@types/webpack-env": "^1.14.1",
+    "@types/webpack-env": "^1.16.0",
     "alp-browser-config": "^6.0.1",
     "alp-browser-language": "^4.0.1",
     "alp-translate": "^5.0.1",

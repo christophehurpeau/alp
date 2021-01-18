@@ -306,6 +306,7 @@ const createNodeCompiler = production => pobpackNode.createAppNodeCompiler(creat
 const watchAndRun = (nodeCompiler, port) => pobpackNode.watchAndRunCompiler(nodeCompiler, {
   key: 'alp-dev:node:watchAndRun',
   displayName: 'node:watchAndRun',
+  // nodeArgs: ['--conditions=development'],
   args: ['--trace-warnings', '--port', port, '--version', Date.now()],
   cwd: path__default.resolve('.')
 });

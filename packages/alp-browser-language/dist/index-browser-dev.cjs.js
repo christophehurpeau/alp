@@ -3,16 +3,16 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 function alpLanguage(app) {
-  var config = app.context.config;
-  var availableLanguages = config.get('availableLanguages');
+  const config = app.context.config;
+  const availableLanguages = config.get('availableLanguages');
 
   if (!availableLanguages) {
     throw new Error('Missing config "availableLanguages"');
   }
 
   app.context.firstAcceptedLanguage = navigator.languages[0] || availableLanguages[0];
-  var languageFound = navigator.languages.some(function (language) {
-    var languageCode = language.split('-')[0].toLowerCase();
+  const languageFound = navigator.languages.some(language => {
+    const languageCode = language.split('-')[0].toLowerCase();
 
     if (availableLanguages.includes(languageCode)) {
       app.context.language = languageCode;

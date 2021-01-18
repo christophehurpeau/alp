@@ -51,13 +51,21 @@
       "require": "./fetch.js"
     }
   },
+  "module:node": "./dist/index-node12.mjs",
+  "module:node-dev": "./dist/index-node12-dev.mjs",
+  "module:aliases-node": {
+    "./AlpNodeApp.js": "./dist/AlpNodeApp-node12.es.js"
+  },
+  "module:aliases-node-dev": {
+    "./AlpNodeApp.js": "./dist/AlpNodeApp-node12-dev.es.js"
+  },
   "sideEffects": false,
   "scripts": {
     "build": "pob-build && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-node",
+    "lint:eslint": "yarn --cwd ../.. run eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-node",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -97,7 +105,7 @@
     "koa-compress": "^3.0.0",
     "koa-static": "^5.0.0",
     "nightingale-logger": "^11.0.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
@@ -105,7 +113,7 @@
     "@types/koa-compress": "2.0.9",
     "@types/koa-static": "4.0.1",
     "@types/minimist": "1.2.1",
-    "babel-preset-latest-node": "5.2.0",
+    "babel-preset-latest-node": "5.4.0",
     "pob-babel": "26.3.0",
     "rollup": "2.36.2"
   }

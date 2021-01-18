@@ -4,7 +4,7 @@ import React from 'react';
 import { Field } from 'react-final-form';
 
 function FormField(_ref) {
-  var Component = _ref.component,
+  let Component = _ref.component,
       label = _ref.label,
       name = _ref.name,
       _ref$id = _ref.id,
@@ -19,8 +19,8 @@ function FormField(_ref) {
   }, /*#__PURE__*/React.createElement(Field, Object.assign({
     id: id,
     name: name,
-    render: function render(_ref2) {
-      var input = _ref2.input,
+    render: (_ref2) => {
+      let input = _ref2.input,
           meta = _ref2.meta,
           rest = _objectWithoutPropertiesLoose(_ref2, ["input", "meta"]);
 

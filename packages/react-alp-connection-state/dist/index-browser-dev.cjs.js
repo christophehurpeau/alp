@@ -12,25 +12,26 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var ReactAlpContext__default = /*#__PURE__*/_interopDefaultLegacy(ReactAlpContext);
 
-function ConnectionState(_ref) {
-  var state = _ref.state;
-  var ctx = React.useContext(ReactAlpContext__default);
-  var notLoggedIn = !ctx.sanitizedState.user;
-  var unloadingRef = React.useRef(false);
-  var currentStateRef = React.useRef(state);
+function ConnectionState({
+  state
+}) {
+  const ctx = React.useContext(ReactAlpContext__default);
+  const notLoggedIn = !ctx.sanitizedState.user;
+  const unloadingRef = React.useRef(false);
+  const currentStateRef = React.useRef(state);
 
   if (unloadingRef.current === false) {
     currentStateRef.current = state;
   }
 
-  var currentState = currentStateRef.current;
-  React.useEffect(function () {
-    var beforeUnloadHandler = function beforeUnloadHandler() {
+  const currentState = currentStateRef.current;
+  React.useEffect(() => {
+    const beforeUnloadHandler = () => {
       unloadingRef.current = true;
     };
 
     window.addEventListener('beforeunload', beforeUnloadHandler);
-    return function () {
+    return () => {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, []);

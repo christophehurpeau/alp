@@ -2,33 +2,29 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var _assertThisInitialized = require('@babel/runtime/helpers/esm/assertThisInitialized');
-var _inheritsLoose = require('@babel/runtime/helpers/esm/inheritsLoose');
 var events = require('events');
 var Logger = require('nightingale-logger');
 var querystring = require('querystring');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
 
-var _assertThisInitialized__default = /*#__PURE__*/_interopDefaultLegacy(_assertThisInitialized);
-var _inheritsLoose__default = /*#__PURE__*/_interopDefaultLegacy(_inheritsLoose);
 var Logger__default = /*#__PURE__*/_interopDefaultLegacy(Logger);
 
 // TODO create lib
 function compose(middlewares) {
   return function (ctx) {
-    var index = -1;
+    let index = -1;
     return function dispatch(i) {
       if (i <= index) {
         return Promise.reject(new Error(undefined));
       }
 
       index = i;
-      var fn = middlewares[i];
-      var called = false;
+      const fn = middlewares[i];
+      let called = false;
 
       try {
-        return Promise.resolve(fn.call(ctx, ctx, function () {
+        return Promise.resolve(fn.call(ctx, ctx, () => {
           if (called) {
             throw new Error(undefined);
           }
@@ -43,9 +39,9 @@ function compose(middlewares) {
   };
 }
 
-var proto = {};
+const proto = {};
 
-var defineGetter = function defineGetter(target, name) {
+const defineGetter = (target, name) => {
   Object.defineProperty(proto, name, {
     get() {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
@@ -55,7 +51,7 @@ var defineGetter = function defineGetter(target, name) {
   });
 };
 
-var defineAccess = function defineAccess(target, name) {
+const defineAccess = (target, name) => {
   Object.defineProperty(proto, name, {
     get() {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
@@ -72,17 +68,11 @@ var defineAccess = function defineAccess(target, name) {
   });
 };
 
-var defineMethod = function defineMethod(target, name) {
+const defineMethod = (target, name) => {
   Object.defineProperty(proto, name, {
-    value() {
-      var _this$target$name, _len, args, _key;
-
-      for (_len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
+    value(...args) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-      return (_this$target$name = this[target][name]).call.apply(_this$target$name, [this[target]].concat(args));
+      return this[target][name].call(this[target], ...args);
     }
 
   });
@@ -101,7 +91,7 @@ defineGetter('request', 'url');
 defineGetter('request', 'search');
 defineGetter('request', 'searchParams');
 
-var request = {
+const request = {
   get search() {
     return window.location.search;
   },
@@ -160,11 +150,11 @@ var request = {
 
 };
 
-var response = {
+const response = {
   redirect(url) {
     if (this.app.emit('redirect', url) === false) {
       window.location.href = url;
-      return new Promise(function () {// promise that never resolves.
+      return new Promise(() => {// promise that never resolves.
       });
     }
 
@@ -173,7 +163,7 @@ var response = {
 
 };
 
-var logger = new Logger__default('ibex');
+const logger = new Logger__default('ibex');
 
 function respond(ctx) {
   // allow bypassing
@@ -181,7 +171,7 @@ function respond(ctx) {
     return;
   }
 
-  var body = ctx.body;
+  const body = ctx.body;
   if (body == null) return; // const code = ctx.status;
 
   if (typeof body === 'string') {
@@ -197,33 +187,27 @@ function respond(ctx) {
   throw new Error('Invalid body result');
 }
 
-var Application = /*#__PURE__*/function (_EventEmitter) {
-  _inheritsLoose__default(Application, _EventEmitter);
-
-  function Application() {
-    var _this = _EventEmitter.call(this) || this;
-
-    _this.middleware = [];
-    _this.context = Object.create(proto);
-    _this.context.app = _assertThisInitialized__default(_this);
-    return _this;
+class Application extends events.EventEmitter {
+  constructor() {
+    super();
+    this.middleware = [];
+    this.context = Object.create(proto);
+    this.context.app = this;
   }
 
-  var _proto = Application.prototype;
-
-  _proto.use = function use(fn) {
+  use(fn) {
     logger.debug('use', {
       name: fn.name || '-'
     });
     this.middleware.push(fn);
     return this;
-  };
+  }
 
-  _proto.onerror = function onerror(e) {
+  onerror(e) {
     logger.error(e);
-  };
+  }
 
-  _proto.run = function run(url) {
+  run(url) {
     if (this.listeners('error').length === 0) {
       this.on('error', this.onerror);
     }
@@ -234,10 +218,10 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.load(url);
     }
-  };
+  }
 
-  _proto.createContext = function createContext() {
-    var context = Object.create(this.context);
+  createContext() {
+    const context = Object.create(this.context);
     context.request = Object.create(request);
     context.response = Object.create(response);
     Object.assign(context.request, {
@@ -249,11 +233,9 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
     context.state = {};
     context.sanitizedState = {};
     return context;
-  };
+  }
 
-  _proto.load = function load(url) {
-    var _this2 = this;
-
+  load(url) {
     logger.debug('load', {
       url
     });
@@ -266,16 +248,13 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
       throw new Error('You should call load() after run()');
     }
 
-    var context = this.createContext();
-    return this.callback(context).then(function () {
-      return respond(context);
-    }).catch(function (err) {
-      _this2.emit('error', err);
+    const context = this.createContext();
+    return this.callback(context).then(() => respond(context)).catch(err => {
+      this.emit('error', err);
     });
-  };
+  }
 
-  return Application;
-}(events.EventEmitter);
+}
 
 exports.default = Application;
 //# sourceMappingURL=index-browser.cjs.js.map

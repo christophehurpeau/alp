@@ -95,6 +95,26 @@
       }
     }
   },
+  "module:node": "./dist/index-node12.mjs",
+  "module:node-dev": "./dist/index-node12-dev.mjs",
+  "module:aliases-node": {
+    "./watch.js": "./dist/watch-node12.es.js",
+    "./watch-browser.js": "./dist/watch-browser-node12.es.js",
+    "./watch-node.js": "./dist/watch-node-node12.es.js",
+    "./build.js": "./dist/build-node12.es.js",
+    "./build-modern-browser.js": "./dist/build-modern-browser-node12.es.js",
+    "./build-node.js": "./dist/build-node-node12.es.js",
+    "./build-older-browser.js": "./dist/build-older-browser-node12.es.js"
+  },
+  "module:aliases-node-dev": {
+    "./watch.js": "./dist/watch-node12-dev.es.js",
+    "./watch-browser.js": "./dist/watch-browser-node12-dev.es.js",
+    "./watch-node.js": "./dist/watch-node-node12-dev.es.js",
+    "./build.js": "./dist/build-node12-dev.es.js",
+    "./build-modern-browser.js": "./dist/build-modern-browser-node12-dev.es.js",
+    "./build-node.js": "./dist/build-node-node12-dev.es.js",
+    "./build-older-browser.js": "./dist/build-older-browser-node12-dev.es.js"
+  },
   "sideEffects": false,
   "bin": {
     "alp-dev": "./dev",
@@ -108,7 +128,7 @@
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf docs dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn --cwd ../.. eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-dev",
+    "lint:eslint": "yarn --cwd ../.. run eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-dev",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -147,7 +167,7 @@
     "babel-plugin-discard-module-references": "^1.1.2",
     "babel-plugin-import": "^1.13.0",
     "babel-plugin-inline-classnames-babel7": "^1.1.9",
-    "babel-preset-latest-node": "^5.2.0",
+    "babel-preset-latest-node": "^5.4.0",
     "babel-preset-modern-browsers": "^15.0.2",
     "babel-preset-pob-env": "^5.2.0",
     "colorette": "^1.1.0",
@@ -182,7 +202,7 @@
     "typed-css-modules-loader": "^0.0.18",
     "url-loader": "^3.0.0",
     "webpack": "^4.44.1",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "3.11.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
