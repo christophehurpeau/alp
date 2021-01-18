@@ -167,7 +167,7 @@ function createPobpackConfig(target, production = false) {
     env: process.env.NODE_ENV,
     hmr: !production,
     typescript: true,
-    whitelistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'scss', 'css'],
+    allowlistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'scss', 'css'],
     includeModules: [],
     paths: {
       build: target === 'node' ? 'build' : 'public'

@@ -154,7 +154,7 @@ function createPobpackConfig(target, production = false) {
     env: process.env.NODE_ENV,
     hmr: !production,
     typescript: true,
-    whitelistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'scss', 'css'],
+    allowlistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'scss', 'css'],
     includeModules: [],
     paths: {
       build: target === 'node' ? 'build' : 'public'
@@ -289,7 +289,7 @@ function createPobpackConfig(target, production = false) {
 
 const createOlderBrowserCompiler = production => createAppBrowserCompiler(ALL, createPobpackConfig('browser', production));
 
-const browserCompiler = createOlderBrowserCompiler(process.env.NODE_ENV === 'production'); // eslint-disable-next-line @typescript-eslint/no-floating-promises
+const browserCompiler = createOlderBrowserCompiler(process.env.NODE_ENV !== 'development'); // eslint-disable-next-line @typescript-eslint/no-floating-promises
 
 browserCompiler.run();
 //# sourceMappingURL=build-older-browser-node12.mjs.map

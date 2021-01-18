@@ -29,7 +29,7 @@
     "alp-browser": "^3.0.1",
     "alp-node": "^3.0.1",
     "alp-react": "^18.0.1",
-    "nightingale-app-console": "11.0.0",
+    "nightingale-app-console": "11.0.5",
     "react": "16.14.0",
     "react-alp-context": "^3.0.1",
     "react-alp-translate": "^5.0.1",

@@ -155,7 +155,7 @@ function createPobpackConfig(target, production = false) {
     env: process.env.NODE_ENV,
     hmr: !production,
     typescript: true,
-    whitelistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'scss', 'css'],
+    allowlistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'scss', 'css'],
     includeModules: [],
     paths: {
       build: target === 'node' ? 'build' : 'public'
@@ -294,7 +294,7 @@ const createNodeCompiler = production => createAppNodeCompiler(createPobpackConf
 const watchAndRun = (nodeCompiler, port) => watchAndRunCompiler(nodeCompiler, {
   key: 'alp-dev:node:watchAndRun',
   displayName: 'node:watchAndRun',
-  // nodeArgs: ['--conditions=development'],
+  nodeArgs: ['--conditions=development'],
   args: ['--trace-warnings', '--port', port, '--version', Date.now()],
   cwd: path.resolve('.')
 });

@@ -90,7 +90,7 @@ function alpParams(app) {
 
     namedParam(name) {
       const namedParams = this.route.namedParams;
-      return namedParams == null ? void 0 : namedParams.get(name);
+      return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
     },
 
     otherParam(position) {
@@ -100,7 +100,7 @@ function alpParams(app) {
 
     paramGET(name) {
       const query = this.request.query;
-      return query == null ? void 0 : query[name];
+      return query === null || query === void 0 ? void 0 : query[name];
     },
 
     paramGETorPOST(name) {

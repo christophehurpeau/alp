@@ -16,7 +16,7 @@ export const watchAndRun = (
   watchAndRunCompiler(nodeCompiler, {
     key: 'alp-dev:node:watchAndRun',
     displayName: 'node:watchAndRun',
-    // nodeArgs: ['--conditions=development'],
+    nodeArgs: ['--conditions=development'],
     args: ['--trace-warnings', '--port', port, '--version', Date.now()],
     cwd: path.resolve('.'),
   });

@@ -40,7 +40,7 @@ export default function createPobpackConfig(
     hmr: !production,
     typescript: true,
 
-    whitelistExternalExtensions: [
+    allowlistExternalExtensions: [
       'png',
       'jpg',
       'jpeg',

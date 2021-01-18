@@ -79,13 +79,13 @@
     "@babel/runtime": "^7.12.5",
     "alp-types": "^3.0.0",
     "error-html": "^0.3.5",
-    "nightingale-logger": "^11.0.0"
+    "nightingale-logger": "^11.0.5"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
     "@babel/preset-env": "7.12.11",
     "babel-preset-modern-browsers": "15.0.2",
-    "pob-babel": "26.3.0",
+    "pob-babel": "26.4.0",
     "rollup": "2.36.2"
   }
 }
