@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.1.0](https://github.com/christophehurpeau/alp/compare/alp-dev@15.0.1...alp-dev@15.1.0) (2021-01-18)
+
+
+### Bug Fixes
+
+* deps and export import browser ([c8e51a6](https://github.com/christophehurpeau/alp/commit/c8e51a61befee852cbdbfb7697c7fd273a8d49ef))
+* multiple stuff ([e914474](https://github.com/christophehurpeau/alp/commit/e9144747913b8edae7dc1ba94767d03e085cbdcd))
+
+
+### Features
+
+* build for node 12 ([dbb4424](https://github.com/christophehurpeau/alp/commit/dbb4424722ae75c01a2ac77bca35baa6a5a75af5))
+
+
+
+
+
 ## [15.0.1](https://github.com/christophehurpeau/alp/compare/alp-dev@15.0.0...alp-dev@15.0.1) (2021-01-17)
 
 **Note:** Version bump only for package alp-dev

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.2](https://github.com/christophehurpeau/alp/compare/alp-migrations@5.0.1...alp-migrations@5.0.2) (2021-01-18)
+
+
+### Bug Fixes
+
+* deps and export import browser ([c8e51a6](https://github.com/christophehurpeau/alp/commit/c8e51a61befee852cbdbfb7697c7fd273a8d49ef))
+* multiple stuff ([e914474](https://github.com/christophehurpeau/alp/commit/e9144747913b8edae7dc1ba94767d03e085cbdcd))
+
+
+
+
+
 ## [5.0.1](https://github.com/christophehurpeau/alp/compare/alp-migrations@5.0.0...alp-migrations@5.0.1) (2021-01-17)
 
 **Note:** Version bump only for package alp-migrations

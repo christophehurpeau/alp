@@ -1,6 +1,6 @@
 {
   "name": "alp-translate",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Translation in alp framework",
   "keywords": [
     "alp"
@@ -144,7 +144,7 @@
     "alp-types": "^3.0.0",
     "intl-messageformat": "^9.3.9",
     "nightingale-logger": "^11.0.5",
-    "react-alp-context": "^3.0.1"
+    "react-alp-context": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
