@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.5](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.4...alp-node-auth@5.0.5) (2021-01-23)
+
+
+### Bug Fixes
+
+* **alp-node-auth:** use ContextState and ContextSanitizedState to determine User and UserSanitized ([41186a9](https://github.com/christophehurpeau/alp/commit/41186a9d9d44ffb4904df7b3f591315f760f8f41))
+
+
+
+
+
 ## [5.0.4](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.3...alp-node-auth@5.0.4) (2021-01-23)
 
 **Note:** Version bump only for package alp-node-auth
