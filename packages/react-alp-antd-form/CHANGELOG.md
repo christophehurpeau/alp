@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/christophehurpeau/alp/compare/react-alp-antd-form@2.0.2...react-alp-antd-form@2.0.3) (2021-01-23)
+
+
+### Bug Fixes
+
+* **react-alp-antd-form:** typings ([344ad84](https://github.com/christophehurpeau/alp/commit/344ad84e4913f860f42d556cad282a8dd280d867))
+
+
+
+
+
 ## [2.0.2](https://github.com/christophehurpeau/alp/compare/react-alp-antd-form@2.0.1...react-alp-antd-form@2.0.2) (2021-01-18)
 
 
