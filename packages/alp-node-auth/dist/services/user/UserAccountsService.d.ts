@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
-import type { AccountId, User, Account } from '../../../types.d';
+import type { AccountId, User, Account, UserSanitized } from '../../../types.d';
 import type MongoUsersManager from '../../MongoUsersManager';
 import type { AllowedStrategyKeys } from '../authentification/types';
 import type { AccountService, TokensObject } from './types';
@@ -8,16 +8,16 @@ export declare const STATUSES: {
     VALIDATED: string;
     DELETED: string;
 };
-export default class UserAccountsService<StrategyKeys extends AllowedStrategyKeys> extends EventEmitter {
+export default class UserAccountsService<StrategyKeys extends AllowedStrategyKeys, U extends User = User, USanitized extends UserSanitized = UserSanitized> extends EventEmitter {
     private readonly strategyToService;
-    usersManager: MongoUsersManager;
-    constructor(usersManager: MongoUsersManager, strategyToService: Record<StrategyKeys, AccountService<any>>);
-    getScope(strategy: StrategyKeys, scopeKey: string, user?: User, accountId?: AccountId): string;
-    update(user: User, strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<{
-        user: User;
-        account: User['accounts'][number];
+    usersManager: MongoUsersManager<U, USanitized>;
+    constructor(usersManager: MongoUsersManager<U, USanitized>, strategyToService: Record<StrategyKeys, AccountService<any>>);
+    getScope(strategy: StrategyKeys, scopeKey: string, user?: U, accountId?: AccountId): string;
+    update(user: U, strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<{
+        user: U;
+        account: U['accounts'][number];
     }>;
-    findOrCreateFromStrategy(strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<User>;
-    updateAccount(user: User, account: Account): Promise<User>;
+    findOrCreateFromStrategy(strategy: StrategyKeys, tokens: TokensObject, scope: string, subservice: string): Promise<U>;
+    updateAccount(user: U, account: Account): Promise<U>;
 }
 //# sourceMappingURL=UserAccountsService.d.ts.map

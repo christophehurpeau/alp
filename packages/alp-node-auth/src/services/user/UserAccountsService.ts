@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import Logger from 'nightingale-logger';
-import type { AccountId, User, Account } from '../../../types.d';
+import type { AccountId, User, Account, UserSanitized } from '../../../types.d';
 import type MongoUsersManager from '../../MongoUsersManager';
 import type { AllowedStrategyKeys } from '../authentification/types';
 import type { AccountService, TokensObject } from './types';
@@ -13,14 +13,16 @@ export const STATUSES = {
 };
 
 export default class UserAccountsService<
-  StrategyKeys extends AllowedStrategyKeys
+  StrategyKeys extends AllowedStrategyKeys,
+  U extends User = User,
+  USanitized extends UserSanitized = UserSanitized
 > extends EventEmitter {
   private readonly strategyToService: Record<StrategyKeys, AccountService<any>>;
 
-  usersManager: MongoUsersManager;
+  usersManager: MongoUsersManager<U, USanitized>;
 
   constructor(
-    usersManager: MongoUsersManager,
+    usersManager: MongoUsersManager<U, USanitized>,
     strategyToService: Record<StrategyKeys, AccountService<any>>,
   ) {
     super();
@@ -31,7 +33,7 @@ export default class UserAccountsService<
   getScope(
     strategy: StrategyKeys,
     scopeKey: string,
-    user?: User,
+    user?: U,
     accountId?: AccountId,
   ): string {
     logger.debug('getScope', { strategy, userId: user?._id });
@@ -56,12 +58,12 @@ export default class UserAccountsService<
   }
 
   async update(
-    user: User,
+    user: U,
     strategy: StrategyKeys,
     tokens: TokensObject,
     scope: string,
     subservice: string,
-  ): Promise<{ user: User; account: User['accounts'][number] }> {
+  ): Promise<{ user: U; account: U['accounts'][number] }> {
     const service = this.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
@@ -97,7 +99,7 @@ export default class UserAccountsService<
     tokens: TokensObject,
     scope: string,
     subservice: string,
-  ): Promise<User> {
+  ): Promise<U> {
     const service = this.strategyToService[strategy];
     if (!service) throw new Error('Strategy not supported');
 
@@ -108,7 +110,7 @@ export default class UserAccountsService<
     const emails = service.getEmails(profile);
 
     let user:
-      | Partial<User>
+      | Partial<U>
       | undefined = await this.usersManager.findOneByAccountOrEmails({
       provider: service.providerKey,
       accountId,
@@ -176,15 +178,15 @@ export default class UserAccountsService<
     const keyPath = this.usersManager.store.keyPath;
 
     if (user[keyPath]) {
-      await this.usersManager.replaceOne(user as User);
+      await this.usersManager.replaceOne(user as U);
     } else {
-      await this.usersManager.insertOne(user as User);
+      await this.usersManager.insertOne(user as U);
     }
 
-    return user as User;
+    return user as U;
   }
 
-  async updateAccount(user: User, account: Account): Promise<User> {
+  async updateAccount(user: U, account: Account): Promise<U> {
     await this.usersManager.updateAccount(user, account);
     return user;
   }

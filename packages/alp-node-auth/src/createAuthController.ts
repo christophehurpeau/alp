@@ -1,5 +1,6 @@
 import type { Context } from 'alp-node';
 import 'alp-router';
+import type { User, UserSanitized } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
 import type {
   AuthenticationService,
@@ -11,11 +12,13 @@ import type {
 } from './services/authentification/types';
 
 export interface CreateAuthControllerParams<
-  StrategyKeys extends AllowedStrategyKeys
+  StrategyKeys extends AllowedStrategyKeys,
+  U extends User = User,
+  USanitized extends UserSanitized = UserSanitized
 > {
-  authenticationService: AuthenticationService<StrategyKeys>;
+  authenticationService: AuthenticationService<StrategyKeys, U, UserSanitized>;
   homeRouterKey?: string;
-  usersManager: MongoUsersManager;
+  usersManager: MongoUsersManager<U, USanitized>;
   defaultStrategy?: StrategyKeys;
   authHooks?: AuthHooks<StrategyKeys>;
 }
@@ -41,13 +44,17 @@ export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys>
     | Promise<OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>>;
 }
 
-export function createAuthController<StrategyKeys extends AllowedStrategyKeys>({
+export function createAuthController<
+  StrategyKeys extends AllowedStrategyKeys,
+  U extends User = User,
+  USanitized extends UserSanitized = UserSanitized
+>({
   usersManager,
   authenticationService,
   homeRouterKey = '/',
   defaultStrategy,
   authHooks = {},
-}: CreateAuthControllerParams<StrategyKeys>): AuthController {
+}: CreateAuthControllerParams<StrategyKeys, U, USanitized>): AuthController {
   return {
     async login(ctx: Context): Promise<void> {
       const strategy: StrategyKeys = (ctx.namedParam('strategy') ||

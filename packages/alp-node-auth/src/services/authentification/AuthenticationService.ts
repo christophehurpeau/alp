@@ -5,7 +5,7 @@ import 'alp-router';
 import type { Context, NodeConfig } from 'alp-types';
 import Logger from 'nightingale-logger';
 import type { OAuthClient } from 'simple-oauth2';
-import type { AccountId, User, Account } from '../../../types.d';
+import type { AccountId, User, Account, UserSanitized } from '../../../types.d';
 import { randomHex } from '../../utils/generators';
 import type UserAccountsService from '../user/UserAccountsService';
 import type { AllowedStrategyKeys, Tokens } from './types';
@@ -41,33 +41,35 @@ export type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<
   Oauth2Strategy<any>
 >;
 
-export interface AccessResponseHooks<StrategyKeys> {
+export interface AccessResponseHooks<StrategyKeys, U extends User = User> {
   afterLoginSuccess?: <StrategyKey extends StrategyKeys>(
     strategy: StrategyKey,
-    connectedUser: any,
+    connectedUser: U,
   ) => void | Promise<void>;
 
   afterScopeUpdate?: <StrategyKey extends StrategyKeys>(
     strategy: StrategyKey,
     scopeKey: string,
     account: Account,
-    user: User,
+    user: U,
   ) => void | Promise<void>;
 }
 
 export class AuthenticationService<
-  StrategyKeys extends AllowedStrategyKeys
+  StrategyKeys extends AllowedStrategyKeys,
+  U extends User = User,
+  USanitized extends UserSanitized = UserSanitized
 > extends EventEmitter {
   config: NodeConfig;
 
   strategies: Strategies<StrategyKeys>;
 
-  userAccountsService: UserAccountsService<StrategyKeys>;
+  userAccountsService: UserAccountsService<StrategyKeys, U, USanitized>;
 
   constructor(
     config: NodeConfig,
     strategies: Strategies<StrategyKeys>,
-    userAccountsService: UserAccountsService<StrategyKeys>,
+    userAccountsService: UserAccountsService<StrategyKeys, U, USanitized>,
   ) {
     super();
     this.config = config;
@@ -173,7 +175,7 @@ export class AuthenticationService<
     }: {
       refreshToken?: string | undefined;
       scopeKey?: string | undefined;
-      user?: User;
+      user?: U;
       accountId?: AccountId;
     },
     params?: any,
@@ -220,8 +222,8 @@ export class AuthenticationService<
     ctx: any,
     strategy: StrategyKey,
     isConnected: undefined | boolean,
-    hooks: AccessResponseHooks<StrategyKeys>,
-  ): Promise<User> {
+    hooks: AccessResponseHooks<StrategyKeys, U>,
+  ): Promise<U> {
     if (ctx.query.error) {
       const error: any = new Error(ctx.query.error);
       error.status = 403;
@@ -285,7 +287,7 @@ export class AuthenticationService<
     return connectedUser;
   }
 
-  refreshAccountTokens(user: User, account: Account): Promise<boolean> {
+  refreshAccountTokens(user: U, account: Account): Promise<boolean> {
     if (
       account.tokenExpireDate &&
       account.tokenExpireDate.getTime() > Date.now()

@@ -1,6 +1,6 @@
 import type { IncomingMessage } from 'http';
 import type { Context } from 'alp-node';
-import type { ContextState, ContextSanitizedState, NodeApplication } from 'alp-types';
+import type { NodeApplication } from 'alp-types';
 import type { User, UserSanitized } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
 import type { AuthController as AuthControllerType, AuthHooks } from './createAuthController';
@@ -32,17 +32,17 @@ declare module 'alp-types' {
 }
 export declare type AuthController = AuthControllerType;
 export declare type AuthRoutes = AuthRoutesType;
-export default function init<StrategyKeys extends AllowedStrategyKeys = 'google'>({ homeRouterKey, usersManager, strategies, defaultStrategy, strategyToService, authHooks, }: {
+export default function init<StrategyKeys extends AllowedStrategyKeys = 'google', U extends User = User, USanitized extends UserSanitized = UserSanitized>({ homeRouterKey, usersManager, strategies, defaultStrategy, strategyToService, authHooks, }: {
     homeRouterKey?: string;
-    usersManager: MongoUsersManager<NonNullable<ContextState['user']>, NonNullable<ContextSanitizedState['user']>>;
+    usersManager: MongoUsersManager<U, USanitized>;
     strategies: Strategies<StrategyKeys>;
     defaultStrategy?: StrategyKeys;
     strategyToService: Record<StrategyKeys, AccountService<any>>;
     authHooks?: AuthHooks<StrategyKeys>;
 }): (app: NodeApplication) => {
     routes: AuthRoutesType;
-    getConnectedAndUserFromRequest: (req: IncomingMessage) => Promise<[string | number | null, User | null | undefined]>;
-    getConnectedAndUser: import("./utils/createFindConnectedAndUser").FindConnectedAndUser<User>;
+    getConnectedAndUserFromRequest: (req: IncomingMessage) => Promise<[U["_id"] | null | undefined, U | null | undefined]>;
+    getConnectedAndUser: import("./utils/createFindConnectedAndUser").FindConnectedAndUser<U>;
     middleware: <T>(ctx: Context, next: () => T | Promise<T>) => Promise<T>;
 };
 //# sourceMappingURL=index.d.ts.map

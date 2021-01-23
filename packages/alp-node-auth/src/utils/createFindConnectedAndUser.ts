@@ -7,7 +7,7 @@ import type {
 } from 'jsonwebtoken';
 import { verify } from 'jsonwebtoken';
 import type Logger from 'nightingale-logger';
-import type { User } from '../../types.d';
+import type { User, UserSanitized } from '../../types.d';
 import type MongoUsersManager from '../MongoUsersManager';
 
 type Verify = (
@@ -35,14 +35,17 @@ const createDecodeJWT = (secretKey: string) => async (
   return (result as any)?.connected as string | undefined;
 };
 
-export type FindConnectedAndUser<U> = (
+export type FindConnectedAndUser<U extends User> = (
   userAgent?: string,
   token?: string,
-) => Promise<[null | string | number, null | undefined | U]>;
+) => Promise<[null | undefined | U['_id'], null | undefined | U]>;
 
-export const createFindConnectedAndUser = <U extends User>(
+export const createFindConnectedAndUser = <
+  U extends User,
+  USanitized extends UserSanitized
+>(
   secretKey: string,
-  usersManager: MongoUsersManager<U>,
+  usersManager: MongoUsersManager<U, USanitized>,
   logger: Logger,
 ): FindConnectedAndUser<U> => {
   const decodeJwt = createDecodeJWT(secretKey);

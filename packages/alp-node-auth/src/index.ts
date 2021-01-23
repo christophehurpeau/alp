@@ -1,11 +1,7 @@
 import type { IncomingMessage } from 'http';
 import { promisify } from 'util';
 import type { Context } from 'alp-node';
-import type {
-  ContextState,
-  ContextSanitizedState,
-  NodeApplication,
-} from 'alp-types';
+import type { ContextState, NodeApplication } from 'alp-types';
 import { sign } from 'jsonwebtoken';
 import Logger from 'nightingale-logger';
 import type { User, UserSanitized } from '../types.d';
@@ -64,7 +60,9 @@ export type AuthController = AuthControllerType;
 export type AuthRoutes = AuthRoutesType;
 
 export default function init<
-  StrategyKeys extends AllowedStrategyKeys = 'google'
+  StrategyKeys extends AllowedStrategyKeys = 'google',
+  U extends User = User,
+  USanitized extends UserSanitized = UserSanitized
 >({
   homeRouterKey,
   usersManager,
@@ -74,10 +72,7 @@ export default function init<
   authHooks,
 }: {
   homeRouterKey?: string;
-  usersManager: MongoUsersManager<
-    NonNullable<ContextState['user']>,
-    NonNullable<ContextSanitizedState['user']>
-  >;
+  usersManager: MongoUsersManager<U, USanitized>;
   strategies: Strategies<StrategyKeys>;
   defaultStrategy?: StrategyKeys;
   strategyToService: Record<StrategyKeys, AccountService<any>>;
@@ -167,7 +162,10 @@ export default function init<
         const userAgent = ctx.request.headers['user-agent'];
         logger.debug('middleware', { token });
 
-        const setState = (connected: any, user: ContextState['user']): void => {
+        const setState = (
+          connected: U['_id'] | null | undefined,
+          user: U | null | undefined,
+        ): void => {
           ctx.state.connected = connected;
           ctx.state.user = user;
           ctx.sanitizedState.connected = connected;
