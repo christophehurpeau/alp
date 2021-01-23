@@ -59,7 +59,10 @@
   "module:aliases-node-dev": {
     "./AlpNodeApp.js": "./dist/AlpNodeApp-node12-dev.es.js"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./fetch.js",
+    "./fetch.mjs"
+  ],
   "scripts": {
     "build": "pob-build && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
@@ -93,6 +96,7 @@
     ]
   },
   "dependencies": {
+    "@types/node-fetch": "^2.5.8",
     "alp-listen": "^4.0.2",
     "alp-node-config": "^6.0.2",
     "alp-node-errors": "^5.0.2",
