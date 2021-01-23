@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/christophehurpeau/alp/compare/alp-node@3.0.2...alp-node@3.0.3) (2021-01-23)
+
+
+### Bug Fixes
+
+* **alp-node:** sideEffect fetch ([bea81be](https://github.com/christophehurpeau/alp/commit/bea81bedafbeefd67d25f2b474853a285e0af5ed))
+
+
+
+
+
 ## [3.0.2](https://github.com/christophehurpeau/alp/compare/alp-node@3.0.1...alp-node@3.0.2) (2021-01-18)
 
 
