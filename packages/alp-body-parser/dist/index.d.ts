@@ -4,9 +4,9 @@ declare module 'koa' {
         body: any;
     }
     interface BaseContext {
-        parseBody: () => Promise<void>;
-        parseBodyJson: () => Promise<void>;
-        parseBodyText: () => Promise<void>;
+        parseBody: <T>() => Promise<T>;
+        parseBodyJson: <T>() => Promise<T>;
+        parseBodyText: <T>() => Promise<T>;
     }
 }
 export default function alpBodyParser(app: Application): void;

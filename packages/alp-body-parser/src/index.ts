@@ -8,9 +8,9 @@ declare module 'koa' {
   }
 
   interface BaseContext {
-    parseBody: () => Promise<void>;
-    parseBodyJson: () => Promise<void>;
-    parseBodyText: () => Promise<void>;
+    parseBody: <T>() => Promise<T>;
+    parseBodyJson: <T>() => Promise<T>;
+    parseBodyText: <T>() => Promise<T>;
   }
 }
 
@@ -21,21 +21,24 @@ const assertBodyNotParsed = (ctx: Context): void => {
 };
 
 export default function alpBodyParser(app: Application): void {
-  app.context.parseBody = async function (this: Context): Promise<void> {
+  app.context.parseBody = async function <T>(this: Context): Promise<T> {
     assertBodyNotParsed(this);
-    const body: unknown = await parse.form(this);
+    const body: T = (await parse.form(this)) as T;
     this.request.body = body;
+    return body;
   };
 
-  app.context.parseBodyJson = async function (this: Context): Promise<void> {
+  app.context.parseBodyJson = async function <T>(this: Context): Promise<T> {
     assertBodyNotParsed(this);
-    const body: unknown = await parse.json(this);
+    const body: T = (await parse.json(this)) as T;
     this.request.body = body;
+    return body;
   };
 
-  app.context.parseBodyText = async function (this: Context): Promise<void> {
+  app.context.parseBodyText = async function <T>(this: Context): Promise<T> {
     assertBodyNotParsed(this);
-    const body: unknown = await parse.text(this);
+    const body: T = (await parse.text(this)) as T;
     this.request.body = body;
+    return body;
   };
 }

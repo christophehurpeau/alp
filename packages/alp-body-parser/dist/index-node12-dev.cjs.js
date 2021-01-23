@@ -19,18 +19,21 @@ function alpBodyParser(app) {
     assertBodyNotParsed(this);
     const body = await parse__default.form(this);
     this.request.body = body;
+    return body;
   };
 
   app.context.parseBodyJson = async function () {
     assertBodyNotParsed(this);
     const body = await parse__default.json(this);
     this.request.body = body;
+    return body;
   };
 
   app.context.parseBodyText = async function () {
     assertBodyNotParsed(this);
     const body = await parse__default.text(this);
     this.request.body = body;
+    return body;
   };
 }
 
