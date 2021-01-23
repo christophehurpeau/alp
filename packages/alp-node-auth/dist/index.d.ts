@@ -1,6 +1,6 @@
 import type { IncomingMessage } from 'http';
 import type { Context } from 'alp-node';
-import type { ContextUser, NodeApplication } from 'alp-types';
+import type { ContextState, ContextSanitizedState, NodeApplication } from 'alp-types';
 import type { User, UserSanitized } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
 import type { AuthController as AuthControllerType, AuthHooks } from './createAuthController';
@@ -17,19 +17,16 @@ export { authSocketIO } from './authSocketIO';
 export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
 declare module 'alp-types' {
-    type ContextUser = User;
-    type ContextConnected = ContextUser['_id'];
-    type ContextUserSanitized = UserSanitized;
     interface ContextState {
-        connected: ContextConnected | null | undefined;
-        user: ContextUser | null | undefined;
+        connected: NonNullable<ContextState['user']>['_id'] | null | undefined;
+        user: User | null | undefined;
     }
     interface ContextSanitizedState {
-        connected: ContextConnected | null | undefined;
-        user: ContextUserSanitized | null | undefined;
+        connected: NonNullable<ContextSanitizedState['user']>['_id'] | null | undefined;
+        user: UserSanitized | null | undefined;
     }
     interface BaseContext {
-        setConnected: (connected: ContextConnected, user: ContextUser) => void;
+        setConnected: (connected: NonNullable<ContextState['user']>['_id'], user: NonNullable<ContextState['user']>) => void;
         logout: () => void;
     }
 }
@@ -37,7 +34,7 @@ export declare type AuthController = AuthControllerType;
 export declare type AuthRoutes = AuthRoutesType;
 export default function init<StrategyKeys extends AllowedStrategyKeys = 'google'>({ homeRouterKey, usersManager, strategies, defaultStrategy, strategyToService, authHooks, }: {
     homeRouterKey?: string;
-    usersManager: MongoUsersManager<ContextUser>;
+    usersManager: MongoUsersManager<NonNullable<ContextState['user']>, NonNullable<ContextSanitizedState['user']>>;
     strategies: Strategies<StrategyKeys>;
     defaultStrategy?: StrategyKeys;
     strategyToService: Record<StrategyKeys, AccountService<any>>;

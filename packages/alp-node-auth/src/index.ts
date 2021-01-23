@@ -1,7 +1,11 @@
 import type { IncomingMessage } from 'http';
 import { promisify } from 'util';
 import type { Context } from 'alp-node';
-import type { ContextConnected, ContextUser, NodeApplication } from 'alp-types';
+import type {
+  ContextState,
+  ContextSanitizedState,
+  NodeApplication,
+} from 'alp-types';
 import { sign } from 'jsonwebtoken';
 import Logger from 'nightingale-logger';
 import type { User, UserSanitized } from '../types.d';
@@ -30,22 +34,24 @@ export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
 
 declare module 'alp-types' {
-  type ContextUser = User;
-  type ContextConnected = ContextUser['_id'];
-  type ContextUserSanitized = UserSanitized;
-
   interface ContextState {
-    connected: ContextConnected | null | undefined;
-    user: ContextUser | null | undefined;
+    connected: NonNullable<ContextState['user']>['_id'] | null | undefined;
+    user: User | null | undefined;
   }
 
   interface ContextSanitizedState {
-    connected: ContextConnected | null | undefined;
-    user: ContextUserSanitized | null | undefined;
+    connected:
+      | NonNullable<ContextSanitizedState['user']>['_id']
+      | null
+      | undefined;
+    user: UserSanitized | null | undefined;
   }
 
   interface BaseContext {
-    setConnected: (connected: ContextConnected, user: ContextUser) => void;
+    setConnected: (
+      connected: NonNullable<ContextState['user']>['_id'],
+      user: NonNullable<ContextState['user']>,
+    ) => void;
     logout: () => void;
   }
 }
@@ -68,7 +74,10 @@ export default function init<
   authHooks,
 }: {
   homeRouterKey?: string;
-  usersManager: MongoUsersManager<ContextUser>;
+  usersManager: MongoUsersManager<
+    NonNullable<ContextState['user']>,
+    NonNullable<ContextSanitizedState['user']>
+  >;
   strategies: Strategies<StrategyKeys>;
   defaultStrategy?: StrategyKeys;
   strategyToService: Record<StrategyKeys, AccountService<any>>;
@@ -96,8 +105,8 @@ export default function init<
 
     app.context.setConnected = async function (
       this: Context,
-      connected: ContextConnected,
-      user: ContextUser,
+      connected: NonNullable<ContextState['user']>['_id'],
+      user: NonNullable<ContextState['user']>,
     ): Promise<void> {
       logger.debug('setConnected', { connected });
       if (!connected) {
@@ -158,10 +167,7 @@ export default function init<
         const userAgent = ctx.request.headers['user-agent'];
         logger.debug('middleware', { token });
 
-        const setState = (
-          connected: any,
-          user: null | undefined | ContextUser,
-        ): void => {
+        const setState = (connected: any, user: ContextState['user']): void => {
           ctx.state.connected = connected;
           ctx.state.user = user;
           ctx.sanitizedState.connected = connected;
