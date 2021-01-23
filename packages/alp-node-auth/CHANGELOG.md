@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.6](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.5...alp-node-auth@5.0.6) (2021-01-23)
+
+
+### Bug Fixes
+
+* **alp-node-auth:** bring back User and UserSanitized generics ([1d3f7de](https://github.com/christophehurpeau/alp/commit/1d3f7de8288dfbedcbb7bfae7511c1b0ab6698bb))
+
+
+
+
+
 ## [5.0.5](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.4...alp-node-auth@5.0.5) (2021-01-23)
 
 
