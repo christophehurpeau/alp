@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.7](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.6...alp-node-auth@5.0.7) (2021-01-24)
+
+
+### Bug Fixes
+
+* missing await when calling setConnected ([c27b185](https://github.com/christophehurpeau/alp/commit/c27b1855422c5cd07daa5ca23fc56fa9cfa0da4b))
+
+
+
+
+
 ## [5.0.6](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.5...alp-node-auth@5.0.6) (2021-01-23)
 
 
