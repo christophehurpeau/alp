@@ -100,7 +100,7 @@ export function createAuthController<
         },
       );
       const keyPath = usersManager.store.keyPath;
-      ctx.setConnected(connectedUser[keyPath], connectedUser);
+      await ctx.setConnected(connectedUser[keyPath], connectedUser);
       await ctx.redirectTo(homeRouterKey);
     },
 

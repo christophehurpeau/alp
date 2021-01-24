@@ -26,7 +26,7 @@ declare module 'alp-types' {
         user: UserSanitized | null | undefined;
     }
     interface BaseContext {
-        setConnected: (connected: NonNullable<ContextState['user']>['_id'], user: NonNullable<ContextState['user']>) => void;
+        setConnected: (connected: NonNullable<ContextState['user']>['_id'], user: NonNullable<ContextState['user']>) => Promise<void>;
         logout: () => void;
     }
 }

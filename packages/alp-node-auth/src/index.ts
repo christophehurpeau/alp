@@ -47,7 +47,7 @@ declare module 'alp-types' {
     setConnected: (
       connected: NonNullable<ContextState['user']>['_id'],
       user: NonNullable<ContextState['user']>,
-    ) => void;
+    ) => Promise<void>;
     logout: () => void;
   }
 }

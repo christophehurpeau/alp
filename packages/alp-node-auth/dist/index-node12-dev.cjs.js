@@ -58,7 +58,7 @@ function createAuthController({
         afterScopeUpdate: authHooks.afterScopeUpdate
       });
       const keyPath = usersManager.store.keyPath;
-      ctx.setConnected(connectedUser[keyPath], connectedUser);
+      await ctx.setConnected(connectedUser[keyPath], connectedUser);
       await ctx.redirectTo(homeRouterKey);
     },
 
