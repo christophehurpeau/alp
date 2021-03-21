@@ -12,27 +12,29 @@ var _objectWithoutPropertiesLoose__default = /*#__PURE__*/_interopDefaultLegacy(
 var ReactAlpContext__default = /*#__PURE__*/_interopDefaultLegacy(ReactAlpContext);
 
 function useT(id, params, deps) {
-  const ctx = react.useContext(ReactAlpContext__default);
-  return react.useMemo(() => {
+  var ctx = react.useContext(ReactAlpContext__default);
+  return react.useMemo(function () {
     return ctx.t(id, params);
   }, // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/no-unsafe-assignment
-  !deps ? [id] : [id, ...deps]);
+  !deps ? [id] : [id].concat(deps));
 }
 
 // for params: 2 solutions: params that are send to all or mapped params.
 // in both case it will be more difficult to use memo deps
 function useTs(ids) {
-  const ctx = react.useContext(ReactAlpContext__default);
-  return react.useMemo(() => {
-    return ids.map(id => ctx.t(id)); // eslint-disable-next-line react-hooks/exhaustive-deps
+  var ctx = react.useContext(ReactAlpContext__default);
+  return react.useMemo(function () {
+    return ids.map(function (id) {
+      return ctx.t(id);
+    }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ids.join(',')]);
 }
 
 function T(_ref) {
-  let id = _ref.id,
+  var id = _ref.id,
       props = _objectWithoutPropertiesLoose__default(_ref, ["id"]);
 
-  const t = useT(id, props, Object.values(props));
+  var t = useT(id, props, Object.values(props));
   return t;
 }
 

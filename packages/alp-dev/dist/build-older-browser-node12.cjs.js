@@ -18,7 +18,7 @@ const OptimizeCssAssetsPlugin__default = /*#__PURE__*/_interopDefaultLegacy(Opti
 const webpack__default = /*#__PURE__*/_interopDefaultLegacy(webpack);
 
 /* eslint-disable max-lines, complexity */
-const ExcludesFalsy = Boolean;
+const ExcludesFalsy$1 = Boolean;
 
 const resolveLoader = loader => require.resolve(loader);
 
@@ -64,7 +64,7 @@ const createCssModuleUse = function ({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       plugins: () => plugins
     }
-  }, ...otherLoaders].filter(ExcludesFalsy);
+  }, ...otherLoaders].filter(ExcludesFalsy$1);
 };
 
 const createScssModuleUse = function ({
@@ -148,7 +148,7 @@ const createModuleRules = function ({
 
 /* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, complexity, max-lines */
 
-const ExcludesFalsy$1 = Boolean;
+const ExcludesFalsy = Boolean;
 function createPobpackConfig(target, production = false) {
   const pkg = JSON.parse(fs__default.readFileSync(path__default.resolve('package.json'), 'utf-8'));
   const deps = pkg.dependencies || {};
@@ -199,7 +199,7 @@ function createPobpackConfig(target, production = false) {
         libraryName: 'antd',
         libraryDirectory: target === 'node' ? 'lib' : 'es',
         style: target !== 'node'
-      }]].filter(ExcludesFalsy$1)
+      }]].filter(ExcludesFalsy)
     },
     moduleRules: [// SCSS RULE, CSS RULE
     ...createModuleRules({
@@ -294,7 +294,7 @@ function createPobpackConfig(target, production = false) {
     //     sourceMap: !production,
     //   }),
     // TODO https://github.com/NekR/offline-plugin
-    ].filter(ExcludesFalsy$1)
+    ].filter(ExcludesFalsy)
   };
 }
 

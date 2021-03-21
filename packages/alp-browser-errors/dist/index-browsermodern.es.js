@@ -1,8 +1,6 @@
-import ErrorHtmlRenderer from 'error-html';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp:errors');
-const errorHtmlRenderer = new ErrorHtmlRenderer();
 
 const createErrorInstanceIfNeeded = err => {
   if (!err) return new Error('Unknown error');

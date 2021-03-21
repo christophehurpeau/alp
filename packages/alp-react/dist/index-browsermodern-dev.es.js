@@ -6,9 +6,7 @@ import ReactAlpContext from 'react-alp-context';
 export { default as Helmet } from 'react-helmet';
 
 function createAlpAppWrapper(app, context) {
-  var _temp;
-
-  return _temp = class AlpAppWrapper extends Component {
+  return class AlpAppWrapper extends Component {
     constructor(...args) {
       super(...args);
       this.state = {
@@ -37,7 +35,7 @@ function createAlpAppWrapper(app, context) {
       }, app);
     }
 
-  }, _temp;
+  };
 }
 
 const LoadingFallbackContext = /*#__PURE__*/createContext('Loading...');

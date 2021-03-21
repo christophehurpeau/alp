@@ -4,7 +4,7 @@ import ErrorHtmlRenderer from 'error-html';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp:errors');
-const errorHtmlRenderer = new ErrorHtmlRenderer();
+const errorHtmlRenderer = !PRODUCTION ? new ErrorHtmlRenderer() : undefined;
 
 const createErrorInstanceIfNeeded = (
   err: Error | string | undefined | null | HtmlError,
@@ -26,7 +26,7 @@ const errorMiddleware: Middleware = async function (ctx: Context, next) {
 
     logger.error(errInstance);
 
-    if (!PRODUCTION) {
+    if (errorHtmlRenderer) {
       ctx.body = errorHtmlRenderer.render(errInstance);
     } else if ((errInstance as HtmlError).expose) {
       ctx.body = errInstance.message;

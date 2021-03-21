@@ -16,9 +16,7 @@ const Helmet__default = /*#__PURE__*/_interopDefaultLegacy(Helmet);
 const ReactAlpContext__default = /*#__PURE__*/_interopDefaultLegacy(ReactAlpContext);
 
 function createAlpAppWrapper(app, context) {
-  var _temp;
-
-  return _temp = class AlpAppWrapper extends React.Component {
+  return class AlpAppWrapper extends React.Component {
     constructor(...args) {
       super(...args);
       this.state = {
@@ -47,7 +45,7 @@ function createAlpAppWrapper(app, context) {
       }, app);
     }
 
-  }, _temp;
+  };
 }
 
 const assetUrl = (asset, version) => asset.startsWith('/') ? `/${version}${asset}` : asset;

@@ -13,7 +13,7 @@ var _objectWithoutPropertiesLoose__default = /*#__PURE__*/_interopDefaultLegacy(
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function FormField(_ref) {
-  let Component = _ref.component,
+  var Component = _ref.component,
       label = _ref.label,
       name = _ref.name,
       _ref$id = _ref.id,
@@ -28,10 +28,10 @@ function FormField(_ref) {
   }, /*#__PURE__*/React__default.createElement(reactFinalForm.Field, Object.assign({
     id: id,
     name: name,
-    render: (_ref2) => {
-      let input = _ref2.input,
-          meta = _ref2.meta,
-          rest = _objectWithoutPropertiesLoose__default(_ref2, ["input", "meta"]);
+    render: function render(_ref2) {
+      var input = _ref2.input;
+          _ref2.meta;
+          var rest = _objectWithoutPropertiesLoose__default(_ref2, ["input", "meta"]);
 
       return /*#__PURE__*/React__default.createElement(Component, Object.assign({}, input, rest));
     }

@@ -1,10 +1,10 @@
-import Logger, { addConfig, Level } from 'nightingale';
-import ConsoleLogger from 'nightingale-console';
 import { execSync } from 'child_process';
 import path, { join, dirname } from 'path';
 import colorette from 'colorette';
 import argv from 'minimist-argv';
+import Logger, { addConfig, Level } from 'nightingale';
 import formatterANSI from 'nightingale-ansi-formatter';
+import ConsoleLogger from 'nightingale-console';
 import portscanner from 'portscanner';
 import ProgressBar from 'progress';
 import createChild from 'springbokjs-daemon';

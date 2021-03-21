@@ -17,7 +17,14 @@ const errorMiddleware = async function (ctx, next) {
     const errInstance = createErrorInstanceIfNeeded(err);
     ctx.status = errInstance.status ? errInstance.status : 500;
     logger.error(errInstance);
-    ctx.body = errorHtmlRenderer.render(errInstance);
+
+    if (errorHtmlRenderer) {
+      ctx.body = errorHtmlRenderer.render(errInstance);
+    } else if (errInstance.expose) {
+      ctx.body = errInstance.message;
+    } else {
+      throw errInstance;
+    }
   }
 };
 

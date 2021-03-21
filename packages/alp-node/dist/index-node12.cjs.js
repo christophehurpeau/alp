@@ -32,7 +32,7 @@ const Koa__default = /*#__PURE__*/_interopDefaultLegacy(Koa);
 const compress__default = /*#__PURE__*/_interopDefaultLegacy(compress);
 const serve__default = /*#__PURE__*/_interopDefaultLegacy(serve);
 
-const logger = new Logger__default('alp');
+const logger$1 = new Logger__default('alp');
 class AlpNodeApp extends Koa__default {
   /**
    * @param {Object} [options]
@@ -107,11 +107,11 @@ class AlpNodeApp extends Koa__default {
     try {
       const server = await _listen__default(this.config, this.callback(), this.certPath);
       this._server = server;
-      logger.success('started');
+      logger$1.success('started');
       if (process.send) process.send('ready');
       return server;
     } catch (err) {
-      logger.error('start fail', {
+      logger$1.error('start fail', {
         err
       });
       throw err;
@@ -120,7 +120,7 @@ class AlpNodeApp extends Koa__default {
 
 }
 
-const logger$1 = new Logger__default('alp'); // see alp-dev
+const logger = new Logger__default('alp'); // see alp-dev
 
 const appDirname = path__default.resolve('build');
 const packagePath = findUp__default('package.json', {
@@ -132,7 +132,7 @@ if (!packagePath) {
 }
 
 const packageDirname = path__default.dirname(packagePath);
-logger$1.debug('init', {
+logger.debug('init', {
   appDirname,
   packageDirname
 });

@@ -86,7 +86,7 @@ async function randomHex(size) {
 }
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-const logger = new Logger__default('alp:auth:authentication');
+const logger$4 = new Logger__default('alp:auth:authentication');
 class AuthenticationService extends events.EventEmitter {
   constructor(config, strategies, userAccountsService) {
     super();
@@ -96,7 +96,7 @@ class AuthenticationService extends events.EventEmitter {
   }
 
   generateAuthUrl(strategy, params) {
-    logger.debug('generateAuthUrl', {
+    logger$4.debug('generateAuthUrl', {
       strategy,
       params
     });
@@ -112,7 +112,7 @@ class AuthenticationService extends events.EventEmitter {
   }
 
   async getTokens(strategy, options) {
-    logger.debug('getTokens', {
+    logger$4.debug('getTokens', {
       strategy,
       options
     });
@@ -146,7 +146,7 @@ class AuthenticationService extends events.EventEmitter {
   }
 
   async refreshToken(strategy, tokensParam) {
-    logger.debug('refreshToken', {
+    logger$4.debug('refreshToken', {
       strategy
     });
 
@@ -195,7 +195,7 @@ class AuthenticationService extends events.EventEmitter {
     user,
     accountId
   }, params) {
-    logger.debug('redirectAuthUrl', {
+    logger$4.debug('redirectAuthUrl', {
       strategy,
       scopeKey,
       refreshToken
@@ -308,7 +308,7 @@ class AuthenticationService extends events.EventEmitter {
 
 }
 
-const logger$1 = new Logger__default('alp:auth:userAccounts');
+const logger$3 = new Logger__default('alp:auth:userAccounts');
 const STATUSES = {
   VALIDATED: 'validated',
   DELETED: 'deleted'
@@ -321,7 +321,7 @@ class UserAccountsService extends events.EventEmitter {
   }
 
   getScope(strategy, scopeKey, user, accountId) {
-    logger$1.debug('getScope', {
+    logger$3.debug('getScope', {
       strategy,
       userId: user === null || user === void 0 ? void 0 : user._id
     });
@@ -395,7 +395,7 @@ class UserAccountsService extends events.EventEmitter {
       accountId,
       emails
     });
-    logger$1.info(!user ? 'create user' : 'existing user', {
+    logger$3.info(!user ? 'create user' : 'existing user', {
       emails,
       user
     });
@@ -703,7 +703,7 @@ const authSocketIO = (app, usersManager, io) => {
   });
 };
 
-const logger$3 = new Logger__default('alp:auth');
+const logger$1 = new Logger__default('alp:auth');
 
 const getTokenFromReq = req => {
   if (req.cookies) return req.cookies[COOKIE_NAME];
@@ -716,7 +716,7 @@ const getTokenFromReq = req => {
 
 
 const createAuthApolloContext = (config, usersManager) => {
-  const findConnectedAndUser = createFindConnectedAndUser(config.get('authentication').get('secretKey'), usersManager, logger$3);
+  const findConnectedAndUser = createFindConnectedAndUser(config.get('authentication').get('secretKey'), usersManager, logger$1);
   return async ({
     req,
     connection
@@ -739,7 +739,7 @@ const createAuthApolloContext = (config, usersManager) => {
   };
 };
 
-const logger$4 = new Logger__default('alp:auth');
+const logger = new Logger__default('alp:auth');
 const signPromisified = util.promisify(jsonwebtoken.sign);
 function init({
   homeRouterKey,
@@ -761,7 +761,7 @@ function init({
     });
 
     app.context.setConnected = async function (connected, user) {
-      logger$4.debug('setConnected', {
+      logger.debug('setConnected', {
         connected
       });
 
@@ -793,7 +793,7 @@ function init({
       });
     };
 
-    const getConnectedAndUser = createFindConnectedAndUser(app.config.get('authentication').get('secretKey'), usersManager, logger$4);
+    const getConnectedAndUser = createFindConnectedAndUser(app.config.get('authentication').get('secretKey'), usersManager, logger);
     return {
       routes: createRoutes(controller),
       getConnectedAndUserFromRequest: req => {
@@ -804,7 +804,7 @@ function init({
       middleware: async (ctx, next) => {
         const token = ctx.cookies.get(COOKIE_NAME);
         const userAgent = ctx.request.headers['user-agent'];
-        logger$4.debug('middleware', {
+        logger.debug('middleware', {
           token
         });
 
@@ -816,7 +816,7 @@ function init({
         };
 
         const [connected, user] = await getConnectedAndUser(userAgent, token);
-        logger$4.debug('middleware', {
+        logger.debug('middleware', {
           connected
         });
 

@@ -14,7 +14,7 @@ import Koa from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
 
-const logger = new Logger('alp');
+const logger$1 = new Logger('alp');
 class AlpNodeApp extends Koa {
   /**
    * @param {Object} [options]
@@ -89,11 +89,11 @@ class AlpNodeApp extends Koa {
     try {
       const server = await _listen(this.config, this.callback(), this.certPath);
       this._server = server;
-      logger.success('started');
+      logger$1.success('started');
       if (process.send) process.send('ready');
       return server;
     } catch (err) {
-      logger.error('start fail', {
+      logger$1.error('start fail', {
         err
       });
       throw err;
@@ -102,7 +102,7 @@ class AlpNodeApp extends Koa {
 
 }
 
-const logger$1 = new Logger('alp'); // see alp-dev
+const logger = new Logger('alp'); // see alp-dev
 
 const appDirname = path.resolve('build');
 const packagePath = findUp('package.json', {
@@ -114,7 +114,7 @@ if (!packagePath) {
 }
 
 const packageDirname = path.dirname(packagePath);
-logger$1.debug('init', {
+logger.debug('init', {
   appDirname,
   packageDirname
 });

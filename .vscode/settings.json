@@ -5,18 +5,17 @@
   "editor.formatOnSave": true,
   "eslint.codeActionsOnSave.mode": "all",
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
+    "source.fixAll.eslint": true,
     "source.organizeImports": false
   },
 
   // eslint config
-  "eslint.enable": false,
   "eslint.workingDirectories": ["."],
   "eslint.options": {
     "resolvePluginsRelativeTo": ".",
     "reportUnusedDisableDirectives": true
   },
-  "eslint.lintTask.enable": false,
+  "eslint.lintTask.enable": true,
 
   // eslint & prettier formatter
   "eslint.format.enable": false,

@@ -4,60 +4,79 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 require('alp-router');
 var objectProperties = require('object-properties');
+var _inheritsLoose = require('@babel/runtime/helpers/esm/inheritsLoose');
 
-class ParamValueValidator {
-  constructor(validator, name, value) {
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
+
+var _inheritsLoose__default = /*#__PURE__*/_interopDefaultLegacy(_inheritsLoose);
+
+var ParamValueValidator = /*#__PURE__*/function () {
+  function ParamValueValidator(validator, name, value) {
     this.validator = validator;
     this.name = name;
     this.value = value;
   }
 
-  _error(key) {
+  var _proto = ParamValueValidator.prototype;
+
+  _proto._error = function _error(key) {
     this.validator._error(this.name, key, this.value);
+  };
+
+  return ParamValueValidator;
+}();
+
+var ParamValueStringValidator = /*#__PURE__*/function (_ParamValueValidator) {
+  _inheritsLoose__default(ParamValueStringValidator, _ParamValueValidator);
+
+  function ParamValueStringValidator() {
+    return _ParamValueValidator.apply(this, arguments) || this;
   }
 
-}
+  var _proto = ParamValueStringValidator.prototype;
 
-class ParamValueStringValidator extends ParamValueValidator {
-  notEmpty() {
+  _proto.notEmpty = function notEmpty() {
     if (this.value == null || this.value.trim() === '') {
       this._error('notEmpty');
     }
 
     return this;
-  }
+  };
 
-}
+  return ParamValueStringValidator;
+}(ParamValueValidator);
 
-class ParamValidator {
-  constructor(context) {
+var ParamValidator = /*#__PURE__*/function () {
+  function ParamValidator(context) {
     this.context = context;
   }
 
-  _error(name, key, value) {
+  var _proto = ParamValidator.prototype;
+
+  _proto._error = function _error(name, key, value) {
     if (!this._errors) {
       this._errors = {};
     }
 
     this._errors[name] = {
       error: key,
-      value
+      value: value
     };
-  }
+  };
 
-  getErrors() {
+  _proto.getErrors = function getErrors() {
     return this._errors;
-  }
+  };
 
-  hasErrors() {
+  _proto.hasErrors = function hasErrors() {
     return this._errors !== undefined;
-  }
+  };
 
-  isValid() {
+  _proto.isValid = function isValid() {
     return this._errors === undefined;
-  }
+  };
 
-  string(name) {
+  _proto.string = function string(name) {
     return new ParamValueStringValidator(this, name, this.context.param(name));
   }
   /* int(name, position) {
@@ -69,46 +88,51 @@ class ParamValidator {
    let data = this.context.getOrPostParam(name);
    return new ParamValueModelValidator(this, name, !data ? null : new M[modelName](data));
    } */
+  ;
 
+  return ParamValidator;
+}();
 
-}
+var ParamValidatorValid = /*#__PURE__*/function (_ParamValidator) {
+  _inheritsLoose__default(ParamValidatorValid, _ParamValidator);
 
-class ParamValidatorValid extends ParamValidator {
-  _error() {
+  function ParamValidatorValid() {
+    return _ParamValidator.apply(this, arguments) || this;
+  }
+
+  var _proto = ParamValidatorValid.prototype;
+
+  _proto._error = function _error() {
     this.context.throw(404, 'Invalid params', {
       validator: this
     });
-  }
+  };
 
-}
+  return ParamValidatorValid;
+}(ParamValidator);
 
 function alpParams(app) {
   Object.assign(app.context, {
-    param(name) {
+    param: function param(name) {
       return this.namedParam(name) || this.paramGET(name);
     },
-
-    namedParam(name) {
-      const namedParams = this.route.namedParams;
-      return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
+    namedParam: function namedParam(name) {
+      var namedParams = this.route.namedParams;
+      return namedParams == null ? void 0 : namedParams.get(name);
     },
-
-    otherParam(position) {
-      const otherParams = this.route.otherParams;
+    otherParam: function otherParam(position) {
+      var otherParams = this.route.otherParams;
       return otherParams && otherParams[position - 1];
     },
-
-    paramGET(name) {
-      const query = this.request.query;
-      return query === null || query === void 0 ? void 0 : query[name];
+    paramGET: function paramGET(name) {
+      var query = this.request.query;
+      return query == null ? void 0 : query[name];
     },
-
-    paramGETorPOST(name) {
+    paramGETorPOST: function paramGETorPOST(name) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
       return this.body[name] !== undefined ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       this.body[name] : this.request.query[name];
     }
-
   });
   objectProperties.defineLazyProperty(app.context, 'params', function () {
     return new ParamValidator(this);

@@ -1,12 +1,12 @@
 'use strict';
 
-const Logger = require('nightingale');
-const ConsoleLogger = require('nightingale-console');
 const child_process = require('child_process');
 const path = require('path');
 const colorette = require('colorette');
 const argv = require('minimist-argv');
+const Logger = require('nightingale');
 const formatterANSI = require('nightingale-ansi-formatter');
+const ConsoleLogger = require('nightingale-console');
 const portscanner = require('portscanner');
 const ProgressBar = require('progress');
 const createChild = require('springbokjs-daemon');
@@ -16,12 +16,12 @@ const jsYaml = require('js-yaml');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
 
-const Logger__default = /*#__PURE__*/_interopDefaultLegacy(Logger);
-const ConsoleLogger__default = /*#__PURE__*/_interopDefaultLegacy(ConsoleLogger);
 const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 const colorette__default = /*#__PURE__*/_interopDefaultLegacy(colorette);
 const argv__default = /*#__PURE__*/_interopDefaultLegacy(argv);
+const Logger__default = /*#__PURE__*/_interopDefaultLegacy(Logger);
 const formatterANSI__default = /*#__PURE__*/_interopDefaultLegacy(formatterANSI);
+const ConsoleLogger__default = /*#__PURE__*/_interopDefaultLegacy(ConsoleLogger);
 const portscanner__default = /*#__PURE__*/_interopDefaultLegacy(portscanner);
 const ProgressBar__default = /*#__PURE__*/_interopDefaultLegacy(ProgressBar);
 const createChild__default = /*#__PURE__*/_interopDefaultLegacy(createChild);
