@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/christophehurpeau/alp/compare/alp-node@3.1.0...alp-node@3.1.1) (2021-03-21)
+
+
+### Bug Fixes
+
+* **alp-node:** add @types/koa as dependency ([6ff2584](https://github.com/christophehurpeau/alp/commit/6ff2584f2b44f73611170419714a5bbac6fcc861))
+
+
+
+
+
 # [3.1.0](https://github.com/christophehurpeau/alp/compare/alp-node@3.0.3...alp-node@3.1.0) (2021-03-21)
 
 
