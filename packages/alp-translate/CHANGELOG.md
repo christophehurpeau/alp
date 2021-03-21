@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/christophehurpeau/alp/compare/alp-translate@5.0.2...alp-translate@5.1.0) (2021-03-21)
+
+
+### Features
+
+* update dependencies and browserlist config ([ec17710](https://github.com/christophehurpeau/alp/commit/ec177106dbfb094fface3d2791800916929305fc))
+
+
+
+
+
 ## [5.0.2](https://github.com/christophehurpeau/alp/compare/alp-translate@5.0.1...alp-translate@5.0.2) (2021-01-18)
 
 

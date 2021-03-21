@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.7...alp-node-auth@5.1.0) (2021-03-21)
+
+
+### Bug Fixes
+
+* **alp-node-auth:** better strategies.d.ts ([b4dae49](https://github.com/christophehurpeau/alp/commit/b4dae49e6886517ad57976ec4a5b04d7e8f6b8aa))
+
+
+### Features
+
+* update dependencies and browserlist config ([ec17710](https://github.com/christophehurpeau/alp/commit/ec177106dbfb094fface3d2791800916929305fc))
+
+
+
+
+
 ## [5.0.7](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.0.6...alp-node-auth@5.0.7) (2021-01-24)
 
 
