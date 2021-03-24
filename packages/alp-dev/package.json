@@ -213,7 +213,7 @@
     "@types/optimize-css-assets-webpack-plugin": "5.0.2",
     "@types/portscanner": "2.1.0",
     "@types/progress": "2.0.3",
-    "@types/webpack-dev-server": "3.11.1",
+    "@types/webpack-dev-server": "3.11.2",
     "less": "4.1.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
