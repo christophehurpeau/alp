@@ -214,7 +214,7 @@
     "@types/portscanner": "2.1.0",
     "@types/progress": "2.0.3",
     "@types/webpack-dev-server": "3.11.2",
-    "less": "4.1.0",
+    "less": "4.1.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "rollup": "2.42.1"
