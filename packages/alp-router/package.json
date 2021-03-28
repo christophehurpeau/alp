@@ -124,6 +124,6 @@
     "babel-preset-modern-browsers": "15.0.2",
     "pob-babel": "26.8.0",
     "rollup": "2.42.1",
-    "router-segments": "4.1.0"
+    "router-segments": "4.1.3"
   }
 }
