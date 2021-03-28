@@ -9009,40 +9009,40 @@ listr2@^3.2.2:
     rxjs "^6.6.3"
     through "^2.3.8"
 
-liwi-mongo@8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-8.0.3.tgz#f85ad315b297ecd2cc937aac7043932916e30a72"
-  integrity sha512-jg1l656pU21Q3xtXjsSuubh8n5JpDWQfi2b5q3TbsFnrv2MyyihSSjO6z7b/Iq/Z/sgXGHz0350AmYaE0UcuHw==
+liwi-mongo@8.0.4:
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/liwi-mongo/-/liwi-mongo-8.0.4.tgz#2061714fc0905edebe862c919c55e075dc521dfd"
+  integrity sha512-CWNFyKx/2UU55mac2qsEqmPhYzN2Vj8MqA2ifsKSltroYi4gn20Z8sLQsICm1BeRqCCF1xmfOTc5y+H7YOCVdA==
   dependencies:
     "@types/mongodb" "^3.5.20"
-    liwi-store "^8.0.3"
-    liwi-subscribe-store "^8.0.3"
-    liwi-types "^8.0.1"
+    liwi-store "^8.0.4"
+    liwi-subscribe-store "^8.0.4"
+    liwi-types "^8.0.4"
     mingo "^3.0.2"
     mongodb "^3.5.8"
-    nightingale-logger "^11.0.1"
+    nightingale-logger "^11.0.5"
 
-liwi-store@^8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-8.0.3.tgz#1205219974e1081f6e5f77e9809a74da0557a28f"
-  integrity sha512-04jx1ahVlenHpk1m6eiUfmLfO6WV7sBElM16EBOBEqDWZyo2PHCsfDyv/r657Y6PIHxqR1ZmWezsNTbfkyd+dQ==
+liwi-store@^8.0.4:
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/liwi-store/-/liwi-store-8.0.4.tgz#af0e6c5aa85832ba32cdf87f5c5f9b396346ef0b"
+  integrity sha512-f6MpXqsc4pqb0rasqentqNODpdy8BHlft+6GLuMB+iHmuvQJeQheKZ7rLxftPGnWseqgYN+IDnMsgJFgHvl4vw==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    liwi-types "^8.0.1"
+    liwi-types "^8.0.4"
 
-liwi-subscribe-store@^8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-8.0.3.tgz#320838ba694cac51253d246279d6040c05d7a752"
-  integrity sha512-yjPlkEkLV3IXfaf2LdqcWP7zsoJAxViiQbAtO3agX0kqBl0Bj1tWVHuNYVc6aVWec7al9qiKCG7eFxDqZKNWuA==
+liwi-subscribe-store@^8.0.4:
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/liwi-subscribe-store/-/liwi-subscribe-store-8.0.4.tgz#819012b37f668a0b12963ff6fd8b138b07817e97"
+  integrity sha512-Dfm1s0vSLJ6+iTNjy84QH6wzsZpsKaD3d69nphhpO15tWP0sqmsALu1/ghpS7nNacsORKSEykhxJagKA2Z889g==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    liwi-store "^8.0.3"
-    liwi-types "^8.0.1"
+    liwi-store "^8.0.4"
+    liwi-types "^8.0.4"
 
-liwi-types@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-8.0.1.tgz#b901f58e8d87a4853d57a9b10a74994376374347"
-  integrity sha512-6NTj6njxnZPgE9GiqkxV42AoXe7zlaN4a5TraoGlFts2VsuyaD18XhW+ROOBZYmkPdkca/jU3r50+Evkp52tiw==
+liwi-types@^8.0.4:
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/liwi-types/-/liwi-types-8.0.4.tgz#d8dd8c832c7f8dbd37d311ffb08855f522eefb58"
+  integrity sha512-Zj2KoMzIrdhGocfmH7MUFYQQETk67SKBXXG+mxDTyaajyBzLMJKrrhZUFxP7OxNxuvJi902Ez3TfKUr19Z0+nQ==
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -9958,7 +9958,7 @@ nightingale-levels@^11.6.0:
   resolved "https://registry.yarnpkg.com/nightingale-levels/-/nightingale-levels-11.6.0.tgz#f13070076e74a8b8065ca83c3a38f84c7703d456"
   integrity sha512-oCASA0cydX2JV7fyhykU+SQG0DWaUf1U8uxIXwOjpgOr7nicV/F1SUgUxxO9z2bjbzT9lDkrGRcoPpoTCuSFXg==
 
-nightingale-logger@^11.0.0, nightingale-logger@^11.0.1, nightingale-logger@^11.0.5, nightingale-logger@^11.6.0:
+nightingale-logger@^11.0.0, nightingale-logger@^11.0.5, nightingale-logger@^11.6.0:
   version "11.6.0"
   resolved "https://registry.yarnpkg.com/nightingale-logger/-/nightingale-logger-11.6.0.tgz#55677b2ceb4dd803c6e0dd75e209e97f98a0a1a2"
   integrity sha512-6F2m+Ry6k5GNFjGfEnQjraRYkHtt3Mc+2uoxqYphKLy1qmmFyt/pynvv3TFeUUM3r6NYeFklnMTX18HBDtn6zQ==
