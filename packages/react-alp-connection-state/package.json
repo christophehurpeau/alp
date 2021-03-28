@@ -124,7 +124,7 @@
     "babel-preset-modern-browsers": "15.0.2",
     "pob-babel": "26.8.0",
     "react": "16.14.0",
-    "rollup": "2.42.1",
+    "rollup": "2.43.1",
     "ynnub": "2.0.0"
   }
 }
