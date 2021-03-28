@@ -123,7 +123,7 @@
     "pob-babel": "26.8.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-final-form": "6.5.2",
+    "react-final-form": "6.5.3",
     "rollup": "2.43.1"
   }
 }
