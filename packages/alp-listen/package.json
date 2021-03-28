@@ -1,6 +1,6 @@
 {
   "name": "alp-listen",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Listen function, using config and logger for alp server",
   "keywords": [
     "alp"

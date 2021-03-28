@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/christophehurpeau/alp/compare/alp-listen@4.1.1...alp-listen@4.1.2) (2021-03-28)
+
+
+### Bug Fixes
+
+* **alp-node:** esm remove require and use import instead ([a0f8f30](https://github.com/christophehurpeau/alp/commit/a0f8f302c57a9c1adc3aaa221dbb2342b967b69b))
+
+
+
+
+
 ## [4.1.1](https://github.com/christophehurpeau/alp/compare/alp-listen@4.1.0...alp-listen@4.1.1) (2021-03-28)
 
 **Note:** Version bump only for package alp-listen

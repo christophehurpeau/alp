@@ -1,6 +1,6 @@
 {
   "name": "alp-node",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "framework based on koa 2",
   "keywords": [
     "springbokjs",
@@ -95,7 +95,7 @@
   "dependencies": {
     "@types/koa": "^2.13.1",
     "@types/node-fetch": "^2.5.8",
-    "alp-listen": "^4.1.1",
+    "alp-listen": "^4.1.2",
     "alp-node-config": "^6.1.1",
     "alp-node-errors": "^5.1.1",
     "alp-node-language": "^4.3.0",
