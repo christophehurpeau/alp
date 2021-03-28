@@ -185,7 +185,7 @@
     "nightingale": "^11.0.5",
     "nightingale-ansi-formatter": "^11.0.5",
     "nightingale-console": "^11.0.5",
-    "node-sass": "^4.13.0",
+    "node-sass": "^5.0.0",
     "offline-plugin": "^5.0.7",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "pob-babel": "^26.8.0",
