@@ -70,9 +70,9 @@
   },
   "dependencies": {
     "@types/co-body": "^5.0.0",
-    "@types/koa": "^2.11.6",
+    "@types/koa": "^2.13.1",
     "co-body": "^6.0.0",
-    "koa": "^2.11.0"
+    "koa": "^2.13.1"
   },
   "devDependencies": {
     "@babel/core": "7.13.13",
