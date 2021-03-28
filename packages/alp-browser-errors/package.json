@@ -88,7 +88,7 @@
     "nightingale-logger": "^11.0.5"
   },
   "devDependencies": {
-    "@babel/core": "7.13.10",
+    "@babel/core": "7.13.13",
     "@babel/preset-env": "7.13.12",
     "babel-preset-modern-browsers": "15.0.2",
     "pob-babel": "26.8.0",
