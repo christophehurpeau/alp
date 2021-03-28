@@ -117,7 +117,7 @@
     "@babel/core": "7.13.13",
     "@babel/preset-env": "7.13.12",
     "@babel/preset-react": "7.13.13",
-    "antd": "4.10.2",
+    "antd": "4.14.1",
     "babel-preset-latest-node": "5.5.1",
     "babel-preset-modern-browsers": "15.0.2",
     "pob-babel": "26.8.0",
