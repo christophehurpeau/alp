@@ -88,9 +88,9 @@ const createScssModuleUse = function ({
       loader: resolveLoader('sass-loader'),
       options: {
         sourceMap: !production,
-        prependData: `$env: ${process.env.NODE_ENV};${themeFile ? `@import '${path__default.resolve(themeFile)}';` : ''}`,
+        additionalData: `$env: ${process.env.NODE_ENV};${themeFile ? `@import '${path__default.resolve(themeFile)}';` : ''}`,
         sassOptions: {
-          outputStyle: production !== false && 'compressed',
+          outputStyle: production !== false ? undefined : 'compressed',
           includePaths
         }
       }
@@ -197,13 +197,27 @@ function createPobpackConfig(target, production = false) {
         loose: true,
         modules: false
       }]],
-      plugins: [require.resolve('babel-plugin-inline-classnames-babel7'), hasAntd && [require.resolve('babel-plugin-import'), {
+      plugins: [// webpack 4 does not support this syntax. Remove with webpack 5
+      require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), // webpack 4 does not support this syntax. Remove with webpack 5
+      require.resolve('@babel/plugin-proposal-optional-chaining'), require.resolve('babel-plugin-inline-classnames-babel7'), hasAntd && [require.resolve('babel-plugin-import'), {
         libraryName: 'antd',
         libraryDirectory: target === 'node' ? 'lib' : 'es',
         style: target !== 'node'
       }]].filter(ExcludesFalsy)
     },
-    moduleRules: [// SCSS RULE, CSS RULE
+    moduleRules: [// webpack 4 does not support this syntax. Remove with webpack 5
+    {
+      test: /\.(mjs|jsx?)$/,
+      include: [/\/node_modules\//],
+      loaders: [{
+        loader: require.resolve('babel-loader'),
+        options: {
+          babelrc: false,
+          cacheDirectory: false,
+          plugins: [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), require.resolve('@babel/plugin-proposal-optional-chaining')]
+        }
+      }]
+    }, // SCSS RULE, CSS RULE
     ...createModuleRules({
       target,
       extractLoader: {

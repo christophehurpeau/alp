@@ -105,6 +105,10 @@ export default function createPobpackConfig(
         ],
       ],
       plugins: [
+        // webpack 4 does not support this syntax. Remove with webpack 5
+        require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
+        // webpack 4 does not support this syntax. Remove with webpack 5
+        require.resolve('@babel/plugin-proposal-optional-chaining'),
         require.resolve('babel-plugin-inline-classnames-babel7'),
         hasAntd && [
           require.resolve('babel-plugin-import'),
@@ -118,6 +122,27 @@ export default function createPobpackConfig(
     },
 
     moduleRules: [
+      // webpack 4 does not support this syntax. Remove with webpack 5
+      {
+        test: /\.(mjs|jsx?)$/,
+        include: [/\/node_modules\//],
+        loaders: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              babelrc: false,
+              cacheDirectory: false,
+              plugins: [
+                require.resolve(
+                  '@babel/plugin-proposal-nullish-coalescing-operator',
+                ),
+                require.resolve('@babel/plugin-proposal-optional-chaining'),
+              ],
+            },
+          },
+        ],
+      },
+
       // SCSS RULE, CSS RULE
       ...createModuleRules({
         target,

@@ -138,11 +138,11 @@ const createScssModuleUse: CreateScssModuleUseFn = function ({
         loader: resolveLoader('sass-loader'),
         options: {
           sourceMap: !production,
-          prependData: `$env: ${process.env.NODE_ENV as string};${
+          additionalData: `$env: ${process.env.NODE_ENV as string};${
             themeFile ? `@import '${path.resolve(themeFile)}';` : ''
           }`,
           sassOptions: {
-            outputStyle: production !== false && 'compressed',
+            outputStyle: production !== false ? undefined : 'compressed',
             includePaths,
           },
         },
