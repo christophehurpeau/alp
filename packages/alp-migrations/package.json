@@ -1,6 +1,6 @@
 {
   "name": "alp-migrations",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "migrations scripts in alp",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
