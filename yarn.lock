@@ -10410,10 +10410,10 @@ object-keys@^1.0.12, object-keys@^1.1.1:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
-object-properties@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/object-properties/-/object-properties-3.1.0.tgz#24250b004f5ede213f157365f5ca2dacc7a6dcaa"
-  integrity sha512-KRmi4q7AMuhSITeX56XE+eREjWBnNR/KygaYDsc6MbzU6g3MrmN2f1DskPGbm5uFMP0AtrvlIE8I18wxu+z6Lw==
+object-properties@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/object-properties/-/object-properties-4.0.0.tgz#c3ab5296fbd1e5415abfacce0dc27148d3490d77"
+  integrity sha512-zJOrN6qwMv08Q3KXlMsOEmwaSjK4Nc1NbaEVH26EWVqKjxXxKCyLLytgEwFsfUg2NFEql4dRUvUbj10RK/eOAA==
 
 object-visit@^1.0.0:
   version "1.0.1"
