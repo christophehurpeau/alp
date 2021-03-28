@@ -3,6 +3,8 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const fs = require('fs');
+const http = require('http');
+const https = require('https');
 const Logger = require('nightingale-logger');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
@@ -12,9 +14,7 @@ const Logger__default = /*#__PURE__*/_interopDefaultLegacy(Logger);
 const logger = new Logger__default('alp:listen');
 
 const createServer = (callback, socketPath, tls, dirname = '') => {
-  const createServer = !socketPath && tls ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-  require('https').createServer : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-  require('http').createServer;
+  const createServer = !socketPath && tls ? https.createServer : http.createServer;
 
   if (!tls) {
     return createServer(callback);

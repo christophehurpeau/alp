@@ -1,12 +1,12 @@
 import { unlinkSync, chmodSync, readFileSync } from 'fs';
+import { createServer as createServer$2 } from 'http';
+import { createServer as createServer$1 } from 'https';
 import Logger from 'nightingale-logger';
 
 const logger = new Logger('alp:listen');
 
 const createServer = (callback, socketPath, tls, dirname = '') => {
-  const createServer = !socketPath && tls ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-  require('https').createServer : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-  require('http').createServer;
+  const createServer = !socketPath && tls ? createServer$1 : createServer$2;
 
   if (!tls) {
     return createServer(callback);

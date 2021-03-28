@@ -1,11 +1,7 @@
 import { chmodSync, unlinkSync, readFileSync } from 'fs';
-import type {
-  Server,
-  IncomingMessage,
-  ServerResponse,
-  createServer as createServerHttp,
-} from 'http';
-import type { createServer as createServerHttps } from 'https';
+import { createServer as createServerHttp } from 'http';
+import type { Server, IncomingMessage, ServerResponse } from 'http';
+import { createServer as createServerHttps } from 'https';
 import type { Config } from 'alp-node-config';
 import Logger from 'nightingale-logger';
 
@@ -19,12 +15,8 @@ const createServer = (
   tls?: boolean,
   dirname = '',
 ): Server => {
-  const createServer: typeof createServerHttp =
-    !socketPath && tls
-      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-        (require('https').createServer as typeof createServerHttp)
-      : // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-        (require('http').createServer as typeof createServerHttp);
+  const createServer =
+    !socketPath && tls ? createServerHttps : createServerHttp;
 
   if (!tls) {
     return createServer(callback);
