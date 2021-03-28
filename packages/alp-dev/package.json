@@ -179,7 +179,7 @@
     "glob": "^7.1.6",
     "ignore-loader": "^0.1.2",
     "js-yaml": "^3.13.1",
-    "less-loader": "^5.0.0",
+    "less-loader": "^8.0.0",
     "less-modify-var-loader": "^1.0.0",
     "minimist-argv": "^1.1.0",
     "nightingale": "^11.0.5",
