@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/christophehurpeau/alp/compare/alp-node-language@4.2.0...alp-node-language@4.3.0) (2021-03-28)
+
+
+### Features
+
+* update koa ([8be5ecf](https://github.com/christophehurpeau/alp/commit/8be5ecf11e53a2deced805683195cc5c67ba9ea2))
+
+
+
+
+
 # [4.2.0](https://github.com/christophehurpeau/alp/compare/alp-node-language@4.1.0...alp-node-language@4.2.0) (2021-03-28)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/christophehurpeau/alp/compare/react-alp-route-match-transition@2.1.1...react-alp-route-match-transition@2.2.0) (2021-03-28)
+
+
+### Features
+
+* **deps:** update dependency type-fest to v1 ([#218](https://github.com/christophehurpeau/alp/issues/218)) ([96794f5](https://github.com/christophehurpeau/alp/commit/96794f5b2bee6fb566d8dfe97783232bfd2bb296))
+
+
+
+
+
 ## [2.1.1](https://github.com/christophehurpeau/alp/compare/react-alp-route-match-transition@2.1.0...react-alp-route-match-transition@2.1.1) (2021-03-28)
 
 **Note:** Version bump only for package react-alp-route-match-transition

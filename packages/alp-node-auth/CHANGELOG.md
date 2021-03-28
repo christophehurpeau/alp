@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.1.2...alp-node-auth@5.2.0) (2021-03-28)
+
+
+### Bug Fixes
+
+* correctly import jsonwebtoken ([10f57d9](https://github.com/christophehurpeau/alp/commit/10f57d9f4ba5df2646bfb30872a05c826251b3ba))
+
+
+### Features
+
+* update @types/jsonwebtoken ([d0c74e9](https://github.com/christophehurpeau/alp/commit/d0c74e9b514aeb9a70c4489b89353ea34aa568c2))
+
+
+
+
+
 ## [5.1.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.1.1...alp-node-auth@5.1.2) (2021-03-28)
 
 **Note:** Version bump only for package alp-node-auth

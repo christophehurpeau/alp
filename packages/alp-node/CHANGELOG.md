@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/christophehurpeau/alp/compare/alp-node@3.1.2...alp-node@3.2.0) (2021-03-28)
+
+
+### Features
+
+* update koa ([8be5ecf](https://github.com/christophehurpeau/alp/commit/8be5ecf11e53a2deced805683195cc5c67ba9ea2))
+* **deps:** update dependency koa-compress to v5 ([#202](https://github.com/christophehurpeau/alp/issues/202)) ([9c21363](https://github.com/christophehurpeau/alp/commit/9c213632690f49d1aadf942fbb0c33a7015cb901))
+
+
+
+
+
 ## [3.1.2](https://github.com/christophehurpeau/alp/compare/alp-node@3.1.1...alp-node@3.1.2) (2021-03-28)
 
 **Note:** Version bump only for package alp-node

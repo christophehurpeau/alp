@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@5.1.0...alp-body-parser@5.2.0) (2021-03-28)
+
+
+### Features
+
+* update koa ([8be5ecf](https://github.com/christophehurpeau/alp/commit/8be5ecf11e53a2deced805683195cc5c67ba9ea2))
+* **deps:** update dependency @types/co-body to v5 ([#193](https://github.com/christophehurpeau/alp/issues/193)) ([52d1c87](https://github.com/christophehurpeau/alp/commit/52d1c8768765b907b83f50c00856a9dfb9d2f328))
+
+
+
+
+
 # [5.1.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@5.0.3...alp-body-parser@5.1.0) (2021-03-21)
 
 

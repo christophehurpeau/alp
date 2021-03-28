@@ -1,7 +1,7 @@
 {
   "name": "alp-hello-react-example",
   "private": true,
-  "version": "4.0.6",
+  "version": "4.1.0",
   "description": "Say hello, with alp and react",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
@@ -26,16 +26,16 @@
     "arrowParens": "always"
   },
   "dependencies": {
-    "alp-browser": "^3.1.1",
-    "alp-node": "^3.1.2",
-    "alp-react": "^18.1.1",
+    "alp-browser": "^3.1.2",
+    "alp-node": "^3.2.0",
+    "alp-react": "^18.1.2",
     "nightingale-app-console": "11.6.0",
     "react": "16.14.0",
-    "react-alp-context": "^3.1.1",
-    "react-alp-translate": "^5.1.1",
+    "react-alp-context": "^3.1.2",
+    "react-alp-translate": "^5.1.2",
     "react-dom": "16.14.0"
   },
   "devDependencies": {
-    "alp-dev": "^15.2.1"
+    "alp-dev": "^15.3.0"
   }
 }

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.3.0](https://github.com/christophehurpeau/alp/compare/alp-dev@15.2.1...alp-dev@15.3.0) (2021-03-28)
+
+
+### Bug Fixes
+
+* alp-dev config sass and babel proposals ([3e7ff01](https://github.com/christophehurpeau/alp/commit/3e7ff01763857956a2335a18e7cd5f7aaea06cf1))
+
+
+### Features
+
+* update babel-plugin-import ([f54d7ce](https://github.com/christophehurpeau/alp/commit/f54d7ce5375a51afac824a953eaad1b34e4e7ae0))
+* update colorette ([a5f75d8](https://github.com/christophehurpeau/alp/commit/a5f75d8051bd2d8bbf7cc22b4a6aef897744d826))
+* **deps:** update dependency node-sass to v5 ([#204](https://github.com/christophehurpeau/alp/issues/204)) ([6d2c49e](https://github.com/christophehurpeau/alp/commit/6d2c49e54afc75635a796717f61f19c0d571da45))
+
+
+
+
+
 ## [15.2.1](https://github.com/christophehurpeau/alp/compare/alp-dev@15.2.0...alp-dev@15.2.1) (2021-03-28)
 
 **Note:** Version bump only for package alp-dev

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/christophehurpeau/alp/compare/ibex@7.1.1...ibex@7.2.0) (2021-03-28)
+
+
+### Features
+
+* update koa ([8be5ecf](https://github.com/christophehurpeau/alp/commit/8be5ecf11e53a2deced805683195cc5c67ba9ea2))
+
+
+
+
+
 ## [7.1.1](https://github.com/christophehurpeau/alp/compare/ibex@7.1.0...ibex@7.1.1) (2021-03-28)
 
 **Note:** Version bump only for package ibex
