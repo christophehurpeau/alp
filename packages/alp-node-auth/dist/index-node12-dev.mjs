@@ -1,5 +1,5 @@
 import { promisify } from 'util';
-import { verify, sign } from 'jsonwebtoken';
+import jsonwebtoken from 'jsonwebtoken';
 import Logger from 'nightingale-logger';
 import 'alp-router';
 import { EventEmitter } from 'events';
@@ -466,7 +466,7 @@ const getTokenFromRequest = (req, options) => {
   return cookies.get(COOKIE_NAME);
 };
 
-const verifyPromisified = promisify(verify);
+const verifyPromisified = promisify(jsonwebtoken.verify);
 
 const createDecodeJWT = secretKey => async (token, userAgent) => {
   const result = await verifyPromisified(token, secretKey, {
@@ -731,7 +731,7 @@ const createAuthApolloContext = (config, usersManager) => {
 };
 
 const logger = new Logger('alp:auth');
-const signPromisified = promisify(sign);
+const signPromisified = promisify(jsonwebtoken.sign);
 function init({
   homeRouterKey,
   usersManager,

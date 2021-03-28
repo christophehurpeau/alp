@@ -5,7 +5,7 @@ import type {
   VerifyCallback,
   VerifyOptions,
 } from 'jsonwebtoken';
-import { verify } from 'jsonwebtoken';
+import jsonwebtoken from 'jsonwebtoken';
 import type Logger from 'nightingale-logger';
 import type { User, UserSanitized } from '../../types.d';
 import type MongoUsersManager from '../MongoUsersManager';
@@ -22,7 +22,7 @@ const verifyPromisified = promisify<
   Parameters<Verify>[1],
   Parameters<Verify>[2],
   Parameters<VerifyCallback>[1]
->(verify as Verify);
+>(jsonwebtoken.verify as Verify);
 
 const createDecodeJWT = (secretKey: string) => async (
   token: string,

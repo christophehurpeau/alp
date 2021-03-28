@@ -2,7 +2,7 @@ import type { IncomingMessage } from 'http';
 import { promisify } from 'util';
 import type { Context } from 'alp-node';
 import type { ContextState, NodeApplication } from 'alp-types';
-import { sign } from 'jsonwebtoken';
+import jsonwebtoken from 'jsonwebtoken';
 import Logger from 'nightingale-logger';
 import type { User, UserSanitized } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
@@ -54,7 +54,7 @@ declare module 'alp-types' {
 
 const logger = new Logger('alp:auth');
 
-const signPromisified: any = promisify(sign);
+const signPromisified: any = promisify(jsonwebtoken.sign);
 
 export type AuthController = AuthControllerType;
 export type AuthRoutes = AuthRoutesType;

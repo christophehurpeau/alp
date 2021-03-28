@@ -12,6 +12,7 @@ const Cookies = require('cookies');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
 
+const jsonwebtoken__default = /*#__PURE__*/_interopDefaultLegacy(jsonwebtoken);
 const Logger__default = /*#__PURE__*/_interopDefaultLegacy(Logger);
 const Cookies__default = /*#__PURE__*/_interopDefaultLegacy(Cookies);
 
@@ -475,7 +476,7 @@ const getTokenFromRequest = (req, options) => {
   return cookies.get(COOKIE_NAME);
 };
 
-const verifyPromisified = util.promisify(jsonwebtoken.verify);
+const verifyPromisified = util.promisify(jsonwebtoken__default.verify);
 
 const createDecodeJWT = secretKey => async (token, userAgent) => {
   const result = await verifyPromisified(token, secretKey, {
@@ -740,7 +741,7 @@ const createAuthApolloContext = (config, usersManager) => {
 };
 
 const logger = new Logger__default('alp:auth');
-const signPromisified = util.promisify(jsonwebtoken.sign);
+const signPromisified = util.promisify(jsonwebtoken__default.sign);
 function init({
   homeRouterKey,
   usersManager,
