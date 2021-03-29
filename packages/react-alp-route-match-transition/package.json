@@ -115,7 +115,7 @@
     "type-fest": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.13.13",
+    "@babel/core": "7.13.14",
     "@babel/preset-env": "7.13.12",
     "@babel/preset-react": "7.13.13",
     "@types/react-router": "5.1.13",
