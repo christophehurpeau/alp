@@ -26,17 +26,17 @@ const verifyPromisified = promisify<
 
 const createDecodeJWT = (secretKey: string) => async (
   token: string,
-  userAgent: string,
+  jwtAudience: string,
 ): Promise<string | undefined> => {
   const result = await verifyPromisified(token, secretKey, {
     algorithms: ['HS512'],
-    audience: userAgent,
+    audience: jwtAudience,
   });
   return (result as any)?.connected as string | undefined;
 };
 
 export type FindConnectedAndUser<U extends User> = (
-  userAgent?: string,
+  jwtAudience?: string,
   token?: string,
 ) => Promise<[null | undefined | U['_id'], null | undefined | U]>;
 
@@ -51,14 +51,14 @@ export const createFindConnectedAndUser = <
   const decodeJwt = createDecodeJWT(secretKey);
 
   const findConnectedAndUser: FindConnectedAndUser<U> = async (
-    userAgent,
+    jwtAudience,
     token,
   ) => {
-    if (!token || !userAgent) return [null, null];
+    if (!token || !jwtAudience) return [null, null];
 
     let connected;
     try {
-      connected = await decodeJwt(token, userAgent);
+      connected = await decodeJwt(token, jwtAudience);
     } catch (err: unknown) {
       logger.debug('failed to verify authentification', { err });
     }

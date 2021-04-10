@@ -32,13 +32,14 @@ declare module 'alp-types' {
 }
 export declare type AuthController = AuthControllerType;
 export declare type AuthRoutes = AuthRoutesType;
-export default function init<StrategyKeys extends AllowedStrategyKeys = 'google', U extends User = User, USanitized extends UserSanitized = UserSanitized>({ homeRouterKey, usersManager, strategies, defaultStrategy, strategyToService, authHooks, }: {
+export default function init<StrategyKeys extends AllowedStrategyKeys = 'google', U extends User = User, USanitized extends UserSanitized = UserSanitized>({ homeRouterKey, usersManager, strategies, defaultStrategy, strategyToService, authHooks, jwtAudience, }: {
     homeRouterKey?: string;
     usersManager: MongoUsersManager<U, USanitized>;
     strategies: Strategies<StrategyKeys>;
     defaultStrategy?: StrategyKeys;
     strategyToService: Record<StrategyKeys, AccountService<any>>;
     authHooks?: AuthHooks<StrategyKeys>;
+    jwtAudience?: string;
 }): (app: NodeApplication) => {
     routes: AuthRoutesType;
     getConnectedAndUserFromRequest: (req: IncomingMessage) => Promise<[U["_id"] | null | undefined, U | null | undefined]>;

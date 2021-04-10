@@ -468,22 +468,22 @@ const getTokenFromRequest = (req, options) => {
 
 const verifyPromisified = promisify(jsonwebtoken.verify);
 
-const createDecodeJWT = secretKey => async (token, userAgent) => {
+const createDecodeJWT = secretKey => async (token, jwtAudience) => {
   const result = await verifyPromisified(token, secretKey, {
     algorithms: ['HS512'],
-    audience: userAgent
+    audience: jwtAudience
   });
   return result === null || result === void 0 ? void 0 : result.connected;
 };
 
 const createFindConnectedAndUser = (secretKey, usersManager, logger) => {
   const decodeJwt = createDecodeJWT(secretKey);
-  return async (userAgent, token) => {
-    if (!token || !userAgent) return [null, null];
+  return async (jwtAudience, token) => {
+    if (!token || !jwtAudience) return [null, null];
     let connected;
 
     try {
-      connected = await decodeJwt(token, userAgent);
+      connected = await decodeJwt(token, jwtAudience);
     } catch (err) {
       logger.debug('failed to verify authentification', {
         err
@@ -738,7 +738,8 @@ function init({
   strategies,
   defaultStrategy,
   strategyToService,
-  authHooks
+  authHooks,
+  jwtAudience
 }) {
   return app => {
     const userAccountsService = new UserAccountsService(usersManager, strategyToService);
@@ -806,7 +807,7 @@ function init({
           ctx.sanitizedState.user = user && usersManager.sanitize(user);
         };
 
-        const [connected, user] = await getConnectedAndUser(userAgent, token);
+        const [connected, user] = await getConnectedAndUser(jwtAudience || userAgent, token);
         logger.debug('middleware', {
           connected
         });

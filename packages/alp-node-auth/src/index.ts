@@ -70,6 +70,7 @@ export default function init<
   defaultStrategy,
   strategyToService,
   authHooks,
+  jwtAudience,
 }: {
   homeRouterKey?: string;
   usersManager: MongoUsersManager<U, USanitized>;
@@ -77,6 +78,7 @@ export default function init<
   defaultStrategy?: StrategyKeys;
   strategyToService: Record<StrategyKeys, AccountService<any>>;
   authHooks?: AuthHooks<StrategyKeys>;
+  jwtAudience?: string;
 }) {
   return (app: NodeApplication) => {
     const userAccountsService = new UserAccountsService(
@@ -172,7 +174,10 @@ export default function init<
           ctx.sanitizedState.user = user && usersManager.sanitize(user);
         };
 
-        const [connected, user] = await getConnectedAndUser(userAgent, token);
+        const [connected, user] = await getConnectedAndUser(
+          jwtAudience || userAgent,
+          token,
+        );
         logger.debug('middleware', { connected });
 
         if (connected == null || user == null) {
