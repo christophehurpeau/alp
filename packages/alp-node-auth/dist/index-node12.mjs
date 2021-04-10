@@ -768,7 +768,7 @@ function init({
         time: Date.now()
       }, this.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
-        audience: this.request.headers['user-agent'],
+        audience: jwtAudience || this.request.headers['user-agent'],
         expiresIn: '30 days'
       });
       this.cookies.set(COOKIE_NAME, token, {
@@ -790,7 +790,7 @@ function init({
       routes: createRoutes(controller),
       getConnectedAndUserFromRequest: req => {
         const token = getTokenFromRequest(req);
-        return getConnectedAndUser(req.headers['user-agent'], token);
+        return getConnectedAndUser(jwtAudience || req.headers['user-agent'], token);
       },
       getConnectedAndUser,
       middleware: async (ctx, next) => {

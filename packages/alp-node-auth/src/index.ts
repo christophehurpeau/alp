@@ -120,7 +120,7 @@ export default function init<
           .get('secretKey'),
         {
           algorithm: 'HS512',
-          audience: this.request.headers['user-agent'],
+          audience: jwtAudience || this.request.headers['user-agent'],
           expiresIn: '30 days',
         },
       );
@@ -152,7 +152,10 @@ export default function init<
         req: IncomingMessage,
       ): ReturnType<typeof getConnectedAndUser> => {
         const token = getTokenFromRequest(req);
-        return getConnectedAndUser(req.headers['user-agent'], token);
+        return getConnectedAndUser(
+          jwtAudience || req.headers['user-agent'],
+          token,
+        );
       },
       getConnectedAndUser,
 
