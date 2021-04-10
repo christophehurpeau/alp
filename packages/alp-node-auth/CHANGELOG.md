@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.3.0...alp-node-auth@5.3.1) (2021-04-10)
+
+
+### Bug Fixes
+
+* **alp-node-auth:** jwtAudience were not used everywhere ([d935271](https://github.com/christophehurpeau/alp/commit/d9352718d9761efd66a1d67d917ee2f9266c6ac7))
+
+
+
+
+
 # [5.3.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@5.2.1...alp-node-auth@5.3.0) (2021-04-10)
 
 
