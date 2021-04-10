@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.3.1](https://github.com/christophehurpeau/alp/compare/alp-dev@15.3.0...alp-dev@15.3.1) (2021-04-10)
+
+**Note:** Version bump only for package alp-dev
+
+
+
+
+
 # [15.3.0](https://github.com/christophehurpeau/alp/compare/alp-dev@15.2.1...alp-dev@15.3.0) (2021-03-28)
 
 
