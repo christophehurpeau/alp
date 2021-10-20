@@ -214,7 +214,7 @@
     "@types/js-yaml": "3.12.7",
     "@types/optimize-css-assets-webpack-plugin": "5.0.4",
     "@types/portscanner": "2.1.1",
-    "@types/progress": "2.0.3",
+    "@types/progress": "2.0.5",
     "@types/webpack-dev-server": "3.11.3",
     "less": "4.1.1",
     "react": "16.14.0",
