@@ -114,7 +114,7 @@
     "@types/findup-sync": "2.0.2",
     "@types/koa-compress": "4.0.3",
     "@types/koa-static": "4.0.2",
-    "@types/minimist": "1.2.1",
+    "@types/minimist": "1.2.2",
     "babel-preset-latest-node": "5.5.1",
     "pob-babel": "26.8.0",
     "rollup": "2.43.1"
