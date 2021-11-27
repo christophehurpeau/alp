@@ -9941,6 +9941,14 @@ nightingale-types@^11.6.0:
   dependencies:
     nightingale-levels "^11.6.0"
 
+nightingale-web-processor@11.6.0:
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/nightingale-web-processor/-/nightingale-web-processor-11.6.0.tgz#2e153e3b3f824fb78b5a55e64798434dcd456d17"
+  integrity sha512-j3HoWrESWTUbpJ7qeDar2C9Rick8hDtqL22/BWcrI/8Xc3pWNTMStukktsfz6wqO/RDHqxbhUh6YfCTZ2o/YeQ==
+  dependencies:
+    "@types/node" ">=12.0.0"
+    nightingale-types "^11.6.0"
+
 nightingale@^11.0.0, nightingale@^11.0.5, nightingale@^11.6.0:
   version "11.6.0"
   resolved "https://registry.yarnpkg.com/nightingale/-/nightingale-11.6.0.tgz#57a9b048af05acedfb18afb72cebf9f0834e3fee"
