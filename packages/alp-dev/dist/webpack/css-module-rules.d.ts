@@ -1,26 +1,26 @@
-import type { RuleSetLoader, RuleSetRule } from 'webpack';
+import type { RuleSetUseItem, RuleSetRule } from 'webpack';
 declare type Target = 'node' | 'modern-browser' | 'browser';
 export interface CreateCssModuleUseOptions {
     target: Target;
-    extractLoader: RuleSetLoader;
+    extractLoader: RuleSetUseItem;
     global?: boolean;
     plugins: any[];
     production: boolean;
-    otherLoaders?: RuleSetLoader[];
+    otherLoaders?: RuleSetUseItem[];
 }
 export interface CreateScssModuleUseOptions {
     target: Target;
-    extractLoader: RuleSetLoader;
+    extractLoader: RuleSetUseItem;
     global?: boolean;
     plugins: any[];
     production: boolean;
     themeFile?: string;
-    otherLoaders?: RuleSetLoader[];
+    otherLoaders?: RuleSetUseItem[];
     includePaths?: string[];
 }
 export interface CreateModuleRulesOptions {
     target: Target;
-    extractLoader: RuleSetLoader;
+    extractLoader: RuleSetUseItem;
     plugins: any[];
     production: boolean;
     themeFile?: string;
@@ -32,7 +32,7 @@ export interface StylesCacheGroups {
     chunks: 'all';
     enforce: true;
 }
-declare type CreateCssModuleUseFn = (options: CreateCssModuleUseOptions) => RuleSetLoader[];
+declare type CreateCssModuleUseFn = (options: CreateCssModuleUseOptions) => RuleSetUseItem[];
 declare type CreateModuleRulesFn = (options: CreateModuleRulesOptions) => RuleSetRule[];
 export declare const createCssModuleUse: CreateCssModuleUseFn;
 export declare const stylesCacheGroups: {

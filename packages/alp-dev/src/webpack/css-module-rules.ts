@@ -1,32 +1,32 @@
 /* eslint-disable max-lines, complexity */
 import path from 'path';
-import type { RuleSetLoader, RuleSetRule } from 'webpack';
+import type { RuleSetUseItem, RuleSetRule } from 'webpack';
 
 type Target = 'node' | 'modern-browser' | 'browser';
 
 export interface CreateCssModuleUseOptions {
   target: Target;
-  extractLoader: RuleSetLoader;
+  extractLoader: RuleSetUseItem;
   global?: boolean;
   plugins: any[];
   production: boolean;
-  otherLoaders?: RuleSetLoader[];
+  otherLoaders?: RuleSetUseItem[];
 }
 
 export interface CreateScssModuleUseOptions {
   target: Target;
-  extractLoader: RuleSetLoader;
+  extractLoader: RuleSetUseItem;
   global?: boolean;
   plugins: any[];
   production: boolean;
   themeFile?: string;
-  otherLoaders?: RuleSetLoader[];
+  otherLoaders?: RuleSetUseItem[];
   includePaths?: string[];
 }
 
 export interface CreateModuleRulesOptions {
   target: Target;
-  extractLoader: RuleSetLoader;
+  extractLoader: RuleSetUseItem;
   plugins: any[];
   production: boolean;
   themeFile?: string;
@@ -42,10 +42,10 @@ export interface StylesCacheGroups {
 
 type CreateCssModuleUseFn = (
   options: CreateCssModuleUseOptions,
-) => RuleSetLoader[];
+) => RuleSetUseItem[];
 type CreateScssModuleUseFn = (
   options: CreateScssModuleUseOptions,
-) => RuleSetLoader[];
+) => RuleSetUseItem[];
 type CreateModuleRulesFn = (options: CreateModuleRulesOptions) => RuleSetRule[];
 
 const ExcludesFalsy = (Boolean as any) as <T>(
@@ -108,10 +108,11 @@ export const createCssModuleUse: CreateCssModuleUseFn = function ({
     {
       loader: resolveLoader('postcss-loader'),
       options: {
-        ident: 'postcss',
         sourceMap: !production,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        plugins: () => plugins,
+        postcssOptions: {
+          ident: 'postcss',
+          plugins,
+        },
       },
     },
     ...otherLoaders,

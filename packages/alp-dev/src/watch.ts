@@ -13,6 +13,7 @@ import createChild from 'springbokjs-daemon';
 // import watchServer from './server';
 import * as configBuild from './config-build';
 
+const https = false;
 const startProxyPort: number = (argv.browserSyncStartPort as number) || 3000;
 const startAppPort: number = (argv.startAppPort as number) || 3050;
 const endProxyPort: number = startProxyPort + 49;
@@ -86,7 +87,7 @@ Promise.all([
   portscanner.findAPortNotInUse(startProxyPort, endProxyPort),
   portscanner.findAPortNotInUse(startAppPort, endAppPort),
   configBuild.build('./src/config', () => {
-    logger.warn('config changed, restarting server');
+    logger.warn('Config changed, restarting server');
     if (nodeChild) nodeChild.sendSIGUSR2();
   }),
 ])
@@ -121,6 +122,18 @@ Promise.all([
         bar.update((percentages.node + percentages.browser) / 2, {
           msg: message.length > 20 ? `${message.slice(0, 20)}...` : message,
         });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      } else if (msg && msg.type === 'failed-to-compile') {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access
+        logger.fatal(`Failed to compile ${msg.bundleName}:\n${msg.errors}`);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      } else if (msg && msg.type === 'compiled-with-arnings') {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access
+        logger.fatal(`Failed to compile ${msg.bundleName}:\n${msg.warnings}`);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      } else if (msg && msg.type === 'compiled-successfully') {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access
+        logger.success(`Compiled ${msg.bundleName} successfully!`);
       }
     };
 
@@ -163,10 +176,15 @@ Promise.all([
       onMessage: (msg) => handleMessage('browser', msg),
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Promise.all([nodeChild.start(), browserChild.start()]).then(() => {
-      logger.success('ready', { port: proxyPort, serverPort: port });
-    });
+    Promise.all([nodeChild.start(), browserChild.start()]).then(
+      () => {
+        const url = `http${https ? 's' : ''}://localhost:${proxyPort}`;
+        logger.success(`Your application is running here: ${url}`);
+      },
+      (err) => {
+        logger.error(err);
+      },
+    );
 
     const cleanup = (): void => {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises

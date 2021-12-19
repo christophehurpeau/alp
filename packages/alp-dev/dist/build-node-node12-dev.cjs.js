@@ -1,21 +1,366 @@
 'use strict';
 
 const path = require('path');
-const pobpackNode = require('pobpack-node');
+require('debounce');
+require('springbokjs-daemon');
 const fs = require('fs');
-const autoprefixer = require('autoprefixer');
-const CssExtractPlugin = require('extract-css-chunks-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const child_process = require('child_process');
+const util = require('util');
 const webpack = require('webpack');
+const nightingale = require('nightingale');
+const ConsoleHandler = require('nightingale-console');
+const Logger = require('nightingale-logger');
+const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
+const nodeExternals = require('webpack-node-externals');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e['default'] : e; }
 
 const path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 const fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
-const autoprefixer__default = /*#__PURE__*/_interopDefaultLegacy(autoprefixer);
-const CssExtractPlugin__default = /*#__PURE__*/_interopDefaultLegacy(CssExtractPlugin);
-const OptimizeCssAssetsPlugin__default = /*#__PURE__*/_interopDefaultLegacy(OptimizeCssAssetsPlugin);
 const webpack__default = /*#__PURE__*/_interopDefaultLegacy(webpack);
+const ConsoleHandler__default = /*#__PURE__*/_interopDefaultLegacy(ConsoleHandler);
+const Logger__default = /*#__PURE__*/_interopDefaultLegacy(Logger);
+const formatWebpackMessages__default = /*#__PURE__*/_interopDefaultLegacy(formatWebpackMessages);
+const nodeExternals__default = /*#__PURE__*/_interopDefaultLegacy(nodeExternals);
+const CaseSensitivePathsPlugin__default = /*#__PURE__*/_interopDefaultLegacy(CaseSensitivePathsPlugin);
+const autoprefixer__default = /*#__PURE__*/_interopDefaultLegacy(autoprefixer);
+const MiniCssExtractPlugin__default = /*#__PURE__*/_interopDefaultLegacy(MiniCssExtractPlugin);
+
+/* eslint-disable complexity */
+function createOptions(options) {
+  return {
+    aliases: options.aliases || {},
+    babel: options.babel || {},
+    defines: options.defines || {},
+    entries: options.entries || ['index'],
+    serviceWorkerEntry: options.serviceWorkerEntry === undefined ? 'service-worker' : options.serviceWorkerEntry,
+    env: options.env || process.env.NODE_ENV,
+    hmr: options.hmr,
+    allowlistExternalExtensions: options.allowlistExternalExtensions || [],
+    includePaths: options.includePaths || [],
+    moduleRules: options.moduleRules,
+    paths: {
+      src: 'src',
+      build: 'build',
+      ...options.paths
+    },
+    plugins: options.plugins || [],
+    prependPlugins: options.prependPlugins || [],
+    resolveLoaderModules: options.resolveLoaderModules,
+    typescript: options.typescript || false,
+    webpackPrefixPackageFields: options.webpackPrefixPackageFields || []
+  };
+}
+
+function createAppWebpackConfig(createWebpackConfig) {
+  const wrapCreateWebpackConfig = options => createWebpackConfig(createOptions(options));
+
+  return options => {
+    const appWebpackConfigPath = path.resolve('createAppWebpackConfig.js');
+
+    if (fs.existsSync(appWebpackConfigPath)) {
+      console.info('Using app createAppWebpackConfig.js'); // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment
+
+      const appWebpackConfigCreator = require(appWebpackConfigPath);
+
+      if (typeof appWebpackConfigCreator !== 'function') {
+        console.error("app createAppWebpackConfig.js should export a function\nmodule.exports = function (config, options) { ... }");
+      }
+
+      options = createOptions(options);
+      const config = appWebpackConfigCreator(wrapCreateWebpackConfig, options);
+
+      if (typeof config !== 'object') {
+        console.error("app createAppWebpackConfig.js should return the config\nfunction (config, options) { return config(options); }");
+      }
+
+      return config;
+    } else {
+      return wrapCreateWebpackConfig(options);
+    }
+  };
+}
+
+/* eslint-disable no-console */
+nightingale.addConfig({
+  key: 'pobpack-utils',
+  handler: new ConsoleHandler__default(nightingale.levels.INFO)
+});
+const logger = new Logger__default('pobpack-utils', 'pobpack');
+const pluginName = 'pobpack/FriendlyErrorsWebpackPlugin';
+class FriendlyErrorsWebpackPlugin {
+  constructor(options) {
+    this.bundleName = options.bundleName;
+    this.successMessage = options.successMessage;
+    this.logger = logger.context({
+      bundleName: options.bundleName
+    });
+  }
+
+  apply(compiler) {
+    // webpack is recompiling
+    compiler.hooks.invalid.tap(pluginName, () => {
+      this.logger.info('Compiling...');
+    }); // compilation done
+
+    compiler.hooks.done.tap(pluginName, stats => {
+      const messages = formatWebpackMessages__default(stats.toJson({})); // const messages = stats.toJson({}, true);
+
+      if (messages.errors.length > 0) {
+        if (process.send) {
+          process.send({
+            type: 'failed-to-compile',
+            errors: messages.errors.join('\n'),
+            bundleName: this.bundleName
+          });
+        } else {
+          this.logger.critical('Failed to compile.');
+          console.log();
+          messages.errors.forEach(message => {
+            console.log(message);
+            console.log();
+          });
+        }
+
+        return;
+      }
+
+      if (process.send) process.send('ready');
+
+      if (messages.warnings.length > 0) {
+        if (process.send) {
+          process.send({
+            type: 'compiled-with-arnings',
+            warnings: messages.warnings.join('\n'),
+            bundleName: this.bundleName
+          });
+        } else {
+          this.logger.critical('Compiled with warnings.');
+          console.log();
+          messages.warnings.forEach(message => {
+            console.log(message);
+            console.log();
+          });
+        }
+      }
+
+      if (process.send) {
+        process.send({
+          type: 'compiled-successfully',
+          bundleName: this.bundleName
+        });
+      } else {
+        this.logger.success('Compiled successfully!');
+
+        if (this.successMessage) {
+          console.log(this.successMessage);
+        }
+      }
+    });
+  }
+
+}
+
+const buildThrowOnError = stats => {
+  if (!stats) return stats;
+
+  if (!stats.hasErrors()) {
+    return stats;
+  }
+
+  throw new Error(stats.toString({}));
+};
+
+function createPobpackCompiler(bundleName, webpackConfig, {
+  successMessage
+} = {}) {
+  const compiler = webpack__default(webpackConfig); // human-readable error messages
+
+  new FriendlyErrorsWebpackPlugin({
+    bundleName,
+    successMessage
+  }).apply(compiler);
+  const promisifyRun = util.promisify(compiler.run.bind(compiler));
+  return {
+    compiler,
+    webpackConfig,
+    clean: () => {
+      var _webpackConfig$output;
+
+      if ((_webpackConfig$output = webpackConfig.output) !== null && _webpackConfig$output !== void 0 && _webpackConfig$output.path) {
+        child_process.execSync(`rm -Rf ${webpackConfig.output.path}`);
+      }
+
+      return undefined;
+    },
+    run: () => promisifyRun().then(buildThrowOnError),
+    watch: callback => compiler.watch({}, (err, stats) => {
+      if (err || !stats) return;
+      if (stats.hasErrors()) return;
+      buildThrowOnError(stats);
+      callback(stats);
+    })
+  };
+}
+
+function createModuleConfig(options) {
+  return {
+    strictExportPresence: true,
+    rules: [// tsx? / jsx?
+    {
+      test: options.typescript ? /\.(mjs|[jt]sx?)$/ : /\.(mjs|jsx?)$/,
+      include: [path.resolve(options.paths.src), ...options.includePaths],
+      rules: [{
+        loader: require.resolve('babel-loader'),
+        options: {
+          babelrc: false,
+          configFile: false,
+          cacheDirectory: true,
+          ...options.babel
+        }
+      }]
+    }, // other rules
+    ...(options.moduleRules || [])]
+  };
+}
+
+const ExcludesFalsy$4 = Boolean;
+function createPluginsConfig(options) {
+  const plugins = [...(options.prependPlugins || []), // enforces the entire path of all required modules match the exact case
+  // of the actual path on disk. Using this plugin helps alleviate cases
+  // for developers working on case insensitive systems like OSX.
+  options.env !== 'production' && new CaseSensitivePathsPlugin__default(), new webpack__default.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(options.env),
+    ...options.defines
+  }),
+  /* replace object-assign ponyfill to use native implementation */
+  // Array.isArray
+  new webpack__default.NormalModuleReplacementPlugin(/.*\/node_modules\/isarray\/index.js$/, require.resolve('../replacements/Array.isArray.js')), // Object.assign
+  new webpack__default.NormalModuleReplacementPlugin(/.*\/node_modules\/(object-assign|extend-shallow)\/index.js$/, require.resolve('../replacements/Object.assign.js')), // Object.setPrototypeOf
+  new webpack__default.NormalModuleReplacementPlugin(/.*\/node_modules\/setprototypeof\/index.js$/, require.resolve('../replacements/Object.setPrototypeOf.js')), // Promise
+  new webpack__default.NormalModuleReplacementPlugin(/.*\/node_modules\/any-promise\/index.js$/, require.resolve('../replacements/Promise.js')), // String.prototype.repeat
+  new webpack__default.NormalModuleReplacementPlugin(/.*\/node_modules\/repeat-string\/index.js$/, require.resolve('../replacements/String.prototype.repeat.js')), // Symbol.observable
+  // https://github.com/tc39/proposal-observable
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/observable
+  // new webpack.NormalModuleReplacementPlugin(
+  //   /.*\/node_modules\/symbol-observable\/es\/ponyfill.js$/,
+  //   require.resolve('../replacements/Symbol.observable.js'),
+  // ),
+  ...options.plugins];
+  return plugins.filter(ExcludesFalsy$4);
+}
+
+/* eslint-disable complexity */
+const ExcludesFalsy$3 = Boolean;
+function createResolveConfig(modulePrefixPackageFields, conditionNames, options, targetAliases) {
+  return {
+    // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/25209
+    // cacheWithContext: false,
+    modules: ['node_modules', path.resolve('src')],
+    extensions: [options.typescript && '.ts', options.typescript && '.tsx', '.mjs', '.js', '.jsx'].filter(ExcludesFalsy$3),
+    conditionNames: [...conditionNames, options.env !== 'production' ? 'development' : undefined, 'import'].filter(ExcludesFalsy$3),
+    mainFields: [...[].concat(...modulePrefixPackageFields.map(prefix => [options.env !== 'production' && `module:${prefix}-dev`, `module:${prefix}`, // old `webpack:` syntax
+    options.env !== 'production' && `webpack:${prefix}-dev`, `webpack:${prefix}`])), options.env !== 'production' && 'module-dev', 'module', // old webpack: syntax
+    options.env !== 'production' && 'webpack:main-dev', 'webpack:main', ...(!modulePrefixPackageFields.includes('browser') ? [] : [// Browser builds
+    options.env !== 'production' && 'browser-dev', 'browser']), options.env !== 'production' && 'main-dev', 'main'].filter(ExcludesFalsy$3),
+    aliasFields: [...[].concat(...modulePrefixPackageFields.map(prefix => [options.env !== 'production' && `module:aliases-${prefix}-dev`, `module:aliases-${prefix}`, // old webpack: syntax
+    options.env !== 'production' && `webpack:aliases-${prefix}-dev`, `webpack:aliases-${prefix}`])), options.env !== 'production' && 'module:aliases-dev', 'module:aliases', // old webpack: syntax
+    options.env !== 'production' && 'webpack:aliases-dev', 'webpack:aliases', 'webpack', modulePrefixPackageFields.includes('browser') && options.env !== 'production' && 'browser-dev', modulePrefixPackageFields.includes('browser') && 'browser'].filter(ExcludesFalsy$3),
+    alias: { ...options.aliases,
+      ...targetAliases
+    }
+  };
+}
+
+const ExcludesFalsy$2 = Boolean;
+
+const createExternals = options => {
+  const baseOptions = {
+    importType: 'commonjs',
+    modulesFromFile: false,
+    allowlist: [require.resolve('../node-hot.mjs'), ...(options.allowlistExternalExtensions ? [new RegExp(`(${options.allowlistExternalExtensions.join('|')})$`)] : [])]
+  };
+  const nodeModulesPaths = [];
+  let p = process.cwd();
+
+  do {
+    const nodeModulesCurrentPath = path__default.join(p, 'node_modules');
+
+    if (fs__default.existsSync(nodeModulesCurrentPath)) {
+      nodeModulesPaths.push(nodeModulesCurrentPath);
+    }
+
+    p = path__default.dirname(p);
+  } while (p !== '/');
+
+  return nodeModulesPaths.map(nodeModulesPath => nodeExternals__default({ ...baseOptions,
+    modulesDir: nodeModulesPath
+  }));
+};
+
+function createNodeWebpackConfig(options) {
+  return {
+    // production or development
+    mode: options.env === 'production' ? 'production' : 'development',
+    // Don't attempt to continue if there are any errors.
+    bail: options.env === 'production',
+    // Target node
+    target: 'node14',
+    // get right stack traces
+    devtool: 'source-map',
+    infrastructureLogging: {
+      level: 'none'
+    },
+    optimization: {
+      nodeEnv: false,
+      // see createPluginsConfig
+      emitOnErrors: false,
+      minimize: false
+    },
+    // don't bundle node_modules dependencies
+    externalsPresets: {
+      node: true
+    },
+    externals: createExternals(options),
+    // __dirname and __filename
+    node: {
+      __filename: true,
+      __dirname: true
+    },
+    // use cache
+    cache: options.hmr,
+    // bundle size is not relevant for node
+    performance: {
+      hints: false
+    },
+    resolveLoader: {
+      modules: options.resolveLoaderModules || ['node_modules']
+    },
+    resolve: createResolveConfig(['node'], ['node', options.env === 'production' ? 'production' : 'development'], { ...options,
+      babel: options.babel
+    }),
+    entry: options.entries.reduce((entries, entry) => {
+      if (typeof entry === 'string') entry = {
+        key: entry,
+        path: entry
+      };
+      entries[entry.key] = [options.hmr ? require.resolve('../node-hot.mjs') : undefined, path__default.join(path__default.resolve(options.paths.src), entry.path)].filter(ExcludesFalsy$2);
+      return entries;
+    }, {}),
+    output: {
+      path: path__default.resolve(options.paths.build),
+      libraryTarget: 'commonjs2',
+      devtoolModuleFilenameTemplate: '[absolute-resource-path]'
+    },
+    module: createModuleConfig(options),
+    plugins: [options.hmr && new webpack__default.HotModuleReplacementPlugin(), ...createPluginsConfig(options)].filter(ExcludesFalsy$2)
+  };
+}
+
+const createAppNodeCompiler = (options, compilerOptions) => createPobpackCompiler('node', createAppWebpackConfig(createNodeWebpackConfig)(options), compilerOptions);
 
 /* eslint-disable max-lines, complexity */
 const ExcludesFalsy$1 = Boolean;
@@ -59,10 +404,11 @@ const createCssModuleUse = function ({
   }, {
     loader: resolveLoader('postcss-loader'),
     options: {
-      ident: 'postcss',
       sourceMap: !production,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      plugins: () => plugins
+      postcssOptions: {
+        ident: 'postcss',
+        plugins
+      }
     }
   }, ...otherLoaders].filter(ExcludesFalsy$1);
 };
@@ -166,7 +512,6 @@ function createPobpackConfig(target, production = false) {
     hmr: !production,
     typescript: true,
     allowlistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'scss', 'css'],
-    includeModules: [],
     paths: {
       build: target === 'node' ? 'build' : 'public'
     },
@@ -182,7 +527,8 @@ function createPobpackConfig(target, production = false) {
       presets: [// add react preset with jsx
       [require.resolve('@babel/preset-react'), {
         development: !production,
-        useBuiltIns: true
+        useBuiltIns: true,
+        runtime: 'automatic'
       }], // pob preset: flow, import `src`, export default function name, replacements, exnext features, ...
       [require.resolve('babel-preset-pob-env'), {
         resolvePreset: preset => require.resolve(preset),
@@ -195,33 +541,18 @@ function createPobpackConfig(target, production = false) {
         loose: true,
         modules: false
       }]],
-      plugins: [// webpack 4 does not support this syntax. Remove with webpack 5
-      require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), // webpack 4 does not support this syntax. Remove with webpack 5
-      require.resolve('@babel/plugin-proposal-optional-chaining'), require.resolve('babel-plugin-inline-classnames-babel7'), hasAntd && [require.resolve('babel-plugin-import'), {
+      plugins: [require.resolve('babel-plugin-inline-classnames-babel7'), hasAntd && [require.resolve('babel-plugin-import'), {
         libraryName: 'antd',
         libraryDirectory: target === 'node' ? 'lib' : 'es',
         style: target !== 'node'
       }]].filter(ExcludesFalsy)
     },
-    moduleRules: [// webpack 4 does not support this syntax. Remove with webpack 5
-    {
-      test: /\.(mjs|jsx?)$/,
-      include: [/\/node_modules\//],
-      loaders: [{
-        loader: require.resolve('babel-loader'),
-        options: {
-          babelrc: false,
-          cacheDirectory: false,
-          plugins: [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), require.resolve('@babel/plugin-proposal-optional-chaining')]
-        }
-      }]
-    }, // SCSS RULE, CSS RULE
+    moduleRules: [// SCSS RULE, CSS RULE
     ...createModuleRules({
       target,
       extractLoader: {
-        loader: CssExtractPlugin__default.loader,
+        loader: MiniCssExtractPlugin__default.loader,
         options: {
-          hmr: !production && target !== 'node',
           esModule: true
         }
       },
@@ -236,10 +567,9 @@ function createPobpackConfig(target, production = false) {
         global: true,
         target,
         extractLoader: {
-          loader: CssExtractPlugin__default.loader,
+          loader: MiniCssExtractPlugin__default.loader,
           options: {
-            hmr: !production && target !== 'node',
-            esModule: true
+            publicPath: '../..'
           }
         },
         production,
@@ -260,15 +590,12 @@ function createPobpackConfig(target, production = false) {
     }, // IMG RULE
     {
       test: /\.(png|jpg|jpeg|gif|svg)$/,
-      loader: require.resolve('url-loader'),
-      options: {
-        /* config to emit with node doesn't work anymore because css is ignored by node */
-        // emitFile: target === 'node', // only write file if node
-        // outputPath: '../public/', // because it's node who is writing the file, node is in build/
-        // publicPath: (url: string): string => url.replace(/^..\/public\//, ''),
-        emitFile: target === 'modern-browser',
-        limit: 1000,
-        name: 'images/[hash].[ext]'
+      type: 'asset',
+      parser: {
+        dataUrlCondition: {
+          maxSize: 1024 // 1kb
+
+        }
       }
     }],
     // TODO https://github.com/zeit/next.js/blob/7d78c3b64185d6d6417f1af9cde4a69d32b18cc6/packages/next/build/webpack.js
@@ -281,38 +608,25 @@ function createPobpackConfig(target, production = false) {
     //     },
     //   },
     // },
-    plugins: [new CssExtractPlugin__default({
-      // disable: target === 'node',
+    plugins: [new MiniCssExtractPlugin__default({
+      experimentalUseImportModule: true,
       filename: `${target === 'node' ? 'server' : // eslint-disable-next-line unicorn/no-nested-ternary
-      target === 'browser' ? 'es5' : 'modern-browsers'}.css`
-    }), new OptimizeCssAssetsPlugin__default(), process.send && new webpack__default.ProgressPlugin((percentage, message) => {
+      target === 'browser' ? 'es5' : 'modern-browsers'}.css`,
+      // [name].[contenthash:8].css
+      chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+      runtime: target !== 'node'
+    }), process.send && new webpack__default.ProgressPlugin((percentage, message) => {
       process.send({
         type: 'webpack-progress',
         percentage,
         message
       });
-    }) // target === 'browser' &&
-    // target !== 'node' &&
-    //   production &&
-    //   new optimize.UglifyJsPlugin({
-    //     compress: {
-    //       warnings: false,
-    //     },
-    //     sourcleMap: !production,
-    //   }),!== 'node' &&
-    //   production &&
-    //   new optimize.UglifyJsPlugin({
-    //     compress: {
-    //       warnings: false,
-    //     },
-    //     sourceMap: !production,
-    //   }),
-    // TODO https://github.com/NekR/offline-plugin
+    }) // TODO https://github.com/NekR/offline-plugin
     ].filter(ExcludesFalsy)
   };
 }
 
-const createNodeCompiler = production => pobpackNode.createAppNodeCompiler(createPobpackConfig('node', production), {
+const createNodeCompiler = production => createAppNodeCompiler(createPobpackConfig('node', production), {
   progressBar: false
 });
 

@@ -14,6 +14,31 @@
   "engines": {
     "node": ">=12.10.0"
   },
+  "browserslist": {
+    "production": [
+      "> 0.2%",
+      "Firefox ESR",
+      "last 2 Chrome versions",
+      "last 2 iOS versions",
+      "last 2 Edge versions",
+      "last 2 Safari versions",
+      "not ie < 12",
+      "not ios_saf < 10",
+      "not dead",
+      "not op_mini all"
+    ],
+    "modern": [
+      "Edge >= 83",
+      "Firefox >= 78",
+      "FirefoxAndroid  >= 78",
+      "Chrome >= 80",
+      "ChromeAndroid >= 80",
+      "Opera >= 67",
+      "OperaMobile >= 67",
+      "Safari >= 13.1",
+      "iOS >= 13.4"
+    ]
+  },
   "scripts": {
     "build": "alp-dev-build",
     "lint": "yarn run lint:eslint",

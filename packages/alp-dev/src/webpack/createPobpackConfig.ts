@@ -3,10 +3,9 @@
 import fs from 'fs';
 import path from 'path';
 import autoprefixer from 'autoprefixer';
-import CssExtractPlugin from 'extract-css-chunks-webpack-plugin';
-import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import type { Options } from 'pobpack-types';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
+import type { Options } from '../pobpack/types';
 import { createModuleRules, createCssModuleUse } from './css-module-rules';
 
 // stylesCacheGroups
@@ -49,7 +48,6 @@ export default function createPobpackConfig(
       'scss',
       'css',
     ],
-    includeModules: [],
 
     paths: {
       build: target === 'node' ? 'build' : 'public',
@@ -81,7 +79,7 @@ export default function createPobpackConfig(
         // add react preset with jsx
         [
           require.resolve('@babel/preset-react'),
-          { development: !production, useBuiltIns: true },
+          { development: !production, useBuiltIns: true, runtime: 'automatic' },
         ],
         // pob preset: flow, import `src`, export default function name, replacements, exnext features, ...
         [
@@ -105,10 +103,6 @@ export default function createPobpackConfig(
         ],
       ],
       plugins: [
-        // webpack 4 does not support this syntax. Remove with webpack 5
-        require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
-        // webpack 4 does not support this syntax. Remove with webpack 5
-        require.resolve('@babel/plugin-proposal-optional-chaining'),
         require.resolve('babel-plugin-inline-classnames-babel7'),
         hasAntd && [
           require.resolve('babel-plugin-import'),
@@ -122,33 +116,12 @@ export default function createPobpackConfig(
     },
 
     moduleRules: [
-      // webpack 4 does not support this syntax. Remove with webpack 5
-      {
-        test: /\.(mjs|jsx?)$/,
-        include: [/\/node_modules\//],
-        loaders: [
-          {
-            loader: require.resolve('babel-loader'),
-            options: {
-              babelrc: false,
-              cacheDirectory: false,
-              plugins: [
-                require.resolve(
-                  '@babel/plugin-proposal-nullish-coalescing-operator',
-                ),
-                require.resolve('@babel/plugin-proposal-optional-chaining'),
-              ],
-            },
-          },
-        ],
-      },
-
       // SCSS RULE, CSS RULE
       ...createModuleRules({
         target,
         extractLoader: {
-          loader: CssExtractPlugin.loader,
-          options: { hmr: !production && target !== 'node', esModule: true },
+          loader: MiniCssExtractPlugin.loader,
+          options: { esModule: true },
         },
         production,
         themeFile: './src/theme.scss',
@@ -163,8 +136,8 @@ export default function createPobpackConfig(
           global: true,
           target,
           extractLoader: {
-            loader: CssExtractPlugin.loader,
-            options: { hmr: !production && target !== 'node', esModule: true },
+            loader: MiniCssExtractPlugin.loader,
+            options: { publicPath: '../..' },
           },
           production,
           plugins: [autoprefixer],
@@ -189,15 +162,11 @@ export default function createPobpackConfig(
       // IMG RULE
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
-        loader: require.resolve('url-loader'),
-        options: {
-          /* config to emit with node doesn't work anymore because css is ignored by node */
-          // emitFile: target === 'node', // only write file if node
-          // outputPath: '../public/', // because it's node who is writing the file, node is in build/
-          // publicPath: (url: string): string => url.replace(/^..\/public\//, ''),
-          emitFile: target === 'modern-browser',
-          limit: 1000,
-          name: 'images/[hash].[ext]',
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 1024, // 1kb
+          },
         },
       },
     ],
@@ -214,8 +183,8 @@ export default function createPobpackConfig(
     // },
 
     plugins: [
-      new CssExtractPlugin({
-        // disable: target === 'node',
+      new MiniCssExtractPlugin({
+        experimentalUseImportModule: true,
         filename: `${
           target === 'node'
             ? 'server'
@@ -223,9 +192,10 @@ export default function createPobpackConfig(
             target === 'browser'
             ? 'es5'
             : 'modern-browsers'
-        }.css`,
+        }.css`, // [name].[contenthash:8].css
+        chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+        runtime: target !== 'node',
       }),
-      new OptimizeCssAssetsPlugin(),
 
       process.send &&
         new webpack.ProgressPlugin(
@@ -238,22 +208,6 @@ export default function createPobpackConfig(
           },
         ),
 
-      // target === 'browser' &&
-      // target !== 'node' &&
-      //   production &&
-      //   new optimize.UglifyJsPlugin({
-      //     compress: {
-      //       warnings: false,
-      //     },
-      //     sourcleMap: !production,
-      //   }),!== 'node' &&
-      //   production &&
-      //   new optimize.UglifyJsPlugin({
-      //     compress: {
-      //       warnings: false,
-      //     },
-      //     sourceMap: !production,
-      //   }),
       // TODO https://github.com/NekR/offline-plugin
     ].filter(ExcludesFalsy),
   };

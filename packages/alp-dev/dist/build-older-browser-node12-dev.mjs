@@ -1,10 +1,394 @@
-import path from 'path';
-import { createAppBrowserCompiler, ALL } from 'pobpack-browser';
-import fs from 'fs';
-import autoprefixer from 'autoprefixer';
-import CssExtractPlugin from 'extract-css-chunks-webpack-plugin';
-import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import path, { resolve } from 'path';
+import 'react-dev-utils/evalSourceMapMiddleware';
+import 'react-dev-utils/ignoredFiles';
+import 'react-dev-utils/noopServiceWorkerMiddleware';
+import 'webpack-dev-server';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
+import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import webpack from 'webpack';
+import { execSync } from 'child_process';
+import { promisify } from 'util';
+import { addConfig, levels } from 'nightingale';
+import ConsoleHandler from 'nightingale-console';
+import Logger from 'nightingale-logger';
+import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
+import fs, { existsSync } from 'fs';
+import autoprefixer from 'autoprefixer';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
+/* eslint-disable complexity */
+function createOptions(options) {
+  return {
+    aliases: options.aliases || {},
+    babel: options.babel || {},
+    defines: options.defines || {},
+    entries: options.entries || ['index'],
+    serviceWorkerEntry: options.serviceWorkerEntry === undefined ? 'service-worker' : options.serviceWorkerEntry,
+    env: options.env || process.env.NODE_ENV,
+    hmr: options.hmr,
+    allowlistExternalExtensions: options.allowlistExternalExtensions || [],
+    includePaths: options.includePaths || [],
+    moduleRules: options.moduleRules,
+    paths: {
+      src: 'src',
+      build: 'build',
+      ...options.paths
+    },
+    plugins: options.plugins || [],
+    prependPlugins: options.prependPlugins || [],
+    resolveLoaderModules: options.resolveLoaderModules,
+    typescript: options.typescript || false,
+    webpackPrefixPackageFields: options.webpackPrefixPackageFields || []
+  };
+}
+
+function createAppWebpackConfig(createWebpackConfig) {
+  const wrapCreateWebpackConfig = options => createWebpackConfig(createOptions(options));
+
+  return options => {
+    const appWebpackConfigPath = resolve('createAppWebpackConfig.js');
+
+    if (existsSync(appWebpackConfigPath)) {
+      console.info('Using app createAppWebpackConfig.js'); // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment
+
+      const appWebpackConfigCreator = require(appWebpackConfigPath);
+
+      if (typeof appWebpackConfigCreator !== 'function') {
+        console.error("app createAppWebpackConfig.js should export a function\nmodule.exports = function (config, options) { ... }");
+      }
+
+      options = createOptions(options);
+      const config = appWebpackConfigCreator(wrapCreateWebpackConfig, options);
+
+      if (typeof config !== 'object') {
+        console.error("app createAppWebpackConfig.js should return the config\nfunction (config, options) { return config(options); }");
+      }
+
+      return config;
+    } else {
+      return wrapCreateWebpackConfig(options);
+    }
+  };
+}
+
+/* eslint-disable no-console */
+addConfig({
+  key: 'pobpack-utils',
+  handler: new ConsoleHandler(levels.INFO)
+});
+const logger = new Logger('pobpack-utils', 'pobpack');
+const pluginName = 'pobpack/FriendlyErrorsWebpackPlugin';
+class FriendlyErrorsWebpackPlugin {
+  constructor(options) {
+    this.bundleName = options.bundleName;
+    this.successMessage = options.successMessage;
+    this.logger = logger.context({
+      bundleName: options.bundleName
+    });
+  }
+
+  apply(compiler) {
+    // webpack is recompiling
+    compiler.hooks.invalid.tap(pluginName, () => {
+      this.logger.info('Compiling...');
+    }); // compilation done
+
+    compiler.hooks.done.tap(pluginName, stats => {
+      const messages = formatWebpackMessages(stats.toJson({})); // const messages = stats.toJson({}, true);
+
+      if (messages.errors.length > 0) {
+        if (process.send) {
+          process.send({
+            type: 'failed-to-compile',
+            errors: messages.errors.join('\n'),
+            bundleName: this.bundleName
+          });
+        } else {
+          this.logger.critical('Failed to compile.');
+          console.log();
+          messages.errors.forEach(message => {
+            console.log(message);
+            console.log();
+          });
+        }
+
+        return;
+      }
+
+      if (process.send) process.send('ready');
+
+      if (messages.warnings.length > 0) {
+        if (process.send) {
+          process.send({
+            type: 'compiled-with-arnings',
+            warnings: messages.warnings.join('\n'),
+            bundleName: this.bundleName
+          });
+        } else {
+          this.logger.critical('Compiled with warnings.');
+          console.log();
+          messages.warnings.forEach(message => {
+            console.log(message);
+            console.log();
+          });
+        }
+      }
+
+      if (process.send) {
+        process.send({
+          type: 'compiled-successfully',
+          bundleName: this.bundleName
+        });
+      } else {
+        this.logger.success('Compiled successfully!');
+
+        if (this.successMessage) {
+          console.log(this.successMessage);
+        }
+      }
+    });
+  }
+
+}
+
+const buildThrowOnError = stats => {
+  if (!stats) return stats;
+
+  if (!stats.hasErrors()) {
+    return stats;
+  }
+
+  throw new Error(stats.toString({}));
+};
+
+function createPobpackCompiler(bundleName, webpackConfig, {
+  successMessage
+} = {}) {
+  const compiler = webpack(webpackConfig); // human-readable error messages
+
+  new FriendlyErrorsWebpackPlugin({
+    bundleName,
+    successMessage
+  }).apply(compiler);
+  const promisifyRun = promisify(compiler.run.bind(compiler));
+  return {
+    compiler,
+    webpackConfig,
+    clean: () => {
+      var _webpackConfig$output;
+
+      if ((_webpackConfig$output = webpackConfig.output) !== null && _webpackConfig$output !== void 0 && _webpackConfig$output.path) {
+        execSync(`rm -Rf ${webpackConfig.output.path}`);
+      }
+
+      return undefined;
+    },
+    run: () => promisifyRun().then(buildThrowOnError),
+    watch: callback => compiler.watch({}, (err, stats) => {
+      if (err || !stats) return;
+      if (stats.hasErrors()) return;
+      buildThrowOnError(stats);
+      callback(stats);
+    })
+  };
+}
+
+function createModuleConfig(options) {
+  return {
+    strictExportPresence: true,
+    rules: [// tsx? / jsx?
+    {
+      test: options.typescript ? /\.(mjs|[jt]sx?)$/ : /\.(mjs|jsx?)$/,
+      include: [resolve(options.paths.src), ...options.includePaths],
+      rules: [{
+        loader: require.resolve('babel-loader'),
+        options: {
+          babelrc: false,
+          configFile: false,
+          cacheDirectory: true,
+          ...options.babel
+        }
+      }]
+    }, // other rules
+    ...(options.moduleRules || [])]
+  };
+}
+
+const ExcludesFalsy$4 = Boolean;
+function createPluginsConfig(options) {
+  const plugins = [...(options.prependPlugins || []), // enforces the entire path of all required modules match the exact case
+  // of the actual path on disk. Using this plugin helps alleviate cases
+  // for developers working on case insensitive systems like OSX.
+  options.env !== 'production' && new CaseSensitivePathsPlugin(), new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(options.env),
+    ...options.defines
+  }),
+  /* replace object-assign ponyfill to use native implementation */
+  // Array.isArray
+  new webpack.NormalModuleReplacementPlugin(/.*\/node_modules\/isarray\/index.js$/, require.resolve('../replacements/Array.isArray.js')), // Object.assign
+  new webpack.NormalModuleReplacementPlugin(/.*\/node_modules\/(object-assign|extend-shallow)\/index.js$/, require.resolve('../replacements/Object.assign.js')), // Object.setPrototypeOf
+  new webpack.NormalModuleReplacementPlugin(/.*\/node_modules\/setprototypeof\/index.js$/, require.resolve('../replacements/Object.setPrototypeOf.js')), // Promise
+  new webpack.NormalModuleReplacementPlugin(/.*\/node_modules\/any-promise\/index.js$/, require.resolve('../replacements/Promise.js')), // String.prototype.repeat
+  new webpack.NormalModuleReplacementPlugin(/.*\/node_modules\/repeat-string\/index.js$/, require.resolve('../replacements/String.prototype.repeat.js')), // Symbol.observable
+  // https://github.com/tc39/proposal-observable
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/observable
+  // new webpack.NormalModuleReplacementPlugin(
+  //   /.*\/node_modules\/symbol-observable\/es\/ponyfill.js$/,
+  //   require.resolve('../replacements/Symbol.observable.js'),
+  // ),
+  ...options.plugins];
+  return plugins.filter(ExcludesFalsy$4);
+}
+
+/* eslint-disable complexity */
+const ExcludesFalsy$3 = Boolean;
+function createResolveConfig(modulePrefixPackageFields, conditionNames, options, targetAliases) {
+  return {
+    // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/25209
+    // cacheWithContext: false,
+    modules: ['node_modules', resolve('src')],
+    extensions: [options.typescript && '.ts', options.typescript && '.tsx', '.mjs', '.js', '.jsx'].filter(ExcludesFalsy$3),
+    conditionNames: [...conditionNames, options.env !== 'production' ? 'development' : undefined, 'import'].filter(ExcludesFalsy$3),
+    mainFields: [...[].concat(...modulePrefixPackageFields.map(prefix => [options.env !== 'production' && `module:${prefix}-dev`, `module:${prefix}`, // old `webpack:` syntax
+    options.env !== 'production' && `webpack:${prefix}-dev`, `webpack:${prefix}`])), options.env !== 'production' && 'module-dev', 'module', // old webpack: syntax
+    options.env !== 'production' && 'webpack:main-dev', 'webpack:main', ...(!modulePrefixPackageFields.includes('browser') ? [] : [// Browser builds
+    options.env !== 'production' && 'browser-dev', 'browser']), options.env !== 'production' && 'main-dev', 'main'].filter(ExcludesFalsy$3),
+    aliasFields: [...[].concat(...modulePrefixPackageFields.map(prefix => [options.env !== 'production' && `module:aliases-${prefix}-dev`, `module:aliases-${prefix}`, // old webpack: syntax
+    options.env !== 'production' && `webpack:aliases-${prefix}-dev`, `webpack:aliases-${prefix}`])), options.env !== 'production' && 'module:aliases-dev', 'module:aliases', // old webpack: syntax
+    options.env !== 'production' && 'webpack:aliases-dev', 'webpack:aliases', 'webpack', modulePrefixPackageFields.includes('browser') && options.env !== 'production' && 'browser-dev', modulePrefixPackageFields.includes('browser') && 'browser'].filter(ExcludesFalsy$3),
+    alias: { ...options.aliases,
+      ...targetAliases
+    }
+  };
+}
+
+/* eslint-disable camelcase */
+const MODERN = 'modern';
+const ALL = 'all';
+const ExcludesFalsy$2 = Boolean;
+function createBrowserWebpackConfig(target) {
+  return options => ({
+    // production or development
+    mode: options.env === 'production' ? 'production' : 'development',
+    // Don't attempt to continue if there are any errors.
+    bail: options.env === 'production',
+    // Target web
+    target: target === MODERN ? 'browserslist:modern' : 'browserslist',
+    // get right stack traces
+    devtool: options.env === 'production' ? 'nosources-source-map' : 'source-map',
+    infrastructureLogging: {
+      level: 'none'
+    },
+    optimization: {
+      nodeEnv: false,
+      // see createPluginsConfig
+      emitOnErrors: false,
+      minimize: options.env === 'production',
+      minimizer: [// This is only used in production mode
+      new TerserPlugin({
+        terserOptions: {
+          parse: {
+            ecma: 2019
+          },
+          compress: {
+            ecma: 5
+          },
+          mangle: {
+            safari10: true
+          },
+          // Added for profiling in devtools
+          keep_classnames: options.productionProfiling || false,
+          keep_fnames: options.productionProfiling || false,
+          output: {
+            ecma: 5,
+            comments: false,
+            // issue with emoji
+            ascii_only: true
+          }
+        }
+      }), // This is only used in production mode
+      new CssMinimizerPlugin()]
+    },
+    // use cache
+    cache: options.hmr,
+    resolveLoader: {
+      modules: options.resolveLoaderModules || ['node_modules']
+    },
+    resolve: createResolveConfig([target === MODERN ? 'modern-browsers' : undefined, 'browser'].filter(ExcludesFalsy$2), [target === MODERN ? 'browser:modern' : undefined, 'browser', options.env === 'production' ? 'production' : 'development'].filter(ExcludesFalsy$2), { ...options,
+      babel: { ...options.babel,
+        plugins: [...(options.babel.plugins || []), options.hmr && require.resolve('react-refresh/babel')].filter(ExcludesFalsy$2)
+      }
+    }, {
+      'react-native$': 'react-native-web',
+      ...(options.productionProfiling ? {
+        'react-dom$': 'react-dom/profiling',
+        'scheduler/tracing': 'scheduler/tracing-profiling'
+      } : {})
+    }),
+    entry: options.entries.reduce((entries, entry) => {
+      if (typeof entry === 'string') entry = {
+        key: entry,
+        path: entry
+      };
+      entries[entry.key] = [// options.env !== 'production' && require.resolve('../source-map-support'),
+      target !== MODERN && require.resolve('regenerator-runtime/runtime'), path.join(path.resolve(options.paths.src), entry.path)].filter(ExcludesFalsy$2);
+      return entries;
+    }, {}),
+    output: {
+      path: path.resolve(options.paths.build),
+      pathinfo: options.env !== 'production',
+      filename: options.env !== 'production' ? 'static/js/[name].[contenthash:8].js' : 'static/js/bundle-[name].js',
+      chunkFilename: options.env !== 'production' ? 'static/js/[name].[contenthash:8].chunk.js' : 'static/js/[name].chunk.js',
+      assetModuleFilename: 'static/media/[name].[contenthash:8][ext]',
+      publicPath: options.paths.build,
+      // Point sourcemap entries to original disk location
+      devtoolModuleFilenameTemplate: options.env === 'production' ? info => path.relative(options.paths.src, info.absoluteResourcePath).replace(/\\/g, '/') : // eslint-disable-next-line unicorn/no-nested-ternary
+      options.env === 'development' ? info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/') : undefined
+    },
+    module: createModuleConfig(options),
+    plugins: [...createPluginsConfig(options), options.hmr && new ReactRefreshWebpackPlugin({
+      overlay: false
+    }), options.env === 'production' && options.paths.src && options.serviceWorkerEntry ? new WorkboxWebpackPlugin.InjectManifest({
+      swSrc: path.resolve(options.paths.src, options.serviceWorkerEntry.endsWith('.js') || options.serviceWorkerEntry.endsWith('.ts') ? options.serviceWorkerEntry : `${options.serviceWorkerEntry}${options.typescript ? '.ts' : '.js'}`),
+      compileSrc: true,
+      dontCacheBustURLsMatching: /\.[\da-f]{8}\./,
+      exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/]
+    }) : undefined].filter(ExcludesFalsy$2)
+  });
+}
+
+const createAppBrowserCompiler = (target, options, compilerOptions) => createPobpackCompiler(target, createAppWebpackConfig(createBrowserWebpackConfig(target))({
+  entries: [{
+    key: target,
+    path: 'index'
+  }],
+  // override default entry
+  ...options,
+  paths: {
+    build: 'public',
+    ...options.paths
+  }
+}), compilerOptions);
+//   options: Partial<Options>,
+//   runOptions: RunOptions,
+// ): PobpackBrowserCompiler => {
+//   const url = `http${runOptions.https ? 's' : ''}://localhost:${
+//     runOptions.port
+//   }`;
+//   const compiler: PobpackCompiler = createAppBrowserCompiler(
+//     MODERN,
+//     { ...options, hmr: true },
+//     {
+//       successMessage: `Your application is running here: ${url}`,
+//     },
+//   );
+//   compiler.clean();
+//   const webpackDevServer = runDevServer(compiler, runOptions);
+//   return { ...compiler, webpackDevServer };
+// };
 
 /* eslint-disable max-lines, complexity */
 const ExcludesFalsy$1 = Boolean;
@@ -48,10 +432,11 @@ const createCssModuleUse = function ({
   }, {
     loader: resolveLoader('postcss-loader'),
     options: {
-      ident: 'postcss',
       sourceMap: !production,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      plugins: () => plugins
+      postcssOptions: {
+        ident: 'postcss',
+        plugins
+      }
     }
   }, ...otherLoaders].filter(ExcludesFalsy$1);
 };
@@ -155,7 +540,6 @@ function createPobpackConfig(target, production = false) {
     hmr: !production,
     typescript: true,
     allowlistExternalExtensions: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'scss', 'css'],
-    includeModules: [],
     paths: {
       build: target === 'node' ? 'build' : 'public'
     },
@@ -171,7 +555,8 @@ function createPobpackConfig(target, production = false) {
       presets: [// add react preset with jsx
       [require.resolve('@babel/preset-react'), {
         development: !production,
-        useBuiltIns: true
+        useBuiltIns: true,
+        runtime: 'automatic'
       }], // pob preset: flow, import `src`, export default function name, replacements, exnext features, ...
       [require.resolve('babel-preset-pob-env'), {
         resolvePreset: preset => require.resolve(preset),
@@ -184,33 +569,18 @@ function createPobpackConfig(target, production = false) {
         loose: true,
         modules: false
       }]],
-      plugins: [// webpack 4 does not support this syntax. Remove with webpack 5
-      require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), // webpack 4 does not support this syntax. Remove with webpack 5
-      require.resolve('@babel/plugin-proposal-optional-chaining'), require.resolve('babel-plugin-inline-classnames-babel7'), hasAntd && [require.resolve('babel-plugin-import'), {
+      plugins: [require.resolve('babel-plugin-inline-classnames-babel7'), hasAntd && [require.resolve('babel-plugin-import'), {
         libraryName: 'antd',
         libraryDirectory: target === 'node' ? 'lib' : 'es',
         style: target !== 'node'
       }]].filter(ExcludesFalsy)
     },
-    moduleRules: [// webpack 4 does not support this syntax. Remove with webpack 5
-    {
-      test: /\.(mjs|jsx?)$/,
-      include: [/\/node_modules\//],
-      loaders: [{
-        loader: require.resolve('babel-loader'),
-        options: {
-          babelrc: false,
-          cacheDirectory: false,
-          plugins: [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), require.resolve('@babel/plugin-proposal-optional-chaining')]
-        }
-      }]
-    }, // SCSS RULE, CSS RULE
+    moduleRules: [// SCSS RULE, CSS RULE
     ...createModuleRules({
       target,
       extractLoader: {
-        loader: CssExtractPlugin.loader,
+        loader: MiniCssExtractPlugin.loader,
         options: {
-          hmr: !production && target !== 'node',
           esModule: true
         }
       },
@@ -225,10 +595,9 @@ function createPobpackConfig(target, production = false) {
         global: true,
         target,
         extractLoader: {
-          loader: CssExtractPlugin.loader,
+          loader: MiniCssExtractPlugin.loader,
           options: {
-            hmr: !production && target !== 'node',
-            esModule: true
+            publicPath: '../..'
           }
         },
         production,
@@ -249,15 +618,12 @@ function createPobpackConfig(target, production = false) {
     }, // IMG RULE
     {
       test: /\.(png|jpg|jpeg|gif|svg)$/,
-      loader: require.resolve('url-loader'),
-      options: {
-        /* config to emit with node doesn't work anymore because css is ignored by node */
-        // emitFile: target === 'node', // only write file if node
-        // outputPath: '../public/', // because it's node who is writing the file, node is in build/
-        // publicPath: (url: string): string => url.replace(/^..\/public\//, ''),
-        emitFile: target === 'modern-browser',
-        limit: 1000,
-        name: 'images/[hash].[ext]'
+      type: 'asset',
+      parser: {
+        dataUrlCondition: {
+          maxSize: 1024 // 1kb
+
+        }
       }
     }],
     // TODO https://github.com/zeit/next.js/blob/7d78c3b64185d6d6417f1af9cde4a69d32b18cc6/packages/next/build/webpack.js
@@ -270,33 +636,20 @@ function createPobpackConfig(target, production = false) {
     //     },
     //   },
     // },
-    plugins: [new CssExtractPlugin({
-      // disable: target === 'node',
+    plugins: [new MiniCssExtractPlugin({
+      experimentalUseImportModule: true,
       filename: `${target === 'node' ? 'server' : // eslint-disable-next-line unicorn/no-nested-ternary
-      target === 'browser' ? 'es5' : 'modern-browsers'}.css`
-    }), new OptimizeCssAssetsPlugin(), process.send && new webpack.ProgressPlugin((percentage, message) => {
+      target === 'browser' ? 'es5' : 'modern-browsers'}.css`,
+      // [name].[contenthash:8].css
+      chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+      runtime: target !== 'node'
+    }), process.send && new webpack.ProgressPlugin((percentage, message) => {
       process.send({
         type: 'webpack-progress',
         percentage,
         message
       });
-    }) // target === 'browser' &&
-    // target !== 'node' &&
-    //   production &&
-    //   new optimize.UglifyJsPlugin({
-    //     compress: {
-    //       warnings: false,
-    //     },
-    //     sourcleMap: !production,
-    //   }),!== 'node' &&
-    //   production &&
-    //   new optimize.UglifyJsPlugin({
-    //     compress: {
-    //       warnings: false,
-    //     },
-    //     sourceMap: !production,
-    //   }),
-    // TODO https://github.com/NekR/offline-plugin
+    }) // TODO https://github.com/NekR/offline-plugin
     ].filter(ExcludesFalsy)
   };
 }

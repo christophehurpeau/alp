@@ -36,6 +36,7 @@
       "@pob/commitlint-config"
     ]
   },
+  "dependencies": {},
   "devDependencies": {
     "@pob/commitlint-config": "2.1.0",
     "@pob/eslint-config": "43.0.0",

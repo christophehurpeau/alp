@@ -1,12 +1,27 @@
 import { Helmet } from 'alp-react';
 import { appLogger } from 'nightingale-app-console';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ObjectAssign from 'object-assign';
 import type { ReactElement } from 'react';
 import React, { useContext, useEffect, useState } from 'react';
 import ReactAlpContext from 'react-alp-context';
 import { useT } from 'react-alp-translate';
+import ClickToThrow from './components/ClickToThrow';
+import Counter from './components/Counter';
 import Hello from './components/HelloComponent';
 
 const logger = appLogger.child('HomePage');
+
+function HelloWorld(): ReactElement {
+  return <div>Hello World !</div>;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+(async function test() {
+  console.log(await new Promise((resolve) => resolve('ok')));
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  console.log(ObjectAssign({}, { a: true }));
+})();
 
 export default function IndexView(): ReactElement {
   const ctx = useContext(ReactAlpContext);
@@ -49,7 +64,10 @@ export default function IndexView(): ReactElement {
   return (
     <div>
       <Helmet title={title} />
+      <HelloWorld />
       <Hello name={name} onChangeName={handleChangeName} />
+      <Counter />
+      <ClickToThrow />
     </div>
   );
 }

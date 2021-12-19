@@ -4,6 +4,7 @@ import { addConfig, appLogger } from 'nightingale-app-console';
 import type Logger from 'nightingale-logger';
 import webProcessor from 'nightingale-web-processor';
 import App from './web/core/Layout';
+import './server/hello';
 
 declare module 'alp-types' {
   interface Context {
