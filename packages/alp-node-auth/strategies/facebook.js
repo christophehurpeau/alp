@@ -1,11 +1,9 @@
-'use strict';
+import { create } from 'simple-oauth2';
 
-const oauth2 = require('simple-oauth2').create;
-
-module.exports = function facebookStrategy(config) {
+export default function facebookStrategy(config) {
   return {
     type: 'oauth2',
-    oauth2: oauth2({
+    oauth2: create({
       client: {
         id: config.get('facebook').get('clientId'),
         secret: config.get('facebook').get('clientSecret'),
@@ -17,4 +15,4 @@ module.exports = function facebookStrategy(config) {
       },
     }),
   };
-};
+}

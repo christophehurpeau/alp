@@ -1,11 +1,11 @@
 {
   "pob": {
-    "project": {
-      "type": "lib"
-    },
     "lib": {
       "testing": false,
       "documentation": false
+    },
+    "project": {
+      "type": "lib"
     }
   },
   "react-alp-translate": {

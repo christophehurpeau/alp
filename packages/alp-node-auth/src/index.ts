@@ -21,7 +21,6 @@ import type { AccountService } from './services/user/types';
 import { getTokenFromRequest, COOKIE_NAME } from './utils/cookies';
 import { createFindConnectedAndUser } from './utils/createFindConnectedAndUser';
 
-export { AuthenticationService };
 export { default as MongoUsersManager } from './MongoUsersManager';
 export { default as UserAccountGoogleService } from './services/user/UserAccountGoogleService';
 export { default as UserAccountSlackService } from './services/user/UserAccountSlackService';
@@ -30,6 +29,7 @@ export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
 
 declare module 'alp-types' {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   interface ContextState {
     connected: NonNullable<ContextState['user']>['_id'] | null | undefined;
     user: User | null | undefined;
@@ -58,11 +58,12 @@ const signPromisified: any = promisify(jsonwebtoken.sign);
 
 export type AuthController = AuthControllerType;
 export type AuthRoutes = AuthRoutesType;
+export { AuthenticationService } from './services/authentification/AuthenticationService';
 
 export default function init<
   StrategyKeys extends AllowedStrategyKeys = 'google',
   U extends User = User,
-  USanitized extends UserSanitized = UserSanitized
+  USanitized extends UserSanitized = UserSanitized,
 >({
   homeRouterKey,
   usersManager,
@@ -80,6 +81,7 @@ export default function init<
   authHooks?: AuthHooks<StrategyKeys>;
   jwtAudience?: string;
 }) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   return (app: NodeApplication) => {
     const userAccountsService = new UserAccountsService(
       usersManager,
@@ -125,6 +127,7 @@ export default function init<
         },
       );
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.cookies.set(COOKIE_NAME, token, {
         httpOnly: true,
         secure: this.config.get('allowHttps'),

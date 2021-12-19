@@ -1,13 +1,18 @@
-import IntlMessageFormat from 'intl-messageformat';
+import IntlMessageFormatDefault from 'intl-messageformat';
 
+const IntlMessageFormat = // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+IntlMessageFormatDefault.default || IntlMessageFormatDefault;
 function load(translations, language) {
   const result = new Map();
 
   (function loadMap(map, prefix) {
     map.forEach((value, key) => {
       if (typeof value === 'object') {
-        return loadMap(value, `${prefix}${key}.`);
-      }
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        loadMap(value, `${prefix}${key}.`);
+        return;
+      } // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
 
       result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
     });
@@ -33,5 +38,5 @@ function alpTranslate(dirname) {
   };
 }
 
-export default alpTranslate;
+export { alpTranslate as default };
 //# sourceMappingURL=index-browsermodern.es.js.map

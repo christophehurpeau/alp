@@ -13,7 +13,9 @@ export interface BaseContext extends KoaBaseContext {
   app: Application;
   redirect: (url: string) => Promise<void>;
 }
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DefaultState {}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DefaultSanitizedState {}
 
 export interface Context extends BaseContext {
@@ -74,8 +76,8 @@ export default class Application extends EventEmitter {
     return this;
   }
 
-  onerror(e: any): void {
-    logger.error(e);
+  onerror(e: unknown): void {
+    logger.error(e as Error);
   }
 
   run(url?: string): void {
@@ -92,14 +94,14 @@ export default class Application extends EventEmitter {
   }
 
   createContext(): Context {
-    const context: Context = Object.create(this.context) as Context;
-    context.request = Object.create(request) as Request;
-    context.response = Object.create(response) as Response;
-    Object.assign(context.request, { app: this });
-    Object.assign(context.response, { app: this });
-    context.state = {};
-    context.sanitizedState = {};
-    return context;
+    const ctx: Context = Object.create(this.context) as Context;
+    ctx.request = Object.create(request) as Request;
+    ctx.response = Object.create(response) as Response;
+    Object.assign(ctx.request, { app: this });
+    Object.assign(ctx.response, { app: this });
+    ctx.state = {};
+    ctx.sanitizedState = {};
+    return ctx;
   }
 
   load(url: string): Promise<void> {
@@ -113,9 +115,11 @@ export default class Application extends EventEmitter {
       throw new Error('You should call load() after run()');
     }
 
-    const context = this.createContext();
-    return this.callback(context)
-      .then(() => respond(context))
+    const ctx = this.createContext();
+    return this.callback(ctx)
+      .then(() => {
+        respond(ctx);
+      })
       .catch((err) => {
         this.emit('error', err);
       });

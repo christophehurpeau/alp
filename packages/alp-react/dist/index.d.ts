@@ -1,7 +1,7 @@
+import 'pob-babel';
 import type { Context } from 'alp-types';
 import type { ElementType } from 'react';
-import Helmet from 'react-helmet';
-export { Helmet };
+export { Helmet } from 'react-helmet';
 export { default as AlpModule } from './module/AlpModule';
 export { default as SuspenseWrapper } from './module/SuspenseWrapper';
 export { default as Body } from './layout/Body';

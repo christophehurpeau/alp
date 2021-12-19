@@ -4,11 +4,7 @@ import { createPobpackCompiler, createAppWebpackConfig } from '../utils';
 import type { BrowserTargetType } from './createBrowserWebpackConfig';
 import createBrowserWebpackConfig, {
   TARGETS,
-  ALL,
-  MODERN,
 } from './createBrowserWebpackConfig';
-
-export { TARGETS, ALL, MODERN };
 
 export const createAppBrowserCompiler = (
   target: BrowserTargetType,
@@ -52,3 +48,5 @@ export const build = (options = {}): Promise<Stats | undefined>[] => {
 //   const webpackDevServer = runDevServer(compiler, runOptions);
 //   return { ...compiler, webpackDevServer };
 // };
+
+export { ALL, MODERN, TARGETS } from './createBrowserWebpackConfig';

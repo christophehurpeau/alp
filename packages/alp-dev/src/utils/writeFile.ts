@@ -9,12 +9,13 @@ export default function writeFile(
     fs.mkdir(path.dirname(target), { recursive: true }, () => {
       fs.writeFile(target, content, (err) => {
         if (err) {
-          return reject(
+          reject(
             new Error(
-              // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+              // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
               `Failed to write file "${target}": ${err.message || err}`,
             ),
           );
+          return;
         }
 
         resolve();

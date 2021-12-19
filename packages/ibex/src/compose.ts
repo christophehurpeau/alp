@@ -1,4 +1,4 @@
-import { PRODUCTION } from 'pob-babel';
+import 'pob-babel';
 import type {
   Middleware as ComposeMiddleware,
   ComposedMiddleware,
@@ -16,7 +16,7 @@ export default function compose<Context>(
     return (function dispatch(i: number): Promise<any> {
       if (i <= index) {
         return Promise.reject(
-          new Error(PRODUCTION ? undefined : 'next() called multiple times'),
+          new Error(!__DEV__ ? undefined : 'next() called multiple times'),
         );
       }
       index = i;
@@ -26,19 +26,15 @@ export default function compose<Context>(
       let called = false;
       try {
         return Promise.resolve(
-          fn.call(
-            ctx,
-            ctx,
-            (): Promise<any> => {
-              if (called) {
-                throw new Error(
-                  PRODUCTION ? undefined : 'Cannot call next() more than once.',
-                );
-              }
-              called = true;
-              return dispatch(i + 1);
-            },
-          ),
+          fn.call(ctx, ctx, (): Promise<any> => {
+            if (called) {
+              throw new Error(
+                !__DEV__ ? undefined : 'Cannot call next() more than once.',
+              );
+            }
+            called = true;
+            return dispatch(i + 1);
+          }),
         );
       } catch (err) {
         return Promise.reject(err);

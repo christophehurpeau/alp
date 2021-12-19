@@ -16,7 +16,7 @@ function _interopRequireDefault(obj) {
 
 const fixtures = {
   'hello-world': (0, _fs.readFileSync)(
-    `${__dirname}/../fixtures/hello-world.html`,
+    new URL(`../fixtures/hello-world.html`, import.meta.url),
   ).toString(),
 };
 

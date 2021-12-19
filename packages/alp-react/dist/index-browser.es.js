@@ -1,5 +1,5 @@
-import _regeneratorRuntime from '@babel/runtime/regenerator';
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
+import _regeneratorRuntime from '@babel/runtime/regenerator';
 import contentLoaded from 'content-loaded';
 import Logger from 'nightingale-logger';
 import React, { Component, createContext, useContext, Suspense } from 'react';
@@ -77,7 +77,7 @@ function Body(_ref) {
 
 function AppContainer(_ref) {
   var children = _ref.children;
-  return /*#__PURE__*/React.createElement(React.Fragment, null, children);
+  return children;
 }
 
 var logger = new Logger('alp:react');
@@ -121,6 +121,5 @@ function alpReactBrowser(app) {
   }();
 }
 
-export default alpReactBrowser;
-export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext, BrowserSuspenseWrapper as SuspenseWrapper };
+export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext, BrowserSuspenseWrapper as SuspenseWrapper, alpReactBrowser as default };
 //# sourceMappingURL=index-browser.es.js.map

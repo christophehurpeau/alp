@@ -10,7 +10,7 @@ function compose(middlewares) {
     var index = -1;
     return function dispatch(i) {
       if (i <= index) {
-        return Promise.reject(new Error(undefined));
+        return Promise.reject(new Error(!(process.env.NODE_ENV !== "production") ? undefined : 'next() called multiple times'));
       }
 
       index = i;
@@ -20,7 +20,7 @@ function compose(middlewares) {
       try {
         return Promise.resolve(fn.call(ctx, ctx, function () {
           if (called) {
-            throw new Error(undefined);
+            throw new Error(!(process.env.NODE_ENV !== "production") ? undefined : 'Cannot call next() more than once.');
           }
 
           called = true;
@@ -86,6 +86,7 @@ defineGetter('request', 'query');
 defineGetter('request', 'url');
 defineGetter('request', 'search');
 defineGetter('request', 'searchParams');
+var context = proto;
 
 var request = {
   get search() {
@@ -145,10 +146,11 @@ var request = {
   }
 
 };
+var request$1 = request;
 
 var response = {
   redirect: function redirect(url) {
-    if (this.app.emit('redirect', url) === false) {
+    if (!this.app.emit('redirect', url)) {
       window.location.href = url;
       return new Promise(function () {// promise that never resolves.
       });
@@ -157,6 +159,7 @@ var response = {
     return Promise.resolve();
   }
 };
+var response$1 = response;
 
 var logger = new Logger('ibex');
 
@@ -189,7 +192,7 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
     var _this = _EventEmitter.call(this) || this;
 
     _this.middleware = [];
-    _this.context = Object.create(proto);
+    _this.context = Object.create(context);
     _this.context.app = _assertThisInitialized(_this);
     return _this;
   }
@@ -222,18 +225,18 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
   };
 
   _proto.createContext = function createContext() {
-    var context = Object.create(this.context);
-    context.request = Object.create(request);
-    context.response = Object.create(response);
-    Object.assign(context.request, {
+    var ctx = Object.create(this.context);
+    ctx.request = Object.create(request$1);
+    ctx.response = Object.create(response$1);
+    Object.assign(ctx.request, {
       app: this
     });
-    Object.assign(context.response, {
+    Object.assign(ctx.response, {
       app: this
     });
-    context.state = {};
-    context.sanitizedState = {};
-    return context;
+    ctx.state = {};
+    ctx.sanitizedState = {};
+    return ctx;
   };
 
   _proto.load = function load(url) {
@@ -251,9 +254,9 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
       throw new Error('You should call load() after run()');
     }
 
-    var context = this.createContext();
-    return this.callback(context).then(function () {
-      return respond(context);
+    var ctx = this.createContext();
+    return this.callback(ctx).then(function () {
+      respond(ctx);
     }).catch(function (err) {
       _this2.emit('error', err);
     });
@@ -262,5 +265,5 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
   return Application;
 }(EventEmitter);
 
-export default Application;
+export { Application as default };
 //# sourceMappingURL=index-browser.es.js.map

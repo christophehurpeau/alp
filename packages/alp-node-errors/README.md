@@ -24,7 +24,7 @@ import config from 'alp-node-config';
 import errors from 'alp-node-errors';
 
 const app = new Koa();
-config(__dirname + '/config')(app);
+config(new URL('./config', import.meta.url))(app);
 logger(app);
 
 app.use(errors);

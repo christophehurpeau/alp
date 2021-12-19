@@ -32,7 +32,7 @@ import createRouter from './createRouter';
 
 const app = new Koa();
 // init
-config(__dirname + '/config')(app);
+config(new URL('./config', import.meta.url))(app);
 language(app);
 
 // handlers

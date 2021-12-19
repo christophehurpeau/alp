@@ -1,7 +1,7 @@
 import path from 'path';
-import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
-import ignoredFiles from 'react-dev-utils/ignoredFiles';
-import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
+import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware.js';
+import ignoredFiles from 'react-dev-utils/ignoredFiles.js';
+import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware.js';
 import WebpackDevServer from 'webpack-dev-server';
 import { createAppBrowserCompiler, MODERN, ALL } from '../pobpack/browser';
 import type { PobpackCompiler } from '../pobpack/types';

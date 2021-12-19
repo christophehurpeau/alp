@@ -1,6 +1,7 @@
-import { PRODUCTION } from 'pob-babel';
+import 'pob-babel';
 import config, { getConfig, existsConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
+// eslint-disable-next-line import/no-unresolved
 import translate from 'alp-translate/browser';
 import type {
   BrowserApplication as BrowserApplicationType,
@@ -29,8 +30,11 @@ interface Options {
 }
 
 declare module 'ibex' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface BaseContext extends AlpBaseContext {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultState extends ContextState {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface Context extends AlpContext {}
 }
 
@@ -38,7 +42,8 @@ const configPath = '/config';
 
 export default class AlpBrowser
   extends Ibex
-  implements BrowserApplicationInCreation {
+  implements BrowserApplicationInCreation
+{
   path: string;
 
   appVersion: string;
@@ -54,14 +59,14 @@ export default class AlpBrowser
   async init(): Promise<BrowserApplication> {
     const configInstance = await config(
       this,
-      PRODUCTION ? `/${this.appVersion}${configPath}` : configPath,
+      !__DEV__ ? `/${this.appVersion}${configPath}` : configPath,
     );
     this.context.config = configInstance;
 
     language(this);
     await translate('/locales')(this);
 
-    return (this as unknown) as BrowserApplication;
+    return this as unknown as BrowserApplication;
   }
 
   async existsConfig(name: string): Promise<boolean> {
@@ -75,8 +80,12 @@ export default class AlpBrowser
   start(fn: () => Promise<void>): void {
     try {
       fn()
-        .then(() => logger.success('started'))
-        .catch((err: unknown) => logger.error('start fail', { err }));
+        .then(() => {
+          logger.success('started');
+        })
+        .catch((err: unknown) => {
+          logger.error('start fail', { err });
+        });
     } catch (err: unknown) {
       logger.error('start fail', { err });
     }
@@ -88,7 +97,7 @@ export const startApp = (
 ): void => {
   const app = new AlpBrowser();
 
-  return app.start(async () => {
+  app.start(async () => {
     // init
     const browserApp = await app.init();
     await callback(browserApp);

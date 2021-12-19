@@ -96,10 +96,10 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
   };
 
   _proto.componentWillUnmount = function componentWillUnmount() {
-    clearTimeout(this.fadeOffTimeout);
-    clearTimeout(this.resetTimeout);
-    clearTimeout(this.first20Timeout);
-    clearInterval(this.progressTimer);
+    if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
+    if (this.resetTimeout) clearTimeout(this.resetTimeout);
+    if (this.first20Timeout) clearTimeout(this.first20Timeout);
+    if (this.progressTimer) clearInterval(this.progressTimer);
   };
 
   _proto.getWebsocket = function getWebsocket() {
@@ -110,8 +110,8 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
   _proto.showBar = function showBar() {
     var _this3 = this;
 
-    clearTimeout(this.fadeOffTimeout);
-    clearTimeout(this.resetTimeout);
+    if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
+    if (this.resetTimeout) clearTimeout(this.resetTimeout);
     this.first20Timeout = setTimeout(function () {
       _this3.setState({
         progress: 20
@@ -130,8 +130,8 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
   _proto.hideBar = function hideBar() {
     var _this4 = this;
 
-    clearTimeout(this.first20Timeout);
-    clearInterval(this.progressTimer);
+    if (this.first20Timeout) clearTimeout(this.first20Timeout);
+    if (this.progressTimer) clearInterval(this.progressTimer);
     this.fadeOffTimeout = setTimeout(function () {
       _this4.setState({
         progress: 100
@@ -167,5 +167,5 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
 
 LoadingBar.contextType = ReactAlpContext;
 
-export default LoadingBar;
+export { LoadingBar as default };
 //# sourceMappingURL=index-browser.es.js.map

@@ -6,10 +6,8 @@ import type MongoUsersManager from './MongoUsersManager';
 import type { AuthController as AuthControllerType, AuthHooks } from './createAuthController';
 import type { AuthRoutes as AuthRoutesType } from './createRoutes';
 import type { Strategies } from './services/authentification/AuthenticationService';
-import { AuthenticationService } from './services/authentification/AuthenticationService';
 import type { AllowedStrategyKeys } from './services/authentification/types';
 import type { AccountService } from './services/user/types';
-export { AuthenticationService };
 export { default as MongoUsersManager } from './MongoUsersManager';
 export { default as UserAccountGoogleService } from './services/user/UserAccountGoogleService';
 export { default as UserAccountSlackService } from './services/user/UserAccountSlackService';
@@ -32,6 +30,7 @@ declare module 'alp-types' {
 }
 export declare type AuthController = AuthControllerType;
 export declare type AuthRoutes = AuthRoutesType;
+export { AuthenticationService } from './services/authentification/AuthenticationService';
 export default function init<StrategyKeys extends AllowedStrategyKeys = 'google', U extends User = User, USanitized extends UserSanitized = UserSanitized>({ homeRouterKey, usersManager, strategies, defaultStrategy, strategyToService, authHooks, jwtAudience, }: {
     homeRouterKey?: string;
     usersManager: MongoUsersManager<U, USanitized>;

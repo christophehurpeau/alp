@@ -1,11 +1,14 @@
+import { URL } from 'url';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import type { Configuration } from 'webpack';
 import webpack from 'webpack';
 import type { Options } from '../../types';
 
-const ExcludesFalsy = (Boolean as unknown) as <T>(
+const ExcludesFalsy = Boolean as unknown as <T>(
   x: T | boolean | null | undefined,
 ) => x is T;
+
+const DEV_CONST = '__DEV__';
 
 export default function createPluginsConfig(
   options: Options,
@@ -20,6 +23,7 @@ export default function createPluginsConfig(
 
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(options.env),
+      [DEV_CONST]: JSON.stringify(options.env !== 'production'),
       ...options.defines,
     }),
 
@@ -28,31 +32,37 @@ export default function createPluginsConfig(
     // Array.isArray
     new webpack.NormalModuleReplacementPlugin(
       /.*\/node_modules\/isarray\/index.js$/,
-      require.resolve('../replacements/Array.isArray.js'),
+      new URL('../replacements/Array.isArray.cjs', import.meta.url).pathname,
     ),
 
     // Object.assign
     new webpack.NormalModuleReplacementPlugin(
       /.*\/node_modules\/(object-assign|extend-shallow)\/index.js$/,
-      require.resolve('../replacements/Object.assign.js'),
+      new URL('../replacements/Object.assign.cjs', import.meta.url).pathname,
     ),
 
     // Object.setPrototypeOf
     new webpack.NormalModuleReplacementPlugin(
       /.*\/node_modules\/setprototypeof\/index.js$/,
-      require.resolve('../replacements/Object.setPrototypeOf.js'),
+      new URL(
+        '../replacements/Object.setPrototypeOf.cjs',
+        import.meta.url,
+      ).pathname,
     ),
 
     // Promise
     new webpack.NormalModuleReplacementPlugin(
       /.*\/node_modules\/any-promise\/index.js$/,
-      require.resolve('../replacements/Promise.js'),
+      new URL('../replacements/Promise.cjs', import.meta.url).pathname,
     ),
 
     // String.prototype.repeat
     new webpack.NormalModuleReplacementPlugin(
       /.*\/node_modules\/repeat-string\/index.js$/,
-      require.resolve('../replacements/String.prototype.repeat.js'),
+      new URL(
+        '../replacements/String.prototype.repeat.cjs',
+        import.meta.url,
+      ).pathname,
     ),
 
     // Symbol.observable
@@ -60,7 +70,7 @@ export default function createPluginsConfig(
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/observable
     // new webpack.NormalModuleReplacementPlugin(
     //   /.*\/node_modules\/symbol-observable\/es\/ponyfill.js$/,
-    //   require.resolve('../replacements/Symbol.observable.js'),
+    //   new URL('../replacements/Symbol.observable.js', import.meta.url).pathname,
     // ),
 
     ...options.plugins,

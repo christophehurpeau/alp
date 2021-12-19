@@ -2,6 +2,8 @@ import { resolve } from 'path';
 import type { Configuration } from 'webpack';
 import type { Options } from '../../types';
 
+const resolveDependency = (dependency: string): string => dependency; // TODO require.resolve(path)
+
 export default function createModuleConfig(
   options: Options,
 ): NonNullable<Configuration['module']> {
@@ -12,13 +14,10 @@ export default function createModuleConfig(
       // tsx? / jsx?
       {
         test: options.typescript ? /\.(mjs|[jt]sx?)$/ : /\.(mjs|jsx?)$/,
-        include: [
-          resolve(options.paths.src as string),
-          ...options.includePaths,
-        ],
+        include: [resolve(options.paths.src!), ...options.includePaths],
         rules: [
           {
-            loader: require.resolve('babel-loader'),
+            loader: resolveDependency('babel-loader'),
             options: {
               babelrc: false,
               configFile: false,

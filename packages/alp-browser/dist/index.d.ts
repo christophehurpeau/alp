@@ -1,3 +1,4 @@
+import 'pob-babel';
 import type { BrowserApplication as BrowserApplicationType, BrowserApplicationInCreation, BaseContext as AlpBaseContext, Context as AlpContext, Config, ContextState, RawConfig } from 'alp-types';
 import Ibex from 'ibex';
 export declare type BrowserApplication = BrowserApplicationType;

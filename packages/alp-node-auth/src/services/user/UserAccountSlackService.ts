@@ -1,11 +1,13 @@
-/* global fetch */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { fetch } from 'alp-node';
 import type { Tokens } from '../authentification/types';
 import type { AccountService, FullName } from './types';
 
 // https://api.slack.com/methods/users.identity
 
 export default class UserAccountSlackService<ScopeKeys extends 'login'>
-  implements AccountService<ScopeKeys> {
+  implements AccountService<ScopeKeys>
+{
   scopeKeyToScope: Record<ScopeKeys, string>;
 
   constructor(scopeKeyToScope: Record<Exclude<'login', ScopeKeys>, string>) {
@@ -61,8 +63,8 @@ export default class UserAccountSlackService<ScopeKeys extends 'login'>
   getScope(oldScope: string[] | undefined, newScope: string): string[] {
     return !oldScope
       ? newScope.split(' ')
-      : oldScope
-          .concat(newScope.split(' '))
-          .filter((item: any, i: any, ar: string[]) => ar.indexOf(item) === i);
+      : [...oldScope, ...newScope.split(' ')].filter(
+          (item, i, ar) => ar.indexOf(item) === i,
+        );
   }
 }

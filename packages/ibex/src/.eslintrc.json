@@ -12,5 +12,22 @@
   "ignorePatterns": ["*.d.ts"],
   "rules": {
     "import/no-cycle": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "__tests__/**/*.ts"],
+      "extends": ["@pob/eslint-config-typescript/test"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": true
+          }
+        ]
+      }
+    }
+  ]
 }

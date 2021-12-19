@@ -16,7 +16,7 @@
 import packageConfig from './package.json';
 import { Config } from 'alp-browser-config';
 
-const config = new Config(__dirname + '/config');
+const config = new Config(new URL('./config', import.meta.url));
 export default config;
 config.loadSync({ packageConfig });
 ```

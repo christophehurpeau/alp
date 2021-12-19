@@ -16,10 +16,14 @@ function HelloWorld(): ReactElement {
   return <div>Hello World !</div>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
+// eslint-disable-next-line @typescript-eslint/no-floating-promises, unicorn/prefer-top-level-await
 (async function test() {
-  console.log(await new Promise((resolve) => resolve('ok')));
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  console.log(
+    await new Promise((resolve) => {
+      resolve('ok');
+    }),
+  );
+
   console.log(ObjectAssign({}, { a: true }));
 })();
 

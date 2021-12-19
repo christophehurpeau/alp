@@ -1,1 +1,1 @@
-{"version":3,"file":"createNodeWebpackConfig.d.ts","sourceRoot":"","sources":["../../../src/pobpack/node/createNodeWebpackConfig.ts"],"names":[],"mappings":"AAKA,OAAO,KAAK,EAEV,OAAO,EACP,0BAA0B,EAC3B,MAAM,UAAU,CAAC;AAyClB,wBAAgB,uBAAuB,CACrC,OAAO,EAAE,OAAO,GACf,0BAA0B,CAgF5B"}
+{"version":3,"file":"createNodeWebpackConfig.d.ts","sourceRoot":"","sources":["../../../src/pobpack/node/createNodeWebpackConfig.ts"],"names":[],"mappings":"AAMA,OAAO,KAAK,EAEV,OAAO,EACP,0BAA0B,EAC3B,MAAM,UAAU,CAAC;AA6ClB,wBAAgB,uBAAuB,CACrC,OAAO,EAAE,OAAO,GACf,0BAA0B,CAuF5B"}

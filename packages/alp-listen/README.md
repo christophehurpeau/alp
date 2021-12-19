@@ -26,12 +26,12 @@ import logger from 'alp-logger';
 import listen from 'alp-listen';
 
 const app = new Koa();
-config(`${__dirname}/config`, { packageConfig })(app);
+config(new URL('./config', import.meta.url), { packageConfig })(app);
 logger(app);
 
 app.use(errors);
 
-listen(`${__dirname}/../cert/`)(app).then((server) => {
+listen(new URL('../cert', import.meta.url))(app).then((server) => {
   console.log('Listening !');
 });
 ```

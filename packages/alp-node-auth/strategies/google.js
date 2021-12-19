@@ -1,11 +1,9 @@
-'use strict';
+import { create } from 'simple-oauth2';
 
-const oauth2 = require('simple-oauth2').create;
-
-module.exports = function googleStrategy(config) {
+export default function googleStrategy(config) {
   return {
     type: 'oauth2',
-    oauth2: oauth2({
+    oauth2: create({
       client: {
         id: config.get('google').get('clientId'),
         secret: config.get('google').get('clientSecret'),
@@ -17,4 +15,4 @@ module.exports = function googleStrategy(config) {
       },
     }),
   };
-};
+}

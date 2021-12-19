@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable complexity */
 import path from 'path';
+import { URL } from 'url';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
@@ -22,7 +23,9 @@ export const MODERN = 'modern';
 export const ALL = 'all';
 export const TARGETS: BrowserTargetType[] = [ALL, MODERN];
 
-const ExcludesFalsy = (Boolean as unknown) as <T>(
+const resolveDependency = (dependency: string): string => dependency; // TODO require.resolve(path)
+
+const ExcludesFalsy = Boolean as unknown as <T>(
   x: T | boolean | null | undefined,
 ) => x is T;
 
@@ -100,7 +103,7 @@ export default function createBrowserWebpackConfig(target: BrowserTargetType) {
           ...options.babel,
           plugins: [
             ...(options.babel.plugins || []),
-            options.hmr && require.resolve('react-refresh/babel'),
+            options.hmr && resolveDependency('react-refresh/babel'),
           ].filter(ExcludesFalsy),
         },
       },
@@ -115,13 +118,15 @@ export default function createBrowserWebpackConfig(target: BrowserTargetType) {
       },
     ),
 
+    // eslint-disable-next-line unicorn/no-array-reduce, unicorn/prefer-object-from-entries
     entry: options.entries.reduce(
-      (entries: { [key: string]: string[] }, entry: ConfigEntry) => {
+      (entries: Record<string, string[]>, entry: ConfigEntry) => {
         if (typeof entry === 'string') entry = { key: entry, path: entry };
         entries[entry.key] = [
-          // options.env !== 'production' && require.resolve('../source-map-support'),
-          target !== MODERN && require.resolve('regenerator-runtime/runtime'),
-          path.join(path.resolve(options.paths.src as string), entry.path),
+          options.env !== 'production' &&
+            new URL('../source-map-support.cjs', import.meta.url).pathname,
+          target !== MODERN && resolveDependency('regenerator-runtime/runtime'),
+          path.join(path.resolve(options.paths.src!), entry.path),
         ].filter(ExcludesFalsy);
         return entries;
       },
@@ -129,7 +134,7 @@ export default function createBrowserWebpackConfig(target: BrowserTargetType) {
     ),
 
     output: {
-      path: path.resolve(options.paths.build as string),
+      path: path.resolve(options.paths.build!),
       pathinfo: options.env !== 'production',
       filename: '[name].js',
       chunkFilename:
@@ -144,13 +149,9 @@ export default function createBrowserWebpackConfig(target: BrowserTargetType) {
         options.env === 'production'
           ? (info: { absoluteResourcePath: string }) =>
               path
-                .relative(
-                  options.paths.src as string,
-                  info.absoluteResourcePath,
-                )
+                .relative(options.paths.src!, info.absoluteResourcePath)
                 .replace(/\\/g, '/')
-          : // eslint-disable-next-line unicorn/no-nested-ternary
-          options.env === 'development'
+          : options.env === 'development'
           ? (info: { absoluteResourcePath: string }) =>
               path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
           : undefined,

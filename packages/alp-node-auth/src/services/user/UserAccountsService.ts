@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import { EventEmitter } from 'events';
 import Logger from 'nightingale-logger';
 import type { AccountId, User, Account, UserSanitized } from '../../../types.d';
@@ -15,7 +16,7 @@ export const STATUSES = {
 export default class UserAccountsService<
   StrategyKeys extends AllowedStrategyKeys,
   U extends User = User,
-  USanitized extends UserSanitized = UserSanitized
+  USanitized extends UserSanitized = UserSanitized,
 > extends EventEmitter {
   private readonly strategyToService: Record<StrategyKeys, AccountService<any>>;
 
@@ -109,13 +110,12 @@ export default class UserAccountsService<
 
     const emails = service.getEmails(profile);
 
-    let user:
-      | Partial<U>
-      | undefined = await this.usersManager.findOneByAccountOrEmails({
-      provider: service.providerKey,
-      accountId,
-      emails,
-    });
+    let user: Partial<U> | undefined =
+      await this.usersManager.findOneByAccountOrEmails({
+        provider: service.providerKey,
+        accountId,
+        emails,
+      });
 
     logger.info(!user ? 'create user' : 'existing user', { emails, user });
 
@@ -168,6 +168,7 @@ export default class UserAccountsService<
     });
 
     user.emailDomains = [
+      // eslint-disable-next-line unicorn/no-array-reduce
       ...user.emails.reduce(
         (domains: Set<string>, email: string) =>
           domains.add(email.split('@', 2)[1]),

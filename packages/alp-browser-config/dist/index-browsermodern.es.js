@@ -86,12 +86,11 @@ async function alpConfig(app, configPath) {
     throw new Error('Missing appVersion');
   }
 
-  const config = await getOrFetchAppConfig(version, "production", configPath);
+  const config = await getOrFetchAppConfig(version, (process.env.NODE_ENV !== "production") ? 'development' : 'production', configPath);
   app.config = config;
   app.context.config = config;
   return config;
 }
 
-export default alpConfig;
-export { existsConfig, getConfig };
+export { alpConfig as default, existsConfig, getConfig };
 //# sourceMappingURL=index-browsermodern.es.js.map

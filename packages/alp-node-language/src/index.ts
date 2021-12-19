@@ -4,7 +4,9 @@ import type { Context } from 'koa';
 import { defineLazyProperty } from 'object-properties';
 
 declare module 'alp-types' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface BaseContext {}
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   interface Context {
     readonly firstAcceptedLanguage: string;
     readonly language: string;
@@ -19,18 +21,14 @@ export default function alpLanguage(app: ApplicationInCreation): void {
   }
 
   defineLazyProperty(app.context, 'language', function (this: Context): string {
-    return (
-      (this.acceptsLanguages(availableLanguages) as string | false) ||
-      availableLanguages[0]
-    );
+    return this.acceptsLanguages(availableLanguages) || availableLanguages[0];
   });
 
   defineLazyProperty(
     app.context,
     'firstAcceptedLanguage',
     function (this: Context): string {
-      return ((this.acceptsLanguages() as string[])[0] ||
-        availableLanguages[0]) as string;
+      return this.acceptsLanguages()[0] || availableLanguages[0];
     },
   );
 }

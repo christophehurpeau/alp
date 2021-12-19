@@ -8,11 +8,13 @@ import webpack from 'webpack';
 import type { Options } from '../pobpack/types';
 import { createModuleRules, createCssModuleUse } from './css-module-rules';
 
+const resolveDependency = (dependency: string): string => dependency; // TODO require.resolve(path)
+
 // stylesCacheGroups
 
 type TargetType = 'node' | 'modern-browser' | 'browser';
 
-const ExcludesFalsy = (Boolean as any) as <T>(
+const ExcludesFalsy = Boolean as any as <T>(
   x: T | false | null | undefined,
 ) => x is T;
 
@@ -58,18 +60,14 @@ export default function createPobpackConfig(
         key:
           target === 'node'
             ? 'index'
-            : // eslint-disable-next-line unicorn/no-nested-ternary
-            target === 'browser'
+            : target === 'browser'
             ? 'es5'
             : 'modern-browsers',
         path: target === 'node' ? 'index.server.ts' : 'index.browser.ts',
       },
     ],
 
-    resolveLoaderModules: [
-      path.join(__dirname, '../..', 'node_modules'),
-      'node_modules',
-    ],
+    resolveLoaderModules: ['node_modules'],
 
     babel: {
       minified: target !== 'node' && production,
@@ -78,23 +76,22 @@ export default function createPobpackConfig(
       presets: [
         // add react preset with jsx
         [
-          require.resolve('@babel/preset-react'),
+          resolveDependency('@babel/preset-react'),
           { development: !production, useBuiltIns: true, runtime: 'automatic' },
         ],
         // pob preset: flow, import `src`, export default function name, replacements, exnext features, ...
         [
-          require.resolve('babel-preset-pob-env'),
+          resolveDependency('babel-preset-pob-env'),
           {
-            resolvePreset: (preset: string): string => require.resolve(preset),
-            production,
+            resolvePreset: (preset: string): string =>
+              resolveDependency(preset),
             typescript: true,
             optimizations: true,
             target: target === 'node' ? 'node' : 'browser',
             version:
               target === 'node'
                 ? '12.10'
-                : // eslint-disable-next-line unicorn/no-nested-ternary
-                target === 'modern-browser'
+                : target === 'modern-browser'
                 ? 'modern'
                 : undefined,
             loose: true,
@@ -103,9 +100,9 @@ export default function createPobpackConfig(
         ],
       ],
       plugins: [
-        require.resolve('babel-plugin-inline-classnames-babel7'),
+        resolveDependency('babel-plugin-inline-classnames-babel7'),
         hasAntd && [
-          require.resolve('babel-plugin-import'),
+          resolveDependency('babel-plugin-import'),
           {
             libraryName: 'antd',
             libraryDirectory: target === 'node' ? 'lib' : 'es',
@@ -143,14 +140,14 @@ export default function createPobpackConfig(
           plugins: [autoprefixer],
           otherLoaders: [
             {
-              loader: require.resolve('less-loader'),
+              loader: resolveDependency('less-loader'),
               options: {
                 javascriptEnabled: true,
                 // modifyVars: path.resolve('./src/less-modifyVars.js'),
               },
             },
             {
-              loader: require.resolve('less-modify-var-loader'),
+              loader: resolveDependency('less-modify-var-loader'),
               options: {
                 filePath: path.resolve('./src/theme.less'),
               },
@@ -188,8 +185,7 @@ export default function createPobpackConfig(
         filename: `${
           target === 'node'
             ? 'server'
-            : // eslint-disable-next-line unicorn/no-nested-ternary
-            target === 'browser'
+            : target === 'browser'
             ? 'es5'
             : 'modern-browsers'
         }.css`, // [name].[contenthash:8].css
@@ -200,7 +196,7 @@ export default function createPobpackConfig(
       process.send &&
         new webpack.ProgressPlugin(
           (percentage: number, message: string): void => {
-            (process.send as NonNullable<typeof process.send>)({
+            process.send!({
               type: 'webpack-progress',
               percentage,
               message,

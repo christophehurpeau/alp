@@ -20,30 +20,22 @@
   "bugs": {
     "url": "https://github.com/alpjs/alp-node/issues"
   },
+  "type": "module",
   "engines": {
-    "node": ">=12.10.0"
+    "node": "^14.13.1 || >=16.0.0"
   },
-  "main": "./index.js",
+  "main": "./dist/index-node14.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "node": {
-        "development": {
-          "import": "./dist/index-node12-dev.mjs",
-          "require": "./dist/index-node12-dev.cjs.js"
-        },
-        "import": "./dist/index-node12.mjs",
-        "require": "./dist/index-node12.cjs.js"
+        "import": "./dist/index-node14.mjs"
       }
     },
     "./AlpNodeApp": {
       "node": {
-        "development": {
-          "import": "./dist/AlpNodeApp-node12-dev.mjs",
-          "require": "./dist/AlpNodeApp-node12-dev.cjs.js"
-        },
-        "import": "./dist/AlpNodeApp-node12.mjs",
-        "require": "./dist/AlpNodeApp-node12.cjs.js"
+        "import": "./dist/AlpNodeApp-node14.mjs"
       }
     },
     "./fetch": {
@@ -51,21 +43,17 @@
       "require": "./fetch.js"
     }
   },
-  "module:node": "./dist/index-node12.mjs",
-  "module:node-dev": "./dist/index-node12-dev.mjs",
+  "module:node": "./dist/index-node14.mjs",
   "module:aliases-node": {
-    "./AlpNodeApp.js": "./dist/AlpNodeApp-node12.es.js"
-  },
-  "module:aliases-node-dev": {
-    "./AlpNodeApp.js": "./dist/AlpNodeApp-node12-dev.es.js"
+    "./AlpNodeApp.js": "./dist/AlpNodeApp-node14.es.js"
   },
   "sideEffects": false,
   "scripts": {
     "build": "pob-build && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
-    "clean": "rm -Rf docs dist",
+    "clean": "rm -Rf dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn --cwd ../.. run eslint --ext .js,.mjs,.ts --report-unused-disable-directives --quiet packages/alp-node",
+    "lint:eslint": "cd ../.. && yarn run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-node",
     "watch": "pob-watch"
   },
   "prettier": {
@@ -77,9 +65,8 @@
     "babelEnvs": [
       {
         "target": "node",
-        "version": "12",
+        "version": "14",
         "formats": [
-          "cjs",
           "es"
         ]
       }
@@ -110,13 +97,12 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@babel/core": "7.13.14",
+    "@babel/core": "7.16.5",
     "@types/findup-sync": "2.0.2",
     "@types/koa-compress": "4.0.3",
     "@types/koa-static": "4.0.2",
     "@types/minimist": "1.2.2",
-    "babel-preset-latest-node": "5.5.1",
-    "pob-babel": "26.8.0",
-    "rollup": "2.43.1"
+    "pob-babel": "29.5.1",
+    "typescript": "4.5.4"
   }
 }

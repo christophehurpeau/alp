@@ -7,12 +7,9 @@ export { default as Helmet } from 'react-helmet';
 
 function createAlpAppWrapper(app, context) {
   return class AlpAppWrapper extends Component {
-    constructor(...args) {
-      super(...args);
-      this.state = {
-        error: null
-      };
-    }
+    state = {
+      error: null
+    };
 
     componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
@@ -65,7 +62,7 @@ function Body({
 function AppContainer({
   children
 }) {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, children);
+  return children;
 }
 
 const logger = new Logger('alp:react');
@@ -88,6 +85,5 @@ function alpReactBrowser(app) {
   };
 }
 
-export default alpReactBrowser;
-export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext, BrowserSuspenseWrapper as SuspenseWrapper };
+export { AlpModuleBrowser as AlpModule, AppContainer, Body, LoadingFallbackContext, BrowserSuspenseWrapper as SuspenseWrapper, alpReactBrowser as default };
 //# sourceMappingURL=index-browsermodern.es.js.map

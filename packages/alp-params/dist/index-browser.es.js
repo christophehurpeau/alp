@@ -134,6 +134,5 @@ function alpParams(app) {
   });
 }
 
-export default alpParams;
-export { ParamValidator };
+export { ParamValidator, alpParams as default };
 //# sourceMappingURL=index-browser.es.js.map

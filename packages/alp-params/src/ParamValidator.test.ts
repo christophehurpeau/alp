@@ -1,12 +1,14 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { jest } from '@jest/globals';
 import type { Context, ContextSanitizedState, ContextState } from 'alp-types';
-import ParamValidator from './ParamValidator';
+import { ParamValidator } from './ParamValidator';
 
 const createContextMock = (): Context &
   Record<
     'param' | 'namedParam' | 'otherParam' | 'paramGET' | 'paramGETorPOST',
     ReturnType<typeof jest.fn>
   > => {
-  return ({
+  return {
     state: {} as ContextState,
     sanitizedState: {} as ContextSanitizedState,
     param: jest.fn(),
@@ -14,7 +16,7 @@ const createContextMock = (): Context &
     otherParam: jest.fn(),
     paramGET: jest.fn(),
     paramGETorPOST: jest.fn(),
-  } as unknown) as Context &
+  } as unknown as Context &
     Record<
       'param' | 'namedParam' | 'otherParam' | 'paramGET' | 'paramGETorPOST',
       ReturnType<typeof jest.fn>

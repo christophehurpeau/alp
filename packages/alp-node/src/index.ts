@@ -3,11 +3,13 @@ import path from 'path';
 import { Config } from 'alp-node-config';
 import findUp from 'findup-sync';
 import Logger from 'nightingale-logger';
-import type { AlpNodeAppOptions, Context } from './AlpNodeApp';
+import type { AlpNodeAppOptions,  } from './AlpNodeApp';
 import { AlpNodeApp } from './AlpNodeApp';
 
-export type { Context };
-export { Config };
+export { default as fetch } from 'node-fetch';
+
+
+
 
 const logger = new Logger('alp');
 
@@ -48,3 +50,6 @@ export default class App extends AlpNodeApp {
     });
   }
 }
+
+export type {Context} from './AlpNodeApp';
+export {Config} from 'alp-node-config';

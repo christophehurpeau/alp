@@ -11,6 +11,7 @@ function alpRouter(router) {
     };
 
     return ctx => {
+      // eslint-disable-next-line unicorn/no-array-method-this-argument
       const routeMatch = router.find(ctx.request.path, ctx.language);
 
       if (!routeMatch) {
@@ -24,5 +25,5 @@ function alpRouter(router) {
   };
 }
 
-export default alpRouter;
+export { alpRouter as default };
 //# sourceMappingURL=index-browsermodern.es.js.map

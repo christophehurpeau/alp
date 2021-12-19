@@ -1,6 +1,6 @@
-import _regeneratorRuntime from '@babel/runtime/regenerator';
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
+import _regeneratorRuntime from '@babel/runtime/regenerator';
 import config, { existsConfig, getConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
 import translate from 'alp-translate/browser';
@@ -40,7 +40,7 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return config(this, "/" + this.appVersion + configPath);
+              return config(this, !(process.env.NODE_ENV !== "production") ? "/" + this.appVersion + configPath : configPath);
 
             case 2:
               configInstance = _context.sent;
@@ -93,9 +93,9 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
   _proto.start = function start(fn) {
     try {
       fn().then(function () {
-        return logger.success('started');
+        logger.success('started');
       }).catch(function (err) {
-        return logger.error('start fail', {
+        logger.error('start fail', {
           err: err
         });
       });
@@ -110,7 +110,7 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
 }(Ibex);
 var startApp = function startApp(callback) {
   var app = new AlpBrowser();
-  return app.start( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3() {
+  app.start( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3() {
     var browserApp;
     return _regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
@@ -133,6 +133,5 @@ var startApp = function startApp(callback) {
   })));
 };
 
-export default AlpBrowser;
-export { startApp };
+export { AlpBrowser as default, startApp };
 //# sourceMappingURL=index-browser.es.js.map

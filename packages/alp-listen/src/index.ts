@@ -15,11 +15,11 @@ const createServer = (
   tls?: boolean,
   dirname = '',
 ): Server => {
-  const createServer =
+  const createHttpServer =
     !socketPath && tls ? createServerHttps : createServerHttp;
 
   if (!tls) {
-    return createServer(callback);
+    return createHttpServer(callback);
   }
 
   const options = {
@@ -27,7 +27,7 @@ const createServer = (
     cert: readFileSync(`${dirname}/server.crt`),
   };
 
-  return (createServer as typeof createServerHttps)(options, callback);
+  return (createHttpServer as typeof createServerHttps)(options, callback);
 };
 
 export default function alpListen(

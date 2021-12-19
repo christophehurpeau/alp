@@ -46,7 +46,8 @@
     },
     "project": {
       "type": "lib",
-      "yarn2": false
+      "packageManager": "yarn",
+      "yarnNodeLinker": "node-modules"
     }
   }
 }

@@ -10,7 +10,7 @@ export interface Response extends BaseResponse {
 
 const response: BaseResponse = {
   redirect(this: Response, url: string): Promise<void> {
-    if (this.app.emit('redirect', url) === false) {
+    if (!this.app.emit('redirect', url)) {
       window.location.href = url;
       return new Promise(() => {
         // promise that never resolves.

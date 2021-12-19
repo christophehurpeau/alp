@@ -4,4 +4,4 @@ import { createModernBrowserCompiler, runDevServer } from './webpack/browser';
 
 const browserCompiler = createModernBrowserCompiler(false);
 
-runDevServer(browserCompiler, argv.port, argv['proxy-port']);
+runDevServer(browserCompiler, Number(argv.port), Number(argv['proxy-port']));

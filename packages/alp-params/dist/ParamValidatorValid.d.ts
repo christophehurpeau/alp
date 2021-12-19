@@ -1,4 +1,4 @@
-import ParamValidator from './ParamValidator';
+import { ParamValidator } from './ParamValidator';
 export default class ParamValidatorValid extends ParamValidator {
     _error(): void;
 }

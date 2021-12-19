@@ -1,4 +1,4 @@
-import { POB_ENV } from 'pob-babel';
+import 'pob-babel';
 import type { BrowserApplicationInCreation, Config } from 'alp-types';
 import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
@@ -6,7 +6,7 @@ import * as storedConfig from './browserStoredConfig';
 
 type RawConfig = Map<string, unknown>;
 
-const ExcludesFalsy = (Boolean as unknown) as <T>(
+const ExcludesFalsy = Boolean as unknown as <T>(
   x: T | boolean | null | undefined,
 ) => x is T;
 
@@ -61,7 +61,7 @@ const getOrFetchAppConfig = function (
 
       others.filter(ExcludesFalsy).forEach((jsonConfig) => {
         jsonConfig.forEach((value: any, key: string) =>
-          (config as RawConfig).set(key, value),
+          config!.set(key, value),
         );
       });
 
@@ -83,7 +83,7 @@ export default async function alpConfig(
 
   const config: Config = (await getOrFetchAppConfig(
     version,
-    POB_ENV,
+    __DEV__ ? 'development' : 'production',
     configPath,
   )) as Config;
   app.config = config;

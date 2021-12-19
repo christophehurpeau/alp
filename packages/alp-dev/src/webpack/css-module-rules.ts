@@ -48,11 +48,12 @@ type CreateScssModuleUseFn = (
 ) => RuleSetUseItem[];
 type CreateModuleRulesFn = (options: CreateModuleRulesOptions) => RuleSetRule[];
 
-const ExcludesFalsy = (Boolean as any) as <T>(
+const ExcludesFalsy = Boolean as any as <T>(
   x: T | false | null | undefined,
 ) => x is T;
 
-const resolveLoader = (loader: string): string => require.resolve(loader);
+const resolveDependency = (dependency: string): string => dependency; // TODO require.resolve(path)
+const resolveLoader = (loader: string): string => resolveDependency(loader);
 
 const cssLoaderOptions = function (
   importLoaders: number,
@@ -66,10 +67,9 @@ const cssLoaderOptions = function (
       ? false
       : {
           exportOnlyLocals: targetIsNode,
-          localIdentName:
-            production !== false
-              ? '[hash:base64]'
-              : '[name]__[local]___[hash:base64:5]',
+          localIdentName: production
+            ? '[hash:base64]'
+            : '[name]__[local]___[hash:base64:5]',
         },
     importLoaders,
   };
@@ -139,11 +139,11 @@ const createScssModuleUse: CreateScssModuleUseFn = function ({
         loader: resolveLoader('sass-loader'),
         options: {
           sourceMap: !production,
-          additionalData: `$env: ${process.env.NODE_ENV as string};${
+          additionalData: `$env: ${process.env.NODE_ENV!};${
             themeFile ? `@import '${path.resolve(themeFile)}';` : ''
           }`,
           sassOptions: {
-            outputStyle: production !== false ? undefined : 'compressed',
+            outputStyle: production ? undefined : 'compressed',
             includePaths,
           },
         },

@@ -14,9 +14,9 @@ export interface ConfigEntryObject {
 export type ConfigEntry = string | ConfigEntryObject;
 
 export interface Options {
-  aliases: { [key: string]: any };
+  aliases: Record<string, any>;
   babel: TransformOptions;
-  defines: { [key: string]: any };
+  defines: Record<string, any>;
   entries: ConfigEntry[];
   serviceWorkerEntry: false | string;
   env?: string;

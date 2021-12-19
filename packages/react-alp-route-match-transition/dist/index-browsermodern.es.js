@@ -49,5 +49,5 @@ function RouteMatchTransition({
   });
 }
 
-export default RouteMatchTransition;
+export { RouteMatchTransition as default };
 //# sourceMappingURL=index-browsermodern.es.js.map

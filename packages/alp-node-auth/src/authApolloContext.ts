@@ -24,9 +24,7 @@ export const createAuthApolloContext = <U extends User = User>(
   usersManager: MongoUsersManager<U>,
 ): any => {
   const findConnectedAndUser = createFindConnectedAndUser(
-    config
-      .get<Map<string, string>>('authentication')
-      .get('secretKey') as string,
+    config.get<Map<string, string>>('authentication').get('secretKey')!,
     usersManager,
     logger,
   );
@@ -38,11 +36,13 @@ export const createAuthApolloContext = <U extends User = User>(
 
     if (!req) return null;
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const token = getTokenFromReq(req);
 
     if (!token) return { user: undefined };
 
     const [, user] = await findConnectedAndUser(
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       req.headers['user-agent'],
       token,
     );

@@ -27,7 +27,7 @@ import config from 'alp-node-config';
 import translate from 'alp-translate';
 
 const app = new Koa();
-config(__dirname + '/config')(app);
+config(new URL('./config', import.meta.url))(app);
 translate('locales')(app);
 ```
 

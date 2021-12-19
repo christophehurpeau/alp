@@ -1,15 +1,20 @@
-import _regeneratorRuntime from '../../../node_modules/@babel/runtime/regenerator/index.js';
-import _asyncToGenerator from '../../../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js';
-import IntlMessageFormat from 'intl-messageformat';
+import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
+import _regeneratorRuntime from '@babel/runtime/regenerator';
+import IntlMessageFormatDefault from 'intl-messageformat';
 
+var IntlMessageFormat = // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+IntlMessageFormatDefault.default || IntlMessageFormatDefault;
 function load(translations, language) {
   var result = new Map();
 
   (function loadMap(map, prefix) {
     map.forEach(function (value, key) {
       if (typeof value === 'object') {
-        return loadMap(value, "" + prefix + key + ".");
-      }
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        loadMap(value, "" + prefix + key + ".");
+        return;
+      } // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
 
       result.set("" + prefix + key, new IntlMessageFormat(value, language));
     });
@@ -56,5 +61,5 @@ function alpTranslate(dirname) {
   }();
 }
 
-export default alpTranslate;
+export { alpTranslate as default };
 //# sourceMappingURL=index-browser.es.js.map

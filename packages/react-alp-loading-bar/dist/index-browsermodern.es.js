@@ -33,14 +33,12 @@ const calculatePercent = percent => {
 };
 
 class LoadingBar extends PureComponent {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      loading: true,
-      hidden: true,
-      progress: 1
-    };
-  }
+  static contextType = ReactAlpContext;
+  state = {
+    loading: true,
+    hidden: true,
+    progress: 1
+  };
 
   componentDidMount() {
     const websocket = this.getWebsocket();
@@ -78,10 +76,10 @@ class LoadingBar extends PureComponent {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.fadeOffTimeout);
-    clearTimeout(this.resetTimeout);
-    clearTimeout(this.first20Timeout);
-    clearInterval(this.progressTimer);
+    if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
+    if (this.resetTimeout) clearTimeout(this.resetTimeout);
+    if (this.first20Timeout) clearTimeout(this.first20Timeout);
+    if (this.progressTimer) clearInterval(this.progressTimer);
   }
 
   getWebsocket() {
@@ -90,8 +88,8 @@ class LoadingBar extends PureComponent {
   }
 
   showBar() {
-    clearTimeout(this.fadeOffTimeout);
-    clearTimeout(this.resetTimeout);
+    if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
+    if (this.resetTimeout) clearTimeout(this.resetTimeout);
     this.first20Timeout = setTimeout(() => {
       this.setState({
         progress: 20
@@ -108,8 +106,8 @@ class LoadingBar extends PureComponent {
   }
 
   hideBar() {
-    clearTimeout(this.first20Timeout);
-    clearInterval(this.progressTimer);
+    if (this.first20Timeout) clearTimeout(this.first20Timeout);
+    if (this.progressTimer) clearInterval(this.progressTimer);
     this.fadeOffTimeout = setTimeout(() => {
       this.setState({
         progress: 100
@@ -141,7 +139,6 @@ class LoadingBar extends PureComponent {
   }
 
 }
-LoadingBar.contextType = ReactAlpContext;
 
-export default LoadingBar;
+export { LoadingBar as default };
 //# sourceMappingURL=index-browsermodern.es.js.map

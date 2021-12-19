@@ -11,7 +11,7 @@ function ConnectionState({
   const unloadingRef = useRef(false);
   const currentStateRef = useRef(state);
 
-  if (unloadingRef.current === false) {
+  if (!unloadingRef.current) {
     currentStateRef.current = state;
   }
 
@@ -34,5 +34,5 @@ function ConnectionState({
   })));
 }
 
-export default ConnectionState;
+export { ConnectionState as default };
 //# sourceMappingURL=index-browsermodern.es.js.map

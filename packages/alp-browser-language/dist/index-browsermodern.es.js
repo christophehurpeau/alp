@@ -23,5 +23,5 @@ function alpLanguage(app) {
   }
 }
 
-export default alpLanguage;
+export { alpLanguage as default };
 //# sourceMappingURL=index-browsermodern.es.js.map

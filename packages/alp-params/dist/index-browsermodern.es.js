@@ -86,7 +86,7 @@ function alpParams(app) {
 
     namedParam(name) {
       const namedParams = this.route.namedParams;
-      return namedParams?.get(name);
+      return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
     },
 
     otherParam(position) {
@@ -96,7 +96,7 @@ function alpParams(app) {
 
     paramGET(name) {
       const query = this.request.query;
-      return query?.[name];
+      return query === null || query === void 0 ? void 0 : query[name];
     },
 
     paramGETorPOST(name) {
@@ -114,6 +114,5 @@ function alpParams(app) {
   });
 }
 
-export default alpParams;
-export { ParamValidator };
+export { ParamValidator, alpParams as default };
 //# sourceMappingURL=index-browsermodern.es.js.map

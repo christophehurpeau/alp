@@ -1,9 +1,7 @@
 import { useContext, useMemo } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
-interface Params {
-  [key: string]: any;
-}
+type Params = Record<string, any>;
 
 declare module 'alp-types' {
   export interface Context {

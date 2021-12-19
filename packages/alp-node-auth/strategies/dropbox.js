@@ -1,11 +1,9 @@
-'use strict';
+import { create } from 'simple-oauth2';
 
-const oauth2 = require('simple-oauth2').create;
-
-module.exports = function dropboxStrategy(config) {
+export default function dropboxStrategy(config) {
   return {
     type: 'oauth2',
-    oauth2: oauth2({
+    oauth2: create({
       client: {
         id: config.get('dropbox').get('clientId'),
         secret: config.get('dropbox').get('clientSecret'),
@@ -17,4 +15,4 @@ module.exports = function dropboxStrategy(config) {
       },
     }),
   };
-};
+}

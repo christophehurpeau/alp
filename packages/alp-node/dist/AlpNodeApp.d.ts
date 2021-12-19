@@ -3,7 +3,7 @@ import type { IncomingMessage, Server, ServerResponse } from 'http';
 import type { Config } from 'alp-node-config';
 import type { NodeApplication, NodeConfig, Context as AlpContext, ContextState } from 'alp-types';
 import Koa from 'koa';
-import type { ParameterizedContext, DefaultState, Context } from 'koa';
+import type { ParameterizedContext, DefaultState } from 'koa';
 export interface AlpNodeAppOptions {
     appDirname: string;
     packageDirname: string;
@@ -19,7 +19,6 @@ declare module 'koa' {
     interface BaseContext extends AlpContext {
     }
 }
-export type { Context };
 export declare class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     dirname: string;
     certPath: string;
@@ -44,4 +43,5 @@ export declare class AlpNodeApp extends Koa<ContextState> implements NodeApplica
     close(): void;
     start(fn: () => Promise<void> | void): Promise<Server>;
 }
+export type { Context } from 'koa';
 //# sourceMappingURL=AlpNodeApp.d.ts.map

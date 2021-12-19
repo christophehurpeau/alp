@@ -1,5 +1,5 @@
-import _regeneratorRuntime from '../../../node_modules/@babel/runtime/regenerator/index.js';
-import _asyncToGenerator from '../../../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js';
+import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
+import _regeneratorRuntime from '@babel/runtime/regenerator';
 import deepFreeze from 'deep-freeze-es6';
 import parseJSON from 'parse-json-object-as-map';
 import stringify from 'stringify-json';
@@ -116,7 +116,7 @@ function _alpConfig() {
 
           case 3:
             _context.next = 5;
-            return getOrFetchAppConfig(version, "production", configPath);
+            return getOrFetchAppConfig(version, (process.env.NODE_ENV !== "production") ? 'development' : 'production', configPath);
 
           case 5:
             config = _context.sent;
@@ -134,6 +134,5 @@ function _alpConfig() {
   return _alpConfig.apply(this, arguments);
 }
 
-export default alpConfig;
-export { existsConfig, getConfig };
+export { alpConfig as default, existsConfig, getConfig };
 //# sourceMappingURL=index-browser.es.js.map

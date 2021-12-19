@@ -1,16 +1,16 @@
+import 'pob-babel';
 import type { Context } from 'alp-types';
 import isModernBrowser from 'modern-browsers';
-import type { ElementType } from 'react';
+import type { ElementType, ReactElement } from 'react';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import Helmet from 'react-helmet';
+import { renderToString } from 'react-dom/server.js';
+import { Helmet } from 'react-helmet';
 // import Logger from 'nightingale-logger';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import type { LayoutOptions } from './layout/htmlLayout';
 import htmlLayout from './layout/htmlLayout';
 
-export { Helmet };
-
+export { Helmet } from 'react-helmet';
 export { default as AlpModule } from './module/AlpModule';
 export { default as SuspenseWrapper } from './module/SuspenseWrapper';
 export { default as Body } from './layout/Body';
@@ -19,10 +19,7 @@ export { default as LoadingFallbackContext } from './contexts/LoadingFallbackCon
 
 // const logger = new Logger( 'alp:react');
 
-const renderHtml = (
-  app: React.ReactElement,
-  options: LayoutOptions,
-): string => {
+const renderHtml = (app: ReactElement, options: LayoutOptions): string => {
   const content = renderToString(app);
   const helmet = Helmet.renderStatic();
   return htmlLayout(helmet, content, options);

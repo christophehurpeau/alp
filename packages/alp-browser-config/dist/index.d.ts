@@ -1,3 +1,4 @@
+import 'pob-babel';
 import type { BrowserApplicationInCreation, Config } from 'alp-types';
 declare type RawConfig = Map<string, unknown>;
 export declare function getConfig(path: string): Promise<RawConfig>;

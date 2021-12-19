@@ -1,17 +1,15 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 import { readFileSync } from 'fs';
 import path from 'path';
-import { safeLoad as saveLoadYml } from 'js-yaml';
+import yaml from 'js-yaml';
 
-export interface Config {
-  [key: string]: any;
-}
+export type Config = Record<string, any>;
 
 export default function loadConfigFile(
   content: string,
   dirname: string,
 ): [Config, Config] {
-  const data: any = saveLoadYml(content) || {};
+  const data: any = yaml.load(content) || {};
 
   const config = data.shared || data.common || {};
   const serverConfig = { ...config, ...data.server };
@@ -23,31 +21,32 @@ export default function loadConfigFile(
     );
     includePaths
       .map((includePath: string) => readFileSync(includePath, 'utf-8'))
-      .map((content: string, index: number) =>
-        loadConfigFile(content, path.dirname(includePaths[index])),
+      .map((fileContent: string, index: number) =>
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        loadConfigFile(fileContent, path.dirname(includePaths[index])),
       )
       .forEach(
         ([includeServerConfig, includeBrowserConfig]: [Config, Config]) => {
           [
-            { config: serverConfig, include: includeServerConfig },
-            { config: browserConfig, include: includeBrowserConfig },
-          ].forEach(({ config, include }) =>
+            { includeConfig: serverConfig, include: includeServerConfig },
+            { includeConfig: browserConfig, include: includeBrowserConfig },
+          ].forEach(({ includeConfig, include }) => {
             Object.keys(include).forEach((key) => {
-              if (!(key in config)) {
-                config[key] = include[key];
+              if (!(key in includeConfig)) {
+                includeConfig[key] = include[key];
                 return;
               }
-              if (Array.isArray(config[key])) {
-                config[key].push(include[key]);
-              } else if (typeof config[key] === 'object') {
-                Object.assign(config[key], include[key]);
+              if (Array.isArray(includeConfig[key])) {
+                includeConfig[key].push(include[key]);
+              } else if (typeof includeConfig[key] === 'object') {
+                Object.assign(includeConfig[key], include[key]);
               } else {
                 throw new TypeError(
                   `Unexpected override "${key}", filename = ${includePaths[key]}`,
                 );
               }
-            }),
-          );
+            });
+          });
         },
       );
   }

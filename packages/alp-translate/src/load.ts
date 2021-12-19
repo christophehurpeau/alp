@@ -1,6 +1,11 @@
-import IntlMessageFormat from 'intl-messageformat';
+import IntlMessageFormatDefault from 'intl-messageformat';
 
-export type Translations = ReadonlyMap<string, IntlMessageFormat>;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const IntlMessageFormat: typeof IntlMessageFormatDefault =
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  (IntlMessageFormatDefault as any).default || IntlMessageFormatDefault;
+
+export type Translations = ReadonlyMap<string, IntlMessageFormatDefault>;
 
 export default function load(
   translations: ReadonlyMap<string, unknown>,
@@ -11,9 +16,12 @@ export default function load(
   (function loadMap(map, prefix) {
     map.forEach((value: any, key) => {
       if (typeof value === 'object') {
-        return loadMap(value, `${prefix}${key}.`);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        loadMap(value, `${prefix}${key}.`);
+        return;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
     });
   })(translations, '');

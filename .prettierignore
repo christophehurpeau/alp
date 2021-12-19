@@ -1,6 +1,6 @@
 CHANGELOG.md
+/.yarn/**/*
 /packages/*/dist
 /packages/*/build
 /packages/*/public
 /packages/*/data
-*.scss.d.ts

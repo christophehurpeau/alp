@@ -1,12 +1,15 @@
-import _regeneratorRuntime from '@babel/runtime/regenerator';
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
+import _regeneratorRuntime from '@babel/runtime/regenerator';
+import ErrorHtmlRenderer from 'error-html';
 import Logger from 'nightingale-logger';
 
 var logger = new Logger('alp:errors');
+var errorHtmlRenderer = (process.env.NODE_ENV !== "production") ? new ErrorHtmlRenderer() : undefined;
 
 var createErrorInstanceIfNeeded = function createErrorInstanceIfNeeded(err) {
   if (!err) return new Error('Unknown error');
   if (typeof err === 'string') return new Error(err);
+  if (err instanceof Error) return err;
   return err;
 };
 
@@ -31,7 +34,14 @@ var errorMiddleware = /*#__PURE__*/function () {
             errInstance = createErrorInstanceIfNeeded(_context.t0);
             ctx.status = errInstance.status ? errInstance.status : 500;
             logger.error(errInstance);
-            _context.next = 14;
+
+            if (!errorHtmlRenderer) {
+              _context.next = 14;
+              break;
+            }
+
+            ctx.body = errorHtmlRenderer.render(errInstance);
+            _context.next = 19;
             break;
 
           case 14:
@@ -60,5 +70,5 @@ var errorMiddleware = /*#__PURE__*/function () {
   };
 }();
 
-export default errorMiddleware;
+export { errorMiddleware as default };
 //# sourceMappingURL=index-browser.es.js.map

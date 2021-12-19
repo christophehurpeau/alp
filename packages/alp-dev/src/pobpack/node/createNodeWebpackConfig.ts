@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { URL } from 'url';
 import type { Configuration } from 'webpack';
 import type { Options as NodeExternalsOptions } from 'webpack-node-externals';
 import nodeExternals from 'webpack-node-externals';
@@ -15,7 +16,7 @@ import {
   createResolveConfig,
 } from '../utils';
 
-const ExcludesFalsy = (Boolean as any) as <T>(
+const ExcludesFalsy = Boolean as any as <T>(
   x: T | false | null | undefined,
 ) => x is T;
 
@@ -23,10 +24,14 @@ const createExternals = (
   options: Options,
 ): NonNullable<Configuration['externals']> => {
   const baseOptions: NodeExternalsOptions = {
-    importType: 'commonjs',
+    // @ts-expect-error module is valid but as an experiment
+    importType: 'module',
     modulesFromFile: false,
     allowlist: [
-      require.resolve('../node-hot.mjs'),
+      new URL('../node-hot.mjs', import.meta.url).pathname,
+      // TODO remove this when exports is added in these libs
+      'react/jsx-runtime',
+      'react/jsx-dev-runtime',
       ...(options.allowlistExternalExtensions
         ? [new RegExp(`(${options.allowlistExternalExtensions.join('|')})$`)]
         : []),
@@ -97,23 +102,36 @@ export function createNodeWebpackConfig(
         ...options,
         babel: options.babel,
       },
+      {
+        // TODO remove this when exports is added in these libs
+        'react/jsx-dev-runtime$': 'react/jsx-dev-runtime.js',
+        'react/jsx-runtime$': 'react/jsx-runtime.js',
+      },
     ),
 
+    // eslint-disable-next-line unicorn/no-array-reduce, unicorn/prefer-object-from-entries
     entry: options.entries.reduce(
-      (entries: { [key: string]: string[] }, entry: ConfigEntry) => {
+      (entries: Record<string, string[]>, entry: ConfigEntry) => {
         if (typeof entry === 'string') entry = { key: entry, path: entry };
         entries[entry.key] = [
-          options.hmr ? require.resolve('../node-hot.mjs') : undefined,
-          path.join(path.resolve(options.paths.src as string), entry.path),
+          options.hmr
+            ? new URL('../node-hot.mjs', import.meta.url).pathname
+            : undefined,
+          path.join(path.resolve(options.paths.src!), entry.path),
         ].filter(ExcludesFalsy);
         return entries;
       },
       {},
     ),
 
+    experiments: {
+      outputModule: true,
+    },
+
     output: {
-      path: path.resolve(options.paths.build as string),
-      libraryTarget: 'commonjs2',
+      filename: '[name].mjs',
+      path: path.resolve(options.paths.build!),
+      libraryTarget: 'module',
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
     },
 

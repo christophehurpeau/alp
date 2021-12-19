@@ -1,7 +1,5 @@
 import type { BrowserApplicationInCreation } from 'alp-types';
-interface Args {
-    [key: string]: any;
-}
+declare type Args = Record<string, any>;
 declare module 'alp-types' {
     interface BaseContext {
         language: string;

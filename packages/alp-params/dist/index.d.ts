@@ -1,7 +1,7 @@
 import type { NodeApplicationInCreation } from 'alp-types';
 import 'alp-router';
-import ParamValidator from './ParamValidator';
-export { ParamValidator };
+import { ParamValidator } from './ParamValidator';
+export { ParamValidator } from './ParamValidator';
 declare module 'alp-types' {
     interface Context {
         params: ParamValidator;

@@ -56,21 +56,19 @@ export default class LoadingBar extends PureComponent<
 > {
   static contextType = ReactAlpContext;
 
-  context!: React.ContextType<typeof ReactAlpContext>;
-
   state = {
     loading: true,
     hidden: true,
     progress: 1,
   };
 
-  fadeOffTimeout?: any;
+  fadeOffTimeout?: ReturnType<typeof setTimeout>;
 
-  resetTimeout?: any;
+  resetTimeout?: ReturnType<typeof setTimeout>;
 
-  first20Timeout?: any;
+  first20Timeout?: ReturnType<typeof setTimeout>;
 
-  progressTimer?: any;
+  progressTimer?: ReturnType<typeof setTimeout>;
 
   componentDidMount(): void {
     const websocket = this.getWebsocket();
@@ -103,10 +101,10 @@ export default class LoadingBar extends PureComponent<
   }
 
   componentWillUnmount(): void {
-    clearTimeout(this.fadeOffTimeout);
-    clearTimeout(this.resetTimeout);
-    clearTimeout(this.first20Timeout);
-    clearInterval(this.progressTimer);
+    if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
+    if (this.resetTimeout) clearTimeout(this.resetTimeout);
+    if (this.first20Timeout) clearTimeout(this.first20Timeout);
+    if (this.progressTimer) clearInterval(this.progressTimer);
   }
 
   getWebsocket(): WebsocketInterface {
@@ -115,8 +113,8 @@ export default class LoadingBar extends PureComponent<
   }
 
   private showBar(): void {
-    clearTimeout(this.fadeOffTimeout);
-    clearTimeout(this.resetTimeout);
+    if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
+    if (this.resetTimeout) clearTimeout(this.resetTimeout);
 
     this.first20Timeout = setTimeout(() => {
       this.setState({ progress: 20 });
@@ -131,8 +129,8 @@ export default class LoadingBar extends PureComponent<
   }
 
   private hideBar(): void {
-    clearTimeout(this.first20Timeout);
-    clearInterval(this.progressTimer);
+    if (this.first20Timeout) clearTimeout(this.first20Timeout);
+    if (this.progressTimer) clearInterval(this.progressTimer);
 
     this.fadeOffTimeout = setTimeout(() => {
       this.setState({

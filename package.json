@@ -7,24 +7,27 @@
   "license": "ISC",
   "repository": "https://github.com/christophehurpeau/alp.git",
   "homepage": "https://github.com/christophehurpeau/alp",
+  "type": "module",
   "engines": {
-    "node": ">=12.10.0"
+    "node": ">=14.13.1"
   },
+  "packageManager": "yarn@3.1.1",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run --stream build && yarn run build:definitions",
+    "build": "yarn workspaces foreach --parallel --topological-dev -Av run build && yarn run build:definitions",
     "build:definitions": "tsc -b tsconfig.build.json",
+    "checks": "node scripts/check-packages.js",
+    "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_ENV=production BABEL_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
     "lint": "yarn run lint:prettier && yarn run lint:eslint",
-    "lint:eslint": "lerna run --stream lint",
+    "lint:eslint": "NODE_OPTIONS=--max_old_space_size=4096 eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet .",
     "lint:prettier": "prettier --check .",
-    "preversion": "yarn run lint:prettier && yarn run lint:eslint --since && yarn run build && repository-check-dirty",
-    "release": "cross-env GH_TOKEN=$POB_GITHUB_TOKEN lerna version --conventional-commits --conventional-graduate --create-release=github -m 'chore: release' && lerna publish from-git",
+    "postinstall": "pob-root-postinstall",
     "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
-    "test": "lerna run --stream test",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "tsc": "tsc -b",
-    "watch": "lerna run --parallel --ignore \"*-example\" watch"
+    "watch": "yarn workspaces foreach --parallel --jobs unlimited --interlaced --exclude \"*-example\" -Av run watch"
   },
   "prettier": {
     "trailingComma": "all",
@@ -36,19 +39,30 @@
       "@pob/commitlint-config"
     ]
   },
-  "dependencies": {},
+  "jest": {
+    "cacheDirectory": "./node_modules/.cache/jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/packages/*/(src|lib)/**/__tests__/**/*.(ts|js|cjs|mjs)",
+      "<rootDir>/packages/*/(src|lib)/**/*.test.(ts|js|cjs|mjs)"
+    ],
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ]
+  },
   "devDependencies": {
-    "@pob/commitlint-config": "2.1.0",
-    "@pob/eslint-config": "43.0.0",
-    "@pob/eslint-config-node": "43.1.0",
-    "@pob/eslint-config-typescript": "43.0.0",
-    "@pob/eslint-config-typescript-node": "43.0.0",
-    "@pob/eslint-config-typescript-react": "43.0.0",
-    "@pob/lerna-light": "3.24.0",
-    "@pob/root": "3.2.0",
-    "eslint": "7.23.0",
-    "husky": "4.3.8",
-    "prettier": "2.2.1",
-    "typescript": "4.2.3"
+    "@pob/commitlint-config": "4.0.0",
+    "@pob/eslint-config": "48.0.5",
+    "@pob/eslint-config-typescript": "48.0.6",
+    "@pob/eslint-config-typescript-react": "48.0.6",
+    "@pob/lerna-light": "5.1.0",
+    "@pob/root": "6.1.6",
+    "@types/jest": "27.0.3",
+    "check-package-dependencies": "3.0.0",
+    "eslint": "8.5.0",
+    "jest": "27.4.5",
+    "pob-lcov-reporter": "6.0.1",
+    "prettier": "2.5.1",
+    "typescript": "4.5.4"
   }
 }

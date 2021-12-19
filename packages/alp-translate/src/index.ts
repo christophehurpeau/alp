@@ -5,14 +5,13 @@ import load from './load';
 
 const logger = new Logger('alp:translate');
 
-interface Args {
-  [key: string]: any;
-}
+type Args = Record<string, any>;
 
 declare module 'alp-types' {
   interface BaseContext {
     t: (id: string, args: Args) => string;
   }
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   interface Context {
     readonly language: string;
   }
@@ -27,9 +26,7 @@ export default function alpTranslate(
 
     Object.assign(app.context, {
       t(this: Context, id: string, args: Args): string {
-        const msg = (appTranslations.get(this.language) as Translations).get(
-          id,
-        );
+        const msg = appTranslations.get(this.language)!.get(id);
         if (!msg) {
           logger.warn('invalid msg', { language: this.language, id });
           return id;
@@ -39,7 +36,7 @@ export default function alpTranslate(
       },
     });
 
-    const config = app.config as NonNullable<typeof app.config>;
+    const config = app.config!;
 
     config.get<string[]>('availableLanguages').forEach((language) => {
       const translations = app.loadConfigSync(dirname + language);

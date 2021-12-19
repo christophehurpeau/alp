@@ -1,11 +1,9 @@
-'use strict';
+import { create } from 'simple-oauth2';
 
-const oauth2 = require('simple-oauth2').create;
-
-module.exports = function slackStrategy(config) {
+export default function slackStrategy(config) {
   return {
     type: 'oauth2',
-    oauth2: oauth2({
+    oauth2: create({
       client: {
         id: config.get('slack').get('clientId'),
         secret: config.get('slack').get('clientSecret'),
@@ -17,4 +15,4 @@ module.exports = function slackStrategy(config) {
       },
     }),
   };
-};
+}

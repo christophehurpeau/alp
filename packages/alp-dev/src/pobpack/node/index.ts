@@ -87,6 +87,7 @@ export const watchAndRunCompiler = (
             (compiler.webpackConfig.output &&
               compiler.webpackConfig.output.path) ||
               '',
+            'index.mjs',
           ),
           ...(options.args || []),
         ],

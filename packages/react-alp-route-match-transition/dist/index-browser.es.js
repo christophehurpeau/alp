@@ -3,13 +3,15 @@ import React from 'react';
 import { Route } from 'react-router';
 import { Transition } from 'react-transition-group';
 
+var _excluded = ["path", "closePath", "timeout", "component", "wrapperComponent"];
+
 function RouteMatchTransition(_ref2) {
   var path = _ref2.path,
       closePath = _ref2.closePath,
       timeout = _ref2.timeout,
       Component = _ref2.component;
       _ref2.wrapperComponent;
-      var otherProps = _objectWithoutPropertiesLoose(_ref2, ["path", "closePath", "timeout", "component", "wrapperComponent"]);
+      var otherProps = _objectWithoutPropertiesLoose(_ref2, _excluded);
 
   return /*#__PURE__*/React.createElement(Route, {
     path: path
@@ -45,5 +47,5 @@ function RouteMatchTransition(_ref2) {
   });
 }
 
-export default RouteMatchTransition;
+export { RouteMatchTransition as default };
 //# sourceMappingURL=index-browser.es.js.map

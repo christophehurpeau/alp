@@ -21,8 +21,10 @@ export default async function alpNodeErrors(
     if (typeof err === 'string') err = new Error(err);
 
     ctx.status = (err as HtmlError).status || 500;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     logger.error(err as any);
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (ctx.request.accepts('html', 'text', 'json')) {
       case 'text':
         ctx.type = 'text/plain';

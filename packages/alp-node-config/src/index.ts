@@ -75,14 +75,16 @@ export class Config {
       const splitted = key.split('.');
       const value =
         splitted.length > 0 &&
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,unicorn/no-array-reduce, @typescript-eslint/no-shadow
         splitted.reduce((config, partialKey) => config?.[partialKey], argv);
       if (value !== undefined) {
-        const last = splitted.pop() as string;
+        const last = splitted.pop()!;
         const map =
           splitted.length === 0
             ? config
-            : splitted.reduce(
+            : // eslint-disable-next-line unicorn/no-array-reduce
+              splitted.reduce(
+                // eslint-disable-next-line @typescript-eslint/no-shadow
                 (config, partialKey) =>
                   config.get(partialKey) as Map<string, unknown>,
                 config,

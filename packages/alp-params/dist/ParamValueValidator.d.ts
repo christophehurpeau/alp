@@ -1,4 +1,4 @@
-import type ParamValidator from './ParamValidator';
+import type { ParamValidator } from './ParamValidator';
 export default class ParamValueValidator<T> {
     readonly validator: ParamValidator;
     readonly name: string;

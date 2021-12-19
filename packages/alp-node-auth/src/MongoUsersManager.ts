@@ -3,7 +3,7 @@ import type { User, Account, UserSanitized } from '../types.d';
 
 export default class MongoUsersManager<
   U extends User = User,
-  USanitized extends UserSanitized = UserSanitized
+  USanitized extends UserSanitized = UserSanitized,
 > {
   store: MongoStore<U>;
 
@@ -52,6 +52,7 @@ export default class MongoUsersManager<
       };
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return this.store.findOne(query);
   }
 

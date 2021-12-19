@@ -3,7 +3,7 @@
 import { addConfig, levels } from 'nightingale';
 import ConsoleHandler from 'nightingale-console';
 import Logger from 'nightingale-logger';
-import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
+import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages.js';
 import type { Compiler } from 'webpack';
 
 export interface Options {

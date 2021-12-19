@@ -18,7 +18,7 @@ export default function ConnectionState({
 
   const unloadingRef = useRef<boolean>(false);
   const currentStateRef = useRef(state);
-  if (unloadingRef.current === false) {
+  if (!unloadingRef.current) {
     currentStateRef.current = state;
   }
   const currentState = currentStateRef.current;

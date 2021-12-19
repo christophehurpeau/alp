@@ -16,7 +16,7 @@ class AlpBrowser extends Ibex {
   }
 
   async init() {
-    const configInstance = await config(this, `/${this.appVersion}${configPath}`);
+    const configInstance = await config(this, !(process.env.NODE_ENV !== "production") ? `/${this.appVersion}${configPath}` : configPath);
     this.context.config = configInstance;
     language(this);
     await translate('/locales')(this);
@@ -33,9 +33,13 @@ class AlpBrowser extends Ibex {
 
   start(fn) {
     try {
-      fn().then(() => logger.success('started')).catch(err => logger.error('start fail', {
-        err
-      }));
+      fn().then(() => {
+        logger.success('started');
+      }).catch(err => {
+        logger.error('start fail', {
+          err
+        });
+      });
     } catch (err) {
       logger.error('start fail', {
         err
@@ -46,13 +50,12 @@ class AlpBrowser extends Ibex {
 }
 const startApp = callback => {
   const app = new AlpBrowser();
-  return app.start(async () => {
+  app.start(async () => {
     // init
     const browserApp = await app.init();
     await callback(browserApp);
   });
 };
 
-export default AlpBrowser;
-export { startApp };
+export { AlpBrowser as default, startApp };
 //# sourceMappingURL=index-browsermodern.es.js.map

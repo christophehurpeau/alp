@@ -64,8 +64,10 @@ export default async function migrate({
     for (const migration of migrations) {
       logger.info(`Migration to ${migration.fileName}`);
       try {
-        // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-var-requires
-        await require(`${dirname}/${migration.fileName}`).default();
+        const migrateFn: unknown = await import(
+          `${dirname}/${migration.fileName}`
+        );
+        await (migrateFn as () => Promise<void>)();
       } catch (err) {
         logger.error(`Migration to ${migration.version} Failed !`);
         throw err;
@@ -78,8 +80,8 @@ export default async function migrate({
         await migrationsManager.addMigrationDone(migration);
       }
     }
-  } catch (err) {
-    logger.error(err);
+  } catch (err: any) {
+    logger.error(err as Error);
     process.exit(1);
   }
 

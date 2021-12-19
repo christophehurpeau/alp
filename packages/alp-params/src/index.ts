@@ -1,12 +1,13 @@
 import type { Context, NodeApplicationInCreation } from 'alp-types';
 import 'alp-router';
 import { defineLazyProperty } from 'object-properties';
-import ParamValidator from './ParamValidator';
+import { ParamValidator } from './ParamValidator';
 import ParamValidatorValid from './ParamValidatorValid';
 
-export { ParamValidator };
+export { ParamValidator } from './ParamValidator';
 
 declare module 'alp-types' {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   interface Context {
     params: ParamValidator;
     validParams: ParamValidator;

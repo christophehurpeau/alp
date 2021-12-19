@@ -1,6 +1,5 @@
 import type { ReactElement } from 'react';
 import React, { PureComponent } from 'react';
-import ReactAlpContext from 'react-alp-context';
 interface LoadingBarProps {
     LoadingBarComponent: React.ComponentType<{
         progress: number;
@@ -17,16 +16,15 @@ interface WebsocketInterface {
 }
 export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBarState> {
     static contextType: React.Context<import("alp-types").Context>;
-    context: React.ContextType<typeof ReactAlpContext>;
     state: {
         loading: boolean;
         hidden: boolean;
         progress: number;
     };
-    fadeOffTimeout?: any;
-    resetTimeout?: any;
-    first20Timeout?: any;
-    progressTimer?: any;
+    fadeOffTimeout?: ReturnType<typeof setTimeout>;
+    resetTimeout?: ReturnType<typeof setTimeout>;
+    first20Timeout?: ReturnType<typeof setTimeout>;
+    progressTimer?: ReturnType<typeof setTimeout>;
     componentDidMount(): void;
     componentDidUpdate(prevProps: LoadingBarProps, prevState: LoadingBarState): void;
     componentWillUnmount(): void;

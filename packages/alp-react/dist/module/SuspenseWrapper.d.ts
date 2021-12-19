@@ -1,3 +1,4 @@
+import 'pob-babel';
 import type { ReactElement, ReactNode } from 'react';
 interface SuspenseWrapperProps {
     children: ReactNode;

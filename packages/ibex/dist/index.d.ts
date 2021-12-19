@@ -30,7 +30,7 @@ export default class Application extends EventEmitter {
     callback?: Composed<Context>;
     constructor();
     use(fn: Middleware): this;
-    onerror(e: any): void;
+    onerror(e: unknown): void;
     run(url?: string): void;
     createContext(): Context;
     load(url: string): Promise<void>;

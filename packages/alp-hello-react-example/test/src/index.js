@@ -6,7 +6,7 @@ import { readFileSync } from 'fs';
 
 const fixtures = {
   'hello-world': readFileSync(
-    `${__dirname}/../fixtures/hello-world.html`,
+    new URL('../fixtures/hello-world.html', import.meta.url),
   ).toString(),
 };
 

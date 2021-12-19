@@ -1,11 +1,9 @@
-'use strict';
+import { create } from 'simple-oauth2';
 
-const oauth2 = require('simple-oauth2').create;
-
-module.exports = function githubStrategy(config) {
+export default function githubStrategy(config) {
   return {
     type: 'oauth2',
-    oauth2: oauth2({
+    oauth2: create({
       client: {
         id: config.get('github').get('clientId'),
         secret: config.get('github').get('clientSecret'),
@@ -17,4 +15,4 @@ module.exports = function githubStrategy(config) {
       },
     }),
   };
-};
+}

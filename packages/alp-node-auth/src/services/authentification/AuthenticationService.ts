@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable camelcase, max-lines */
 import { EventEmitter } from 'events';
@@ -58,7 +60,7 @@ export interface AccessResponseHooks<StrategyKeys, U extends User = User> {
 export class AuthenticationService<
   StrategyKeys extends AllowedStrategyKeys,
   U extends User = User,
-  USanitized extends UserSanitized = UserSanitized
+  USanitized extends UserSanitized = UserSanitized,
 > extends EventEmitter {
   config: NodeConfig;
 
@@ -296,7 +298,7 @@ export class AuthenticationService<
     }
     return this.refreshToken(account.provider as StrategyKeys, {
       // accessToken: account.accessToken,
-      refreshToken: account.refreshToken as string,
+      refreshToken: account.refreshToken!,
     }).then((tokens: Tokens) => {
       if (!tokens) {
         // serviceGoogle.updateFields({ accessToken:null, refreshToken:null, status: .OUTDATED });

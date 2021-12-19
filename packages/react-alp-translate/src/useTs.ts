@@ -2,7 +2,7 @@ import { useContext, useMemo } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
 interface AlpContext {
-  t: (id: string, params?: { [key: string]: any }) => string;
+  t: (id: string, params?: Record<string, any>) => string;
 }
 
 // for params: 2 solutions: params that are send to all or mapped params.

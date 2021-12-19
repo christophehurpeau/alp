@@ -21,9 +21,11 @@ function useTs(ids) {
   }, [ids.join(',')]);
 }
 
+var _excluded = ["id"];
+
 function T(_ref) {
   var id = _ref.id,
-      props = _objectWithoutPropertiesLoose(_ref, ["id"]);
+      props = _objectWithoutPropertiesLoose(_ref, _excluded);
 
   var t = useT(id, props, Object.values(props));
   return t;

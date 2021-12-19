@@ -1,6 +1,4 @@
-interface Params {
-    [key: string]: any;
-}
+declare type Params = Record<string, any>;
 declare module 'alp-types' {
     interface Context {
         t: (id: string, params?: Params) => string;
