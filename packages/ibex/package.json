@@ -76,8 +76,7 @@
   "dependencies": {
     "@babel/runtime": "^7.16.5",
     "@types/koa": "^2.13.1",
-    "nightingale-logger": "^11.0.5",
-    "query-string": "^6.9.0"
+    "nightingale-logger": "^11.0.5"
   },
   "devDependencies": {
     "@babel/core": "7.16.5",
