@@ -44,7 +44,7 @@ app.use(...);
 - request.href [location.href](https://developer.mozilla.org/en-US/docs/Web/API/Location/href)
 - request.origin [location.origin](https://developer.mozilla.org/en-US/docs/Web/API/Location/origin)
 - request.path [location.path](https://developer.mozilla.org/en-US/docs/Web/API/Location/path)
-- request.query Query is parsed using [`query-string`](https://www.npmjs.com/package/query-string). Prefer `request.searchParams` if possible.
+- request.query Query is parsed using [`querystring`](https://nodejs.org/api/querystring.html). Prefer `request.searchParams` if possible.
 - request.url [location.url](https://developer.mozilla.org/en-US/docs/Web/API/Location/url)
 - request.port [location.port](https://developer.mozilla.org/en-US/docs/Web/API/Location/port)
 - request.protocol [location.protocol](https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol)
