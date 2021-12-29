@@ -100,7 +100,7 @@
     "@types/react-router": "5.1.17",
     "@types/react-transition-group": "4.4.1",
     "babel-preset-modern-browsers": "15.0.2",
-    "pob-babel": "29.5.1",
+    "pob-babel": "29.6.0",
     "react": "17.0.2",
     "react-router": "5.2.0",
     "react-transition-group": "4.4.1",
