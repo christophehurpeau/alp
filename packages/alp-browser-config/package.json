@@ -100,6 +100,6 @@
     "@babel/preset-env": "7.13.12",
     "babel-preset-modern-browsers": "15.0.2",
     "pob-babel": "26.8.0",
-    "rollup": "2.43.1"
+    "rollup": "2.62.0"
   }
 }
