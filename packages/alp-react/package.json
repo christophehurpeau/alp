@@ -154,7 +154,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
-    "@types/react-dom": "^16.9.4",
+    "@types/react-dom": "^17.0.0",
     "@types/react-helmet": "^6.1.0",
     "alp-types": "^3.0.0",
     "content-loaded": "^1.2.1",
