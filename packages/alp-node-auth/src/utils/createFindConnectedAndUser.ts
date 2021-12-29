@@ -24,16 +24,15 @@ const verifyPromisified = promisify<
   Parameters<VerifyCallback>[1]
 >(jsonwebtoken.verify as Verify);
 
-const createDecodeJWT = (secretKey: string) => async (
-  token: string,
-  jwtAudience: string,
-): Promise<string | undefined> => {
-  const result = await verifyPromisified(token, secretKey, {
-    algorithms: ['HS512'],
-    audience: jwtAudience,
-  });
-  return (result as any)?.connected as string | undefined;
-};
+const createDecodeJWT =
+  (secretKey: string) =>
+  async (token: string, jwtAudience: string): Promise<string | undefined> => {
+    const result = await verifyPromisified(token, secretKey, {
+      algorithms: ['HS512'],
+      audience: jwtAudience,
+    });
+    return (result as any)?.connected as string | undefined;
+  };
 
 export type FindConnectedAndUser<U extends User> = (
   jwtAudience?: string,
@@ -42,7 +41,7 @@ export type FindConnectedAndUser<U extends User> = (
 
 export const createFindConnectedAndUser = <
   U extends User,
-  USanitized extends UserSanitized
+  USanitized extends UserSanitized,
 >(
   secretKey: string,
   usersManager: MongoUsersManager<U, USanitized>,

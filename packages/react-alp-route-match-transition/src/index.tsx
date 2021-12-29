@@ -23,7 +23,7 @@ interface WrapperComponentProps {
 
 interface RouteMatchTransitionProps<
   Params,
-  ComponentProps extends BaseComponentProps<Params>
+  ComponentProps extends BaseComponentProps<Params>,
 > {
   path: string;
   closePath: string;
@@ -39,8 +39,9 @@ const DefaultWrapperComponent: FunctionComponent<WrapperComponentProps> = ({
 
 export default function RouteMatchTransition<
   Params,
-  AllProps extends { [P in keyof BaseComponentProps<Params>]?: never } &
-    RouteMatchTransitionProps<any, any>
+  AllProps extends {
+    [P in keyof BaseComponentProps<Params>]?: never;
+  } & RouteMatchTransitionProps<any, any>,
 >({
   path,
   closePath,

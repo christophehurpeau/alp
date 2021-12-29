@@ -18,7 +18,7 @@ interface FormFieldProps<
   FieldValue,
   P extends {
     [K in keyof P]: P[K];
-  }
+  },
 > extends UseFieldConfig<FieldValue> {
   component: ComponentType<P>;
   label?: FormItemProps['label'];
@@ -31,7 +31,7 @@ export default function FormField<
   FieldValue,
   P extends {
     [K in keyof P]: P[K];
-  }
+  },
 >({
   component: Component,
   label,

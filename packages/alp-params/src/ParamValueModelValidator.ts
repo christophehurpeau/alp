@@ -1,7 +1,7 @@
 import ParamValueValidator from './ParamValueValidator';
 
 export default class ParamValueModelValidator<
-  T
+  T,
 > extends ParamValueValidator<T> {
   /*
   required() {

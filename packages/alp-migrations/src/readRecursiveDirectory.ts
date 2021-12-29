@@ -15,22 +15,20 @@ export default async function readRecursiveDirectory(
   const files = await readdir(directory);
 
   await Promise.all(
-    files.map(
-      async (file): Promise<void> => {
-        const path = `${directory}/${file}`;
-        const stat = await fsStat(path);
+    files.map(async (file): Promise<void> => {
+      const path = `${directory}/${file}`;
+      const stat = await fsStat(path);
 
-        if (stat?.isDirectory()) {
-          await readRecursiveDirectory(path, callback);
-          return;
-        }
-        await callback({
-          filename: file,
-          basedir: directory,
-          path,
-          stat,
-        });
-      },
-    ),
+      if (stat?.isDirectory()) {
+        await readRecursiveDirectory(path, callback);
+        return;
+      }
+      await callback({
+        filename: file,
+        basedir: directory,
+        path,
+        stat,
+      });
+    }),
   );
 }

@@ -14,7 +14,7 @@ import type {
 export interface CreateAuthControllerParams<
   StrategyKeys extends AllowedStrategyKeys,
   U extends User = User,
-  USanitized extends UserSanitized = UserSanitized
+  USanitized extends UserSanitized = UserSanitized,
 > {
   authenticationService: AuthenticationService<StrategyKeys, U, UserSanitized>;
   homeRouterKey?: string;
@@ -47,7 +47,7 @@ export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys>
 export function createAuthController<
   StrategyKeys extends AllowedStrategyKeys,
   U extends User = User,
-  USanitized extends UserSanitized = UserSanitized
+  USanitized extends UserSanitized = UserSanitized,
 >({
   usersManager,
   authenticationService,

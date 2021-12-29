@@ -28,8 +28,9 @@ export const build = (
   onChanged?: () => void,
 ): Promise<any> =>
   Promise.all(
-    glob.sync(join(src, '**/*.yml')).map(
-      async (filename: string): Promise<() => void> => {
+    glob
+      .sync(join(src, '**/*.yml'))
+      .map(async (filename: string): Promise<() => void> => {
         const compilePromise = compileYml(filename);
 
         if (onChanged) {
@@ -53,8 +54,7 @@ export const build = (
         }
 
         return () => {};
-      },
-    ),
+      }),
   ).then((closeFns: (() => void)[]) => () => {
     closeFns.forEach((closeFn) => closeFn());
   });
