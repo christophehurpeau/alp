@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-process-exit */
 import type { NodeApplication, NodeConfig } from 'alp-types';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import semver from 'semver';
 import type MigrationsManager from './Manager';
 import type { CallbackParam } from './readRecursiveDirectory';

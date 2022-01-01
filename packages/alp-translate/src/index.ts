@@ -1,5 +1,5 @@
 import type { NodeApplicationInCreation, Context } from 'alp-types';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { Translations } from './load';
 import load from './load';
 

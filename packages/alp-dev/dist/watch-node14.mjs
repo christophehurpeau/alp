@@ -3,9 +3,9 @@ import path, { join, dirname } from 'path';
 import { URL } from 'url';
 import * as colorette from 'colorette';
 import argv from 'minimist-argv';
-import Logger, { addConfig, Level } from 'nightingale';
+import { Logger, addConfig, Level } from 'nightingale';
 import formatterANSI from 'nightingale-ansi-formatter';
-import ConsoleLogger from 'nightingale-console';
+import { ConsoleHandler } from 'nightingale-console';
 import portscanner from 'portscanner';
 import ProgressBar from 'progress';
 import createChild from 'springbokjs-daemon';
@@ -157,21 +157,21 @@ const formatterSimplified = ({
 
 addConfig({
   pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Level.NOTICE, {
+  handler: new ConsoleHandler(Level.NOTICE, {
     output
   }),
   stop: true
 }, true);
 addConfig({
   pattern: /^alp-dev/,
-  handler: new ConsoleLogger(Level.INFO, {
+  handler: new ConsoleHandler(Level.INFO, {
     output
   }),
   stop: true
 }, true);
 addConfig({
   pattern: /^springbokjs-daemon:alp-dev:watch:output/,
-  handler: new ConsoleLogger(Level.INFO, {
+  handler: new ConsoleHandler(Level.INFO, {
     output,
     formatter: formatterSimplified
   }),

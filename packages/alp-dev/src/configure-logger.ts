@@ -1,10 +1,10 @@
 import { addConfig, Level } from 'nightingale';
-import ConsoleLogger from 'nightingale-console';
+import { ConsoleHandler } from 'nightingale-console';
 
 addConfig(
   {
     pattern: /^springbokjs-daemon/,
-    handler: new ConsoleLogger(Level.NOTICE),
+    handler: new ConsoleHandler(Level.NOTICE),
     stop: true,
   },
   true,

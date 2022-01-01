@@ -90,13 +90,13 @@
     "react-transition-group": "^4.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.5",
+    "@babel/runtime": "^7.16.7",
     "type-fest": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.16.5",
-    "@babel/preset-env": "7.16.5",
-    "@babel/preset-react": "7.16.5",
+    "@babel/core": "7.16.7",
+    "@babel/preset-env": "7.16.7",
+    "@babel/preset-react": "7.16.7",
     "@types/react-router": "5.1.17",
     "@types/react-transition-group": "4.4.1",
     "babel-preset-modern-browsers": "15.0.2",

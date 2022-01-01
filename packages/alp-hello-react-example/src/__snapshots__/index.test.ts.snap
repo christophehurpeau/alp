@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test hello server hello with name 1`] = `
+"<!doctype html>
+<html >
+  <head>
+    <title data-react-helmet=\\"true\\">Hello Chris !</title>
+    <meta data-react-helmet=\\"true\\" charset=\\"utf-8\\"/><meta data-react-helmet=\\"true\\" content=\\"width=device-width, initial-scale=1\\" name=\\"viewport\\"/>
+    
+    
+    <link rel=\\"stylesheet\\" href=\\"/es5.css?4.1.2\\" />
+    
+    <script defer src=\\"https://polyfill.io/v2/polyfill.min.js?features=default,es2015,es2016,es2017,localStorage,fetch,Intl&unknown=polyfill\\"></script>
+    
+    <script>
+window.__VERSION__='4.1.2';
+window.__INITIAL_DATA__={\\"sanitizedState\\":{}};
+</script>
+<script defer src=\\"/es5.js?4.1.2\\"></script>
+  </head>
+  <body >
+    <div id=\\"react-app\\"><div><div>Hello World !</div><div class=\\"Ih_7_OuGEK6L6g1dgDIo\\"><span class=\\"GMKXxYpyAZUlxOTEp4uP\\" data-testid=\\"hello-text\\">Hello Chris !</span><input type=\\"text\\" autoComplete=\\"off\\" class=\\"qymC_yVB8mLfH6vdKl2c\\" value=\\"Chris\\"/></div><div><p>You clicked <!-- -->0<!-- --> times</p><button type=\\"button\\">Click me</button></div><div><button type=\\"button\\">Click me to throw</button><button type=\\"button\\">Click me to log error</button></div></div></div>
+  </body>
+</html>"
+`;
+
+exports[`test hello server hello without name 1`] = `
+"<!doctype html>
+<html >
+  <head>
+    <title data-react-helmet=\\"true\\">Hello World !</title>
+    <meta data-react-helmet=\\"true\\" charset=\\"utf-8\\"/><meta data-react-helmet=\\"true\\" content=\\"width=device-width, initial-scale=1\\" name=\\"viewport\\"/>
+    
+    
+    <link rel=\\"stylesheet\\" href=\\"/es5.css?4.1.2\\" />
+    
+    <script defer src=\\"https://polyfill.io/v2/polyfill.min.js?features=default,es2015,es2016,es2017,localStorage,fetch,Intl&unknown=polyfill\\"></script>
+    
+    <script>
+window.__VERSION__='4.1.2';
+window.__INITIAL_DATA__={\\"sanitizedState\\":{}};
+</script>
+<script defer src=\\"/es5.js?4.1.2\\"></script>
+  </head>
+  <body >
+    <div id=\\"react-app\\"><div><div>Hello World !</div><div class=\\"Ih_7_OuGEK6L6g1dgDIo\\"><span class=\\"GMKXxYpyAZUlxOTEp4uP\\" data-testid=\\"hello-text\\">Hello World !</span><input type=\\"text\\" autoComplete=\\"off\\" class=\\"qymC_yVB8mLfH6vdKl2c\\" value=\\"\\"/></div><div><p>You clicked <!-- -->0<!-- --> times</p><button type=\\"button\\">Click me</button></div><div><button type=\\"button\\">Click me to throw</button><button type=\\"button\\">Click me to log error</button></div></div></div>
+  </body>
+</html>"
+`;

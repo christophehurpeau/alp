@@ -2,6 +2,8 @@ import { Config } from 'alp-node-config';
 import type { AlpNodeAppOptions } from './AlpNodeApp';
 import { AlpNodeApp } from './AlpNodeApp';
 export { default as fetch } from 'node-fetch';
+export type { Context } from './AlpNodeApp';
+export { Config } from 'alp-node-config';
 export declare const appDirname: string;
 export declare const packageDirname: string;
 export declare const packageConfig: Record<string, unknown>;
@@ -10,6 +12,4 @@ export declare type AppOptions = Omit<AlpNodeAppOptions, 'appDirname' | 'package
 export default class App extends AlpNodeApp {
     constructor(options?: AppOptions);
 }
-export type { Context } from './AlpNodeApp';
-export { Config } from 'alp-node-config';
 //# sourceMappingURL=index.d.ts.map

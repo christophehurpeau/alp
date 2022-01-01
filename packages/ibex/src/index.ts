@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import type { BaseContext as KoaBaseContext } from 'koa';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { Composed, Middleware as ComposeMiddleware } from './compose';
 import compose from './compose';
 import context from './context';

@@ -3,7 +3,7 @@ import path from 'path';
 import _config, { Config } from 'alp-node-config';
 export { Config } from 'alp-node-config';
 import findUp from 'findup-sync';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import { deprecate } from 'util';
 import _listen from 'alp-listen';
 import errors from 'alp-node-errors';

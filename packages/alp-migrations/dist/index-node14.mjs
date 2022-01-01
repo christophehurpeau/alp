@@ -1,4 +1,4 @@
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import semver from 'semver';
 import { readdir, stat } from 'fs/promises';
 

@@ -6,8 +6,8 @@ import { execSync } from 'child_process';
 import { promisify } from 'util';
 import webpack from 'webpack';
 import { addConfig, levels } from 'nightingale';
-import ConsoleHandler from 'nightingale-console';
-import Logger from 'nightingale-logger';
+import { ConsoleHandler } from 'nightingale-console';
+import { Logger } from 'nightingale-logger';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages.js';
 import { URL } from 'url';
 import nodeExternals from 'webpack-node-externals';
@@ -540,7 +540,7 @@ function createPobpackConfig(target, production = false) {
         typescript: true,
         optimizations: true,
         target: target === 'node' ? 'node' : 'browser',
-        version: target === 'node' ? '12.10' : target === 'modern-browser' ? 'modern' : undefined,
+        version: target === 'node' ? '14' : target === 'modern-browser' ? 'modern' : undefined,
         loose: true,
         modules: false
       }]],

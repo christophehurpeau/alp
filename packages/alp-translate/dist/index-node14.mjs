@@ -1,4 +1,4 @@
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import IntlMessageFormatDefault from 'intl-messageformat';
 
 const IntlMessageFormat = // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

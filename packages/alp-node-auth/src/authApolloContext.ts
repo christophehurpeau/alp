@@ -1,6 +1,6 @@
 import type { IncomingMessage } from 'http';
 import type { NodeConfig } from 'alp-types';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { User } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
 import { getTokenFromRequest, COOKIE_NAME } from './utils/cookies';

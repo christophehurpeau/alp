@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import { Config } from 'alp-node-config';
 import findUp from 'findup-sync';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { AlpNodeAppOptions } from './AlpNodeApp';
 import { AlpNodeApp } from './AlpNodeApp';
 

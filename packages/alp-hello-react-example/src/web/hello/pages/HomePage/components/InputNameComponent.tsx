@@ -18,19 +18,17 @@ export default function InputNameComponent({
   const [value, setValue] = useState(initialValue);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log('handleChange');
     setValue(e.target.value);
     onChange(e.target.value);
   };
 
   const handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (e) => {
-    console.log('handleKeyUp');
     setValue(e.currentTarget.value);
   };
 
-  console.log('render InputNameComponent');
   return (
     <input
+      data-testid="input-name"
       type="text"
       autoComplete="off"
       className={s.input}

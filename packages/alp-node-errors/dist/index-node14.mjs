@@ -1,6 +1,6 @@
 import { STATUS_CODES } from 'http';
 import ErrorHtmlRenderer from 'error-html';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = new ErrorHtmlRenderer({

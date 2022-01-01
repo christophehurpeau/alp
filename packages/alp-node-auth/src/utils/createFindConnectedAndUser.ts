@@ -6,7 +6,7 @@ import type {
   VerifyOptions,
 } from 'jsonwebtoken';
 import jsonwebtoken from 'jsonwebtoken';
-import type Logger from 'nightingale-logger';
+import type { Logger } from 'nightingale-logger';
 import type { User, UserSanitized } from '../../types.d';
 import type MongoUsersManager from '../MongoUsersManager';
 

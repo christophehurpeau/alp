@@ -1,7 +1,5 @@
 import { Helmet } from 'alp-react';
 import { appLogger } from 'nightingale-app-console';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import ObjectAssign from 'object-assign';
 import type { ReactElement } from 'react';
 import React, { useContext, useEffect, useState } from 'react';
 import ReactAlpContext from 'react-alp-context';
@@ -16,18 +14,7 @@ function HelloWorld(): ReactElement {
   return <div>Hello World !</div>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises, unicorn/prefer-top-level-await
-(async function test() {
-  console.log(
-    await new Promise((resolve) => {
-      resolve('ok');
-    }),
-  );
-
-  console.log(ObjectAssign({}, { a: true }));
-})();
-
-export default function IndexView(): ReactElement {
+export default function HomePage(): ReactElement {
   const ctx = useContext(ReactAlpContext);
   const [name, setName] = useState((): string | undefined => {
     if (ctx.request.query.name) {

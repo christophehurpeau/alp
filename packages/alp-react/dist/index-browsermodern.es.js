@@ -1,5 +1,5 @@
 import contentLoaded from 'content-loaded';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
 import ReactAlpContext from 'react-alp-context';

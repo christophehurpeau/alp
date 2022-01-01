@@ -5,7 +5,7 @@ import type { ElementType, ReactElement } from 'react';
 import React from 'react';
 import { renderToString } from 'react-dom/server.js';
 import { Helmet } from 'react-helmet';
-// import Logger from 'nightingale-logger';
+// import { Logger } from 'nightingale-logger';
 import createAlpAppWrapper from './createAlpAppWrapper';
 import type { LayoutOptions } from './layout/htmlLayout';
 import htmlLayout from './layout/htmlLayout';

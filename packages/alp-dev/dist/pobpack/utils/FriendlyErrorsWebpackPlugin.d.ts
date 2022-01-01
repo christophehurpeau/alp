@@ -1,4 +1,4 @@
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { Compiler } from 'webpack';
 export interface Options {
     bundleName: string;

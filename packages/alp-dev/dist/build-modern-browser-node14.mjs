@@ -13,8 +13,8 @@ import webpack from 'webpack';
 import { execSync } from 'child_process';
 import { promisify } from 'util';
 import { addConfig, levels } from 'nightingale';
-import ConsoleHandler from 'nightingale-console';
-import Logger from 'nightingale-logger';
+import { ConsoleHandler } from 'nightingale-console';
+import { Logger } from 'nightingale-logger';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages.js';
 import fs, { existsSync } from 'fs';
 import autoprefixer from 'autoprefixer';
@@ -562,7 +562,7 @@ function createPobpackConfig(target, production = false) {
         typescript: true,
         optimizations: true,
         target: target === 'node' ? 'node' : 'browser',
-        version: target === 'node' ? '12.10' : target === 'modern-browser' ? 'modern' : undefined,
+        version: target === 'node' ? '14' : target === 'modern-browser' ? 'modern' : undefined,
         loose: true,
         modules: false
       }]],

@@ -1,7 +1,7 @@
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import contentLoaded from 'content-loaded';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';

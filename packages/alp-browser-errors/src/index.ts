@@ -1,7 +1,7 @@
 import 'pob-babel';
 import type { Context, Middleware, HtmlError } from 'alp-types';
 import ErrorHtmlRenderer from 'error-html';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = __DEV__ ? new ErrorHtmlRenderer() : undefined;

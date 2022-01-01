@@ -1,7 +1,7 @@
 import _assertThisInitialized from '@babel/runtime/helpers/esm/assertThisInitialized';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import { EventEmitter } from 'events';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import { parse } from 'querystring';
 
 // TODO create lib

@@ -5,7 +5,7 @@
 import { EventEmitter } from 'events';
 import 'alp-router';
 import type { Context, NodeConfig } from 'alp-types';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { OAuthClient } from 'simple-oauth2';
 import type { AccountId, User, Account, UserSanitized } from '../../../types.d';
 import { randomHex } from '../../utils/generators';

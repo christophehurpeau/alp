@@ -1,7 +1,7 @@
 import Alp from 'alp-node';
 import createReactApp from 'alp-react';
 import { addConfig, appLogger } from 'nightingale-app-console';
-import type Logger from 'nightingale-logger';
+import type { Logger } from 'nightingale-logger';
 import webProcessor from 'nightingale-web-processor';
 import App from './web/core/Layout';
 import './server/hello';

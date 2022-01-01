@@ -1,6 +1,6 @@
 import { promisify } from 'util';
 import jsonwebtoken from 'jsonwebtoken';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import 'alp-router';
 import { EventEmitter } from 'events';
 import { randomBytes } from 'crypto';

@@ -43,12 +43,16 @@
     "cacheDirectory": "./node_modules/.cache/jest",
     "testEnvironment": "node",
     "testMatch": [
-      "<rootDir>/packages/*/(src|lib)/**/__tests__/**/*.(ts|js|cjs|mjs)",
-      "<rootDir>/packages/*/(src|lib)/**/*.test.(ts|js|cjs|mjs)"
+      "<rootDir>/packages/*/(src|lib)/**/__tests__/**/*.(ts|js|cjs|mjs)?(x)",
+      "<rootDir>/packages/*/(src|lib)/**/*.test.(ts|js|cjs|mjs)?(x)"
     ],
     "extensionsToTreatAsEsm": [
-      ".ts"
-    ]
+      ".ts",
+      ".tsx"
+    ],
+    "moduleNameMapper": {
+      "\\.(scss)$": "identity-obj-proxy"
+    }
   },
   "devDependencies": {
     "@pob/commitlint-config": "4.1.0",
@@ -57,9 +61,10 @@
     "@pob/eslint-config-typescript-react": "48.0.6",
     "@pob/lerna-light": "5.1.0",
     "@pob/root": "6.2.0",
-    "@types/jest": "27.0.3",
+    "@types/jest": "27.4.0",
     "check-package-dependencies": "3.0.0",
-    "eslint": "8.5.0",
+    "eslint": "8.6.0",
+    "identity-obj-proxy": "3.0.0",
     "jest": "27.4.5",
     "pob-lcov-reporter": "6.0.1",
     "prettier": "2.5.1",

@@ -1,4 +1,4 @@
-import type Logger from 'nightingale-logger';
+import type { Logger } from 'nightingale-logger';
 import type { User, UserSanitized } from '../../types.d';
 import type MongoUsersManager from '../MongoUsersManager';
 export declare type FindConnectedAndUser<U extends User> = (jwtAudience?: string, token?: string) => Promise<[null | undefined | U['_id'], null | undefined | U]>;

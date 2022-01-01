@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import { parse } from 'querystring';
 
 // TODO create lib

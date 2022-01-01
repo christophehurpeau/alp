@@ -13,7 +13,7 @@ import type {
   RawConfig,
 } from 'alp-types';
 import Ibex from 'ibex';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 export type BrowserApplication = BrowserApplicationType;
 

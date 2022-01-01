@@ -1,7 +1,7 @@
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import ErrorHtmlRenderer from 'error-html';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 var logger = new Logger('alp:errors');
 var errorHtmlRenderer = (process.env.NODE_ENV !== "production") ? new ErrorHtmlRenderer() : undefined;

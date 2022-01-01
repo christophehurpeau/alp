@@ -19,7 +19,7 @@ import Koa from 'koa';
 import type { ParameterizedContext, DefaultState } from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 const logger = new Logger('alp');
 

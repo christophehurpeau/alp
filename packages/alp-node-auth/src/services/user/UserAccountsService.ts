@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { EventEmitter } from 'events';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { AccountId, User, Account, UserSanitized } from '../../../types.d';
 import type MongoUsersManager from '../../MongoUsersManager';
 import type { AllowedStrategyKeys } from '../authentification/types';

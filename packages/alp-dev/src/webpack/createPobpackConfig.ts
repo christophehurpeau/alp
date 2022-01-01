@@ -90,7 +90,7 @@ export default function createPobpackConfig(
             target: target === 'node' ? 'node' : 'browser',
             version:
               target === 'node'
-                ? '12.10'
+                ? '14'
                 : target === 'modern-browser'
                 ? 'modern'
                 : undefined,

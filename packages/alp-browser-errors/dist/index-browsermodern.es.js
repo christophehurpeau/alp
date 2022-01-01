@@ -1,5 +1,5 @@
 import ErrorHtmlRenderer from 'error-html';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 const logger = new Logger('alp:errors');
 const errorHtmlRenderer = (process.env.NODE_ENV !== "production") ? new ErrorHtmlRenderer() : undefined;

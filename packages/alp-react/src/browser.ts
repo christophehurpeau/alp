@@ -1,6 +1,6 @@
 import type { BrowserApplication, ContextSanitizedState } from 'alp-types';
 import contentLoaded from 'content-loaded';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { ElementType } from 'react';
 import React from 'react';
 import { hydrate } from 'react-dom';

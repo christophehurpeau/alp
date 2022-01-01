@@ -3,7 +3,7 @@ import { createServer as createServerHttp } from 'http';
 import type { Server, IncomingMessage, ServerResponse } from 'http';
 import { createServer as createServerHttps } from 'https';
 import type { Config } from 'alp-node-config';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 const logger = new Logger('alp:listen');
 

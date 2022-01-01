@@ -2,7 +2,7 @@ import config, { existsConfig, getConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
 import translate from 'alp-translate/browser';
 import Ibex from 'ibex';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 const logger = new Logger('alp');
 const configPath = '/config';

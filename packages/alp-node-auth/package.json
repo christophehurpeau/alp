@@ -106,11 +106,11 @@
     "alp-types": "^3.0.0",
     "cookies": "^0.8.0",
     "jsonwebtoken": "^8.5.1",
-    "nightingale-logger": "^11.0.5",
+    "nightingale-logger": "^12.1.1",
     "simple-oauth2": "^2.2.1"
   },
   "devDependencies": {
-    "@babel/core": "7.16.5",
+    "@babel/core": "7.16.7",
     "alp-node": "^3.2.2",
     "alp-router": "^4.1.3",
     "liwi-mongo": "8.0.4",

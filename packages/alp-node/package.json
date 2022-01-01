@@ -26,6 +26,13 @@
   },
   "main": "./dist/index-node14.mjs",
   "types": "./dist/index.d.ts",
+  "typesVersions": {
+    ">=3.1": {
+      "fetch.mjs": [
+        "fetch.d.ts"
+      ]
+    }
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -93,11 +100,11 @@
     "koa": "^2.13.1",
     "koa-compress": "^5.0.0",
     "koa-static": "^5.0.0",
-    "nightingale-logger": "^11.0.5",
+    "nightingale-logger": "^12.1.1",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@babel/core": "7.16.5",
+    "@babel/core": "7.16.7",
     "@types/findup-sync": "2.0.2",
     "@types/koa-compress": "4.0.3",
     "@types/koa-static": "4.0.2",

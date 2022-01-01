@@ -7,8 +7,8 @@ import { execSync } from 'child_process';
 import { promisify } from 'util';
 import webpack from 'webpack';
 import { addConfig, levels } from 'nightingale';
-import ConsoleLogger from 'nightingale-console';
-import Logger from 'nightingale-logger';
+import { ConsoleHandler } from 'nightingale-console';
+import { Logger } from 'nightingale-logger';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages.js';
 import { URL } from 'url';
 import nodeExternals from 'webpack-node-externals';
@@ -76,7 +76,7 @@ function createAppWebpackConfig(createWebpackConfig) {
 /* eslint-disable no-console */
 addConfig({
   key: 'pobpack-utils',
-  handler: new ConsoleLogger(levels.INFO)
+  handler: new ConsoleHandler(levels.INFO)
 });
 const logger = new Logger('pobpack-utils', 'pobpack');
 const pluginName = 'pobpack/FriendlyErrorsWebpackPlugin';
@@ -605,7 +605,7 @@ function createPobpackConfig(target, production = false) {
         typescript: true,
         optimizations: true,
         target: target === 'node' ? 'node' : 'browser',
-        version: target === 'node' ? '12.10' : target === 'modern-browser' ? 'modern' : undefined,
+        version: target === 'node' ? '14' : target === 'modern-browser' ? 'modern' : undefined,
         loose: true,
         modules: false
       }]],

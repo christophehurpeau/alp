@@ -1,7 +1,7 @@
 import { unlinkSync, chmodSync, readFileSync } from 'fs';
 import { createServer as createServer$2 } from 'http';
 import { createServer as createServer$1 } from 'https';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 
 const logger = new Logger('alp:listen');
 

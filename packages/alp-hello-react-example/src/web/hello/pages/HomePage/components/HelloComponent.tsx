@@ -15,7 +15,7 @@ export default function HelloComponent({
 }: HelloComponentProps): ReactElement {
   return (
     <div className={s.container}>
-      <span className={s.hello}>
+      <span className={s.hello} data-testid="hello-text">
         <T id="Hello {name}!" name={name || 'World'} />
       </span>
       <InputName value={name} onChange={onChangeName} />

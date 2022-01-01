@@ -3,7 +3,7 @@ import { promisify } from 'util';
 import type { Context } from 'alp-node';
 import type { ContextState, NodeApplication } from 'alp-types';
 import jsonwebtoken from 'jsonwebtoken';
-import Logger from 'nightingale-logger';
+import { Logger } from 'nightingale-logger';
 import type { User, UserSanitized } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
 import type {
