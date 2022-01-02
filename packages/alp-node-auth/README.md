@@ -46,7 +46,6 @@ export default new UsersManager(new MongoStore('users'));
 
 ```js
 import Alp from 'alp-node';
-import 'alp-node/fetch';
 import authInit from 'alp-node-auth';
 import googleStrategy from 'alp-node-auth/strategies/google';
 import * as loginModuleDescriptor from './modules/auth/login';

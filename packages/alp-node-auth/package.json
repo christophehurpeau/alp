@@ -33,30 +33,12 @@
         "import": "./dist/index-node14.mjs"
       }
     },
-    "./strategies/dropbox": {
-      "import": "./strategies/dropbox.mjs",
-      "require": "./strategies/dropbox.js"
-    },
-    "./strategies/facebook": {
-      "import": "./strategies/facebook.mjs",
-      "require": "./strategies/facebook.js"
-    },
-    "./strategies/foursquare": {
-      "import": "./strategies/foursquare.mjs",
-      "require": "./strategies/foursquare.js"
-    },
-    "./strategies/github": {
-      "import": "./strategies/github.mjs",
-      "require": "./strategies/github.js"
-    },
-    "./strategies/google": {
-      "import": "./strategies/google.mjs",
-      "require": "./strategies/google.js"
-    },
-    "./strategies/slack": {
-      "import": "./strategies/slack.mjs",
-      "require": "./strategies/slack.js"
-    }
+    "./strategies/dropbox": "./strategies/dropbox.js",
+    "./strategies/facebook": "./strategies/facebook.js",
+    "./strategies/foursquare": "./strategies/foursquare.js",
+    "./strategies/github": "./strategies/github.js",
+    "./strategies/google": "./strategies/google.js",
+    "./strategies/slack": "./strategies/slack.js"
   },
   "module:node": "./dist/index-node14.mjs",
   "sideEffects": false,

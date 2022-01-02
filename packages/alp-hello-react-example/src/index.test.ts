@@ -1,4 +1,5 @@
-import fetch from 'alp-node/fetch.mjs';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import fetch from 'node-fetch';
 import type { Daemon } from 'springbokjs-daemon';
 import { createDaemon } from 'springbokjs-daemon';
 

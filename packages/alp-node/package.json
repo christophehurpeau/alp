@@ -28,8 +28,11 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     ">=3.1": {
-      "fetch.mjs": [
-        "fetch.d.ts"
+      "AlpNodeApp": [
+        "./dist/AlpNodeApp.d.ts"
+      ],
+      "fetch": [
+        "./dist/fetch.d.ts"
       ]
     }
   },
@@ -46,13 +49,15 @@
       }
     },
     "./fetch": {
-      "import": "./fetch.mjs",
-      "require": "./fetch.js"
+      "node": {
+        "import": "./dist/fetch-node14.mjs"
+      }
     }
   },
   "module:node": "./dist/index-node14.mjs",
   "module:aliases-node": {
-    "./AlpNodeApp.js": "./dist/AlpNodeApp-node14.es.js"
+    "./AlpNodeApp.js": "./dist/AlpNodeApp-node14.es.js",
+    "./fetch.js": "./dist/fetch-node14.es.js"
   },
   "sideEffects": false,
   "scripts": {
@@ -80,9 +85,7 @@
     ],
     "entries": [
       "index",
-      "AlpNodeApp"
-    ],
-    "extraEntries": [
+      "AlpNodeApp",
       "fetch"
     ]
   },
