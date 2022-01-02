@@ -1415,7 +1415,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.1, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.4, @babel/runtime@npm:^7.11.1, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.16.7, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.1, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.4, @babel/runtime@npm:^7.11.1, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.16.7, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4":
   version: 7.16.7
   resolution: "@babel/runtime@npm:7.16.7"
   dependencies:
@@ -14606,7 +14606,7 @@ __metadata:
     pob-babel: 29.6.1
     react: 17.0.2
     react-dom: 17.0.2
-    react-final-form: 6.5.3
+    react-final-form: 6.5.7
     typescript: 4.5.4
   peerDependencies:
     antd: ^3.23.2 || ^4.0.0
@@ -14775,15 +14775,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-final-form@npm:6.5.3":
-  version: 6.5.3
-  resolution: "react-final-form@npm:6.5.3"
+"react-final-form@npm:6.5.7":
+  version: 6.5.7
+  resolution: "react-final-form@npm:6.5.7"
   dependencies:
-    "@babel/runtime": ^7.12.1
+    "@babel/runtime": ^7.15.4
   peerDependencies:
-    final-form: ^4.20.0
+    final-form: 4.20.4
     react: ^16.8.0 || ^17.0.0
-  checksum: f05bcbea51f004895f46d9be43bb0d70ecd10d172c6e6bb1498740a245ae54267789e1f8b9ca2ac77f75b240841d44f20fe698871bf267aa3baf58e7c7be1154
+  checksum: fd0069a96007618daf0bd2d12f4851f8c3b008d345a83b5817083f52b8025fc7b18602384490066a06545997486150631f72e702da72dcdf58f00af4977c04ec
   languageName: node
   linkType: hard
 
