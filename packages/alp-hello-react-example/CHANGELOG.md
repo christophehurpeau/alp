@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@5.0.0...alp-hello-react-example@5.0.1) (2022-01-02)
+
+**Note:** Version bump only for package alp-hello-react-example
+
+
+
+
+
 # [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@4.1.2...alp-hello-react-example@5.0.0) (2022-01-02)
 
 

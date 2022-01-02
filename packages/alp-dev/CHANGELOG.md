@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0](https://github.com/christophehurpeau/alp/compare/alp-dev@16.0.0...alp-dev@16.1.0) (2022-01-02)
+
+
+### Features
+
+* **deps:** update dependency execa to v6 ([#265](https://github.com/christophehurpeau/alp/issues/265)) ([6c42547](https://github.com/christophehurpeau/alp/commit/6c42547ab11d902d13f4e0a391007ef81e207431))
+
+
+
+
+
 # [16.0.0](https://github.com/christophehurpeau/alp/compare/alp-dev@15.3.1...alp-dev@16.0.0) (2022-01-02)
 
 
