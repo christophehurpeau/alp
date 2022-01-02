@@ -135,7 +135,7 @@
     "glob": "^7.1.6",
     "ignore-loader": "^0.1.2",
     "js-yaml": "^4.1.0",
-    "less-loader": "^5.0.0",
+    "less-loader": "^10.0.0",
     "less-modify-var-loader": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
     "minimist-argv": "^1.1.0",
