@@ -92,7 +92,7 @@
     "@babel/runtime": "^7.16.7",
     "alp-router": "5.1.0",
     "alp-types": "^3.0.0",
-    "object-properties": "^4.0.0"
+    "object-properties": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.16.7",

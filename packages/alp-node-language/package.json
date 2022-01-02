@@ -63,7 +63,7 @@
   "dependencies": {
     "@types/koa": "^2.13.1",
     "alp-types": "^3.0.0",
-    "object-properties": "^4.0.0"
+    "object-properties": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.16.7",
