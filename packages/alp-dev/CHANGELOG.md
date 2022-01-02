@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0](https://github.com/christophehurpeau/alp/compare/alp-dev@16.1.0...alp-dev@16.2.0) (2022-01-02)
+
+
+### Features
+
+* **deps:** update dependency less-loader to v10 ([#266](https://github.com/christophehurpeau/alp/issues/266)) ([741f2e5](https://github.com/christophehurpeau/alp/commit/741f2e5e8117e2901d81e4edb44b4b7f0d139d9d))
+
+
+
+
+
 # [16.1.0](https://github.com/christophehurpeau/alp/compare/alp-dev@16.0.0...alp-dev@16.1.0) (2022-01-02)
 
 

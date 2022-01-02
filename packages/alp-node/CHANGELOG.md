@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/christophehurpeau/alp/compare/alp-node@4.0.1...alp-node@4.0.2) (2022-01-02)
+
+
+### Bug Fixes
+
+* extra entries ([fbfb15f](https://github.com/christophehurpeau/alp/commit/fbfb15fd4cfc474ccb803105fb8ece71414a6f5d))
+
+
+
+
+
 ## [4.0.1](https://github.com/christophehurpeau/alp/compare/alp-node@4.0.0...alp-node@4.0.1) (2022-01-02)
 
 **Note:** Version bump only for package alp-node

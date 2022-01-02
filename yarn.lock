@@ -4533,7 +4533,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-dev@16.1.0, alp-dev@workspace:packages/alp-dev":
+"alp-dev@16.2.0, alp-dev@workspace:packages/alp-dev":
   version: 0.0.0-use.local
   resolution: "alp-dev@workspace:packages/alp-dev"
   dependencies:
@@ -4619,8 +4619,8 @@ __metadata:
     "@testing-library/react": 12.1.2
     "@types/object-assign": 4.0.30
     alp-browser: 4.0.0
-    alp-dev: 16.1.0
-    alp-node: 4.0.1
+    alp-dev: 16.2.0
+    alp-node: 4.0.2
     alp-react: 19.0.0
     nightingale-app-console: 12.1.2
     nightingale-web-processor: 12.1.2
@@ -4672,7 +4672,7 @@ __metadata:
     "@babel/core": 7.16.7
     "@types/jsonwebtoken": ^8.5.1
     "@types/simple-oauth2": ^2.5.1
-    alp-node: 4.0.1
+    alp-node: 4.0.2
     alp-router: 5.1.0
     alp-types: ^3.0.0
     cookies: ^0.8.0
@@ -4730,7 +4730,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node@4.0.1, alp-node@workspace:packages/alp-node":
+"alp-node@4.0.2, alp-node@workspace:packages/alp-node":
   version: 0.0.0-use.local
   resolution: "alp-node@workspace:packages/alp-node"
   dependencies:
