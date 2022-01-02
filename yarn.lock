@@ -4628,7 +4628,7 @@ __metadata:
     sass: ^1.32.8
     sass-loader: ^12.4.0
     source-map-support: ^0.5.21
-    springbokjs-daemon: ^7.0.0
+    springbokjs-daemon: ^7.1.0
     terser-webpack-plugin: ^5.3.0
     typed-css-modules-loader: ^0.0.18
     typescript: 4.5.4
@@ -4663,7 +4663,7 @@ __metadata:
     react-alp-context: ^3.1.3
     react-alp-translate: ^5.1.3
     react-dom: 17.0.2
-    springbokjs-daemon: 7.0.0
+    springbokjs-daemon: 7.1.0
     typescript: 4.5.4
     workbox-core: 6.4.2
     workbox-precaching: 6.4.2
@@ -12309,7 +12309,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale-console@npm:12.1.1, nightingale-console@npm:^12.0.1, nightingale-console@npm:^12.1.1":
+"nightingale-console@npm:12.1.1, nightingale-console@npm:^12.1.1":
   version: 12.1.1
   resolution: "nightingale-console@npm:12.1.1"
   dependencies:
@@ -12417,7 +12417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale@npm:12.1.1, nightingale@npm:^12.0.1, nightingale@npm:^12.1.1":
+"nightingale@npm:12.1.1, nightingale@npm:^12.1.1":
   version: 12.1.1
   resolution: "nightingale@npm:12.1.1"
   dependencies:
@@ -16245,16 +16245,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"springbokjs-daemon@npm:7.0.0, springbokjs-daemon@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "springbokjs-daemon@npm:7.0.0"
+"springbokjs-daemon@npm:7.1.0, springbokjs-daemon@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "springbokjs-daemon@npm:7.1.0"
   dependencies:
     "@types/node": ">=14.0.0"
     graceful-kill: 5.0.0
-    nightingale: ^12.0.1
-    nightingale-console: ^12.0.1
+    nightingale: ^12.1.1
+    nightingale-console: ^12.1.1
     split: ^1.0.1
-  checksum: 422bfebabd1bc701e5ad66dc9f2c598909af7733e0731b65d14f9bcfddd92679f06d00134bf897f35d3078c151fc45be6d08ca9ff54d2bbc5f710453c543503f
+  checksum: e4a872030b0ddd30c668af02bdfe1468653c3c286c95d4f296118c91f3f5235bbb370ac57025334aafd4b1389685447cf38b3958d8b4a6904e831fa185fd7b52
   languageName: node
   linkType: hard
 

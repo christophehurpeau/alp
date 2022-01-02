@@ -68,7 +68,7 @@
     "@testing-library/react": "12.1.2",
     "@types/object-assign": "4.0.30",
     "alp-dev": "^15.3.1",
-    "springbokjs-daemon": "7.0.0",
+    "springbokjs-daemon": "7.1.0",
     "typescript": "4.5.4"
   }
 }
