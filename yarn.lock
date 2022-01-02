@@ -4583,7 +4583,7 @@ __metadata:
     offline-plugin: ^5.0.7
     pob-babel: 29.6.1
     portscanner: ^2.2.0
-    postcss: ^7.0.23
+    postcss: ^8.0.0
     postcss-loader: ^6.2.1
     progress: ^2.0.3
     react: 17.0.2
@@ -13910,7 +13910,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.15, postcss@npm:^8.3.5":
+"postcss@npm:^8.0.0, postcss@npm:^8.2.15, postcss@npm:^8.3.5":
   version: 8.4.5
   resolution: "postcss@npm:8.4.5"
   dependencies:
