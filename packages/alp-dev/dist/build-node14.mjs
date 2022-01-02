@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import path, { join, dirname, resolve } from 'path';
 import { URL } from 'url';
-import execa from 'execa';
+import { execa } from 'execa';
 import fs, { readFileSync, watch } from 'fs';
 import glob from 'glob';
 import yaml from 'js-yaml';
