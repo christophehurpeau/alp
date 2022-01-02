@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-browser-language@4.1.3...alp-browser-language@5.0.0) (2022-01-02)
+
+
+### Bug Fixes
+
+* update nightingale and fix tests ([3691716](https://github.com/christophehurpeau/alp/commit/36917162d0ee3dccc07384caf018b7760d98b744))
+
+
+### Features
+
+* use ESM and drop node 12 ([f45054e](https://github.com/christophehurpeau/alp/commit/f45054e931eea88451d183722797eba057511236))
+
+
+### BREAKING CHANGES
+
+* requires node 14 and ESM
+
+
+
+
+
 ## [4.1.3](https://github.com/christophehurpeau/alp/compare/alp-browser-language@4.1.2...alp-browser-language@4.1.3) (2021-04-10)
 
 **Note:** Version bump only for package alp-browser-language

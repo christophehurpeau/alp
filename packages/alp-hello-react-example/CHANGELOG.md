@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@4.1.2...alp-hello-react-example@5.0.0) (2022-01-02)
+
+
+### Bug Fixes
+
+* update nightingale and fix tests ([3691716](https://github.com/christophehurpeau/alp/commit/36917162d0ee3dccc07384caf018b7760d98b744))
+
+
+### Features
+
+* use ESM and drop node 12 ([f45054e](https://github.com/christophehurpeau/alp/commit/f45054e931eea88451d183722797eba057511236))
+* webpack 5 ([2a8480a](https://github.com/christophehurpeau/alp/commit/2a8480a0fe5db15158dab8f2b40877452edf0be8))
+* **alp-hello-react-example:** use nightingale-web-processor ([aeeac2c](https://github.com/christophehurpeau/alp/commit/aeeac2c95163ccc2ff7fe69c744e08c7ea77a7bc))
+
+
+### BREAKING CHANGES
+
+* requires node 14 and ESM
+* webpack 5
+
+
+
+
+
 ## [4.1.2](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@4.1.1...alp-hello-react-example@4.1.2) (2021-04-10)
 
 **Note:** Version bump only for package alp-hello-react-example

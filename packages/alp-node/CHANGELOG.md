@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@3.2.2...alp-node@4.0.0) (2022-01-02)
+
+
+### Bug Fixes
+
+* remove findup-sync ([0f7ac09](https://github.com/christophehurpeau/alp/commit/0f7ac09d577de99eff3a559f54c0d9891c0aa265))
+* update nightingale and fix tests ([3691716](https://github.com/christophehurpeau/alp/commit/36917162d0ee3dccc07384caf018b7760d98b744))
+
+
+### Features
+
+* use ESM and drop node 12 ([f45054e](https://github.com/christophehurpeau/alp/commit/f45054e931eea88451d183722797eba057511236))
+
+
+### BREAKING CHANGES
+
+* requires node 14 and ESM
+
+
+
+
+
 ## [3.2.2](https://github.com/christophehurpeau/alp/compare/alp-node@3.2.1...alp-node@3.2.2) (2021-04-10)
 
 **Note:** Version bump only for package alp-node

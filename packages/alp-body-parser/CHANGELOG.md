@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@5.2.1...alp-body-parser@6.0.0) (2022-01-02)
+
+
+### Bug Fixes
+
+* update nightingale and fix tests ([3691716](https://github.com/christophehurpeau/alp/commit/36917162d0ee3dccc07384caf018b7760d98b744))
+
+
+### Features
+
+* **deps:** update dependency @types/co-body to v6 ([#263](https://github.com/christophehurpeau/alp/issues/263)) ([7f832bd](https://github.com/christophehurpeau/alp/commit/7f832bda15a2a69f9d144e96d91d17a7709bcb0b))
+* use ESM and drop node 12 ([f45054e](https://github.com/christophehurpeau/alp/commit/f45054e931eea88451d183722797eba057511236))
+
+
+### BREAKING CHANGES
+
+* requires node 14 and ESM
+
+
+
+
+
 ## [5.2.1](https://github.com/christophehurpeau/alp/compare/alp-body-parser@5.2.0...alp-body-parser@5.2.1) (2021-04-10)
 
 **Note:** Version bump only for package alp-body-parser
