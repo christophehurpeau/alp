@@ -113,7 +113,7 @@
   "dependencies": {
     "alp-types": "^3.0.0",
     "intl-messageformat": "^9.10.0",
-    "nightingale-logger": "^12.1.1",
+    "nightingale-logger": "^12.1.2",
     "react-alp-context": "^3.1.3"
   },
   "devDependencies": {

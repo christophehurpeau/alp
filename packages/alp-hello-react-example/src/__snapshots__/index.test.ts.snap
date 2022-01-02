@@ -19,7 +19,7 @@ window.__INITIAL_DATA__={\\"sanitizedState\\":{}};
 <script defer src=\\"/es5.js?4.1.2\\"></script>
   </head>
   <body >
-    <div id=\\"react-app\\"><div><div>Hello World !</div><div class=\\"Ih_7_OuGEK6L6g1dgDIo\\"><span class=\\"GMKXxYpyAZUlxOTEp4uP\\" data-testid=\\"hello-text\\">Hello Chris !</span><input type=\\"text\\" autoComplete=\\"off\\" class=\\"qymC_yVB8mLfH6vdKl2c\\" value=\\"Chris\\"/></div><div><p>You clicked <!-- -->0<!-- --> times</p><button type=\\"button\\">Click me</button></div><div><button type=\\"button\\">Click me to throw</button><button type=\\"button\\">Click me to log error</button></div></div></div>
+    <div id=\\"react-app\\"><div><div>Hello World !</div><div class=\\"Ih_7_OuGEK6L6g1dgDIo\\"><span class=\\"GMKXxYpyAZUlxOTEp4uP\\" data-testid=\\"hello-text\\">Hello Chris !</span><input type=\\"text\\" data-testid=\\"input-name\\" autoComplete=\\"off\\" class=\\"qymC_yVB8mLfH6vdKl2c\\" value=\\"Chris\\"/></div><div><p>You clicked <!-- -->0<!-- --> times</p><button type=\\"button\\">Click me</button></div><div><button type=\\"button\\">Click me to throw</button><button type=\\"button\\">Click me to log error</button></div></div></div>
   </body>
 </html>"
 `;
@@ -43,7 +43,7 @@ window.__INITIAL_DATA__={\\"sanitizedState\\":{}};
 <script defer src=\\"/es5.js?4.1.2\\"></script>
   </head>
   <body >
-    <div id=\\"react-app\\"><div><div>Hello World !</div><div class=\\"Ih_7_OuGEK6L6g1dgDIo\\"><span class=\\"GMKXxYpyAZUlxOTEp4uP\\" data-testid=\\"hello-text\\">Hello World !</span><input type=\\"text\\" autoComplete=\\"off\\" class=\\"qymC_yVB8mLfH6vdKl2c\\" value=\\"\\"/></div><div><p>You clicked <!-- -->0<!-- --> times</p><button type=\\"button\\">Click me</button></div><div><button type=\\"button\\">Click me to throw</button><button type=\\"button\\">Click me to log error</button></div></div></div>
+    <div id=\\"react-app\\"><div><div>Hello World !</div><div class=\\"Ih_7_OuGEK6L6g1dgDIo\\"><span class=\\"GMKXxYpyAZUlxOTEp4uP\\" data-testid=\\"hello-text\\">Hello World !</span><input type=\\"text\\" data-testid=\\"input-name\\" autoComplete=\\"off\\" class=\\"qymC_yVB8mLfH6vdKl2c\\" value=\\"\\"/></div><div><p>You clicked <!-- -->0<!-- --> times</p><button type=\\"button\\">Click me</button></div><div><button type=\\"button\\">Click me to throw</button><button type=\\"button\\">Click me to log error</button></div></div></div>
   </body>
 </html>"
 `;
