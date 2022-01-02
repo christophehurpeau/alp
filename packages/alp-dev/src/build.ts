@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import { resolve as pathResolve } from 'path';
 import { URL } from 'url';
-import execa from 'execa';
+import { execa } from 'execa';
 import { clean, build } from './config-build';
 
 execSync(`rm -Rf ${pathResolve('public')}/* ${pathResolve('build')}/*`);
