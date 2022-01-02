@@ -9,7 +9,7 @@ describe('test hello server', () => {
     daemon = createDaemon({
       command: 'node',
       cwd: new URL('../', import.meta.url).pathname,
-      args: ['build/index.mjs', '--port', 5555],
+      args: ['build/index.mjs', '--port', 5555, '--version', 'test'],
     });
     await daemon.start();
   });
