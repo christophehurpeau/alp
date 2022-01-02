@@ -4724,7 +4724,7 @@ __metadata:
     "@babel/core": 7.16.7
     "@types/koa": ^2.13.1
     alp-types: ^3.0.0
-    object-properties: ^4.0.0
+    object-properties: ^6.0.0
     pob-babel: 29.6.1
     typescript: 4.5.4
   languageName: unknown
@@ -4767,7 +4767,7 @@ __metadata:
     alp-router: 5.1.0
     alp-types: ^3.0.0
     babel-preset-modern-browsers: 15.0.2
-    object-properties: ^4.0.0
+    object-properties: ^6.0.0
     pob-babel: 29.6.1
     typescript: 4.5.4
   languageName: unknown
@@ -12730,10 +12730,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-properties@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "object-properties@npm:4.0.0"
-  checksum: c0d3bddc73f245cbb5f4fe85fbd604ba5a979b5c5a4a1cf9caa7b2ee218bd15cad4f68d7b0bb4c8cb165e6fee77ea54ff00df9a57455ac79583fd3fcaeda7b4b
+"object-properties@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "object-properties@npm:6.0.0"
+  checksum: e68c75dfd3f538a34d18ae2c4171b98353db4d9fbaf0bc3e65c0af1b664543df29121f992d2fb5f7c486cbe7084513e10f84af18aec153fc356714016b197ec1
   languageName: node
   linkType: hard
 
