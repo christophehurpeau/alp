@@ -2,7 +2,6 @@ import { readFileSync, existsSync } from 'fs';
 import path from 'path';
 import _config, { Config } from 'alp-node-config';
 export { Config } from 'alp-node-config';
-import findUp from 'findup-sync';
 import { Logger } from 'nightingale-logger';
 import { deprecate } from 'util';
 import _listen from 'alp-listen';
@@ -106,9 +105,7 @@ class AlpNodeApp extends Koa {
 const logger = new Logger('alp'); // see alp-dev
 
 const appDirname = path.resolve('build');
-const packagePath = findUp('package.json', {
-  cwd: appDirname
-});
+const packagePath = path.resolve('package.json');
 
 if (!packagePath) {
   throw new Error(`Could not find package.json: "${String(packagePath)}"`);

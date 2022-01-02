@@ -1,7 +1,6 @@
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import { Config } from 'alp-node-config';
-import findUp from 'findup-sync';
 import { Logger } from 'nightingale-logger';
 import type { AlpNodeAppOptions } from './AlpNodeApp';
 import { AlpNodeApp } from './AlpNodeApp';
@@ -16,7 +15,7 @@ const logger = new Logger('alp');
 // see alp-dev
 export const appDirname = path.resolve('build');
 
-const packagePath = findUp('package.json', { cwd: appDirname });
+const packagePath = path.resolve('package.json');
 if (!packagePath) {
   throw new Error(`Could not find package.json: "${String(packagePath)}"`);
 }

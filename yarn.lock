@@ -3201,13 +3201,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/braces@npm:*":
-  version: 2.3.0
-  resolution: "@types/braces@npm:2.3.0"
-  checksum: 0a59fd9c1d828617614c88360cbb6286648015282a5f729df317399c5005bb375aff318226249ffe69f1a2b71e1193f8b55077216774c7e6409c45b1e25858f4
-  languageName: node
-  linkType: hard
-
 "@types/browserslist@npm:*":
   version: 4.4.0
   resolution: "@types/browserslist@npm:4.4.0"
@@ -3404,15 +3397,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/findup-sync@npm:2.0.2":
-  version: 2.0.2
-  resolution: "@types/findup-sync@npm:2.0.2"
-  dependencies:
-    "@types/micromatch": "*"
-  checksum: add969fb3b29c7994691a533c8d3852e7584c4bd15513830b709bf0c82184c2db6f12328177f505c4415c2de8bcb8a107390697e7e77229f12acad6279fdb9f1
-  languageName: node
-  linkType: hard
-
 "@types/glob@npm:7.1.3":
   version: 7.1.3
   resolution: "@types/glob@npm:7.1.3"
@@ -3605,15 +3589,6 @@ __metadata:
     "@types/koa-compose": "*"
     "@types/node": "*"
   checksum: d6f83b120ad0b8d9f3c7a7a0b2f09a2a149c1f83aaae3c754ac869a3bbc8a5a50f2e653e26817ba1648ed17da49202a19aaf69af0f4f9317c44fb172e548f838
-  languageName: node
-  linkType: hard
-
-"@types/micromatch@npm:*":
-  version: 3.1.0
-  resolution: "@types/micromatch@npm:3.1.0"
-  dependencies:
-    "@types/braces": "*"
-  checksum: 6442e79efc9774cd0a1b19953547528aea5e32c0ae702821d32d67feaf8c2b16900b4052d8d6436be4b8847f4a8a316a0bc2441a128b2cbc8c8e20487b99e654
   languageName: node
   linkType: hard
 
@@ -4770,7 +4745,6 @@ __metadata:
   resolution: "alp-node@workspace:packages/alp-node"
   dependencies:
     "@babel/core": 7.16.7
-    "@types/findup-sync": 2.0.2
     "@types/koa": ^2.13.1
     "@types/koa-compress": 4.0.3
     "@types/koa-static": 4.0.2
@@ -4783,7 +4757,6 @@ __metadata:
     alp-params: ^3.2.2
     alp-translate: ^5.1.3
     alp-types: ^3.0.0
-    findup-sync: ^4.0.0
     koa: ^2.13.1
     koa-compress: ^5.0.0
     koa-static: ^5.0.0
@@ -7260,13 +7233,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-file@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "detect-file@npm:1.0.0"
-  checksum: 1861e4146128622e847abe0e1ed80fef01e78532665858a792267adf89032b7a9c698436137707fcc6f02956c2a6a0052d6a0cef5be3d4b76b1ff0da88e2158a
-  languageName: node
-  linkType: hard
-
 "detect-indent@npm:^5.0.0":
   version: 5.0.0
   resolution: "detect-indent@npm:5.0.0"
@@ -8212,15 +8178,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expand-tilde@npm:^2.0.0, expand-tilde@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "expand-tilde@npm:2.0.2"
-  dependencies:
-    homedir-polyfill: ^1.0.1
-  checksum: 2efe6ed407d229981b1b6ceb552438fbc9e5c7d6a6751ad6ced3e0aa5cf12f0b299da695e90d6c2ac79191b5c53c613e508f7149e4573abfbb540698ddb7301a
-  languageName: node
-  linkType: hard
-
 "expect@npm:^27.4.2":
   version: 27.4.2
   resolution: "expect@npm:27.4.2"
@@ -8481,18 +8438,6 @@ __metadata:
     locate-path: ^6.0.0
     path-exists: ^4.0.0
   checksum: 07955e357348f34660bde7920783204ff5a26ac2cafcaa28bace494027158a97b9f56faaf2d89a6106211a8174db650dd9f503f9c0d526b1202d5554a00b9095
-  languageName: node
-  linkType: hard
-
-"findup-sync@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "findup-sync@npm:4.0.0"
-  dependencies:
-    detect-file: ^1.0.0
-    is-glob: ^4.0.0
-    micromatch: ^4.0.2
-    resolve-dir: ^1.0.1
-  checksum: 94131e1107ad63790ed00c4c39ca131a93ea602607bd97afeffd92b69a9a63cf2c6f57d6db88cb753fe748ac7fde79e1e76768ff784247026b7c5ebf23ede3a0
   languageName: node
   linkType: hard
 
@@ -8910,36 +8855,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"global-modules@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "global-modules@npm:1.0.0"
-  dependencies:
-    global-prefix: ^1.0.1
-    is-windows: ^1.0.1
-    resolve-dir: ^1.0.0
-  checksum: 10be68796c1e1abc1e2ba87ec4ea507f5629873b119ab0cd29c07284ef2b930f1402d10df01beccb7391dedd9cd479611dd6a24311c71be58937beaf18edf85e
-  languageName: node
-  linkType: hard
-
 "global-modules@npm:^2.0.0":
   version: 2.0.0
   resolution: "global-modules@npm:2.0.0"
   dependencies:
     global-prefix: ^3.0.0
   checksum: d6197f25856c878c2fb5f038899f2dca7cbb2f7b7cf8999660c0104972d5cfa5c68b5a0a77fa8206bb536c3903a4615665acb9709b4d80846e1bb47eaef65430
-  languageName: node
-  linkType: hard
-
-"global-prefix@npm:^1.0.1":
-  version: 1.0.2
-  resolution: "global-prefix@npm:1.0.2"
-  dependencies:
-    expand-tilde: ^2.0.2
-    homedir-polyfill: ^1.0.1
-    ini: ^1.3.4
-    is-windows: ^1.0.1
-    which: ^1.2.14
-  checksum: 061b43470fe498271bcd514e7746e8a8535032b17ab9570517014ae27d700ff0dca749f76bbde13ba384d185be4310d8ba5712cb0e74f7d54d59390db63dd9a0
   languageName: node
   linkType: hard
 
@@ -9169,15 +9090,6 @@ __metadata:
   dependencies:
     react-is: ^16.7.0
   checksum: b1538270429b13901ee586aa44f4cc3ecd8831c061d06cb8322e50ea17b3f5ce4d0e2e66394761e6c8e152cd8c34fb3b4b690116c6ce2bd45b18c746516cb9e8
-  languageName: node
-  linkType: hard
-
-"homedir-polyfill@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "homedir-polyfill@npm:1.0.1"
-  dependencies:
-    parse-passwd: ^1.0.0
-  checksum: 15fb2b5e6a5d6921f4c4b69c10ad186736cd14ffb7a6a7b200a2cc349f64967127aeebf667e56d7b81b0396e0b196944d7f38a8468a09a693c50315c6cb608b2
   languageName: node
   linkType: hard
 
@@ -10057,13 +9969,6 @@ __metadata:
   version: 3.12.0
   resolution: "is-what@npm:3.12.0"
   checksum: 912444cd0806f6c0bc215a2c1ecbff34b4b59fd582ed553f1000da587689a29d20644361053d4dd608a9a149b34a04238274e1b60d81f6e5106d7d42b7f54908
-  languageName: node
-  linkType: hard
-
-"is-windows@npm:^1.0.1":
-  version: 1.0.2
-  resolution: "is-windows@npm:1.0.2"
-  checksum: 438b7e52656fe3b9b293b180defb4e448088e7023a523ec21a91a80b9ff8cdb3377ddb5b6e60f7c7de4fa8b63ab56e121b6705fe081b3cf1b828b0a380009ad7
   languageName: node
   linkType: hard
 
@@ -13195,13 +13100,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-passwd@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "parse-passwd@npm:1.0.0"
-  checksum: 4e55e0231d58f828a41d0f1da2bf2ff7bcef8f4cb6146e69d16ce499190de58b06199e6bd9b17fbf0d4d8aef9052099cdf8c4f13a6294b1a522e8e958073066e
-  languageName: node
-  linkType: hard
-
 "parse-path@npm:^4.0.0":
   version: 4.0.1
   resolution: "parse-path@npm:4.0.1"
@@ -15326,16 +15224,6 @@ __metadata:
   dependencies:
     resolve-from: ^5.0.0
   checksum: 546e0816012d65778e580ad62b29e975a642989108d9a3c5beabfb2304192fa3c9f9146fbdfe213563c6ff51975ae41bac1d3c6e047dd9572c94863a057b4d81
-  languageName: node
-  linkType: hard
-
-"resolve-dir@npm:^1.0.0, resolve-dir@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "resolve-dir@npm:1.0.1"
-  dependencies:
-    expand-tilde: ^2.0.0
-    global-modules: ^1.0.0
-  checksum: ef736b8ed60d6645c3b573da17d329bfb50ec4e1d6c5ffd6df49e3497acef9226f9810ea6823b8ece1560e01dcb13f77a9f6180d4f242d00cc9a8f4de909c65c
   languageName: node
   linkType: hard
 
@@ -17783,7 +17671,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"which@npm:1, which@npm:^1.2.14, which@npm:^1.3.1":
+"which@npm:1, which@npm:^1.3.1":
   version: 1.3.1
   resolution: "which@npm:1.3.1"
   dependencies:
