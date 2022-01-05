@@ -3721,16 +3721,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dev-utils@npm:9.0.9":
-  version: 9.0.9
-  resolution: "@types/react-dev-utils@npm:9.0.9"
+"@types/react-dev-utils@npm:9.0.10":
+  version: 9.0.10
+  resolution: "@types/react-dev-utils@npm:9.0.10"
   dependencies:
     "@types/eslint": "*"
     "@types/express": "*"
     "@types/html-webpack-plugin": "*"
     "@types/webpack": ^4
-    "@types/webpack-dev-server": ^3
-  checksum: 6e020d6062e8e64e91ad878add6117ed777e191b23286281fa4479dd1089307c73246b84c921a1f1146705125837a3a66953191dcb738e11ceb9e704ba8eb9e5
+    "@types/webpack-dev-server": 3
+  checksum: b8aecccc7c0aa3d644f832f72b6e5c378c232c8b72c5671f5e39f37364fb46d362b6877ca728f4a136e0af2b341485fad2ed10b1394efa42568284cbb9c61b61
   languageName: node
   linkType: hard
 
@@ -3894,6 +3894,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/webpack-dev-server@npm:3":
+  version: 3.11.6
+  resolution: "@types/webpack-dev-server@npm:3.11.6"
+  dependencies:
+    "@types/connect-history-api-fallback": "*"
+    "@types/express": "*"
+    "@types/serve-static": "*"
+    "@types/webpack": ^4
+    http-proxy-middleware: ^1.0.0
+  checksum: ce801b43593aa84d228d170ec6c2397d40754f138635c5a792d4f85647a59d07250d533299af8c6ea4e83ca7f8ac5feaf7ec03f11ad886faac43f3460b5d3c6e
+  languageName: node
+  linkType: hard
+
 "@types/webpack-dev-server@npm:4.5.1":
   version: 4.5.1
   resolution: "@types/webpack-dev-server@npm:4.5.1"
@@ -3908,19 +3921,6 @@ __metadata:
     http-proxy-middleware: ^2.0.0
     webpack: "*"
   checksum: 99066055e96e22acc699f14af128acc238eb342416a4e89a73354ae832802ad4fe570dfc1da2a749595b77148a9f12c749c555682d5198094488febfb7781af0
-  languageName: node
-  linkType: hard
-
-"@types/webpack-dev-server@npm:^3":
-  version: 3.11.6
-  resolution: "@types/webpack-dev-server@npm:3.11.6"
-  dependencies:
-    "@types/connect-history-api-fallback": "*"
-    "@types/express": "*"
-    "@types/serve-static": "*"
-    "@types/webpack": ^4
-    http-proxy-middleware: ^1.0.0
-  checksum: ce801b43593aa84d228d170ec6c2397d40754f138635c5a792d4f85647a59d07250d533299af8c6ea4e83ca7f8ac5feaf7ec03f11ad886faac43f3460b5d3c6e
   languageName: node
   linkType: hard
 
@@ -4550,7 +4550,7 @@ __metadata:
     "@types/mini-css-extract-plugin": 2.4.0
     "@types/portscanner": 2.1.1
     "@types/progress": 2.0.5
-    "@types/react-dev-utils": 9.0.9
+    "@types/react-dev-utils": 9.0.10
     "@types/terser-webpack-plugin": 5.2.0
     "@types/webpack-dev-server": 4.5.1
     "@types/webpack-node-externals": 2.5.3

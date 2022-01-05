@@ -172,7 +172,7 @@
     "@types/mini-css-extract-plugin": "2.4.0",
     "@types/portscanner": "2.1.1",
     "@types/progress": "2.0.5",
-    "@types/react-dev-utils": "9.0.9",
+    "@types/react-dev-utils": "9.0.10",
     "@types/terser-webpack-plugin": "5.2.0",
     "@types/webpack-dev-server": "4.5.1",
     "@types/webpack-node-externals": "2.5.3",
