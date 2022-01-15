@@ -1,8 +1,6 @@
 import { spawnSync } from 'child_process';
 import { createRequire } from 'module';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { beforeAll, afterAll, test } from '@jest/globals';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import fetch from 'node-fetch';
 import type { Daemon } from 'springbokjs-daemon';
 import { createDaemon } from 'springbokjs-daemon';
@@ -26,7 +24,7 @@ describe('test hello server', () => {
       args: ['build/index.mjs', '--port', 5555, '--version', 'test'],
     });
     await daemon.start();
-  });
+  }, 60_000);
 
   afterAll(async () => {
     if (daemon) await daemon.stop();
