@@ -14,7 +14,7 @@ try {
     ...['build-node', 'build-modern-browser', 'build-older-browser'].map(
       async (path) => {
         await execa(
-          'node',
+          process.argv0,
           [new URL(import.meta.url).pathname.replace('/build-', `/${path}-`)],
           {
             stdio: 'inherit',

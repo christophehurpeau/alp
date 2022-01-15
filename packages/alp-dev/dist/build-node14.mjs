@@ -124,7 +124,7 @@ clean();
 
 try {
   await Promise.all([build(), ...['build-node', 'build-modern-browser', 'build-older-browser'].map(async path => {
-    await execa('node', [new URL(import.meta.url).pathname.replace('/build-', `/${path}-`)], {
+    await execa(process.argv0, [new URL(import.meta.url).pathname.replace('/build-', `/${path}-`)], {
       stdio: 'inherit'
     });
   })]);
