@@ -78,8 +78,8 @@
     ]
   },
   "peerDependencies": {
-    "alp-node": "^3.0.1",
-    "alp-router": "^4.0.1",
+    "alp-node": "^4.0.2",
+    "alp-router": "^5.1.0",
     "liwi-mongo": "^8.0.1"
   },
   "dependencies": {

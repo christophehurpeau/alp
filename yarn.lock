@@ -4464,7 +4464,7 @@ __metadata:
     pob-babel: 29.6.1
     typescript: 4.5.4
   peerDependencies:
-    alp-node: ^3.0.1
+    alp-node: ^4.0.2
   languageName: unknown
   linkType: soft
 
@@ -4683,8 +4683,8 @@ __metadata:
     simple-oauth2: ^2.2.1
     typescript: 4.5.4
   peerDependencies:
-    alp-node: ^3.0.1
-    alp-router: ^4.0.1
+    alp-node: ^4.0.2
+    alp-router: ^5.1.0
     liwi-mongo: ^8.0.1
   languageName: unknown
   linkType: soft
