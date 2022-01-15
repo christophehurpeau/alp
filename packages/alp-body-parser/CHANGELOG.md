@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/christophehurpeau/alp/compare/alp-body-parser@6.0.0...alp-body-parser@6.0.1) (2022-01-15)
+
+
+### Bug Fixes
+
+* update peer dependencies ([74892bc](https://github.com/christophehurpeau/alp/commit/74892bc8dd99ca862ba427914eb893b083e9b9da))
+
+
+
+
+
 # [6.0.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@5.2.1...alp-body-parser@6.0.0) (2022-01-02)
 
 

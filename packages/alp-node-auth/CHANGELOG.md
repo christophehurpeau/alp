@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.3](https://github.com/christophehurpeau/alp/compare/alp-node-auth@6.0.2...alp-node-auth@6.0.3) (2022-01-15)
+
+
+### Bug Fixes
+
+* update peer dependencies ([74892bc](https://github.com/christophehurpeau/alp/commit/74892bc8dd99ca862ba427914eb893b083e9b9da))
+
+
+
+
+
 ## [6.0.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@6.0.1...alp-node-auth@6.0.2) (2022-01-02)
 
 

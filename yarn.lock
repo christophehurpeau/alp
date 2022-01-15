@@ -4468,7 +4468,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-browser-config@7.0.0, alp-browser-config@workspace:packages/alp-browser-config":
+"alp-browser-config@7.0.1, alp-browser-config@workspace:packages/alp-browser-config":
   version: 0.0.0-use.local
   resolution: "alp-browser-config@workspace:packages/alp-browser-config"
   dependencies:
@@ -4500,7 +4500,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-browser-language@5.0.0, alp-browser-language@workspace:packages/alp-browser-language":
+"alp-browser-language@5.0.1, alp-browser-language@workspace:packages/alp-browser-language":
   version: 0.0.0-use.local
   resolution: "alp-browser-language@workspace:packages/alp-browser-language"
   dependencies:
@@ -4513,7 +4513,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-browser@4.0.0, alp-browser@workspace:packages/alp-browser":
+"alp-browser@4.0.1, alp-browser@workspace:packages/alp-browser":
   version: 0.0.0-use.local
   resolution: "alp-browser@workspace:packages/alp-browser"
   dependencies:
@@ -4521,19 +4521,19 @@ __metadata:
     "@babel/preset-env": 7.16.8
     "@babel/runtime": ^7.16.7
     "@types/webpack-env": ^1.16.0
-    alp-browser-config: 7.0.0
-    alp-browser-language: 5.0.0
-    alp-translate: 6.0.0
+    alp-browser-config: 7.0.1
+    alp-browser-language: 5.0.1
+    alp-translate: 6.0.1
     alp-types: ^3.0.0
     babel-preset-modern-browsers: 15.0.2
-    ibex: 8.0.0
+    ibex: 8.0.1
     nightingale-logger: ^12.1.2
     pob-babel: 29.6.1
     typescript: 4.5.4
   languageName: unknown
   linkType: soft
 
-"alp-dev@16.2.0, alp-dev@workspace:packages/alp-dev":
+"alp-dev@16.2.1, alp-dev@workspace:packages/alp-dev":
   version: 0.0.0-use.local
   resolution: "alp-dev@workspace:packages/alp-dev"
   dependencies:
@@ -4618,15 +4618,15 @@ __metadata:
   dependencies:
     "@testing-library/react": 12.1.2
     "@types/object-assign": 4.0.30
-    alp-browser: 4.0.0
-    alp-dev: 16.2.0
-    alp-node: 4.0.2
-    alp-react: 19.0.0
+    alp-browser: 4.0.1
+    alp-dev: 16.2.1
+    alp-node: 4.0.3
+    alp-react: 19.0.1
     nightingale-app-console: 12.1.2
     nightingale-web-processor: 12.1.2
     react: 17.0.2
-    react-alp-context: 4.0.0
-    react-alp-translate: 6.0.0
+    react-alp-context: 4.0.1
+    react-alp-translate: 6.0.1
     react-dom: 17.0.2
     springbokjs-daemon: 8.0.0
     typescript: 4.5.4
@@ -4672,8 +4672,8 @@ __metadata:
     "@babel/core": 7.16.7
     "@types/jsonwebtoken": ^8.5.1
     "@types/simple-oauth2": ^2.5.1
-    alp-node: 4.0.2
-    alp-router: 5.1.0
+    alp-node: 4.0.3
+    alp-router: 5.1.1
     alp-types: ^3.0.0
     cookies: ^0.8.0
     jsonwebtoken: ^8.5.1
@@ -4717,7 +4717,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node-language@5.0.0, alp-node-language@workspace:packages/alp-node-language":
+"alp-node-language@5.1.0, alp-node-language@workspace:packages/alp-node-language":
   version: 0.0.0-use.local
   resolution: "alp-node-language@workspace:packages/alp-node-language"
   dependencies:
@@ -4730,7 +4730,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node@4.0.2, alp-node@workspace:packages/alp-node":
+"alp-node@4.0.3, alp-node@workspace:packages/alp-node":
   version: 0.0.0-use.local
   resolution: "alp-node@workspace:packages/alp-node"
   dependencies:
@@ -4743,9 +4743,9 @@ __metadata:
     alp-listen: 5.0.0
     alp-node-config: 7.0.0
     alp-node-errors: 6.0.0
-    alp-node-language: 5.0.0
-    alp-params: 4.0.1
-    alp-translate: 6.0.0
+    alp-node-language: 5.1.0
+    alp-params: 4.1.0
+    alp-translate: 6.0.1
     alp-types: ^3.0.0
     koa: ^2.13.1
     koa-compress: ^5.0.0
@@ -4757,14 +4757,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-params@4.0.1, alp-params@workspace:packages/alp-params":
+"alp-params@4.1.0, alp-params@workspace:packages/alp-params":
   version: 0.0.0-use.local
   resolution: "alp-params@workspace:packages/alp-params"
   dependencies:
     "@babel/core": 7.16.7
     "@babel/preset-env": 7.16.8
     "@babel/runtime": ^7.16.7
-    alp-router: 5.1.0
+    alp-router: 5.1.1
     alp-types: ^3.0.0
     babel-preset-modern-browsers: 15.0.2
     object-properties: ^6.0.0
@@ -4773,7 +4773,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-react@19.0.0, alp-react@workspace:packages/alp-react":
+"alp-react@19.0.1, alp-react@workspace:packages/alp-react":
   version: 0.0.0-use.local
   resolution: "alp-react@workspace:packages/alp-react"
   dependencies:
@@ -4790,7 +4790,7 @@ __metadata:
     nightingale-logger: ^12.1.2
     pob-babel: 29.6.1
     react: 17.0.2
-    react-alp-context: 4.0.0
+    react-alp-context: 4.0.1
     react-dom: 17.0.2
     react-helmet: ^6.1.0
     typescript: 4.5.4
@@ -4800,7 +4800,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-router@5.1.0, alp-router@workspace:packages/alp-router":
+"alp-router@5.1.1, alp-router@workspace:packages/alp-router":
   version: 0.0.0-use.local
   resolution: "alp-router@workspace:packages/alp-router"
   dependencies:
@@ -4816,7 +4816,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-translate@6.0.0, alp-translate@workspace:packages/alp-translate":
+"alp-translate@6.0.1, alp-translate@workspace:packages/alp-translate":
   version: 0.0.0-use.local
   resolution: "alp-translate@workspace:packages/alp-translate"
   dependencies:
@@ -4827,7 +4827,7 @@ __metadata:
     intl-messageformat: ^9.10.0
     nightingale-logger: ^12.1.2
     pob-babel: 29.6.1
-    react-alp-context: 4.0.0
+    react-alp-context: 4.0.1
     typescript: 4.5.4
   languageName: unknown
   linkType: soft
@@ -9323,7 +9323,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ibex@8.0.0, ibex@workspace:packages/ibex":
+"ibex@8.0.1, ibex@workspace:packages/ibex":
   version: 0.0.0-use.local
   resolution: "ibex@workspace:packages/ibex"
   dependencies:
@@ -14675,8 +14675,8 @@ __metadata:
     babel-preset-modern-browsers: 15.0.2
     pob-babel: 29.6.1
     react: 17.0.2
-    react-alp-context: 4.0.0
-    react-alp-translate: 6.0.0
+    react-alp-context: 4.0.1
+    react-alp-translate: 6.0.1
     typescript: 4.5.4
     ynnub: 2.0.0
   peerDependencies:
@@ -14685,7 +14685,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-alp-context@4.0.0, react-alp-context@workspace:packages/react-alp-context":
+"react-alp-context@4.0.1, react-alp-context@workspace:packages/react-alp-context":
   version: 0.0.0-use.local
   resolution: "react-alp-context@workspace:packages/react-alp-context"
   dependencies:
@@ -14714,7 +14714,7 @@ __metadata:
     babel-preset-modern-browsers: 15.0.2
     pob-babel: 29.6.1
     react: 17.0.2
-    react-alp-context: 4.0.0
+    react-alp-context: 4.0.1
     typescript: 4.5.4
   peerDependencies:
     react: ^17.0.2
@@ -14745,7 +14745,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-alp-translate@6.0.0, react-alp-translate@workspace:packages/react-alp-translate":
+"react-alp-translate@6.0.1, react-alp-translate@workspace:packages/react-alp-translate":
   version: 0.0.0-use.local
   resolution: "react-alp-translate@workspace:packages/react-alp-translate"
   dependencies:
@@ -14757,7 +14757,7 @@ __metadata:
     babel-preset-modern-browsers: 15.0.2
     pob-babel: 29.6.1
     react: 17.0.2
-    react-alp-context: 4.0.0
+    react-alp-context: 4.0.1
     typescript: 4.5.4
   peerDependencies:
     react: ^17.0.2

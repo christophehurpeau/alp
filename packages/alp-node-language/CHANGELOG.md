@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-language@5.0.0...alp-node-language@5.1.0) (2022-01-15)
+
+
+### Features
+
+* **deps:** update dependency object-properties to v6 ([#269](https://github.com/christophehurpeau/alp/issues/269)) ([43ed680](https://github.com/christophehurpeau/alp/commit/43ed680847ae0d4f9562738f2671a5b345d3c03d))
+
+
+
+
+
 # [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-language@4.3.1...alp-node-language@5.0.0) (2022-01-02)
 
 

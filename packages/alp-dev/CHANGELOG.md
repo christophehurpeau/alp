@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1](https://github.com/christophehurpeau/alp/compare/alp-dev@16.2.0...alp-dev@16.2.1) (2022-01-15)
+
+
+### Bug Fixes
+
+* **alp-dev:** use process.argv0 instead of node to spawn build node children ([bb65a43](https://github.com/christophehurpeau/alp/commit/bb65a43100aa4cd045f8cd2c94760c2b2d268136))
+
+
+
+
+
 # [16.2.0](https://github.com/christophehurpeau/alp/compare/alp-dev@16.1.0...alp-dev@16.2.0) (2022-01-02)
 
 

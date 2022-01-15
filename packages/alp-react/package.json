@@ -1,6 +1,6 @@
 {
   "name": "alp-react",
-  "version": "19.0.0",
+  "version": "19.0.1",
   "description": "render with react in alp framework",
   "keywords": [
     "alp",
@@ -124,7 +124,7 @@
     "content-loaded": "^1.2.1",
     "modern-browsers": "^2.0.0",
     "nightingale-logger": "^12.1.2",
-    "react-alp-context": "4.0.0",
+    "react-alp-context": "4.0.1",
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
