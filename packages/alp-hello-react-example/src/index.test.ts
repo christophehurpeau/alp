@@ -1,6 +1,8 @@
 import { spawnSync } from 'child_process';
 import { createRequire } from 'module';
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { beforeAll, afterAll, test } from '@jest/globals';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import fetch from 'node-fetch';
 import type { Daemon } from 'springbokjs-daemon';
 import { createDaemon } from 'springbokjs-daemon';
@@ -12,7 +14,7 @@ describe('test hello server', () => {
     const cwd = new URL('../', import.meta.url).pathname;
     const require = createRequire(import.meta.url);
 
-    spawnSync(require.resolve('alp-dev/bin/dev-build.js'), {
+    spawnSync(process.argv0, [require.resolve('alp-dev/bin/dev-build.js')], {
       cwd,
       env: {},
       stdio: 'inherit',
