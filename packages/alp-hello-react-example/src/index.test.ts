@@ -1,3 +1,5 @@
+import { spawnSync } from 'child_process';
+import { createRequire } from 'module';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import fetch from 'node-fetch';
 import type { Daemon } from 'springbokjs-daemon';
@@ -7,16 +9,25 @@ describe('test hello server', () => {
   let daemon: Daemon;
 
   beforeAll(async () => {
+    const cwd = new URL('../', import.meta.url).pathname;
+    const require = createRequire(import.meta.url);
+
+    spawnSync(require.resolve('alp-dev/bin/dev-build.js'), {
+      cwd,
+      env: {},
+      stdio: 'inherit',
+    });
+
     daemon = createDaemon({
       command: 'node',
-      cwd: new URL('../', import.meta.url).pathname,
+      cwd,
       args: ['build/index.mjs', '--port', 5555, '--version', 'test'],
     });
     await daemon.start();
   });
 
   afterAll(async () => {
-    await daemon.stop();
+    if (daemon) await daemon.stop();
   });
 
   test('hello without name', async () => {

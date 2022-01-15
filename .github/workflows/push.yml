@@ -37,6 +37,7 @@ jobs:
 
       - name: Build
         run: yarn run build
+        if: startsWith(matrix.node-version, '16.')
 
       - name: Prettier
         run: yarn run lint:prettier
