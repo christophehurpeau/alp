@@ -3407,10 +3407,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/history@npm:*":
-  version: 4.7.3
-  resolution: "@types/history@npm:4.7.3"
-  checksum: e768adc6af27a9ca1df9e5e4f07daa723e3ac9c38b0f91cc2fc7f0216dfa9886b2ff2be7d0ccbeaaa9fbc6e92e709a8d7960fc62cb1271f95ab46be11e89c3ac
+"@types/history@npm:^4.7.11":
+  version: 4.7.11
+  resolution: "@types/history@npm:4.7.11"
+  checksum: c92e2ba407dcab0581a9afdf98f533aa41b61a71133420a6d92b1ca9839f741ab1f9395b17454ba5b88cb86020b70b22d74a1950ccfbdfd9beeaa5459fdc3464
   languageName: node
   linkType: hard
 
@@ -3752,13 +3752,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router@npm:5.1.17":
-  version: 5.1.17
-  resolution: "@types/react-router@npm:5.1.17"
+"@types/react-router@npm:5.1.18":
+  version: 5.1.18
+  resolution: "@types/react-router@npm:5.1.18"
   dependencies:
-    "@types/history": "*"
+    "@types/history": ^4.7.11
     "@types/react": "*"
-  checksum: b9d1c7b6ce073652c39712d2b02aeec7640036e369c04be2e57e4b0eb049b64ec9f34fb91cad680ab3f794e89576f77aacadb015b61eb21500a1779e5c955b86
+  checksum: f08b37ee822f9f9ff904ffd0778fe2bb7c717ed3ee311610382ee024d02a35169bd3301ecde863cac21aae8fdee919501e8ea22bad0260c02c10cfbdba5c71be
   languageName: node
   linkType: hard
 
@@ -14698,7 +14698,7 @@ __metadata:
     "@babel/preset-env": 7.16.8
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.16.7
-    "@types/react-router": 5.1.17
+    "@types/react-router": 5.1.18
     "@types/react-transition-group": 4.4.4
     babel-preset-modern-browsers: 15.0.2
     pob-babel: 29.7.0
