@@ -94,7 +94,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.16.10",
-    "@babel/preset-env": "7.16.10",
+    "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
     "antd": "4.14.1",
     "babel-preset-modern-browsers": "15.0.2",
