@@ -104,6 +104,6 @@
     "react": "17.0.2",
     "react-router": "5.2.1",
     "react-transition-group": "4.4.2",
-    "typescript": "4.5.4"
+    "typescript": "4.5.5"
   }
 }
