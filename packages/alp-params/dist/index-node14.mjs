@@ -95,14 +95,14 @@ function alpParams(app) {
     },
 
     paramGET(name) {
-      const query = this.request.query;
-      return query?.[name];
+      const searchParams = this.request.searchParams;
+      return searchParams.get(name) ?? undefined;
     },
 
     paramGETorPOST(name) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
       return this.body[name] !== undefined ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      this.body[name] : this.request.query[name];
+      this.body[name] : this.paramGET(name);
     }
 
   });

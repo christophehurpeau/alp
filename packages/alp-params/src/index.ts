@@ -36,8 +36,8 @@ export default function alpParams(app: NodeApplicationInCreation): void {
     },
 
     paramGET(this: Context, name: string): string | undefined {
-      const query = this.request.query;
-      return query?.[name] as string | undefined;
+      const searchParams = this.request.searchParams;
+      return searchParams.get(name) ?? undefined;
     },
 
     paramGETorPOST<T>(this: Context, name: string): T | undefined {
@@ -45,7 +45,7 @@ export default function alpParams(app: NodeApplicationInCreation): void {
       return this.body[name] !== undefined
         ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           this.body[name]
-        : this.request.query[name];
+        : this.paramGET(name);
     },
   });
 

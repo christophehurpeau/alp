@@ -117,13 +117,15 @@ function alpParams(app) {
       return otherParams && otherParams[position - 1];
     },
     paramGET: function paramGET(name) {
-      var query = this.request.query;
-      return query == null ? void 0 : query[name];
+      var _searchParams$get;
+
+      var searchParams = this.request.searchParams;
+      return (_searchParams$get = searchParams.get(name)) != null ? _searchParams$get : undefined;
     },
     paramGETorPOST: function paramGETorPOST(name) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
       return this.body[name] !== undefined ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      this.body[name] : this.request.query[name];
+      this.body[name] : this.paramGET(name);
     }
   });
   defineLazyProperty(app.context, 'params', function () {
