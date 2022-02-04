@@ -1,5 +1,3 @@
-/// <reference types="node" />
-import type { ParsedUrlQuery } from 'querystring';
 import type { BaseRequest as KoaBaseRequest } from 'koa';
 import type Application from '.';
 export interface BaseRequest {
@@ -8,7 +6,7 @@ export interface BaseRequest {
     readonly href: string;
     readonly path: string;
     readonly searchParams: URLSearchParams;
-    readonly query: ParsedUrlQuery;
+    readonly query: never;
     readonly querystring: string;
     readonly search: string;
     readonly host: string;

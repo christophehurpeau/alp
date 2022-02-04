@@ -1,5 +1,3 @@
-import type { ParsedUrlQuery } from 'querystring';
-import { parse as parseQueryString } from 'querystring';
 import type { BaseRequest as KoaBaseRequest } from 'koa';
 import type Application from '.';
 
@@ -9,7 +7,7 @@ export interface BaseRequest {
   readonly href: string;
   readonly path: string;
   readonly searchParams: URLSearchParams;
-  readonly query: ParsedUrlQuery;
+  readonly query: never;
   readonly querystring: string;
   readonly search: string;
   readonly host: string;
@@ -41,10 +39,8 @@ const request: BaseRequest = {
   get protocol() {
     return window.location.protocol;
   },
-  get query() {
-    return window.location.search.length === 0
-      ? {}
-      : parseQueryString(window.location.search.slice(1));
+  get query(): never {
+    throw new Error('Use searchParams instead.');
   },
   get querystring() {
     return window.location.search;

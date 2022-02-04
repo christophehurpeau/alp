@@ -2,7 +2,6 @@ import _assertThisInitialized from '@babel/runtime/helpers/esm/assertThisInitial
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import { EventEmitter } from 'events';
 import { Logger } from 'nightingale-logger';
-import { parse } from 'querystring';
 
 // TODO create lib
 function compose(middlewares) {
@@ -110,7 +109,7 @@ var request = {
   },
 
   get query() {
-    return window.location.search.length === 0 ? {} : parse(window.location.search.slice(1));
+    throw new Error('Use searchParams instead.');
   },
 
   get querystring() {
