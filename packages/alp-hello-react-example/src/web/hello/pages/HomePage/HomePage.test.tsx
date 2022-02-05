@@ -12,9 +12,13 @@ function renderWithAlpContext(
   component: ReactNode,
   query: Record<string, string> = {},
 ) {
+  const searchParams = new URLSearchParams();
+  Object.entries(query).forEach(([name, value]) => {
+    searchParams.append(name, value);
+  });
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const ctx: any = {
-    request: { query, searchParams: new URLSearchParams() },
+    request: { query, searchParams },
     t: (id: string, params: any) => `${id} ; ${JSON.stringify(params)}`,
   };
   return render(
