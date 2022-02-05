@@ -2,16 +2,14 @@
   "extends": "./tsconfig.json",
 
   "compilerOptions": {
-    "noEmit": false,
-    "emitDeclarationOnly": true,
-    "rootDirs": [],
     "rootDir": "src",
+    "noEmit": false,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
     "outDir": "dist",
     "composite": true,
-    "tsBuildInfoFile": "dist/tsbuildinfo",
-    "isolatedModules": false,
-    "declaration": true,
-    "declarationMap": true
+    "tsBuildInfoFile": "dist/tsbuildinfo"
   },
 
   "exclude": ["dist/**", "src/**/*.test.ts", "src/**/__tests__/**"],
@@ -19,6 +17,7 @@
     { "path": "../ibex/tsconfig.build.json" },
     { "path": "../alp-browser-config/tsconfig.build.json" },
     { "path": "../alp-browser-language/tsconfig.build.json" },
+    { "path": "../alp-params/tsconfig.build.json" },
     { "path": "../alp-translate/tsconfig.build.json" }
   ]
 }

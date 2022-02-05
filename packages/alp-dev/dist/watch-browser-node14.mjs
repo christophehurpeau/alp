@@ -695,20 +695,19 @@ const runDevServer = (compiler, port, proxyPort, options) => {
     },
     https: false,
 
-    onBeforeSetupMiddleware(devServer) {
-      // https://github.com/facebook/create-react-app/blob/30ee52cf3b2cbb6ac70999c02b1196bcaba8d4ca/packages/react-scripts/config/webpackDevServer.config.js#L99
-      // This lets us fetch source contents from webpack for the error overlay
-      // @ts-expect-error react-dev-tools types is not up-to-date
-      devServer.app.use(evalSourceMapMiddleware(devServer));
-    },
+    setupMiddlewares(middlewares, devServer) {
+      if (!devServer) {
+        throw new Error('webpack-dev-server is not defined');
+      }
 
-    onAfterSetupMiddleware(devServer) {
-      // This service worker file is effectively a 'no-op' that will reset any
+      return [// https://github.com/facebook/create-react-app/blob/30ee52cf3b2cbb6ac70999c02b1196bcaba8d4ca/packages/react-scripts/config/webpackDevServer.config.js#L99
+      // This lets us fetch source contents from webpack for the error overlay
+      evalSourceMapMiddleware(devServer), ...middlewares, // This service worker file is effectively a 'no-op' that will reset any
       // previous service worker registered for the same host:port combination.
       // We do this in development to avoid hitting the production cache if
       // it used the same host and port.
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
-      devServer.app.use(noopServiceWorkerMiddleware('/'));
+      noopServiceWorkerMiddleware('/')];
     },
 
     ...options

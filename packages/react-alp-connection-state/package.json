@@ -89,17 +89,17 @@
     "ynnub": "^1.0.0 || ^2.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.7",
+    "@babel/runtime": "^7.17.0",
     "alp-types": "^3.0.0",
     "react-alp-context": "4.0.1",
     "react-alp-translate": "6.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.16.12",
+    "@babel/core": "7.17.0",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
     "babel-preset-modern-browsers": "15.0.2",
-    "pob-babel": "29.7.0",
+    "pob-babel": "30.0.1",
     "react": "17.0.2",
     "typescript": "4.5.5",
     "ynnub": "2.0.0"
