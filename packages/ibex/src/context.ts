@@ -45,6 +45,5 @@ defineGetter('request', 'protocol');
 defineGetter('request', 'query');
 defineGetter('request', 'url');
 defineGetter('request', 'search');
-defineGetter('request', 'searchParams');
 
 export default proto;

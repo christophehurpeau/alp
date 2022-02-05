@@ -6,7 +6,6 @@ export interface BaseRequest {
   readonly origin: string;
   readonly href: string;
   readonly path: string;
-  readonly searchParams: URLSearchParams;
   readonly query: never;
   readonly querystring: string;
   readonly search: string;
@@ -40,17 +39,10 @@ const request: BaseRequest = {
     return window.location.protocol;
   },
   get query(): never {
-    throw new Error('Use searchParams instead.');
+    throw new Error('Use context.searchParams instead.');
   },
   get querystring() {
     return window.location.search;
-  },
-  get searchParams() {
-    return new URLSearchParams(
-      window.location.search.length === 0
-        ? window.location.search
-        : window.location.search.slice(1),
-    );
   },
   get href() {
     return window.location.href;

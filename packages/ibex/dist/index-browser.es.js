@@ -84,7 +84,6 @@ defineGetter('request', 'protocol');
 defineGetter('request', 'query');
 defineGetter('request', 'url');
 defineGetter('request', 'search');
-defineGetter('request', 'searchParams');
 var context = proto;
 
 var request = {
@@ -109,15 +108,11 @@ var request = {
   },
 
   get query() {
-    throw new Error('Use searchParams instead.');
+    throw new Error('Use context.searchParams instead.');
   },
 
   get querystring() {
     return window.location.search;
-  },
-
-  get searchParams() {
-    return new URLSearchParams(window.location.search.length === 0 ? window.location.search : window.location.search.slice(1));
   },
 
   get href() {

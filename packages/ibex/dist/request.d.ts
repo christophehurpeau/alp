@@ -5,7 +5,6 @@ export interface BaseRequest {
     readonly origin: string;
     readonly href: string;
     readonly path: string;
-    readonly searchParams: URLSearchParams;
     readonly query: never;
     readonly querystring: string;
     readonly search: string;
