@@ -13,7 +13,7 @@ export interface NodeConfig extends Config {
   readonly packageConfig: PackageConfig;
 }
 
-interface ContextRequest {
+export interface ContextRequest {
   headers: Record<string, string>;
   origin: string;
   href: string;

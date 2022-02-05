@@ -1,9 +1,9 @@
 /// <reference types="node" />
 import type { IncomingMessage, Server, ServerResponse } from 'http';
 import type { Config } from 'alp-node-config';
-import type { NodeApplication, NodeConfig, Context as AlpContext, ContextState } from 'alp-types';
+import type { NodeApplication, NodeConfig, Context as AlpContext, ContextState, ContextRequest } from 'alp-types';
 import Koa from 'koa';
-import type { ParameterizedContext, DefaultState } from 'koa';
+import type { ParameterizedContext, DefaultState, BaseRequest } from 'koa';
 export interface AlpNodeAppOptions {
     appDirname: string;
     packageDirname: string;
@@ -18,12 +18,15 @@ declare module 'koa' {
     }
     interface BaseContext extends AlpContext {
     }
+    interface BaseRequest extends ContextRequest {
+    }
 }
 export declare class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     dirname: string;
     certPath: string;
     publicPath: string;
     config: NodeConfig & Config;
+    request: BaseRequest & ContextRequest;
     _server?: Server;
     /**
      * @param {Object} [options]

@@ -91,6 +91,7 @@
   },
   "dependencies": {
     "@types/koa": "^2.13.1",
+    "@types/node": "^16.0.0",
     "@types/node-fetch": "^2.5.8",
     "alp-listen": "5.0.0",
     "alp-node-config": "7.0.0",
