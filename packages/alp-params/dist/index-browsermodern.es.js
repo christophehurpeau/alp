@@ -108,6 +108,9 @@ function alpParams(app) {
     }
 
   });
+  defineLazyProperty(app.request, 'searchParams', function () {
+    return new URLSearchParams(this.search);
+  });
   defineLazyProperty(app.context, 'params', function () {
     return new ParamValidator(this);
   });

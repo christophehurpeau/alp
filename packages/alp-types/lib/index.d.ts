@@ -60,6 +60,7 @@ export type Middleware = (context: Context, next: () => Promise<any>) => any;
 export interface ApplicationInCreation {
   config?: Config;
   context: BaseContext;
+  request: ContextRequest;
 }
 
 export interface Application extends ApplicationInCreation {

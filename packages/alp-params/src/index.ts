@@ -50,6 +50,14 @@ export default function alpParams(app: NodeApplicationInCreation): void {
   });
 
   defineLazyProperty(
+    app.request,
+    'searchParams',
+    function (this: Context['request']): URLSearchParams {
+      return new URLSearchParams(this.search);
+    },
+  );
+
+  defineLazyProperty(
     app.context,
     'params',
     function (this: Context): ParamValidator {
