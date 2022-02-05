@@ -16,6 +16,7 @@ module.exports = function babelConfig(api) {
           useBuiltIns: true,
         },
       ],
+      ['@linaria/babel-preset'],
     ],
   };
 };

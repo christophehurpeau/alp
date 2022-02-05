@@ -34,7 +34,7 @@ describe('HelloComponent', () => {
     const { getByTestId } = renderWithAlpContext(<HomePage />);
     expect(getByTestId('hello-text')).toMatchInlineSnapshot(`
       <span
-        class="hello"
+        class="h199brc1"
         data-testid="hello-text"
       >
         Hello {name}! ; {"name":"World"}
@@ -48,7 +48,7 @@ describe('HelloComponent', () => {
     });
     expect(getByTestId('hello-text')).toMatchInlineSnapshot(`
       <span
-        class="hello"
+        class="h199brc1"
         data-testid="hello-text"
       >
         Hello {name}! ; {"name":"John"}
@@ -61,7 +61,7 @@ describe('HelloComponent', () => {
     });
     expect(getByTestId('hello-text')).toMatchInlineSnapshot(`
       <span
-        class="hello"
+        class="h199brc1"
         data-testid="hello-text"
       >
         Hello {name}! ; {"name":"Jane"}

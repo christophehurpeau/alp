@@ -1,10 +1,16 @@
+import { styled } from '@linaria/react';
 import type {
   ChangeEventHandler,
   KeyboardEventHandler,
   ReactElement,
 } from 'react';
 import React, { useState } from 'react';
-import s from './InputNameComponent.scss';
+
+const Input = styled.input`
+  width: 100%;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+`;
 
 interface InputNameComponentProps {
   value: undefined | string;
@@ -27,11 +33,10 @@ export default function InputNameComponent({
   };
 
   return (
-    <input
+    <Input
       data-testid="input-name"
       type="text"
       autoComplete="off"
-      className={s.input}
       value={value}
       onChange={handleChange}
       onKeyUp={handleKeyUp}

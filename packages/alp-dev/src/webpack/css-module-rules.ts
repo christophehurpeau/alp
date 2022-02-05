@@ -1,27 +1,13 @@
-/* eslint-disable max-lines, complexity */
-import path from 'path';
 import type { RuleSetUseItem, RuleSetRule } from 'webpack';
 
 type Target = 'node' | 'modern-browser' | 'browser';
 
-export interface CreateCssModuleUseOptions {
+export interface CreateCssUseOptions {
   target: Target;
   extractLoader: RuleSetUseItem;
-  global?: boolean;
   plugins: any[];
   production: boolean;
   otherLoaders?: RuleSetUseItem[];
-}
-
-export interface CreateScssModuleUseOptions {
-  target: Target;
-  extractLoader: RuleSetUseItem;
-  global?: boolean;
-  plugins: any[];
-  production: boolean;
-  themeFile?: string;
-  otherLoaders?: RuleSetUseItem[];
-  includePaths?: string[];
 }
 
 export interface CreateModuleRulesOptions {
@@ -29,8 +15,6 @@ export interface CreateModuleRulesOptions {
   extractLoader: RuleSetUseItem;
   plugins: any[];
   production: boolean;
-  themeFile?: string;
-  includePaths?: string[];
 }
 
 export interface StylesCacheGroups {
@@ -40,13 +24,7 @@ export interface StylesCacheGroups {
   enforce: true;
 }
 
-type CreateCssModuleUseFn = (
-  options: CreateCssModuleUseOptions,
-) => RuleSetUseItem[];
-type CreateScssModuleUseFn = (
-  options: CreateScssModuleUseOptions,
-) => RuleSetUseItem[];
-type CreateModuleRulesFn = (options: CreateModuleRulesOptions) => RuleSetRule[];
+type CreateCssModuleUseFn = (options: CreateCssUseOptions) => RuleSetUseItem[];
 
 const ExcludesFalsy = Boolean as any as <T>(
   x: T | false | null | undefined,
@@ -57,7 +35,6 @@ const resolveLoader = (loader: string): string => resolveDependency(loader);
 
 const cssLoaderOptions = function (
   importLoaders: number,
-  global: boolean,
   production: boolean,
   targetIsNode: boolean,
 ): any {
@@ -75,36 +52,24 @@ const cssLoaderOptions = function (
   };
 };
 
-export const createCssModuleUse: CreateCssModuleUseFn = function ({
+export const createCssUse: CreateCssModuleUseFn = function ({
   target,
   extractLoader,
-  global = false,
   plugins,
   production,
   otherLoaders = [],
 }) {
-  if (global && target === 'node') {
+  if (target === 'node') {
     return [{ loader: resolveLoader('ignore-loader') }];
   }
 
   return [
-    target !== 'node' && extractLoader,
+    extractLoader,
     {
       loader: resolveLoader('css-loader'),
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      options: cssLoaderOptions(
-        otherLoaders.length + 1 + (!global && !production ? 1 : 0),
-        global,
-        production,
-        target === 'node',
-      ),
+      options: cssLoaderOptions(otherLoaders.length + 1, production, false),
     },
-    !global &&
-      !production &&
-      target !== 'node' && {
-        loader: resolveLoader('typed-css-modules-loader'),
-        options: { noEmit: true },
-      },
     {
       loader: resolveLoader('postcss-loader'),
       options: {
@@ -119,104 +84,21 @@ export const createCssModuleUse: CreateCssModuleUseFn = function ({
   ].filter(ExcludesFalsy);
 };
 
-const createScssModuleUse: CreateScssModuleUseFn = function ({
-  target,
-  extractLoader,
-  global = false,
-  plugins,
-  production,
-  themeFile,
-  includePaths = [],
-}) {
-  return createCssModuleUse({
-    target,
-    extractLoader,
-    global,
-    plugins,
-    production,
-    otherLoaders: [
-      {
-        loader: resolveLoader('sass-loader'),
-        options: {
-          sourceMap: !production,
-          additionalData: `$env: ${process.env.NODE_ENV!};${
-            themeFile ? `@import '${path.resolve(themeFile)}';` : ''
-          }`,
-          sassOptions: {
-            outputStyle: production ? undefined : 'compressed',
-            includePaths,
-          },
-        },
-      },
-    ],
-  });
-};
-
-const createCssModuleRule = function (
-  options: CreateCssModuleUseOptions,
+export const createCssRule = function (
+  options: CreateCssUseOptions,
 ): RuleSetRule {
   return {
     test: /\.css$/,
     sideEffects: true,
-    use: createCssModuleUse(options),
+    use: createCssUse(options),
   };
 };
 
-const fileExtensions = ['css', 'scss'];
+const fileExtensions = ['css'];
 
 export const stylesCacheGroups = {
   name: 'styles',
   test: new RegExp(`\\.+(${[...fileExtensions].join('|')})$`),
   chunks: 'all',
   enforce: true,
-};
-
-export const createModuleRules: CreateModuleRulesFn = function ({
-  target,
-  extractLoader,
-  plugins,
-  production,
-  themeFile,
-  includePaths,
-}) {
-  return [
-    {
-      test: /\.scss$/,
-      oneOf: [
-        {
-          test: /\.global\.scss$/,
-          sideEffects: true,
-          use: createScssModuleUse({
-            target,
-            extractLoader,
-            global: true,
-            plugins,
-            production,
-            themeFile,
-            includePaths,
-          }),
-        },
-        {
-          sideEffects: true,
-          use: createScssModuleUse({
-            target,
-            extractLoader,
-            global: false,
-            plugins,
-            production,
-            themeFile,
-            includePaths,
-          }),
-        },
-      ],
-    },
-
-    createCssModuleRule({
-      target,
-      extractLoader,
-      global: false,
-      plugins,
-      production,
-    }),
-  ];
 };

@@ -1,8 +1,18 @@
+import { styled } from '@linaria/react';
 import React from 'react';
 import type { ReactElement } from 'react';
 import { T } from 'react-alp-translate';
-import s from './HelloComponent.scss';
 import InputName from './InputNameComponent';
+
+const Container = styled.div`
+  margin: 0 auto;
+  width: 60%;
+  padding-top: 10%;
+`;
+
+const Hello = styled.span`
+  font-size: 32px;
+`;
 
 interface HelloComponentProps {
   name: undefined | string;
@@ -14,11 +24,11 @@ export default function HelloComponent({
   onChangeName,
 }: HelloComponentProps): ReactElement {
   return (
-    <div className={s.container}>
-      <span className={s.hello} data-testid="hello-text">
+    <Container>
+      <Hello data-testid="hello-text">
         <T id="Hello {name}!" name={name || 'World'} />
-      </span>
+      </Hello>
       <InputName value={name} onChange={onChangeName} />
-    </div>
+    </Container>
   );
 }

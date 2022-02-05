@@ -25,6 +25,7 @@ export default function createModuleConfig(
               ...options.babel,
             },
           },
+          ...(options.jsModuleRules || []),
         ],
       },
 

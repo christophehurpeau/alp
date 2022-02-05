@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
 import type { Options } from '../pobpack/types';
-import { createModuleRules, createCssModuleUse } from './css-module-rules';
+import { createCssRule, createCssUse } from './css-module-rules';
 
 const resolveDependency = (dependency: string): string => dependency; // TODO require.resolve(path)
 
@@ -23,6 +23,7 @@ export default function createPobpackConfig(
   production = false,
 ): Partial<Options> {
   const pkg = JSON.parse(
+    // eslint-disable-next-line unicorn/prefer-json-parse-buffer
     fs.readFileSync(path.resolve('package.json'), 'utf-8'),
   );
   const deps = pkg.dependencies || {};
@@ -98,9 +99,10 @@ export default function createPobpackConfig(
             modules: false,
           },
         ],
+        // linaria support
+        [resolveDependency('@linaria/babel-preset'), {}],
       ],
       plugins: [
-        resolveDependency('babel-plugin-inline-classnames-babel7'),
         hasAntd && [
           resolveDependency('babel-plugin-import'),
           {
@@ -112,29 +114,43 @@ export default function createPobpackConfig(
       ].filter(ExcludesFalsy),
     },
 
+    jsModuleRules: [
+      {
+        loader: resolveDependency('@linaria/webpack5-loader'),
+        options: {
+          sourceMap: !production,
+          babelOptions: {
+            presets: ['@babel/preset-typescript'],
+          },
+        },
+      },
+    ],
+
     moduleRules: [
-      // SCSS RULE, CSS RULE
-      ...createModuleRules({
+      // CSS RULE
+      createCssRule({
         target,
         extractLoader: {
           loader: MiniCssExtractPlugin.loader,
-          options: { esModule: true },
+          options: {
+            emit: target !== 'node',
+          },
         },
         production,
-        themeFile: './src/theme.scss',
         plugins: [autoprefixer],
-        includePaths: [path.resolve('./node_modules')],
       }),
 
       // LESS RULE (antd)
       {
         test: /\.less$/,
-        use: createCssModuleUse({
-          global: true,
+        use: createCssUse({
           target,
           extractLoader: {
             loader: MiniCssExtractPlugin.loader,
-            options: { publicPath: '../..' },
+            options: {
+              emit: target !== 'node',
+              publicPath: '../..',
+            },
           },
           production,
           plugins: [autoprefixer],
@@ -190,7 +206,7 @@ export default function createPobpackConfig(
             : 'modern-browsers'
         }.css`, // [name].[contenthash:8].css
         chunkFilename: 'css/[name].[contenthash:8].chunk.css',
-        runtime: target !== 'node',
+        runtime: false, // target !== 'node',
       }),
 
       process.send &&

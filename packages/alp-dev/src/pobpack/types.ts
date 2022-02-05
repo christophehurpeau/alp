@@ -1,5 +1,11 @@
 import type { TransformOptions } from '@babel/core';
-import type { Compiler, Configuration, Stats, Watching } from 'webpack';
+import type {
+  Compiler,
+  Configuration,
+  RuleSetRule,
+  Stats,
+  Watching,
+} from 'webpack';
 
 export interface ConfigPaths {
   build?: string;
@@ -24,6 +30,7 @@ export interface Options {
   hmr?: boolean;
   allowlistExternalExtensions: string[];
   includePaths: string[];
+  jsModuleRules?: RuleSetRule[];
   moduleRules?: NonNullable<Configuration['module']>['rules'];
   paths: ConfigPaths;
   plugins: (

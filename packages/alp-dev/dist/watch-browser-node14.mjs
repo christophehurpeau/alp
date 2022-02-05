@@ -34,6 +34,7 @@ function createOptions(options) {
     allowlistExternalExtensions: options.allowlistExternalExtensions || [],
     includePaths: options.includePaths || [],
     moduleRules: options.moduleRules,
+    jsModuleRules: options.jsModuleRules,
     paths: {
       src: 'src',
       build: 'build',
@@ -216,7 +217,7 @@ function createModuleConfig(options) {
           cacheDirectory: true,
           ...options.babel
         }
-      }]
+      }, ...(options.jsModuleRules || [])]
     }, // other rules
     ...(options.moduleRules || [])]
   };
@@ -384,7 +385,6 @@ const createAppBrowserCompiler = (target, options, compilerOptions) => createPob
   }
 }), compilerOptions);
 
-/* eslint-disable max-lines, complexity */
 const ExcludesFalsy$1 = Boolean;
 
 const resolveDependency$1 = dependency => dependency; // TODO require.resolve(path)
@@ -392,7 +392,7 @@ const resolveDependency$1 = dependency => dependency; // TODO require.resolve(pa
 
 const resolveLoader = loader => resolveDependency$1(loader);
 
-const cssLoaderOptions = function (importLoaders, global, production, targetIsNode) {
+const cssLoaderOptions = function (importLoaders, production, targetIsNode) {
   return {
     sourceMap: !production,
     modules: global ? false : {
@@ -403,29 +403,23 @@ const cssLoaderOptions = function (importLoaders, global, production, targetIsNo
   };
 };
 
-const createCssModuleUse = function ({
+const createCssUse = function ({
   target,
   extractLoader,
-  global = false,
   plugins,
   production,
   otherLoaders = []
 }) {
-  if (global && target === 'node') {
+  if (target === 'node') {
     return [{
       loader: resolveLoader('ignore-loader')
     }];
   }
 
-  return [target !== 'node' && extractLoader, {
+  return [extractLoader, {
     loader: resolveLoader('css-loader'),
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    options: cssLoaderOptions(otherLoaders.length + 1 + (!global && !production ? 1 : 0), global, production, target === 'node')
-  }, !global && !production && target !== 'node' && {
-    loader: resolveLoader('typed-css-modules-loader'),
-    options: {
-      noEmit: true
-    }
+    options: cssLoaderOptions(otherLoaders.length + 1, production, false)
   }, {
     loader: resolveLoader('postcss-loader'),
     options: {
@@ -437,84 +431,12 @@ const createCssModuleUse = function ({
     }
   }, ...otherLoaders].filter(ExcludesFalsy$1);
 };
-
-const createScssModuleUse = function ({
-  target,
-  extractLoader,
-  global = false,
-  plugins,
-  production,
-  themeFile,
-  includePaths = []
-}) {
-  return createCssModuleUse({
-    target,
-    extractLoader,
-    global,
-    plugins,
-    production,
-    otherLoaders: [{
-      loader: resolveLoader('sass-loader'),
-      options: {
-        sourceMap: !production,
-        additionalData: `$env: ${process.env.NODE_ENV};${themeFile ? `@import '${path.resolve(themeFile)}';` : ''}`,
-        sassOptions: {
-          outputStyle: production ? undefined : 'compressed',
-          includePaths
-        }
-      }
-    }]
-  });
-};
-
-const createCssModuleRule = function (options) {
+const createCssRule = function (options) {
   return {
     test: /\.css$/,
     sideEffects: true,
-    use: createCssModuleUse(options)
+    use: createCssUse(options)
   };
-};
-const createModuleRules = function ({
-  target,
-  extractLoader,
-  plugins,
-  production,
-  themeFile,
-  includePaths
-}) {
-  return [{
-    test: /\.scss$/,
-    oneOf: [{
-      test: /\.global\.scss$/,
-      sideEffects: true,
-      use: createScssModuleUse({
-        target,
-        extractLoader,
-        global: true,
-        plugins,
-        production,
-        themeFile,
-        includePaths
-      })
-    }, {
-      sideEffects: true,
-      use: createScssModuleUse({
-        target,
-        extractLoader,
-        global: false,
-        plugins,
-        production,
-        themeFile,
-        includePaths
-      })
-    }]
-  }, createCssModuleRule({
-    target,
-    extractLoader,
-    global: false,
-    plugins,
-    production
-  })];
 };
 
 /* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, complexity, max-lines */
@@ -525,7 +447,8 @@ const resolveDependency = dependency => dependency; // TODO require.resolve(path
 
 const ExcludesFalsy = Boolean;
 function createPobpackConfig(target, production = false) {
-  const pkg = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf-8'));
+  const pkg = JSON.parse( // eslint-disable-next-line unicorn/prefer-json-parse-buffer
+  fs.readFileSync(path.resolve('package.json'), 'utf-8'));
   const deps = pkg.dependencies || {};
   const devdeps = pkg.devDependencies || {};
   const hasAntd = !!deps.antd;
@@ -566,35 +489,43 @@ function createPobpackConfig(target, production = false) {
         version: target === 'node' ? '14' : target === 'modern-browser' ? 'modern' : undefined,
         loose: true,
         modules: false
-      }]],
-      plugins: [resolveDependency('babel-plugin-inline-classnames-babel7'), hasAntd && [resolveDependency('babel-plugin-import'), {
+      }], // linaria support
+      [resolveDependency('@linaria/babel-preset'), {}]],
+      plugins: [hasAntd && [resolveDependency('babel-plugin-import'), {
         libraryName: 'antd',
         libraryDirectory: target === 'node' ? 'lib' : 'es',
         style: target !== 'node'
       }]].filter(ExcludesFalsy)
     },
-    moduleRules: [// SCSS RULE, CSS RULE
-    ...createModuleRules({
+    jsModuleRules: [{
+      loader: resolveDependency('@linaria/webpack5-loader'),
+      options: {
+        sourceMap: !production,
+        babelOptions: {
+          presets: ['@babel/preset-typescript']
+        }
+      }
+    }],
+    moduleRules: [// CSS RULE
+    createCssRule({
       target,
       extractLoader: {
         loader: MiniCssExtractPlugin.loader,
         options: {
-          esModule: true
+          emit: target !== 'node'
         }
       },
       production,
-      themeFile: './src/theme.scss',
-      plugins: [autoprefixer],
-      includePaths: [path.resolve('./node_modules')]
+      plugins: [autoprefixer]
     }), // LESS RULE (antd)
     {
       test: /\.less$/,
-      use: createCssModuleUse({
-        global: true,
+      use: createCssUse({
         target,
         extractLoader: {
           loader: MiniCssExtractPlugin.loader,
           options: {
+            emit: target !== 'node',
             publicPath: '../..'
           }
         },
@@ -639,7 +570,8 @@ function createPobpackConfig(target, production = false) {
       filename: `${target === 'node' ? 'server' : target === 'browser' ? 'es5' : 'modern-browsers'}.css`,
       // [name].[contenthash:8].css
       chunkFilename: 'css/[name].[contenthash:8].chunk.css',
-      runtime: target !== 'node'
+      runtime: false // target !== 'node',
+
     }), process.send && new webpack.ProgressPlugin((percentage, message) => {
       process.send({
         type: 'webpack-progress',

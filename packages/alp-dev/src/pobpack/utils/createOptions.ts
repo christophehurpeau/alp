@@ -16,6 +16,7 @@ export default function createOptions(options: Partial<Options>): Options {
     allowlistExternalExtensions: options.allowlistExternalExtensions || [],
     includePaths: options.includePaths || [],
     moduleRules: options.moduleRules,
+    jsModuleRules: options.jsModuleRules,
     paths: { src: 'src', build: 'build', ...options.paths },
     plugins: options.plugins || [],
     prependPlugins: options.prependPlugins || [],
