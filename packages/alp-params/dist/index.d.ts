@@ -1,4 +1,4 @@
-import type { NodeApplicationInCreation } from 'alp-types';
+import type { ApplicationInCreation } from 'alp-types';
 import 'alp-router';
 import { ParamValidator } from './ParamValidator';
 export { ParamValidator } from './ParamValidator';
@@ -13,5 +13,5 @@ declare module 'alp-types' {
         paramGETorPOST: <T>(name: string) => T | undefined;
     }
 }
-export default function alpParams(app: NodeApplicationInCreation): void;
+export default function alpParams(app: ApplicationInCreation): void;
 //# sourceMappingURL=index.d.ts.map

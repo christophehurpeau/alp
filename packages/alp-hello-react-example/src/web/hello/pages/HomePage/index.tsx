@@ -17,10 +17,7 @@ function HelloWorld(): ReactElement {
 export default function HomePage(): ReactElement {
   const ctx = useContext(ReactAlpContext);
   const [name, setName] = useState((): string | undefined => {
-    if (ctx.request.query.name) {
-      return ctx.request.query.name as string | undefined;
-    }
-    return '';
+    return ctx.request.searchParams.get('name') ?? '';
   });
   logger.info('render', { name });
 

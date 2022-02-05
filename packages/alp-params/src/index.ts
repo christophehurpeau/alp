@@ -1,4 +1,4 @@
-import type { Context, NodeApplicationInCreation } from 'alp-types';
+import type { Context, ApplicationInCreation } from 'alp-types';
 import 'alp-router';
 import { defineLazyProperty } from 'object-properties';
 import { ParamValidator } from './ParamValidator';
@@ -19,7 +19,7 @@ declare module 'alp-types' {
   }
 }
 
-export default function alpParams(app: NodeApplicationInCreation): void {
+export default function alpParams(app: ApplicationInCreation): void {
   Object.assign(app.context, {
     param(this: Context, name: string): string | undefined {
       return this.namedParam(name) || this.paramGET(name);

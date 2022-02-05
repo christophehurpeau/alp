@@ -1,6 +1,7 @@
 import 'pob-babel';
 import config, { getConfig, existsConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
+import params from 'alp-params';
 // eslint-disable-next-line import/no-unresolved
 import translate from 'alp-translate/browser';
 import type {
@@ -11,6 +12,7 @@ import type {
   Config,
   ContextState,
   RawConfig,
+  ContextRequest,
 } from 'alp-types';
 import Ibex from 'ibex';
 import { Logger } from 'nightingale-logger';
@@ -32,6 +34,8 @@ interface Options {
 declare module 'ibex' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface BaseContext extends AlpBaseContext {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface BaseRequest extends ContextRequest {}
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultState extends ContextState {}
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -63,6 +67,7 @@ export default class AlpBrowser
     );
     this.context.config = configInstance;
 
+    params(this);
     language(this);
     await translate('/locales')(this);
 

@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "alp-node-config": "7.0.0",
-    "nightingale-logger": "^12.1.2"
+    "nightingale-logger": "^12.1.4"
   },
   "devDependencies": {
     "@babel/core": "7.16.12",

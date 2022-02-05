@@ -18,9 +18,14 @@ export interface DefaultState {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DefaultSanitizedState {}
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface BaseRequest extends Request {}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface BaseResponse extends Response {}
+
 export interface Context extends BaseContext {
-  request: Request;
-  response: Response;
+  request: BaseRequest;
+  response: BaseResponse;
   req: never;
   res: never;
   originalUrl: string;
@@ -63,6 +68,10 @@ export default class Application extends EventEmitter {
 
   context: BaseContext = Object.create(context) as BaseContext;
 
+  request: BaseRequest = Object.create(request) as BaseRequest;
+
+  response: BaseResponse = Object.create(response) as BaseResponse;
+
   callback?: Composed<Context>;
 
   constructor() {
@@ -95,8 +104,8 @@ export default class Application extends EventEmitter {
 
   createContext(): Context {
     const ctx: Context = Object.create(this.context) as Context;
-    ctx.request = Object.create(request) as Request;
-    ctx.response = Object.create(response) as Response;
+    ctx.request = Object.create(this.request) as Request;
+    ctx.response = Object.create(this.response) as Response;
     Object.assign(ctx.request, { app: this });
     Object.assign(ctx.response, { app: this });
     ctx.state = {};

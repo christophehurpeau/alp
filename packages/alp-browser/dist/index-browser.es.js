@@ -3,6 +3,7 @@ import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import config, { existsConfig, getConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
+import params from 'alp-params';
 import translate from 'alp-translate/browser';
 import Ibex from 'ibex';
 import { Logger } from 'nightingale-logger';
@@ -45,14 +46,15 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
             case 2:
               configInstance = _context.sent;
               this.context.config = configInstance;
+              params(this);
               language(this);
-              _context.next = 7;
+              _context.next = 8;
               return translate('/locales')(this);
 
-            case 7:
+            case 8:
               return _context.abrupt("return", this);
 
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }

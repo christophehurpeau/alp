@@ -187,6 +187,8 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
 
     _this.middleware = [];
     _this.context = Object.create(context);
+    _this.request = Object.create(request$1);
+    _this.response = Object.create(response$1);
     _this.context.app = _assertThisInitialized(_this);
     return _this;
   }
@@ -220,8 +222,8 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
 
   _proto.createContext = function createContext() {
     var ctx = Object.create(this.context);
-    ctx.request = Object.create(request$1);
-    ctx.response = Object.create(response$1);
+    ctx.request = Object.create(this.request);
+    ctx.response = Object.create(this.response);
     Object.assign(ctx.request, {
       app: this
     });

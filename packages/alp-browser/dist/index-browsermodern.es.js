@@ -1,5 +1,6 @@
 import config, { existsConfig, getConfig } from 'alp-browser-config';
 import language from 'alp-browser-language';
+import params from 'alp-params';
 import translate from 'alp-translate/browser';
 import Ibex from 'ibex';
 import { Logger } from 'nightingale-logger';
@@ -18,6 +19,7 @@ class AlpBrowser extends Ibex {
   async init() {
     const configInstance = await config(this, !(process.env.NODE_ENV !== "production") ? `/${this.appVersion}${configPath}` : configPath);
     this.context.config = configInstance;
+    params(this);
     language(this);
     await translate('/locales')(this);
     return this;

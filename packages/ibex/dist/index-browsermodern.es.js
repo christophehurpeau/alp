@@ -179,6 +179,8 @@ function respond(ctx) {
 class Application extends EventEmitter {
   middleware = [];
   context = Object.create(context);
+  request = Object.create(request$1);
+  response = Object.create(response$1);
 
   constructor() {
     super();
@@ -212,8 +214,8 @@ class Application extends EventEmitter {
 
   createContext() {
     const ctx = Object.create(this.context);
-    ctx.request = Object.create(request$1);
-    ctx.response = Object.create(response$1);
+    ctx.request = Object.create(this.request);
+    ctx.response = Object.create(this.response);
     Object.assign(ctx.request, {
       app: this
     });

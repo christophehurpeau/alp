@@ -12,9 +12,13 @@ export interface DefaultState {
 }
 export interface DefaultSanitizedState {
 }
+export interface BaseRequest extends Request {
+}
+export interface BaseResponse extends Response {
+}
 export interface Context extends BaseContext {
-    request: Request;
-    response: Response;
+    request: BaseRequest;
+    response: BaseResponse;
     req: never;
     res: never;
     originalUrl: string;
@@ -27,6 +31,8 @@ export declare type Middleware = ComposeMiddleware<Context>;
 export default class Application extends EventEmitter {
     middleware: Middleware[];
     context: BaseContext;
+    request: BaseRequest;
+    response: BaseResponse;
     callback?: Composed<Context>;
     constructor();
     use(fn: Middleware): this;

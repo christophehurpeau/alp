@@ -103,7 +103,7 @@
     "koa": "^2.13.1",
     "koa-compress": "^5.0.0",
     "koa-static": "^5.0.0",
-    "nightingale-logger": "^12.1.2",
+    "nightingale-logger": "^12.1.4",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {

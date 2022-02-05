@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "alp-types": "^3.0.0",
-    "nightingale-logger": "^12.1.2",
+    "nightingale-logger": "^12.1.4",
     "semver": "^7.3.5"
   },
   "devDependencies": {
