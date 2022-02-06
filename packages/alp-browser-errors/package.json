@@ -12,6 +12,9 @@
   },
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
+  "engines": {
+    "node": "^14.13.1 || >=16.0.0"
+  },
   "browserslist": [
     "defaults",
     "> 0.2%",
