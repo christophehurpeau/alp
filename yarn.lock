@@ -4703,7 +4703,7 @@ __metadata:
     "@types/terser-webpack-plugin": 5.2.0
     "@types/webpack-node-externals": 2.5.3
     "@types/workbox-webpack-plugin": 5.1.8
-    autoprefixer: ^9.7.3
+    autoprefixer: ^10.0.0
     babel-loader: ^8.2.3
     babel-plugin-discard-module-references: ^1.1.2
     babel-plugin-import: ^1.13.3
@@ -5381,20 +5381,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^9.7.3":
-  version: 9.7.3
-  resolution: "autoprefixer@npm:9.7.3"
+"autoprefixer@npm:^10.0.0":
+  version: 10.4.2
+  resolution: "autoprefixer@npm:10.4.2"
   dependencies:
-    browserslist: ^4.8.0
-    caniuse-lite: ^1.0.30001012
-    chalk: ^2.4.2
+    browserslist: ^4.19.1
+    caniuse-lite: ^1.0.30001297
+    fraction.js: ^4.1.2
     normalize-range: ^0.1.2
-    num2fraction: ^1.2.2
-    postcss: ^7.0.23
-    postcss-value-parser: ^4.0.2
+    picocolors: ^1.0.0
+    postcss-value-parser: ^4.2.0
+  peerDependencies:
+    postcss: ^8.1.0
   bin:
-    autoprefixer: ./bin/autoprefixer
-  checksum: 9e977654e7d144bc3fc4638990ec8442e7a9eb3042de0f6e815863b6c28e989b779f3fcbb0f4e13505ab21da360833767c8bc8ba3c84660582e9cb29590a2554
+    autoprefixer: bin/autoprefixer
+  checksum: dbd13e641eaa7d7e3121769c22cc439222f1a9d0371a583d12300849de7287ece1e793767ff9902842dbfd56c4b7c19ed9fe1947c9f343ba2f4f3519dbddfdef
   languageName: node
   linkType: hard
 
@@ -5886,7 +5887,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.0.0, browserslist@npm:^4.14.5, browserslist@npm:^4.16.0, browserslist@npm:^4.16.6, browserslist@npm:^4.17.5, browserslist@npm:^4.18.1, browserslist@npm:^4.19.1, browserslist@npm:^4.8.0":
+"browserslist@npm:^4.0.0, browserslist@npm:^4.14.5, browserslist@npm:^4.16.0, browserslist@npm:^4.16.6, browserslist@npm:^4.17.5, browserslist@npm:^4.18.1, browserslist@npm:^4.19.1":
   version: 4.19.1
   resolution: "browserslist@npm:4.19.1"
   dependencies:
@@ -6112,10 +6113,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001012, caniuse-lite@npm:^1.0.30001286":
-  version: 1.0.30001291
-  resolution: "caniuse-lite@npm:1.0.30001291"
-  checksum: ae24be79227036564ccd2ab8a0be8793a2e650941607a9f3e68a967db08d90cf17ded0382c2ce87063051b7200e618ec83bdb12f423ed60665922dc4d8eb8f78
+"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001286, caniuse-lite@npm:^1.0.30001297":
+  version: 1.0.30001307
+  resolution: "caniuse-lite@npm:1.0.30001307"
+  checksum: e592d537277e5d453670207ac672ea3df5207c686cbea708427500f4d51d08d295d734e0db852e4aae749e7c6119d01aea21b5666922ab0eaf7a648df6fcc327
   languageName: node
   linkType: hard
 
@@ -8649,6 +8650,13 @@ __metadata:
   version: 0.1.2
   resolution: "forwarded@npm:0.1.2"
   checksum: 54695c574292f9bc6bfa52111844337bc2e61cfcc5ec82f16b816d721a67a0c76b4849a34b57e38e51d64ddbb81aef974f393579f610ed1b990470e75abad2e0
+  languageName: node
+  linkType: hard
+
+"fraction.js@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "fraction.js@npm:4.1.2"
+  checksum: a67eff2b599cb6546b77ce9c913bd0cccd646e1a525c793ba4e0bf5a399fc403f379227fca83423a6ea79d01e35c2f2b0f141ffa1d09e41377041268a53fb150
   languageName: node
   linkType: hard
 
@@ -12777,13 +12785,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"num2fraction@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "num2fraction@npm:1.2.2"
-  checksum: 1da9c6797b505d3f5b17c7f694c4fa31565bdd5c0e5d669553253aed848a580804cd285280e8a73148bd9628839267daee4967f24b53d4e893e44b563e412635
-  languageName: node
-  linkType: hard
-
 "number-is-nan@npm:^1.0.0":
   version: 1.0.1
   resolution: "number-is-nan@npm:1.0.1"
@@ -13934,7 +13935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:5 - 7, postcss@npm:7.x.x, postcss@npm:^7.0.23":
+"postcss@npm:5 - 7, postcss@npm:7.x.x":
   version: 7.0.39
   resolution: "postcss@npm:7.0.39"
   dependencies:
