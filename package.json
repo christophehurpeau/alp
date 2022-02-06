@@ -56,11 +56,12 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "7.17.0",
     "@linaria/babel-preset": "3.0.0-beta.15",
     "@pob/commitlint-config": "4.1.0",
-    "@pob/eslint-config": "48.1.0",
-    "@pob/eslint-config-typescript": "48.1.0",
-    "@pob/eslint-config-typescript-react": "48.1.0",
+    "@pob/eslint-config": "48.1.1",
+    "@pob/eslint-config-typescript": "48.1.1",
+    "@pob/eslint-config-typescript-react": "48.1.1",
     "@pob/lerna-light": "5.1.0",
     "@pob/root": "6.6.1",
     "@types/jest": "27.4.0",
