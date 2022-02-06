@@ -96,7 +96,7 @@ var AlpBrowser = /*#__PURE__*/function (_Ibex) {
     try {
       fn().then(function () {
         logger.success('started');
-      }).catch(function (err) {
+      })["catch"](function (err) {
         logger.error('start fail', {
           err: err
         });

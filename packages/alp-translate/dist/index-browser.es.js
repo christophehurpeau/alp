@@ -3,7 +3,7 @@ import _regeneratorRuntime from '@babel/runtime/regenerator';
 import IntlMessageFormatDefault from 'intl-messageformat';
 
 var IntlMessageFormat = // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-IntlMessageFormatDefault.default || IntlMessageFormatDefault;
+IntlMessageFormatDefault["default"] || IntlMessageFormatDefault;
 function load(translations, language) {
   var result = new Map();
 

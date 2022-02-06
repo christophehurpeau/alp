@@ -26,7 +26,7 @@ function RouteMatchTransition(_ref2) {
     return /*#__PURE__*/React.createElement(Transition, {
       exit: true,
       enter: false,
-      in: Boolean(match !== null),
+      "in": Boolean(match !== null),
       timeout: timeout
     }, function (state) {
       switch (state) {

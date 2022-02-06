@@ -95,7 +95,7 @@ var ParamValidatorValid = /*#__PURE__*/function (_ParamValidator) {
   var _proto = ParamValidatorValid.prototype;
 
   _proto._error = function _error() {
-    this.context.throw(404, 'Invalid params', {
+    this.context["throw"](404, 'Invalid params', {
       validator: this
     });
   };

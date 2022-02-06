@@ -253,7 +253,7 @@ var Application = /*#__PURE__*/function (_EventEmitter) {
     var ctx = this.createContext();
     return this.callback(ctx).then(function () {
       respond(ctx);
-    }).catch(function (err) {
+    })["catch"](function (err) {
       _this2.emit('error', err);
     });
   };
