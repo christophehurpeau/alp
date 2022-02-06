@@ -46,7 +46,7 @@ export function createPobpackCompiler(
     run: (): Promise<Stats | undefined> =>
       promisifyRun().then(buildThrowOnError),
     watch: (callback: (stats?: Stats) => unknown) =>
-      compiler.watch({}, (err?: Error, stats?: Stats): void => {
+      compiler.watch({}, (err?: Error | null, stats?: Stats): void => {
         if (err || !stats) return;
         if (stats.hasErrors()) return;
         buildThrowOnError(stats);
