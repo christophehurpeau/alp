@@ -4728,7 +4728,6 @@ __metadata:
     react-dev-utils: 12.0.0
     react-dom: 17.0.2
     react-refresh: ^0.11.0
-    sass: ^1.32.8
     source-map-support: ^0.5.21
     springbokjs-daemon: ^8.0.0
     terser-webpack-plugin: ^5.3.1
@@ -6174,7 +6173,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:>=2.0.0 <4.0.0, chokidar@npm:^3.4.2, chokidar@npm:^3.5.3":
+"chokidar@npm:^3.4.2, chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
   dependencies:
@@ -15585,17 +15584,6 @@ __metadata:
   dependencies:
     sparse-bitfield: ^3.0.3
   checksum: 4fdc0b70fb5e523f977de405e12cca111f1f10dd68a0cfae0ca52c1a7919a94d1556598ba2d35f447655c3b32879846c77f9274c90806f6673248ae3cea6ee43
-  languageName: node
-  linkType: hard
-
-"sass@npm:^1.32.8":
-  version: 1.32.8
-  resolution: "sass@npm:1.32.8"
-  dependencies:
-    chokidar: ">=2.0.0 <4.0.0"
-  bin:
-    sass: sass.js
-  checksum: a4d67e6be7b3c479d44065b1dd63fc76b90cfb5f5c9684a5d93fb9721c283bae4ec3f4dab478125ee21f3618dd408a9ba65bd3ba6482ab5a422fc86e1ca18b17
   languageName: node
   linkType: hard
 
