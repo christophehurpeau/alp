@@ -1,6 +1,6 @@
 {
   "name": "alp-params",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Validate params from query, router or post body in koa 2 or ibex",
   "keywords": [
     "alp"
@@ -91,8 +91,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.0",
-    "alp-router": "5.1.1",
-    "alp-types": "^3.0.0",
+    "alp-router": "5.1.2",
+    "alp-types": "3.1.0",
     "object-properties": "^6.1.0"
   },
   "devDependencies": {

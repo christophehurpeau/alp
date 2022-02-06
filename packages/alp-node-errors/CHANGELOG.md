@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/christophehurpeau/alp/compare/alp-node-errors@6.0.0...alp-node-errors@6.0.1) (2022-02-06)
+
+
+### Bug Fixes
+
+* request.searchParams ([d4552c6](https://github.com/christophehurpeau/alp/commit/d4552c6ce41dc3bf7aeeaa24f5e4ddc16164ae7f))
+
+
+
+
+
 # [6.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-errors@5.1.2...alp-node-errors@6.0.0) (2022-01-02)
 
 

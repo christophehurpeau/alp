@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.0.0](https://github.com/christophehurpeau/alp/compare/alp-dev@16.2.1...alp-dev@17.0.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* request.searchParams ([d4552c6](https://github.com/christophehurpeau/alp/commit/d4552c6ce41dc3bf7aeeaa24f5e4ddc16164ae7f))
+* tsc error ([1be5b3d](https://github.com/christophehurpeau/alp/commit/1be5b3da1947d25ad93e63a8363977b74605d44a))
+
+
+### Features
+
+* **alp-dev:** remove unused sass dependency ([d94d290](https://github.com/christophehurpeau/alp/commit/d94d290af516eef9f5863ab427fe4d4ef98fea28))
+* **alp-dev:** update dependencies ([2d2b179](https://github.com/christophehurpeau/alp/commit/2d2b179d755d5fa4b64513829a6ead445479f947))
+* **deps:** update dependency autoprefixer to v10 ([#198](https://github.com/christophehurpeau/alp/issues/198)) ([c1fa3ae](https://github.com/christophehurpeau/alp/commit/c1fa3ae868dcc4d9ee6e394bfb0b626c5d8a03d1))
+* **deps:** update dependency postcss to v8 [security] ([#281](https://github.com/christophehurpeau/alp/issues/281)) ([f47875c](https://github.com/christophehurpeau/alp/commit/f47875cfd79d3d3ffe53d3afc7817e294e56ecb5))
+* use linaria ([9642f53](https://github.com/christophehurpeau/alp/commit/9642f53467f2e1323c84505cd3963ec7c1757c6d))
+
+
+### BREAKING CHANGES
+
+* drop scss in favor of linaria
+
+
+
+
+
 ## [16.2.1](https://github.com/christophehurpeau/alp/compare/alp-dev@16.2.0...alp-dev@16.2.1) (2022-01-15)
 
 

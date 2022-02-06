@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@5.0.3...alp-hello-react-example@6.0.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* **deps:** update nightingale to v12.1.3 ([#282](https://github.com/christophehurpeau/alp/issues/282)) ([9fc918a](https://github.com/christophehurpeau/alp/commit/9fc918ab0dfa7b752c0c37c046386e0cfc77bec1))
+* request.searchParams ([d4552c6](https://github.com/christophehurpeau/alp/commit/d4552c6ce41dc3bf7aeeaa24f5e4ddc16164ae7f))
+
+
+### Features
+
+* use linaria ([9642f53](https://github.com/christophehurpeau/alp/commit/9642f53467f2e1323c84505cd3963ec7c1757c6d))
+
+
+### BREAKING CHANGES
+
+* drop scss in favor of linaria
+
+
+
+
+
 ## [5.0.3](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@5.0.2...alp-hello-react-example@5.0.3) (2022-01-15)
 
 **Note:** Version bump only for package alp-hello-react-example

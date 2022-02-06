@@ -1,6 +1,6 @@
 {
   "name": "alp-browser-config",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "config in alp framework",
   "keywords": [
     "alp"
@@ -78,7 +78,7 @@
     ]
   },
   "dependencies": {
-    "alp-types": "^3.0.0",
+    "alp-types": "3.1.0",
     "deep-freeze-es6": "^1.4.1",
     "parse-json-object-as-map": "^1.2.0",
     "stringify-json": "^2.0.0"

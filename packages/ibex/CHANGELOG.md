@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/christophehurpeau/alp/compare/ibex@8.0.1...ibex@9.0.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* request.searchParams ([d4552c6](https://github.com/christophehurpeau/alp/commit/d4552c6ce41dc3bf7aeeaa24f5e4ddc16164ae7f))
+
+
+### Features
+
+* **ibex:** drop request.query ([e7a4e57](https://github.com/christophehurpeau/alp/commit/e7a4e574e694c3e3d81d3c480f7eb4ac7973b89c))
+* **ibex:** drop request.searchParams ([2c449c8](https://github.com/christophehurpeau/alp/commit/2c449c89d05817ab7e760df183f62f540aeab84f))
+
+
+### BREAKING CHANGES
+
+* **ibex:** removed request.searchParams, use alp-params to bring this functionality
+* **ibex:** use request.searchParams instead of request.query
+
+
+
+
+
 ## [8.0.1](https://github.com/christophehurpeau/alp/compare/ibex@8.0.0...ibex@8.0.1) (2022-01-15)
 
 **Note:** Version bump only for package ibex

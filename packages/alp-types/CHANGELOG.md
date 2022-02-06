@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/alpjs/alp/compare/alp-types@3.0.0...alp-types@3.1.0) (2022-02-06)
+
+
+### Features
+
+* **alp-node:** update for newest version of alp-params ([6391d96](https://github.com/alpjs/alp/commit/6391d96b61666e1eb64c9a49779327a08cdaaf66))
+* **alp-params:** add searchParams lazy property ([a4b4451](https://github.com/alpjs/alp/commit/a4b445164d1e98f1f85ef662fe8e0f2c3781a993))
+
+
+
+
+
 # [3.0.0](https://github.com/alpjs/alp/compare/alp-types@2.0.0...alp-types@3.0.0) (2021-01-17)
 
 

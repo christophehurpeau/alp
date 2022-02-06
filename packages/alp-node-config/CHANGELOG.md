@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.1](https://github.com/christophehurpeau/alp/compare/alp-node-config@7.0.0...alp-node-config@7.0.1) (2022-02-06)
+
+**Note:** Version bump only for package alp-node-config
+
+
+
+
+
 # [7.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@6.1.2...alp-node-config@7.0.0) (2022-01-02)
 
 

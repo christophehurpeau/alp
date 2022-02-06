@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/christophehurpeau/alp/compare/alp-node@4.0.3...alp-node@4.1.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* alp-node/fetch typings ([4bcc2a6](https://github.com/christophehurpeau/alp/commit/4bcc2a69d7ecb416f63c707a33237bc868e85696))
+* request.searchParams ([d4552c6](https://github.com/christophehurpeau/alp/commit/d4552c6ce41dc3bf7aeeaa24f5e4ddc16164ae7f))
+
+
+### Features
+
+* **alp-node:** update for newest version of alp-params ([6391d96](https://github.com/christophehurpeau/alp/commit/6391d96b61666e1eb64c9a49779327a08cdaaf66))
+* update node-fetch ([ffeb05d](https://github.com/christophehurpeau/alp/commit/ffeb05d17f299af13f6ec498503feca1e08ae214))
+
+
+
+
+
 ## [4.0.3](https://github.com/christophehurpeau/alp/compare/alp-node@4.0.2...alp-node@4.0.3) (2022-01-15)
 
 **Note:** Version bump only for package alp-node

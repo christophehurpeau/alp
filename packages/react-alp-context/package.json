@@ -1,6 +1,6 @@
 {
   "name": "react-alp-context",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "react alp context",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -89,7 +89,7 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "alp-types": "^3.0.0"
+    "alp-types": "3.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.17.0",

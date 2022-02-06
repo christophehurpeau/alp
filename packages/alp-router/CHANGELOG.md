@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/christophehurpeau/alp/compare/alp-router@5.1.1...alp-router@5.1.2) (2022-02-06)
+
+**Note:** Version bump only for package alp-router
+
+
+
+
+
 ## [5.1.1](https://github.com/christophehurpeau/alp/compare/alp-router@5.1.0...alp-router@5.1.1) (2022-01-15)
 
 **Note:** Version bump only for package alp-router

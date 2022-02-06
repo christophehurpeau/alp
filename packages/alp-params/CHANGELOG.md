@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/christophehurpeau/alp/compare/alp-params@4.1.0...alp-params@4.2.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* **alp-params:** use request.searchParams ([f942a45](https://github.com/christophehurpeau/alp/commit/f942a452aba3b4bb102ade3e5fdaae3c3266622c))
+* request.searchParams ([d4552c6](https://github.com/christophehurpeau/alp/commit/d4552c6ce41dc3bf7aeeaa24f5e4ddc16164ae7f))
+
+
+### Features
+
+* **alp-params:** add searchParams lazy property ([a4b4451](https://github.com/christophehurpeau/alp/commit/a4b445164d1e98f1f85ef662fe8e0f2c3781a993))
+
+
+
+
+
 # [4.1.0](https://github.com/christophehurpeau/alp/compare/alp-params@4.0.1...alp-params@4.1.0) (2022-01-15)
 
 

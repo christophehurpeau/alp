@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/christophehurpeau/alp/compare/alp-migrations@6.0.1...alp-migrations@6.0.2) (2022-02-06)
+
+
+### Bug Fixes
+
+* request.searchParams ([d4552c6](https://github.com/christophehurpeau/alp/commit/d4552c6ce41dc3bf7aeeaa24f5e4ddc16164ae7f))
+
+
+
+
+
 ## [6.0.1](https://github.com/christophehurpeau/alp/compare/alp-migrations@6.0.0...alp-migrations@6.0.1) (2022-01-15)
 
 **Note:** Version bump only for package alp-migrations
