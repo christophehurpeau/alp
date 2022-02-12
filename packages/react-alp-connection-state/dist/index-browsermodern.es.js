@@ -2,7 +2,7 @@ import { useContext, useRef, useEffect } from 'react';
 import ReactAlpContext from 'react-alp-context';
 import { T } from 'react-alp-translate';
 import '../ConnectionState.global.scss';
-import { jsx } from 'react/jsx-runtime';
+import { jsx } from 'react/jsx-runtime.js';
 
 function ConnectionState({
   state

@@ -1,6 +1,6 @@
 import { Route } from 'react-router';
 import { Transition } from 'react-transition-group';
-import { jsx } from 'react/jsx-runtime';
+import { jsx } from 'react/jsx-runtime.js';
 
 const DefaultWrapperComponent = ({
   children,

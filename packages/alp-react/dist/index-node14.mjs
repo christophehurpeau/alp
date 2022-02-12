@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server.js';
 import { Helmet } from 'react-helmet';
 export { Helmet } from 'react-helmet';
 import ReactAlpContext from 'react-alp-context';
-import { jsx } from 'react/jsx-runtime';
+import { jsx } from 'react/jsx-runtime.js';
 
 function createAlpAppWrapper(app, context) {
   return class AlpAppWrapper extends Component {

@@ -2,7 +2,7 @@ import _extends from '@babel/runtime/helpers/esm/extends';
 import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 import { Route } from 'react-router';
 import { Transition } from 'react-transition-group';
-import { jsx } from 'react/jsx-runtime';
+import { jsx } from 'react/jsx-runtime.js';
 
 var _excluded = ["path", "closePath", "timeout", "component", "wrapperComponent"];
 

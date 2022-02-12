@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import ReactAlpContext from 'react-alp-context';
-import { jsx } from 'react/jsx-runtime';
+import { jsx } from 'react/jsx-runtime.js';
 
 const random = () => Math.ceil(Math.random() * 100) / 100;
 /**

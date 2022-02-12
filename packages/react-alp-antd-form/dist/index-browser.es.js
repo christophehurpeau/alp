@@ -2,7 +2,7 @@ import _extends from '@babel/runtime/helpers/esm/extends';
 import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 import { Form } from 'antd';
 import { Field } from 'react-final-form';
-import { jsx } from 'react/jsx-runtime';
+import { jsx } from 'react/jsx-runtime.js';
 
 var _excluded = ["component", "label", "name", "id", "help"],
     _excluded2 = ["input", "meta"];

@@ -6,7 +6,7 @@ import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import ReactAlpContext from 'react-alp-context';
-import { jsx } from 'react/jsx-runtime';
+import { jsx } from 'react/jsx-runtime.js';
 export { default as Helmet } from 'react-helmet';
 
 function createAlpAppWrapper(app, context) {

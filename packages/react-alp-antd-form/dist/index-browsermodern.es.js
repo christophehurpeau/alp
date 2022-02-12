@@ -1,6 +1,6 @@
 import { Form } from 'antd';
 import { Field } from 'react-final-form';
-import { jsx } from 'react/jsx-runtime';
+import { jsx } from 'react/jsx-runtime.js';
 
 function FormField({
   component: Component,
