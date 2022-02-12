@@ -4,6 +4,7 @@ import { renderToString } from 'react-dom/server.js';
 import { Helmet } from 'react-helmet';
 export { Helmet } from 'react-helmet';
 import ReactAlpContext from 'react-alp-context';
+import { jsx } from 'react/jsx-runtime';
 
 function createAlpAppWrapper(app, context) {
   return class AlpAppWrapper extends Component {
@@ -26,10 +27,13 @@ function createAlpAppWrapper(app, context) {
     }
 
     render() {
-      if (this.state.error) return /*#__PURE__*/React.createElement("div", null, "An unexpected error occured");
-      return /*#__PURE__*/React.createElement(ReactAlpContext.Provider, {
-        value: context
-      }, app);
+      if (this.state.error) return /*#__PURE__*/jsx("div", {
+        children: "An unexpected error occured"
+      });
+      return /*#__PURE__*/jsx(ReactAlpContext.Provider, {
+        value: context,
+        children: app
+      });
     }
 
   };
@@ -156,7 +160,9 @@ function NodeSuspenseWrapper({
 function Body({
   children
 }) {
-  return /*#__PURE__*/React.createElement("div", null, children);
+  return /*#__PURE__*/jsx("div", {
+    children: children
+  });
 }
 
 function AppContainer({

@@ -1,6 +1,6 @@
 import { Form } from 'antd';
-import React from 'react';
 import { Field } from 'react-final-form';
+import { jsx } from 'react/jsx-runtime';
 
 function FormField({
   component: Component,
@@ -10,19 +10,23 @@ function FormField({
   help,
   ...props
 }) {
-  return /*#__PURE__*/React.createElement(Form.Item, {
+  return /*#__PURE__*/jsx(Form.Item, {
     htmlFor: id,
     label: label,
-    help: help
-  }, /*#__PURE__*/React.createElement(Field, Object.assign({
-    id: id,
-    name: name,
-    render: ({
-      input,
-      meta,
-      ...rest
-    }) => /*#__PURE__*/React.createElement(Component, Object.assign({}, input, rest))
-  }, props)));
+    help: help,
+    children: /*#__PURE__*/jsx(Field, {
+      id: id,
+      name: name,
+      render: ({
+        input,
+        meta,
+        ...rest
+      }) => /*#__PURE__*/jsx(Component, { ...input,
+        ...rest
+      }),
+      ...props
+    })
+  });
 }
 
 export { FormField };

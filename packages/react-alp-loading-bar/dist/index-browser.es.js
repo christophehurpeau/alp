@@ -1,22 +1,7 @@
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import ReactAlpContext from 'react-alp-context';
-
-/*
-Example with antd:
-import { Progress } from 'antd';
-
-const LoadingBarComponent = ({ progress }) => (
-  <Progress
-    type="line"
-    status="active"
-    percent={progress}
-    showInfo={false}
-  />
-);
-*/
-
-/* number between 0 and 1 */
+import { jsx } from 'react/jsx-runtime';
 
 var random = function random() {
   return Math.ceil(Math.random() * 100) / 100;
@@ -147,7 +132,7 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
 
   _proto.render = function render() {
     var LoadingBarComponent = this.props.LoadingBarComponent;
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/jsx("div", {
       hidden: this.state.hidden,
       style: {
         position: 'fixed',
@@ -156,10 +141,11 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
         right: 0,
         zIndex: 4,
         pointerEvents: 'none'
-      }
-    }, /*#__PURE__*/React.createElement(LoadingBarComponent, {
-      progress: this.state.progress
-    }));
+      },
+      children: /*#__PURE__*/jsx(LoadingBarComponent, {
+        progress: this.state.progress
+      })
+    });
   };
 
   return LoadingBar;

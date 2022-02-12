@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 interface LoadingBarProps {
     LoadingBarComponent: React.ComponentType<{
         progress: number;
@@ -15,7 +15,7 @@ interface WebsocketInterface {
     on: (event: 'connect' | 'disconnect', callback: () => unknown) => void;
 }
 export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBarState> {
-    static contextType: React.Context<import("alp-types").Context>;
+    static contextType: import("react").Context<import("../../alp-types/lib").Context>;
     state: {
         loading: boolean;
         hidden: boolean;

@@ -1,6 +1,5 @@
 import { Form } from 'antd';
 import type { ComponentProps, ComponentType, ReactElement } from 'react';
-import React from 'react';
 import type { UseFieldConfig } from 'react-final-form';
 import { Field } from 'react-final-form';
 

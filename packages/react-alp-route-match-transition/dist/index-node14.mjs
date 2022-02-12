@@ -1,6 +1,6 @@
-import React from 'react';
 import { Route } from 'react-router';
 import { Transition } from 'react-transition-group';
+import { jsx } from 'react/jsx-runtime';
 
 const DefaultWrapperComponent = ({
   children,
@@ -15,37 +15,40 @@ function RouteMatchTransition({
   wrapperComponent: WrapperComponent = DefaultWrapperComponent,
   ...otherProps
 }) {
-  return /*#__PURE__*/React.createElement(Route, {
-    path: path
-  }, ({
-    match,
-    history
-  }) => {
-    const handleClose = () => {
-      history.push(closePath);
-    };
+  return /*#__PURE__*/jsx(Route, {
+    path: path,
+    children: ({
+      match,
+      history
+    }) => {
+      const handleClose = () => {
+        history.push(closePath);
+      };
 
-    return /*#__PURE__*/React.createElement(Transition, {
-      exit: true,
-      enter: false,
-      in: Boolean(match !== null),
-      timeout: timeout
-    }, state => {
-      switch (state) {
-        case 'entering':
-        case 'entered':
-        case 'exiting':
-          return /*#__PURE__*/React.createElement(Component, Object.assign({
-            match: match,
-            exiting: state === 'exiting',
-            onClose: handleClose
-          }, otherProps));
+      return /*#__PURE__*/jsx(Transition, {
+        exit: true,
+        enter: false,
+        in: Boolean(match !== null),
+        timeout: timeout,
+        children: state => {
+          switch (state) {
+            case 'entering':
+            case 'entered':
+            case 'exiting':
+              return /*#__PURE__*/jsx(Component, {
+                match: match,
+                exiting: state === 'exiting',
+                onClose: handleClose,
+                ...otherProps
+              });
 
-        case 'exited':
-        case 'unmounted':
-          return null;
-      }
-    });
+            case 'exited':
+            case 'unmounted':
+              return null;
+          }
+        }
+      });
+    }
   });
 }
 

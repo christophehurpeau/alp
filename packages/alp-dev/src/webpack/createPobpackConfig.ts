@@ -78,7 +78,12 @@ export default function createPobpackConfig(
         // add react preset with jsx
         [
           resolveDependency('@babel/preset-react'),
-          { development: !production, useBuiltIns: true, runtime: 'automatic' },
+          {
+            development: !production,
+            useBuiltIns: true,
+            useSpread: true,
+            runtime: 'automatic',
+          },
         ],
         // pob preset: flow, import `src`, export default function name, replacements, exnext features, ...
         [

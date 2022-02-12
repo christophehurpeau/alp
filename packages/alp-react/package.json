@@ -118,7 +118,7 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.0",
+    "@babel/runtime": "^7.17.2",
     "@types/react-dom": "^17.0.11",
     "@types/react-helmet": "^6.1.4",
     "alp-types": "3.1.0",
@@ -133,7 +133,7 @@
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
     "babel-preset-modern-browsers": "15.0.2",
-    "pob-babel": "31.0.0",
+    "pob-babel": "32.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "typescript": "4.5.5"

@@ -4,7 +4,6 @@ import type {
   ReactElement,
   ReactNode,
 } from 'react';
-import React from 'react';
 import type { RouteChildrenProps, match as Match } from 'react-router';
 import { Route } from 'react-router';
 import { Transition } from 'react-transition-group';

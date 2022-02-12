@@ -1,6 +1,7 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import ReactAlpContext from 'react-alp-context';
 import { T } from 'react-alp-translate';
+import { jsx } from 'react/jsx-runtime';
 
 function ConnectionState({
   state
@@ -25,12 +26,15 @@ function ConnectionState({
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, []);
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/jsx("div", {
     hidden: !state || notLoggedIn || currentState === 'connected',
-    className: "alp-connection-state"
-  }, !state || notLoggedIn ? null : /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(T, {
-    id: `connectionState.${currentState}`
-  })));
+    className: "alp-connection-state",
+    children: !state || notLoggedIn ? null : /*#__PURE__*/jsx("div", {
+      children: /*#__PURE__*/jsx(T, {
+        id: `connectionState.${currentState}`
+      })
+    })
+  });
 }
 
 export { ConnectionState as default };

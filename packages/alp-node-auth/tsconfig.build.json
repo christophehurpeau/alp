@@ -2,7 +2,6 @@
   "extends": "./tsconfig.json",
 
   "compilerOptions": {
-    "rootDir": "src",
     "noEmit": false,
     "declaration": true,
     "declarationMap": true,
@@ -14,7 +13,7 @@
 
   "exclude": ["dist/**", "src/**/*.test.ts", "src/**/__tests__/**"],
   "references": [
-    { "path": "../alp-router/tsconfig.build.json" },
-    { "path": "../alp-node/tsconfig.build.json" }
+    { "path": "../../packages/alp-router/tsconfig.json" },
+    { "path": "../../packages/alp-node/tsconfig.json" }
   ]
 }

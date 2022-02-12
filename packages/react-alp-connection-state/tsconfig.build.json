@@ -2,7 +2,6 @@
   "extends": "./tsconfig.json",
 
   "compilerOptions": {
-    "rootDir": "src",
     "noEmit": false,
     "declaration": true,
     "declarationMap": true,
@@ -19,7 +18,7 @@
     "src/**/__tests__/**"
   ],
   "references": [
-    { "path": "../react-alp-context/tsconfig.build.json" },
-    { "path": "../react-alp-translate/tsconfig.build.json" }
+    { "path": "../../packages/react-alp-context/tsconfig.json" },
+    { "path": "../../packages/react-alp-translate/tsconfig.json" }
   ]
 }

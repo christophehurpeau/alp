@@ -2,7 +2,6 @@
   "extends": "./tsconfig.json",
 
   "compilerOptions": {
-    "rootDir": "src",
     "noEmit": false,
     "declaration": true,
     "declarationMap": true,
@@ -14,10 +13,10 @@
 
   "exclude": ["dist/**", "src/**/*.test.ts", "src/**/__tests__/**"],
   "references": [
-    { "path": "../ibex/tsconfig.build.json" },
-    { "path": "../alp-browser-config/tsconfig.build.json" },
-    { "path": "../alp-browser-language/tsconfig.build.json" },
-    { "path": "../alp-params/tsconfig.build.json" },
-    { "path": "../alp-translate/tsconfig.build.json" }
+    { "path": "../../packages/ibex/tsconfig.json" },
+    { "path": "../../packages/alp-browser-config/tsconfig.json" },
+    { "path": "../../packages/alp-browser-language/tsconfig.json" },
+    { "path": "../../packages/alp-params/tsconfig.json" },
+    { "path": "../../packages/alp-translate/tsconfig.json" }
   ]
 }

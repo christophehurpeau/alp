@@ -2,7 +2,6 @@
   "extends": "./tsconfig.json",
 
   "compilerOptions": {
-    "rootDir": "src",
     "noEmit": false,
     "declaration": true,
     "declarationMap": true,
@@ -14,11 +13,11 @@
 
   "exclude": ["dist/**", "src/**/*.test.ts", "src/**/__tests__/**"],
   "references": [
-    { "path": "../alp-node-config/tsconfig.build.json" },
-    { "path": "../alp-node-errors/tsconfig.build.json" },
-    { "path": "../alp-node-language/tsconfig.build.json" },
-    { "path": "../alp-listen/tsconfig.build.json" },
-    { "path": "../alp-params/tsconfig.build.json" },
-    { "path": "../alp-translate/tsconfig.build.json" }
+    { "path": "../../packages/alp-node-config/tsconfig.json" },
+    { "path": "../../packages/alp-node-errors/tsconfig.json" },
+    { "path": "../../packages/alp-node-language/tsconfig.json" },
+    { "path": "../../packages/alp-listen/tsconfig.json" },
+    { "path": "../../packages/alp-params/tsconfig.json" },
+    { "path": "../../packages/alp-translate/tsconfig.json" }
   ]
 }

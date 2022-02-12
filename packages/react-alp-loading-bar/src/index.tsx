@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
 /*

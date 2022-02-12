@@ -6,6 +6,7 @@ import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import ReactAlpContext from 'react-alp-context';
+import { jsx } from 'react/jsx-runtime';
 export { default as Helmet } from 'react-helmet';
 
 function createAlpAppWrapper(app, context) {
@@ -43,10 +44,13 @@ function createAlpAppWrapper(app, context) {
     };
 
     _proto.render = function render() {
-      if (this.state.error) return /*#__PURE__*/React.createElement("div", null, "An unexpected error occured");
-      return /*#__PURE__*/React.createElement(ReactAlpContext.Provider, {
-        value: context
-      }, app);
+      if (this.state.error) return /*#__PURE__*/jsx("div", {
+        children: "An unexpected error occured"
+      });
+      return /*#__PURE__*/jsx(ReactAlpContext.Provider, {
+        value: context,
+        children: app
+      });
     };
 
     return AlpAppWrapper;
@@ -57,22 +61,26 @@ var LoadingFallbackContext = /*#__PURE__*/createContext('Loading...');
 
 function AlpModuleBrowser(props) {
   var loadingFallback = useContext(LoadingFallbackContext);
-  return /*#__PURE__*/React.createElement(Suspense, {
-    fallback: loadingFallback
-  }, props.children);
+  return /*#__PURE__*/jsx(Suspense, {
+    fallback: loadingFallback,
+    children: props.children
+  });
 }
 
 function BrowserSuspenseWrapper(_ref2) {
   var children = _ref2.children;
   var loader = useContext(LoadingFallbackContext);
-  return /*#__PURE__*/React.createElement(Suspense, {
-    fallback: loader
-  }, children);
+  return /*#__PURE__*/jsx(Suspense, {
+    fallback: loader,
+    children: children
+  });
 }
 
 function Body(_ref) {
   var children = _ref.children;
-  return /*#__PURE__*/React.createElement("div", null, children);
+  return /*#__PURE__*/jsx("div", {
+    children: children
+  });
 }
 
 function AppContainer(_ref) {

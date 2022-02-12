@@ -1,7 +1,7 @@
 import { Helmet } from 'alp-react';
 import { appLogger } from 'nightingale-app-console';
 import type { ReactElement } from 'react';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ReactAlpContext from 'react-alp-context';
 import { useT } from 'react-alp-translate';
 import ClickToThrow from './components/ClickToThrow';

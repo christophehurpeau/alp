@@ -1,6 +1,6 @@
 import { appLogger } from 'nightingale-app-console';
 import type { ReactElement } from 'react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const counterLogger = appLogger.child('counter');
 

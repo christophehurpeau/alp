@@ -4,7 +4,7 @@ import type {
   KeyboardEventHandler,
   ReactElement,
 } from 'react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Input = styled.input`
   width: 100%;

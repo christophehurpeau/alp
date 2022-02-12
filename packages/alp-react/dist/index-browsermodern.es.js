@@ -3,6 +3,7 @@ import { Logger } from 'nightingale-logger';
 import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
 import ReactAlpContext from 'react-alp-context';
+import { jsx } from 'react/jsx-runtime';
 export { default as Helmet } from 'react-helmet';
 
 function createAlpAppWrapper(app, context) {
@@ -26,10 +27,13 @@ function createAlpAppWrapper(app, context) {
     }
 
     render() {
-      if (this.state.error) return /*#__PURE__*/React.createElement("div", null, "An unexpected error occured");
-      return /*#__PURE__*/React.createElement(ReactAlpContext.Provider, {
-        value: context
-      }, app);
+      if (this.state.error) return /*#__PURE__*/jsx("div", {
+        children: "An unexpected error occured"
+      });
+      return /*#__PURE__*/jsx(ReactAlpContext.Provider, {
+        value: context,
+        children: app
+      });
     }
 
   };
@@ -39,24 +43,28 @@ const LoadingFallbackContext = /*#__PURE__*/createContext('Loading...');
 
 function AlpModuleBrowser(props) {
   const loadingFallback = useContext(LoadingFallbackContext);
-  return /*#__PURE__*/React.createElement(Suspense, {
-    fallback: loadingFallback
-  }, props.children);
+  return /*#__PURE__*/jsx(Suspense, {
+    fallback: loadingFallback,
+    children: props.children
+  });
 }
 
 function BrowserSuspenseWrapper({
   children
 }) {
   const loader = useContext(LoadingFallbackContext);
-  return /*#__PURE__*/React.createElement(Suspense, {
-    fallback: loader
-  }, children);
+  return /*#__PURE__*/jsx(Suspense, {
+    fallback: loader,
+    children: children
+  });
 }
 
 function Body({
   children
 }) {
-  return /*#__PURE__*/React.createElement("div", null, children);
+  return /*#__PURE__*/jsx("div", {
+    children: children
+  });
 }
 
 function AppContainer({

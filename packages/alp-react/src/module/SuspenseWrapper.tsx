@@ -1,6 +1,6 @@
 import 'pob-babel';
 import type { ReactElement, ReactNode } from 'react';
-import React, { Suspense, useContext } from 'react';
+import { Suspense, useContext } from 'react';
 import LoadingFallbackContext from '../contexts/LoadingFallbackContext';
 
 interface SuspenseWrapperProps {

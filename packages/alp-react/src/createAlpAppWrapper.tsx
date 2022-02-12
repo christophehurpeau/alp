@@ -5,7 +5,7 @@ import type {
   ReactChild,
   ReactElement,
 } from 'react';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import ReactAlpContext from 'react-alp-context';
 
 declare global {

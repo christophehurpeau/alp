@@ -1,7 +1,8 @@
+import _extends from '@babel/runtime/helpers/esm/extends';
 import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 import { Form } from 'antd';
-import React from 'react';
 import { Field } from 'react-final-form';
+import { jsx } from 'react/jsx-runtime';
 
 var _excluded = ["component", "label", "name", "id", "help"],
     _excluded2 = ["input", "meta"];
@@ -14,21 +15,22 @@ function FormField(_ref) {
       help = _ref.help,
       props = _objectWithoutPropertiesLoose(_ref, _excluded);
 
-  return /*#__PURE__*/React.createElement(Form.Item, {
+  return /*#__PURE__*/jsx(Form.Item, {
     htmlFor: id,
     label: label,
-    help: help
-  }, /*#__PURE__*/React.createElement(Field, Object.assign({
-    id: id,
-    name: name,
-    render: function render(_ref2) {
-      var input = _ref2.input;
-          _ref2.meta;
-          var rest = _objectWithoutPropertiesLoose(_ref2, _excluded2);
+    help: help,
+    children: /*#__PURE__*/jsx(Field, _extends({
+      id: id,
+      name: name,
+      render: function render(_ref2) {
+        var input = _ref2.input;
+            _ref2.meta;
+            var rest = _objectWithoutPropertiesLoose(_ref2, _excluded2);
 
-      return /*#__PURE__*/React.createElement(Component, Object.assign({}, input, rest));
-    }
-  }, props)));
+        return /*#__PURE__*/jsx(Component, _extends({}, input, rest));
+      }
+    }, props))
+  });
 }
 
 export { FormField };
