@@ -4,7 +4,6 @@
 
 import { act, fireEvent, render } from '@testing-library/react';
 import type { ReactNode } from 'react';
-import React from 'react';
 import ReactAlpContext from 'react-alp-context';
 import HomePage from '.';
 

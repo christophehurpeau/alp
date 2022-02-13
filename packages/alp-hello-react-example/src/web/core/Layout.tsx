@@ -1,6 +1,5 @@
 import { Helmet, AppContainer } from 'alp-react';
 import type { ReactElement } from 'react';
-import React from 'react';
 import App from './App';
 
 export default function Layout(): ReactElement {

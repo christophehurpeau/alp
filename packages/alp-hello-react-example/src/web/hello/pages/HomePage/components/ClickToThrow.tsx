@@ -1,6 +1,5 @@
 import { appLogger } from 'nightingale-app-console';
 import type { ReactElement } from 'react';
-import React from 'react';
 
 const clickToThrowLogger = appLogger.child('counter');
 

@@ -1,5 +1,4 @@
 import { styled } from '@linaria/react';
-import React from 'react';
 import type { ReactElement } from 'react';
 import { T } from 'react-alp-translate';
 import InputName from './InputNameComponent';
