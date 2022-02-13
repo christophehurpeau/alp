@@ -1886,6 +1886,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@guanghechen/rollup-plugin-copy@npm:1.8.6":
+  version: 1.8.6
+  resolution: "@guanghechen/rollup-plugin-copy@npm:1.8.6"
+  dependencies:
+    chalk: ^4.1.2
+    fs-extra: ^10.0.0
+    globby: ^11.0.4
+    is-plain-object: ^5.0.0
+  peerDependencies:
+    rollup: ^2.64.0
+  checksum: b9ea14264a80620eecfc4d11c488cbc95f97633f66bd3f2e9e203873a4d520dba2ea980d67523fe8a83ed1acc0b547a85581baad6fc631a90b6ddd57bb155ff2
+  languageName: node
+  linkType: hard
+
 "@hapi/address@npm:2.x.x":
   version: 2.1.4
   resolution: "@hapi/address@npm:2.1.4"
@@ -5403,6 +5417,15 @@ __metadata:
   peerDependencies:
     react: ^17.0.2
     react-dom: ^17.0.2
+  languageName: unknown
+  linkType: soft
+
+"alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config":
+  version: 0.0.0-use.local
+  resolution: "alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config"
+  dependencies:
+    "@guanghechen/rollup-plugin-copy": 1.8.6
+    js-yaml: 4.1.0
   languageName: unknown
   linkType: soft
 
@@ -12064,6 +12087,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-yaml@npm:4.1.0, js-yaml@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "js-yaml@npm:4.1.0"
+  dependencies:
+    argparse: ^2.0.1
+  bin:
+    js-yaml: bin/js-yaml.js
+  checksum: c7830dfd456c3ef2c6e355cc5a92e6700ceafa1d14bba54497b34a99f0376cecbb3e9ac14d3e5849b426d5a5140709a66237a8c991c675431271c4ce5504151a
+  languageName: node
+  linkType: hard
+
 "js-yaml@npm:^3.13.1":
   version: 3.14.1
   resolution: "js-yaml@npm:3.14.1"
@@ -12073,17 +12107,6 @@ __metadata:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: bef146085f472d44dee30ec34e5cf36bf89164f5d585435a3d3da89e52622dff0b188a580e4ad091c3341889e14cb88cac6e4deb16dc5b1e9623bb0601fc255c
-  languageName: node
-  linkType: hard
-
-"js-yaml@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "js-yaml@npm:4.1.0"
-  dependencies:
-    argparse: ^2.0.1
-  bin:
-    js-yaml: bin/js-yaml.js
-  checksum: c7830dfd456c3ef2c6e355cc5a92e6700ceafa1d14bba54497b34a99f0376cecbb3e9ac14d3e5849b426d5a5140709a66237a8c991c675431271c4ce5504151a
   languageName: node
   linkType: hard
 

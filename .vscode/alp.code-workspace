@@ -45,6 +45,7 @@
       "alp-node-language",
       "alp-params",
       "alp-react",
+      "alp-rollup-plugin-config",
       "alp-router",
       "alp-translate",
       "alp-types",
@@ -125,6 +126,10 @@
     {
       "name": "alp-react",
       "path": "../packages/alp-react"
+    },
+    {
+      "name": "alp-rollup-plugin-config",
+      "path": "../packages/alp-rollup-plugin-config"
     },
     {
       "name": "alp-router",

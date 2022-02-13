@@ -1,0 +1,35 @@
+{
+  "name": "alp-rollup-plugin-config",
+  "version": "1.0.0-pre",
+  "description": "transform yaml config using rollup copy plugin and yaml transform",
+  "keywords": [],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": "^14.13.1 || >=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./lib/index.cjs",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "lint": "yarn run lint:eslint",
+    "lint:eslint": "cd ../.. && yarn run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-rollup-plugin-config"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "pob": {},
+  "dependencies": {
+    "@guanghechen/rollup-plugin-copy": "1.8.6",
+    "js-yaml": "4.1.0"
+  }
+}

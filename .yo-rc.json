@@ -15,9 +15,11 @@
       "packageNames": [
         "alp-body-parser",
         "alp-dev",
+        "alp-rollup-plugin-config",
         "alp-types",
         "ibex",
         "react-alp-antd-form",
+        "react-alp-connection-state",
         "react-alp-route-match-transition",
         "alp-browser-config",
         "alp-browser-errors",
@@ -36,7 +38,6 @@
         "react-alp-translate",
         "alp-browser",
         "alp-node",
-        "react-alp-connection-state",
         "alp-hello-react-example",
         "alp-node-auth"
       ]
