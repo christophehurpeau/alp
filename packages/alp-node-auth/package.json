@@ -97,7 +97,7 @@
     "alp-node": "4.1.1",
     "alp-router": "5.1.3",
     "liwi-mongo": "8.3.1",
-    "pob-babel": "32.0.1",
+    "pob-babel": "32.1.0",
     "typescript": "4.5.5"
   }
 }
