@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "packages/react-alp-connection-state/tsconfig.json"
+    "project": "packages/react-alp-connection-state/tsconfig.eslint.json"
   },
   "plugins": ["@typescript-eslint"],
   "extends": [

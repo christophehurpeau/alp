@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "packages/react-alp-loading-bar/tsconfig.json"
+    "project": "packages/react-alp-loading-bar/tsconfig.eslint.json"
   },
   "plugins": ["@typescript-eslint"],
   "extends": [

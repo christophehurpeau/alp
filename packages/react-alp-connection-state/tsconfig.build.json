@@ -16,9 +16,5 @@
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
     "src/**/__tests__/**"
-  ],
-  "references": [
-    { "path": "../../packages/react-alp-context/tsconfig.json" },
-    { "path": "../../packages/react-alp-translate/tsconfig.json" }
   ]
 }

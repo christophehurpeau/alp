@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "packages/alp-browser/tsconfig.json"
+    "project": "packages/alp-browser/tsconfig.eslint.json"
   },
   "plugins": ["@typescript-eslint"],
   "extends": ["@pob/eslint-config-typescript"],

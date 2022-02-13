@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "packages/alp-hello-react-example/tsconfig.json"
+    "project": "packages/alp-hello-react-example/tsconfig.eslint.json"
   },
   "plugins": ["@typescript-eslint"],
   "extends": [
