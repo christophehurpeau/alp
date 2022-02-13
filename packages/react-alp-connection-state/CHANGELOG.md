@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@5.0.2...react-alp-connection-state@6.0.0) (2022-02-13)
+
+
+### Bug Fixes
+
+* dont override react/react-in-jsx-scope ([5d21c9e](https://github.com/christophehurpeau/alp/commit/5d21c9ece092cd3397d1794211dae17cea6649f8))
+
+
+### Features
+
+* **react-alp-connection-state:** rewrite with react-native ([4e81a48](https://github.com/christophehurpeau/alp/commit/4e81a48fa2a701794971576236ea4f68bd16a475))
+
+
+### BREAKING CHANGES
+
+* **react-alp-connection-state:** new api, react-native or react-native-web, children with text required
+
+
+
+
+
 ## [5.0.2](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@5.0.1...react-alp-connection-state@5.0.2) (2022-02-06)
 
 **Note:** Version bump only for package react-alp-connection-state

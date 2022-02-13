@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.0.0...alp-hello-react-example@6.0.1) (2022-02-13)
+
+
+### Bug Fixes
+
+* dont override react/react-in-jsx-scope ([5d21c9e](https://github.com/christophehurpeau/alp/commit/5d21c9ece092cd3397d1794211dae17cea6649f8))
+
+
+
+
+
 # [6.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@5.0.3...alp-hello-react-example@6.0.0) (2022-02-06)
 
 

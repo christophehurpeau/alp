@@ -1,7 +1,7 @@
 {
   "name": "alp-hello-react-example",
   "private": true,
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Say hello, with alp and react",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
@@ -53,14 +53,14 @@
   },
   "dependencies": {
     "@linaria/react": "3.0.0-beta.15",
-    "alp-browser": "4.0.2",
-    "alp-node": "4.1.0",
-    "alp-react": "19.0.2",
+    "alp-browser": "4.0.3",
+    "alp-node": "4.1.1",
+    "alp-react": "19.0.3",
     "nightingale-app-console": "12.1.4",
     "nightingale-web-processor": "12.1.4",
     "react": "17.0.2",
-    "react-alp-context": "4.0.2",
-    "react-alp-translate": "6.0.2",
+    "react-alp-context": "4.0.3",
+    "react-alp-translate": "6.0.3",
     "react-dom": "17.0.2",
     "workbox-core": "6.4.2",
     "workbox-precaching": "6.4.2"
@@ -68,7 +68,7 @@
   "devDependencies": {
     "@testing-library/react": "12.1.2",
     "@types/object-assign": "4.0.30",
-    "alp-dev": "17.0.0",
+    "alp-dev": "17.0.1",
     "springbokjs-daemon": "8.0.0",
     "typescript": "4.5.5"
   }
