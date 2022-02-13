@@ -87,22 +87,25 @@
   },
   "peerDependencies": {
     "react": "^17.0.2",
-    "ynnub": "^1.0.0 || ^2.0.0"
+    "react-native": "*"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    }
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
-    "alp-types": "3.1.0",
-    "react-alp-context": "4.0.2",
-    "react-alp-translate": "6.0.2"
+    "@babel/runtime": "^7.17.2"
   },
   "devDependencies": {
     "@babel/core": "7.17.2",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
+    "@types/react-native": "0.66.15",
     "babel-preset-modern-browsers": "15.0.2",
     "pob-babel": "32.0.1",
     "react": "17.0.2",
-    "typescript": "4.5.5",
-    "ynnub": "2.0.0"
+    "react-native": "0.67.2",
+    "typescript": "4.5.5"
   }
 }

@@ -1,29 +1,96 @@
-import type { ReactElement } from 'react';
-import { useContext, useEffect, useRef } from 'react';
-import ReactAlpContext from 'react-alp-context';
-import { T } from 'react-alp-translate';
-import '../ConnectionState.global.scss';
+import type { ReactElement, ReactNode } from 'react';
+import { useEffect, useRef } from 'react';
+import type { ScaledSize } from 'react-native';
+import { View, StyleSheet, Platform, useWindowDimensions } from 'react-native';
 
-type State = null | 'connecting' | 'connected' | 'disconnected';
+const defaultTheme = {
+  container: {
+    backgroundColor: 'rgba(247, 25, 0, 0.8)',
+    color: '#fff',
+    textShadowColor: '#111',
+    textShadowOffset: { width: 0, height: -1 },
+    textShadowRadius: 1,
+  },
+  backgroundColorConnected: 'rgba(25, 200, 60, 0.8)',
+};
 
-interface ConnectionStateProps {
+export type ConnectionStateTheme = typeof defaultTheme;
+export type State = null | 'connecting' | 'connected' | 'disconnected';
+
+export interface ConnectionStateProps {
+  theme?: ConnectionStateTheme;
+  forceHidden?: boolean;
   state: State;
+  children: NonNullable<ReactNode>;
 }
 
-export default function ConnectionState({
+const zDepth1 =
+  '0 2px 3px 0 rgba(0, 0, 0, 0.15), 0 2px 5px 0 rgba(0, 0, 0, 0.2)';
+
+type CreateCalc = (
+  webCalc: string,
+  createCalc: (dimensions: ScaledSize) => number,
+) => string | number;
+
+const useCreateCalcNative = (): CreateCalc => {
+  const dimensions = useWindowDimensions();
+  return (webCalc, createCalc) => createCalc(dimensions);
+};
+const useCreateCalcWeb = (): CreateCalc => {
+  return (webCalc) => `calc(${webCalc})`;
+};
+const useCreateCalc =
+  Platform.OS === 'web' ? useCreateCalcWeb : useCreateCalcNative;
+
+// example: const left = createCalc('50% - 100px', ({ width }) => width / 2 - 100);
+
+const styles = StyleSheet.create({
+  connectionStateContainer: {
+    backgroundColor: defaultTheme.container.backgroundColor,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    height: 2,
+    color: defaultTheme.container.color,
+    textShadowOffset: defaultTheme.container.textShadowOffset,
+    textShadowRadius: defaultTheme.container.textShadowRadius,
+    boxShadow: zDepth1,
+    zIndex: 9,
+    transition: 'top .8s, background-color .2s',
+  },
+  hide: {
+    top: -24,
+  },
+  connectionStateText: {
+    backgroundColor: defaultTheme.container.backgroundColor,
+    position: 'absolute',
+    width: 200,
+    height: 22,
+    lineHeight: 22,
+    top: 2,
+    textAlign: 'center',
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    transition: 'background-color .2s',
+  },
+});
+
+export function ConnectionState({
+  theme,
+  forceHidden,
   state,
-}: ConnectionStateProps): ReactElement {
-  const ctx = useContext(ReactAlpContext);
-  const notLoggedIn = !(ctx.sanitizedState as { user?: unknown }).user;
-
+  children,
+}: ConnectionStateProps): ReactElement | null {
+  console.log({ state, forceHidden });
   const unloadingRef = useRef<boolean>(false);
-  const currentStateRef = useRef(state);
-  if (!unloadingRef.current) {
-    currentStateRef.current = state;
-  }
-  const currentState = currentStateRef.current;
 
-  useEffect((): (() => void) => {
+  const createCalc = useCreateCalc();
+  const left = createCalc('50% - 100px', ({ width }) => width / 2 - 100); // TODO use calc() in web ?
+
+  useEffect((): (() => void) | undefined => {
+    if (typeof window === 'undefined') return;
+
     const beforeUnloadHandler = (): void => {
       unloadingRef.current = true;
     };
@@ -34,16 +101,33 @@ export default function ConnectionState({
     };
   }, []);
 
+  const shouldHide = forceHidden || !state || state === 'connected';
+
   return (
-    <div
-      hidden={!state || notLoggedIn || currentState === 'connected'}
-      className="alp-connection-state"
+    <View
+      style={[
+        styles.connectionStateContainer,
+        shouldHide && styles.hide,
+        theme?.container,
+        state === 'connected' && {
+          backgroundColor: (theme || defaultTheme).backgroundColorConnected,
+        },
+      ]}
     >
-      {!state || notLoggedIn ? null : (
-        <div>
-          <T id={`connectionState.${currentState as string}`} />
-        </div>
+      {!state ? null : (
+        <View
+          style={[
+            styles.connectionStateText,
+            theme && { backgroundColor: theme.container.backgroundColor },
+            state === 'connected' && {
+              backgroundColor: (theme || defaultTheme).backgroundColorConnected,
+            },
+            { left },
+          ]}
+        >
+          {children}
+        </View>
       )}
-    </div>
+    </View>
   );
 }
