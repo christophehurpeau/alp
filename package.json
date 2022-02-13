@@ -19,7 +19,7 @@
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -b tsconfig.build.json",
     "checks": "node scripts/check-packages.js",
-    "clean:build": "(rm -Rf packages/*/dist) || true",
+    "clean:build": "(rm -Rf packages/*/dist packages/*/build) || true",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
     "lint": "yarn run lint:prettier && yarn run lint:eslint",
     "lint:eslint": "NODE_OPTIONS=--max_old_space_size=4096 eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet .",
@@ -70,7 +70,7 @@
     "eslint": "8.9.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "27.5.1",
-    "pob-babel": "32.0.1",
+    "pob-babel": "32.1.0",
     "prettier": "2.5.1",
     "typescript": "4.5.5"
   }

@@ -5079,7 +5079,7 @@ __metadata:
     "@types/koa": ^2.13.1
     co-body: ^6.0.0
     koa: ^2.13.1
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   peerDependencies:
     alp-node: ^4.0.2
@@ -5096,7 +5096,7 @@ __metadata:
     babel-preset-modern-browsers: 15.0.2
     deep-freeze-es6: ^1.4.1
     parse-json-object-as-map: ^1.2.0
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     stringify-json: ^2.0.0
     typescript: 4.5.5
   languageName: unknown
@@ -5113,7 +5113,7 @@ __metadata:
     babel-preset-modern-browsers: 15.0.2
     error-html: ^0.3.5
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -5126,7 +5126,7 @@ __metadata:
     "@babel/preset-env": 7.16.11
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -5147,7 +5147,7 @@ __metadata:
     babel-preset-modern-browsers: 15.0.2
     ibex: 9.0.1
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -5203,7 +5203,7 @@ __metadata:
     nightingale-console: ^12.1.4
     nightingale-logger: ^12.1.4
     offline-plugin: ^5.0.7
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     portscanner: ^2.2.0
     postcss: ^8.0.0
     postcss-loader: ^6.2.1
@@ -5262,7 +5262,7 @@ __metadata:
     "@babel/core": 7.17.2
     alp-node-config: 7.0.2
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -5277,7 +5277,7 @@ __metadata:
     alp-types: 3.1.0
     liwi-mongo: 8.3.1
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     semver: ^7.3.5
     typescript: 4.5.5
   peerDependencies:
@@ -5299,7 +5299,7 @@ __metadata:
     jsonwebtoken: ^8.5.1
     liwi-mongo: 8.3.1
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     simple-oauth2: ^2.2.1
     typescript: 4.5.5
   peerDependencies:
@@ -5318,7 +5318,7 @@ __metadata:
     deep-freeze-es6: ^1.4.1
     minimist-argv: ^1.1.0
     parse-json-object-as-map: ^1.2.0
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     stringify-json: ^2.0.0
     typescript: 4.5.5
   languageName: unknown
@@ -5332,7 +5332,7 @@ __metadata:
     alp-types: 3.1.0
     error-html: ^0.3.5
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -5345,7 +5345,7 @@ __metadata:
     "@types/koa": ^2.13.1
     alp-types: 3.1.0
     object-properties: ^6.1.0
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -5373,7 +5373,7 @@ __metadata:
     koa-static: ^5.0.0
     nightingale-logger: ^12.1.4
     node-fetch: ^3.2.0
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -5389,7 +5389,7 @@ __metadata:
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
     object-properties: ^6.1.0
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -5409,7 +5409,7 @@ __metadata:
     content-loaded: ^1.2.1
     modern-browsers: ^2.0.0
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     react: 17.0.2
     react-alp-context: 4.0.3
     react-dom: 17.0.2
@@ -5438,7 +5438,7 @@ __metadata:
     "@babel/preset-env": 7.16.11
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     router-segments: 5.0.0
     typescript: 4.5.5
   peerDependencies:
@@ -5456,7 +5456,7 @@ __metadata:
     babel-preset-modern-browsers: 15.0.2
     intl-messageformat: ^9.10.0
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     react-alp-context: 4.0.3
     typescript: 4.5.5
   languageName: unknown
@@ -5486,7 +5486,7 @@ __metadata:
     eslint: 8.9.0
     identity-obj-proxy: 3.0.0
     jest: 27.5.1
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     prettier: 2.5.1
     typescript: 4.5.5
   languageName: unknown
@@ -10592,7 +10592,7 @@ __metadata:
     "@types/koa": ^2.13.1
     babel-preset-modern-browsers: 15.0.2
     nightingale-logger: ^12.1.4
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -15461,9 +15461,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pob-babel@npm:32.0.1":
-  version: 32.0.1
-  resolution: "pob-babel@npm:32.0.1"
+"pob-babel@npm:32.1.0":
+  version: 32.1.0
+  resolution: "pob-babel@npm:32.1.0"
   dependencies:
     "@babel/core": ^7.16.5
     "@babel/plugin-transform-runtime": 7.17.0
@@ -15487,7 +15487,7 @@ __metadata:
       optional: true
   bin:
     rollup: bin/rollup.cjs
-  checksum: 9ae6fda765907c511832b0d78020fe056035472ac66bd8f026390576f694b037d0e9ca8774ffc2848b5311c62812055e6c62637093369ac4dd2004cd02293b0c
+  checksum: 55670937417d3b4004a95b3c77ba8df9d7d4f8e1225005aff13e82e56c6af4ea9212ecedb5165eba2f4f5d6dcbd726142ebf6b1343e0036767fc3adc021092f4
   languageName: node
   linkType: hard
 
@@ -16738,7 +16738,7 @@ __metadata:
     "@babel/runtime": ^7.17.2
     antd: 4.18.5
     babel-preset-modern-browsers: 15.0.2
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     react: 17.0.2
     react-dom: 17.0.2
     react-final-form: 6.5.8
@@ -16760,7 +16760,7 @@ __metadata:
     "@babel/runtime": ^7.17.2
     "@types/react-native": 0.66.15
     babel-preset-modern-browsers: 15.0.2
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     react: 17.0.2
     react-native: 0.67.2
     typescript: 4.5.5
@@ -16782,7 +16782,7 @@ __metadata:
     "@babel/preset-react": 7.16.7
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     react: 17.0.2
     typescript: 4.5.5
   peerDependencies:
@@ -16800,7 +16800,7 @@ __metadata:
     "@babel/runtime": ^7.17.2
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     react: 17.0.2
     react-alp-context: 4.0.3
     typescript: 4.5.5
@@ -16820,7 +16820,7 @@ __metadata:
     "@types/react-router": 5.1.18
     "@types/react-transition-group": 4.4.4
     babel-preset-modern-browsers: 15.0.2
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     react: 17.0.2
     react-router: 5.2.1
     react-transition-group: 4.4.2
@@ -16843,7 +16843,7 @@ __metadata:
     "@babel/runtime": ^7.17.2
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
-    pob-babel: 32.0.1
+    pob-babel: 32.1.0
     react: 17.0.2
     react-alp-context: 4.0.3
     typescript: 4.5.5
