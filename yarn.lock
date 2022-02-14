@@ -4218,10 +4218,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.11.24":
-  version: 16.11.24
-  resolution: "@types/node@npm:16.11.24"
-  checksum: d4827d548c04ca55db30901ea248ce1a1f8d2958b3143a7e71fd86d3d7b804faebfa9b80b934c7c6030a82553323dfe70f01dd0000176561a2cb3fc9db06a7b3
+"@types/node@npm:16.11.25":
+  version: 16.11.25
+  resolution: "@types/node@npm:16.11.25"
+  checksum: 0b6e25a81364be89256ad1a36341e27b387e646d3186e270108a8bb7b6ecdfdf5ae037aa1c75a5117b8a7509c80093b75431cd5cfcfbc4d553b52e7db2ca272e
   languageName: node
   linkType: hard
 
@@ -5171,7 +5171,7 @@ __metadata:
     "@types/glob": 7.2.0
     "@types/js-yaml": 4.0.5
     "@types/mini-css-extract-plugin": 2.5.0
-    "@types/node": 16.11.24
+    "@types/node": 16.11.25
     "@types/portscanner": 2.1.1
     "@types/progress": 2.0.5
     "@types/react-dev-utils": 9.0.10
@@ -5272,7 +5272,7 @@ __metadata:
   resolution: "alp-migrations@workspace:packages/alp-migrations"
   dependencies:
     "@babel/core": 7.17.2
-    "@types/node": 16.11.24
+    "@types/node": 16.11.25
     "@types/semver": 7.3.9
     alp-types: 3.1.0
     liwi-mongo: 8.3.1
