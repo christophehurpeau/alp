@@ -90,9 +90,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.17.4, @babel/core@npm:^7.1.0, @babel/core@npm:^7.1.6, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.14.0, @babel/core@npm:^7.16.5, @babel/core@npm:^7.7.2, @babel/core@npm:^7.8.0":
-  version: 7.17.4
-  resolution: "@babel/core@npm:7.17.4"
+"@babel/core@npm:7.17.5, @babel/core@npm:^7.1.0, @babel/core@npm:^7.1.6, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.14.0, @babel/core@npm:^7.16.5, @babel/core@npm:^7.7.2, @babel/core@npm:^7.8.0":
+  version: 7.17.5
+  resolution: "@babel/core@npm:7.17.5"
   dependencies:
     "@ampproject/remapping": ^2.1.0
     "@babel/code-frame": ^7.16.7
@@ -109,7 +109,7 @@ __metadata:
     gensync: ^1.0.0-beta.2
     json5: ^2.1.2
     semver: ^6.3.0
-  checksum: d367259b188fde69493fea407a1c134d6bb7a0d859cbe2c0f0d1f2464143bdee0fdfd3c8d45a2cdabdf321b95dd392cbc4f55e2d0c41a842a581d37fee4cef64
+  checksum: c5e7dddb4feaacb91175d22a6edc8e93804242328a82b80732c6e84a0647bc0a9c9d5b05f3ce13138b8e59bf7aba4ff9f7b7446302f141f243ba51df02c318a5
   languageName: node
   linkType: hard
 
@@ -5074,7 +5074,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-body-parser@workspace:packages/alp-body-parser"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@types/co-body": ^6.0.0
     "@types/koa": ^2.13.1
     co-body: ^6.0.0
@@ -5090,7 +5090,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-browser-config@workspace:packages/alp-browser-config"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
@@ -5106,7 +5106,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-browser-errors@workspace:packages/alp-browser-errors"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/runtime": ^7.17.2
     alp-types: 3.1.0
@@ -5122,7 +5122,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-browser-language@workspace:packages/alp-browser-language"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
@@ -5135,7 +5135,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-browser@workspace:packages/alp-browser"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/runtime": ^7.17.2
     "@types/webpack-env": ^1.16.0
@@ -5156,7 +5156,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-dev@workspace:packages/alp-dev"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": ^7.16.11
     "@babel/preset-react": ^7.16.7
     "@linaria/babel-preset": ^3.0.0-beta.15
@@ -5259,7 +5259,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-listen@workspace:packages/alp-listen"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     alp-node-config: 7.0.2
     nightingale-logger: ^12.1.4
     pob-babel: 32.1.0
@@ -5271,7 +5271,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-migrations@workspace:packages/alp-migrations"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@types/node": 16.11.25
     "@types/semver": 7.3.9
     alp-types: 3.1.0
@@ -5289,7 +5289,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-node-auth@workspace:packages/alp-node-auth"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@types/jsonwebtoken": ^8.5.1
     "@types/simple-oauth2": ^2.5.1
     alp-node: 4.1.1
@@ -5313,7 +5313,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-node-config@workspace:packages/alp-node-config"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     alp-types: 3.1.0
     deep-freeze-es6: ^1.4.1
     minimist-argv: ^1.1.0
@@ -5328,7 +5328,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-node-errors@workspace:packages/alp-node-errors"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     alp-types: 3.1.0
     error-html: ^0.3.5
     nightingale-logger: ^12.1.4
@@ -5341,7 +5341,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-node-language@workspace:packages/alp-node-language"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@types/koa": ^2.13.1
     alp-types: 3.1.0
     object-properties: ^6.1.0
@@ -5354,7 +5354,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-node@workspace:packages/alp-node"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@types/koa": ^2.13.1
     "@types/koa-compress": 4.0.3
     "@types/koa-static": 4.0.2
@@ -5382,7 +5382,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-params@workspace:packages/alp-params"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/runtime": ^7.17.2
     alp-router: 5.1.3
@@ -5398,7 +5398,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-react@workspace:packages/alp-react"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.17.2
@@ -5434,7 +5434,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-router@workspace:packages/alp-router"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
@@ -5450,7 +5450,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-translate@workspace:packages/alp-translate"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
@@ -5472,7 +5472,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp@workspace:."
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@linaria/babel-preset": 3.0.0-beta.15
     "@pob/commitlint-config": 4.1.0
     "@pob/eslint-config": 49.0.0
@@ -10586,7 +10586,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ibex@workspace:packages/ibex"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/runtime": ^7.17.2
     "@types/koa": ^2.13.1
@@ -16732,7 +16732,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-antd-form@workspace:packages/react-alp-antd-form"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.17.2
@@ -16754,7 +16754,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-connection-state@workspace:packages/react-alp-connection-state"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.17.2
@@ -16777,7 +16777,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-context@workspace:packages/react-alp-context"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     alp-types: 3.1.0
@@ -16794,7 +16794,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-loading-bar@workspace:packages/react-alp-loading-bar"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.17.2
@@ -16813,7 +16813,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-route-match-transition@workspace:packages/react-alp-route-match-transition"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.17.2
@@ -16837,7 +16837,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-translate@workspace:packages/react-alp-translate"
   dependencies:
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.17.2
