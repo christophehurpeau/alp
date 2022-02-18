@@ -5588,9 +5588,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"antd@npm:4.18.5":
-  version: 4.18.5
-  resolution: "antd@npm:4.18.5"
+"antd@npm:4.18.7":
+  version: 4.18.7
+  resolution: "antd@npm:4.18.7"
   dependencies:
     "@ant-design/colors": ^6.0.0
     "@ant-design/icons": ^4.7.0
@@ -5607,7 +5607,7 @@ __metadata:
     rc-collapse: ~3.1.0
     rc-dialog: ~8.6.0
     rc-drawer: ~4.4.2
-    rc-dropdown: ~3.2.0
+    rc-dropdown: ~3.2.5
     rc-field-form: ~1.22.0-2
     rc-image: ~5.2.5
     rc-input-number: ~7.3.0
@@ -5637,7 +5637,7 @@ __metadata:
   peerDependencies:
     react: ">=16.9.0"
     react-dom: ">=16.9.0"
-  checksum: 8afe288e435f42a8854cd2871dd7958af66772177f32610ebf00980439027b0116e17786a6bb74dd240c8e3c4e863832f2c56b669986cd516c3a47f864a6ad2e
+  checksum: 5f17b92287a6cb7808022f89585bc7064a30970635abf360faa631800a5f48ab9cd69d4a14aae2123356ca5b5bee65c479f77ea078077a7075eb5d9ee3237904
   languageName: node
   linkType: hard
 
@@ -16285,7 +16285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rc-dropdown@npm:~3.2.0":
+"rc-dropdown@npm:~3.2.5":
   version: 3.2.5
   resolution: "rc-dropdown@npm:3.2.5"
   dependencies:
@@ -16736,7 +16736,7 @@ __metadata:
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.17.2
-    antd: 4.18.5
+    antd: 4.18.7
     babel-preset-modern-browsers: 15.0.2
     pob-babel: 32.1.0
     react: 17.0.2
