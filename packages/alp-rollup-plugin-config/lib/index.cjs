@@ -13,4 +13,5 @@ module.exports = (options) =>
         JSON.stringify(load(contents)).toString(),
       ...targetOptions,
     })),
+    flatten: false,
   });
