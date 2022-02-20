@@ -7,7 +7,7 @@ module.exports = (options) =>
   copy({
     ...options,
     targets: options.targets.map((targetOptions) => ({
-      dest: 'build/config',
+      dest: 'build',
       rename: (name, extension) => `${name}.json`,
       transform: (contents, srcPath, destPath) =>
         JSON.stringify(load(contents)).toString(),
