@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/christophehurpeau/alp/compare/alp-node-language@5.1.2...alp-node-language@5.1.3) (2022-02-20)
+
+**Note:** Version bump only for package alp-node-language
+
+
+
+
+
 ## [5.1.2](https://github.com/christophehurpeau/alp/compare/alp-node-language@5.1.1...alp-node-language@5.1.2) (2022-02-13)
 
 
