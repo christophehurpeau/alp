@@ -163,7 +163,9 @@ export default function createPobpackConfig(
             {
               loader: resolveDependency('less-loader'),
               options: {
-                javascriptEnabled: true,
+                lessOptions: {
+                  javascriptEnabled: true,
+                },
                 // modifyVars: path.resolve('./src/less-modifyVars.js'),
               },
             },
