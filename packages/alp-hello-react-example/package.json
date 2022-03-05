@@ -70,6 +70,6 @@
     "@types/object-assign": "4.0.30",
     "alp-dev": "17.0.2",
     "springbokjs-daemon": "8.0.0",
-    "typescript": "4.5.5"
+    "typescript": "4.6.2"
   }
 }

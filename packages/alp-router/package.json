@@ -102,6 +102,6 @@
     "babel-preset-modern-browsers": "15.0.2",
     "pob-babel": "32.2.0",
     "router-segments": "5.0.0",
-    "typescript": "4.5.5"
+    "typescript": "4.6.2"
   }
 }
