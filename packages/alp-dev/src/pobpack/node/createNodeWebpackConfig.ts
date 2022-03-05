@@ -29,7 +29,11 @@ const createExternals = (
     modulesFromFile: false,
     allowlist: [
       new URL('../node-hot.mjs', import.meta.url).pathname,
+      // react libs to correctly replace react-native to react-native-web when needed
+      /^react-/,
       // TODO remove this when exports is added in these libs
+      /^fbjs\//,
+      /^(inline-style-prefixer|css-in-js-utils)\//,
       'react/jsx-runtime',
       'react/jsx-dev-runtime',
       ...(options.allowlistExternalExtensions

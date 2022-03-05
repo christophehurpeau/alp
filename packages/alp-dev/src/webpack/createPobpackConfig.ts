@@ -112,7 +112,13 @@ export default function createPobpackConfig(
           resolveDependency('babel-plugin-import'),
           {
             libraryName: 'antd',
-            libraryDirectory: target === 'node' ? 'lib' : 'es',
+            libraryDirectory: target === 'node' ? undefined : 'es',
+            customName:
+              target === 'node'
+                ? (name: string) => {
+                    return `antd/es/${name}/index.js`;
+                  }
+                : undefined,
             style: target !== 'node',
           },
         ],
