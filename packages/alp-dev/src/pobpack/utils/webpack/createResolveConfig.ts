@@ -91,6 +91,10 @@ export default function createResolveConfig(
       modulePrefixPackageFields.includes('browser') && 'browser',
     ].filter(ExcludesFalsy),
 
-    alias: { ...options.aliases, ...targetAliases },
+    alias: {
+      'react-native$': 'react-native-web',
+      ...options.aliases,
+      ...targetAliases,
+    },
   };
 }

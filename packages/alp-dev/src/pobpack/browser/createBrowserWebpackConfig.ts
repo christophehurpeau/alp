@@ -108,7 +108,6 @@ export default function createBrowserWebpackConfig(target: BrowserTargetType) {
         },
       },
       {
-        'react-native$': 'react-native-web',
         ...(options.productionProfiling
           ? {
               'react-dom$': 'react-dom/profiling',
