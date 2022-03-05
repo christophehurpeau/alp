@@ -92,7 +92,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "type-fest": "^1.0.0"
+    "type-fest": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.17.5",
