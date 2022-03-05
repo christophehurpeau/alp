@@ -1,6 +1,6 @@
 {
   "name": "alp-node-errors",
-  "version": "6.0.3",
+  "version": "6.0.4",
   "description": "display errors in alp framework",
   "keywords": [
     "alp"

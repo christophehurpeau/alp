@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.5](https://github.com/christophehurpeau/alp/compare/alp-translate@6.0.4...alp-translate@6.0.5) (2022-03-05)
+
+**Note:** Version bump only for package alp-translate
+
+
+
+
+
 ## [6.0.4](https://github.com/christophehurpeau/alp/compare/alp-translate@6.0.3...alp-translate@6.0.4) (2022-02-20)
 
 **Note:** Version bump only for package alp-translate

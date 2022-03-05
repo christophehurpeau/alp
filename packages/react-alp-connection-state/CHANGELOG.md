@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@6.0.1...react-alp-connection-state@6.1.0) (2022-03-05)
+
+
+### Features
+
+* **react-alp-connection-state:** create cjs version ([8171bc6](https://github.com/christophehurpeau/alp/commit/8171bc62dd38810679ff5297a054e80459d96881))
+
+
+
+
+
 ## [6.0.1](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@6.0.0...react-alp-connection-state@6.0.1) (2022-02-20)
 
 **Note:** Version bump only for package react-alp-connection-state

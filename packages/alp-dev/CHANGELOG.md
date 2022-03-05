@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.3](https://github.com/christophehurpeau/alp/compare/alp-dev@17.0.2...alp-dev@17.0.3) (2022-03-05)
+
+
+### Bug Fixes
+
+* **alp-dev:** fixes ([49bc831](https://github.com/christophehurpeau/alp/commit/49bc8318ff7f524cc436e86eaf311993f97d5cde))
+* less options ([b3c322e](https://github.com/christophehurpeau/alp/commit/b3c322e1558b819f0a23f6117e6d0a675b9da6a4))
+* move react-native alias to both browser and node ([ba3d4c8](https://github.com/christophehurpeau/alp/commit/ba3d4c8c02ed708d36028fcb3752630b8547f300))
+
+
+
+
+
 ## [17.0.2](https://github.com/christophehurpeau/alp/compare/alp-dev@17.0.1...alp-dev@17.0.2) (2022-02-20)
 
 **Note:** Version bump only for package alp-dev
