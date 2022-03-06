@@ -68,10 +68,6 @@ function ConnectionState({
   state,
   children
 }) {
-  console.log({
-    state,
-    forceHidden
-  });
   const unloadingRef = react.useRef(false);
   const createCalc = useCreateCalc();
   const left = createCalc('50% - 100px', ({

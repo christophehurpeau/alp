@@ -82,7 +82,6 @@ export function ConnectionState({
   state,
   children,
 }: ConnectionStateProps): ReactElement | null {
-  console.log({ state, forceHidden });
   const unloadingRef = useRef<boolean>(false);
 
   const createCalc = useCreateCalc();

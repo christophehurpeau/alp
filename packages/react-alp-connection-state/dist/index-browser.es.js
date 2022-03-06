@@ -67,10 +67,6 @@ function ConnectionState(_ref) {
       forceHidden = _ref.forceHidden,
       state = _ref.state,
       children = _ref.children;
-  console.log({
-    state: state,
-    forceHidden: forceHidden
-  });
   var unloadingRef = useRef(false);
   var createCalc = useCreateCalc();
   var left = createCalc('50% - 100px', function (_ref2) {
