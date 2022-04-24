@@ -59,7 +59,8 @@ export class Config {
       String(version || argv.version || packageConfig?.version),
     );
 
-    const socketPath: string | undefined = (argv['socket-path'] ||
+    const socketPath: string | undefined = (argv.socket ||
+      argv['socket-path'] ||
       argv.socketPath) as string | undefined;
     if (socketPath) {
       config.set('socketPath', socketPath);

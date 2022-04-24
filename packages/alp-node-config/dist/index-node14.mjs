@@ -47,7 +47,7 @@ class Config {
     }
 
     config.set('version', String(version || argv.version || packageConfig?.version));
-    const socketPath = argv['socket-path'] || argv.socketPath;
+    const socketPath = argv.socket || argv['socket-path'] || argv.socketPath;
 
     if (socketPath) {
       config.set('socketPath', socketPath);
