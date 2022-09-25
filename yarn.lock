@@ -5253,8 +5253,8 @@ __metadata:
     react-dom: 17.0.2
     springbokjs-daemon: 8.0.0
     typescript: 4.6.2
-    workbox-core: 6.4.2
-    workbox-precaching: 6.4.2
+    workbox-core: 6.5.4
+    workbox-precaching: 6.5.4
   languageName: unknown
   linkType: soft
 
@@ -20325,6 +20325,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"workbox-core@npm:6.5.4":
+  version: 6.5.4
+  resolution: "workbox-core@npm:6.5.4"
+  checksum: d973cc6c1c5fdbde7f6642632384c2e0de48f08228eb234db2c97a18a7e5422b483005767e7b447ea774abc0772dfc1edef2ef2b5df174df4d40ae61d4c49719
+  languageName: node
+  linkType: hard
+
 "workbox-expiration@npm:6.4.2":
   version: 6.4.2
   resolution: "workbox-expiration@npm:6.4.2"
@@ -20367,6 +20374,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"workbox-precaching@npm:6.5.4":
+  version: 6.5.4
+  resolution: "workbox-precaching@npm:6.5.4"
+  dependencies:
+    workbox-core: 6.5.4
+    workbox-routing: 6.5.4
+    workbox-strategies: 6.5.4
+  checksum: 15ef24ffb04edd13bcdfa6c4e7f64002551badce2d507031c343019b3bcdc569591fdff8f8e30cf1262d641d3eff611115bdda7b2ad0deb9d4ccef8f4be8bd20
+  languageName: node
+  linkType: hard
+
 "workbox-range-requests@npm:6.4.2":
   version: 6.4.2
   resolution: "workbox-range-requests@npm:6.4.2"
@@ -20399,12 +20417,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"workbox-routing@npm:6.5.4":
+  version: 6.5.4
+  resolution: "workbox-routing@npm:6.5.4"
+  dependencies:
+    workbox-core: 6.5.4
+  checksum: 7198c50b9016d3cea0e5b51512d66f5813d6e6ad5e99c201435d6c0ab3baee1c90aa2bbdd72dd954f439267b6e6196fb04ec96e62347e6c89385db6c1a4dec79
+  languageName: node
+  linkType: hard
+
 "workbox-strategies@npm:6.4.2":
   version: 6.4.2
   resolution: "workbox-strategies@npm:6.4.2"
   dependencies:
     workbox-core: 6.4.2
   checksum: f981ab0bb103695f765cb4305d0bf35ebe347bcb19c441a58b2b48e99dc238495b6cbb1d1d3f55c89f2dee3202d9d2f8cb31f10b98120a33ed52f7e838366a98
+  languageName: node
+  linkType: hard
+
+"workbox-strategies@npm:6.5.4":
+  version: 6.5.4
+  resolution: "workbox-strategies@npm:6.5.4"
+  dependencies:
+    workbox-core: 6.5.4
+  checksum: 52134ecd6c05f4edd31e7b022b33a91b7b59c215bfdfb987bc0f10be02fea4d4e6385a9638a2303ba336190c5d28f9721182cd78a6779b9c817a66ec12cb1c6b
   languageName: node
   linkType: hard
 
