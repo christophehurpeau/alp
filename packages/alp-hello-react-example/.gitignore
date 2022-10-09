@@ -1,5 +1,6 @@
 
-# alp paths
+# next.js paths
+/.next
+/out
 /build
-/public
-/data
+/.env.local

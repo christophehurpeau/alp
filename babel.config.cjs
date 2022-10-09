@@ -6,7 +6,7 @@ module.exports = function babelConfig(api) {
   if (!isTest) return {};
 
   return {
-    only: ['packages/*/src', 'packages/*/lib'],
+    only: ['packages/*/src', 'packages/*/lib', 'node_modules/native-base'],
     presets: [
       [require.resolve('pob-babel/preset.cjs')],
       [
@@ -18,7 +18,6 @@ module.exports = function babelConfig(api) {
           useSpread: true,
         },
       ],
-      ['@linaria/babel-preset'],
     ],
   };
 };

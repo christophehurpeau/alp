@@ -12,7 +12,6 @@ export { Config } from 'alp-node-config';
 
 const logger = new Logger('alp');
 
-// see alp-dev
 export const appDirname = path.resolve('build');
 
 const packagePath = path.resolve('package.json');

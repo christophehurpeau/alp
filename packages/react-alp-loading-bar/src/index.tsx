@@ -109,7 +109,7 @@ export default class LoadingBar extends PureComponent<
 
   getWebsocket(): WebsocketInterface {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
-    return this.context.app.websocket;
+    return (this.context as any).app.websocket;
   }
 
   private showBar(): void {

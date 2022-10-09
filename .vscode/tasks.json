@@ -13,8 +13,7 @@
       "script": "start",
       "path": "packages/alp-hello-react-example/",
       "problemMatcher": [],
-      "label": "npm: start - packages/alp-hello-react-example",
-      "detail": "alp-dev"
+      "label": "npm: start - packages/alp-hello-react-example"
     }
   ]
 }

@@ -2,5 +2,6 @@ CHANGELOG.md
 /.yarn/**/*
 /packages/*/dist
 /packages/*/build
+/packages/*/.next
 /packages/*/public
 /packages/*/data

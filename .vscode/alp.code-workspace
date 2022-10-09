@@ -31,11 +31,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "jest.disabledWorkspaceFolders": [
       "alp-body-parser",
-      "alp-browser",
-      "alp-browser-config",
-      "alp-browser-errors",
-      "alp-browser-language",
-      "alp-dev",
+      "alp-nextjs",
       "alp-hello-react-example",
       "alp-listen",
       "alp-migrations",
@@ -50,12 +46,10 @@
       "alp-router",
       "alp-translate",
       "alp-types",
-      "ibex",
       "react-alp-antd-form",
       "react-alp-connection-state",
       "react-alp-context",
       "react-alp-loading-bar",
-      "react-alp-route-match-transition",
       "react-alp-translate"
     ]
   },
@@ -69,24 +63,8 @@
       "path": "../packages/alp-body-parser"
     },
     {
-      "name": "alp-browser",
-      "path": "../packages/alp-browser"
-    },
-    {
-      "name": "alp-browser-config",
-      "path": "../packages/alp-browser-config"
-    },
-    {
-      "name": "alp-browser-errors",
-      "path": "../packages/alp-browser-errors"
-    },
-    {
-      "name": "alp-browser-language",
-      "path": "../packages/alp-browser-language"
-    },
-    {
-      "name": "alp-dev",
-      "path": "../packages/alp-dev"
+      "name": "alp-nextjs",
+      "path": "../packages/alp-nextjs"
     },
     {
       "name": "alp-hello-react-example",
@@ -145,10 +123,6 @@
       "path": "../packages/alp-types"
     },
     {
-      "name": "ibex",
-      "path": "../packages/ibex"
-    },
-    {
       "name": "react-alp-antd-form",
       "path": "../packages/react-alp-antd-form"
     },
@@ -163,10 +137,6 @@
     {
       "name": "react-alp-loading-bar",
       "path": "../packages/react-alp-loading-bar"
-    },
-    {
-      "name": "react-alp-route-match-transition",
-      "path": "../packages/react-alp-route-match-transition"
     },
     {
       "name": "react-alp-translate",

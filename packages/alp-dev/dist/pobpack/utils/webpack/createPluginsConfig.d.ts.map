@@ -1,1 +1,0 @@
-{"version":3,"file":"createPluginsConfig.d.ts","sourceRoot":"","sources":["../../../../src/pobpack/utils/webpack/createPluginsConfig.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,SAAS,CAAC;AAE7C,OAAO,KAAK,EAAE,OAAO,EAAE,MAAM,aAAa,CAAC;AAQ3C,MAAM,CAAC,OAAO,UAAU,mBAAmB,CACzC,OAAO,EAAE,OAAO,GACf,WAAW,CAAC,aAAa,CAAC,SAAS,CAAC,CAAC,CAiEvC"}

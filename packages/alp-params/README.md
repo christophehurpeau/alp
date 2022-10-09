@@ -3,7 +3,7 @@
 </h3>
 
 <p align="center">
-  Validate params from query, router or post body in koa 2 or ibex
+  Validate params from query, router or post body in koa 2
 </p>
 
 <p align="center">

@@ -1,7 +1,9 @@
 {
   "pob": {
     "app": {
-      "type": "alp"
+      "type": "next.js",
+      "export": false,
+      "testing": false
     },
     "project": {
       "type": "app"

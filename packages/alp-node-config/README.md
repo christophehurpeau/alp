@@ -14,7 +14,7 @@
 
 ```js
 import packageConfig from './package.json';
-import { Config } from 'alp-browser-config';
+import { Config } from 'alp-node-config';
 
 const config = new Config(new URL('./config', import.meta.url));
 export default config;
@@ -29,19 +29,6 @@ import config from './config';
 
 const app = new Koa();
 config()(app, config);
-```
-
-## With Ibex
-
-Config is cached in localstorage. `/config` is the path to the public config folder.
-
-```js
-import Ibex from 'ibex';
-import config from './config';
-
-const app = new Ibex();
-app.appVersion = '1.0.0';
-config('/config')(app);
 ```
 
 ## With Alp

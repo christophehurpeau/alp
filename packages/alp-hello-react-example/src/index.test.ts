@@ -12,19 +12,24 @@ describe('test hello server', () => {
     const cwd = new URL('../', import.meta.url).pathname;
     const require = createRequire(import.meta.url);
 
-    spawnSync(process.argv0, [require.resolve('alp-dev/bin/dev-build.js')], {
+    spawnSync(process.argv0, [require.resolve('next/dist/bin/next'), 'build'], {
       cwd,
       env: {},
       stdio: 'inherit',
     });
 
     daemon = createDaemon({
-      command: 'node',
+      command: require.resolve('next/dist/bin/next'),
       cwd,
-      args: ['build/index.mjs', '--port', 5555, '--version', 'test'],
+      args: ['start', '--port', 5555],
     });
-    await daemon.start();
-  }, 60_000);
+
+    // dont wait for daemonNext as next does not support process.send('ready')
+    daemon.start();
+    await new Promise((resolve) => {
+      setTimeout(resolve, 1000);
+    });
+  }, 120_000);
 
   afterAll(async () => {
     if (daemon) await daemon.stop();

@@ -1,0 +1,3 @@
+{
+  "presets": ["alp-nextjs/preset-babel.cjs"]
+}

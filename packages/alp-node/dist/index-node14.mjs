@@ -102,8 +102,7 @@ class AlpNodeApp extends Koa {
 
 }
 
-const logger = new Logger('alp'); // see alp-dev
-
+const logger = new Logger('alp');
 const appDirname = path.resolve('build');
 const packagePath = path.resolve('package.json');
 
