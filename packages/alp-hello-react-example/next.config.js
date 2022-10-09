@@ -33,6 +33,10 @@ const nextConfig = {
   },
 };
 
+if (process.env.TEST_BUILD_ID) {
+  nextConfig.generateBuildId = () => process.env.TEST_BUILD_ID;
+}
+
 export default withPlugins(
   [
     withTM([

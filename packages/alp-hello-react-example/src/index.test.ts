@@ -3,6 +3,7 @@ import { createRequire } from 'module';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import fetch from 'node-fetch';
 import type { Daemon } from 'springbokjs-daemon';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createDaemon } from 'springbokjs-daemon';
 
 describe('test hello server', () => {
@@ -14,7 +15,9 @@ describe('test hello server', () => {
 
     spawnSync(process.argv0, [require.resolve('next/dist/bin/next'), 'build'], {
       cwd,
-      env: {},
+      env: {
+        TEST_BUILD_ID: 'test-build-id',
+      },
       stdio: 'inherit',
     });
 
@@ -25,7 +28,7 @@ describe('test hello server', () => {
     });
 
     // dont wait for daemonNext as next does not support process.send('ready')
-    daemon.start();
+    daemon.start().catch(console.error);
     await new Promise((resolve) => {
       setTimeout(resolve, 1000);
     });

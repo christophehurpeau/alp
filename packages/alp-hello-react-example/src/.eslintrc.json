@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "packages/alp-hello-react-example/tsconfig.eslint.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "@pob/eslint-config-typescript",
+    "@pob/eslint-config-typescript-react"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src"]
+      }
+    }
+  },
+  "ignorePatterns": ["*.d.ts"]
+}
