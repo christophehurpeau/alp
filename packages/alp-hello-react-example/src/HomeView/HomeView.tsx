@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { appLogger } from 'nightingale-app-console';
-import { ReactElement } from 'react';
 import { useState } from 'react';
+import type { ReactElement } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import ClickToThrow from './components/ClickToThrow';
 import Counter from './components/Counter';
@@ -41,7 +41,6 @@ export function HomeView(): ReactElement {
   //   }
   // });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [name]);
 
   const intl = useIntl();

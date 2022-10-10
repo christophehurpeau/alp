@@ -1,6 +1,6 @@
 import { NativeBaseProvider } from 'native-base';
-import { AppProps } from 'next/app';
-import { ReactElement } from 'react';
+import type { AppProps } from 'next/app';
+import type { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 
 export default function App({ Component, pageProps }: AppProps): ReactElement {
