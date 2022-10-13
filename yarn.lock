@@ -5170,10 +5170,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.11.26":
-  version: 16.11.26
-  resolution: "@types/node@npm:16.11.26"
-  checksum: 57757caaba3f0d95de82198cb276a1002c49b710108c932a1d02d7c91ff2fa57cfe2dd19fde60853b6dd90b0964b3cf35557981d2628e20aed6a909057aedfe6
+"@types/node@npm:16.11.65":
+  version: 16.11.65
+  resolution: "@types/node@npm:16.11.65"
+  checksum: 81d84cb1e7aa305574cd35acf1a5e47f4a7f52783ba096f4bc511314540dee33a27cbd4fddc8bddd4535f1c87a96a76907157bcde093a25c89e8851d6dd63022
   languageName: node
   linkType: hard
 
@@ -5698,7 +5698,7 @@ __metadata:
   resolution: "alp-migrations@workspace:packages/alp-migrations"
   dependencies:
     "@babel/core": 7.17.5
-    "@types/node": 16.11.26
+    "@types/node": 16.11.65
     "@types/semver": 7.3.12
     alp-types: 3.1.0
     liwi-mongo: 9.1.0
