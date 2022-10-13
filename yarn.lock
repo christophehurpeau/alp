@@ -5270,15 +5270,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:0.66.16":
-  version: 0.66.16
-  resolution: "@types/react-native@npm:0.66.16"
-  dependencies:
-    "@types/react": "*"
-  checksum: c8f8783bea1ab51086240fa84008ff00a4996bb56c7e642dc78400b60ea2bc1f0adb04f30a1f7a89c6f83bfe028380e8749c923d7b179d89b7fb5e2c05065e09
-  languageName: node
-  linkType: hard
-
 "@types/react-native@npm:0.70.4":
   version: 0.70.4
   resolution: "@types/react-native@npm:0.70.4"
@@ -15552,7 +15543,7 @@ __metadata:
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/runtime": ^7.17.2
-    "@types/react-native": 0.66.16
+    "@types/react-native": 0.70.4
     babel-preset-modern-browsers: 15.0.2
     pob-babel: 32.2.0
     react: 17.0.2
