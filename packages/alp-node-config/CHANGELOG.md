@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.5](https://github.com/christophehurpeau/alp/compare/alp-node-config@7.0.4...alp-node-config@7.0.5) (2022-10-13)
+
+
+### Bug Fixes
+
+* **alp-node-config:** add support for --socket arg ([3309e64](https://github.com/christophehurpeau/alp/commit/3309e64f65d6dc6b39d0c584dbe4456c1e9409c4))
+
+
+
+
+
 ## [7.0.4](https://github.com/christophehurpeau/alp/compare/alp-node-config@7.0.3...alp-node-config@7.0.4) (2022-03-05)
 
 **Note:** Version bump only for package alp-node-config

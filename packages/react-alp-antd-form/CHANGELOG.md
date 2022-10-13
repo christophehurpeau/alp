@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/christophehurpeau/alp/compare/react-alp-antd-form@3.0.5...react-alp-antd-form@3.0.6) (2022-10-13)
+
+**Note:** Version bump only for package react-alp-antd-form
+
+
+
+
+
 ## [3.0.5](https://github.com/christophehurpeau/alp/compare/react-alp-antd-form@3.0.4...react-alp-antd-form@3.0.5) (2022-03-05)
 
 **Note:** Version bump only for package react-alp-antd-form

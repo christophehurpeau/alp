@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.4](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.0.3...alp-hello-react-example@6.0.4) (2022-10-13)
+
+
+### Bug Fixes
+
+* tsc ([7b340fa](https://github.com/christophehurpeau/alp/commit/7b340fa45217eae9c26b23ca07e2822537f39de2))
+
+
+
+
+
 ## [6.0.3](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.0.2...alp-hello-react-example@6.0.3) (2022-03-05)
 
 **Note:** Version bump only for package alp-hello-react-example
