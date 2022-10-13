@@ -32,30 +32,35 @@ jobs:
       - name: Check Dependencies
         run: yarn install --immutable --immutable-cache
 
-      - name: Checks
-        run: yarn run checks
+      - name: Debug 1
+        run: yarn ./packages/alp-hello-react-example build
 
-      - name: Build
-        run: yarn run build
-        if: startsWith(matrix.node-version, '16.')
+      - name: Debug 2
+        run: cat ./packages/alp-hello-react-example/.next/static/chunks/webpack-*
+      # - name: Checks
+      #   run: yarn run checks
 
-      - name: Prettier
-        run: yarn run lint:prettier
-        if: startsWith(matrix.node-version, '16.')
+      # - name: Build
+      #   run: yarn run build
+      #   if: startsWith(matrix.node-version, '16.')
 
-      - name: Typescript
-        run: yarn run tsc
-        if: startsWith(matrix.node-version, '16.')
+      # - name: Prettier
+      #   run: yarn run lint:prettier
+      #   if: startsWith(matrix.node-version, '16.')
 
-      - name: Eslint
-        run: yarn run lint:eslint
-        if: startsWith(matrix.node-version, '16.')
+      # - name: Typescript
+      #   run: yarn run tsc
+      #   if: startsWith(matrix.node-version, '16.')
 
-      - name: Test
-        run: yarn run test
-        env:
-          CI: true
+      # - name: Eslint
+      #   run: yarn run lint:eslint
+      #   if: startsWith(matrix.node-version, '16.')
 
-      - name: Check nothing was forgotten before commit
-        if: startsWith(matrix.node-version, '16.')
-        run: yarn run repository-check-dirty
+      # - name: Test
+      #   run: yarn run test
+      #   env:
+      #     CI: true
+
+      # - name: Check nothing was forgotten before commit
+      #   if: startsWith(matrix.node-version, '16.')
+      #   run: yarn run repository-check-dirty
