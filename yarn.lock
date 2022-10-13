@@ -5287,10 +5287,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:7.3.9":
-  version: 7.3.9
-  resolution: "@types/semver@npm:7.3.9"
-  checksum: 60bfcfdfa7f937be2c6f4b37ddb6714fb0f27b05fe4cbdfdd596a97d35ed95d13ee410efdd88e72a66449d0384220bf20055ab7d6b5df10de4990fbd20e5cbe0
+"@types/semver@npm:7.3.12":
+  version: 7.3.12
+  resolution: "@types/semver@npm:7.3.12"
+  checksum: 35536b2fc5602904f21cae681f6c9498e177dab3f54ae37c92f9a1b7e43c35f18bcd81e1c98c1cf0d33ee046bb06c771e9928c1c00a401d56a03f56549252a15
   languageName: node
   linkType: hard
 
@@ -5699,7 +5699,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.17.5
     "@types/node": 16.11.26
-    "@types/semver": 7.3.9
+    "@types/semver": 7.3.12
     alp-types: 3.1.0
     liwi-mongo: 9.1.0
     nightingale-logger: ^12.1.4
