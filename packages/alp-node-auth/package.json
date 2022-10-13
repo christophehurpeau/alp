@@ -81,7 +81,7 @@
   "peerDependencies": {
     "alp-node": "^4.0.2",
     "alp-router": "^5.1.0",
-    "liwi-mongo": "^8.0.1"
+    "liwi-mongo": "^8.0.1 || ^9.0.0"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.1",
@@ -96,7 +96,7 @@
     "@babel/core": "7.17.5",
     "alp-node": "4.1.4",
     "alp-router": "5.1.6",
-    "liwi-mongo": "8.3.1",
+    "liwi-mongo": "9.1.0",
     "pob-babel": "32.2.0",
     "typescript": "4.6.2"
   }
