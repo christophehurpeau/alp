@@ -72,7 +72,7 @@
     "@types/node": "16.11.65",
     "@types/object-assign": "4.0.30",
     "@types/react": "18.0.21",
-    "@types/react-native": "0.70.4",
+    "@types/react-native": "0.70.5",
     "next-compose-plugins": "2.2.1",
     "next-transpile-modules": "9.1.0",
     "springbokjs-daemon": "8.0.0",
