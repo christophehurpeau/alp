@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/christophehurpeau/alp/compare/react-alp-context@4.0.5...react-alp-context@4.1.0) (2022-10-16)
+
+
+### Features
+
+* update to react 18 ([6ac42b8](https://github.com/christophehurpeau/alp/commit/6ac42b84b80bf76853773f3b93819666684327d1))
+
+
+
+
+
 ## [4.0.5](https://github.com/christophehurpeau/alp/compare/react-alp-context@4.0.4...react-alp-context@4.0.5) (2022-03-05)
 
 **Note:** Version bump only for package react-alp-context

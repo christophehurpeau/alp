@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@6.0.6...alp-migrations@6.1.0) (2022-10-16)
+
+
+### Features
+
+* **deps:** update dependency liwi-mongo to v9 ([#339](https://github.com/christophehurpeau/alp/issues/339)) ([14fa557](https://github.com/christophehurpeau/alp/commit/14fa55719c5623cdbc2f2da6909fdea35eb3658e))
+* update to react 18 ([6ac42b8](https://github.com/christophehurpeau/alp/commit/6ac42b84b80bf76853773f3b93819666684327d1))
+
+
+
+
+
 ## [6.0.6](https://github.com/christophehurpeau/alp/compare/alp-migrations@6.0.5...alp-migrations@6.0.6) (2022-10-13)
 
 **Note:** Version bump only for package alp-migrations

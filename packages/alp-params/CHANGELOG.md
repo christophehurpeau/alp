@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/christophehurpeau/alp/compare/alp-params@4.2.4...alp-params@4.3.0) (2022-10-16)
+
+
+### Features
+
+* update to react 18 ([6ac42b8](https://github.com/christophehurpeau/alp/commit/6ac42b84b80bf76853773f3b93819666684327d1))
+
+
+
+
+
 ## [4.2.4](https://github.com/christophehurpeau/alp/compare/alp-params@4.2.3...alp-params@4.2.4) (2022-10-13)
 
 **Note:** Version bump only for package alp-params

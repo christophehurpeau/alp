@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/christophehurpeau/alp/compare/react-alp-antd-form@3.0.6...react-alp-antd-form@3.1.0) (2022-10-16)
+
+
+### Features
+
+* update to react 18 ([6ac42b8](https://github.com/christophehurpeau/alp/commit/6ac42b84b80bf76853773f3b93819666684327d1))
+
+
+
+
+
 ## [3.0.6](https://github.com/christophehurpeau/alp/compare/react-alp-antd-form@3.0.5...react-alp-antd-form@3.0.6) (2022-10-13)
 
 **Note:** Version bump only for package react-alp-antd-form
