@@ -19,17 +19,16 @@ const defaultTheme = {
   },
   backgroundColorConnected: 'rgba(25, 200, 60, 0.8)'
 };
-
 const useCreateCalcNative = () => {
   const dimensions = reactNative.useWindowDimensions();
   return (webCalc, createCalc) => createCalc(dimensions);
 };
-
 const useCreateCalcWeb = () => {
   return webCalc => `calc(${webCalc})`;
 };
+const useCreateCalc = reactNative.Platform.OS === 'web' ? useCreateCalcWeb : useCreateCalcNative;
 
-const useCreateCalc = reactNative.Platform.OS === 'web' ? useCreateCalcWeb : useCreateCalcNative; // example: const left = createCalc('50% - 100px', ({ width }) => width / 2 - 100);
+// example: const left = createCalc('50% - 100px', ({ width }) => width / 2 - 100);
 
 const styles = reactNative.StyleSheet.create({
   connectionStateContainer: {
@@ -76,11 +75,9 @@ function ConnectionState({
 
   react.useEffect(() => {
     if (typeof window === 'undefined') return;
-
     const beforeUnloadHandler = () => {
       unloadingRef.current = true;
     };
-
     window.addEventListener('beforeunload', beforeUnloadHandler);
     return () => {
       window.removeEventListener('beforeunload', beforeUnloadHandler);

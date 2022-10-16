@@ -2,24 +2,24 @@ import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import IntlMessageFormatDefault from 'intl-messageformat';
 
-var IntlMessageFormat = // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+var IntlMessageFormat =
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 IntlMessageFormatDefault["default"] || IntlMessageFormatDefault;
 function load(translations, language) {
   var result = new Map();
-
   (function loadMap(map, prefix) {
     map.forEach(function (value, key) {
       if (typeof value === 'object') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         loadMap(value, "" + prefix + key + ".");
         return;
-      } // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      }
 
-
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       result.set("" + prefix + key, new IntlMessageFormat(value, language));
     });
   })(translations, '');
-
   return result;
 }
 
@@ -35,7 +35,6 @@ function alpTranslate(dirname) {
               language = app.context.language;
               _context.next = 3;
               return app.loadConfig(dirname + language);
-
             case 3:
               map = _context.sent;
               translations = load(map, language);
@@ -46,7 +45,6 @@ function alpTranslate(dirname) {
                   return msg.format(args);
                 }
               });
-
             case 6:
             case "end":
               return _context.stop();
@@ -54,7 +52,6 @@ function alpTranslate(dirname) {
         }
       }, _callee);
     }));
-
     return function () {
       return _ref.apply(this, arguments);
     };

@@ -7,11 +7,9 @@ class ParamValueValidator {
     this.name = name;
     this.value = value;
   }
-
   _error(key) {
     this.validator._error(this.name, key, this.value);
   }
-
 }
 
 class ParamValueStringValidator extends ParamValueValidator {
@@ -19,40 +17,32 @@ class ParamValueStringValidator extends ParamValueValidator {
     if (this.value == null || this.value.trim() === '') {
       this._error('notEmpty');
     }
-
     return this;
   }
-
 }
 
 class ParamValidator {
   constructor(context) {
     this.context = context;
   }
-
   _error(name, key, value) {
     if (!this._errors) {
       this._errors = {};
     }
-
     this._errors[name] = {
       error: key,
       value
     };
   }
-
   getErrors() {
     return this._errors;
   }
-
   hasErrors() {
     return this._errors !== undefined;
   }
-
   isValid() {
     return this._errors === undefined;
   }
-
   string(name) {
     return new ParamValueStringValidator(this, name, this.context.param(name));
   }
@@ -65,8 +55,6 @@ class ParamValidator {
    let data = this.context.getOrPostParam(name);
    return new ParamValueModelValidator(this, name, !data ? null : new M[modelName](data));
    } */
-
-
 }
 
 class ParamValidatorValid extends ParamValidator {
@@ -75,7 +63,6 @@ class ParamValidatorValid extends ParamValidator {
       validator: this
     });
   }
-
 }
 
 function alpParams(app) {
@@ -83,30 +70,25 @@ function alpParams(app) {
     param(name) {
       return this.namedParam(name) || this.paramGET(name);
     },
-
     namedParam(name) {
       const namedParams = this.route.namedParams;
       return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
     },
-
     otherParam(position) {
       const otherParams = this.route.otherParams;
       return otherParams && otherParams[position - 1];
     },
-
     paramGET(name) {
       var _searchParams$get;
-
       const searchParams = this.request.searchParams;
       return (_searchParams$get = searchParams.get(name)) !== null && _searchParams$get !== void 0 ? _searchParams$get : undefined;
     },
-
     paramGETorPOST(name) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
-      return this.body[name] !== undefined ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      return this.body[name] !== undefined ?
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       this.body[name] : this.paramGET(name);
     }
-
   });
   defineLazyProperty(app.request, 'searchParams', function () {
     return new URLSearchParams(this.search);

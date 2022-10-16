@@ -5,7 +5,8 @@ function useT(id, params, deps) {
   const ctx = useContext(ReactAlpContext);
   return useMemo(() => {
     return ctx.t(id, params);
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/no-unsafe-assignment
+  },
+  // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/no-unsafe-assignment
   !deps ? [id] : [id, ...deps]);
 }
 
@@ -14,7 +15,8 @@ function useT(id, params, deps) {
 function useTs(ids) {
   const ctx = useContext(ReactAlpContext);
   return useMemo(() => {
-    return ids.map(id => ctx.t(id)); // eslint-disable-next-line react-hooks/exhaustive-deps
+    return ids.map(id => ctx.t(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ids.join(',')]);
 }
 

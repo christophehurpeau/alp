@@ -1,5 +1,6 @@
 import nodeFetch from 'node-fetch';
 export { default } from 'node-fetch';
 
-global.fetch = nodeFetch; // eslint-disable-next-line unicorn/prefer-export-from
+// @ts-expect-error -- node-fetch does not exactly match dom api
+global.fetch = nodeFetch;
 //# sourceMappingURL=fetch-node14.mjs.map

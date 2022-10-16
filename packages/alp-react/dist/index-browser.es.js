@@ -12,26 +12,20 @@ export { default as Helmet } from 'react-helmet';
 function createAlpAppWrapper(app, context) {
   return /*#__PURE__*/function (_Component) {
     _inheritsLoose(AlpAppWrapper, _Component);
-
     function AlpAppWrapper() {
       var _this, _len, args, _key;
-
       for (_len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
-
       _this = _Component.call.apply(_Component, [this].concat(args)) || this;
       _this.state = {
         error: null
       };
       return _this;
     }
-
     var _proto = AlpAppWrapper.prototype;
-
     _proto.componentDidCatch = function componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
-
       if (window.Sentry) {
         window.Sentry.captureException(error, {
           contexts: {
@@ -42,7 +36,6 @@ function createAlpAppWrapper(app, context) {
         });
       }
     };
-
     _proto.render = function render() {
       if (this.state.error) return /*#__PURE__*/jsx("div", {
         children: "An unexpected error occured"
@@ -52,7 +45,6 @@ function createAlpAppWrapper(app, context) {
         children: app
       });
     };
-
     return AlpAppWrapper;
   }(Component);
 }
@@ -99,22 +91,20 @@ function alpReactBrowser(app) {
             case 0:
               initialData = window.__INITIAL_DATA__ || {};
               ctx = app.createContext();
-
               if (initialData.sanitizedState) {
                 ctx.sanitizedState = initialData.sanitizedState;
               }
-
               logger.success('render called');
               WrappedApp = createAlpAppWrapper( /*#__PURE__*/React.createElement(App), ctx);
               appElement = /*#__PURE__*/React.createElement(WrappedApp);
               _context.next = 8;
               return contentLoaded();
-
             case 8:
               // const container =
               hydrate(appElement, document.getElementById('react-app'));
-              logger.success('rendered'); // container.updateSanitizedState({ loading: false });
+              logger.success('rendered');
 
+              // container.updateSanitizedState({ loading: false });
             case 10:
             case "end":
               return _context.stop();
@@ -122,7 +112,6 @@ function alpReactBrowser(app) {
         }
       }, _callee);
     }));
-
     return function renderApp() {
       return _renderApp.apply(this, arguments);
     };

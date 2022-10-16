@@ -21,7 +21,8 @@ function FormField({
         input,
         meta,
         ...rest
-      }) => /*#__PURE__*/jsx(Component, { ...input,
+      }) => /*#__PURE__*/jsx(Component, {
+        ...input,
         ...rest
       }),
       ...props

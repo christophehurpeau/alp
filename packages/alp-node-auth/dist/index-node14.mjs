@@ -21,13 +21,11 @@ function createAuthController({
       const params = authHooks.paramsForLogin && (await authHooks.paramsForLogin(strategy, ctx)) || {};
       await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
     },
-
     async addScope(ctx) {
       if (ctx.state.connected) {
         await ctx.redirectTo(homeRouterKey);
         return;
       }
-
       const strategy = ctx.namedParam('strategy') || defaultStrategy;
       if (!strategy) throw new Error('Strategy missing');
       const scopeKey = ctx.namedParam('scopeKey');
@@ -36,13 +34,11 @@ function createAuthController({
         scopeKey
       });
     },
-
     async loginResponse(ctx) {
       if (ctx.state.connected) {
         await ctx.redirectTo(homeRouterKey);
         return;
       }
-
       const strategy = ctx.namedParam('strategy');
       ctx.assert(strategy);
       const connectedUser = await authenticationService.accessResponse(ctx, strategy, ctx.state.connected, {
@@ -53,12 +49,10 @@ function createAuthController({
       await ctx.setConnected(connectedUser[keyPath], connectedUser);
       await ctx.redirectTo(homeRouterKey);
     },
-
     async logout(ctx) {
       ctx.logout();
       await ctx.redirectTo(homeRouterKey);
     }
-
   };
 }
 
@@ -86,30 +80,25 @@ class AuthenticationService extends EventEmitter {
     this.strategies = strategies;
     this.userAccountsService = userAccountsService;
   }
-
   generateAuthUrl(strategy, params) {
     logger$4.debug('generateAuthUrl', {
       strategy,
       params
     });
     const strategyInstance = this.strategies[strategy];
-
     switch (strategyInstance.type) {
       case 'oauth2':
         return strategyInstance.oauth2.authorizationCode.authorizeURL(params);
-
       default:
         throw new Error('Invalid strategy');
     }
   }
-
   async getTokens(strategy, options) {
     logger$4.debug('getTokens', {
       strategy,
       options
     });
     const strategyInstance = this.strategies[strategy];
-
     switch (strategyInstance.type) {
       case 'oauth2':
         {
@@ -129,25 +118,22 @@ class AuthenticationService extends EventEmitter {
               return d;
             })(),
             idToken: result.id_token
-          }; // return strategyInstance.accessToken.create(result);
+          };
+          // return strategyInstance.accessToken.create(result);
         }
 
       default:
         throw new Error('Invalid stategy');
     }
   }
-
   async refreshToken(strategy, tokensParam) {
     logger$4.debug('refreshToken', {
       strategy
     });
-
     if (!tokensParam.refreshToken) {
       throw new Error('Missing refresh token');
     }
-
     const strategyInstance = this.strategies[strategy];
-
     switch (strategyInstance.type) {
       case 'oauth2':
         {
@@ -168,19 +154,16 @@ class AuthenticationService extends EventEmitter {
             idToken: tokens.id_token
           };
         }
-
       default:
         throw new Error('Invalid stategy');
     }
   }
-
   redirectUri(ctx, strategy) {
     const host = `http${this.config.get('allowHttps') ? 's' : ''}://${ctx.request.host}`;
     return `${host}${ctx.urlGenerator('loginResponse', {
       strategy
     })}`;
   }
-
   async redirectAuthUrl(ctx, strategy, {
     refreshToken,
     scopeKey,
@@ -194,11 +177,9 @@ class AuthenticationService extends EventEmitter {
     });
     const state = await randomHex(8);
     const scope = this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
-
     if (!scope) {
       throw new Error('Invalid empty scope');
     }
-
     ctx.cookies.set(`auth_${strategy}_${state}`, JSON.stringify({
       scopeKey,
       scope,
@@ -217,7 +198,6 @@ class AuthenticationService extends EventEmitter {
     });
     return ctx.redirect(redirectUri);
   }
-
   async accessResponse(ctx, strategy, isConnected, hooks) {
     if (ctx.query.error) {
       const error = new Error(ctx.query.error);
@@ -225,7 +205,6 @@ class AuthenticationService extends EventEmitter {
       error.expose = true;
       throw error;
     }
-
     const code = ctx.query.code;
     const state = ctx.query.state;
     const cookieName = `auth_${strategy}_${state}`;
@@ -233,56 +212,43 @@ class AuthenticationService extends EventEmitter {
     ctx.cookies.set(cookieName, '', {
       expires: new Date(1)
     });
-
     if (!cookie) {
       throw new Error('No cookie for this state');
     }
-
     cookie = JSON.parse(cookie);
-
     if (!cookie || !cookie.scope) {
       throw new Error('Unexpected cookie value');
     }
-
     if (!cookie.isLoginAccess) {
       if (!isConnected) {
         throw new Error('You are not connected');
       }
     }
-
     const tokens = await this.getTokens(strategy, {
       code,
       redirectUri: this.redirectUri(ctx, strategy)
     });
-
     if (cookie.isLoginAccess) {
       const user = await this.userAccountsService.findOrCreateFromStrategy(strategy, tokens, cookie.scope, cookie.scopeKey);
-
       if (hooks.afterLoginSuccess) {
         await hooks.afterLoginSuccess(strategy, user);
       }
-
       return user;
     }
-
     const connectedUser = ctx.state.user;
     const {
       account,
       user
     } = await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
-
     if (hooks.afterScopeUpdate) {
       await hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
     }
-
     return connectedUser;
   }
-
   refreshAccountTokens(user, account) {
     if (account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now()) {
       return Promise.resolve(false);
     }
-
     return this.refreshToken(account.provider, {
       // accessToken: account.accessToken,
       refreshToken: account.refreshToken
@@ -291,13 +257,11 @@ class AuthenticationService extends EventEmitter {
         // serviceGoogle.updateFields({ accessToken:null, refreshToken:null, status: .OUTDATED });
         return false;
       }
-
       account.accessToken = tokens.accessToken;
       account.tokenExpireDate = tokens.expireDate;
       return this.userAccountsService.updateAccount(user, account).then(() => true);
     });
   }
-
 }
 
 /* eslint-disable @typescript-eslint/no-shadow */
@@ -312,70 +276,54 @@ class UserAccountsService extends EventEmitter {
     this.usersManager = usersManager;
     this.strategyToService = strategyToService;
   }
-
   getScope(strategy, scopeKey, user, accountId) {
     logger$3.debug('getScope', {
       strategy,
       userId: user?._id
     });
     const service = this.strategyToService[strategy];
-
     if (!service) {
       throw new Error('Strategy not supported');
     }
-
     const newScope = service.scopeKeyToScope[scopeKey];
-
     if (!user || !accountId) {
       return newScope;
     }
-
     const account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
-
     if (!account) {
       throw new Error('Could not found associated account');
     }
-
     return service.getScope(account.scope, newScope).join(' ');
   }
-
   async update(user, strategy, tokens, scope, subservice) {
     const service = this.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
     const account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
-
     if (!account) {
       // TODO check if already exists in other user => merge
       // TODO else add a new account in this user
       throw new Error('Could not found associated account');
     }
-
     account.status = 'valid';
     account.accessToken = tokens.accessToken;
-
     if (tokens.refreshToken) {
       account.refreshToken = tokens.refreshToken;
     }
-
     if (tokens.expireDate) {
       account.tokenExpireDate = tokens.expireDate;
     }
-
     account.scope = service.getScope(account.scope, scope);
     account.subservices = account.subservices || [];
-
     if (subservice && !account.subservices.includes(subservice)) {
       account.subservices.push(subservice);
     }
-
     await this.usersManager.replaceOne(user);
     return {
       user,
       account
     };
   }
-
   async findOrCreateFromStrategy(strategy, tokens, scope, subservice) {
     const service = this.strategyToService[strategy];
     if (!service) throw new Error('Strategy not supported');
@@ -392,11 +340,9 @@ class UserAccountsService extends EventEmitter {
       emails,
       user
     });
-
     if (!user) {
       user = {};
     }
-
     Object.assign(user, {
       displayName: service.getDisplayName(profile),
       fullName: service.getFullName(profile),
@@ -404,36 +350,29 @@ class UserAccountsService extends EventEmitter {
     });
     if (!user.accounts) user.accounts = [];
     let account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
-
     if (!account) {
       account = {
         provider: strategy,
         accountId
-      }; // @ts-expect-error well...
-
+      };
+      // @ts-expect-error well...
       user.accounts.push(account);
     }
-
     account.name = service.getAccountName(profile);
     account.status = 'valid';
     account.profile = profile;
     account.accessToken = tokens.accessToken;
-
     if (tokens.refreshToken) {
       account.refreshToken = tokens.refreshToken;
     }
-
     if (tokens.expireDate) {
       account.tokenExpireDate = tokens.expireDate;
     }
-
     account.scope = service.getScope(account.scope, scope);
     if (!account.subservices) account.subservices = [];
-
     if (subservice && !account.subservices.includes(subservice)) {
       account.subservices.push(subservice);
     }
-
     if (!user.emails) user.emails = [];
     const userEmails = user.emails;
     emails.forEach(email => {
@@ -441,37 +380,34 @@ class UserAccountsService extends EventEmitter {
         userEmails.push(email);
       }
     });
-    user.emailDomains = [// eslint-disable-next-line unicorn/no-array-reduce
+    user.emailDomains = [
+    // eslint-disable-next-line unicorn/no-array-reduce
     ...user.emails.reduce((domains, email) => domains.add(email.split('@', 2)[1]), new Set())];
     const keyPath = this.usersManager.store.keyPath;
-
     if (user[keyPath]) {
       await this.usersManager.replaceOne(user);
     } else {
       await this.usersManager.insertOne(user);
     }
-
     return user;
   }
-
   async updateAccount(user, account) {
     await this.usersManager.updateAccount(user, account);
     return user;
   }
-
 }
 
 const COOKIE_NAME = 'connectedUser';
 const getTokenFromRequest = (req, options) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  const cookies = new Cookies(req, null, { ...options,
+  const cookies = new Cookies(req, null, {
+    ...options,
     secure: true
   });
   return cookies.get(COOKIE_NAME);
 };
 
 const verifyPromisified = promisify(jsonwebtoken.verify);
-
 const createDecodeJWT = secretKey => async (token, jwtAudience) => {
   const result = await verifyPromisified(token, secretKey, {
     algorithms: ['HS512'],
@@ -479,13 +415,11 @@ const createDecodeJWT = secretKey => async (token, jwtAudience) => {
   });
   return result?.connected;
 };
-
 const createFindConnectedAndUser = (secretKey, usersManager, logger) => {
   const decodeJwt = createDecodeJWT(secretKey);
   return async (jwtAudience, token) => {
     if (!token || !jwtAudience) return [null, null];
     let connected;
-
     try {
       connected = await decodeJwt(token, jwtAudience);
     } catch (err) {
@@ -493,7 +427,6 @@ const createFindConnectedAndUser = (secretKey, usersManager, logger) => {
         err
       });
     }
-
     if (connected == null) return [null, null];
     const user = await usersManager.findConnected(connected);
     return [connected, user];
@@ -504,23 +437,18 @@ class MongoUsersManager {
   constructor(store) {
     this.store = store;
   }
-
   findConnected(connected) {
     return this.store.findByKey(connected);
   }
-
   insertOne(user) {
     return this.store.insertOne(user);
   }
-
   replaceOne(user) {
     return this.store.replaceOne(user);
   }
-
   sanitize(user) {
     return this.sanitizeBaseUser(user);
   }
-
   findOneByAccountOrEmails({
     accountId,
     emails,
@@ -530,7 +458,6 @@ class MongoUsersManager {
       'accounts.provider': provider,
       'accounts.accountId': accountId
     };
-
     if (emails && emails.length > 0) {
       query = {
         $or: [query, {
@@ -539,26 +466,22 @@ class MongoUsersManager {
           }
         }]
       };
-    } // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    }
 
-
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return this.store.findOne(query);
   }
-
   updateAccount(user, account) {
     const accountIndex = user.accounts.indexOf(account);
-
     if (accountIndex === -1) {
       throw new Error('Invalid account');
     }
-
     return this.store.partialUpdateOne(user, {
       $set: {
         [`accounts.${accountIndex}`]: account
       }
     });
   }
-
   sanitizeBaseUser(user) {
     return {
       _id: user._id,
@@ -578,109 +501,88 @@ class MongoUsersManager {
       }))
     };
   }
-
 }
 
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 class UserAccountGoogleService {
   constructor(scopeKeyToScope) {
-    this.scopeKeyToScope = { ...scopeKeyToScope,
+    this.scopeKeyToScope = {
+      ...scopeKeyToScope,
       login: 'openid profile email'
     };
   }
-
   providerKey = 'google';
-
   getProfile(tokens) {
     return fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`).then(response => response.json());
   }
-
   getId(profile) {
     return profile.id;
   }
-
   getAccountName(profile) {
     return profile.email;
   }
-
   getEmails(profile) {
     const emails = [];
-
     if (profile.email) {
       emails.push(profile.email);
     }
-
     return emails;
   }
-
   getDisplayName(profile) {
     return profile.name;
   }
-
   getFullName(profile) {
     return {
       givenName: profile.given_name,
       familyName: profile.family_name
     };
   }
-
   getDefaultScope(newScope) {
     return this.getScope(undefined, newScope);
   }
-
   getScope(oldScope, newScope) {
     return !oldScope ? newScope.split(' ') : [...oldScope, ...newScope.split(' ')].filter((item, i, ar) => ar.indexOf(item) === i);
   }
-
 }
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 // https://api.slack.com/methods/users.identity
+
 class UserAccountSlackService {
   constructor(scopeKeyToScope) {
-    this.scopeKeyToScope = { ...scopeKeyToScope,
+    this.scopeKeyToScope = {
+      ...scopeKeyToScope,
       login: 'identity.basic identity.email identity.avatar'
     };
   }
-
   providerKey = 'google';
-
   getProfile(tokens) {
     return fetch(`https://slack.com/api/users.identity?token=${tokens.accessToken}`).then(response => response.json());
   }
-
   getId(profile) {
     if (!profile || !profile.team || !profile.team.id || !profile.user || !profile.user.id) {
       return null;
     }
-
     return `team:${profile.team.id};user:${profile.user.id}`;
   }
-
   getAccountName(profile) {
     return profile.user.email;
   }
-
   getEmails(profile) {
     return profile.user.email ? [profile.user.email] : [];
   }
-
   getDisplayName(profile) {
     return profile.user.name;
   }
-
   getFullName() {
     return null;
   }
-
   getDefaultScope(newScope) {
     return this.getScope(undefined, newScope);
   }
-
   getScope(oldScope, newScope) {
     return !oldScope ? newScope.split(' ') : [...oldScope, ...newScope.split(' ')].filter((item, i, ar) => ar.indexOf(item) === i);
   }
-
 }
 
 const logger$2 = new Logger('alp:auth');
@@ -689,11 +591,12 @@ const authSocketIO = (app, usersManager, io) => {
   const users = new Map();
   io.users = users;
   io.use(async (socket, next) => {
-    const handshakeData = socket.request; // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-
+    const handshakeData = socket.request;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const token = getTokenFromRequest(handshakeData);
     if (!token) return next();
-    const [connected, user] = await findConnectedAndUser( // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const [connected, user] = await findConnectedAndUser(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     handshakeData.headers['user-agent'], token);
     if (!connected || !user) return next();
     socket.user = user;
@@ -704,17 +607,15 @@ const authSocketIO = (app, usersManager, io) => {
 };
 
 const logger$1 = new Logger('alp:auth');
-
 const getTokenFromReq = req => {
   if (req.cookies) return req.cookies[COOKIE_NAME];
   return getTokenFromRequest(req);
 };
+
 /*
  * Not tested yet.
  * @internal
  */
-
-
 const createAuthApolloContext = (config, usersManager) => {
   const findConnectedAndUser = createFindConnectedAndUser(config.get('authentication').get('secretKey'), usersManager, logger$1);
   return async ({
@@ -726,14 +627,15 @@ const createAuthApolloContext = (config, usersManager) => {
         user: connection.user
       };
     }
+    if (!req) return null;
 
-    if (!req) return null; // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const token = getTokenFromReq(req);
     if (!token) return {
       user: undefined
     };
-    const [, user] = await findConnectedAndUser( // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const [, user] = await findConnectedAndUser(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     req.headers['user-agent'], token);
     return {
       user
@@ -763,16 +665,13 @@ function init({
       defaultStrategy,
       authHooks
     });
-
     app.context.setConnected = async function (connected, user) {
       logger.debug('setConnected', {
         connected
       });
-
       if (!connected) {
         throw new Error('Illegal value for setConnected');
       }
-
       this.state.connected = connected;
       this.state.user = user;
       const token = await signPromisified({
@@ -782,14 +681,14 @@ function init({
         algorithm: 'HS512',
         audience: jwtAudience || this.request.headers['user-agent'],
         expiresIn: '30 days'
-      }); // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      });
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.cookies.set(COOKIE_NAME, token, {
         httpOnly: true,
         secure: this.config.get('allowHttps')
       });
     };
-
     app.context.logout = function () {
       delete this.state.connected;
       delete this.state.user;
@@ -797,7 +696,6 @@ function init({
         expires: new Date(1)
       });
     };
-
     const getConnectedAndUser = createFindConnectedAndUser(app.config.get('authentication').get('secretKey'), usersManager, logger);
     return {
       routes: createRoutes(controller),
@@ -812,19 +710,16 @@ function init({
         logger.debug('middleware', {
           token
         });
-
         const setState = (connected, user) => {
           ctx.state.connected = connected;
           ctx.state.user = user;
           ctx.sanitizedState.connected = connected;
           ctx.sanitizedState.user = user && usersManager.sanitize(user);
         };
-
         const [connected, user] = await getConnectedAndUser(jwtAudience || userAgent, token);
         logger.debug('middleware', {
           connected
         });
-
         if (connected == null || user == null) {
           if (token) ctx.cookies.set(COOKIE_NAME, '', {
             expires: new Date(1)
@@ -832,7 +727,6 @@ function init({
           setState(null, null);
           return next();
         }
-
         setState(connected, user);
         return next();
       }

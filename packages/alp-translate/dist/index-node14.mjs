@@ -1,24 +1,24 @@
 import { Logger } from 'nightingale-logger';
 import IntlMessageFormatDefault from 'intl-messageformat';
 
-const IntlMessageFormat = // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const IntlMessageFormat =
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 IntlMessageFormatDefault.default || IntlMessageFormatDefault;
 function load(translations, language) {
   const result = new Map();
-
   (function loadMap(map, prefix) {
     map.forEach((value, key) => {
       if (typeof value === 'object') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         loadMap(value, `${prefix}${key}.`);
         return;
-      } // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      }
 
-
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
     });
   })(translations, '');
-
   return result;
 }
 
@@ -30,7 +30,6 @@ function alpTranslate(dirname) {
     Object.assign(app.context, {
       t(id, args) {
         const msg = appTranslations.get(this.language).get(id);
-
         if (!msg) {
           logger.warn('invalid msg', {
             language: this.language,
@@ -38,10 +37,8 @@ function alpTranslate(dirname) {
           });
           return id;
         }
-
         return msg.format(args);
       }
-
     });
     const config = app.config;
     config.get('availableLanguages').forEach(language => {

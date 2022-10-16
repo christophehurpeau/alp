@@ -44,21 +44,17 @@ class AlpNodeApp extends Koa {
     translate('locales')(this);
     this.use(compress());
   }
-
   existsConfigSync(name) {
     return this.config.existsConfigSync(name);
   }
-
   loadConfigSync(name) {
     return this.config.loadConfigSync(name);
   }
-
   createContext(req, res) {
     const ctx = super.createContext(req, res);
     ctx.sanitizedState = {};
     return ctx;
   }
-
   servePublic() {
     this.use(serve(this.publicPath)); // static files
   }
@@ -66,26 +62,21 @@ class AlpNodeApp extends Koa {
   catchErrors() {
     this.use(errors);
   }
-
   listen() {
     throw new Error('Use start instead');
   }
+
   /**
    * Close server and emit close event
    */
-
-
   close() {
     if (this._server) {
       this._server.close();
-
       this.emit('close');
     }
   }
-
   async start(fn) {
     await fn();
-
     try {
       const server = await _listen(this.config, this.callback(), this.certPath);
       this._server = server;
@@ -99,17 +90,14 @@ class AlpNodeApp extends Koa {
       throw err;
     }
   }
-
 }
 
 const logger = new Logger('alp');
 const appDirname = path.resolve('build');
 const packagePath = path.resolve('package.json');
-
 if (!packagePath) {
   throw new Error(`Could not find package.json: "${String(packagePath)}"`);
 }
-
 const packageDirname = path.dirname(packagePath);
 logger.debug('init', {
   appDirname,
@@ -123,13 +111,13 @@ const config = new Config(configPath).loadSync({
 });
 class App extends AlpNodeApp {
   constructor(options) {
-    super({ ...options,
+    super({
+      ...options,
       appDirname,
       packageDirname,
       config
     });
   }
-
 }
 
 export { appDirname, config, App as default, packageConfig, packageDirname };

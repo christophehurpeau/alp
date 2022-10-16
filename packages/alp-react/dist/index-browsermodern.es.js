@@ -11,10 +11,8 @@ function createAlpAppWrapper(app, context) {
     state = {
       error: null
     };
-
     componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
-
       if (window.Sentry) {
         window.Sentry.captureException(error, {
           contexts: {
@@ -25,7 +23,6 @@ function createAlpAppWrapper(app, context) {
         });
       }
     }
-
     render() {
       if (this.state.error) return /*#__PURE__*/jsx("div", {
         children: "An unexpected error occured"
@@ -35,7 +32,6 @@ function createAlpAppWrapper(app, context) {
         children: app
       });
     }
-
   };
 }
 
@@ -78,18 +74,18 @@ function alpReactBrowser(app) {
   return async function renderApp(App) {
     const initialData = window.__INITIAL_DATA__ || {};
     const ctx = app.createContext();
-
     if (initialData.sanitizedState) {
       ctx.sanitizedState = initialData.sanitizedState;
     }
-
     logger.success('render called');
     const WrappedApp = createAlpAppWrapper( /*#__PURE__*/React.createElement(App), ctx);
     const appElement = /*#__PURE__*/React.createElement(WrappedApp);
-    await contentLoaded(); // const container =
-
+    await contentLoaded();
+    // const container =
     hydrate(appElement, document.getElementById('react-app'));
-    logger.success('rendered'); // container.updateSanitizedState({ loading: false });
+    logger.success('rendered');
+
+    // container.updateSanitizedState({ loading: false });
   };
 }
 

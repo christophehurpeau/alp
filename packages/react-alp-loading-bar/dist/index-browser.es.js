@@ -6,6 +6,7 @@ import { jsx } from 'react/jsx-runtime';
 var random = function random() {
   return Math.ceil(Math.random() * 100) / 100;
 };
+
 /**
  * around:
  * at 100ms 20%
@@ -13,23 +14,17 @@ var random = function random() {
  * at 2s 60%
  * at 3s 80%
  */
-
-
 var calculatePercent = function calculatePercent(percent) {
   if (percent < 60) return percent + random() * 10 + 5;
   if (percent < 70) return percent + random() * 10 + 3;else if (percent < 80) return percent + random() + 5;else if (percent < 90) return percent + random() + 1;else if (percent < 95) return percent + 0.1;else return percent;
 };
-
 var LoadingBar = /*#__PURE__*/function (_PureComponent) {
   _inheritsLoose(LoadingBar, _PureComponent);
-
   function LoadingBar() {
     var _this, _len, args, _key;
-
     for (_len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
-
     _this = _PureComponent.call.apply(_PureComponent, [this].concat(args)) || this;
     _this.state = {
       loading: true,
@@ -38,14 +33,10 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
     };
     return _this;
   }
-
   var _proto = LoadingBar.prototype;
-
   _proto.componentDidMount = function componentDidMount() {
     var _this2 = this;
-
     var websocket = this.getWebsocket();
-
     if (websocket.isConnected()) {
       this.setState(function (prevState) {
         return {
@@ -55,7 +46,6 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
         };
       });
     }
-
     websocket.on('connect', function () {
       _this2.setState({
         loading: false
@@ -69,7 +59,6 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
       });
     });
   };
-
   _proto.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
     if (this.state.loading !== prevState.loading) {
       if (this.state.loading) {
@@ -79,22 +68,18 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
       }
     }
   };
-
   _proto.componentWillUnmount = function componentWillUnmount() {
     if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
     if (this.resetTimeout) clearTimeout(this.resetTimeout);
     if (this.first20Timeout) clearTimeout(this.first20Timeout);
     if (this.progressTimer) clearInterval(this.progressTimer);
   };
-
   _proto.getWebsocket = function getWebsocket() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
     return this.context.app.websocket;
   };
-
   _proto.showBar = function showBar() {
     var _this3 = this;
-
     if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
     if (this.resetTimeout) clearTimeout(this.resetTimeout);
     this.first20Timeout = setTimeout(function () {
@@ -111,10 +96,8 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
       });
     }, 500);
   };
-
   _proto.hideBar = function hideBar() {
     var _this4 = this;
-
     if (this.first20Timeout) clearTimeout(this.first20Timeout);
     if (this.progressTimer) clearInterval(this.progressTimer);
     this.fadeOffTimeout = setTimeout(function () {
@@ -129,7 +112,6 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
       });
     }, 1000);
   };
-
   _proto.render = function render() {
     var LoadingBarComponent = this.props.LoadingBarComponent;
     return /*#__PURE__*/jsx("div", {
@@ -147,10 +129,8 @@ var LoadingBar = /*#__PURE__*/function (_PureComponent) {
       })
     });
   };
-
   return LoadingBar;
 }(PureComponent);
-
 LoadingBar.contextType = ReactAlpContext;
 
 export { LoadingBar as default };

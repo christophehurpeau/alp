@@ -11,10 +11,8 @@ function createAlpAppWrapper(app, context) {
     state = {
       error: null
     };
-
     componentDidCatch(error, errorInfo) {
       console.error(error, errorInfo);
-
       if (window.Sentry) {
         window.Sentry.captureException(error, {
           contexts: {
@@ -25,7 +23,6 @@ function createAlpAppWrapper(app, context) {
         });
       }
     }
-
     render() {
       if (this.state.error) return /*#__PURE__*/jsx("div", {
         children: "An unexpected error occured"
@@ -35,7 +32,6 @@ function createAlpAppWrapper(app, context) {
         children: app
       });
     }
-
   };
 }
 
@@ -43,63 +39,54 @@ const assetUrl = !(process.env.NODE_ENV !== "production") ? (asset, version) => 
 const assetUrl$1 = assetUrl;
 
 /* eslint-disable complexity */
+
 function uneval(value, keys, objects = new Set()) {
   switch (value) {
     case null:
       return 'null';
-
     case undefined:
       return 'undefined';
-
     case Infinity:
       return 'Infinity';
-
     case -Infinity:
       return '-Infinity';
   }
-
   if (Number.isNaN(value)) {
     return 'NaN';
-  } // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+  }
 
-
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (typeof value) {
     case 'function':
       if (process.env.NODE_ENV !== "production") console.log(value);
       throw new Error(!(process.env.NODE_ENV !== "production") ? undefined : `Unsupported function "${keys}".`);
-
     case 'string':
     case 'number':
     case 'boolean':
       return JSON.stringify(value);
   }
-
   if (objects.has(value)) {
     throw new Error(!(process.env.NODE_ENV !== "production") ? undefined : 'Circular reference detected.');
   }
+  objects.add(value);
 
-  objects.add(value); // specialized types
-
+  // specialized types
   if (Array.isArray(value)) {
     return `[${value.map((o, index) => uneval(o, !(process.env.NODE_ENV !== "production") ? undefined : `${keys}[${index}]`, objects)).join(',')}]`;
   }
-
   if (value instanceof Date) {
     return `new Date(${value.getTime()})`;
   }
-
   if (value instanceof Set) {
     return `new Set(${uneval([...value], keys)})`;
   }
-
   if (value instanceof Map) {
     return `new Map(${uneval([...value], keys)})`;
   }
-
   return `{${Object.keys(value).map(key => `${JSON.stringify(key)}:${uneval(value[key], !(process.env.NODE_ENV !== "production") ? undefined : `${keys}.${key}`)}`).join(',')}}`;
-} // https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw
+}
 
-
+// https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0#.tm3hd6riw
 const UNSAFE_CHARS_REGEXP = /[/<>\u2028\u2029]/g;
 const ESCAPED_CHARS = {
   '<': '\\u003C',
@@ -108,9 +95,7 @@ const ESCAPED_CHARS = {
   '\u2028': '\\u2028',
   '\u2029': '\\u2029'
 };
-
 const escapeUnsafeChars = unsafeChar => ESCAPED_CHARS[unsafeChar];
-
 function unevalValue(value) {
   return uneval(value, !(process.env.NODE_ENV !== "production") ? undefined : 'obj').replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
 }
@@ -171,16 +156,17 @@ function AppContainer({
   return children;
 }
 
+// const logger = new Logger( 'alp:react');
+
 const renderHtml = (app, options) => {
   const content = renderToString(app);
   const helmet = Helmet.renderStatic();
   return htmlLayout(helmet, content, options);
 };
-
 function alpReact(App, options = {}) {
   return ctx => {
-    const version = ctx.config.get('version'); // TODO create alp-useragent with getter in context
-
+    const version = ctx.config.get('version');
+    // TODO create alp-useragent with getter in context
     const ua = ctx.request.headers['user-agent'];
     const name = isModernBrowser(ua) ? 'modern-browsers' : 'es5';
     const app = /*#__PURE__*/React.createElement(App);

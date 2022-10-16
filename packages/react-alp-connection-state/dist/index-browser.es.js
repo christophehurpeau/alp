@@ -15,21 +15,20 @@ var defaultTheme = {
   },
   backgroundColorConnected: 'rgba(25, 200, 60, 0.8)'
 };
-
 var useCreateCalcNative = function useCreateCalcNative() {
   var dimensions = useWindowDimensions();
   return function (webCalc, createCalc) {
     return createCalc(dimensions);
   };
 };
-
 var useCreateCalcWeb = function useCreateCalcWeb() {
   return function (webCalc) {
     return "calc(" + webCalc + ")";
   };
 };
+var useCreateCalc = Platform.OS === 'web' ? useCreateCalcWeb : useCreateCalcNative;
 
-var useCreateCalc = Platform.OS === 'web' ? useCreateCalcWeb : useCreateCalcNative; // example: const left = createCalc('50% - 100px', ({ width }) => width / 2 - 100);
+// example: const left = createCalc('50% - 100px', ({ width }) => width / 2 - 100);
 
 var styles = StyleSheet.create({
   connectionStateContainer: {
@@ -64,9 +63,9 @@ var styles = StyleSheet.create({
 });
 function ConnectionState(_ref) {
   var theme = _ref.theme,
-      forceHidden = _ref.forceHidden,
-      state = _ref.state,
-      children = _ref.children;
+    forceHidden = _ref.forceHidden,
+    state = _ref.state,
+    children = _ref.children;
   var unloadingRef = useRef(false);
   var createCalc = useCreateCalc();
   var left = createCalc('50% - 100px', function (_ref2) {
@@ -76,11 +75,9 @@ function ConnectionState(_ref) {
 
   useEffect(function () {
     if (typeof window === 'undefined') return;
-
     var beforeUnloadHandler = function beforeUnloadHandler() {
       unloadingRef.current = true;
     };
-
     window.addEventListener('beforeunload', beforeUnloadHandler);
     return function () {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
