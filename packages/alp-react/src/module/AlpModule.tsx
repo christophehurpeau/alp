@@ -1,4 +1,4 @@
-import 'pob-babel';
+import { POB_TARGET } from 'pob-babel';
 import type { ReactElement, ReactNode } from 'react';
 import { Suspense, useContext } from 'react';
 import LoadingFallbackContext from '../contexts/LoadingFallbackContext';
@@ -16,4 +16,4 @@ function AlpModuleBrowser(props: AlpModuleProps): ReactElement {
   return <Suspense fallback={loadingFallback}>{props.children}</Suspense>;
 }
 
-export default __POB_TARGET__ === 'node' ? AlpModuleNode : AlpModuleBrowser;
+export default POB_TARGET === 'node' ? AlpModuleNode : AlpModuleBrowser;

@@ -1,4 +1,3 @@
-import 'pob-babel';
 import type { Context } from 'alp-types';
 import type { ElementType } from 'react';
 export { Helmet } from 'react-helmet';

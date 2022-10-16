@@ -1,7 +1,7 @@
 import _inheritsLoose from '@babel/runtime/helpers/esm/inheritsLoose';
 import { PureComponent } from 'react';
 import ReactAlpContext from 'react-alp-context';
-import { jsx } from 'react/jsx-runtime.js';
+import { jsx } from 'react/jsx-runtime';
 
 var random = function random() {
   return Math.ceil(Math.random() * 100) / 100;

@@ -3,7 +3,7 @@ import { Logger } from 'nightingale-logger';
 import React, { Component, createContext, useContext, Suspense } from 'react';
 import { hydrate } from 'react-dom';
 import ReactAlpContext from 'react-alp-context';
-import { jsx } from 'react/jsx-runtime.js';
+import { jsx } from 'react/jsx-runtime';
 export { default as Helmet } from 'react-helmet';
 
 function createAlpAppWrapper(app, context) {

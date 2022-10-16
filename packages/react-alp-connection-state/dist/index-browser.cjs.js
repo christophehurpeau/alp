@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var react = require('react');
 var reactNative = require('react-native');
-var jsxRuntime_js = require('react/jsx-runtime.js');
+var jsxRuntime = require('react/jsx-runtime');
 
 var defaultTheme = {
   container: {
@@ -90,11 +90,11 @@ function ConnectionState(_ref) {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, []);
-  return /*#__PURE__*/jsxRuntime_js.jsx(reactNative.View, {
+  return /*#__PURE__*/jsxRuntime.jsx(reactNative.View, {
     style: [styles.connectionStateContainer, (forceHidden || !state || state === 'connected') && styles.hide, theme == null ? void 0 : theme.container, state === 'connected' && {
       backgroundColor: (theme || defaultTheme).backgroundColorConnected
     }],
-    children: !state ? null : /*#__PURE__*/jsxRuntime_js.jsx(reactNative.View, {
+    children: !state ? null : /*#__PURE__*/jsxRuntime.jsx(reactNative.View, {
       style: [styles.connectionStateText, theme && {
         backgroundColor: theme.container.backgroundColor
       }, state === 'connected' && {

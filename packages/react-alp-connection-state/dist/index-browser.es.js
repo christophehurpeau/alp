@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
-import { jsx } from 'react/jsx-runtime.js';
+import { jsx } from 'react/jsx-runtime';
 
 var defaultTheme = {
   container: {

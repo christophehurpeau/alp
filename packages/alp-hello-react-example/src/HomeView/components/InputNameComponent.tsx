@@ -15,6 +15,7 @@ export default function InputNameComponent({
 
   return (
     <Input
+      variant="outline"
       data-testid="input-name"
       type="text"
       autoComplete="off"

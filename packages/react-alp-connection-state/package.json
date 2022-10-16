@@ -90,7 +90,7 @@
     "jsx": true
   },
   "peerDependencies": {
-    "react": "^17.0.2",
+    "react": "^18.1.0",
     "react-native": "*"
   },
   "peerDependenciesMeta": {
@@ -102,13 +102,13 @@
     "@babel/runtime": "^7.17.2"
   },
   "devDependencies": {
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.10",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
     "@types/react-native": "0.70.4",
     "babel-preset-modern-browsers": "15.0.2",
-    "pob-babel": "32.2.0",
-    "react": "17.0.2",
+    "pob-babel": "34.2.0",
+    "react": "18.1.0",
     "react-native": "0.70.2",
     "typescript": "4.6.2"
   }

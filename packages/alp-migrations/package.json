@@ -64,11 +64,11 @@
     "semver": "^7.3.5"
   },
   "devDependencies": {
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.10",
     "@types/node": "16.11.65",
     "@types/semver": "7.3.12",
     "liwi-mongo": "9.1.0",
-    "pob-babel": "32.2.0",
+    "pob-babel": "34.2.0",
     "typescript": "4.6.2"
   }
 }

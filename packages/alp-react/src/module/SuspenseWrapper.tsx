@@ -1,4 +1,4 @@
-import 'pob-babel';
+import { POB_TARGET } from 'pob-babel';
 import type { ReactElement, ReactNode } from 'react';
 import { Suspense, useContext } from 'react';
 import LoadingFallbackContext from '../contexts/LoadingFallbackContext';
@@ -18,6 +18,6 @@ function BrowserSuspenseWrapper({
   return <Suspense fallback={loader}>{children}</Suspense>;
 }
 
-export default __POB_TARGET__ === 'node'
+export default POB_TARGET === 'node'
   ? NodeSuspenseWrapper
   : BrowserSuspenseWrapper;

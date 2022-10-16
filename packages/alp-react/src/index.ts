@@ -1,4 +1,3 @@
-import 'pob-babel';
 import type { Context } from 'alp-types';
 import isModernBrowser from 'modern-browsers';
 import type { ElementType, ReactElement } from 'react';

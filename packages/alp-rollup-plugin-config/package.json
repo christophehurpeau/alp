@@ -28,6 +28,9 @@
     "arrowParens": "always"
   },
   "pob": {},
+  "peerDependencies": {
+    "rollup": "^2.64.0"
+  },
   "dependencies": {
     "@guanghechen/rollup-plugin-copy": "1.8.6",
     "js-yaml": "4.1.0"

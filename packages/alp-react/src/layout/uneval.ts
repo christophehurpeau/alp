@@ -1,5 +1,6 @@
 /* eslint-disable complexity */
-import 'pob-babel';
+
+import { IS_DEV } from 'pob-babel';
 
 function uneval(
   value: unknown,
@@ -24,10 +25,8 @@ function uneval(
   // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (typeof value) {
     case 'function':
-      if (__DEV__) console.log(value);
-      throw new Error(
-        !__DEV__ ? undefined : `Unsupported function "${keys!}".`,
-      );
+      if (IS_DEV) console.log(value);
+      throw new Error(!IS_DEV ? undefined : `Unsupported function "${keys!}".`);
     case 'string':
     case 'number':
     case 'boolean':
@@ -35,7 +34,7 @@ function uneval(
   }
 
   if (objects.has(value)) {
-    throw new Error(!__DEV__ ? undefined : 'Circular reference detected.');
+    throw new Error(!IS_DEV ? undefined : 'Circular reference detected.');
   }
 
   objects.add(value);
@@ -44,7 +43,7 @@ function uneval(
   if (Array.isArray(value)) {
     return `[${value
       .map((o, index) =>
-        uneval(o, !__DEV__ ? undefined : `${keys!}[${index}]`, objects),
+        uneval(o, !IS_DEV ? undefined : `${keys!}[${index}]`, objects),
       )
       .join(',')}]`;
   }
@@ -66,7 +65,7 @@ function uneval(
       (key) =>
         `${JSON.stringify(key)}:${uneval(
           (value as Record<typeof key, unknown>)[key],
-          !__DEV__ ? undefined : `${keys!}.${key}`,
+          !IS_DEV ? undefined : `${keys!}.${key}`,
         )}`,
     )
     .join(',')}}`;
@@ -86,7 +85,7 @@ const escapeUnsafeChars = (unsafeChar: keyof typeof ESCAPED_CHARS): string =>
   ESCAPED_CHARS[unsafeChar];
 
 export default function unevalValue(value: unknown): string {
-  return uneval(value, !__DEV__ ? undefined : 'obj').replace(
+  return uneval(value, !IS_DEV ? undefined : 'obj').replace(
     UNSAFE_CHARS_REGEXP,
     escapeUnsafeChars as (unsafeChar: string) => string,
   );

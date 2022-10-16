@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server.js';
 import { Helmet } from 'react-helmet';
 export { Helmet } from 'react-helmet';
 import ReactAlpContext from 'react-alp-context';
-import { jsx } from 'react/jsx-runtime.js';
+import { jsx } from 'react/jsx-runtime';
 
 function createAlpAppWrapper(app, context) {
   return class AlpAppWrapper extends Component {
@@ -65,7 +65,7 @@ function uneval(value, keys, objects = new Set()) {
 
   switch (typeof value) {
     case 'function':
-      if ((process.env.NODE_ENV !== "production")) console.log(value);
+      if (process.env.NODE_ENV !== "production") console.log(value);
       throw new Error(!(process.env.NODE_ENV !== "production") ? undefined : `Unsupported function "${keys}".`);
 
     case 'string':
