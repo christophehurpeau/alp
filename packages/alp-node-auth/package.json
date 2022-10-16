@@ -95,7 +95,7 @@
     "simple-oauth2": "^2.2.1"
   },
   "devDependencies": {
-    "@babel/core": "7.17.10",
+    "@babel/core": "7.19.3",
     "alp-node": "4.2.0",
     "alp-router": "5.2.0",
     "liwi-mongo": "9.1.0",
