@@ -103,7 +103,7 @@ logger.debug('init', {
   appDirname,
   packageDirname
 });
-const packageConfig = JSON.parse(readFileSync(packagePath, 'utf-8'));
+const packageConfig = JSON.parse(readFileSync(packagePath, 'utf8'));
 const buildedConfigPath = `${appDirname}/build/config/`;
 const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
 const config = new Config(configPath).loadSync({

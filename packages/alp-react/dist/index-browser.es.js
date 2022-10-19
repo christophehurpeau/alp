@@ -1,5 +1,5 @@
+import _regeneratorRuntime from '@babel/runtime/helpers/esm/regeneratorRuntime';
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
-import _regeneratorRuntime from '@babel/runtime/regenerator';
 import contentLoaded from 'content-loaded';
 import { Logger } from 'nightingale-logger';
 import React, { Component, createContext, useContext, Suspense } from 'react';
@@ -83,9 +83,9 @@ function AppContainer(_ref) {
 var logger = new Logger('alp:react');
 function alpReactBrowser(app) {
   return /*#__PURE__*/function () {
-    var _renderApp = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(App) {
+    var _renderApp = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(App) {
       var initialData, ctx, WrappedApp, appElement;
-      return _regeneratorRuntime.wrap(function _callee$(_context) {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:

@@ -8,6 +8,9 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/alp-node-config"><img src="https://img.shields.io/npm/v/alp-node-config.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/alp-node-config"><img src="https://img.shields.io/npm/dw/alp-node-config.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/alp-node-config"><img src="https://img.shields.io/node/v/alp-node-config.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/alp-node-config"><img src="https://img.shields.io/npm/types/alp-node-config.svg?style=flat-square"></a>
 </p>
 
 ## In your app

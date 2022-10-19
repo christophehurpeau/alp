@@ -1,5 +1,5 @@
 include:
   - router/translations.yml
 common:
-  applicationName: 'Hello React'
+  applicationName: "Hello React"
   availableLanguages: [en, fr]

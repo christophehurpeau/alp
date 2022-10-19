@@ -9,7 +9,7 @@ function _existsConfigSync(dirname: string, name: string): boolean {
 }
 
 function _loadConfigSync(dirname: string, name: string): Map<string, unknown> {
-  const content = readFileSync(`${dirname}${name}.json`, 'utf-8');
+  const content = readFileSync(`${dirname}${name}.json`, 'utf8');
   return parseJSON(content) as Map<string, unknown>;
 }
 

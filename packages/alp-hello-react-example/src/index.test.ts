@@ -3,7 +3,6 @@ import { createRequire } from 'module';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import fetch from 'node-fetch';
 import type { Daemon } from 'springbokjs-daemon';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createDaemon } from 'springbokjs-daemon';
 
 describe('test hello server', () => {

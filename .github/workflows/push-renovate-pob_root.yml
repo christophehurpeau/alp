@@ -3,7 +3,7 @@ name: Commit changes on @pob/root update
 on:
   push:
     branches:
-      - 'renovate/pob-root-**'
+      - "renovate/pob-root-**"
 
 jobs:
   run-install-and-commit-modified-files:
@@ -14,7 +14,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             .yarn/unplugged
@@ -49,4 +49,4 @@ jobs:
           git -c user.name="Christophe Hurpeau" \
             -c user.email="christophehurpeau@users.noreply.github.com" \
             commit -m "chore: update pob root" --author="github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
-          git push
+          git push --no-verify

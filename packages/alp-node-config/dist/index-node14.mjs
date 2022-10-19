@@ -7,7 +7,7 @@ function _existsConfigSync(dirname, name) {
   return existsSync(`${dirname}${name}.json`);
 }
 function _loadConfigSync(dirname, name) {
-  const content = readFileSync(`${dirname}${name}.json`, 'utf-8');
+  const content = readFileSync(`${dirname}${name}.json`, 'utf8');
   return parseJSON(content);
 }
 class Config {

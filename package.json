@@ -22,19 +22,16 @@
     "clean:build": "(rm -Rf packages/*/dist packages/*/build) || true",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
     "lint": "yarn run lint:prettier && yarn run lint:eslint",
-    "lint:eslint": "NODE_OPTIONS=--max_old_space_size=4096 eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet .",
-    "lint:prettier": "prettier --check .",
+    "lint:eslint": "eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet .",
+    "lint:prettier": "pob-root-prettier --check .",
+    "lint:prettier:fix": "pob-root-prettier --write .",
     "postinstall": "pob-root-postinstall",
     "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "tsc": "tsc -b",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
-  "prettier": {
-    "trailingComma": "all",
-    "singleQuote": true,
-    "arrowParens": "always"
-  },
+  "prettier": "@pob/root/prettier-config",
   "commitlint": {
     "extends": [
       "@pob/commitlint-config"
@@ -59,19 +56,18 @@
   "devDependencies": {
     "@babel/core": "7.19.3",
     "@pob/commitlint-config": "4.4.0",
-    "@pob/eslint-config": "49.0.0",
-    "@pob/eslint-config-typescript": "49.0.0",
-    "@pob/eslint-config-typescript-react": "49.0.1",
+    "@pob/eslint-config": "49.4.0",
+    "@pob/eslint-config-typescript": "49.4.0",
+    "@pob/eslint-config-typescript-react": "49.4.0",
     "@pob/lerna-light": "5.6.0",
-    "@pob/root": "6.12.0",
-    "@types/jest": "27.5.2",
+    "@pob/root": "6.23.0",
+    "@types/jest": "29.2.0",
     "babel-plugin-module-resolver": "4.1.0",
     "check-package-dependencies": "3.10.0",
     "eslint": "8.25.0",
     "identity-obj-proxy": "3.0.0",
-    "jest": "27.5.1",
+    "jest": "29.2.1",
     "pob-babel": "34.2.0",
-    "prettier": "2.5.1",
-    "typescript": "4.6.2"
+    "typescript": "4.8.4"
   }
 }

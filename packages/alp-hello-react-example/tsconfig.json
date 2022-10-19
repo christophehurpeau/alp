@@ -36,34 +36,33 @@
     "resolveJsonModule": true,
     "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
     "paths": {
-      "react-alp-context": ["../../../packages/react-alp-context/src"],
-      "react-alp-context/*": ["../../../packages/react-alp-context/src/*"],
-      "alp-react": ["../../../packages/alp-react/src"],
-      "alp-react/*": ["../../../packages/alp-react/src/*"],
-      "react-alp-translate": ["../../../packages/react-alp-translate/src"],
-      "react-alp-translate/*": ["../../../packages/react-alp-translate/src/*"],
       "alp-nextjs": ["../../../packages/alp-nextjs/src"],
       "alp-nextjs/*": ["../../../packages/alp-nextjs/src/*"],
-      "alp-node": ["../../../packages/alp-node/src"],
-      "alp-node/*": ["../../../packages/alp-node/src/*"]
+      "react-alp-connection-state": [
+        "../../../packages/react-alp-connection-state/src"
+      ],
+      "react-alp-connection-state/*": [
+        "../../../packages/react-alp-connection-state/src/*"
+      ],
+      "react-alp-context": ["../../../packages/react-alp-context/src"],
+      "react-alp-context/*": ["../../../packages/react-alp-context/src/*"],
+      "react-alp-translate": ["../../../packages/react-alp-translate/src"],
+      "react-alp-translate/*": ["../../../packages/react-alp-translate/src/*"]
     },
     "allowJs": true
   },
   "references": [
     {
-      "path": "../../packages/react-alp-context/tsconfig.json"
-    },
-    {
-      "path": "../../packages/alp-react/tsconfig.json"
-    },
-    {
-      "path": "../../packages/react-alp-translate/tsconfig.json"
-    },
-    {
       "path": "../../packages/alp-nextjs/tsconfig.json"
     },
     {
-      "path": "../../packages/alp-node/tsconfig.json"
+      "path": "../../packages/react-alp-connection-state/tsconfig.json"
+    },
+    {
+      "path": "../../packages/react-alp-context/tsconfig.json"
+    },
+    {
+      "path": "../../packages/react-alp-translate/tsconfig.json"
     }
   ],
   "exclude": ["node_modules"]

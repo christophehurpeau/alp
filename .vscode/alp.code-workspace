@@ -31,10 +31,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "jest.disabledWorkspaceFolders": [
       "alp-body-parser",
-      "alp-nextjs",
       "alp-hello-react-example",
       "alp-listen",
       "alp-migrations",
+      "alp-nextjs",
       "alp-node",
       "alp-node-auth",
       "alp-node-config",
@@ -63,10 +63,6 @@
       "path": "../packages/alp-body-parser"
     },
     {
-      "name": "alp-nextjs",
-      "path": "../packages/alp-nextjs"
-    },
-    {
       "name": "alp-hello-react-example",
       "path": "../packages/alp-hello-react-example"
     },
@@ -77,6 +73,10 @@
     {
       "name": "alp-migrations",
       "path": "../packages/alp-migrations"
+    },
+    {
+      "name": "alp-nextjs",
+      "path": "../packages/alp-nextjs"
     },
     {
       "name": "alp-node",

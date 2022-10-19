@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "packages/alp-body-parser/tsconfig.build.json" },
+    { "path": "packages/alp-nextjs/tsconfig.build.json" },
     { "path": "packages/react-alp-antd-form/tsconfig.build.json" },
     { "path": "packages/react-alp-connection-state/tsconfig.build.json" },
     { "path": "packages/alp-migrations/tsconfig.build.json" },
@@ -16,7 +17,6 @@
     { "path": "packages/alp-translate/tsconfig.build.json" },
     { "path": "packages/react-alp-loading-bar/tsconfig.build.json" },
     { "path": "packages/react-alp-translate/tsconfig.build.json" },
-    { "path": "packages/alp-nextjs/tsconfig.build.json" },
     { "path": "packages/alp-node/tsconfig.build.json" },
     { "path": "packages/alp-node-auth/tsconfig.build.json" }
   ]

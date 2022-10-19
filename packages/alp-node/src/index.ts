@@ -23,7 +23,7 @@ export const packageDirname = path.dirname(packagePath);
 logger.debug('init', { appDirname, packageDirname });
 
 export const packageConfig: Record<string, unknown> = JSON.parse(
-  readFileSync(packagePath, 'utf-8'),
+  readFileSync(packagePath, 'utf8'),
 ) as Record<string, unknown>;
 
 const buildedConfigPath = `${appDirname}/build/config/`;

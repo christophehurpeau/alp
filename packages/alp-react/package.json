@@ -74,16 +74,12 @@
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "yarn clean:build",
-    "clean:build": "rm -Rf dist",
+    "clean:build": "pob-babel-clean-out dist",
     "lint": "yarn run lint:eslint",
     "lint:eslint": "cd ../.. && yarn run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-react",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
-  "prettier": {
-    "trailingComma": "all",
-    "singleQuote": true,
-    "arrowParens": "always"
-  },
+  "prettier": "@pob/root/prettier-config",
   "pob": {
     "babelEnvs": [
       {
@@ -118,7 +114,7 @@
     "react-dom": "^18.1.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
+    "@babel/runtime": "^7.19.0",
     "@types/react-dom": "^18.0.6",
     "@types/react-helmet": "^6.1.4",
     "alp-types": "3.1.0",
@@ -136,6 +132,6 @@
     "pob-babel": "34.2.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "typescript": "4.6.2"
+    "typescript": "4.8.4"
   }
 }

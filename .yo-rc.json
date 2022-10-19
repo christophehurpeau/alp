@@ -14,6 +14,7 @@
       "typescript": true,
       "packageNames": [
         "alp-body-parser",
+        "alp-nextjs",
         "alp-rollup-plugin-config",
         "alp-types",
         "react-alp-antd-form",
@@ -30,9 +31,8 @@
         "alp-translate",
         "react-alp-loading-bar",
         "react-alp-translate",
-        "alp-nextjs",
-        "alp-node",
         "alp-hello-react-example",
+        "alp-node",
         "alp-node-auth"
       ]
     },

@@ -8,6 +8,9 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/react-alp-translate"><img src="https://img.shields.io/npm/v/react-alp-translate.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/react-alp-translate"><img src="https://img.shields.io/npm/dw/react-alp-translate.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/react-alp-translate"><img src="https://img.shields.io/node/v/react-alp-translate.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/react-alp-translate"><img src="https://img.shields.io/npm/types/react-alp-translate.svg?style=flat-square"></a>
 </p>
 
 ## Install

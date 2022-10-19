@@ -8,6 +8,9 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/react-alp-loading-bar"><img src="https://img.shields.io/npm/v/react-alp-loading-bar.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/react-alp-loading-bar"><img src="https://img.shields.io/npm/dw/react-alp-loading-bar.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/react-alp-loading-bar"><img src="https://img.shields.io/node/v/react-alp-loading-bar.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/react-alp-loading-bar"><img src="https://img.shields.io/npm/types/react-alp-loading-bar.svg?style=flat-square"></a>
 </p>
 
 ## Install

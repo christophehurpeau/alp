@@ -11,7 +11,6 @@ createCheckPackageWithWorkspaces().checkRecommended({
     'alp-hello-react-example': {
       '*': {
         missingPeerDependency: ['react-native'],
-        invalidPeerDependencyVersion: ['typescript'], // TODO to fix
       },
     },
   },
