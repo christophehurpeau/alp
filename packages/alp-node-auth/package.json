@@ -1,6 +1,6 @@
 {
   "name": "alp-node-auth",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "authentication with alp",
   "keywords": [
     "alp"
@@ -92,8 +92,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.19.3",
-    "alp-node": "4.2.0",
-    "alp-router": "5.2.0",
+    "alp-node": "4.2.1",
+    "alp-router": "5.2.1",
     "liwi-mongo": "9.1.0",
     "pob-babel": "34.2.0",
     "react": "18.1.0",

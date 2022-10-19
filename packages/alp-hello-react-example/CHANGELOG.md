@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.1.0...alp-hello-react-example@6.2.0) (2022-10-19)
+
+
+### Features
+
+* **alp-nextjs:** export document for native-base and react-native-web ([406edb6](https://github.com/christophehurpeau/alp/commit/406edb6df07d847715407a59fce0e8404c186ca7))
+
+
+
+
+
 # [6.1.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.0.4...alp-hello-react-example@6.1.0) (2022-10-16)
 
 
