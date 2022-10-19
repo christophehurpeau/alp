@@ -112,7 +112,7 @@
     "@types/koa-compress": "4.0.3",
     "@types/koa-static": "4.0.2",
     "@types/minimist": "1.2.2",
-    "pob-babel": "34.2.0",
+    "pob-babel": "34.3.0",
     "typescript": "4.8.4"
   }
 }
