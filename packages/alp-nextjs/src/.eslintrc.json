@@ -5,11 +5,15 @@
     "project": "packages/alp-nextjs/tsconfig.eslint.json"
   },
   "plugins": ["@typescript-eslint"],
-  "extends": ["@pob/eslint-config-typescript"],
+  "extends": [
+    "@pob/eslint-config-typescript",
+    "@pob/eslint-config-typescript-react",
+    "@pob/eslint-config-typescript/allow-unsafe"
+  ],
   "ignorePatterns": ["*.d.ts"],
   "overrides": [
     {
-      "files": ["**/*.test.ts", "__tests__/**/*.ts"],
+      "files": ["**/*.test.{ts,tsx}", "__tests__/**/*.{ts,tsx}"],
       "extends": ["@pob/eslint-config-typescript/test"],
       "env": {
         "jest": true

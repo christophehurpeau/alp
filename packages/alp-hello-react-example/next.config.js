@@ -61,6 +61,7 @@ export default withPlugins(
       '@react-stately/radio',
 
       // requires react-native-web
+      'alp-nextjs',
       'react-alp-connection-state',
     ]),
   ],

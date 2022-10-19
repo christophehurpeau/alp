@@ -7,10 +7,15 @@
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "outDir": "dist",
+    "newLine": "lf",
     "composite": true,
     "tsBuildInfoFile": "dist/tsbuildinfo"
   },
 
-  "exclude": ["dist/**", "src/**/*.test.ts", "src/**/__tests__/**"],
-  "references": []
+  "exclude": [
+    "dist/**",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/__tests__/**"
+  ]
 }

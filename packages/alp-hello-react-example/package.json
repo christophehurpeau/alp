@@ -53,6 +53,7 @@
     "arrowParens": "always"
   },
   "dependencies": {
+    "alp-nextjs": "1.1.0",
     "native-base": "3.4.12-alpha.1",
     "next": "12.2.5",
     "nightingale-app-console": "12.1.4",
@@ -67,6 +68,7 @@
     "react-native-web": "0.18.9"
   },
   "devDependencies": {
+    "@babel/core": "7.19.3",
     "@playwright/test": "1.25.1",
     "@testing-library/react": "13.4.0",
     "@types/node": "16.11.66",
