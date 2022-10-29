@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.2](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@6.2.1...react-alp-connection-state@6.2.2) (2022-10-29)
+
+
+### Bug Fixes
+
+* **react-alp-connection-state:** use Text ([629c6b1](https://github.com/christophehurpeau/alp/commit/629c6b1b5ef2361a77a68a8090939d4a0688db74))
+
+
+
+
+
 ## [6.2.1](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@6.2.0...react-alp-connection-state@6.2.1) (2022-10-19)
 
 **Note:** Version bump only for package react-alp-connection-state

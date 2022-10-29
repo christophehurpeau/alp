@@ -1,6 +1,6 @@
 {
   "name": "alp-params",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "Validate params from query, router or post body in koa 2",
   "keywords": [
     "alp"
@@ -90,7 +90,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.19.0",
-    "alp-router": "5.2.1",
+    "alp-router": "5.2.2",
     "alp-types": "3.1.0",
     "object-properties": "^6.1.0"
   },

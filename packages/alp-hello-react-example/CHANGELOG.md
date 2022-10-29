@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.2.0...alp-hello-react-example@6.3.0) (2022-10-29)
+
+
+### Features
+
+* **alp-hello-react-example:** update native-base ([740ad2b](https://github.com/christophehurpeau/alp/commit/740ad2b1c92610cdcdfefca6bdc52bc9a34dd0f2))
+
+
+
+
+
 # [6.2.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.1.0...alp-hello-react-example@6.2.0) (2022-10-19)
 
 
