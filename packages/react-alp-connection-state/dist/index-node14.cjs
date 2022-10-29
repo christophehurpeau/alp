@@ -87,7 +87,7 @@ function ConnectionState({
     style: [styles.connectionStateContainer, (forceHidden || !state || state === 'connected') && styles.hide, theme?.container, state === 'connected' && {
       backgroundColor: (theme || defaultTheme).backgroundColorConnected
     }],
-    children: !state ? null : /*#__PURE__*/jsxRuntime.jsx(reactNative.View, {
+    children: !state ? null : /*#__PURE__*/jsxRuntime.jsx(reactNative.Text, {
       style: [styles.connectionStateText, theme && {
         backgroundColor: theme.container.backgroundColor
       }, state === 'connected' && {

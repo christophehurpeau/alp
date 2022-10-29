@@ -1,7 +1,13 @@
 import type { ReactElement, ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import type { ScaledSize } from 'react-native';
-import { View, StyleSheet, Platform, useWindowDimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  useWindowDimensions,
+} from 'react-native';
 
 const defaultTheme = {
   container: {
@@ -114,7 +120,7 @@ export function ConnectionState({
       ]}
     >
       {!state ? null : (
-        <View
+        <Text
           style={[
             styles.connectionStateText,
             theme && { backgroundColor: theme.container.backgroundColor },
@@ -125,7 +131,7 @@ export function ConnectionState({
           ]}
         >
           {children}
-        </View>
+        </Text>
       )}
     </View>
   );

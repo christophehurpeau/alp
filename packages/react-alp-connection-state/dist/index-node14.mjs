@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Platform, StyleSheet, useWindowDimensions, View, Text } from 'react-native';
 import { jsx } from 'react/jsx-runtime';
 
 const defaultTheme = {
@@ -83,7 +83,7 @@ function ConnectionState({
     style: [styles.connectionStateContainer, (forceHidden || !state || state === 'connected') && styles.hide, theme?.container, state === 'connected' && {
       backgroundColor: (theme || defaultTheme).backgroundColorConnected
     }],
-    children: !state ? null : /*#__PURE__*/jsx(View, {
+    children: !state ? null : /*#__PURE__*/jsx(Text, {
       style: [styles.connectionStateText, theme && {
         backgroundColor: theme.container.backgroundColor
       }, state === 'connected' && {
