@@ -50,7 +50,7 @@
   "prettier": "@pob/root/prettier-config",
   "dependencies": {
     "alp-nextjs": "1.2.0",
-    "native-base": "3.4.12-alpha.1",
+    "native-base": "3.4.19",
     "next": "12.2.5",
     "nightingale-app-console": "12.1.4",
     "react": "18.1.0",

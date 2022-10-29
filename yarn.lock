@@ -5378,6 +5378,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/use-subscription@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@types/use-subscription@npm:1.0.0"
+  checksum: 47fff868682692ecda7110bd04ba4c5b1324854c0bcccc765606a42d4bd9be475207413c8829a883b98e7edd801100df53876da0ff89ac21a8f964e440636ef2
+  languageName: node
+  linkType: hard
+
 "@types/webidl-conversions@npm:*":
   version: 7.0.0
   resolution: "@types/webidl-conversions@npm:7.0.0"
@@ -5707,7 +5714,7 @@ __metadata:
     "@types/react": 18.0.21
     "@types/react-native": 0.70.5
     alp-nextjs: 1.2.0
-    native-base: 3.4.12-alpha.1
+    native-base: 3.4.19
     next: 12.2.5
     next-compose-plugins: 2.2.1
     next-transpile-modules: 9.1.0
@@ -12992,9 +12999,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"native-base@npm:3.4.12-alpha.1":
-  version: 3.4.12-alpha.1
-  resolution: "native-base@npm:3.4.12-alpha.1"
+"native-base@npm:3.4.19":
+  version: 3.4.19
+  resolution: "native-base@npm:3.4.19"
   dependencies:
     "@react-aria/focus": 3.2.3
     "@react-aria/utils": ^3.6.0
@@ -13018,6 +13025,8 @@ __metadata:
     "@react-stately/tabs": 3.0.0-alpha.1
     "@react-stately/toggle": 3.2.1
     "@types/lodash.has": ^4.5.6
+    "@types/use-subscription": ^1.0.0
+    inline-style-prefixer: ^6.0.1
     lodash.clonedeep: ^4.5.0
     lodash.get: ^4.4.2
     lodash.has: ^4.5.2
@@ -13032,6 +13041,7 @@ __metadata:
     react-native-keyboard-aware-scroll-view: ^0.9.5
     stable-hash: ^0.0.2
     tinycolor2: ^1.4.2
+    use-subscription: ^1.8.0
   peerDependencies:
     "@types/react": "*"
     "@types/react-native": "*"
@@ -13040,7 +13050,7 @@ __metadata:
     react-native: "*"
     react-native-safe-area-context: "*"
     react-native-svg: "*"
-  checksum: f280cae502a86a00510c66a3e40539d0d5e404f2ef17e30db500ec35aa17ddc3ab6b3ca0914f680e2edfbd5da110cebf335a439c6c40617b41782a2b57aafd88
+  checksum: b641397263ef71cf098793850b69117b73662ef827a06e31fedb606f9a5449231c0155c19c696243f24d388df1b62162ac99561412349dc5b503e891d5185d43
   languageName: node
   linkType: hard
 
@@ -17487,7 +17497,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.0.0":
+"use-subscription@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "use-subscription@npm:1.8.0"
+  dependencies:
+    use-sync-external-store: ^1.2.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: beac1f0ff14fe23fd6ae9c34681258936729f343bf6532bbce36caa8f4c1019ff380783e35b4aeb7f3faaec1a83af242d7833bf7e660816d24555dbdd2c934da
+  languageName: node
+  linkType: hard
+
+"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.0.0, use-sync-external-store@npm:^1.2.0":
   version: 1.2.0
   resolution: "use-sync-external-store@npm:1.2.0"
   peerDependencies:
