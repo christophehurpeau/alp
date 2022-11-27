@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@6.2.2...react-alp-connection-state@7.0.0) (2022-11-27)
+
+
+### Features
+
+* drop node 14 ([5d5f90b](https://github.com/christophehurpeau/alp/commit/5d5f90b09d8532278aba75a97f10ea90bbb27919))
+
+
+### BREAKING CHANGES
+
+* drop node 14
+
+
+
+
+
 ## [6.2.2](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@6.2.1...react-alp-connection-state@6.2.2) (2022-10-29)
 
 

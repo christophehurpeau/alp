@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-params@4.3.2...alp-params@5.0.0) (2022-11-27)
+
+
+### Features
+
+* drop node 14 ([5d5f90b](https://github.com/christophehurpeau/alp/commit/5d5f90b09d8532278aba75a97f10ea90bbb27919))
+
+
+### BREAKING CHANGES
+
+* drop node 14
+
+
+
+
+
 ## [4.3.2](https://github.com/christophehurpeau/alp/compare/alp-params@4.3.1...alp-params@4.3.2) (2022-10-29)
 
 **Note:** Version bump only for package alp-params

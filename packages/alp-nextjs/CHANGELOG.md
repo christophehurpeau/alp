@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@1.2.1...alp-nextjs@2.0.0) (2022-11-27)
+
+
+### Features
+
+* drop node 14 ([5d5f90b](https://github.com/christophehurpeau/alp/commit/5d5f90b09d8532278aba75a97f10ea90bbb27919))
+
+
+### BREAKING CHANGES
+
+* drop node 14
+
+
+
+
+
 ## [1.2.1](https://github.com/christophehurpeau/alp/compare/alp-nextjs@1.2.0...alp-nextjs@1.2.1) (2022-10-29)
 
 **Note:** Version bump only for package alp-nextjs

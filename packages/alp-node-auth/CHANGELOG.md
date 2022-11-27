@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@6.1.2...alp-node-auth@7.0.0) (2022-11-27)
+
+
+### Bug Fixes
+
+* addScope requires to be connected ([f353e03](https://github.com/christophehurpeau/alp/commit/f353e03531de2139eaaeb224b430fcb0c77b226a))
+
+
+### Features
+
+* drop node 14 ([5d5f90b](https://github.com/christophehurpeau/alp/commit/5d5f90b09d8532278aba75a97f10ea90bbb27919))
+
+
+### BREAKING CHANGES
+
+* drop node 14
+* route name loginResponse changed to authResponse
+
+
+
+
+
 ## [6.1.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@6.1.1...alp-node-auth@6.1.2) (2022-10-29)
 
 **Note:** Version bump only for package alp-node-auth

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.3.0...alp-hello-react-example@7.0.0) (2022-11-27)
+
+
+### Features
+
+* drop node 14 ([5d5f90b](https://github.com/christophehurpeau/alp/commit/5d5f90b09d8532278aba75a97f10ea90bbb27919))
+
+
+### BREAKING CHANGES
+
+* drop node 14
+
+
+
+
+
 # [6.3.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.2.0...alp-hello-react-example@6.3.0) (2022-10-29)
 
 
