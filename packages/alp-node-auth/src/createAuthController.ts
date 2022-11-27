@@ -26,7 +26,7 @@ export interface CreateAuthControllerParams<
 export interface AuthController {
   login: (ctx: Context) => Promise<void>;
   addScope: (ctx: Context) => Promise<void>;
-  loginResponse: (ctx: Context) => Promise<void>;
+  response: (ctx: Context) => Promise<void>;
   logout: (ctx: Context) => Promise<void>;
 }
 
@@ -67,8 +67,12 @@ export function createAuthController<
       await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
     },
 
+    /**
+     * Add scope in existing
+     * The user must already be connected
+     */
     async addScope(ctx: Context): Promise<void> {
-      if (ctx.state.connected) {
+      if (!ctx.state.connected) {
         await ctx.redirectTo(homeRouterKey);
         return;
       }
@@ -81,12 +85,7 @@ export function createAuthController<
       await authenticationService.redirectAuthUrl(ctx, strategy, { scopeKey });
     },
 
-    async loginResponse(ctx: Context): Promise<void> {
-      if (ctx.state.connected) {
-        await ctx.redirectTo(homeRouterKey);
-        return;
-      }
-
+    async response(ctx: Context): Promise<void> {
       const strategy: StrategyKeys = ctx.namedParam('strategy') as StrategyKeys;
       ctx.assert(strategy);
 

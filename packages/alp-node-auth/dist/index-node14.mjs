@@ -21,8 +21,12 @@ function createAuthController({
       const params = authHooks.paramsForLogin && (await authHooks.paramsForLogin(strategy, ctx)) || {};
       await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
     },
+    /**
+     * Add scope in existing
+     * The user must already be connected
+     */
     async addScope(ctx) {
-      if (ctx.state.connected) {
+      if (!ctx.state.connected) {
         await ctx.redirectTo(homeRouterKey);
         return;
       }
@@ -34,11 +38,7 @@ function createAuthController({
         scopeKey
       });
     },
-    async loginResponse(ctx) {
-      if (ctx.state.connected) {
-        await ctx.redirectTo(homeRouterKey);
-        return;
-      }
+    async response(ctx) {
       const strategy = ctx.namedParam('strategy');
       ctx.assert(strategy);
       const connectedUser = await authenticationService.accessResponse(ctx, strategy, ctx.state.connected, {
@@ -58,10 +58,10 @@ function createAuthController({
 
 const createRoutes = controller => ({
   login: ['/login/:strategy?', segment => {
-    segment.add('/response', controller.loginResponse, 'loginResponse');
+    segment.add('/response', controller.response, 'authResponse');
     segment.defaultRoute(controller.login, 'login');
   }],
-  addScope: ['/auth/add-scope/:strategy/:scopeKey', controller.addScope],
+  addScope: ['/add-scope/:strategy/:scopeKey', controller.addScope],
   logout: ['/logout', controller.logout]
 });
 
@@ -160,7 +160,7 @@ class AuthenticationService extends EventEmitter {
   }
   redirectUri(ctx, strategy) {
     const host = `http${this.config.get('allowHttps') ? 's' : ''}://${ctx.request.host}`;
-    return `${host}${ctx.urlGenerator('loginResponse', {
+    return `${host}${ctx.urlGenerator('authResponse', {
       strategy
     })}`;
   }

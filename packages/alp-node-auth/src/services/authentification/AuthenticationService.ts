@@ -163,7 +163,9 @@ export class AuthenticationService<
     const host = `http${this.config.get('allowHttps') ? 's' : ''}://${
       ctx.request.host
     }`;
-    return `${host}${ctx.urlGenerator('loginResponse', { strategy })}`;
+    return `${host}${ctx.urlGenerator('authResponse', {
+      strategy,
+    })}`;
   }
 
   async redirectAuthUrl(

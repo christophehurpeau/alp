@@ -10,10 +10,10 @@ export const createRoutes = (controller: AuthController): AuthRoutes => ({
   login: [
     '/login/:strategy?',
     (segment: any) => {
-      segment.add('/response', controller.loginResponse, 'loginResponse');
+      segment.add('/response', controller.response, 'authResponse');
       segment.defaultRoute(controller.login, 'login');
     },
   ],
-  addScope: ['/auth/add-scope/:strategy/:scopeKey', controller.addScope],
+  addScope: ['/add-scope/:strategy/:scopeKey', controller.addScope],
   logout: ['/logout', controller.logout],
 });

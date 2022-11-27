@@ -15,7 +15,7 @@ export interface CreateAuthControllerParams<StrategyKeys extends AllowedStrategy
 export interface AuthController {
     login: (ctx: Context) => Promise<void>;
     addScope: (ctx: Context) => Promise<void>;
-    loginResponse: (ctx: Context) => Promise<void>;
+    response: (ctx: Context) => Promise<void>;
     logout: (ctx: Context) => Promise<void>;
 }
 declare type OptionalRecord<K extends keyof any, T> = {
