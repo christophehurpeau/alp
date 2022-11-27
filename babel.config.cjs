@@ -8,7 +8,7 @@ module.exports = function babelConfig(api) {
   return {
     only: ['packages/*/src', 'packages/*/lib'],
     presets: [
-      [require.resolve('pob-babel/preset.cjs')],
+      ['pob-babel/preset.js'],
       [
         '@babel/preset-react',
         {

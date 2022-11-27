@@ -7,7 +7,7 @@ module.exports = (api) => {
     presets: ['next/babel'],
     plugins: [
       [
-        'babel-preset-pob-env/pob-babel-replace-plugin',
+        'babel-preset-pob-env/pob-babel-replace-plugin.cjs',
         {
           target: isServer ? 'node' : 'browser',
           targetVersion: isServer ? '16' : undefined,

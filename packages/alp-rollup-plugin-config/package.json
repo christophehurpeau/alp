@@ -7,7 +7,7 @@
   "license": "MIT",
   "type": "module",
   "engines": {
-    "node": "^14.13.1 || >=16.0.0"
+    "node": ">=16.0.0"
   },
   "publishConfig": {
     "access": "public"
@@ -19,8 +19,9 @@
   },
   "sideEffects": false,
   "scripts": {
+    "clean:build": "true",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "cd ../.. && yarn run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-rollup-plugin-config"
+    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-rollup-plugin-config"
   },
   "prettier": "@pob/root/prettier-config",
   "pob": {},

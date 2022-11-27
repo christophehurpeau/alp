@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "packages/react-alp-antd-form/tsconfig.eslint.json"
+    "project": "packages/react-alp-antd-form/tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
   "extends": [

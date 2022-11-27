@@ -19,7 +19,7 @@ const createServer = (
     !socketPath && tls ? createServerHttps : createServerHttp;
 
   if (!tls) {
-    return createHttpServer(callback);
+    return (createHttpServer as typeof createServerHttps)(callback);
   }
 
   const options = {

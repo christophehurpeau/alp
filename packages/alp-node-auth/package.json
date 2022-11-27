@@ -15,10 +15,10 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": "^14.13.1 || >=16.0.0"
+    "node": ">=16.0.0"
   },
-  "main": "./dist/index-node14.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index-node16.mjs",
+  "types": "./dist/definitions/index.d.ts",
   "typesVersions": {
     ">=3.1": {
       "strategies/*": [
@@ -30,7 +30,7 @@
     "./package.json": "./package.json",
     ".": {
       "node": {
-        "import": "./dist/index-node14.mjs"
+        "import": "./dist/index-node16.mjs"
       }
     },
     "./strategies/dropbox": "./strategies/dropbox.js",
@@ -40,15 +40,14 @@
     "./strategies/google": "./strategies/google.js",
     "./strategies/slack": "./strategies/slack.js"
   },
-  "module:node": "./dist/index-node14.mjs",
   "sideEffects": false,
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
-    "build:definitions": "tsc -p tsconfig.build.json",
+    "build:definitions": "tsc -p tsconfig.json",
     "clean": "yarn clean:build",
     "clean:build": "pob-babel-clean-out dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "cd ../.. && yarn run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-node-auth",
+    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-node-auth",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "prettier": "@pob/root/prettier-config",
@@ -56,10 +55,7 @@
     "babelEnvs": [
       {
         "target": "node",
-        "version": "14",
-        "formats": [
-          "es"
-        ]
+        "version": "16"
       }
     ],
     "entries": [
@@ -91,13 +87,13 @@
     "simple-oauth2": "^2.2.1"
   },
   "devDependencies": {
-    "@babel/core": "7.19.3",
+    "@babel/core": "7.20.2",
     "alp-node": "4.2.2",
     "alp-router": "5.2.2",
     "liwi-mongo": "9.1.0",
-    "pob-babel": "34.3.0",
+    "pob-babel": "35.3.0",
     "react": "18.1.0",
     "router-segments": "5.0.0",
-    "typescript": "4.8.4"
+    "typescript": "4.9.3"
   }
 }

@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var react = require('react');
 var reactNative = require('react-native');
 var jsxRuntime = require('react/jsx-runtime');
