@@ -53,7 +53,7 @@
     "native-base": "3.4.25",
     "next": "13.1.6",
     "nightingale-app-console": "13.0.0",
-    "react": "18.1.0",
+    "react": "18.2.0",
     "react-alp-connection-state": "7.1.0",
     "react-alp-context": "5.1.0",
     "react-alp-translate": "7.1.0",
@@ -70,7 +70,7 @@
     "@types/node": "16.11.66",
     "@types/object-assign": "4.0.30",
     "@types/react": "18.0.27",
-    "@types/react-native": "0.70.5",
+    "@types/react-native": "0.71.1",
     "springbokjs-daemon": "8.0.0",
     "typescript": "4.9.4"
   }
