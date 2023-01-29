@@ -94,7 +94,6 @@ export View from './LoginView';
 ```js
 import { ReactNode } from 'react';
 import T from 'react-alp-translate';
-import { Helmet } from 'alp-react';
 import { LoginButtons } from 'react-alp-login';
 import Header from '../components/HeaderComponent';
 

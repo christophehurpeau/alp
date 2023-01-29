@@ -22,3 +22,9 @@ npm install --save alp-nextjs
 ## Usage
 
 TODO.
+
+## Polyfill.io recommended script
+
+```
+<script defer src="https://polyfill.io/v2/polyfill.min.js?features=default,es2015,es2016,es2017,localStorage,fetch,Intl&unknown=polyfill"></script>
+```

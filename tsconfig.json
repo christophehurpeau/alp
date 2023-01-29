@@ -13,7 +13,6 @@
     { "path": "packages/react-alp-context/tsconfig.json" },
     { "path": "packages/alp-listen/tsconfig.json" },
     { "path": "packages/alp-params/tsconfig.json" },
-    { "path": "packages/alp-react/tsconfig.json" },
     { "path": "packages/alp-translate/tsconfig.json" },
     { "path": "packages/react-alp-loading-bar/tsconfig.json" },
     { "path": "packages/react-alp-translate/tsconfig.json" },

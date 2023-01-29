@@ -41,7 +41,6 @@
       "alp-node-errors",
       "alp-node-language",
       "alp-params",
-      "alp-react",
       "alp-rollup-plugin-config",
       "alp-router",
       "alp-translate",
@@ -101,10 +100,6 @@
     {
       "name": "alp-params",
       "path": "../packages/alp-params"
-    },
-    {
-      "name": "alp-react",
-      "path": "../packages/alp-react"
     },
     {
       "name": "alp-rollup-plugin-config",

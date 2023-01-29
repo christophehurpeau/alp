@@ -10,7 +10,6 @@ import configs9 from './packages/alp-router/rollup.config.mjs';
 import configs10 from './packages/react-alp-context/rollup.config.mjs';
 import configs11 from './packages/alp-listen/rollup.config.mjs';
 import configs12 from './packages/alp-params/rollup.config.mjs';
-import configs13 from './packages/alp-react/rollup.config.mjs';
 import configs14 from './packages/alp-translate/rollup.config.mjs';
 import configs15 from './packages/react-alp-loading-bar/rollup.config.mjs';
 import configs16 from './packages/react-alp-translate/rollup.config.mjs';
