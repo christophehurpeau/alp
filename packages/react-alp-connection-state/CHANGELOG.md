@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@7.0.0...react-alp-connection-state@7.1.0) (2023-01-29)
+
+
+### Features
+
+* update configs ([e9cbde7](https://github.com/christophehurpeau/alp/commit/e9cbde74ddbbb730bc2b65bb6d0b87f2bba8006e))
+
+
+
+
+
 # [7.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@6.2.2...react-alp-connection-state@7.0.0) (2022-11-27)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@8.0.0...alp-node-config@8.1.0) (2023-01-29)
+
+
+### Features
+
+* update configs ([e9cbde7](https://github.com/christophehurpeau/alp/commit/e9cbde74ddbbb730bc2b65bb6d0b87f2bba8006e))
+
+
+
+
+
 # [8.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@7.1.2...alp-node-config@8.0.0) (2022-11-27)
 
 

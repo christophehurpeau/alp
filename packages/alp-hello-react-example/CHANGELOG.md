@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@7.0.0...alp-hello-react-example@7.1.0) (2023-01-29)
+
+
+### Features
+
+* update configs ([e9cbde7](https://github.com/christophehurpeau/alp/commit/e9cbde74ddbbb730bc2b65bb6d0b87f2bba8006e))
+* update nightingale and router-segments ([eb95316](https://github.com/christophehurpeau/alp/commit/eb953169651a5b335d2348f823dc65dc1261cfc0))
+* update to next 13 ([eb764f4](https://github.com/christophehurpeau/alp/commit/eb764f4266c2ca505e6b9ceefe507054c485a9d5))
+
+
+
+
+
 # [7.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@6.3.0...alp-hello-react-example@7.0.0) (2022-11-27)
 
 

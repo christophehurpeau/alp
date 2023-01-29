@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/christophehurpeau/alp/compare/alp-translate@7.0.0...alp-translate@7.1.0) (2023-01-29)
+
+
+### Features
+
+* update configs ([e9cbde7](https://github.com/christophehurpeau/alp/commit/e9cbde74ddbbb730bc2b65bb6d0b87f2bba8006e))
+* update nightingale and router-segments ([eb95316](https://github.com/christophehurpeau/alp/commit/eb953169651a5b335d2348f823dc65dc1261cfc0))
+
+
+
+
+
 # [7.0.0](https://github.com/christophehurpeau/alp/compare/alp-translate@6.1.2...alp-translate@7.0.0) (2022-11-27)
 
 
