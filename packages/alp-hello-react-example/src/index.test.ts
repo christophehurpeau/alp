@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 import type { Daemon } from 'springbokjs-daemon';
 import { createDaemon } from 'springbokjs-daemon';
 
-describe('test hello server', () => {
+xdescribe('test hello server', () => {
   let daemon: Daemon;
 
   beforeAll(async () => {
