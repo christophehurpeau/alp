@@ -5633,7 +5633,7 @@ __metadata:
     react-intl: 6.1.2
     react-native-safe-area-context: 4.4.1
     react-native-svg: 13.3.0
-    react-native-web: 0.18.9
+    react-native-web: 0.18.11
     springbokjs-daemon: 8.0.0
     typescript: 4.9.4
   languageName: unknown
@@ -5683,7 +5683,7 @@ __metadata:
     pob-babel: 35.4.0
     react: 18.1.0
     react-dom: 18.1.0
-    react-native-web: 0.18.9
+    react-native-web: 0.18.11
     typescript: 4.9.4
   peerDependencies:
     "@babel/core": ^7.11.6
@@ -14550,9 +14550,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-web@npm:0.18.9":
-  version: 0.18.9
-  resolution: "react-native-web@npm:0.18.9"
+"react-native-web@npm:0.18.11":
+  version: 0.18.11
+  resolution: "react-native-web@npm:0.18.11"
   dependencies:
     "@babel/runtime": ^7.18.6
     create-react-class: ^15.7.0
@@ -14564,7 +14564,7 @@ __metadata:
   peerDependencies:
     react: ^17.0.2 || ^18.0.0
     react-dom: ^17.0.2 || ^18.0.0
-  checksum: 2cd2c08d8ff92bf969a54124d21f101e8d4645b1eb0625aeabccc70ba55b05c0d1fc6ab570b237417be674346d140edc387c5deac403050a9e1f1d87b15b2253
+  checksum: efcc00d591e5628a3b5221eb246ff4fe8d65377d879ce9f9058503465efeec4265db0e1def523ac27c6d390bf46f4d54b6a686a9e578a9519c759b9c69528580
   languageName: node
   linkType: hard
 
