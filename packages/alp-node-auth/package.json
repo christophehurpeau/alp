@@ -78,11 +78,11 @@
     "router-segments": "^6.0.0"
   },
   "dependencies": {
-    "@types/jsonwebtoken": "^8.5.1",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/simple-oauth2": "^2.5.1",
     "alp-types": "3.1.0",
     "cookies": "^0.8.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "nightingale-logger": "^13.0.0",
     "simple-oauth2": "^2.2.1"
   },
