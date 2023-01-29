@@ -3406,21 +3406,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-aria/focus@npm:3.2.3":
-  version: 3.2.3
-  resolution: "@react-aria/focus@npm:3.2.3"
-  dependencies:
-    "@babel/runtime": ^7.6.2
-    "@react-aria/interactions": ^3.3.0
-    "@react-aria/utils": ^3.4.0
-    "@react-types/shared": ^3.3.0
-    clsx: ^1.1.1
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1
-  checksum: e207b98c684e977bcd37b9b275140f6adf7dcdd8f08f9414c6370b0d8e7e7d49aedc78594017365295c269e0c580e796f2397d894e011c5d94571923e3a518bc
-  languageName: node
-  linkType: hard
-
 "@react-aria/focus@npm:^3.2.3, @react-aria/focus@npm:^3.9.0":
   version: 3.9.0
   resolution: "@react-aria/focus@npm:3.9.0"
@@ -3454,7 +3439,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-aria/interactions@npm:^3.12.0, @react-aria/interactions@npm:^3.3.0, @react-aria/interactions@npm:^3.3.2":
+"@react-aria/interactions@npm:^3.12.0, @react-aria/interactions@npm:^3.3.2":
   version: 3.12.0
   resolution: "@react-aria/interactions@npm:3.12.0"
   dependencies:
@@ -3677,7 +3662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-aria/utils@npm:^3.14.0, @react-aria/utils@npm:^3.3.0, @react-aria/utils@npm:^3.4.0, @react-aria/utils@npm:^3.4.1, @react-aria/utils@npm:^3.6.0":
+"@react-aria/utils@npm:^3.14.0, @react-aria/utils@npm:^3.3.0, @react-aria/utils@npm:^3.4.1, @react-aria/utils@npm:^3.6.0":
   version: 3.14.0
   resolution: "@react-aria/utils@npm:3.14.0"
   dependencies:
@@ -4561,7 +4546,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/shared@npm:^3.15.0, @react-types/shared@npm:^3.2.1, @react-types/shared@npm:^3.3.0, @react-types/shared@npm:^3.4.0":
+"@react-types/shared@npm:^3.15.0, @react-types/shared@npm:^3.2.1, @react-types/shared@npm:^3.4.0":
   version: 3.15.0
   resolution: "@react-types/shared@npm:3.15.0"
   peerDependencies:
@@ -5141,22 +5126,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.has@npm:^4.5.6":
-  version: 4.5.7
-  resolution: "@types/lodash.has@npm:4.5.7"
-  dependencies:
-    "@types/lodash": "*"
-  checksum: 21733401b13178b4ad70caffc38cb6bd71088d00cb3aba957e594c4ccc2ceecb226d5a58b0bb16dfa929436b4fa62f8eba6e65fac45efbc700cacd070ea1dc97
-  languageName: node
-  linkType: hard
-
-"@types/lodash@npm:*":
-  version: 4.14.186
-  resolution: "@types/lodash@npm:4.14.186"
-  checksum: ee0c1368a8100bb6efb88335107473a41928fc307ff1ef4ff1278868ccddba9c04c68c36d1ffe3a0392ef4a956e1955f7de3203ec09df4f1655dd1b88485c549
-  languageName: node
-  linkType: hard
-
 "@types/mime@npm:^1":
   version: 1.3.2
   resolution: "@types/mime@npm:1.3.2"
@@ -5328,13 +5297,6 @@ __metadata:
   version: 2.0.1
   resolution: "@types/stack-utils@npm:2.0.1"
   checksum: 205fdbe3326b7046d7eaf5e494d8084f2659086a266f3f9cf00bccc549c8e36e407f88168ad4383c8b07099957ad669f75f2532ed4bc70be2b037330f7bae019
-  languageName: node
-  linkType: hard
-
-"@types/use-subscription@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@types/use-subscription@npm:1.0.0"
-  checksum: 47fff868682692ecda7110bd04ba4c5b1324854c0bcccc765606a42d4bd9be475207413c8829a883b98e7edd801100df53876da0ff89ac21a8f964e440636ef2
   languageName: node
   linkType: hard
 
@@ -5667,7 +5629,7 @@ __metadata:
     "@types/react": 18.0.21
     "@types/react-native": 0.70.5
     alp-nextjs: 2.0.0
-    native-base: 3.4.19
+    native-base: 3.4.25
     next: 13.1.6
     nightingale-app-console: 13.0.0
     react: 18.1.0
@@ -12761,12 +12723,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"native-base@npm:3.4.19":
-  version: 3.4.19
-  resolution: "native-base@npm:3.4.19"
+"native-base@npm:3.4.25":
+  version: 3.4.25
+  resolution: "native-base@npm:3.4.25"
   dependencies:
-    "@react-aria/focus": 3.2.3
-    "@react-aria/utils": ^3.6.0
     "@react-aria/visually-hidden": ^3.2.1
     "@react-native-aria/button": ^0.2.4
     "@react-native-aria/checkbox": ^0.2.2
@@ -12786,8 +12746,6 @@ __metadata:
     "@react-stately/slider": 3.0.1
     "@react-stately/tabs": 3.0.0-alpha.1
     "@react-stately/toggle": 3.2.1
-    "@types/lodash.has": ^4.5.6
-    "@types/use-subscription": ^1.0.0
     inline-style-prefixer: ^6.0.1
     lodash.clonedeep: ^4.5.0
     lodash.get: ^4.4.2
@@ -12800,7 +12758,6 @@ __metadata:
     lodash.omit: ^4.5.0
     lodash.omitby: ^4.6.0
     lodash.pick: ^4.4.0
-    react-native-keyboard-aware-scroll-view: ^0.9.5
     stable-hash: ^0.0.2
     tinycolor2: ^1.4.2
     use-subscription: ^1.8.0
@@ -12812,7 +12769,7 @@ __metadata:
     react-native: "*"
     react-native-safe-area-context: "*"
     react-native-svg: "*"
-  checksum: b641397263ef71cf098793850b69117b73662ef827a06e31fedb606f9a5449231c0155c19c696243f24d388df1b62162ac99561412349dc5b503e891d5185d43
+  checksum: fa24a797b553d4f8fe451492a2cc65e9ad475093f3d7bbe5458e07fefb2fe12a96a14e3ce037a2ec3452be83592aa8e854e3cc6f13dc8170b8d12e989fb2ca02
   languageName: node
   linkType: hard
 
@@ -14302,7 +14259,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.7.2":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -14554,27 +14511,6 @@ __metadata:
   version: 0.70.3
   resolution: "react-native-gradle-plugin@npm:0.70.3"
   checksum: 04a3379842bcb4709ac6b37e093a3de59acd33b28b200885843b13908fac685a77ab81d732c34090c56e5c0eec971d578b227f302bd04fe7901e8792d434f41f
-  languageName: node
-  linkType: hard
-
-"react-native-iphone-x-helper@npm:^1.0.3":
-  version: 1.3.1
-  resolution: "react-native-iphone-x-helper@npm:1.3.1"
-  peerDependencies:
-    react-native: ">=0.42.0"
-  checksum: 024376646009a966e33e12fc2358751830818b0fb73b1c601a64eb5e490d2dc43eec23668991b985a8c412a84d087f20eb45bb9b593567c08b66e741b7bddda5
-  languageName: node
-  linkType: hard
-
-"react-native-keyboard-aware-scroll-view@npm:^0.9.5":
-  version: 0.9.5
-  resolution: "react-native-keyboard-aware-scroll-view@npm:0.9.5"
-  dependencies:
-    prop-types: ^15.6.2
-    react-native-iphone-x-helper: ^1.0.3
-  peerDependencies:
-    react-native: ">=0.48.4"
-  checksum: 5eec2aedb886213dfed4c8428a443b565dce80ba9fcf5897171e4c8829d4dd64c5011ac004d93f29adfc83ad6f88c2838d1a5b45255dc4a49bd1c0a169245800
   languageName: node
   linkType: hard
 
