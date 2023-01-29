@@ -18,7 +18,6 @@ import configs18 from './packages/alp-node-auth/rollup.config.mjs';
 export default [
   ...configs1,
   ...configs2,
-  ...configs3,
   ...configs4,
   ...configs5,
   ...configs6,
@@ -28,7 +27,6 @@ export default [
   ...configs10,
   ...configs11,
   ...configs12,
-  ...configs13,
   ...configs14,
   ...configs15,
   ...configs16,
