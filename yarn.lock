@@ -5932,7 +5932,7 @@ __metadata:
     alp-types: 3.1.0
     babel-preset-modern-browsers: 15.0.2
     content-loaded: ^1.2.1
-    modern-browsers: ^2.0.0
+    modern-browsers: ^4.0.0
     nightingale-logger: ^13.0.0
     pob-babel: 35.3.0
     react: 18.1.0
@@ -12939,10 +12939,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"modern-browsers@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "modern-browsers@npm:2.0.0"
-  checksum: 909a8e882be99f299069c9e8f3d8e4cccb5ef36f58e5504887654faea5bd10383698af1834865017af9723687b2111f3fd56e0503bd6e80ce04e286f715943f8
+"modern-browsers@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "modern-browsers@npm:4.0.0"
+  checksum: 9f1ce93a95c9afb516c210da3ffd239b9ea1510b637ff9a2e41544dcb443c0e4f8b008ea822278d6c76d529781fddd6db90f57d0fc846571d69f8421846f879d
   languageName: node
   linkType: hard
 
