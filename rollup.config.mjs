@@ -1,6 +1,5 @@
 import configs1 from './packages/alp-body-parser/rollup.config.mjs';
 import configs2 from './packages/alp-nextjs/rollup.config.mjs';
-import configs3 from './packages/react-alp-antd-form/rollup.config.mjs';
 import configs4 from './packages/react-alp-connection-state/rollup.config.mjs';
 import configs5 from './packages/alp-migrations/rollup.config.mjs';
 import configs6 from './packages/alp-node-config/rollup.config.mjs';

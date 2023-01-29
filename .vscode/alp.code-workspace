@@ -45,7 +45,6 @@
       "alp-router",
       "alp-translate",
       "alp-types",
-      "react-alp-antd-form",
       "react-alp-connection-state",
       "react-alp-context",
       "react-alp-loading-bar",
@@ -116,10 +115,6 @@
     {
       "name": "alp-types",
       "path": "../packages/alp-types"
-    },
-    {
-      "name": "react-alp-antd-form",
-      "path": "../packages/react-alp-antd-form"
     },
     {
       "name": "react-alp-connection-state",

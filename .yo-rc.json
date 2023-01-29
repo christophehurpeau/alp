@@ -17,7 +17,6 @@
         "alp-nextjs",
         "alp-rollup-plugin-config",
         "alp-types",
-        "react-alp-antd-form",
         "react-alp-connection-state",
         "alp-migrations",
         "alp-node-config",

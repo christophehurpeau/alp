@@ -3,7 +3,6 @@
   "references": [
     { "path": "packages/alp-body-parser/tsconfig.json" },
     { "path": "packages/alp-nextjs/tsconfig.json" },
-    { "path": "packages/react-alp-antd-form/tsconfig.json" },
     { "path": "packages/react-alp-connection-state/tsconfig.json" },
     { "path": "packages/alp-migrations/tsconfig.json" },
     { "path": "packages/alp-node-config/tsconfig.json" },
