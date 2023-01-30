@@ -83,7 +83,6 @@
     ]
   },
   "peerDependencies": {
-    "react": "^18.1.0",
     "router-segments": "^6.0.0"
   },
   "dependencies": {

@@ -96,14 +96,10 @@
       "browser"
     ]
   },
-  "peerDependencies": {
-    "react": "^18.1.0"
-  },
   "dependencies": {
     "alp-types": "3.1.0",
     "intl-messageformat": "^9.10.0",
-    "nightingale-logger": "^13.0.0",
-    "react-alp-context": "5.1.0"
+    "nightingale-logger": "^13.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
