@@ -1,17 +1,20 @@
 import { createCheckPackageWithWorkspaces } from 'check-package-dependencies';
 
-createCheckPackageWithWorkspaces().checkRecommended({
-  isLibrary: (pkgName) => !pkgName.endsWith('-example'),
-  onlyWarnsForInMonorepoPackagesDependencies: {
-    'alp-migrations': {
-      '*': {
-        duplicateDirectDependency: ['semver'],
+await createCheckPackageWithWorkspaces({
+  isLibrary: (pkg) => !pkg.name.endsWith('-example'),
+})
+  .checkRecommended({
+    onlyWarnsForInMonorepoPackagesDependencies: {
+      'alp-migrations': {
+        '*': {
+          duplicateDirectDependency: ['semver'],
+        },
+      },
+      'alp-hello-react-example': {
+        '*': {
+          missingPeerDependency: ['react-native'],
+        },
       },
     },
-    'alp-hello-react-example': {
-      '*': {
-        missingPeerDependency: ['react-native'],
-      },
-    },
-  },
-});
+  })
+  .run();
