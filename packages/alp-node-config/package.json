@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "alp-types": "3.1.0",
-    "deep-freeze-es6": "^1.4.1",
+    "deep-freeze-es6": "^2.0.0",
     "minimist-argv": "^1.1.0",
     "parse-json-object-as-map": "^1.2.0",
     "stringify-json": "^2.0.0"
