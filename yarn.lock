@@ -5143,10 +5143,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=16.0.0":
-  version: 18.11.9
-  resolution: "@types/node@npm:18.11.9"
-  checksum: cc0aae109e9b7adefc32eecb838d6fad931663bb06484b5e9cbbbf74865c721b03d16fd8d74ad90e31dbe093d956a7c2c306ba5429ba0c00f3f7505103d7a496
+"@types/node@npm:*, @types/node@npm:18.11.18, @types/node@npm:>=16.0.0":
+  version: 18.11.18
+  resolution: "@types/node@npm:18.11.18"
+  checksum: 03f17f9480f8d775c8a72da5ea7e9383db5f6d85aa5fefde90dd953a1449bd5e4ffde376f139da4f3744b4c83942166d2a7603969a6f8ea826edfb16e6e3b49d
   languageName: node
   linkType: hard
 
@@ -5154,13 +5154,6 @@ __metadata:
   version: 14.18.30
   resolution: "@types/node@npm:14.18.30"
   checksum: 347b2aa53631a2b2056f5d7b98e695eac40e8a83cbc4ee40ab7b2684f1fd4ada3d6522343a3f1ab610fbcd8457c4ad77103240474d568c905d62c1b5d6666589
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:16.18.11":
-  version: 16.18.11
-  resolution: "@types/node@npm:16.18.11"
-  checksum: 2a3b1da13063debe6e26f732defb5f03ef4ef732c3e08daba838d8850433bd00e537ce1a97ce9bcfc4b15db5218d701d1265fae94e0d6926906bec157e6b46e0
   languageName: node
   linkType: hard
 
@@ -5611,7 +5604,7 @@ __metadata:
     "@babel/core": 7.20.12
     "@playwright/test": 1.27.1
     "@testing-library/react": 13.4.0
-    "@types/node": 16.18.11
+    "@types/node": 18.11.18
     "@types/object-assign": 4.0.30
     "@types/react": 18.0.27
     "@types/react-native": 0.71.1
@@ -5650,7 +5643,7 @@ __metadata:
   resolution: "alp-migrations@workspace:packages/alp-migrations"
   dependencies:
     "@babel/core": 7.20.12
-    "@types/node": 16.18.11
+    "@types/node": 18.11.18
     "@types/semver": 7.3.13
     alp-types: 3.1.0
     liwi-mongo: 10.1.3
