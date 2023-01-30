@@ -5644,7 +5644,7 @@ __metadata:
     react-native-safe-area-context: 4.5.0
     react-native-svg: 13.7.0
     react-native-web: 0.18.12
-    springbokjs-daemon: 8.0.0
+    springbokjs-daemon: 8.1.0
     typescript: 4.9.4
   languageName: unknown
   linkType: soft
@@ -9436,13 +9436,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-kill@npm:6.0.0":
-  version: 6.0.0
-  resolution: "graceful-kill@npm:6.0.0"
+"graceful-kill@npm:6.1.0":
+  version: 6.1.0
+  resolution: "graceful-kill@npm:6.1.0"
   dependencies:
     "@types/node": ">=14.0.0"
-    nightingale-logger: ^12.1.2
-  checksum: 0cd31754d006c9312a77e7ed7fd807b26c414e137d578de91b82b65e17933d081a69e9b7b68c7e468e25c2ee3eaf3e4971099642ad3defd2e4adeafbf14a69d0
+    nightingale-logger: ^12.1.4
+  checksum: aaee3703f80f93bef1805ef41498be0070d63605a4b2e2db431e372bc055200881248adc4f3dc95e89f4886d27bbd83aa150158d79b8491cbc54323eb23dd1aa
   languageName: node
   linkType: hard
 
@@ -12974,7 +12974,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale-console@npm:^12.1.2":
+"nightingale-console@npm:^12.1.4":
   version: 12.1.4
   resolution: "nightingale-console@npm:12.1.4"
   dependencies:
@@ -13061,7 +13061,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale-logger@npm:12.1.4, nightingale-logger@npm:^12.1.2":
+"nightingale-logger@npm:12.1.4, nightingale-logger@npm:^12.1.4":
   version: 12.1.4
   resolution: "nightingale-logger@npm:12.1.4"
   dependencies:
@@ -13113,7 +13113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale@npm:^12.1.2":
+"nightingale@npm:^12.1.4":
   version: 12.1.4
   resolution: "nightingale@npm:12.1.4"
   dependencies:
@@ -15701,16 +15701,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"springbokjs-daemon@npm:8.0.0":
-  version: 8.0.0
-  resolution: "springbokjs-daemon@npm:8.0.0"
+"springbokjs-daemon@npm:8.1.0":
+  version: 8.1.0
+  resolution: "springbokjs-daemon@npm:8.1.0"
   dependencies:
     "@types/node": ">=14.0.0"
-    graceful-kill: 6.0.0
-    nightingale: ^12.1.2
-    nightingale-console: ^12.1.2
+    graceful-kill: 6.1.0
+    nightingale: ^12.1.4
+    nightingale-console: ^12.1.4
     split: ^1.0.1
-  checksum: 7cc88e6715f7fe4f204a4a4b9dd042c8da51b98cd7fde860bc591b0cf56ea7fbc5e1fa6e69647805fb98235e7f5b36619d1954b54e36c07a21f39daf78642e7c
+  checksum: 076cb34f1fb856c65b04efc949409acb2f1be397d7dc5dabf62ed06a8b847ec1a361fefa19a5d0f33f6c165f4cfee67d8fb3875fd102b289839802446af9eee4
   languageName: node
   linkType: hard
 
