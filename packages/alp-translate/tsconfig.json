@@ -41,10 +41,7 @@
     "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
     "paths": {
       "alp-types": ["../../../packages/alp-types/lib"],
-      "alp-types/*": ["../../../packages/alp-types/lib/*"],
-      "react-alp-context": ["../../../packages/react-alp-context/src"],
-      "react-alp-context/*": ["../../../packages/react-alp-context/src/*"]
+      "alp-types/*": ["../../../packages/alp-types/lib/*"]
     }
-  },
-  "references": [{ "path": "../../packages/react-alp-context/tsconfig.json" }]
+  }
 }

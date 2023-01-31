@@ -7,13 +7,12 @@
   "plugins": ["@typescript-eslint"],
   "extends": [
     "@pob/eslint-config-typescript",
-    "@pob/eslint-config-typescript/node",
-    "@pob/eslint-config-typescript-react"
+    "@pob/eslint-config-typescript/node"
   ],
   "ignorePatterns": ["*.d.ts"],
   "overrides": [
     {
-      "files": ["**/*.test.{ts,tsx}", "__tests__/**/*.{ts,tsx}"],
+      "files": ["**/*.test.ts", "__tests__/**/*.ts"],
       "extends": ["@pob/eslint-config-typescript/test"],
       "env": {
         "jest": true

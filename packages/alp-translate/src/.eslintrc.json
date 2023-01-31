@@ -5,14 +5,11 @@
     "project": "packages/alp-translate/tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
-  "extends": [
-    "@pob/eslint-config-typescript",
-    "@pob/eslint-config-typescript-react"
-  ],
+  "extends": ["@pob/eslint-config-typescript"],
   "ignorePatterns": ["*.d.ts"],
   "overrides": [
     {
-      "files": ["**/*.test.{ts,tsx}", "__tests__/**/*.{ts,tsx}"],
+      "files": ["**/*.test.ts", "__tests__/**/*.ts"],
       "extends": ["@pob/eslint-config-typescript/test"],
       "env": {
         "jest": true
