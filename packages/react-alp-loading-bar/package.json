@@ -1,6 +1,6 @@
 {
   "name": "react-alp-loading-bar",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "loading bar",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -76,7 +76,7 @@
   "dependencies": {
     "@babel/runtime": "^7.20.13",
     "alp-types": "3.1.0",
-    "react-alp-context": "5.1.1"
+    "react-alp-context": "5.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",

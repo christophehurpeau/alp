@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.1.2...alp-node-auth@7.2.0) (2023-01-31)
+
+
+### Features
+
+* update liwi ([428845b](https://github.com/christophehurpeau/alp/commit/428845bd6feca4701ccde697b31867abeda337fc))
+
+
+
+
+
 ## [7.1.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.1.1...alp-node-auth@7.1.2) (2023-01-31)
 
 
