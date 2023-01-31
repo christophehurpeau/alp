@@ -11,7 +11,11 @@ declare module 'react-native' {
   type IdRef = string;
   type IdRefList = IdRef | Array<IdRef>;
 
-  type AnimationDirection = 'alternate' | 'alternate-reverse' | 'normal' | 'reverse';
+  type AnimationDirection =
+    | 'alternate'
+    | 'alternate-reverse'
+    | 'normal'
+    | 'reverse';
   type AnimationFillMode = 'none' | 'forwards' | 'backwards' | 'both';
   type AnimationIterationCount = number | 'infinite';
   type AnimationKeyframes = string | Object;
@@ -21,7 +25,13 @@ declare module 'react-native' {
   type TransformStyle = 'flat' | 'preserve-3d';
 
   // https://developer.mozilla.org/fr/docs/Web/CSS/visibility#syntaxe
-  type Visibility = 'visible' | 'hidden' | 'inherit' | 'collapse' | 'initial' | 'unset';
+  type Visibility =
+    | 'visible'
+    | 'hidden'
+    | 'inherit'
+    | 'collapse'
+    | 'initial'
+    | 'unset';
 
   type WebTranslate3d = { translate3d: string | undefined };
 
@@ -52,7 +62,9 @@ declare module 'react-native' {
     animationDirection?: AnimationDirection | Array<AnimationDirection>;
     animationDuration?: string | Array<string>;
     animationFillMode?: AnimationFillMode | Array<AnimationFillMode>;
-    animationIterationCount?: AnimationIterationCount | Array<AnimationIterationCount>;
+    animationIterationCount?:
+      | AnimationIterationCount
+      | Array<AnimationIterationCount>;
     animationKeyframes?: AnimationKeyframes | Array<AnimationKeyframes>;
     animationPlayState?: AnimationPlayState | Array<AnimationPlayState>;
     animationTimingFunction?: string | Array<string>;
