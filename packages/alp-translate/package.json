@@ -98,7 +98,7 @@
   },
   "dependencies": {
     "alp-types": "3.1.0",
-    "intl-messageformat": "^9.10.0",
+    "intl-messageformat": "^10.0.0",
     "nightingale-logger": "^13.0.0"
   },
   "devDependencies": {
