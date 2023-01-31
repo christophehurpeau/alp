@@ -45,7 +45,8 @@
         "import": "./dist/index-browser.es.js"
       }
     },
-    "./preset-babel.cjs": "./preset-babel.cjs"
+    "./preset-babel.cjs": "./preset-babel.cjs",
+    "./react-native-web.d.ts": "./react-native-web.d.ts"
   },
   "sideEffects": false,
   "scripts": {
@@ -77,7 +78,8 @@
       "index"
     ],
     "extraEntries": [
-      "preset-babel.cjs"
+      "preset-babel.cjs",
+      "react-native-web.d.ts"
     ]
   },
   "peerDependencies": {
