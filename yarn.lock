@@ -6098,10 +6098,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/simple-oauth2@npm:^2.5.1":
-  version: 2.5.5
-  resolution: "@types/simple-oauth2@npm:2.5.5"
-  checksum: a2e06224628baea3d4513e9e8710285aae53a5e8ca432b7396a79e27b9d81e1561ada20269bc416a42c847180d206bfd3c180bf9cb3903227c32702bb26157bd
+"@types/simple-oauth2@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "@types/simple-oauth2@npm:4.1.1"
+  checksum: 6b037f80b9e941cee00307356bbbbb14be3d06f8c6d6ea3ffbe8c2f702adf2760ae56ecf0995f342a4b8efe6531d13ff7eab24f6569b6761fbf850d07a621581
   languageName: node
   linkType: hard
 
@@ -6518,7 +6518,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.20.12
     "@types/jsonwebtoken": ^9.0.1
-    "@types/simple-oauth2": ^2.5.1
+    "@types/simple-oauth2": ^4.0.0
     alp-node: 5.1.2
     alp-router: 6.1.2
     alp-types: 3.1.0
