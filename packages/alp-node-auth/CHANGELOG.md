@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.1.1...alp-node-auth@7.1.2) (2023-01-31)
+
+
+### Bug Fixes
+
+* **alp-node-auth:** remove react peerdep ([96a9077](https://github.com/christophehurpeau/alp/commit/96a90777e14e36311f86760603b55eca950b042f))
+
+
+
+
+
 ## [7.1.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.1.0...alp-node-auth@7.1.1) (2023-01-31)
 
 **Note:** Version bump only for package alp-node-auth
