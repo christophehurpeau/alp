@@ -54,8 +54,8 @@ export const normalizeNextElementsCSS = `
  */
 export async function getDocumentInitialProps({
   renderPage,
-}: Parameters<typeof NextDocument['getInitialProps']>[0]): ReturnType<
-  typeof NextDocument['getInitialProps']
+}: Parameters<(typeof NextDocument)['getInitialProps']>[0]): ReturnType<
+  (typeof NextDocument)['getInitialProps']
 > {
   AppRegistry.registerComponent('Main', () => Main);
   const { getStyleElement } = AppRegistry.getApplication('Main');
