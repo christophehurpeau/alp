@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/christophehurpeau/alp/compare/alp-translate@7.1.0...alp-translate@7.2.0) (2023-01-31)
+
+
+### Bug Fixes
+
+* remove unecessary react peer dep in alp-node ([41640c2](https://github.com/christophehurpeau/alp/commit/41640c280651dda42161ba20c100466cd0187622))
+
+
+### Features
+
+* **deps:** update dependency intl-messageformat to v10 ([#389](https://github.com/christophehurpeau/alp/issues/389)) ([42ee78a](https://github.com/christophehurpeau/alp/commit/42ee78aaa367a3ca8dc48a3f4f6ebfbdfc3f4960))
+
+
+
+
+
 # [7.1.0](https://github.com/christophehurpeau/alp/compare/alp-translate@7.0.0...alp-translate@7.1.0) (2023-01-29)
 
 

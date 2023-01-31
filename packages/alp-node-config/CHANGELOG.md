@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.2.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@8.1.0...alp-node-config@8.2.0) (2023-01-31)
+
+
+### Features
+
+* **deps:** update dependency deep-freeze-es6 to v2 ([#383](https://github.com/christophehurpeau/alp/issues/383)) ([6c50f2a](https://github.com/christophehurpeau/alp/commit/6c50f2afb967ce3df467d70f35424b7d46af80fe))
+
+
+
+
+
 # [8.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@8.0.0...alp-node-config@8.1.0) (2023-01-29)
 
 

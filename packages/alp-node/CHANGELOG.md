@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/christophehurpeau/alp/compare/alp-node@5.1.0...alp-node@5.1.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* remove unecessary react peer dep in alp-node ([41640c2](https://github.com/christophehurpeau/alp/commit/41640c280651dda42161ba20c100466cd0187622))
+
+
+
+
+
 # [5.1.0](https://github.com/christophehurpeau/alp/compare/alp-node@5.0.0...alp-node@5.1.0) (2023-01-29)
 
 
