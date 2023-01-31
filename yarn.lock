@@ -5627,7 +5627,7 @@ __metadata:
     "@babel/preset-react": 7.18.6
     "@babel/runtime": ^7.20.13
     babel-preset-modern-browsers: 15.0.2
-    babel-preset-pob-env: 9.1.1
+    babel-preset-pob-env: 9.1.2
     next: 13.1.6
     pob-babel: 35.4.0
     react: 18.2.0
@@ -6470,6 +6470,23 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.11.6
   checksum: 0805a7f997ec1626b7da6adc8a2ede8653bf4396d342208f6daee968e7cbdeabaee3d02a3f95c221228ed08c1b097d05f137806ab017880342167bca8dc99027
+  languageName: node
+  linkType: hard
+
+"babel-preset-pob-env@npm:9.1.2":
+  version: 9.1.2
+  resolution: "babel-preset-pob-env@npm:9.1.2"
+  dependencies:
+    "@babel/plugin-proposal-nullish-coalescing-operator": ^7.16.7
+    "@babel/plugin-proposal-optional-chaining": ^7.16.7
+    "@babel/plugin-transform-modules-commonjs": ^7.17.9
+    "@babel/preset-typescript": ^7.16.7
+    babel-plugin-discard-module-references: ^1.1.2
+    babel-plugin-fix-class-properties-uninitialized: 6.1.0
+    babel-preset-optimizations: ^2.0.0
+  peerDependencies:
+    "@babel/core": ^7.11.6
+  checksum: 26c9901ff7f8a1b993b5a5a727f68e0990a6c75f10aec37eee58699335f953089eb1d872da541a84b92bdcafea66957fa904964a31d09c503215e53551e4f259
   languageName: node
   linkType: hard
 
