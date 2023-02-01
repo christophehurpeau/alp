@@ -11,5 +11,5 @@ export declare const normalizeNextElementsCSS = "\n  html, body, #__next {\n    
  * }
  * ```
  */
-export declare function getDocumentInitialProps({ renderPage, }: Parameters<typeof NextDocument['getInitialProps']>[0]): ReturnType<typeof NextDocument['getInitialProps']>;
+export declare function getDocumentInitialProps({ renderPage, }: Parameters<(typeof NextDocument)['getInitialProps']>[0]): ReturnType<(typeof NextDocument)['getInitialProps']>;
 //# sourceMappingURL=getDocumentInitialProps.d.ts.map
