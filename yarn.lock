@@ -6478,7 +6478,7 @@ __metadata:
     "@types/node": 18.11.18
     "@types/semver": 7.3.13
     alp-types: 3.1.0
-    liwi-mongo: 10.2.0
+    liwi-mongo: 10.3.2
     nightingale-logger: ^13.0.0
     pob-babel: 35.5.0
     semver: ^7.3.5
@@ -6524,7 +6524,7 @@ __metadata:
     alp-types: 3.1.0
     cookies: ^0.8.0
     jsonwebtoken: ^9.0.0
-    liwi-mongo: 10.2.0
+    liwi-mongo: 10.3.2
     nightingale-logger: ^13.0.0
     pob-babel: 35.5.0
     router-segments: 6.0.0
@@ -12350,35 +12350,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"liwi-mongo@npm:10.2.0":
-  version: 10.2.0
-  resolution: "liwi-mongo@npm:10.2.0"
+"liwi-mongo@npm:10.3.2":
+  version: 10.3.2
+  resolution: "liwi-mongo@npm:10.3.2"
   dependencies:
-    liwi-store: 10.2.0
-    liwi-subscribe-store: 10.2.0
+    liwi-store: 10.3.2
+    liwi-subscribe-store: 10.3.2
     mingo: ^6.2.7
     mongodb: ^4.13.0
     nightingale-logger: ^13.0.0
-  checksum: 3e4e293f335fd9d2cc3e2fd254511c4f2f9accefec64c0924db0d26b097c4a57aae4168f0f0fea226408463b07683eee7764253e9850966f5faf01f6d065e243
+  checksum: 7b29dca3b9cd54b651d3dd3d1702f75e100292638570bb23d2b40162b0af7010f3174d61f7558bd1db62a1816e20244ca93425848cbe83e8e1245b206b82b1f0
   languageName: node
   linkType: hard
 
-"liwi-store@npm:10.2.0":
-  version: 10.2.0
-  resolution: "liwi-store@npm:10.2.0"
+"liwi-store@npm:10.3.2":
+  version: 10.3.2
+  resolution: "liwi-store@npm:10.3.2"
   dependencies:
     "@babel/runtime": ^7.20.7
-  checksum: 3ea098e8ec6b112db1632e5a32064efc4e4590776f9822ac51fc2d8234c0de061bfbcc1809c4dfd278a651117af27ad5b44a287d97e8fa5194815df5b562e7e4
+  checksum: cda4d2dfdb93b7e916362218139fc18beb0a763c06a852998192bfc926a3edb30b31bcb0603cf92fa3796918f3aa508b0547d47767a4297ce26f5c1b9f9544d3
   languageName: node
   linkType: hard
 
-"liwi-subscribe-store@npm:10.2.0":
-  version: 10.2.0
-  resolution: "liwi-subscribe-store@npm:10.2.0"
+"liwi-subscribe-store@npm:10.3.2":
+  version: 10.3.2
+  resolution: "liwi-subscribe-store@npm:10.3.2"
   dependencies:
     "@babel/runtime": ^7.20.7
-    liwi-store: 10.2.0
-  checksum: 38feee7c9c917970f16167940014afbe0f066c080b697fffd3bb577344481031c8f0b6786a5e405e7e913fcccb36dbe97309f05d71d6e39e07096d23c91cc612
+    liwi-store: 10.3.2
+  checksum: 9d97b24c58a9e2b4dadbe03c4d94973fb47f91e3a9fe4cb0b5c44e11e8a74fed60694900b700bbe5d88ae7f42bbed5d9ce4f96f355e69012ff030ae3d9522947
   languageName: node
   linkType: hard
 
