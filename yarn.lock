@@ -6047,12 +6047,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:0.71.1":
-  version: 0.71.1
-  resolution: "@types/react-native@npm:0.71.1"
+"@types/react-native@npm:0.71.2":
+  version: 0.71.2
+  resolution: "@types/react-native@npm:0.71.2"
   dependencies:
     "@types/react": "*"
-  checksum: c982bb9aaf67ac0cdf119d875addc27a3a4972441696937f4e31b5ec17c645c447f2b47a691b90467b1a36e851ff4d88c5bc032aed3e083d0b21148a9220aa1e
+  checksum: 42dc06ae47a7db7ecd41ce66625cdb6f975bfc610127bf3fb36fedc894ac1aa2698b215984750de79369627f270260bd94a376ff37455589c55454d25b4d32b9
   languageName: node
   linkType: hard
 
@@ -6439,7 +6439,7 @@ __metadata:
     "@types/node": 18.11.18
     "@types/object-assign": 4.0.30
     "@types/react": 18.0.27
-    "@types/react-native": 0.71.1
+    "@types/react-native": 0.71.2
     alp-nextjs: 2.2.0
     native-base: 3.4.25
     next: 13.1.6
@@ -15082,7 +15082,7 @@ __metadata:
     "@babel/preset-env": 7.20.2
     "@babel/preset-react": 7.18.6
     "@babel/runtime": ^7.20.13
-    "@types/react-native": 0.71.1
+    "@types/react-native": 0.71.2
     babel-preset-modern-browsers: 15.0.2
     pob-babel: 35.5.0
     react: 18.2.0
