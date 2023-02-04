@@ -13,6 +13,6 @@ export default class MongoUsersManager<U extends User = User, USanitized extends
         provider: string;
     }): Promise<U | undefined>;
     updateAccount(user: U, account: Account): Promise<U>;
-    protected sanitizeBaseUser(user: U): UserSanitized;
+    sanitizeBaseUser(user: U): UserSanitized;
 }
 //# sourceMappingURL=MongoUsersManager.d.ts.map

@@ -69,7 +69,7 @@ export default class MongoUsersManager<
     } as Update<U>);
   }
 
-  protected sanitizeBaseUser(user: U): UserSanitized {
+  sanitizeBaseUser(user: U): UserSanitized {
     return {
       _id: user._id,
       created: user.created,
