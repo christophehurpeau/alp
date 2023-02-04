@@ -76,6 +76,7 @@ declare module 'react-native' {
     transformOrigin?: TransformOrigin;
     transformStyle?: TransformStyle;
     visibility?: string;
+    textDecorationStyle?: string;
     /** web only - allow css background radiants */
     background?: string;
   }
