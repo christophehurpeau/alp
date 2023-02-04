@@ -70,7 +70,7 @@
     "@types/node": "18.11.18",
     "@types/object-assign": "4.0.30",
     "@types/react": "18.0.27",
-    "@types/react-native": "0.71.1",
+    "@types/react-native": "0.71.2",
     "springbokjs-daemon": "9.0.0",
     "typescript": "4.9.5"
   }
