@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.2.0...alp-node-auth@7.2.1) (2023-02-05)
+
+
+### Bug Fixes
+
+* **alp-node-auth:** make sanitizeBaseUser public ([6f37093](https://github.com/christophehurpeau/alp/commit/6f3709332ba3d8d569af9a6030bc6fa5acaf9f51))
+
+
+
+
+
 # [7.2.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.1.2...alp-node-auth@7.2.0) (2023-01-31)
 
 

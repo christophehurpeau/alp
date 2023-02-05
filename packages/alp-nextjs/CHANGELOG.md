@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@2.2.0...alp-nextjs@2.3.0) (2023-02-05)
+
+
+### Features
+
+* **alp-nextjs:** add textDecorationStyle ([ff0fcba](https://github.com/christophehurpeau/alp/commit/ff0fcbacd956ad5c6650a6f010b660bb3e82f094))
+
+
+
+
+
 # [2.2.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@2.1.1...alp-nextjs@2.2.0) (2023-01-31)
 
 

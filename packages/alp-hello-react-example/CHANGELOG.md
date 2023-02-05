@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@7.2.1...alp-hello-react-example@7.3.0) (2023-02-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-intl to v6.2.7 ([#396](https://github.com/christophehurpeau/alp/issues/396)) ([81c5678](https://github.com/christophehurpeau/alp/commit/81c5678a74806a84a56a824d6d5a13ab04218c56))
+
+
+### Features
+
+* **deps:** update dependency react-native-svg to v13.8.0 ([#400](https://github.com/christophehurpeau/alp/issues/400)) ([e20664d](https://github.com/christophehurpeau/alp/commit/e20664d6b5cafe93d800c91f94113dfa03786932))
+
+
+
+
+
 ## [7.2.1](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@7.2.0...alp-hello-react-example@7.2.1) (2023-01-31)
 
 **Note:** Version bump only for package alp-hello-react-example
