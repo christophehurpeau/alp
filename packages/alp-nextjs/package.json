@@ -45,6 +45,7 @@
         "import": "./dist/index-browser.es.js"
       }
     },
+    "./server": "./server.js",
     "./preset-babel.cjs": "./preset-babel.cjs",
     "./react-native-web.d.ts": "./react-native-web.d.ts"
   },
@@ -78,6 +79,7 @@
       "index"
     ],
     "extraEntries": [
+      "server",
       "preset-babel.cjs",
       "react-native-web.d.ts"
     ]
