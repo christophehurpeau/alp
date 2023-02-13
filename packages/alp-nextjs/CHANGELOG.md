@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@2.3.0...alp-nextjs@2.4.0) (2023-02-13)
+
+
+### Features
+
+* add server.js to allow using socket path with nextjs ([c3a69d9](https://github.com/christophehurpeau/alp/commit/c3a69d9a21b20497342e4b4bfec68e0560a7d874))
+
+
+
+
+
 # [2.3.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@2.2.0...alp-nextjs@2.3.0) (2023-02-05)
 
 

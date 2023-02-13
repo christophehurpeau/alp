@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.1](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@7.3.0...alp-hello-react-example@7.3.1) (2023-02-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-intl to v6.2.8 ([#406](https://github.com/christophehurpeau/alp/issues/406)) ([7773514](https://github.com/christophehurpeau/alp/commit/7773514040836901ce26365633ba6738d4d19cb7))
+
+
+
+
+
 # [7.3.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@7.2.1...alp-hello-react-example@7.3.0) (2023-02-05)
 
 
