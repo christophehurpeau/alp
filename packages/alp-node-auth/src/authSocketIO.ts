@@ -1,5 +1,4 @@
 import type { NodeApplication } from 'alp-types';
-import type { Option } from 'cookies';
 import { Logger } from 'nightingale-logger';
 import type { User } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
@@ -13,7 +12,6 @@ export const authSocketIO = <U extends User = User>(
   usersManager: MongoUsersManager<U>,
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   io: any,
-  options?: Pick<Option, Exclude<keyof Option, 'secure'>>,
 ): void => {
   const findConnectedAndUser = createFindConnectedAndUser(
     app.config.get<Map<string, string>>('authentication').get('secretKey')!,

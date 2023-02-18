@@ -6511,7 +6511,7 @@ __metadata:
     alp-node: 5.1.2
     alp-router: 6.1.2
     alp-types: 3.1.0
-    cookies: ^0.8.0
+    cookies: ~0.8.0
     jsonwebtoken: ^9.0.0
     liwi-mongo: 10.3.2
     nightingale-logger: ^13.0.0
@@ -8314,7 +8314,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookies@npm:^0.8.0, cookies@npm:~0.8.0":
+"cookies@npm:~0.8.0":
   version: 0.8.0
   resolution: "cookies@npm:0.8.0"
   dependencies:
