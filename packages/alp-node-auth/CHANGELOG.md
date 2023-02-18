@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.2](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.2.1...alp-node-auth@7.2.2) (2023-02-18)
+
+
+### Bug Fixes
+
+* fix cookies version based on koa ([30caad0](https://github.com/christophehurpeau/alp/commit/30caad04c381d1647ab6a6633cbf7f47e08d819a))
+
+
+
+
+
 ## [7.2.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.2.0...alp-node-auth@7.2.1) (2023-02-05)
 
 

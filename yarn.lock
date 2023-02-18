@@ -6434,7 +6434,7 @@ __metadata:
     next: 13.1.6
     nightingale-app-console: 13.0.0
     react: 18.2.0
-    react-alp-connection-state: 7.1.4
+    react-alp-connection-state: 7.1.5
     react-alp-context: 5.1.2
     react-alp-translate: 7.1.2
     react-dom: 18.2.0
@@ -15050,7 +15050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-alp-connection-state@7.1.4, react-alp-connection-state@workspace:packages/react-alp-connection-state":
+"react-alp-connection-state@7.1.5, react-alp-connection-state@workspace:packages/react-alp-connection-state":
   version: 0.0.0-use.local
   resolution: "react-alp-connection-state@workspace:packages/react-alp-connection-state"
   dependencies:
