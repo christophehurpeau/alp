@@ -6418,6 +6418,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"alp-hello-node-example@workspace:packages/alp-hello-node-example":
+  version: 0.0.0-use.local
+  resolution: "alp-hello-node-example@workspace:packages/alp-hello-node-example"
+  dependencies:
+    "@babel/core": 7.20.12
+    alp-node: 5.1.2
+    alp-node-auth: 7.2.2
+    alp-rollup-plugin-config: 2.0.0
+    alp-router: 6.1.2
+    liwi-mongo: 10.3.2
+    nightingale-app-console: 13.0.0
+    nightingale-web-processor: 13.0.0
+    pob-babel: 35.5.0
+    rollup: 3.12.0
+    router-segments: 6.0.0
+    typescript: 4.9.5
+  languageName: unknown
+  linkType: soft
+
 "alp-hello-react-example@workspace:packages/alp-hello-react-example":
   version: 0.0.0-use.local
   resolution: "alp-hello-react-example@workspace:packages/alp-hello-react-example"
@@ -6501,7 +6520,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node-auth@workspace:packages/alp-node-auth":
+"alp-node-auth@7.2.2, alp-node-auth@workspace:packages/alp-node-auth":
   version: 0.0.0-use.local
   resolution: "alp-node-auth@workspace:packages/alp-node-auth"
   dependencies:
@@ -6616,7 +6635,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config":
+"alp-rollup-plugin-config@2.0.0, alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config":
   version: 0.0.0-use.local
   resolution: "alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config"
   dependencies:
@@ -13794,6 +13813,16 @@ __metadata:
   dependencies:
     nightingale-levels: 13.0.0
   checksum: 5639a7efab6b7a41f11db5781251c85e4916f64a45ca1a9fe63806e757d9516d3abecdaaa8f9483b2c0b782aa5a4ffd997879511eb904a6b36b5f784a25e4922
+  languageName: node
+  linkType: hard
+
+"nightingale-web-processor@npm:13.0.0":
+  version: 13.0.0
+  resolution: "nightingale-web-processor@npm:13.0.0"
+  dependencies:
+    "@types/node": ">=16.0.0"
+    nightingale-types: 13.0.0
+  checksum: 734ae7010a9d1b31a019b5677c45a111103bcf8c60dd55c108774706a751189498be58d429da93c87c1fa5f823da3dd326b067668569a4076f1b8387d981314d
   languageName: node
   linkType: hard
 

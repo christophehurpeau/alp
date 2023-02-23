@@ -1,12 +1,10 @@
 import Alp from 'alp-node';
-import { addConfig, appLogger } from 'nightingale-app-console';
-import type { Logger } from 'nightingale-logger';
+import { appLogger, addConfig } from 'nightingale-app-console';
 import webProcessor from 'nightingale-web-processor';
-import './server/hello';
 
 declare module 'alp-types' {
   interface Context {
-    logger: Logger;
+    logger: typeof appLogger;
   }
 }
 
@@ -18,14 +16,7 @@ addConfig(
   },
   true,
 );
-
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-app.start(() => {
-  // init
-  // call here any init app
-
-  // middlewares
-  app.servePublic();
+await app.start(() => {
   app.use((ctx, next) => {
     ctx.logger = appLogger.context({ request: ctx.req });
     return next();

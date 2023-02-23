@@ -30,6 +30,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "jest.disabledWorkspaceFolders": [
       "alp-body-parser",
+      "alp-hello-node-example",
       "alp-hello-react-example",
       "alp-listen",
       "alp-migrations",
@@ -58,6 +59,10 @@
     {
       "name": "alp-body-parser",
       "path": "../packages/alp-body-parser"
+    },
+    {
+      "name": "alp-hello-node-example",
+      "path": "../packages/alp-hello-node-example"
     },
     {
       "name": "alp-hello-react-example",

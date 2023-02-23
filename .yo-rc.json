@@ -18,6 +18,7 @@
         "alp-rollup-plugin-config",
         "alp-types",
         "react-alp-connection-state",
+        "alp-hello-node-example",
         "alp-migrations",
         "alp-node-config",
         "alp-node-errors",
