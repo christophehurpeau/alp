@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
-    "@types/node": "18.14.0",
+    "@types/node": "18.14.1",
     "@types/semver": "7.3.13",
     "liwi-mongo": "10.3.2",
     "pob-babel": "35.5.0",
