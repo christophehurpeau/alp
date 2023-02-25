@@ -3,7 +3,9 @@ import type { User, Account, UserSanitized } from '../types.d';
 export default class MongoUsersManager<U extends User = User, USanitized extends UserSanitized = UserSanitized> {
     store: MongoStore<U>;
     constructor(store: MongoStore<U>);
+    /** @deprecated use findById instead */
     findConnected(connected: string): Promise<U | undefined>;
+    findById(userId: string): Promise<U | undefined>;
     insertOne(user: MongoInsertType<U>): Promise<any>;
     replaceOne(user: U): Promise<any>;
     sanitize(user: U): USanitized;

@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import { NativeBaseProvider } from 'native-base';
-import type { AppProps } from 'next/app';
-import type { ReactElement } from 'react';
+import type { AppType } from 'next/app';
 import { IntlProvider } from 'react-intl';
 
-export default function App({ Component, pageProps }: AppProps): ReactElement {
+const App: AppType = ({ Component, pageProps }) => {
   return (
     <NativeBaseProvider isSSR>
       <IntlProvider defaultLocale="en" locale="en">
@@ -11,4 +11,6 @@ export default function App({ Component, pageProps }: AppProps): ReactElement {
       </IntlProvider>
     </NativeBaseProvider>
   );
-}
+};
+
+export default App;

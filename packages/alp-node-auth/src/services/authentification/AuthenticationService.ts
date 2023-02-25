@@ -46,7 +46,7 @@ export type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<
 export interface AccessResponseHooks<StrategyKeys, U extends User = User> {
   afterLoginSuccess?: <StrategyKey extends StrategyKeys>(
     strategy: StrategyKey,
-    connectedUser: U,
+    loggedInUser: U,
   ) => void | Promise<void>;
 
   afterScopeUpdate?: <StrategyKey extends StrategyKeys>(
@@ -223,9 +223,9 @@ export class AuthenticationService<
   }
 
   async accessResponse<StrategyKey extends StrategyKeys>(
-    ctx: any,
+    ctx: Context,
     strategy: StrategyKey,
-    isConnected: undefined | boolean,
+    isLoggedIn: boolean,
     hooks: AccessResponseHooks<StrategyKeys, U>,
   ): Promise<U> {
     if (ctx.query.error) {
@@ -250,7 +250,7 @@ export class AuthenticationService<
     }
 
     if (!cookie.isLoginAccess) {
-      if (!isConnected) {
+      if (!isLoggedIn) {
         throw new Error('You are not connected');
       }
     }
@@ -275,9 +275,9 @@ export class AuthenticationService<
       return user;
     }
 
-    const connectedUser = ctx.state.user;
+    const loggedInUser = ctx.state.loggedInUser as U;
     const { account, user } = await this.userAccountsService.update(
-      connectedUser,
+      loggedInUser,
       strategy,
       tokens,
       cookie.scope,
@@ -288,7 +288,7 @@ export class AuthenticationService<
       await hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
     }
 
-    return connectedUser;
+    return loggedInUser;
   }
 
   refreshAccountTokens(user: U, account: Account): Promise<boolean> {

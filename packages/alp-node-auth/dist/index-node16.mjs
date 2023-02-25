@@ -26,7 +26,7 @@ function createAuthController({
      * The user must already be connected
      */
     async addScope(ctx) {
-      if (!ctx.state.connected) {
+      if (!ctx.state.loggedInUser) {
         await ctx.redirectTo(homeRouterKey);
         return;
       }
@@ -41,12 +41,12 @@ function createAuthController({
     async response(ctx) {
       const strategy = ctx.namedParam('strategy');
       ctx.assert(strategy);
-      const connectedUser = await authenticationService.accessResponse(ctx, strategy, ctx.state.connected, {
+      const loggedInUser = await authenticationService.accessResponse(ctx, strategy, !!ctx.state.loggedInUser, {
         afterLoginSuccess: authHooks.afterLoginSuccess,
         afterScopeUpdate: authHooks.afterScopeUpdate
       });
       const keyPath = usersManager.store.keyPath;
-      await ctx.setConnected(connectedUser[keyPath], connectedUser);
+      await ctx.setLoggedIn(loggedInUser[keyPath], loggedInUser);
       await ctx.redirectTo(homeRouterKey);
     },
     async logout(ctx) {
@@ -198,7 +198,7 @@ class AuthenticationService extends EventEmitter {
     });
     return ctx.redirect(redirectUri);
   }
-  async accessResponse(ctx, strategy, isConnected, hooks) {
+  async accessResponse(ctx, strategy, isLoggedIn, hooks) {
     if (ctx.query.error) {
       const error = new Error(ctx.query.error);
       error.status = 403;
@@ -220,7 +220,7 @@ class AuthenticationService extends EventEmitter {
       throw new Error('Unexpected cookie value');
     }
     if (!cookie.isLoginAccess) {
-      if (!isConnected) {
+      if (!isLoggedIn) {
         throw new Error('You are not connected');
       }
     }
@@ -235,15 +235,15 @@ class AuthenticationService extends EventEmitter {
       }
       return user;
     }
-    const connectedUser = ctx.state.user;
+    const loggedInUser = ctx.state.loggedInUser;
     const {
       account,
       user
-    } = await this.userAccountsService.update(connectedUser, strategy, tokens, cookie.scope, cookie.scopeKey);
+    } = await this.userAccountsService.update(loggedInUser, strategy, tokens, cookie.scope, cookie.scopeKey);
     if (hooks.afterScopeUpdate) {
       await hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
     }
-    return connectedUser;
+    return loggedInUser;
   }
   refreshAccountTokens(user, account) {
     if (account.tokenExpireDate && account.tokenExpireDate.getTime() > Date.now()) {
@@ -397,14 +397,19 @@ class UserAccountsService extends EventEmitter {
   }
 }
 
-const COOKIE_NAME = 'connectedUser';
+const COOKIE_NAME_TOKEN = 'loggedInUserToken';
+const COOKIE_NAME_STATE = 'loggedInUserState';
 const getTokenFromRequest = (req, options) => {
+  if (req.headers.authorization?.startsWith('Bearer ')) {
+    return req.headers.authorization.slice(7);
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const cookies = new Cookies(req, null, {
     ...options,
     secure: true
   });
-  return cookies.get(COOKIE_NAME);
+  return cookies.get(COOKIE_NAME_TOKEN);
 };
 
 const verifyPromisified = promisify(jsonwebtoken.verify);
@@ -413,23 +418,24 @@ const createDecodeJWT = secretKey => async (token, jwtAudience) => {
     algorithms: ['HS512'],
     audience: jwtAudience
   });
-  return result?.connected;
+  return result?.loggedInUserId;
 };
-const createFindConnectedAndUser = (secretKey, usersManager, logger) => {
+const createFindLoggedInUser = (secretKey, usersManager, logger) => {
   const decodeJwt = createDecodeJWT(secretKey);
   return async (jwtAudience, token) => {
     if (!token || !jwtAudience) return [null, null];
-    let connected;
+    let loggedInUserId;
     try {
-      connected = await decodeJwt(token, jwtAudience);
+      loggedInUserId = await decodeJwt(token, jwtAudience);
     } catch (err) {
       logger.debug('failed to verify authentification', {
         err
       });
     }
-    if (connected == null) return [null, null];
-    const user = await usersManager.findConnected(connected);
-    return [connected, user];
+    if (loggedInUserId == null) return [null, null];
+    const loggedInUser = await usersManager.findById(loggedInUserId);
+    if (!loggedInUser) return [null, null];
+    return [loggedInUserId, loggedInUser];
   };
 };
 
@@ -437,8 +443,13 @@ class MongoUsersManager {
   constructor(store) {
     this.store = store;
   }
+
+  /** @deprecated use findById instead */
   findConnected(connected) {
     return this.store.findByKey(connected);
+  }
+  findById(userId) {
+    return this.store.findByKey(userId);
   }
   insertOne(user) {
     return this.store.insertOne(user);
@@ -586,8 +597,8 @@ class UserAccountSlackService {
 }
 
 const logger$2 = new Logger('alp:auth');
-const authSocketIO = (app, usersManager, io) => {
-  const findConnectedAndUser = createFindConnectedAndUser(app.config.get('authentication').get('secretKey'), usersManager, logger$2);
+const authSocketIO = (app, usersManager, io, jwtAudience) => {
+  const findLoggedInUser = createFindLoggedInUser(app.config.get('authentication').get('secretKey'), usersManager, logger$2);
   const users = new Map();
   io.users = users;
   io.use(async (socket, next) => {
@@ -595,12 +606,12 @@ const authSocketIO = (app, usersManager, io) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const token = getTokenFromRequest(handshakeData);
     if (!token) return next();
-    const [connected, user] = await findConnectedAndUser(
+    const [loggedInUserId, loggedInUser] = await findLoggedInUser(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    handshakeData.headers['user-agent'], token);
-    if (!connected || !user) return next();
-    socket.user = user;
-    users.set(socket.client.id, user);
+    jwtAudience || handshakeData.headers['user-agent'], token);
+    if (!loggedInUserId || !loggedInUser) return next();
+    socket.user = loggedInUser;
+    users.set(socket.client.id, loggedInUser);
     socket.on('disconnected', () => users.delete(socket.client.id));
     await next();
   });
@@ -608,7 +619,7 @@ const authSocketIO = (app, usersManager, io) => {
 
 const logger$1 = new Logger('alp:auth');
 const getTokenFromReq = req => {
-  if (req.cookies) return req.cookies[COOKIE_NAME];
+  if (req.cookies) return req.cookies[COOKIE_NAME_TOKEN];
   return getTokenFromRequest(req);
 };
 
@@ -617,14 +628,14 @@ const getTokenFromReq = req => {
  * @internal
  */
 const createAuthApolloContext = (config, usersManager) => {
-  const findConnectedAndUser = createFindConnectedAndUser(config.get('authentication').get('secretKey'), usersManager, logger$1);
+  const findLoggedInUser = createFindLoggedInUser(config.get('authentication').get('secretKey'), usersManager, logger$1);
   return async ({
     req,
     connection
   }) => {
-    if (connection?.user) {
+    if (connection?.loggedInUser) {
       return {
-        user: connection.user
+        user: connection.loggedInUser
       };
     }
     if (!req) return null;
@@ -634,15 +645,16 @@ const createAuthApolloContext = (config, usersManager) => {
     if (!token) return {
       user: undefined
     };
-    const [, user] = await findConnectedAndUser(
+    const [, loggedInUser] = await findLoggedInUser(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     req.headers['user-agent'], token);
     return {
-      user
+      user: loggedInUser
     };
   };
 };
 
+/* eslint-disable max-lines */
 const logger = new Logger('alp:auth');
 const signPromisified = promisify(jsonwebtoken.sign);
 function init({
@@ -665,69 +677,87 @@ function init({
       defaultStrategy,
       authHooks
     });
-    app.context.setConnected = async function (connected, user) {
-      logger.debug('setConnected', {
-        connected
+    app.context.setLoggedIn = async function (loggedInUserId, loggedInUser) {
+      logger.debug('setLoggedIn', {
+        loggedInUser
       });
-      if (!connected) {
-        throw new Error('Illegal value for setConnected');
+      if (!loggedInUserId) {
+        throw new Error('Illegal value for setLoggedIn');
       }
-      this.state.connected = connected;
-      this.state.user = user;
+      this.state.loggedInUserId = loggedInUserId;
+      this.state.loggedInUser = loggedInUser;
       const token = await signPromisified({
-        connected,
+        loggedInUserId,
         time: Date.now()
       }, this.config.get('authentication').get('secretKey'), {
         algorithm: 'HS512',
         audience: jwtAudience || this.request.headers['user-agent'],
         expiresIn: '30 days'
       });
-
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      this.cookies.set(COOKIE_NAME, token, {
+      this.cookies.set(COOKIE_NAME_TOKEN, token, {
         httpOnly: true,
+        secure: this.config.get('allowHttps')
+      });
+      this.cookies.set(COOKIE_NAME_STATE, JSON.stringify({
+        loggedInUserId,
+        expiresIn: (() => {
+          const date = new Date();
+          date.setDate(date.getDate() + 30);
+          return date.getTime();
+        })()
+      }), {
+        httpOnly: false,
         secure: this.config.get('allowHttps')
       });
     };
     app.context.logout = function () {
-      delete this.state.connected;
-      delete this.state.user;
-      this.cookies.set(COOKIE_NAME, '', {
+      delete this.state.loggedInUserId;
+      delete this.state.loggedInUser;
+      this.cookies.set(COOKIE_NAME_TOKEN, '', {
+        expires: new Date(1)
+      });
+      this.cookies.set(COOKIE_NAME_STATE, '', {
         expires: new Date(1)
       });
     };
-    const getConnectedAndUser = createFindConnectedAndUser(app.config.get('authentication').get('secretKey'), usersManager, logger);
+    const findLoggedInUser = createFindLoggedInUser(app.config.get('authentication').get('secretKey'), usersManager, logger);
     return {
       routes: createRoutes(controller),
-      getConnectedAndUserFromRequest: req => {
+      findLoggedInUserFromRequest: req => {
         const token = getTokenFromRequest(req);
-        return getConnectedAndUser(jwtAudience || req.headers['user-agent'], token);
+        return findLoggedInUser(jwtAudience || req.headers['user-agent'], token);
       },
-      getConnectedAndUser,
+      findLoggedInUser,
       middleware: async (ctx, next) => {
-        const token = ctx.cookies.get(COOKIE_NAME);
+        const token = ctx.cookies.get(COOKIE_NAME_TOKEN);
         const userAgent = ctx.request.headers['user-agent'];
         logger.debug('middleware', {
           token
         });
-        const setState = (connected, user) => {
-          ctx.state.connected = connected;
-          ctx.state.user = user;
-          ctx.sanitizedState.connected = connected;
-          ctx.sanitizedState.user = user && usersManager.sanitize(user);
+        const setState = (loggedInUserId, loggedInUser) => {
+          ctx.state.loggedInUserId = loggedInUserId;
+          ctx.state.user = loggedInUser;
+          ctx.sanitizedState.loggedInUserId = loggedInUserId;
+          ctx.sanitizedState.loggedInUser = loggedInUser && usersManager.sanitize(loggedInUser);
         };
-        const [connected, user] = await getConnectedAndUser(jwtAudience || userAgent, token);
+        const [loggedInUserId, loggedInUser] = await findLoggedInUser(jwtAudience || userAgent, token);
         logger.debug('middleware', {
-          connected
+          loggedInUserId
         });
-        if (connected == null || user == null) {
-          if (token) ctx.cookies.set(COOKIE_NAME, '', {
-            expires: new Date(1)
-          });
+        if (loggedInUserId == null || loggedInUser == null) {
+          if (token) {
+            ctx.cookies.set(COOKIE_NAME_TOKEN, '', {
+              expires: new Date(1)
+            });
+            ctx.cookies.set(COOKIE_NAME_STATE, '', {
+              expires: new Date(1)
+            });
+          }
           setState(null, null);
           return next();
         }
-        setState(connected, user);
+        setState(loggedInUserId, loggedInUser);
         return next();
       }
     };

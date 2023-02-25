@@ -16,15 +16,15 @@ export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
 declare module 'alp-types' {
     interface ContextState {
-        connected: NonNullable<ContextState['user']>['_id'] | null | undefined;
-        user: User | null | undefined;
+        loggedInUserId: NonNullable<ContextState['loggedInUser']>['_id'] | null | undefined;
+        loggedInUser: User | null | undefined;
     }
     interface ContextSanitizedState {
-        connected: NonNullable<ContextSanitizedState['user']>['_id'] | null | undefined;
-        user: UserSanitized | null | undefined;
+        loggedInUserId: NonNullable<ContextSanitizedState['loggedInUser']>['_id'] | null | undefined;
+        loggedInUser: UserSanitized | null | undefined;
     }
     interface BaseContext {
-        setConnected: (connected: NonNullable<ContextState['user']>['_id'], user: NonNullable<ContextState['user']>) => Promise<void>;
+        setLoggedIn: (loggedInUserId: NonNullable<ContextState['loggedInUserId']>, loggedInUser: NonNullable<ContextState['loggedInUser']>) => Promise<void>;
         logout: () => void;
     }
 }
@@ -41,8 +41,8 @@ export default function init<StrategyKeys extends AllowedStrategyKeys = 'google'
     jwtAudience?: string;
 }): (app: NodeApplication) => {
     routes: AuthRoutesType;
-    getConnectedAndUserFromRequest: (req: IncomingMessage) => Promise<[U["_id"] | null | undefined, U | null | undefined]>;
-    getConnectedAndUser: import("./utils/createFindConnectedAndUser").FindConnectedAndUser<U>;
+    findLoggedInUserFromRequest: (req: IncomingMessage) => Promise<[U["_id"] | null | undefined, U | null | undefined]>;
+    findLoggedInUser: import("./utils/createFindLoggedInUser").FindLoggedInUser<U>;
     middleware: <T>(ctx: Context, next: () => T | Promise<T>) => Promise<T>;
 };
 //# sourceMappingURL=index.d.ts.map

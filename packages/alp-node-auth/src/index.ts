@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type { IncomingMessage } from 'http';
 import { promisify } from 'util';
 import type { Context } from 'alp-node';
@@ -18,8 +19,12 @@ import { AuthenticationService } from './services/authentification/Authenticatio
 import type { AllowedStrategyKeys } from './services/authentification/types';
 import UserAccountsService from './services/user/UserAccountsService';
 import type { AccountService } from './services/user/types';
-import { getTokenFromRequest, COOKIE_NAME } from './utils/cookies';
-import { createFindConnectedAndUser } from './utils/createFindConnectedAndUser';
+import {
+  getTokenFromRequest,
+  COOKIE_NAME_TOKEN,
+  COOKIE_NAME_STATE,
+} from './utils/cookies';
+import { createFindLoggedInUser } from './utils/createFindLoggedInUser';
 
 export { default as MongoUsersManager } from './MongoUsersManager';
 export { default as UserAccountGoogleService } from './services/user/UserAccountGoogleService';
@@ -31,22 +36,25 @@ export { STATUSES } from './services/user/UserAccountsService';
 declare module 'alp-types' {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   interface ContextState {
-    connected: NonNullable<ContextState['user']>['_id'] | null | undefined;
-    user: User | null | undefined;
+    loggedInUserId:
+      | NonNullable<ContextState['loggedInUser']>['_id']
+      | null
+      | undefined;
+    loggedInUser: User | null | undefined;
   }
 
   interface ContextSanitizedState {
-    connected:
-      | NonNullable<ContextSanitizedState['user']>['_id']
+    loggedInUserId:
+      | NonNullable<ContextSanitizedState['loggedInUser']>['_id']
       | null
       | undefined;
-    user: UserSanitized | null | undefined;
+    loggedInUser: UserSanitized | null | undefined;
   }
 
   interface BaseContext {
-    setConnected: (
-      connected: NonNullable<ContextState['user']>['_id'],
-      user: NonNullable<ContextState['user']>,
+    setLoggedIn: (
+      loggedInUserId: NonNullable<ContextState['loggedInUserId']>,
+      loggedInUser: NonNullable<ContextState['loggedInUser']>,
     ) => Promise<void>;
     logout: () => void;
   }
@@ -102,21 +110,21 @@ export default function init<
       authHooks,
     });
 
-    app.context.setConnected = async function (
+    app.context.setLoggedIn = async function (
       this: Context,
-      connected: NonNullable<ContextState['user']>['_id'],
-      user: NonNullable<ContextState['user']>,
+      loggedInUserId: NonNullable<ContextState['loggedInUser']>['_id'],
+      loggedInUser: NonNullable<ContextState['loggedInUser']>,
     ): Promise<void> {
-      logger.debug('setConnected', { connected });
-      if (!connected) {
-        throw new Error('Illegal value for setConnected');
+      logger.debug('setLoggedIn', { loggedInUser });
+      if (!loggedInUserId) {
+        throw new Error('Illegal value for setLoggedIn');
       }
 
-      this.state.connected = connected;
-      this.state.user = user;
+      this.state.loggedInUserId = loggedInUserId;
+      this.state.loggedInUser = loggedInUser;
 
       const token = await signPromisified(
-        { connected, time: Date.now() },
+        { loggedInUserId, time: Date.now() },
         this.config
           .get<Map<string, unknown>>('authentication')
           .get('secretKey'),
@@ -127,20 +135,36 @@ export default function init<
         },
       );
 
+      const calcExpiresTime = (): number => {
+        const date = new Date();
+        date.setDate(date.getDate() + 30);
+        return date.getTime();
+      };
+
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      this.cookies.set(COOKIE_NAME, token, {
+      this.cookies.set(COOKIE_NAME_TOKEN, token, {
         httpOnly: true,
         secure: this.config.get('allowHttps'),
       });
+
+      this.cookies.set(
+        COOKIE_NAME_STATE,
+        JSON.stringify({ loggedInUserId, expiresIn: calcExpiresTime() }),
+        {
+          httpOnly: false,
+          secure: this.config.get('allowHttps'),
+        },
+      );
     };
 
     app.context.logout = function (this: Context): void {
-      delete this.state.connected;
-      delete this.state.user;
-      this.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+      delete this.state.loggedInUserId;
+      delete this.state.loggedInUser;
+      this.cookies.set(COOKIE_NAME_TOKEN, '', { expires: new Date(1) });
+      this.cookies.set(COOKIE_NAME_STATE, '', { expires: new Date(1) });
     };
 
-    const getConnectedAndUser = createFindConnectedAndUser(
+    const findLoggedInUser = createFindLoggedInUser(
       app.config
         .get<Map<string, unknown>>('authentication')
         .get('secretKey') as string,
@@ -150,49 +174,51 @@ export default function init<
 
     return {
       routes: createRoutes(controller),
-
-      getConnectedAndUserFromRequest: (
+      findLoggedInUserFromRequest: (
         req: IncomingMessage,
-      ): ReturnType<typeof getConnectedAndUser> => {
+      ): ReturnType<typeof findLoggedInUser> => {
         const token = getTokenFromRequest(req);
-        return getConnectedAndUser(
+        return findLoggedInUser(
           jwtAudience || req.headers['user-agent'],
           token,
         );
       },
-      getConnectedAndUser,
-
+      findLoggedInUser,
       middleware: async <T>(
         ctx: Context,
         next: () => T | Promise<T>,
       ): Promise<T> => {
-        const token = ctx.cookies.get(COOKIE_NAME);
+        const token = ctx.cookies.get(COOKIE_NAME_TOKEN);
         const userAgent = ctx.request.headers['user-agent'];
         logger.debug('middleware', { token });
 
         const setState = (
-          connected: U['_id'] | null | undefined,
-          user: U | null | undefined,
+          loggedInUserId: U['_id'] | null | undefined,
+          loggedInUser: U | null | undefined,
         ): void => {
-          ctx.state.connected = connected;
-          ctx.state.user = user;
-          ctx.sanitizedState.connected = connected;
-          ctx.sanitizedState.user = user && usersManager.sanitize(user);
+          ctx.state.loggedInUserId = loggedInUserId;
+          ctx.state.user = loggedInUser;
+          ctx.sanitizedState.loggedInUserId = loggedInUserId;
+          ctx.sanitizedState.loggedInUser =
+            loggedInUser && usersManager.sanitize(loggedInUser);
         };
 
-        const [connected, user] = await getConnectedAndUser(
+        const [loggedInUserId, loggedInUser] = await findLoggedInUser(
           jwtAudience || userAgent,
           token,
         );
-        logger.debug('middleware', { connected });
+        logger.debug('middleware', { loggedInUserId });
 
-        if (connected == null || user == null) {
-          if (token) ctx.cookies.set(COOKIE_NAME, '', { expires: new Date(1) });
+        if (loggedInUserId == null || loggedInUser == null) {
+          if (token) {
+            ctx.cookies.set(COOKIE_NAME_TOKEN, '', { expires: new Date(1) });
+            ctx.cookies.set(COOKIE_NAME_STATE, '', { expires: new Date(1) });
+          }
           setState(null, null);
           return next();
         }
 
-        setState(connected, user);
+        setState(loggedInUserId, loggedInUser);
         return next();
       },
     };

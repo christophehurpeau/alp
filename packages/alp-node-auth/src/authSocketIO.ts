@@ -3,7 +3,7 @@ import { Logger } from 'nightingale-logger';
 import type { User } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
 import { getTokenFromRequest } from './utils/cookies';
-import { createFindConnectedAndUser } from './utils/createFindConnectedAndUser';
+import { createFindLoggedInUser } from './utils/createFindLoggedInUser';
 
 const logger = new Logger('alp:auth');
 
@@ -12,8 +12,9 @@ export const authSocketIO = <U extends User = User>(
   usersManager: MongoUsersManager<U>,
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   io: any,
+  jwtAudience?: string,
 ): void => {
-  const findConnectedAndUser = createFindConnectedAndUser(
+  const findLoggedInUser = createFindLoggedInUser(
     app.config.get<Map<string, string>>('authentication').get('secretKey')!,
     usersManager,
     logger,
@@ -29,16 +30,16 @@ export const authSocketIO = <U extends User = User>(
 
     if (!token) return next();
 
-    const [connected, user] = await findConnectedAndUser(
+    const [loggedInUserId, loggedInUser] = await findLoggedInUser(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      handshakeData.headers['user-agent'],
+      jwtAudience || handshakeData.headers['user-agent'],
       token,
     );
 
-    if (!connected || !user) return next();
+    if (!loggedInUserId || !loggedInUser) return next();
 
-    socket.user = user;
-    users.set(socket.client.id, user);
+    socket.user = loggedInUser;
+    users.set(socket.client.id, loggedInUser);
 
     socket.on('disconnected', () => users.delete(socket.client.id));
 

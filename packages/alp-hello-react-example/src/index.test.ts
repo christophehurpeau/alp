@@ -15,6 +15,7 @@ xdescribe('test hello server', () => {
     spawnSync(process.argv0, [require.resolve('next/dist/bin/next'), 'build'], {
       cwd,
       env: {
+        NODE_ENV: 'production',
         TEST_BUILD_ID: 'test-build-id',
       },
       stdio: 'inherit',

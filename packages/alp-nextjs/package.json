@@ -92,7 +92,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.13",
-    "babel-preset-pob-env": "9.1.2"
+    "babel-preset-pob-env": "9.1.2",
+    "cookies": "~0.8.0"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",

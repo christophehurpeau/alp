@@ -11,8 +11,13 @@ export default class MongoUsersManager<
     this.store = store;
   }
 
+  /** @deprecated use findById instead */
   findConnected(connected: string): Promise<U | undefined> {
     return this.store.findByKey(connected);
+  }
+
+  findById(userId: string): Promise<U | undefined> {
+    return this.store.findByKey(userId);
   }
 
   insertOne(user: MongoInsertType<U>): Promise<any> {

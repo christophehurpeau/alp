@@ -1,4 +1,5 @@
 import type NextDocument from 'next/document';
+import type { DocumentContext } from 'next/document';
 import { Main } from 'next/document';
 import { Children } from 'react';
 // @ts-expect-error -- @types/react-native-web does not exists
@@ -52,14 +53,12 @@ export const normalizeNextElementsCSS = `
  * }
  * ```
  */
-export async function getDocumentInitialProps({
-  renderPage,
-}: Parameters<(typeof NextDocument)['getInitialProps']>[0]): ReturnType<
-  (typeof NextDocument)['getInitialProps']
-> {
+export async function getDocumentInitialProps(
+  ctx: DocumentContext,
+): ReturnType<(typeof NextDocument)['getInitialProps']> {
   AppRegistry.registerComponent('Main', () => Main);
   const { getStyleElement } = AppRegistry.getApplication('Main');
-  const page = await renderPage();
+  const page = await ctx.renderPage();
   const styles = [
     <style dangerouslySetInnerHTML={{ __html: normalizeNextElementsCSS }} />,
     getStyleElement(),

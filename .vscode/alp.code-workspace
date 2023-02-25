@@ -45,6 +45,7 @@
       "alp-router",
       "alp-translate",
       "alp-types",
+      "react-alp-auth",
       "react-alp-connection-state",
       "react-alp-context",
       "react-alp-loading-bar",
@@ -119,6 +120,10 @@
     {
       "name": "alp-types",
       "path": "../packages/alp-types"
+    },
+    {
+      "name": "react-alp-auth",
+      "path": "../packages/react-alp-auth"
     },
     {
       "name": "react-alp-connection-state",

@@ -1,3 +1,4 @@
+import Cookies from 'cookies';
 import { Main } from 'next/document';
 import { Children } from 'react';
 import { AppRegistry } from 'react-native-web';
@@ -48,14 +49,12 @@ const normalizeNextElementsCSS = `
  * }
  * ```
  */
-async function getDocumentInitialProps({
-  renderPage
-}) {
+async function getDocumentInitialProps(ctx) {
   AppRegistry.registerComponent('Main', () => Main);
   const {
     getStyleElement
   } = AppRegistry.getApplication('Main');
-  const page = await renderPage();
+  const page = await ctx.renderPage();
   const styles = [/*#__PURE__*/jsx("style", {
     dangerouslySetInnerHTML: {
       __html: normalizeNextElementsCSS
@@ -67,5 +66,13 @@ async function getDocumentInitialProps({
   };
 }
 
-export { getDocumentInitialProps, normalizeNextElementsCSS };
+const getServerCookieValue = (ctx, cookieName) => {
+  if (!ctx.req || !ctx.res) {
+    throw new Error('Missing ctx.req or ctx.res. Make sure getInitialProps is set.');
+  }
+  const cookies = new Cookies(ctx.req, ctx.res);
+  return cookies.get(cookieName);
+};
+
+export { getDocumentInitialProps, getServerCookieValue, normalizeNextElementsCSS };
 //# sourceMappingURL=index-browsermodern.es.js.map

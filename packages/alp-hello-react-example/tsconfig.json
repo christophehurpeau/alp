@@ -45,6 +45,8 @@
     "paths": {
       "alp-nextjs": ["../../../packages/alp-nextjs/src"],
       "alp-nextjs/*": ["../../../packages/alp-nextjs/src/*"],
+      "react-alp-auth": ["../../../packages/react-alp-auth/src"],
+      "react-alp-auth/*": ["../../../packages/react-alp-auth/src/*"],
       "react-alp-connection-state": [
         "../../../packages/react-alp-connection-state/src"
       ],
@@ -52,15 +54,13 @@
         "../../../packages/react-alp-connection-state/src/*"
       ],
       "react-alp-context": ["../../../packages/react-alp-context/src"],
-      "react-alp-context/*": ["../../../packages/react-alp-context/src/*"],
-      "react-alp-translate": ["../../../packages/react-alp-translate/src"],
-      "react-alp-translate/*": ["../../../packages/react-alp-translate/src/*"]
+      "react-alp-context/*": ["../../../packages/react-alp-context/src/*"]
     }
   },
   "references": [
     { "path": "../../packages/alp-nextjs/tsconfig.json" },
+    { "path": "../../packages/react-alp-auth/tsconfig.json" },
     { "path": "../../packages/react-alp-connection-state/tsconfig.json" },
-    { "path": "../../packages/react-alp-context/tsconfig.json" },
-    { "path": "../../packages/react-alp-translate/tsconfig.json" }
+    { "path": "../../packages/react-alp-context/tsconfig.json" }
   ]
 }

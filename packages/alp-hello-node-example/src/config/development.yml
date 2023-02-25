@@ -1,1 +1,6 @@
-test: test
+port: 3001
+webappUrl: http://localhost:3000
+
+db:
+  mongodb:
+    database: alp-hello-node-example

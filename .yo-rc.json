@@ -17,8 +17,8 @@
         "alp-nextjs",
         "alp-rollup-plugin-config",
         "alp-types",
+        "react-alp-auth",
         "react-alp-connection-state",
-        "alp-hello-node-example",
         "alp-migrations",
         "alp-node-config",
         "alp-node-errors",
@@ -32,7 +32,8 @@
         "react-alp-translate",
         "alp-hello-react-example",
         "alp-node",
-        "alp-node-auth"
+        "alp-node-auth",
+        "alp-hello-node-example"
       ]
     },
     "renovate": {

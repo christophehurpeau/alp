@@ -3,15 +3,15 @@ import type { NodeConfig } from 'alp-types';
 import { Logger } from 'nightingale-logger';
 import type { User } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
-import { getTokenFromRequest, COOKIE_NAME } from './utils/cookies';
-import { createFindConnectedAndUser } from './utils/createFindConnectedAndUser';
+import { getTokenFromRequest, COOKIE_NAME_TOKEN } from './utils/cookies';
+import { createFindLoggedInUser } from './utils/createFindLoggedInUser';
 
 const logger = new Logger('alp:auth');
 
 const getTokenFromReq = (
   req: IncomingMessage & { cookies?: Record<string, string> },
 ): string | undefined => {
-  if (req.cookies) return req.cookies[COOKIE_NAME];
+  if (req.cookies) return req.cookies[COOKIE_NAME_TOKEN];
   return getTokenFromRequest(req);
 };
 
@@ -23,15 +23,15 @@ export const createAuthApolloContext = <U extends User = User>(
   config: NodeConfig,
   usersManager: MongoUsersManager<U>,
 ): any => {
-  const findConnectedAndUser = createFindConnectedAndUser(
+  const findLoggedInUser = createFindLoggedInUser(
     config.get<Map<string, string>>('authentication').get('secretKey')!,
     usersManager,
     logger,
   );
 
   return async ({ req, connection }: { req: any; connection: any }) => {
-    if (connection?.user) {
-      return { user: connection.user };
+    if (connection?.loggedInUser) {
+      return { user: connection.loggedInUser };
     }
 
     if (!req) return null;
@@ -41,12 +41,12 @@ export const createAuthApolloContext = <U extends User = User>(
 
     if (!token) return { user: undefined };
 
-    const [, user] = await findConnectedAndUser(
+    const [, loggedInUser] = await findLoggedInUser(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       req.headers['user-agent'],
       token,
     );
 
-    return { user };
+    return { user: loggedInUser };
   };
 };

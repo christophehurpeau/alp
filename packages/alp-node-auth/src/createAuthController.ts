@@ -72,7 +72,7 @@ export function createAuthController<
      * The user must already be connected
      */
     async addScope(ctx: Context): Promise<void> {
-      if (!ctx.state.connected) {
+      if (!ctx.state.loggedInUser) {
         await ctx.redirectTo(homeRouterKey);
         return;
       }
@@ -89,17 +89,17 @@ export function createAuthController<
       const strategy: StrategyKeys = ctx.namedParam('strategy') as StrategyKeys;
       ctx.assert(strategy);
 
-      const connectedUser = await authenticationService.accessResponse(
+      const loggedInUser = await authenticationService.accessResponse(
         ctx,
         strategy,
-        ctx.state.connected as boolean | undefined,
+        !!ctx.state.loggedInUser,
         {
           afterLoginSuccess: authHooks.afterLoginSuccess,
           afterScopeUpdate: authHooks.afterScopeUpdate,
         },
       );
       const keyPath = usersManager.store.keyPath;
-      await ctx.setConnected(connectedUser[keyPath], connectedUser);
+      await ctx.setLoggedIn(loggedInUser[keyPath], loggedInUser);
       await ctx.redirectTo(homeRouterKey);
     },
 

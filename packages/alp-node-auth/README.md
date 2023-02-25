@@ -23,7 +23,7 @@ npm install --save alp-node-auth
 
 - Provides route and controller to login user
 - Provides extandable services and managers
-- Provides authentication middleware: `context.state.connected` and `context.state.user`
+- Provides authentication middleware: `context.state.loggedInUserId` and `context.state.loggedInUser`
 
 ## How to use
 

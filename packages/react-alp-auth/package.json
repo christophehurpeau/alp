@@ -1,0 +1,94 @@
+{
+  "name": "react-alp-auth",
+  "version": "1.0.0-pre",
+  "description": "react alp context",
+  "keywords": [],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christophehurpeau/alp.git",
+    "directory": "packages/react-alp-auth"
+  },
+  "homepage": "https://github.com/christophehurpeau/alp",
+  "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "browserslist": [
+    "defaults",
+    "> 0.2%",
+    "not ie < 12",
+    "not safari < 10",
+    "not ios_saf < 10"
+  ],
+  "main": "./dist/index-node16.mjs",
+  "types": "./dist/definitions/index.d.ts",
+  "module": "./dist/index-browser.es.js",
+  "browser": "./dist/index-browser.es.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "node": {
+        "import": "./dist/index-node16.mjs"
+      },
+      "browser": {
+        "browser:modern": {
+          "import": "./dist/index-browsermodern.es.js"
+        },
+        "import": "./dist/index-browser.es.js"
+      }
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
+    "build:definitions": "tsc -p tsconfig.json",
+    "clean": "yarn clean:build",
+    "clean:build": "pob-babel-clean-out dist",
+    "lint": "yarn run lint:eslint",
+    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/react-alp-auth",
+    "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
+  },
+  "prettier": "@pob/root/prettier-config",
+  "pob": {
+    "babelEnvs": [
+      {
+        "target": "node",
+        "version": "16"
+      },
+      {
+        "target": "browser",
+        "version": "modern"
+      },
+      {
+        "target": "browser"
+      }
+    ],
+    "entries": [
+      "index"
+    ],
+    "jsx": true
+  },
+  "peerDependencies": {
+    "alp-nextjs": "^2.4.0",
+    "react": "^18.1.0"
+  },
+  "dependencies": {
+    "js-cookie": "3.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.20.12",
+    "@babel/preset-env": "7.20.2",
+    "@babel/preset-react": "7.18.6",
+    "@types/js-cookie": "3.0.3",
+    "alp-nextjs": "2.4.0",
+    "babel-preset-modern-browsers": "15.0.2",
+    "next": "13.1.6",
+    "pob-babel": "35.5.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native-web": "0.18.12",
+    "typescript": "4.9.5"
+  }
+}

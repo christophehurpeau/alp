@@ -1,3 +1,4 @@
+import Cookies from 'cookies';
 import _regeneratorRuntime from '@babel/runtime/helpers/esm/regeneratorRuntime';
 import _extends from '@babel/runtime/helpers/esm/extends';
 import _asyncToGenerator from '@babel/runtime/helpers/esm/asyncToGenerator';
@@ -23,20 +24,19 @@ function getDocumentInitialProps() {
   return _getDocumentInitialProps.apply(this, arguments);
 }
 function _getDocumentInitialProps() {
-  _getDocumentInitialProps = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(_ref) {
-    var renderPage, _AppRegistry$getAppli, getStyleElement, page, styles;
+  _getDocumentInitialProps = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(ctx) {
+    var _AppRegistry$getAppli, getStyleElement, page, styles;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            renderPage = _ref.renderPage;
             AppRegistry.registerComponent('Main', function () {
               return Main;
             });
             _AppRegistry$getAppli = AppRegistry.getApplication('Main'), getStyleElement = _AppRegistry$getAppli.getStyleElement;
-            _context.next = 5;
-            return renderPage();
-          case 5:
+            _context.next = 4;
+            return ctx.renderPage();
+          case 4:
             page = _context.sent;
             styles = [/*#__PURE__*/jsx("style", {
               dangerouslySetInnerHTML: {
@@ -46,7 +46,7 @@ function _getDocumentInitialProps() {
             return _context.abrupt("return", _extends({}, page, {
               styles: Children.toArray(styles)
             }));
-          case 8:
+          case 7:
           case "end":
             return _context.stop();
         }
@@ -56,5 +56,13 @@ function _getDocumentInitialProps() {
   return _getDocumentInitialProps.apply(this, arguments);
 }
 
-export { getDocumentInitialProps, normalizeNextElementsCSS };
+var getServerCookieValue = function getServerCookieValue(ctx, cookieName) {
+  if (!ctx.req || !ctx.res) {
+    throw new Error('Missing ctx.req or ctx.res. Make sure getInitialProps is set.');
+  }
+  var cookies = new Cookies(ctx.req, ctx.res);
+  return cookies.get(cookieName);
+};
+
+export { getDocumentInitialProps, getServerCookieValue, normalizeNextElementsCSS };
 //# sourceMappingURL=index-browser.es.js.map

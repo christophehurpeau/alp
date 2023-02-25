@@ -1,6 +1,12 @@
 import Alp from 'alp-node';
+import authInit, { UserAccountSlackService } from 'alp-node-auth';
+import slackStrategy from 'alp-node-auth/strategies/slack';
+import router from 'alp-router';
 import { appLogger, addConfig } from 'nightingale-app-console';
 import webProcessor from 'nightingale-web-processor';
+import createRouter from './createRouter';
+import type { User } from './db/user';
+import { usersManager } from './db/user';
 
 declare module 'alp-types' {
   interface Context {
@@ -9,6 +15,16 @@ declare module 'alp-types' {
 }
 
 const app = new Alp();
+
+const auth = authInit<'slack', User>({
+  usersManager,
+  strategies: { slack: slackStrategy(app.config) },
+  strategyToService: {
+    slack: new UserAccountSlackService({}),
+  },
+  defaultStrategy: 'slack',
+  jwtAudience: 'hello-node-example',
+})(app);
 
 addConfig(
   {
@@ -26,7 +42,6 @@ await app.start(() => {
     return next();
   });
   app.catchErrors();
-  app.use((ctx) => {
-    ctx.body = { ok: true };
-  });
+  app.use(auth.middleware);
+  app.use(router(createRouter({ auth: auth.routes }))(app));
 });

@@ -28,7 +28,7 @@ export interface Oauth2Strategy<Params extends string> extends Strategy {
 }
 export type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<StrategyKeys, Oauth2Strategy<any>>;
 export interface AccessResponseHooks<StrategyKeys, U extends User = User> {
-    afterLoginSuccess?: <StrategyKey extends StrategyKeys>(strategy: StrategyKey, connectedUser: U) => void | Promise<void>;
+    afterLoginSuccess?: <StrategyKey extends StrategyKeys>(strategy: StrategyKey, loggedInUser: U) => void | Promise<void>;
     afterScopeUpdate?: <StrategyKey extends StrategyKeys>(strategy: StrategyKey, scopeKey: string, account: Account, user: U) => void | Promise<void>;
 }
 export declare class AuthenticationService<StrategyKeys extends AllowedStrategyKeys, U extends User = User, USanitized extends UserSanitized = UserSanitized> extends EventEmitter {
@@ -48,7 +48,7 @@ export declare class AuthenticationService<StrategyKeys extends AllowedStrategyK
         user?: U;
         accountId?: AccountId;
     }, params?: any): Promise<void>;
-    accessResponse<StrategyKey extends StrategyKeys>(ctx: any, strategy: StrategyKey, isConnected: undefined | boolean, hooks: AccessResponseHooks<StrategyKeys, U>): Promise<U>;
+    accessResponse<StrategyKey extends StrategyKeys>(ctx: Context, strategy: StrategyKey, isLoggedIn: boolean, hooks: AccessResponseHooks<StrategyKeys, U>): Promise<U>;
     refreshAccountTokens(user: U, account: Account): Promise<boolean>;
 }
 //# sourceMappingURL=AuthenticationService.d.ts.map
