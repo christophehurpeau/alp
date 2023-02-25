@@ -3,6 +3,7 @@
   "exclude": ["node_modules"],
   "compilerOptions": {
     "rootDir": "src",
+    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
     "newLine": "lf",
     "outDir": "node_modules/.cache/tsc",
     "tsBuildInfoFile": "node_modules/.cache/tsc/tsbuildinfo",
@@ -37,30 +38,30 @@
     "forceConsistentCasingInFileNames": true,
 
     /* Module Resolution Options */
-    "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
+    "moduleResolution": "node" /* Specify module resolution strategy. */,
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
     "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
-    "resolveJsonModule": true,
-    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
+
     "paths": {
       "alp-nextjs": ["../../../packages/alp-nextjs/src"],
       "alp-nextjs/*": ["../../../packages/alp-nextjs/src/*"],
-      "react-alp-auth": ["../../../packages/react-alp-auth/src"],
-      "react-alp-auth/*": ["../../../packages/react-alp-auth/src/*"],
       "react-alp-connection-state": [
         "../../../packages/react-alp-connection-state/src"
       ],
       "react-alp-connection-state/*": [
         "../../../packages/react-alp-connection-state/src/*"
       ],
+      "react-alp-auth": ["../../../packages/react-alp-auth/src"],
+      "react-alp-auth/*": ["../../../packages/react-alp-auth/src/*"],
       "react-alp-context": ["../../../packages/react-alp-context/src"],
       "react-alp-context/*": ["../../../packages/react-alp-context/src/*"]
     }
   },
   "references": [
     { "path": "../../packages/alp-nextjs/tsconfig.json" },
-    { "path": "../../packages/react-alp-auth/tsconfig.json" },
     { "path": "../../packages/react-alp-connection-state/tsconfig.json" },
+    { "path": "../../packages/react-alp-auth/tsconfig.json" },
     { "path": "../../packages/react-alp-context/tsconfig.json" }
   ]
 }

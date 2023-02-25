@@ -15,7 +15,7 @@ interface WebsocketInterface {
     on: (event: 'connect' | 'disconnect', callback: () => unknown) => void;
 }
 export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBarState> {
-    static contextType: import("react").Context<import("../../alp-types/lib").Context>;
+    static contextType: import("react").Context<import("alp-types").Context>;
     state: {
         loading: boolean;
         hidden: boolean;
