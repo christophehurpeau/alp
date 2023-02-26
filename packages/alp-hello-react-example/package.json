@@ -68,7 +68,7 @@
     "@babel/core": "7.20.12",
     "@playwright/test": "1.27.1",
     "@testing-library/react": "14.0.0",
-    "@types/node": "18.14.1",
+    "@types/node": "18.14.2",
     "@types/object-assign": "4.0.30",
     "@types/react": "18.0.28",
     "@types/react-native": "0.71.3",
