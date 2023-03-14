@@ -65,7 +65,7 @@
     "react-native-web": "0.18.12"
   },
   "devDependencies": {
-    "@babel/core": "7.20.12",
+    "@babel/core": "7.21.3",
     "@playwright/test": "1.27.1",
     "@testing-library/react": "14.0.0",
     "@types/node": "18.14.2",

@@ -56,7 +56,7 @@
     "semver": "^7.3.5"
   },
   "devDependencies": {
-    "@babel/core": "7.20.12",
+    "@babel/core": "7.21.3",
     "@types/node": "18.14.2",
     "@types/semver": "7.3.13",
     "liwi-mongo": "10.3.2",
