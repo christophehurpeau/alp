@@ -6521,7 +6521,7 @@ __metadata:
     babel-plugin-discard-module-references: ^1.1.2
     babel-plugin-react-native-web: ^0.18.12
     babel-preset-modern-browsers: 15.0.2
-    babel-preset-pob-env: 9.1.2
+    babel-preset-pob-env: 9.1.5
     cookies: ~0.8.0
     next: 13.1.6
     pob-babel: 35.5.0
@@ -7129,6 +7129,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-fix-class-properties-uninitialized@npm:6.1.1":
+  version: 6.1.1
+  resolution: "babel-plugin-fix-class-properties-uninitialized@npm:6.1.1"
+  checksum: c45c9182277744893bb89645b3367098c8746f063ad21ac7744a38c772ec5baaa0d8dfc89e1aa36405553d2338a775c182771e99ed4ace8c4b62b155fbf3a356
+  languageName: node
+  linkType: hard
+
 "babel-plugin-istanbul@npm:^6.1.1":
   version: 6.1.1
   resolution: "babel-plugin-istanbul@npm:6.1.1"
@@ -7372,6 +7379,23 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.11.6
   checksum: 26c9901ff7f8a1b993b5a5a727f68e0990a6c75f10aec37eee58699335f953089eb1d872da541a84b92bdcafea66957fa904964a31d09c503215e53551e4f259
+  languageName: node
+  linkType: hard
+
+"babel-preset-pob-env@npm:9.1.5":
+  version: 9.1.5
+  resolution: "babel-preset-pob-env@npm:9.1.5"
+  dependencies:
+    "@babel/plugin-proposal-nullish-coalescing-operator": ^7.16.7
+    "@babel/plugin-proposal-optional-chaining": ^7.16.7
+    "@babel/plugin-transform-modules-commonjs": ^7.17.9
+    "@babel/preset-typescript": ^7.16.7
+    babel-plugin-discard-module-references: ^1.1.2
+    babel-plugin-fix-class-properties-uninitialized: 6.1.1
+    babel-preset-optimizations: ^2.0.0
+  peerDependencies:
+    "@babel/core": ^7.11.6
+  checksum: e398dd1fda3ce4cea909b4c4df5d58c6a4f77755c8748e9dde02eb872f7e392989f63d4178868bab1e2cc8084b1c9f3c35fa4282d2d0cb8dec2c8969515616b7
   languageName: node
   linkType: hard
 
