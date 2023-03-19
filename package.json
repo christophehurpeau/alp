@@ -55,10 +55,10 @@
     }
   },
   "resolutions": {
-    "next@13.1.6": "patch:next@npm%3A13.1.6#./packages/alp-nextjs/patches/next-npm-13.1.6-fb87a1424a.patch"
+    "next@13.2.4": "patch:next@npm%3A13.2.4#./packages/alp-nextjs/patches/next-npm-13.2.4-fb87a1424a.patch"
   },
   "resolutionsExplained": {
-    "next@13.1.6": "Patch next to prevent it to change tsconfig.json"
+    "next@13.2.4": "Patch next to prevent it to change tsconfig.json"
   },
   "devDependencies": {
     "@babel/core": "7.21.3",

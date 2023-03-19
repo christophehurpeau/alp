@@ -51,7 +51,7 @@
   "dependencies": {
     "alp-nextjs": "3.0.0",
     "native-base": "3.4.28",
-    "next": "13.1.6",
+    "next": "13.2.4",
     "nightingale-app-console": "13.0.0",
     "react": "18.2.0",
     "react-alp-auth": "1.0.0",
