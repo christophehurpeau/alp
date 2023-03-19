@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@7.2.3...alp-migrations@7.3.0) (2023-03-19)
+
+
+### Features
+
+* update dev dependencies ([9d7e24f](https://github.com/christophehurpeau/alp/commit/9d7e24f8e504d47feae64ca618dc2b3a69babc38))
+
+
+
 ## [7.2.3](https://github.com/christophehurpeau/alp/compare/alp-migrations@7.2.2...alp-migrations@7.2.3) (2023-02-18)
 
 **Note:** Version bump only for package alp-migrations

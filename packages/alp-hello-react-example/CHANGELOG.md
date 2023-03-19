@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@7.3.2...alp-hello-react-example@8.0.0) (2023-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* changed api for alp-node-auth
+
+### Features
+
+* auth browser-readable cookie ([7ce6b13](https://github.com/christophehurpeau/alp/commit/7ce6b13752ffd3b6238e6c9fe04fe907e208b7d5))
+* update dev dependencies ([9d7e24f](https://github.com/christophehurpeau/alp/commit/9d7e24f8e504d47feae64ca618dc2b3a69babc38))
+
+
+### Bug Fixes
+
+* **deps:** update dependency native-base to v3.4.28 ([#426](https://github.com/christophehurpeau/alp/issues/426)) ([22dc60c](https://github.com/christophehurpeau/alp/commit/22dc60c97885488d994f3de81e2feeedbeb4f9b8))
+
+
+
 ## [7.3.2](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@7.3.1...alp-hello-react-example@7.3.2) (2023-02-18)
 
 **Note:** Version bump only for package alp-hello-react-example

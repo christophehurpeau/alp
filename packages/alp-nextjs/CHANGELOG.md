@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@2.4.0...alp-nextjs@3.0.0) (2023-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* changed api for alp-node-auth
+
+### Features
+
+* **alp-nextjs:** add babel plugins ([bc9181e](https://github.com/christophehurpeau/alp/commit/bc9181eb5319e0ea825853b34e622b7c3a260fb9))
+* auth browser-readable cookie ([7ce6b13](https://github.com/christophehurpeau/alp/commit/7ce6b13752ffd3b6238e6c9fe04fe907e208b7d5))
+* update dev dependencies ([9d7e24f](https://github.com/christophehurpeau/alp/commit/9d7e24f8e504d47feae64ca618dc2b3a69babc38))
+
+
+
 # [2.4.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@2.3.0...alp-nextjs@2.4.0) (2023-02-13)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "alp-listen",
-  "version": "6.1.2",
+  "version": "6.2.0",
   "description": "Listen function, using config and logger for alp server",
   "keywords": [
     "alp"
@@ -53,7 +53,7 @@
     ]
   },
   "dependencies": {
-    "alp-node-config": "8.2.1",
+    "alp-node-config": "8.3.0",
     "nightingale-logger": "^13.0.0"
   },
   "devDependencies": {

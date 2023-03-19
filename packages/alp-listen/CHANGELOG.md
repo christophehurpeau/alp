@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.0](https://github.com/christophehurpeau/alp/compare/alp-listen@6.1.2...alp-listen@6.2.0) (2023-03-19)
+
+
+### Features
+
+* update dev dependencies ([9d7e24f](https://github.com/christophehurpeau/alp/commit/9d7e24f8e504d47feae64ca618dc2b3a69babc38))
+
+
+
 ## [6.1.2](https://github.com/christophehurpeau/alp/compare/alp-listen@6.1.1...alp-listen@6.1.2) (2023-01-31)
 
 **Note:** Version bump only for package alp-listen

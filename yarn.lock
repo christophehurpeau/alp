@@ -2235,7 +2235,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.18.6, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.6.2, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7":
+"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.18.6, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.6.2, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
@@ -6070,14 +6070,14 @@ __metadata:
     "@types/object-assign": 4.0.30
     "@types/react": 18.0.28
     "@types/react-native": 0.71.3
-    alp-nextjs: 2.4.0
+    alp-nextjs: 3.0.0
     native-base: 3.4.28
     next: 13.1.6
     nightingale-app-console: 13.0.0
     react: 18.2.0
-    react-alp-auth: 1.0.0-pre
-    react-alp-connection-state: 7.1.5
-    react-alp-context: 5.1.2
+    react-alp-auth: 1.0.0
+    react-alp-connection-state: 7.2.0
+    react-alp-context: 5.2.0
     react-dom: 18.2.0
     react-icons: 4.7.1
     react-intl: 6.2.8
@@ -6089,17 +6089,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-listen@6.1.2, alp-listen@workspace:packages/alp-listen":
+"alp-listen@6.2.0, alp-listen@workspace:packages/alp-listen":
   version: 0.0.0-use.local
   resolution: "alp-listen@workspace:packages/alp-listen"
   dependencies:
     "@babel/core": 7.21.3
-    alp-node-config: 8.2.1
+    alp-node-config: 8.3.0
     nightingale-logger: ^13.0.0
     pob-babel: 35.6.2
     typescript: 4.9.5
   languageName: unknown
   linkType: soft
+
+"alp-listen@npm:6.1.2":
+  version: 6.1.2
+  resolution: "alp-listen@npm:6.1.2"
+  dependencies:
+    alp-node-config: 8.2.1
+    nightingale-logger: ^13.0.0
+  checksum: b356285f7554ae27e077fa7071b19b2d86bd2963333f99f8bc87cf6a8e82c77bc6dc0fb75c645f3db1f25e52b69be2cc46f784a213f76f2fab358a0c291e6cf8
+  languageName: node
+  linkType: hard
 
 "alp-migrations@workspace:packages/alp-migrations":
   version: 0.0.0-use.local
@@ -6119,7 +6129,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-nextjs@2.4.0, alp-nextjs@workspace:packages/alp-nextjs":
+"alp-nextjs@3.0.0, alp-nextjs@workspace:packages/alp-nextjs":
   version: 0.0.0-use.local
   resolution: "alp-nextjs@workspace:packages/alp-nextjs"
   dependencies:
@@ -6145,15 +6155,35 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node-auth@7.2.2, alp-node-auth@workspace:packages/alp-node-auth":
+"alp-node-auth@npm:7.2.2":
+  version: 7.2.2
+  resolution: "alp-node-auth@npm:7.2.2"
+  dependencies:
+    "@types/jsonwebtoken": ^9.0.1
+    "@types/simple-oauth2": ^2.5.1
+    alp-types: 3.1.0
+    cookies: ~0.8.0
+    jsonwebtoken: ^9.0.0
+    nightingale-logger: ^13.0.0
+    simple-oauth2: ^2.2.1
+  peerDependencies:
+    alp-node: ^5.0.0
+    alp-router: ^6.0.0
+    liwi-mongo: ^10.2.0
+    router-segments: ^6.0.0
+  checksum: de9918421f8b6d8a67fe86a7a1c9f21e6cc5790c25cfcf801d09d00be00a1e70e457dc9716f2ba3bb0e034fe92a14529c7f6ea038426b6380319d821f39bfabd
+  languageName: node
+  linkType: hard
+
+"alp-node-auth@workspace:packages/alp-node-auth":
   version: 0.0.0-use.local
   resolution: "alp-node-auth@workspace:packages/alp-node-auth"
   dependencies:
     "@babel/core": 7.21.3
     "@types/jsonwebtoken": ^9.0.1
     "@types/simple-oauth2": ^2.5.1
-    alp-node: 5.1.2
-    alp-router: 6.1.2
+    alp-node: 5.2.0
+    alp-router: 6.2.0
     alp-types: 3.1.0
     cookies: ~0.8.0
     jsonwebtoken: ^9.0.0
@@ -6171,7 +6201,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node-config@8.2.1, alp-node-config@workspace:packages/alp-node-config":
+"alp-node-config@8.3.0, alp-node-config@workspace:packages/alp-node-config":
   version: 0.0.0-use.local
   resolution: "alp-node-config@workspace:packages/alp-node-config"
   dependencies:
@@ -6186,7 +6216,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node-errors@7.1.2, alp-node-errors@workspace:packages/alp-node-errors":
+"alp-node-config@npm:8.2.1":
+  version: 8.2.1
+  resolution: "alp-node-config@npm:8.2.1"
+  dependencies:
+    alp-types: 3.1.0
+    deep-freeze-es6: ^2.0.0
+    minimist-argv: ^1.1.0
+    parse-json-object-as-map: ^1.2.0
+    stringify-json: ^2.0.0
+  checksum: f2005e0dfa7380206449e9271c2ba3cd71634f72a6e145f6c5ee5d0a3ce279dc57c682a07df7b9124f39bf6ab5f0a6a03003c3bf301d064d94fbc3b099895010
+  languageName: node
+  linkType: hard
+
+"alp-node-errors@7.2.0, alp-node-errors@workspace:packages/alp-node-errors":
   version: 0.0.0-use.local
   resolution: "alp-node-errors@workspace:packages/alp-node-errors"
   dependencies:
@@ -6199,7 +6242,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node-language@6.1.2, alp-node-language@workspace:packages/alp-node-language":
+"alp-node-errors@npm:7.1.2":
+  version: 7.1.2
+  resolution: "alp-node-errors@npm:7.1.2"
+  dependencies:
+    alp-types: 3.1.0
+    error-html: ^0.3.5
+    nightingale-logger: ^13.0.0
+  checksum: da12b4d7cda4d42cd7f0ae95ccf23d2d517609154e61c9838a12851fcaabab77c09046a3d7e7b5356c09fedf086810dd204f6bb97726d090afb9caffe4cbff56
+  languageName: node
+  linkType: hard
+
+"alp-node-language@6.2.0, alp-node-language@workspace:packages/alp-node-language":
   version: 0.0.0-use.local
   resolution: "alp-node-language@workspace:packages/alp-node-language"
   dependencies:
@@ -6212,7 +6266,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node@5.1.2, alp-node@workspace:packages/alp-node":
+"alp-node-language@npm:6.1.2":
+  version: 6.1.2
+  resolution: "alp-node-language@npm:6.1.2"
+  dependencies:
+    "@types/koa": ^2.13.1
+    alp-types: 3.1.0
+    object-properties: ^7.0.0
+  checksum: d598d1512cda6e6cbfa3ca924af06400ea17ce968f0291a82173b8e01c5d1da45e94abe12704065fed724bfcf47310d908f65ed319f94c1cc7d5b1fe9ea4b622
+  languageName: node
+  linkType: hard
+
+"alp-node@5.2.0, alp-node@workspace:packages/alp-node":
   version: 0.0.0-use.local
   resolution: "alp-node@workspace:packages/alp-node"
   dependencies:
@@ -6221,6 +6286,32 @@ __metadata:
     "@types/koa-compress": 4.0.3
     "@types/koa-static": 4.0.2
     "@types/minimist": 1.2.2
+    "@types/node": ">=16.0.0"
+    "@types/node-fetch": ^3.0.3
+    alp-listen: 6.2.0
+    alp-node-config: 8.3.0
+    alp-node-errors: 7.2.0
+    alp-node-language: 6.2.0
+    alp-params: 5.2.0
+    alp-translate: 7.3.0
+    alp-types: 3.1.0
+    koa: ^2.13.1
+    koa-compress: ^5.0.0
+    koa-static: ^5.0.0
+    nightingale-logger: ^13.0.0
+    node-fetch: ^3.2.0
+    pob-babel: 35.6.2
+    typescript: 4.9.5
+  peerDependencies:
+    router-segments: ^6.0.0
+  languageName: unknown
+  linkType: soft
+
+"alp-node@npm:5.1.2":
+  version: 5.1.2
+  resolution: "alp-node@npm:5.1.2"
+  dependencies:
+    "@types/koa": ^2.13.1
     "@types/node": ">=16.0.0"
     "@types/node-fetch": ^3.0.3
     alp-listen: 6.1.2
@@ -6235,21 +6326,20 @@ __metadata:
     koa-static: ^5.0.0
     nightingale-logger: ^13.0.0
     node-fetch: ^3.2.0
-    pob-babel: 35.6.2
-    typescript: 4.9.5
   peerDependencies:
     router-segments: ^6.0.0
-  languageName: unknown
-  linkType: soft
+  checksum: 74f2bda6cfab9d18cf89445b8526855f2153693dc9b3f5626de749a58a6406c70b797ba542a7c416b9af107a28724fc92ec4aa9889ecf0d7f55017d7dacd80a2
+  languageName: node
+  linkType: hard
 
-"alp-params@5.1.2, alp-params@workspace:packages/alp-params":
+"alp-params@5.2.0, alp-params@workspace:packages/alp-params":
   version: 0.0.0-use.local
   resolution: "alp-params@workspace:packages/alp-params"
   dependencies:
     "@babel/core": 7.21.3
     "@babel/preset-env": 7.20.2
     "@babel/runtime": ^7.21.0
-    alp-router: 6.1.2
+    alp-router: 6.2.0
     alp-types: 3.1.0
     object-properties: ^7.0.0
     pob-babel: 35.6.2
@@ -6258,6 +6348,20 @@ __metadata:
     router-segments: ^6.0.0
   languageName: unknown
   linkType: soft
+
+"alp-params@npm:5.1.2":
+  version: 5.1.2
+  resolution: "alp-params@npm:5.1.2"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    alp-router: 6.1.2
+    alp-types: 3.1.0
+    object-properties: ^7.0.0
+  peerDependencies:
+    router-segments: ^6.0.0
+  checksum: aaa213fb492446f8b6250dc0d04a5811dd8207ad58068474e0c636ca462a281830a1ea4e4c3fc0ca35f1564e757c1d35afd8a8e5068245272a7d969a9d10c803
+  languageName: node
+  linkType: hard
 
 "alp-rollup-plugin-config@2.0.0, alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config":
   version: 0.0.0-use.local
@@ -6270,7 +6374,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-router@6.1.2, alp-router@workspace:packages/alp-router":
+"alp-router@6.2.0, alp-router@workspace:packages/alp-router":
   version: 0.0.0-use.local
   resolution: "alp-router@workspace:packages/alp-router"
   dependencies:
@@ -6285,7 +6389,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-translate@7.2.1, alp-translate@workspace:packages/alp-translate":
+"alp-router@npm:6.1.2":
+  version: 6.1.2
+  resolution: "alp-router@npm:6.1.2"
+  dependencies:
+    alp-types: 3.1.0
+  peerDependencies:
+    router-segments: ^6.0.0
+  checksum: 60bab19e24b33e5038b7d9bc187677b6d3db396c7350b6c5d15c64be1bee435d3ba204fdcd302ff1412c74c755a2eb9a7edfd17f7cfb459a623c274f9a360bf5
+  languageName: node
+  linkType: hard
+
+"alp-translate@7.3.0, alp-translate@workspace:packages/alp-translate":
   version: 0.0.0-use.local
   resolution: "alp-translate@workspace:packages/alp-translate"
   dependencies:
@@ -6298,6 +6413,17 @@ __metadata:
     typescript: 4.9.5
   languageName: unknown
   linkType: soft
+
+"alp-translate@npm:7.2.1":
+  version: 7.2.1
+  resolution: "alp-translate@npm:7.2.1"
+  dependencies:
+    alp-types: 3.1.0
+    intl-messageformat: ^10.0.0
+    nightingale-logger: ^13.0.0
+  checksum: f6cc0f581db724a192d1677dc4a5369b483d14f897bd7490a9ff479584a6bcdb02fd2ff059b100335211f17a7467b596739a9ccdce475270a91ed697f0b5b06e
+  languageName: node
+  linkType: hard
 
 "alp-types@3.1.0, alp-types@workspace:packages/alp-types":
   version: 0.0.0-use.local
@@ -13072,7 +13198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-alp-auth@1.0.0-pre, react-alp-auth@workspace:packages/react-alp-auth":
+"react-alp-auth@1.0.0, react-alp-auth@workspace:packages/react-alp-auth":
   version: 0.0.0-use.local
   resolution: "react-alp-auth@workspace:packages/react-alp-auth"
   dependencies:
@@ -13080,7 +13206,7 @@ __metadata:
     "@babel/preset-env": 7.20.2
     "@babel/preset-react": 7.18.6
     "@types/js-cookie": 3.0.3
-    alp-nextjs: 2.4.0
+    alp-nextjs: 3.0.0
     js-cookie: 3.0.1
     next: 13.1.6
     pob-babel: 35.6.2
@@ -13094,7 +13220,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-alp-connection-state@7.1.5, react-alp-connection-state@workspace:packages/react-alp-connection-state":
+"react-alp-connection-state@7.2.0, react-alp-connection-state@workspace:packages/react-alp-connection-state":
   version: 0.0.0-use.local
   resolution: "react-alp-connection-state@workspace:packages/react-alp-connection-state"
   dependencies:
@@ -13115,7 +13241,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-alp-context@5.1.2, react-alp-context@workspace:packages/react-alp-context":
+"react-alp-context@5.2.0, react-alp-context@workspace:packages/react-alp-context":
   version: 0.0.0-use.local
   resolution: "react-alp-context@workspace:packages/react-alp-context"
   dependencies:
@@ -13142,7 +13268,7 @@ __metadata:
     alp-types: 3.1.0
     pob-babel: 35.6.2
     react: 18.2.0
-    react-alp-context: 5.1.2
+    react-alp-context: 5.2.0
     typescript: 4.9.5
   peerDependencies:
     react: ^18.1.0
@@ -13160,7 +13286,7 @@ __metadata:
     alp-types: 3.1.0
     pob-babel: 35.6.2
     react: 18.2.0
-    react-alp-context: 5.1.2
+    react-alp-context: 5.2.0
     typescript: 4.9.5
   peerDependencies:
     react: ^18.1.0

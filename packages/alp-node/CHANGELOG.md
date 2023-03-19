@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.0](https://github.com/christophehurpeau/alp/compare/alp-node@5.1.2...alp-node@5.2.0) (2023-03-19)
+
+
+### Features
+
+* **alp-hello-node-example:** create package ([b67cf74](https://github.com/christophehurpeau/alp/commit/b67cf741c97ad12d5982555774197cd14e83b15c))
+* update dev dependencies ([9d7e24f](https://github.com/christophehurpeau/alp/commit/9d7e24f8e504d47feae64ca618dc2b3a69babc38))
+
+
+
 ## [5.1.2](https://github.com/christophehurpeau/alp/compare/alp-node@5.1.1...alp-node@5.1.2) (2023-01-31)
 
 **Note:** Version bump only for package alp-node
