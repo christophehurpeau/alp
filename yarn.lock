@@ -4419,7 +4419,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-aria/checkbox@npm:^0.2.2":
+"@react-native-aria/checkbox@npm:^0.2.3":
   version: 0.2.3
   resolution: "@react-native-aria/checkbox@npm:0.2.3"
   dependencies:
@@ -4498,9 +4498,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-aria/overlays@npm:0.3.3-rc.0":
-  version: 0.3.3-rc.0
-  resolution: "@react-native-aria/overlays@npm:0.3.3-rc.0"
+"@react-native-aria/overlays@npm:^0.3.3":
+  version: 0.3.5
+  resolution: "@react-native-aria/overlays@npm:0.3.5"
   dependencies:
     "@react-aria/interactions": ^3.3.2
     "@react-aria/overlays": ^3.7.0
@@ -4512,7 +4512,7 @@ __metadata:
     react: "*"
     react-dom: "*"
     react-native: "*"
-  checksum: 3f215895305b7230bc3b9f441144a1444404343d8dc909d14c1861f8a2adf339dd7d5d2880922b933fd2c5858d75a3c060ac4c35616d370cd50743ba8e721b5c
+  checksum: 59d7cf1a7aca28d74fa8ca8d733ec419ae813703c5ff6de4c09da9e9bfa726f9062fa21fc461cd66ac315878a13549b20abec6e3858aecfbe4f8f3763037cdaf
   languageName: node
   linkType: hard
 
@@ -6071,7 +6071,7 @@ __metadata:
     "@types/react": 18.0.28
     "@types/react-native": 0.71.3
     alp-nextjs: 2.4.0
-    native-base: 3.4.25
+    native-base: 3.4.28
     next: 13.1.6
     nightingale-app-console: 13.0.0
     react: 18.2.0
@@ -11137,6 +11137,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.uniqueid@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "lodash.uniqueid@npm:4.0.1"
+  checksum: f8a66b34c2a8df74aeab22a018c9247c96346dc449506278e6f651030166b74959a4f8e6fae60d392a4c00a40758677547b6e969e4cb6893d8fcd1cb0d2b4ba1
+  languageName: node
+  linkType: hard
+
 "lodash.upperfirst@npm:^4.3.1":
   version: 4.3.1
   resolution: "lodash.upperfirst@npm:4.3.1"
@@ -11652,18 +11659,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"native-base@npm:3.4.25":
-  version: 3.4.25
-  resolution: "native-base@npm:3.4.25"
+"native-base@npm:3.4.28":
+  version: 3.4.28
+  resolution: "native-base@npm:3.4.28"
   dependencies:
     "@react-aria/visually-hidden": ^3.2.1
     "@react-native-aria/button": ^0.2.4
-    "@react-native-aria/checkbox": ^0.2.2
+    "@react-native-aria/checkbox": ^0.2.3
     "@react-native-aria/combobox": ^0.2.4-alpha.0
     "@react-native-aria/focus": ^0.2.6
     "@react-native-aria/interactions": ^0.2.2
     "@react-native-aria/listbox": ^0.2.4-alpha.3
-    "@react-native-aria/overlays": 0.3.3-rc.0
+    "@react-native-aria/overlays": ^0.3.3
     "@react-native-aria/radio": ^0.2.4
     "@react-native-aria/slider": ^0.2.5-alpha.1
     "@react-native-aria/tabs": ^0.2.7
@@ -11687,9 +11694,10 @@ __metadata:
     lodash.omit: ^4.5.0
     lodash.omitby: ^4.6.0
     lodash.pick: ^4.4.0
+    lodash.uniqueid: ^4.0.1
     stable-hash: ^0.0.2
     tinycolor2: ^1.4.2
-    use-subscription: ^1.8.0
+    use-sync-external-store: ^1.2.0
   peerDependencies:
     "@types/react": "*"
     "@types/react-native": "*"
@@ -11698,7 +11706,7 @@ __metadata:
     react-native: "*"
     react-native-safe-area-context: "*"
     react-native-svg: "*"
-  checksum: fa24a797b553d4f8fe451492a2cc65e9ad475093f3d7bbe5458e07fefb2fe12a96a14e3ce037a2ec3452be83592aa8e854e3cc6f13dc8170b8d12e989fb2ca02
+  checksum: 68d3b2c56c23b2bc25296162dfbd586530df6bc3a3e0a577ab383cdfc014e4e436604edb5aa33312055226c375e170ca942e686d43b23372d075dd7aa613fa8d
   languageName: node
   linkType: hard
 
@@ -14832,17 +14840,6 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
-  languageName: node
-  linkType: hard
-
-"use-subscription@npm:^1.8.0":
-  version: 1.8.0
-  resolution: "use-subscription@npm:1.8.0"
-  dependencies:
-    use-sync-external-store: ^1.2.0
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: beac1f0ff14fe23fd6ae9c34681258936729f343bf6532bbce36caa8f4c1019ff380783e35b4aeb7f3faaec1a83af242d7833bf7e660816d24555dbdd2c934da
   languageName: node
   linkType: hard
 
