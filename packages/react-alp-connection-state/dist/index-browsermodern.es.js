@@ -80,7 +80,7 @@ function ConnectionState({
     };
   }, []);
   return /*#__PURE__*/jsx(View, {
-    style: [styles.connectionStateContainer, (forceHidden || !state || state === 'connected') && styles.hide, theme === null || theme === void 0 ? void 0 : theme.container, state === 'connected' && {
+    style: [styles.connectionStateContainer, (forceHidden || !state || state === 'connected') && styles.hide, theme?.container, state === 'connected' && {
       backgroundColor: (theme || defaultTheme).backgroundColorConnected
     }],
     children: !state ? null : /*#__PURE__*/jsx(Text, {

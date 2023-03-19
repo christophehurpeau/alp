@@ -72,16 +72,15 @@ function alpParams(app) {
     },
     namedParam(name) {
       const namedParams = this.route.namedParams;
-      return namedParams === null || namedParams === void 0 ? void 0 : namedParams.get(name);
+      return namedParams?.get(name);
     },
     otherParam(position) {
       const otherParams = this.route.otherParams;
       return otherParams && otherParams[position - 1];
     },
     paramGET(name) {
-      var _searchParams$get;
       const searchParams = this.request.searchParams;
-      return (_searchParams$get = searchParams.get(name)) !== null && _searchParams$get !== void 0 ? _searchParams$get : undefined;
+      return searchParams.get(name) ?? undefined;
     },
     paramGETorPOST(name) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
