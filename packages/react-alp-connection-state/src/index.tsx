@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Platform,
   useWindowDimensions,
+  // eslint-disable-next-line import/no-unresolved -- react-native-web or react-native
 } from 'react-native';
 
 const defaultTheme = {
