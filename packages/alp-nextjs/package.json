@@ -92,6 +92,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.13",
+    "babel-plugin-discard-module-references": "^1.1.2",
+    "babel-plugin-react-native-web": "^0.18.12",
     "babel-preset-pob-env": "9.1.2",
     "cookies": "~0.8.0"
   },

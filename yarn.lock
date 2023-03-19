@@ -6518,6 +6518,8 @@ __metadata:
     "@babel/preset-env": 7.20.2
     "@babel/preset-react": 7.18.6
     "@babel/runtime": ^7.20.13
+    babel-plugin-discard-module-references: ^1.1.2
+    babel-plugin-react-native-web: ^0.18.12
     babel-preset-modern-browsers: 15.0.2
     babel-preset-pob-env: 9.1.2
     cookies: ~0.8.0
@@ -7228,6 +7230,13 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: ab0355efbad17d29492503230387679dfb780b63b25408990d2e4cf421012dae61d6199ddc309f4d2409ce4e9d3002d187702700dd8f4f8770ebbba651ed066c
+  languageName: node
+  linkType: hard
+
+"babel-plugin-react-native-web@npm:^0.18.12":
+  version: 0.18.12
+  resolution: "babel-plugin-react-native-web@npm:0.18.12"
+  checksum: 9770341df1011b0e8e9b6a24bc18c05678c7d8b8db7d64e2cf56ab66b9c2988404902543ee7c4e222ed751faa865b4907ad5fac6f6ae6a38fbe16a50aa5975bd
   languageName: node
   linkType: hard
 

@@ -13,6 +13,12 @@ module.exports = (api) => {
           targetVersion: isServer ? '16' : undefined,
         },
       ],
+
+      // optimize react-native-web imports
+      'babel-plugin-react-native-web',
+
+      // discard unused imports (like production-only or node-only imports)
+      'babel-plugin-discard-module-references',
     ],
   };
 };
