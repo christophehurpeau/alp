@@ -25,7 +25,7 @@
     "lint:eslint": "NODE_OPTIONS=--max_old_space_size=4096 eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet .",
     "lint:prettier": "pob-root-prettier --check .",
     "lint:prettier:fix": "pob-root-prettier --write .",
-    "postinstall": "pob-root-postinstall",
+    "postinstall": "pob-root-postinstall && ./packages/alp-nextjs/bin/postinstall.mjs",
     "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "tsc": "tsc -b",

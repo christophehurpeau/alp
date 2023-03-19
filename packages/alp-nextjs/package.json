@@ -52,6 +52,9 @@
     "./react-native-web.d.ts": "./react-native-web.d.ts"
   },
   "sideEffects": false,
+  "bin": {
+    "alp-nextjs-postinstall": "./bin/postinstall.mjs"
+  },
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
@@ -97,7 +100,8 @@
     "babel-plugin-discard-module-references": "^1.1.2",
     "babel-plugin-react-native-web": "^0.18.12",
     "babel-preset-pob-env": "9.1.5",
-    "cookies": "~0.8.0"
+    "cookies": "~0.8.0",
+    "sort-keys": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.21.3",
