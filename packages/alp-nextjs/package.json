@@ -48,6 +48,7 @@
       }
     },
     "./server": "./server.js",
+    "./createNextJsConfig": "./createNextJsConfig.js",
     "./preset-babel.cjs": "./preset-babel.cjs",
     "./react-native-web.d.ts": "./react-native-web.d.ts"
   },
@@ -85,6 +86,7 @@
     ],
     "extraEntries": [
       "server",
+      "createNextJsConfig",
       "preset-babel.cjs",
       "react-native-web.d.ts"
     ]

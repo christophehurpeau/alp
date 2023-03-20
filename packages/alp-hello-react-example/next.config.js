@@ -1,16 +1,9 @@
 // import yoRcConfig from '../../.yo-rc.json';
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import { createNextJsConfig } from 'alp-nextjs/createNextJsConfig';
+
+const nextConfig = createNextJsConfig({
   reactStrictMode: true,
-  // eslint code checking is done outside nextjs
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  // typescript code checking is done outside nextjs
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   experimental: {
     appDir: false,
     esmExternals: true,
@@ -43,19 +36,7 @@ const nextConfig = {
     'alp-nextjs',
     'react-alp-connection-state',
   ],
-  webpack: (config, context) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'react-native$': 'react-native-web',
-    };
-    config.resolve.extensions = config.resolve.extensions.flatMap((ext) => [
-      `.web${ext}`,
-      ext,
-    ]);
-
-    return config;
-  },
-};
+});
 
 if (process.env.TEST_BUILD_ID) {
   nextConfig.generateBuildId = () => process.env.TEST_BUILD_ID;
