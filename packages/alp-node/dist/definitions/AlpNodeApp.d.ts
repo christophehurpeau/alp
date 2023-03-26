@@ -25,7 +25,7 @@ export declare class AlpNodeApp extends Koa<ContextState> implements NodeApplica
     dirname: string;
     certPath: string;
     publicPath: string;
-    config: NodeConfig & Config;
+    config: Config & NodeConfig;
     request: BaseRequest & ContextRequest;
     _server?: Server;
     /**

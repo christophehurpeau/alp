@@ -216,7 +216,7 @@ class AuthenticationService extends EventEmitter {
       throw new Error('No cookie for this state');
     }
     cookie = JSON.parse(cookie);
-    if (!cookie || !cookie.scope) {
+    if (!cookie?.scope) {
       throw new Error('Unexpected cookie value');
     }
     if (!cookie.isLoginAccess) {
@@ -571,7 +571,7 @@ class UserAccountSlackService {
     return fetch(`https://slack.com/api/users.identity?token=${tokens.accessToken}`).then(response => response.json());
   }
   getId(profile) {
-    if (!profile || !profile.team || !profile.team.id || !profile.user || !profile.user.id) {
+    if (!profile?.team?.id || !profile.user || !profile.user.id) {
       return null;
     }
     return `team:${profile.team.id};user:${profile.user.id}`;

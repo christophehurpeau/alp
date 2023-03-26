@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import { useState } from 'react';
 
 interface InputNameComponentProps {
-  value: undefined | string;
+  value: string | undefined;
   onChange: (name: string) => void;
 }
 

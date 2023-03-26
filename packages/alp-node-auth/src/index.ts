@@ -186,7 +186,7 @@ export default function init<
       findLoggedInUser,
       middleware: async <T>(
         ctx: Context,
-        next: () => T | Promise<T>,
+        next: () => Promise<T> | T,
       ): Promise<T> => {
         const token = ctx.cookies.get(COOKIE_NAME_TOKEN);
         const userAgent = ctx.request.headers['user-agent'];

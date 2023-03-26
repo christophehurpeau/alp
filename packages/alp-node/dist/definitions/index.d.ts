@@ -8,7 +8,7 @@ export declare const appDirname: string;
 export declare const packageDirname: string;
 export declare const packageConfig: Record<string, unknown>;
 export declare const config: Config & import("alp-types").NodeConfig;
-export type AppOptions = Omit<AlpNodeAppOptions, 'appDirname' | 'packageDirname' | 'config'>;
+export type AppOptions = Omit<AlpNodeAppOptions, 'appDirname' | 'config' | 'packageDirname'>;
 export default class App extends AlpNodeApp {
     constructor(options?: AppOptions);
 }

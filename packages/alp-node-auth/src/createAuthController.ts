@@ -37,11 +37,12 @@ export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys>
   paramsForLogin?: <StrategyKey extends StrategyKeys>(
     strategy: StrategyKey,
     ctx: Context,
-  ) => // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-  | void
-    | Promise<void>
+  ) =>
     | OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>
-    | Promise<OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>>;
+    | Promise<OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>>
+    | Promise<void>
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+    | void;
 }
 
 export function createAuthController<

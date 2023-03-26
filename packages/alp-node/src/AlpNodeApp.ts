@@ -50,7 +50,7 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
 
   publicPath: string;
 
-  config: NodeConfig & Config;
+  config: Config & NodeConfig;
 
   declare request: BaseRequest & ContextRequest;
 

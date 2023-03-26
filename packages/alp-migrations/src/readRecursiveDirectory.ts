@@ -10,7 +10,7 @@ export interface CallbackParam {
 
 export default async function readRecursiveDirectory(
   directory: string,
-  callback: (param: CallbackParam) => void | Promise<void>,
+  callback: (param: CallbackParam) => Promise<void> | void,
 ): Promise<void> {
   const files = await readdir(directory);
 

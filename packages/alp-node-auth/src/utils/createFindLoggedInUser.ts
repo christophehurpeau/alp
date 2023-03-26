@@ -12,7 +12,7 @@ import type MongoUsersManager from '../MongoUsersManager';
 
 type Verify = (
   token: string,
-  secretOrPublicKey: Secret | GetPublicKeyOrSecret,
+  secretOrPublicKey: GetPublicKeyOrSecret | Secret,
   options?: VerifyOptions,
   callback?: VerifyCallback,
 ) => void;
@@ -37,7 +37,7 @@ const createDecodeJWT =
 export type FindLoggedInUser<U extends User> = (
   jwtAudience?: string,
   token?: string,
-) => Promise<[null | undefined | U['_id'], null | undefined | U]>;
+) => Promise<[U['_id'] | null | undefined, U | null | undefined]>;
 
 export const createFindLoggedInUser = <
   U extends User,

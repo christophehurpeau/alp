@@ -13,7 +13,7 @@ declare const defaultTheme: {
     backgroundColorConnected: string;
 };
 export type ConnectionStateTheme = typeof defaultTheme;
-export type State = null | 'connecting' | 'connected' | 'disconnected';
+export type State = 'connected' | 'connecting' | 'disconnected' | null;
 export interface ConnectionStateProps {
     theme?: ConnectionStateTheme;
     forceHidden?: boolean;

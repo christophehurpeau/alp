@@ -6,5 +6,5 @@ export interface CallbackParam {
     path: string;
     stat: Stats;
 }
-export default function readRecursiveDirectory(directory: string, callback: (param: CallbackParam) => void | Promise<void>): Promise<void>;
+export default function readRecursiveDirectory(directory: string, callback: (param: CallbackParam) => Promise<void> | void): Promise<void>;
 //# sourceMappingURL=readRecursiveDirectory.d.ts.map

@@ -22,7 +22,7 @@ const defaultTheme = {
 };
 
 export type ConnectionStateTheme = typeof defaultTheme;
-export type State = null | 'connecting' | 'connected' | 'disconnected';
+export type State = 'connected' | 'connecting' | 'disconnected' | null;
 
 export interface ConnectionStateProps {
   theme?: ConnectionStateTheme;
@@ -37,7 +37,7 @@ const zDepth1 =
 type CreateCalc = (
   webCalc: string,
   createCalc: (dimensions: ScaledSize) => number,
-) => string | number;
+) => number | string;
 
 const useCreateCalcNative = (): CreateCalc => {
   const dimensions = useWindowDimensions();

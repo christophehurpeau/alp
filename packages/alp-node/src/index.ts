@@ -35,7 +35,7 @@ export const config = new Config(configPath).loadSync({ packageConfig });
 
 export type AppOptions = Omit<
   AlpNodeAppOptions,
-  'appDirname' | 'packageDirname' | 'config'
+  'appDirname' | 'config' | 'packageDirname'
 >;
 
 export default class App extends AlpNodeApp {

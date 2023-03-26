@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import InputName from './InputNameComponent';
 
 interface HelloComponentProps {
-  name: undefined | string;
+  name: string | undefined;
   onChangeName: (name: string) => void;
 }
 
