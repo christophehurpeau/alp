@@ -5,7 +5,7 @@ import { ParamValidator } from './ParamValidator';
 
 const createContextMock = (): Context &
   Record<
-    'param' | 'namedParam' | 'otherParam' | 'paramGET' | 'paramGETorPOST',
+    'namedParam' | 'otherParam' | 'param' | 'paramGET' | 'paramGETorPOST',
     ReturnType<typeof jest.fn>
   > => {
   return {
@@ -18,7 +18,7 @@ const createContextMock = (): Context &
     paramGETorPOST: jest.fn(),
   } as unknown as Context &
     Record<
-      'param' | 'namedParam' | 'otherParam' | 'paramGET' | 'paramGETorPOST',
+      'namedParam' | 'otherParam' | 'param' | 'paramGET' | 'paramGETorPOST',
       ReturnType<typeof jest.fn>
     >;
 };

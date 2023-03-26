@@ -19,14 +19,14 @@ pkg.resolutionsExplained = Object.fromEntries(
   Object.entries(pkg.resolutions).filter(([key]) => !key.startsWith('next@')),
 );
 
-const nextVersion = '13.1.6';
-const patchFilename = 'next-npm-13.1.6-fb87a1424a.patch';
+const nextVersion = '13.2.4';
+const patchFilename = 'next-npm-13.2.4-fb87a1424a.patch';
 
-pkg.resolutions['next@13.1.6'] = `patch:next@npm%3A${nextVersion}#${
+pkg.resolutions['next@13.2.4'] = `patch:next@npm%3A${nextVersion}#${
   pkg.name === 'alp' ? './packages/alp-nextjs/patches/' : './.yarn/patches/'
 }${patchFilename}`;
 
-pkg.resolutionsExplained['next@13.1.6'] =
+pkg.resolutionsExplained['next@13.2.4'] =
   'Patch next to prevent it to change tsconfig.json';
 
 sortKeys(pkg.resolutions);

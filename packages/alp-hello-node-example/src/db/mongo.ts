@@ -4,7 +4,7 @@ import { MongoStore, MongoConnection } from 'liwi-mongo';
 
 export const mongoConnection: MongoConnection = new MongoConnection(
   config
-    .get<Map<'mongodb', Map<string, string | number>>>('db')
+    .get<Map<'mongodb', Map<string, number | string>>>('db')
     .get('mongodb')!,
 );
 

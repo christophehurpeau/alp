@@ -26,13 +26,7 @@ export default class UserAccountSlackService<ScopeKeys extends 'login'>
   }
 
   getId(profile: any): string | null {
-    if (
-      !profile ||
-      !profile.team ||
-      !profile.team.id ||
-      !profile.user ||
-      !profile.user.id
-    ) {
+    if (!profile?.team?.id || !profile.user || !profile.user.id) {
       return null;
     }
     return `team:${profile.team.id as string};user:${

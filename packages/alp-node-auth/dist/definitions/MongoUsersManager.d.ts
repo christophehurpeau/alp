@@ -10,7 +10,7 @@ export default class MongoUsersManager<U extends User = User, USanitized extends
     replaceOne(user: U): Promise<any>;
     sanitize(user: U): USanitized;
     findOneByAccountOrEmails({ accountId, emails, provider, }: {
-        accountId: string | number;
+        accountId: number | string;
         emails?: string[];
         provider: string;
     }): Promise<U | undefined>;

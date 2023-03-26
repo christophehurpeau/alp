@@ -9,7 +9,7 @@ export {
 } from './getDocumentInitialProps';
 
 export const getServerCookieValue = (
-  ctx: NextPageContext | GetServerSidePropsContext,
+  ctx: GetServerSidePropsContext | NextPageContext,
   cookieName: string,
 ): string | undefined => {
   if (!ctx.req || !ctx.res) {

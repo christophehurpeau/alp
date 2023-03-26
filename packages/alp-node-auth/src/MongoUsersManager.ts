@@ -37,7 +37,7 @@ export default class MongoUsersManager<
     emails,
     provider,
   }: {
-    accountId: string | number;
+    accountId: number | string;
     emails?: string[];
     provider: string;
   }): Promise<U | undefined> {

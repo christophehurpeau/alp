@@ -47,14 +47,14 @@ export interface AccessResponseHooks<StrategyKeys, U extends User = User> {
   afterLoginSuccess?: <StrategyKey extends StrategyKeys>(
     strategy: StrategyKey,
     loggedInUser: U,
-  ) => void | Promise<void>;
+  ) => Promise<void> | void;
 
   afterScopeUpdate?: <StrategyKey extends StrategyKeys>(
     strategy: StrategyKey,
     scopeKey: string,
     account: Account,
     user: U,
-  ) => void | Promise<void>;
+  ) => Promise<void> | void;
 }
 
 export class AuthenticationService<
@@ -245,7 +245,7 @@ export class AuthenticationService<
     }
 
     cookie = JSON.parse(cookie);
-    if (!cookie || !cookie.scope) {
+    if (!cookie?.scope) {
       throw new Error('Unexpected cookie value');
     }
 

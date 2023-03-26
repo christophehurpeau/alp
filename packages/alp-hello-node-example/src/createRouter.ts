@@ -4,7 +4,7 @@ import type { AuthRoutes } from 'alp-node-auth';
 import type { Router } from 'router-segments';
 import { createRouterBuilder } from 'router-segments';
 
-type Locales = 'fr' | 'en';
+type Locales = 'en' | 'fr';
 
 export default function createRouter({
   auth,

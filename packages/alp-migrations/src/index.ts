@@ -45,7 +45,7 @@ export default async function migrate({
 
     const versionExecResult = /([\d.]+)(_.*|\.js)$/.exec(fileName);
 
-    if (!versionExecResult || !versionExecResult[1]) {
+    if (!versionExecResult?.[1]) {
       return;
     }
 
