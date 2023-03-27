@@ -70,7 +70,7 @@
     "@testing-library/react": "14.0.0",
     "@types/node": "18.15.10",
     "@types/object-assign": "4.0.30",
-    "@types/react": "18.0.29",
+    "@types/react": "18.0.30",
     "@types/react-native": "0.71.3",
     "springbokjs-daemon": "9.0.0",
     "typescript": "4.9.5"
