@@ -2637,17 +2637,51 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@guanghechen/rollup-plugin-copy@npm:1.8.6":
-  version: 1.8.6
-  resolution: "@guanghechen/rollup-plugin-copy@npm:1.8.6"
+"@guanghechen/helper-fs@npm:^4.7.4":
+  version: 4.7.4
+  resolution: "@guanghechen/helper-fs@npm:4.7.4"
   dependencies:
-    chalk: ^4.1.2
-    fs-extra: ^10.0.0
-    globby: ^11.0.4
-    is-plain-object: ^5.0.0
+    "@guanghechen/invariant": ^4.7.4
+    "@guanghechen/utility-types": ^4.7.4
+  checksum: 0cd28e5412c2a80c75294421b2e57209586b1c17b90807482dbad7cf225282d39109e41a62b874ec6085b881f48c2722b73b5baff4f220b760b71616cc2a5889
+  languageName: node
+  linkType: hard
+
+"@guanghechen/helper-is@npm:^4.7.4":
+  version: 4.7.4
+  resolution: "@guanghechen/helper-is@npm:4.7.4"
+  checksum: 0010de7ccfee2c547f7ddb57dbb8fc272f264b8513a926cf5baaad62a028f3eff56e9c7f145aa458e2e08d590013c699d5d188c37fb0a7cdbf91409d66778c56
+  languageName: node
+  linkType: hard
+
+"@guanghechen/invariant@npm:^4.7.4":
+  version: 4.7.4
+  resolution: "@guanghechen/invariant@npm:4.7.4"
+  checksum: fd51b02f5b74afe6729969f964a3b66b326cfb843fe4bd16c867c69d86c9439cb10cf55eef336f269a0c0f67e2c0eec1955cd48b6a47f592055e81db9b666c83
+  languageName: node
+  linkType: hard
+
+"@guanghechen/rollup-plugin-copy@npm:4.7.4":
+  version: 4.7.4
+  resolution: "@guanghechen/rollup-plugin-copy@npm:4.7.4"
+  dependencies:
+    "@guanghechen/helper-fs": ^4.7.4
+    "@guanghechen/helper-is": ^4.7.4
+    chalk: ^5.2.0
+    chokidar: ^3.5.3
+    dir-glob: ^3.0.1
+    globby: ^13.1.3
+    micromatch: ^4.0.5
   peerDependencies:
-    rollup: ^2.64.0
-  checksum: b9ea14264a80620eecfc4d11c488cbc95f97633f66bd3f2e9e203873a4d520dba2ea980d67523fe8a83ed1acc0b547a85581baad6fc631a90b6ddd57bb155ff2
+    rollup: ^2.0.0 || ^3.0.0
+  checksum: df4d1177be6b9e79473ff381ead9578beb7c8c214d2dacfe59871f086390f0213f5fed673101b7d5faf91433270ceade482b97c572a6583e0dca61dad15668bb
+  languageName: node
+  linkType: hard
+
+"@guanghechen/utility-types@npm:^4.7.4":
+  version: 4.7.4
+  resolution: "@guanghechen/utility-types@npm:4.7.4"
+  checksum: 47aa53b5deb84b9b1eede679789f15a857833c47e833bf6d1953b820a640bb3bd7f6b2a563c40a22efbccae826eea92348bb293792eb797ce00f6af6edc80d16
   languageName: node
   linkType: hard
 
@@ -6259,7 +6293,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config"
   dependencies:
-    "@guanghechen/rollup-plugin-copy": 1.8.6
+    "@guanghechen/rollup-plugin-copy": 4.7.4
     js-yaml: 4.1.0
   peerDependencies:
     rollup: ^2.64.0 || ^3.0.0
@@ -6377,13 +6411,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"anymatch@npm:^3.0.3":
-  version: 3.1.2
-  resolution: "anymatch@npm:3.1.2"
+"anymatch@npm:^3.0.3, anymatch@npm:~3.1.2":
+  version: 3.1.3
+  resolution: "anymatch@npm:3.1.3"
   dependencies:
     normalize-path: ^3.0.0
     picomatch: ^2.0.4
-  checksum: 985163db2292fac9e5a1e072bf99f1b5baccf196e4de25a0b0b81865ebddeb3b3eb4480734ef0a2ac8c002845396b91aa89121f5b84f93981a4658164a9ec6e9
+  checksum: 3e044fd6d1d26545f235a9fe4d7a534e2029d8e59fa7fd9f2a6eb21230f6b5380ea1eaf55136e60cbf8e613544b3b766e7a6fa2102e2a3a117505466e3025dc2
   languageName: node
   linkType: hard
 
@@ -6845,6 +6879,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"binary-extensions@npm:^2.0.0":
+  version: 2.2.0
+  resolution: "binary-extensions@npm:2.2.0"
+  checksum: ccd267956c58d2315f5d3ea6757cf09863c5fc703e50fbeb13a7dc849b812ef76e3cf9ca8f35a0c48498776a7478d7b4a0418e1e2b8cb9cb9731f2922aaad7f8
+  languageName: node
+  linkType: hard
+
 "bl@npm:^4.1.0":
   version: 4.1.0
   resolution: "bl@npm:4.1.0"
@@ -6905,7 +6946,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"braces@npm:^3.0.2":
+"braces@npm:^3.0.2, braces@npm:~3.0.2":
   version: 3.0.2
   resolution: "braces@npm:3.0.2"
   dependencies:
@@ -7136,7 +7177,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -7173,6 +7214,25 @@ __metadata:
   bin:
     check-package-dependencies: bin/check-package-dependencies.mjs
   checksum: 922399c6371fd741d619af34edbdf301e0f0e111bfeadcaefecfc1ae9d84a101fbb0abe985e2f8e1582537a40c577a72021f756e5be517afbb2b28ee83361067
+  languageName: node
+  linkType: hard
+
+"chokidar@npm:^3.5.3":
+  version: 3.5.3
+  resolution: "chokidar@npm:3.5.3"
+  dependencies:
+    anymatch: ~3.1.2
+    braces: ~3.0.2
+    fsevents: ~2.3.2
+    glob-parent: ~5.1.2
+    is-binary-path: ~2.1.0
+    is-glob: ~4.0.1
+    normalize-path: ~3.0.0
+    readdirp: ~3.6.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  checksum: b49fcde40176ba007ff361b198a2d35df60d9bb2a5aab228279eb810feae9294a6b4649ab15981304447afe1e6ffbf4788ad5db77235dc770ab777c6e771980c
   languageName: node
   linkType: hard
 
@@ -8758,16 +8818,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.9":
-  version: 3.2.11
-  resolution: "fast-glob@npm:3.2.11"
+"fast-glob@npm:^3.2.11, fast-glob@npm:^3.2.9":
+  version: 3.2.12
+  resolution: "fast-glob@npm:3.2.12"
   dependencies:
     "@nodelib/fs.stat": ^2.0.2
     "@nodelib/fs.walk": ^1.2.3
     glob-parent: ^5.1.2
     merge2: ^1.3.0
     micromatch: ^4.0.4
-  checksum: f473105324a7780a20c06de842e15ddbb41d3cb7e71d1e4fe6e8373204f22245d54f5ab9e2061e6a1c613047345954d29b022e0e76f5c28b1df9858179a0e6d7
+  checksum: 0b1990f6ce831c7e28c4d505edcdaad8e27e88ab9fa65eedadb730438cfc7cde4910d6c975d6b7b8dc8a73da4773702ebcfcd6e3518e73938bb1383badfe01c2
   languageName: node
   linkType: hard
 
@@ -8941,17 +9001,6 @@ __metadata:
   version: 0.5.2
   resolution: "fresh@npm:0.5.2"
   checksum: 13ea8b08f91e669a64e3ba3a20eb79d7ca5379a81f1ff7f4310d54e2320645503cc0c78daedc93dfb6191287295f6479544a649c64d8e41a1c0fb0c221552346
-  languageName: node
-  linkType: hard
-
-"fs-extra@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "fs-extra@npm:10.0.0"
-  dependencies:
-    graceful-fs: ^4.2.0
-    jsonfile: ^6.0.1
-    universalify: ^2.0.0
-  checksum: 5285a3d8f34b917cf2b66af8c231a40c1623626e9d701a20051d3337be16c6d7cac94441c8b3732d47a92a2a027886ca93c69b6a4ae6aee3c89650d2a8880c0a
   languageName: node
   linkType: hard
 
@@ -9183,7 +9232,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob-parent@npm:^5.1.1, glob-parent@npm:^5.1.2":
+"glob-parent@npm:^5.1.1, glob-parent@npm:^5.1.2, glob-parent@npm:~5.1.2":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
   dependencies:
@@ -9262,7 +9311,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:^11.0.2, globby@npm:^11.0.4, globby@npm:^11.1.0":
+"globby@npm:^11.0.2, globby@npm:^11.1.0":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
   dependencies:
@@ -9273,6 +9322,19 @@ __metadata:
     merge2: ^1.4.1
     slash: ^3.0.0
   checksum: b4be8885e0cfa018fc783792942d53926c35c50b3aefd3fdcfb9d22c627639dc26bd2327a40a0b74b074100ce95bb7187bfeae2f236856aa3de183af7a02aea6
+  languageName: node
+  linkType: hard
+
+"globby@npm:^13.1.3":
+  version: 13.1.3
+  resolution: "globby@npm:13.1.3"
+  dependencies:
+    dir-glob: ^3.0.1
+    fast-glob: ^3.2.11
+    ignore: ^5.2.0
+    merge2: ^1.4.1
+    slash: ^4.0.0
+  checksum: 93f06e02002cdf368f7e3d55bd59e7b00784c7cc8fe92c7ee5082cc7171ff6109fda45e1c97a80bb48bc811dedaf7843c7c9186f5f84bde4883ab630e13c43df
   languageName: node
   linkType: hard
 
@@ -9807,6 +9869,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-binary-path@npm:~2.1.0":
+  version: 2.1.0
+  resolution: "is-binary-path@npm:2.1.0"
+  dependencies:
+    binary-extensions: ^2.0.0
+  checksum: 84192eb88cff70d320426f35ecd63c3d6d495da9d805b19bc65b518984b7c0760280e57dbf119b7e9be6b161784a5a673ab2c6abe83abb5198a432232ad5b35c
+  languageName: node
+  linkType: hard
+
 "is-boolean-object@npm:^1.1.0":
   version: 1.1.2
   resolution: "is-boolean-object@npm:1.1.2"
@@ -9899,7 +9970,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-glob@npm:^4.0.0, is-glob@npm:^4.0.1, is-glob@npm:^4.0.3":
+"is-glob@npm:^4.0.0, is-glob@npm:^4.0.1, is-glob@npm:^4.0.3, is-glob@npm:~4.0.1":
   version: 4.0.3
   resolution: "is-glob@npm:4.0.3"
   dependencies:
@@ -12294,7 +12365,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"normalize-path@npm:^3.0.0":
+"normalize-path@npm:^3.0.0, normalize-path@npm:~3.0.0":
   version: 3.0.0
   resolution: "normalize-path@npm:3.0.0"
   checksum: 88eeb4da891e10b1318c4b2476b6e2ecbeb5ff97d946815ffea7794c31a89017c70d7f34b3c2ebf23ef4e9fc9fb99f7dffe36da22011b5b5c6ffa34f4873ec20
@@ -12901,7 +12972,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picomatch@npm:^2.0.4, picomatch@npm:^2.2.3, picomatch@npm:^2.3.1":
+"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.3, picomatch@npm:^2.3.1":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
   checksum: 050c865ce81119c4822c45d3c84f1ced46f93a0126febae20737bd05ca20589c564d6e9226977df859ed5e03dc73f02584a2b0faad36e896936238238b0446cf
@@ -13502,6 +13573,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"readdirp@npm:~3.6.0":
+  version: 3.6.0
+  resolution: "readdirp@npm:3.6.0"
+  dependencies:
+    picomatch: ^2.2.1
+  checksum: 1ced032e6e45670b6d7352d71d21ce7edf7b9b928494dcaba6f11fba63180d9da6cd7061ebc34175ffda6ff529f481818c962952004d273178acd70f7059b320
+  languageName: node
+  linkType: hard
+
 "redent@npm:^3.0.0":
   version: 3.0.0
   resolution: "redent@npm:3.0.0"
@@ -14008,6 +14088,13 @@ __metadata:
   version: 3.0.0
   resolution: "slash@npm:3.0.0"
   checksum: 94a93fff615f25a999ad4b83c9d5e257a7280c90a32a7cb8b4a87996e4babf322e469c42b7f649fd5796edd8687652f3fb452a86dc97a816f01113183393f11c
+  languageName: node
+  linkType: hard
+
+"slash@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "slash@npm:4.0.0"
+  checksum: da8e4af73712253acd21b7853b7e0dbba776b786e82b010a5bfc8b5051a1db38ed8aba8e1e8f400dd2c9f373be91eb1c42b66e91abb407ff42b10feece5e1d2d
   languageName: node
   linkType: hard
 
