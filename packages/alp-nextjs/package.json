@@ -101,7 +101,7 @@
     "@babel/runtime": "^7.21.0",
     "babel-plugin-discard-module-references": "^1.1.2",
     "babel-plugin-react-native-web": "^0.19.0",
-    "babel-preset-pob-env": "9.1.5",
+    "babel-preset-pob-env": "9.1.6",
     "cookies": "~0.8.0",
     "sort-keys": "^5.0.0"
   },
