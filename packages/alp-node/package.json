@@ -104,6 +104,6 @@
     "@types/koa-static": "4.0.2",
     "@types/minimist": "1.2.2",
     "pob-babel": "35.6.2",
-    "typescript": "4.9.5"
+    "typescript": "5.1.6"
   }
 }
