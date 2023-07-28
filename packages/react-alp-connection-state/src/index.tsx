@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
-import type { ScaledSize } from 'react-native';
+import type { DimensionValue, ScaledSize } from 'react-native';
 import {
   View,
   Text,
@@ -36,15 +36,15 @@ const zDepth1 =
 
 type CreateCalc = (
   webCalc: string,
-  createCalc: (dimensions: ScaledSize) => number,
-) => number | string;
+  createCalc: (dimensions: ScaledSize) => DimensionValue,
+) => DimensionValue;
 
 const useCreateCalcNative = (): CreateCalc => {
   const dimensions = useWindowDimensions();
   return (webCalc, createCalc) => createCalc(dimensions);
 };
 const useCreateCalcWeb = (): CreateCalc => {
-  return (webCalc) => `calc(${webCalc})`;
+  return (webCalc) => `calc(${webCalc})` as DimensionValue;
 };
 const useCreateCalc =
   Platform.OS === 'web' ? useCreateCalcWeb : useCreateCalcNative;
