@@ -54,9 +54,6 @@
     "./react-native-web.d.ts": "./react-native-web.d.ts"
   },
   "sideEffects": false,
-  "bin": {
-    "alp-nextjs-postinstall": "./bin/postinstall.mjs"
-  },
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
@@ -94,7 +91,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.11.6",
-    "next": "^13.1.6",
+    "next": "^13.4.12",
     "react": "^18.0.0",
     "react-native-web": "^0.18.0"
   },
@@ -110,7 +107,7 @@
     "@babel/core": "7.22.9",
     "@babel/preset-env": "7.22.9",
     "@babel/preset-react": "7.22.5",
-    "next": "13.1.6",
+    "next": "13.4.12",
     "pob-babel": "36.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -11,7 +11,7 @@
   "engines": {
     "node": ">=18.12.0"
   },
-  "packageManager": "yarn@3.5.1",
+  "packageManager": "yarn@3.6.1",
   "workspaces": [
     "packages/*"
   ],
@@ -25,7 +25,7 @@
     "lint:eslint": "NODE_OPTIONS=--max_old_space_size=4096 eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet .",
     "lint:prettier": "pob-root-prettier --check .",
     "lint:prettier:fix": "pob-root-prettier --write .",
-    "postinstall": "pob-root-postinstall && ./packages/alp-nextjs/bin/postinstall.mjs",
+    "postinstall": "pob-root-postinstall",
     "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=json --coverageReporters=text",
@@ -51,12 +51,6 @@
       ".ts",
       ".tsx"
     ]
-  },
-  "resolutions": {
-    "next@13.1.6": "patch:next@npm%3A13.1.6#./packages/alp-nextjs/patches/next-npm-13.1.6-fb87a1424a.patch"
-  },
-  "resolutionsExplained": {
-    "next@13.1.6": "Patch next to prevent it to change tsconfig.json"
   },
   "devDependencies": {
     "@babel/core": "7.22.9",

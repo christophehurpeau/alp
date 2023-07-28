@@ -4,12 +4,7 @@
     "rootDir": "src",
     "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
     "newLine": "lf",
-    "outDir": "node_modules/.cache/tsc",
-    "tsBuildInfoFile": "node_modules/.cache/tsc/tsbuildinfo",
-    "noEmitOnError": true,
-    "declaration": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
+    "noEmit": true,
     "incremental": true,
     "composite": true,
 

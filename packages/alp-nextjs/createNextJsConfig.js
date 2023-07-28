@@ -12,6 +12,14 @@ export const createNextJsConfig = (overrideConfig) => ({
     ignoreBuildErrors: true,
   },
 
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        'react-native': 'react-native-web',
+      },
+    },
+  },
+
   ...overrideConfig,
 
   webpack: (config, context) => {
@@ -31,3 +39,13 @@ export const createNextJsConfig = (overrideConfig) => ({
     return config;
   },
 });
+
+/**
+ * @param {import('next').NextConfig} overrideConfig
+ * @return {import('next').NextConfig}
+ */
+export const createNextJsStaticExportConfig = (overrideConfig) =>
+  createNextJsConfig({
+    ...overrideConfig,
+    output: 'export',
+  });
