@@ -55,6 +55,10 @@ export function HomeView(): ReactElement {
       <Hello name={name} onChangeName={handleChangeName} />
       <Counter />
       <ClickToThrow />
+
+      <div>
+        <a href="/auth">Auth</a>
+      </div>
     </div>
   );
 }
