@@ -59,7 +59,7 @@
   "devDependencies": {
     "@babel/core": "7.22.9",
     "@types/node": "18.17.1",
-    "@types/semver": "7.3.13",
+    "@types/semver": "7.5.0",
     "liwi-mongo": "10.5.0",
     "pob-babel": "36.2.0",
     "typescript": "5.1.6"
