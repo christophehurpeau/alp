@@ -6,8 +6,8 @@ export interface TokensObject {
     accessToken: string;
     refreshToken?: string;
     tokenType: string;
-    expiresIn: string;
-    expireDate: Date;
+    expiresIn: number;
+    expireDate: Date | null;
     idToken: string;
 }
 export interface AccountService<ScopeKeys extends 'login'> {

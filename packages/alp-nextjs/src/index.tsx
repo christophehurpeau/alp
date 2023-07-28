@@ -11,7 +11,7 @@ export {
 export const getServerCookieValue = (
   ctx: GetServerSidePropsContext | NextPageContext,
   cookieName: string,
-): string | undefined => {
+): string | null => {
   if (!ctx.req || !ctx.res) {
     throw new Error(
       'Missing ctx.req or ctx.res. Make sure getInitialProps is set.',
@@ -19,5 +19,5 @@ export const getServerCookieValue = (
   }
 
   const cookies = new Cookies(ctx.req, ctx.res);
-  return cookies.get(cookieName);
+  return cookies.get(cookieName) || null;
 };

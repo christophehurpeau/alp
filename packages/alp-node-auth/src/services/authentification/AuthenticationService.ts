@@ -6,7 +6,7 @@ import { EventEmitter } from 'node:events';
 import 'alp-router';
 import type { Context, NodeConfig } from 'alp-types';
 import { Logger } from 'nightingale-logger';
-import type { OAuthClient } from 'simple-oauth2';
+import type { Strategy as Oauth2Strategy } from '../../../strategies/strategies.d';
 import type { AccountId, User, Account, UserSanitized } from '../../types';
 import { randomHex } from '../../utils/generators';
 import type UserAccountsService from '../user/UserAccountsService';
@@ -28,14 +28,6 @@ export interface GenerateAuthUrlOptions {
 export interface GetTokensOptions {
   code: string;
   redirectUri: string;
-}
-
-export interface Strategy {
-  type: string;
-}
-
-export interface Oauth2Strategy<Params extends string> extends Strategy {
-  oauth2: OAuthClient<Params>;
 }
 
 export type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<
@@ -106,17 +98,20 @@ export class AuthenticationService<
           },
         );
         if (!result) return result;
+        const tokens = result.token;
+
         return {
-          accessToken: result.access_token,
-          refreshToken: result.refresh_token,
-          tokenType: result.token_type,
-          expiresIn: result.expires_in,
+          accessToken: tokens.access_token as string,
+          refreshToken: tokens.refresh_token as string,
+          tokenType: tokens.token_type as string,
+          expiresIn: tokens.expires_in as number,
           expireDate: (() => {
+            if (tokens.expires_in == null) return null;
             const d = new Date();
-            d.setTime(d.getTime() + result.expires_in * 1000);
+            d.setTime(d.getTime() + (tokens.expires_in as number) * 1000);
             return d;
           })(),
-          idToken: result.id_token,
+          idToken: tokens.id_token as string,
         };
         // return strategyInstance.accessToken.create(result);
       }
@@ -137,21 +132,22 @@ export class AuthenticationService<
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
       case 'oauth2': {
-        const token = strategyInstance.oauth2.accessToken.create({
+        const token = strategyInstance.oauth2.clientCredentials.createToken({
           refresh_token: tokensParam.refreshToken,
         });
         const result = await token.refresh();
         const tokens = result.token;
         return {
-          accessToken: tokens.access_token,
-          tokenType: tokens.token_type,
-          expiresIn: tokens.expires_in,
+          accessToken: tokens.access_token as string,
+          tokenType: tokens.token_type as string,
+          expiresIn: tokens.expires_in as number,
           expireDate: (() => {
+            if (tokens.expires_in == null) return null;
             const d = new Date();
-            d.setTime(d.getTime() + tokens.expires_in * 1000);
+            d.setTime(d.getTime() + (tokens.expires_in as number) * 1000);
             return d;
           })(),
-          idToken: tokens.id_token,
+          idToken: tokens.id_token as string,
         };
       }
 

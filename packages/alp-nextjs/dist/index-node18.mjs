@@ -71,7 +71,7 @@ const getServerCookieValue = (ctx, cookieName) => {
     throw new Error('Missing ctx.req or ctx.res. Make sure getInitialProps is set.');
   }
   const cookies = new Cookies(ctx.req, ctx.res);
-  return cookies.get(cookieName);
+  return cookies.get(cookieName) || null;
 };
 
 export { getDocumentInitialProps, getServerCookieValue, normalizeNextElementsCSS };

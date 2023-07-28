@@ -4,14 +4,14 @@ import { useLoggedInUserState } from 'react-alp-auth';
 import { SlackLoginButton } from './components/SlackTeamInstallButton';
 
 interface AuthViewProps {
-  serverAuthCookieValue?: string;
+  serverAuthCookieValue?: string | null;
 }
 
 export function AuthView({
   serverAuthCookieValue,
 }: AuthViewProps): ReactElement {
   const { isLoggedIn, loggedInUserId } = useLoggedInUserState(
-    serverAuthCookieValue,
+    serverAuthCookieValue || undefined,
   );
 
   if (isLoggedIn) {

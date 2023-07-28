@@ -33,7 +33,7 @@ function useLoggedInUserStateBrowser(): LoggedInUserState {
 }
 
 function useLoggedInUserStateServer(
-  serverCookieValue?: string,
+  serverCookieValue?: string | null,
 ): LoggedInUserState {
   if (serverCookieValue) {
     const serverStateValueParsed = parseCookie(serverCookieValue);
@@ -57,4 +57,4 @@ export const useLoggedInUserState =
 
 export const getServerAuthCookieValue = (
   ctx: GetServerSidePropsContext,
-): string | undefined => getServerCookieValue(ctx, COOKIE_NAME_STATE);
+): string | null => getServerCookieValue(ctx, COOKIE_NAME_STATE);

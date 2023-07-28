@@ -4,7 +4,7 @@ import { getServerAuthCookieValue } from 'react-alp-auth';
 import { AuthView } from 'sections/auth/AuthView';
 
 interface AuthPageProps {
-  serverAuthCookieValue?: string;
+  serverAuthCookieValue: string | null;
 }
 
 export default function AuthPage({

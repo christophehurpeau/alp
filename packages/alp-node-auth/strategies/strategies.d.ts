@@ -1,9 +1,14 @@
 import { Config, SlackParams } from 'alp-types';
-import { OAuthClient } from 'simple-oauth2';
+import { ClientCredentials, AuthorizationCode } from 'simple-oauth2';
 
-export interface Strategy {
+export interface Strategy<Params = SlackParams> {
   type: 'oauth2';
-  oauth2: OAuthClient<SlackParams>;
+  oauth2: {
+    authorizationCode: AuthorizationCode<Params>;
+    clientCredentials: ClientCredentials<Params>;
+  };
 }
 
-export default function createStrategy(config: Config): Strategy;
+export default function createStrategy<Params = SlackParams>(
+  config: Config,
+): Strategy<Params>;

@@ -83,7 +83,7 @@ export default class UserAccountsService<
     if (tokens.refreshToken) {
       account.refreshToken = tokens.refreshToken;
     }
-    if (tokens.expireDate) {
+    if (tokens.expireDate !== undefined) {
       account.tokenExpireDate = tokens.expireDate;
     }
     account.scope = service.getScope(account.scope, scope);
@@ -118,7 +118,11 @@ export default class UserAccountsService<
         emails,
       });
 
-    logger.info(!user ? 'create user' : 'existing user', { emails, user });
+    logger.info(!user ? 'create user' : 'existing user', {
+      userId: user?._id,
+      accountId,
+      /*emails , user*/
+    });
 
     if (!user) {
       user = {};
@@ -150,7 +154,7 @@ export default class UserAccountsService<
     if (tokens.refreshToken) {
       account.refreshToken = tokens.refreshToken;
     }
-    if (tokens.expireDate) {
+    if (tokens.expireDate !== undefined) {
       account.tokenExpireDate = tokens.expireDate;
     }
     account.scope = service.getScope(account.scope, scope);

@@ -14,7 +14,7 @@ export interface Account {
     scope: string[];
     subservices?: string[];
     status: string;
-    tokenExpireDate: Date;
+    tokenExpireDate: Date | null;
 }
 export interface User extends MongoBaseModel {
     accounts: Account[];

@@ -2,7 +2,7 @@
 import { EventEmitter } from 'node:events';
 import 'alp-router';
 import type { Context, NodeConfig } from 'alp-types';
-import type { OAuthClient } from 'simple-oauth2';
+import type { Strategy as Oauth2Strategy } from '../../../strategies/strategies.d';
 import type { AccountId, User, Account, UserSanitized } from '../../types';
 import type UserAccountsService from '../user/UserAccountsService';
 import type { AllowedStrategyKeys, Tokens } from './types';
@@ -19,12 +19,6 @@ export interface GenerateAuthUrlOptions {
 export interface GetTokensOptions {
     code: string;
     redirectUri: string;
-}
-export interface Strategy {
-    type: string;
-}
-export interface Oauth2Strategy<Params extends string> extends Strategy {
-    oauth2: OAuthClient<Params>;
 }
 export type Strategies<StrategyKeys extends AllowedStrategyKeys> = Record<StrategyKeys, Oauth2Strategy<any>>;
 export interface AccessResponseHooks<StrategyKeys, U extends User = User> {

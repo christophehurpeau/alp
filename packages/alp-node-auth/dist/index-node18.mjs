@@ -109,17 +109,19 @@ class AuthenticationService extends EventEmitter {
             redirect_uri: options.redirectUri
           });
           if (!result) return result;
+          const tokens = result.token;
           return {
-            accessToken: result.access_token,
-            refreshToken: result.refresh_token,
-            tokenType: result.token_type,
-            expiresIn: result.expires_in,
+            accessToken: tokens.access_token,
+            refreshToken: tokens.refresh_token,
+            tokenType: tokens.token_type,
+            expiresIn: tokens.expires_in,
             expireDate: (() => {
+              if (tokens.expires_in == null) return null;
               const d = new Date();
-              d.setTime(d.getTime() + result.expires_in * 1000);
+              d.setTime(d.getTime() + tokens.expires_in * 1000);
               return d;
             })(),
-            idToken: result.id_token
+            idToken: tokens.id_token
           };
           // return strategyInstance.accessToken.create(result);
         }
@@ -139,7 +141,7 @@ class AuthenticationService extends EventEmitter {
     switch (strategyInstance.type) {
       case 'oauth2':
         {
-          const token = strategyInstance.oauth2.accessToken.create({
+          const token = strategyInstance.oauth2.clientCredentials.createToken({
             refresh_token: tokensParam.refreshToken
           });
           const result = await token.refresh();
@@ -149,6 +151,7 @@ class AuthenticationService extends EventEmitter {
             tokenType: tokens.token_type,
             expiresIn: tokens.expires_in,
             expireDate: (() => {
+              if (tokens.expires_in == null) return null;
               const d = new Date();
               d.setTime(d.getTime() + tokens.expires_in * 1000);
               return d;
@@ -312,7 +315,7 @@ class UserAccountsService extends EventEmitter {
     if (tokens.refreshToken) {
       account.refreshToken = tokens.refreshToken;
     }
-    if (tokens.expireDate) {
+    if (tokens.expireDate !== undefined) {
       account.tokenExpireDate = tokens.expireDate;
     }
     account.scope = service.getScope(account.scope, scope);
@@ -339,9 +342,11 @@ class UserAccountsService extends EventEmitter {
       emails
     });
     logger$3.info(!user ? 'create user' : 'existing user', {
-      emails,
-      user
+      userId: user?._id,
+      accountId
+      /*emails , user*/
     });
+
     if (!user) {
       user = {};
     }
@@ -367,7 +372,7 @@ class UserAccountsService extends EventEmitter {
     if (tokens.refreshToken) {
       account.refreshToken = tokens.refreshToken;
     }
-    if (tokens.expireDate) {
+    if (tokens.expireDate !== undefined) {
       account.tokenExpireDate = tokens.expireDate;
     }
     account.scope = service.getScope(account.scope, scope);

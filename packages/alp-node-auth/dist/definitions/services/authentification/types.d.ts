@@ -8,8 +8,8 @@ export interface Tokens {
     accessToken: string;
     refreshToken?: string;
     tokenType: string;
-    expiresIn: string;
-    expireDate: Date;
+    expiresIn: number;
+    expireDate: Date | null;
     idToken: string;
 }
 //# sourceMappingURL=types.d.ts.map

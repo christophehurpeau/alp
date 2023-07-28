@@ -4,8 +4,8 @@ interface LoggedInUserState {
     loggedInUserId: string | undefined;
     expiresIn: number | undefined;
 }
-declare function useLoggedInUserStateServer(serverCookieValue?: string): LoggedInUserState;
+declare function useLoggedInUserStateServer(serverCookieValue?: string | null): LoggedInUserState;
 export declare const useLoggedInUserState: typeof useLoggedInUserStateServer;
-export declare const getServerAuthCookieValue: (ctx: GetServerSidePropsContext) => string | undefined;
+export declare const getServerAuthCookieValue: (ctx: GetServerSidePropsContext) => string | null;
 export {};
 //# sourceMappingURL=index.d.ts.map
