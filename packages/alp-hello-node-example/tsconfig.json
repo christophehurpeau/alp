@@ -5,7 +5,6 @@
     "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
     "newLine": "lf",
     "noEmit": true,
-    "incremental": true,
     "composite": true,
 
     /* No need to check .d.ts files */
