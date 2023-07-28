@@ -81,12 +81,30 @@
       "index"
     ],
     "extraEntries": [
-      "strategies/dropbox",
-      "strategies/facebook",
-      "strategies/foursquare",
-      "strategies/github",
-      "strategies/google",
-      "strategies/slack"
+      {
+        "name": "strategies/dropbox",
+        "types": "strategies/strategies.d.ts"
+      },
+      {
+        "name": "strategies/facebook",
+        "types": "strategies/strategies.d.ts"
+      },
+      {
+        "name": "strategies/foursquare",
+        "types": "strategies/strategies.d.ts"
+      },
+      {
+        "name": "strategies/github",
+        "types": "strategies/strategies.d.ts"
+      },
+      {
+        "name": "strategies/google",
+        "types": "strategies/strategies.d.ts"
+      },
+      {
+        "name": "strategies/slack",
+        "types": "strategies/strategies.d.ts"
+      }
     ]
   },
   "peerDependencies": {
