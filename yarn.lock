@@ -3813,6 +3813,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native/virtualized-lists@npm:^0.72.4":
+  version: 0.72.6
+  resolution: "@react-native/virtualized-lists@npm:0.72.6"
+  dependencies:
+    invariant: ^2.2.4
+    nullthrows: ^1.1.1
+  peerDependencies:
+    react-native: "*"
+  checksum: e9e0c0f75607e699bf79742ca98128698e27a0c05fe01e735876b444020e7578858ee6267e6913a7cad7aafb5d2bc25feeefda051ec3d178e6d2cd65b318b6f5
+  languageName: node
+  linkType: hard
+
 "@react-stately/checkbox@npm:3.0.3":
   version: 3.0.3
   resolution: "@react-stately/checkbox@npm:3.0.3"
@@ -4902,12 +4914,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:0.71.3":
-  version: 0.71.3
-  resolution: "@types/react-native@npm:0.71.3"
+"@types/react-native@npm:0.72.2":
+  version: 0.72.2
+  resolution: "@types/react-native@npm:0.72.2"
   dependencies:
+    "@react-native/virtualized-lists": ^0.72.4
     "@types/react": "*"
-  checksum: 5ee02f9c780c630e145c1887c80d1739d59e01d45ff9e862b475538376ddd17fc605a1245fea04813593c1c0153b5f4a41247283036adcdfbf4779555f956d93
+  checksum: b2915594381365ea379cb46b9a65219c6b6c7446d97d15f4da9615b8f180972bacba7cae584f4a8f83cce3a180f8a9a08a9c6b57081b37e2543f23f5717693d4
   languageName: node
   linkType: hard
 
@@ -5280,7 +5293,7 @@ __metadata:
     "@types/node": 18.17.1
     "@types/object-assign": 4.0.30
     "@types/react": 18.2.17
-    "@types/react-native": 0.71.3
+    "@types/react-native": 0.72.2
     alp-nextjs: 3.0.0
     native-base: 3.4.28
     next: 13.1.6
@@ -8997,6 +9010,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"invariant@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "invariant@npm:2.2.4"
+  dependencies:
+    loose-envify: ^1.0.0
+  checksum: cc3182d793aad82a8d1f0af697b462939cb46066ec48bbf1707c150ad5fad6406137e91a262022c269702e01621f35ef60269f6c0d7fd178487959809acdfb14
+  languageName: node
+  linkType: hard
+
 "ip@npm:^2.0.0":
   version: 2.0.0
   resolution: "ip@npm:2.0.0"
@@ -11655,6 +11677,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nullthrows@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "nullthrows@npm:1.1.1"
+  checksum: 10806b92121253eb1b08ecf707d92480f5331ba8ae5b23fa3eb0548ad24196eb797ed47606153006568a5733ea9e528a3579f21421f7828e09e7756f4bdd386f
+  languageName: node
+  linkType: hard
+
 "object-assign@npm:^4.1.0, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
@@ -12439,7 +12468,7 @@ __metadata:
     "@babel/preset-env": 7.22.9
     "@babel/preset-react": 7.22.5
     "@babel/runtime": ^7.22.6
-    "@types/react-native": 0.71.3
+    "@types/react-native": 0.72.2
     pob-babel: 36.2.0
     react: 18.2.0
     typescript: 5.1.6
