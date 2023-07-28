@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import type { IncomingMessage, Server, ServerResponse } from 'http';
+import type { IncomingMessage, Server, ServerResponse } from 'node:http';
 import type { Config } from 'alp-node-config';
 import type { NodeApplication, NodeConfig, Context as AlpContext, ContextState, ContextRequest } from 'alp-types';
 import Koa from 'koa';

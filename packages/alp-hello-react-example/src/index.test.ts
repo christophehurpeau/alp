@@ -1,7 +1,5 @@
-import { spawnSync } from 'child_process';
-import { createRequire } from 'module';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import fetch from 'node-fetch';
+import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import type { Daemon } from 'springbokjs-daemon';
 import { createDaemon } from 'springbokjs-daemon';
 

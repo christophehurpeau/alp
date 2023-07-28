@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { fetch } from 'alp-node';
 import type { Tokens } from '../authentification/types';
 import type { AccountService, FullName } from './types';
 

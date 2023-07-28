@@ -2,12 +2,12 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable camelcase, max-lines */
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'node:events';
 import 'alp-router';
 import type { Context, NodeConfig } from 'alp-types';
 import { Logger } from 'nightingale-logger';
 import type { OAuthClient } from 'simple-oauth2';
-import type { AccountId, User, Account, UserSanitized } from '../../../types.d';
+import type { AccountId, User, Account, UserSanitized } from '../../types';
 import { randomHex } from '../../utils/generators';
 import type UserAccountsService from '../user/UserAccountsService';
 import type { AllowedStrategyKeys, Tokens } from './types';
@@ -61,6 +61,7 @@ export class AuthenticationService<
   StrategyKeys extends AllowedStrategyKeys,
   U extends User = User,
   USanitized extends UserSanitized = UserSanitized,
+  // eslint-disable-next-line unicorn/prefer-event-target
 > extends EventEmitter {
   config: NodeConfig;
 

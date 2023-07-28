@@ -68,9 +68,9 @@ export default async function migrate({
           `${dirname}/${migration.fileName}`
         );
         await (migrateFn as () => Promise<void>)();
-      } catch (err) {
+      } catch (error) {
         logger.error(`Migration to ${migration.version} Failed !`);
-        throw err;
+        throw error;
       }
 
       logger.success(`Migration to ${migration.fileName} done !`);
@@ -80,8 +80,8 @@ export default async function migrate({
         await migrationsManager.addMigrationDone(migration);
       }
     }
-  } catch (err: any) {
-    logger.error(err as Error);
+  } catch (error: any) {
+    logger.error(error as Error);
     process.exit(1);
   }
 

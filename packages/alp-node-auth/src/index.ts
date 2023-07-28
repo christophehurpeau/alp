@@ -1,11 +1,10 @@
 /* eslint-disable max-lines */
-import type { IncomingMessage } from 'http';
-import { promisify } from 'util';
+import type { IncomingMessage } from 'node:http';
+import { promisify } from 'node:util';
 import type { Context } from 'alp-node';
 import type { ContextState, NodeApplication } from 'alp-types';
 import jsonwebtoken from 'jsonwebtoken';
 import { Logger } from 'nightingale-logger';
-import type { User, UserSanitized } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
 import type {
   AuthController as AuthControllerType,
@@ -19,6 +18,7 @@ import { AuthenticationService } from './services/authentification/Authenticatio
 import type { AllowedStrategyKeys } from './services/authentification/types';
 import UserAccountsService from './services/user/UserAccountsService';
 import type { AccountService } from './services/user/types';
+import type { User, UserSanitized } from './types';
 import {
   getTokenFromRequest,
   COOKIE_NAME_TOKEN,
@@ -32,6 +32,8 @@ export { default as UserAccountSlackService } from './services/user/UserAccountS
 export { authSocketIO } from './authSocketIO';
 export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
+
+export * from './types';
 
 declare module 'alp-types' {
   // eslint-disable-next-line @typescript-eslint/no-shadow

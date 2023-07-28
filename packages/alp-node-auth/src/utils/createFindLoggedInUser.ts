@@ -1,4 +1,4 @@
-import { promisify } from 'util';
+import { promisify } from 'node:util';
 import type {
   GetPublicKeyOrSecret,
   Secret,
@@ -7,8 +7,8 @@ import type {
 } from 'jsonwebtoken';
 import jsonwebtoken from 'jsonwebtoken';
 import type { Logger } from 'nightingale-logger';
-import type { User, UserSanitized } from '../../types';
 import type MongoUsersManager from '../MongoUsersManager';
+import type { User, UserSanitized } from '../types';
 
 type Verify = (
   token: string,
@@ -55,8 +55,8 @@ export const createFindLoggedInUser = <
     let loggedInUserId;
     try {
       loggedInUserId = await decodeJwt(token, jwtAudience);
-    } catch (err: unknown) {
-      logger.debug('failed to verify authentification', { err });
+    } catch (error: unknown) {
+      logger.debug('failed to verify authentification', { err: error });
     }
 
     if (loggedInUserId == null) return [null, null];

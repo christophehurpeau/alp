@@ -1,5 +1,5 @@
-import { chmodSync, unlinkSync } from 'fs';
-import { createServer } from 'http';
+import { chmodSync, unlinkSync } from 'node:fs';
+import { createServer } from 'node:http';
 import next from 'next';
 
 const socketPath = process.env.SOCKET_PATH;

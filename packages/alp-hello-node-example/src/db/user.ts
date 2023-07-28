@@ -1,5 +1,5 @@
 import { MongoUsersManager } from 'alp-node-auth';
-import type { User as BasicUser } from 'alp-node-auth/types.d';
+import type { User as BasicUser } from 'alp-node-auth';
 import { createMongoStore } from './mongo';
 
 export type User = BasicUser;

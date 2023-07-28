@@ -1,7 +1,6 @@
 import { Config } from 'alp-node-config';
 import type { AlpNodeAppOptions } from './AlpNodeApp';
 import { AlpNodeApp } from './AlpNodeApp';
-export { default as fetch } from 'node-fetch';
 export type { Context } from './AlpNodeApp';
 export { Config } from 'alp-node-config';
 export declare const appDirname: string;

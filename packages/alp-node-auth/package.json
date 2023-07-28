@@ -15,9 +15,9 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.12.0"
   },
-  "main": "./dist/index-node16.mjs",
+  "main": "./dist/index-node18.mjs",
   "types": "./dist/definitions/index.d.ts",
   "typesVersions": {
     ">=3.1": {
@@ -29,16 +29,35 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./dist/definitions/index.d.ts",
       "node": {
-        "import": "./dist/index-node16.mjs"
+        "import": "./dist/index-node18.mjs"
       }
     },
-    "./strategies/dropbox": "./strategies/dropbox.js",
-    "./strategies/facebook": "./strategies/facebook.js",
-    "./strategies/foursquare": "./strategies/foursquare.js",
-    "./strategies/github": "./strategies/github.js",
-    "./strategies/google": "./strategies/google.js",
-    "./strategies/slack": "./strategies/slack.js"
+    "./strategies/dropbox": {
+      "types": "./strategies/strategies.d.ts",
+      "default": "./strategies/dropbox.js"
+    },
+    "./strategies/facebook": {
+      "types": "./strategies/strategies.d.ts",
+      "default": "./strategies/facebook.js"
+    },
+    "./strategies/foursquare": {
+      "types": "./strategies/strategies.d.ts",
+      "default": "./strategies/foursquare.js"
+    },
+    "./strategies/github": {
+      "types": "./strategies/strategies.d.ts",
+      "default": "./strategies/github.js"
+    },
+    "./strategies/google": {
+      "types": "./strategies/strategies.d.ts",
+      "default": "./strategies/google.js"
+    },
+    "./strategies/slack": {
+      "types": "./strategies/strategies.d.ts",
+      "default": "./strategies/slack.js"
+    }
   },
   "sideEffects": false,
   "scripts": {
@@ -55,7 +74,7 @@
     "babelEnvs": [
       {
         "target": "node",
-        "version": "16"
+        "version": "18"
       }
     ],
     "entries": [
@@ -73,8 +92,8 @@
   "peerDependencies": {
     "alp-node": "^5.0.0",
     "alp-router": "^6.0.0",
-    "liwi-mongo": "^10.2.0",
-    "router-segments": "^6.0.0"
+    "liwi-mongo": "^10.5.0",
+    "router-segments": "^7.0.0"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.1",
@@ -82,16 +101,16 @@
     "alp-types": "3.1.0",
     "cookies": "~0.8.0",
     "jsonwebtoken": "^9.0.0",
-    "nightingale-logger": "^13.0.0",
+    "nightingale-logger": "^14.1.0",
     "simple-oauth2": "^2.2.1"
   },
   "devDependencies": {
-    "@babel/core": "7.21.3",
+    "@babel/core": "7.22.9",
     "alp-node": "5.2.0",
     "alp-router": "6.2.0",
-    "liwi-mongo": "10.3.2",
-    "pob-babel": "35.6.2",
-    "router-segments": "6.0.0",
-    "typescript": "4.9.5"
+    "liwi-mongo": "10.5.0",
+    "pob-babel": "36.2.0",
+    "router-segments": "7.0.0",
+    "typescript": "5.1.6"
   }
 }

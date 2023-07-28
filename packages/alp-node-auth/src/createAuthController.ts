@@ -1,6 +1,5 @@
 import type { Context } from 'alp-node';
 import 'alp-router';
-import type { User, UserSanitized } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
 import type {
   AuthenticationService,
@@ -10,6 +9,7 @@ import type {
   AllowedStrategyKeys,
   AllowedMapParamsStrategy,
 } from './services/authentification/types';
+import type { User, UserSanitized } from './types';
 
 export interface CreateAuthControllerParams<
   StrategyKeys extends AllowedStrategyKeys,

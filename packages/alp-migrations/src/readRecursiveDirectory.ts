@@ -1,5 +1,5 @@
-import type { Stats } from 'fs';
-import { readdir, stat as fsStat } from 'fs/promises';
+import type { Stats } from 'node:fs';
+import { readdir, stat as fsStat } from 'node:fs/promises';
 
 export interface CallbackParam {
   filename: string;

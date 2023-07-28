@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'node:fs';
 import type { NodeApplication, NodeConfig, PackageConfig } from 'alp-types';
 import deepFreeze from 'deep-freeze-es6';
 import argv from 'minimist-argv';

@@ -22,35 +22,29 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.12.0"
   },
-  "main": "./dist/index-node16.mjs",
+  "main": "./dist/index-node18.mjs",
   "types": "./dist/definitions/index.d.ts",
   "typesVersions": {
     ">=3.1": {
       "AlpNodeApp": [
         "./dist/AlpNodeApp.d.ts"
-      ],
-      "fetch": [
-        "./dist/fetch.d.ts"
       ]
     }
   },
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./dist/definitions/index.d.ts",
       "node": {
-        "import": "./dist/index-node16.mjs"
+        "import": "./dist/index-node18.mjs"
       }
     },
     "./AlpNodeApp": {
+      "types": "./dist/definitions/index.d.ts",
       "node": {
-        "import": "./dist/AlpNodeApp-node16.mjs"
-      }
-    },
-    "./fetch": {
-      "node": {
-        "import": "./dist/fetch-node16.mjs"
+        "import": "./dist/AlpNodeApp-node18.mjs"
       }
     }
   },
@@ -69,22 +63,21 @@
     "babelEnvs": [
       {
         "target": "node",
-        "version": "16"
+        "version": "18"
       }
     ],
     "entries": [
       "index",
-      "AlpNodeApp",
-      "fetch"
+      "AlpNodeApp"
     ]
   },
   "peerDependencies": {
-    "router-segments": "^6.0.0"
+    "router-segments": "^7.0.0"
   },
   "dependencies": {
     "@types/koa": "^2.13.1",
-    "@types/node": ">=16.0.0",
-    "@types/node-fetch": "^3.0.3",
+    "@types/node": ">=18.0.0",
+    "@types/node-fetch": "^2.6.4",
     "alp-listen": "6.2.0",
     "alp-node-config": "8.3.0",
     "alp-node-errors": "7.2.0",
@@ -95,15 +88,14 @@
     "koa": "^2.13.1",
     "koa-compress": "^5.0.0",
     "koa-static": "^5.0.0",
-    "nightingale-logger": "^13.0.0",
-    "node-fetch": "^3.2.0"
+    "nightingale-logger": "^14.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.3",
+    "@babel/core": "7.22.9",
     "@types/koa-compress": "4.0.3",
     "@types/koa-static": "4.0.2",
     "@types/minimist": "1.2.2",
-    "pob-babel": "35.6.2",
-    "typescript": "4.9.5"
+    "pob-babel": "36.2.0",
+    "typescript": "5.1.6"
   }
 }

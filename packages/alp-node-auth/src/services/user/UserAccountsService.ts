@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'node:events';
 import { Logger } from 'nightingale-logger';
-import type { AccountId, User, Account, UserSanitized } from '../../../types.d';
 import type MongoUsersManager from '../../MongoUsersManager';
+import type { AccountId, User, Account, UserSanitized } from '../../types';
 import type { AllowedStrategyKeys } from '../authentification/types';
 import type { AccountService, TokensObject } from './types';
 
@@ -17,6 +17,7 @@ export default class UserAccountsService<
   StrategyKeys extends AllowedStrategyKeys,
   U extends User = User,
   USanitized extends UserSanitized = UserSanitized,
+  // eslint-disable-next-line unicorn/prefer-event-target
 > extends EventEmitter {
   private readonly strategyToService: Record<StrategyKeys, AccountService<any>>;
 

@@ -29,26 +29,24 @@ function alpTranslate(dirname) {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(app) {
       var language, map, translations;
       return _regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              language = app.context.language;
-              _context.next = 3;
-              return app.loadConfig(dirname + language);
-            case 3:
-              map = _context.sent;
-              translations = load(map, language);
-              Object.assign(app.context, {
-                t: function t(key, args) {
-                  var msg = translations.get(key);
-                  if (!msg) return key;
-                  return msg.format(args);
-                }
-              });
-            case 6:
-            case "end":
-              return _context.stop();
-          }
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            language = app.context.language;
+            _context.next = 3;
+            return app.loadConfig(dirname + language);
+          case 3:
+            map = _context.sent;
+            translations = load(map, language);
+            Object.assign(app.context, {
+              t: function t(key, args) {
+                var msg = translations.get(key);
+                if (!msg) return key;
+                return msg.format(args);
+              }
+            });
+          case 6:
+          case "end":
+            return _context.stop();
         }
       }, _callee);
     }));

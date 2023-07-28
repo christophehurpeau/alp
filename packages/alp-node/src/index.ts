@@ -1,11 +1,9 @@
-import { existsSync, readFileSync } from 'fs';
-import path from 'path';
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import { Config } from 'alp-node-config';
 import { Logger } from 'nightingale-logger';
 import type { AlpNodeAppOptions } from './AlpNodeApp';
 import { AlpNodeApp } from './AlpNodeApp';
-
-export { default as fetch } from 'node-fetch';
 
 export type { Context } from './AlpNodeApp';
 export { Config } from 'alp-node-config';

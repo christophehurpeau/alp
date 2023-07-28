@@ -1,7 +1,7 @@
-import { chmodSync, unlinkSync, readFileSync } from 'fs';
-import { createServer as createServerHttp } from 'http';
-import type { Server, IncomingMessage, ServerResponse } from 'http';
-import { createServer as createServerHttps } from 'https';
+import { chmodSync, unlinkSync, readFileSync } from 'node:fs';
+import { createServer as createServerHttp } from 'node:http';
+import type { Server, IncomingMessage, ServerResponse } from 'node:http';
+import { createServer as createServerHttps } from 'node:https';
 import type { Config } from 'alp-node-config';
 import { Logger } from 'nightingale-logger';
 

@@ -1,7 +1,7 @@
 import type { NodeApplication } from 'alp-types';
 import { Logger } from 'nightingale-logger';
-import type { User } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
+import type { User } from './types';
 import { getTokenFromRequest } from './utils/cookies';
 import { createFindLoggedInUser } from './utils/createFindLoggedInUser';
 

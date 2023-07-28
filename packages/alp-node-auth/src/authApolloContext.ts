@@ -1,8 +1,8 @@
-import type { IncomingMessage } from 'http';
+import type { IncomingMessage } from 'node:http';
 import type { NodeConfig } from 'alp-types';
 import { Logger } from 'nightingale-logger';
-import type { User } from '../types.d';
 import type MongoUsersManager from './MongoUsersManager';
+import type { User } from './types';
 import { getTokenFromRequest, COOKIE_NAME_TOKEN } from './utils/cookies';
 import { createFindLoggedInUser } from './utils/createFindLoggedInUser';
 

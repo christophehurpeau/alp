@@ -1,4 +1,4 @@
-import { STATUS_CODES } from 'http';
+import { STATUS_CODES } from 'node:http';
 import type { Context, HtmlError } from 'alp-types';
 import ErrorHtmlRenderer from 'error-html';
 import { Logger } from 'nightingale-logger';
@@ -14,15 +14,15 @@ export default async function alpNodeErrors(
 ): Promise<void> {
   try {
     await next();
-  } catch (err: unknown) {
+  } catch (error: unknown) {
     // eslint-disable-next-line no-ex-assign
-    if (!err) err = new Error('Unknown error');
+    if (!error) error = new Error('Unknown error');
     // eslint-disable-next-line no-ex-assign
-    if (typeof err === 'string') err = new Error(err);
+    if (typeof error === 'string') error = new Error(error);
 
-    ctx.status = (err as HtmlError).status || 500;
+    ctx.status = (error as HtmlError).status || 500;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    logger.error(err as any);
+    logger.error(error as any);
 
     // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (ctx.request.accepts('html', 'text', 'json')) {
@@ -30,11 +30,11 @@ export default async function alpNodeErrors(
         ctx.type = 'text/plain';
         if (
           process.env.NODE_ENV !== 'production' ||
-          (err as HtmlError).expose
+          (error as HtmlError).expose
         ) {
-          ctx.body = (err as Error).message;
+          ctx.body = (error as Error).message;
         } else {
-          throw err;
+          throw error;
         }
 
         break;
@@ -43,9 +43,9 @@ export default async function alpNodeErrors(
         ctx.type = 'application/json';
         if (
           process.env.NODE_ENV !== 'production' ||
-          (err as HtmlError).expose
+          (error as HtmlError).expose
         ) {
-          ctx.body = { error: (err as Error).message };
+          ctx.body = { error: (error as Error).message };
         } else {
           ctx.body = { error: STATUS_CODES[ctx.status] };
         }
@@ -55,11 +55,11 @@ export default async function alpNodeErrors(
       case 'html':
         ctx.type = 'text/html';
         if (process.env.NODE_ENV !== 'production') {
-          ctx.body = errorHtmlRenderer.render(err as Error);
-        } else if ((err as HtmlError).expose) {
-          ctx.body = (err as Error).message;
+          ctx.body = errorHtmlRenderer.render(error as Error);
+        } else if ((error as HtmlError).expose) {
+          ctx.body = (error as Error).message;
         } else {
-          throw err;
+          throw error;
         }
 
         break;

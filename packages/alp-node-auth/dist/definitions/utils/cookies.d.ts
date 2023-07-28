@@ -1,4 +1,4 @@
-import type { IncomingMessage } from 'http';
+import type { IncomingMessage } from 'node:http';
 import type { Option } from 'cookies';
 export declare const COOKIE_NAME_TOKEN = "loggedInUserToken";
 export declare const COOKIE_NAME_STATE = "loggedInUserState";

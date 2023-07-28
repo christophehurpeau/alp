@@ -27,29 +27,27 @@ function _getDocumentInitialProps() {
   _getDocumentInitialProps = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(ctx) {
     var _AppRegistry$getAppli, getStyleElement, page, styles;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            AppRegistry.registerComponent('Main', function () {
-              return Main;
-            });
-            _AppRegistry$getAppli = AppRegistry.getApplication('Main'), getStyleElement = _AppRegistry$getAppli.getStyleElement;
-            _context.next = 4;
-            return ctx.renderPage();
-          case 4:
-            page = _context.sent;
-            styles = [/*#__PURE__*/jsx("style", {
-              dangerouslySetInnerHTML: {
-                __html: normalizeNextElementsCSS
-              }
-            }), getStyleElement()];
-            return _context.abrupt("return", _extends({}, page, {
-              styles: Children.toArray(styles)
-            }));
-          case 7:
-          case "end":
-            return _context.stop();
-        }
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          AppRegistry.registerComponent('Main', function () {
+            return Main;
+          });
+          _AppRegistry$getAppli = AppRegistry.getApplication('Main'), getStyleElement = _AppRegistry$getAppli.getStyleElement;
+          _context.next = 4;
+          return ctx.renderPage();
+        case 4:
+          page = _context.sent;
+          styles = [/*#__PURE__*/jsx("style", {
+            dangerouslySetInnerHTML: {
+              __html: normalizeNextElementsCSS
+            }
+          }), getStyleElement()];
+          return _context.abrupt("return", _extends({}, page, {
+            styles: Children.toArray(styles)
+          }));
+        case 7:
+        case "end":
+          return _context.stop();
       }
     }, _callee);
   }));

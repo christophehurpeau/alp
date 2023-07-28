@@ -13,7 +13,7 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=14.13.1"
+    "node": ">=18.12.0"
   },
   "browserslist": {
     "production": [
@@ -52,27 +52,27 @@
     "alp-nextjs": "3.0.0",
     "native-base": "3.4.28",
     "next": "13.1.6",
-    "nightingale-app-console": "13.0.0",
+    "nightingale-app-console": "14.1.0",
     "react": "18.2.0",
     "react-alp-auth": "1.0.0",
     "react-alp-connection-state": "7.2.0",
     "react-alp-context": "5.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.8.0",
-    "react-intl": "6.2.8",
+    "react-intl": "6.4.4",
     "react-native-safe-area-context": "4.5.0",
     "react-native-svg": "13.8.0",
     "react-native-web": "0.18.12"
   },
   "devDependencies": {
-    "@babel/core": "7.21.3",
+    "@babel/core": "7.22.9",
     "@playwright/test": "1.32.1",
     "@testing-library/react": "14.0.0",
     "@types/node": "18.15.11",
     "@types/object-assign": "4.0.30",
     "@types/react": "18.0.33",
     "@types/react-native": "0.71.3",
-    "springbokjs-daemon": "9.0.0",
-    "typescript": "4.9.5"
+    "springbokjs-daemon": "10.0.0",
+    "typescript": "5.1.6"
   }
 }

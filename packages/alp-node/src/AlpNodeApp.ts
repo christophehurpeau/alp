@@ -1,6 +1,6 @@
-import type { IncomingMessage, Server, ServerResponse } from 'http';
-import path from 'path';
-import { deprecate } from 'util';
+import type { IncomingMessage, Server, ServerResponse } from 'node:http';
+import path from 'node:path';
+import { deprecate } from 'node:util';
 import _listen from 'alp-listen';
 import type { Config } from 'alp-node-config';
 import _config from 'alp-node-config';
@@ -138,9 +138,9 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
       logger.success('started');
       if (process.send) process.send('ready');
       return server;
-    } catch (err: unknown) {
-      logger.error('start fail', { err });
-      throw err;
+    } catch (error: unknown) {
+      logger.error('start fail', { err: error });
+      throw error;
     }
   }
 }
