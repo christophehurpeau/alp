@@ -1,8 +1,7 @@
 
 # next.js paths
 /.next
+/.tamagui
 /out
 /build
 /.env.local
-
-/.tamagui

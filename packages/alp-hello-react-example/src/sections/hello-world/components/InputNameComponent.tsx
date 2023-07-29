@@ -15,8 +15,10 @@ export default function InputNameComponent({
 
   return (
     <Input
-      data-testid="input-name"
+      // https://github.com/tamagui/tamagui/issues/1329
+      testID="input-name"
       autoComplete="off"
+      accessibilityLabel="Input your name"
       value={value}
       onChangeText={(newValue) => {
         setValue(newValue);

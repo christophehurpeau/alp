@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeView hello with name 1`] = `
+<span
+  class="   _color-675002279 _display-inline _boxSizing-border-box _wordWrap-break-word _marginTop-0px _marginRight-0px _marginBottom-0px _marginLeft-0px _fontSize-229441158"
+  data-testid="hello-text"
+>
+  Hello Jane!
+</span>
+`;
+
+exports[`HomeView hello without name 1`] = `
+<span
+  class="   _color-675002279 _display-inline _boxSizing-border-box _wordWrap-break-word _marginTop-0px _marginRight-0px _marginBottom-0px _marginLeft-0px _fontSize-229441158"
+  data-testid="hello-text"
+>
+  Hello World!
+</span>
+`;

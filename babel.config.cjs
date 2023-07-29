@@ -6,9 +6,9 @@ module.exports = function babelConfig(api) {
   if (!isTest) return {};
 
   return {
-    only: ['packages/*/src', 'packages/*/lib'],
+    only: ['packages/*/src', 'packages/*/lib', 'config'],
     presets: [
-      ['pob-babel/preset.js'],
+      ['pob-babel/preset.js', { modules: false }],
       [
         '@babel/preset-react',
         {
