@@ -1,5 +1,5 @@
 {
   "root": true,
   "extends": ["@pob/eslint-config/root-module"],
-  "ignorePatterns": ["/build"]
+  "ignorePatterns": ["/build", "/.tamagui", "/.next"]
 }

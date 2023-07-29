@@ -3,7 +3,6 @@
  */
 
 import { act, fireEvent, render } from '@testing-library/react';
-import { NativeBaseProvider } from 'native-base';
 import type { ReactNode } from 'react';
 import ReactAlpContext from 'react-alp-context';
 import { HomeView } from './HomeView';

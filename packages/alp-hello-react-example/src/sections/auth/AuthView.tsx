@@ -1,6 +1,6 @@
-import { Button, Text, VStack } from 'native-base';
 import type { ReactElement } from 'react';
 import { useLoggedInUserState } from 'react-alp-auth';
+import { Button, Text, YStack, Stack } from 'tamagui';
 import { SlackLoginButton } from './components/SlackTeamInstallButton';
 
 interface AuthViewProps {
@@ -16,8 +16,10 @@ export function AuthView({
 
   if (isLoggedIn) {
     return (
-      <VStack space="md">
-        <Text>Logged In User: {loggedInUserId}</Text>
+      <YStack space="md">
+        <Stack padding="$4">
+          <Text>Logged In User: {loggedInUserId}</Text>
+        </Stack>
 
         <Button
           href={`${process.env.NEXT_PUBLIC_API_URL || '/api'}/logout`}
@@ -25,13 +27,13 @@ export function AuthView({
         >
           <Text>Logout</Text>
         </Button>
-      </VStack>
+      </YStack>
     );
   }
 
   return (
-    <VStack space="md">
+    <YStack space="md">
       <SlackLoginButton />
-    </VStack>
+    </YStack>
   );
 }

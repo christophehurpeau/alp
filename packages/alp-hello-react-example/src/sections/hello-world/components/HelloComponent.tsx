@@ -1,6 +1,6 @@
-import { Center, Text, View } from 'native-base';
 import type { ReactElement } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Text, Stack } from 'tamagui';
 import InputName from './InputNameComponent';
 
 interface HelloComponentProps {
@@ -13,9 +13,9 @@ export default function HelloComponent({
   onChangeName,
 }: HelloComponentProps): ReactElement {
   return (
-    <Center pt="10%">
-      <View width="60%">
-        <Text fontSize="lg" data-testid="hello-text">
+    <Stack alignItems="center" paddingTop="10%">
+      <Stack width="60%">
+        <Text fontSize="$6" data-testid="hello-text">
           <FormattedMessage
             id="HelloComponent.text"
             defaultMessage="Hello {name}!"
@@ -23,7 +23,7 @@ export default function HelloComponent({
           />
         </Text>
         <InputName value={name} onChange={onChangeName} />
-      </View>
-    </Center>
+      </Stack>
+    </Stack>
   );
 }

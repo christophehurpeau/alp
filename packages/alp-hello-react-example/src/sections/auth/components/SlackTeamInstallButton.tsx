@@ -1,6 +1,6 @@
-import { Button, Text } from 'native-base';
 import type { ReactElement } from 'react';
 import { AiFillSlackCircle as SlackIcon } from 'react-icons/ai';
+import { Button, Text } from 'tamagui';
 
 export function SlackLoginButton(): ReactElement {
   return (

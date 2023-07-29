@@ -1,42 +1,28 @@
-// import yoRcConfig from '../../.yo-rc.json';
-
+import { withTamagui } from '@tamagui/next-plugin';
 import { createNextJsConfig } from 'alp-nextjs/createNextJsConfig';
 
-const nextConfig = createNextJsConfig({
-  reactStrictMode: true,
-  experimental: {
-    appDir: false,
-    esmExternals: true,
-    images: {
-      unoptimized: true,
+const nextConfig = withTamagui({
+  config: './src/tamagui.config.ts',
+  components: ['tamagui'],
+  // build-time generate CSS styles for better performance
+  // we recommend only using this for production so you get reloading during dev mode
+  outputCSS:
+    process.env.NODE_ENV === 'production' ? './build/tamagui.css' : null,
+  useReactNativeWebLite: true,
+})(
+  createNextJsConfig({
+    reactStrictMode: true,
+    experimental: {
+      appDir: false,
+      esmExternals: true,
     },
-  },
-  transpilePackages: [
-    // native-base - https://github.com/GeekyAnts/nativebase-templates/blob/master/nextjs-with-native-base/next.config.js
-    'native-base',
-    'react-native-svg',
-    'react-native-web',
-    'react-native-safe-area-context',
-    '@react-aria/visually-hidden',
-    '@react-native-aria/button',
-    '@react-native-aria/checkbox',
-    '@react-native-aria/combobox',
-    '@react-native-aria/focus',
-    '@react-native-aria/interactions',
-    '@react-native-aria/listbox',
-    '@react-native-aria/overlays',
-    '@react-native-aria/radio',
-    '@react-native-aria/slider',
-    '@react-native-aria/tabs',
-    '@react-native-aria/utils',
-    '@react-stately/combobox',
-    '@react-stately/radio',
-
-    // requires react-native-web
-    'alp-nextjs',
-    'react-alp-connection-state',
-  ],
-});
+    transpilePackages: [
+      // requires react-native-web
+      'alp-nextjs',
+      'react-alp-connection-state',
+    ],
+  }),
+);
 
 if (process.env.TEST_BUILD_ID) {
   nextConfig.generateBuildId = () => process.env.TEST_BUILD_ID;

@@ -3,5 +3,6 @@ CHANGELOG.md
 /packages/*/dist
 /packages/*/build
 /packages/*/.next
+/packages/*/.tamagui
 /packages/*/out
 /packages/*/.env.local

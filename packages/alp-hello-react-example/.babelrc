@@ -1,3 +1,12 @@
 {
-  "presets": ["alp-nextjs/preset-babel.cjs"]
+  "presets": ["alp-nextjs/preset-babel.cjs"],
+  "plugins": [
+    [
+      "@tamagui/babel-plugin",
+      {
+        "components": ["tamagui"],
+        "config": "./src/tamagui.config.ts"
+      }
+    ]
+  ]
 }

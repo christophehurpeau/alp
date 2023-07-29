@@ -1,6 +1,7 @@
 import { appLogger } from 'nightingale-app-console';
 import type { ReactElement } from 'react';
 import { useState } from 'react';
+import { Button } from 'tamagui';
 
 const counterLogger = appLogger.child('counter');
 
@@ -9,15 +10,15 @@ export default function Counter(): ReactElement {
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button
+      <Button
         type="button"
-        onClick={() => {
+        onPress={() => {
           counterLogger.info('inc', { count });
           setCount(count + 1);
         }}
       >
         Click me
-      </button>
+      </Button>
     </div>
   );
 }

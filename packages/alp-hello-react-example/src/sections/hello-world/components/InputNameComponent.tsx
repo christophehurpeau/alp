@@ -1,6 +1,6 @@
-import { Input } from 'native-base';
 import type { ReactElement } from 'react';
 import { useState } from 'react';
+import { Input } from 'tamagui';
 
 interface InputNameComponentProps {
   value: string | undefined;
@@ -15,9 +15,7 @@ export default function InputNameComponent({
 
   return (
     <Input
-      variant="outline"
       data-testid="input-name"
-      type="text"
       autoComplete="off"
       value={value}
       onChangeText={(newValue) => {
