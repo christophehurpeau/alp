@@ -116,7 +116,8 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     this.use(errors);
   }
 
-  listen(): Server {
+  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
+  listen(): never {
     throw new Error('Use start instead');
   }
 

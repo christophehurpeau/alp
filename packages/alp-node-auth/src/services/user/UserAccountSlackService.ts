@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/class-methods-use-this */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import type { Tokens } from '../authentification/types';
 import type { AccountService, FullName } from './types';
@@ -25,7 +26,7 @@ export default class UserAccountSlackService<ScopeKeys extends 'login'>
   }
 
   getId(profile: any): string | null {
-    if (!profile?.team?.id || !profile.user || !profile.user.id) {
+    if (!profile?.team?.id || !profile.user?.id) {
       return null;
     }
     return `team:${profile.team.id as string};user:${

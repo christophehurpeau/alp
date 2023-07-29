@@ -74,6 +74,7 @@ export default class MongoUsersManager<
     } as Update<U>);
   }
 
+  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   sanitizeBaseUser(user: U): UserSanitized {
     return {
       _id: user._id,

@@ -32,7 +32,7 @@ export default function alpParams(app: ApplicationInCreation): void {
 
     otherParam(this: Context, position: number): string | undefined {
       const otherParams = this.route.otherParams;
-      return otherParams && otherParams[position - 1];
+      return otherParams?.[position - 1];
     },
 
     paramGET(this: Context, name: string): string | undefined {
