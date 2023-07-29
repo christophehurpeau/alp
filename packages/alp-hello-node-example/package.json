@@ -38,9 +38,9 @@
     ]
   },
   "dependencies": {
-    "alp-node": "5.2.0",
-    "alp-node-auth": "8.0.0",
-    "alp-router": "6.2.0",
+    "alp-node": "6.0.0",
+    "alp-node-auth": "9.0.0",
+    "alp-router": "7.0.0",
     "liwi-mongo": "10.5.0",
     "nightingale-app-console": "14.1.0",
     "nightingale-web-processor": "14.1.0",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.22.9",
-    "alp-rollup-plugin-config": "2.0.0",
+    "alp-rollup-plugin-config": "2.1.0",
     "pob-babel": "36.2.0",
     "typescript": "5.1.6"
   }

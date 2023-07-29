@@ -108,8 +108,8 @@
     ]
   },
   "peerDependencies": {
-    "alp-node": "^5.0.0",
-    "alp-router": "^6.0.0",
+    "alp-node": "^6.0.0",
+    "alp-router": "^7.0.0",
     "liwi-mongo": "^10.5.0",
     "router-segments": "^7.0.0"
   },

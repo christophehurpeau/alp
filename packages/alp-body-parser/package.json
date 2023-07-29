@@ -55,7 +55,7 @@
     ]
   },
   "peerDependencies": {
-    "alp-node": "^5.0.0"
+    "alp-node": "^6.0.0"
   },
   "dependencies": {
     "@types/co-body": "^6.0.0",
