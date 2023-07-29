@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@8.0.0...alp-node-auth@9.0.0) (2023-07-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop node 16
+
+### Features
+
+* update simple-oauth2 ([1160431](https://github.com/christophehurpeau/alp/commit/1160431fbdc942b786323e34830d66deb741eb21))
+
+
+### Code Refactoring
+
+* update to node 18 ([26280d6](https://github.com/christophehurpeau/alp/commit/26280d638aba1bd46fa42ad5a571b9626f1fff6d))
+
+
+
 ## [8.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@7.2.2...alp-node-auth@8.0.0) (2023-03-19)
 
 

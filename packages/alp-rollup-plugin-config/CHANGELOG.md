@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@2.0.0...alp-rollup-plugin-config@2.1.0) (2023-07-29)
+
+
+### Features
+
+* update nextjs ([3053c10](https://github.com/christophehurpeau/alp/commit/3053c1099f90b9474f1c3c333f204cffc7ba3346))
+
+
+
 # [2.0.0](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@1.2.0...alp-rollup-plugin-config@2.0.0) (2022-11-27)
 
 

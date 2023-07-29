@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@8.3.0...alp-node-config@9.0.0) (2023-07-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop node 16
+
+### Features
+
+* **deps:** update dependency deep-freeze-es6 to v3 ([#461](https://github.com/christophehurpeau/alp/issues/461)) ([44cbf4f](https://github.com/christophehurpeau/alp/commit/44cbf4f5ceac00f53969022f2d41060798eb6cb5))
+
+
+### Code Refactoring
+
+* update to node 18 ([26280d6](https://github.com/christophehurpeau/alp/commit/26280d638aba1bd46fa42ad5a571b9626f1fff6d))
+
+
+
 ## [8.3.0](https://github.com/christophehurpeau/alp/compare/alp-node-config@8.2.1...alp-node-config@8.3.0) (2023-03-19)
 
 

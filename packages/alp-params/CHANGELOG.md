@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.0](https://github.com/christophehurpeau/alp/compare/alp-params@5.2.0...alp-params@6.0.0) (2023-07-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop node 16
+
+### Code Refactoring
+
+* update to node 18 ([26280d6](https://github.com/christophehurpeau/alp/commit/26280d638aba1bd46fa42ad5a571b9626f1fff6d))
+
+
+
 ## [5.2.0](https://github.com/christophehurpeau/alp/compare/alp-params@5.1.2...alp-params@5.2.0) (2023-03-19)
 
 

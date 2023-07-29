@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@8.0.0...alp-hello-react-example@9.0.0) (2023-07-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace getDocumentInitialProps by createDocumentInitialProps
+* drop node 16
+
+### Features
+
+* add link to auth page ([893a5db](https://github.com/christophehurpeau/alp/commit/893a5db51b70387c7c46319c62db858b88978ce6))
+* **alp-nextjs:** export createNextJsConfig ([093cb23](https://github.com/christophehurpeau/alp/commit/093cb2377b14ac6a168621e045848ec21b1a28de))
+* **deps:** update dependency react-icons to v4.8.0 ([#429](https://github.com/christophehurpeau/alp/issues/429)) ([216bdc5](https://github.com/christophehurpeau/alp/commit/216bdc5607686898242edcf472755ed262b2b11f))
+* **deps:** update dependency react-native-svg to v13.10.0 ([#458](https://github.com/christophehurpeau/alp/issues/458)) ([6f37313](https://github.com/christophehurpeau/alp/commit/6f3731385017a5c84a148cb7f4edb4d9737344ce))
+* update nextjs ([3053c10](https://github.com/christophehurpeau/alp/commit/3053c1099f90b9474f1c3c333f204cffc7ba3346))
+* update react-icons ([b3d0e4a](https://github.com/christophehurpeau/alp/commit/b3d0e4a0a0b23f81e104e0bc8ca7a3f49eb3c929))
+* update react-native and react-native-web ([676e18a](https://github.com/christophehurpeau/alp/commit/676e18aefbe4a9b48debcbfb5327ae7e50d70d6f))
+* update simple-oauth2 ([1160431](https://github.com/christophehurpeau/alp/commit/1160431fbdc942b786323e34830d66deb741eb21))
+
+
+### Bug Fixes
+
+* use aria-label instead of accessibilityLabel ([92504da](https://github.com/christophehurpeau/alp/commit/92504da970659471bbaf3d5cedac82623ab13622))
+
+
+### Code Refactoring
+
+* replace native-base by tamagui ([8b13593](https://github.com/christophehurpeau/alp/commit/8b13593c5b8b2e214648ccaa6c8e3d3d14c4ef27))
+* update to node 18 ([26280d6](https://github.com/christophehurpeau/alp/commit/26280d638aba1bd46fa42ad5a571b9626f1fff6d))
+
+
+
 ## [8.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@7.3.2...alp-hello-react-example@8.0.0) (2023-03-19)
 
 

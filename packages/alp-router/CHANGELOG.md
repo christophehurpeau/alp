@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.0](https://github.com/christophehurpeau/alp/compare/alp-router@6.2.0...alp-router@7.0.0) (2023-07-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop node 16
+
+### Code Refactoring
+
+* update to node 18 ([26280d6](https://github.com/christophehurpeau/alp/commit/26280d638aba1bd46fa42ad5a571b9626f1fff6d))
+
+
+
 ## [6.2.0](https://github.com/christophehurpeau/alp/compare/alp-router@6.1.2...alp-router@6.2.0) (2023-03-19)
 
 

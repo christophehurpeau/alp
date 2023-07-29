@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@3.0.0...alp-nextjs@4.0.0) (2023-07-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace getDocumentInitialProps by createDocumentInitialProps
+* drop node 16
+
+### Features
+
+* **alp-nextjs:** add postinstall script to simplify patches ([6ed350f](https://github.com/christophehurpeau/alp/commit/6ed350fb25c894aebdcc60d202894a0a9906b94b))
+* **alp-nextjs:** export createNextJsConfig ([093cb23](https://github.com/christophehurpeau/alp/commit/093cb2377b14ac6a168621e045848ec21b1a28de))
+* **deps:** update dependency babel-plugin-react-native-web to ^0.19.0 ([#433](https://github.com/christophehurpeau/alp/issues/433)) ([97d22f1](https://github.com/christophehurpeau/alp/commit/97d22f1ef791c1003bf72cb33fa6c7677e4f939e))
+* update nextjs ([3053c10](https://github.com/christophehurpeau/alp/commit/3053c1099f90b9474f1c3c333f204cffc7ba3346))
+* update react-native and react-native-web ([676e18a](https://github.com/christophehurpeau/alp/commit/676e18aefbe4a9b48debcbfb5327ae7e50d70d6f))
+* update simple-oauth2 ([1160431](https://github.com/christophehurpeau/alp/commit/1160431fbdc942b786323e34830d66deb741eb21))
+
+
+### Code Refactoring
+
+* replace native-base by tamagui ([8b13593](https://github.com/christophehurpeau/alp/commit/8b13593c5b8b2e214648ccaa6c8e3d3d14c4ef27))
+* update to node 18 ([26280d6](https://github.com/christophehurpeau/alp/commit/26280d638aba1bd46fa42ad5a571b9626f1fff6d))
+
+
+
 ## [3.0.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@2.4.0...alp-nextjs@3.0.0) (2023-03-19)
 
 
