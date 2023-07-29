@@ -5894,7 +5894,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.22.9
     alp-types: 3.1.0
-    deep-freeze-es6: ^3.0.1
+    deep-freeze-es6: ^3.0.2
     minimist-argv: ^1.1.0
     parse-json-object-as-map: ^1.2.0
     pob-babel: 36.2.0
@@ -7755,10 +7755,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deep-freeze-es6@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "deep-freeze-es6@npm:3.0.1"
-  checksum: 14eb0e0ecf9973abe02209a90adeab6886509a7f88785ee334ee482626fae75fe5f4cb3d838fa94cc59c55e768baf4fd65448e22f648d6825776b0a536a84e44
+"deep-freeze-es6@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "deep-freeze-es6@npm:3.0.2"
+  checksum: 19d8593b75ac6456ae55462500a5c2166afdb010db785a8d5f9ab5961d08908e6a10c1c66fc7cdf2e78d6c430611fdc2456039239eed3fbd90ea4b2fa55e6cb3
   languageName: node
   linkType: hard
 
