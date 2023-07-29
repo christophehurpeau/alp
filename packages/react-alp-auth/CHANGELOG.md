@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/christophehurpeau/alp/compare/react-alp-auth@2.0.0...react-alp-auth@2.0.1) (2023-07-29)
+
+
+### Bug Fixes
+
+* dedupe and fix update alp ([aed32bc](https://github.com/christophehurpeau/alp/commit/aed32bc12e596acfd60f0d032a8d78a1ef68f9ee))
+
+
+
 ## [2.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-auth@1.0.0...react-alp-auth@2.0.0) (2023-07-29)
 
 

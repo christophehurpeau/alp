@@ -5818,7 +5818,7 @@ __metadata:
     next: 13.4.12
     nightingale-app-console: 14.1.0
     react: 18.2.0
-    react-alp-auth: 2.0.0
+    react-alp-auth: 2.0.1
     react-alp-connection-state: 8.0.0
     react-alp-context: 6.0.0
     react-dom: 18.2.0
@@ -5890,7 +5890,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node-auth@9.0.0, alp-node-auth@workspace:packages/alp-node-auth":
+"alp-node-auth@npm:9.0.0":
+  version: 9.0.0
+  resolution: "alp-node-auth@npm:9.0.0"
+  dependencies:
+    "@types/jsonwebtoken": ^9.0.1
+    "@types/simple-oauth2": ^5.0.4
+    alp-types: 3.1.0
+    cookies: ~0.8.0
+    jsonwebtoken: ^9.0.0
+    nightingale-logger: ^14.1.0
+    simple-oauth2: ^5.0.0
+  peerDependencies:
+    alp-node: ^5.0.0
+    alp-router: ^6.0.0
+    liwi-mongo: ^10.5.0
+    router-segments: ^7.0.0
+  checksum: accd31b6b0363efaf654696a4576dbac1abad6f3fb51039344a2cdaacf5c81e154c771576a05ea70f8ffc786957f1726b59108c96584bee15dcde06f50cef1df
+  languageName: node
+  linkType: hard
+
+"alp-node-auth@workspace:packages/alp-node-auth":
   version: 0.0.0-use.local
   resolution: "alp-node-auth@workspace:packages/alp-node-auth"
   dependencies:
@@ -13732,7 +13752,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-alp-auth@2.0.0, react-alp-auth@workspace:packages/react-alp-auth":
+"react-alp-auth@2.0.1, react-alp-auth@workspace:packages/react-alp-auth":
   version: 0.0.0-use.local
   resolution: "react-alp-auth@workspace:packages/react-alp-auth"
   dependencies:
