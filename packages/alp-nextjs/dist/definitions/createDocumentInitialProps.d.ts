@@ -1,5 +1,5 @@
 import type NextDocument from 'next/document';
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 /**
  *
  * @example

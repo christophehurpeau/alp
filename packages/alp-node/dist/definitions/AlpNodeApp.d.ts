@@ -39,7 +39,7 @@ export declare class AlpNodeApp extends Koa<ContextState> implements NodeApplica
     createContext<StateT = DefaultState>(req: IncomingMessage, res: ServerResponse): ParameterizedContext<StateT>;
     servePublic(): void;
     catchErrors(): void;
-    listen(): Server;
+    listen(): never;
     /**
      * Close server and emit close event
      */

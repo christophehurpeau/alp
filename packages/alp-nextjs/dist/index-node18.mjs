@@ -2,6 +2,7 @@ import Cookies from 'cookies';
 import { StyleSheet } from 'react-native';
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
 
+// eslint-disable-next-line import/no-unresolved
 function createDocumentInitialProps(getMoreStyles) {
   return async ctx => {
     const page = await ctx.renderPage();

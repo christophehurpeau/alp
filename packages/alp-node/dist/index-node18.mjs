@@ -61,6 +61,8 @@ class AlpNodeApp extends Koa {
   catchErrors() {
     this.use(errors);
   }
+
+  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   listen() {
     throw new Error('Use start instead');
   }

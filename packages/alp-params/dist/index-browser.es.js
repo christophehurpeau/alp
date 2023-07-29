@@ -93,7 +93,7 @@ function alpParams(app) {
     },
     otherParam: function otherParam(position) {
       var otherParams = this.route.otherParams;
-      return otherParams && otherParams[position - 1];
+      return otherParams == null ? void 0 : otherParams[position - 1];
     },
     paramGET: function paramGET(name) {
       var _searchParams$get;

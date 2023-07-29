@@ -500,6 +500,8 @@ class MongoUsersManager {
       }
     });
   }
+
+  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   sanitizeBaseUser(user) {
     return {
       _id: user._id,
@@ -521,6 +523,7 @@ class MongoUsersManager {
   }
 }
 
+/* eslint-disable @typescript-eslint/class-methods-use-this */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
@@ -565,6 +568,7 @@ class UserAccountGoogleService {
   }
 }
 
+/* eslint-disable @typescript-eslint/class-methods-use-this */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 // https://api.slack.com/methods/users.identity
@@ -581,7 +585,7 @@ class UserAccountSlackService {
     return fetch(`https://slack.com/api/users.identity?token=${tokens.accessToken}`).then(response => response.json());
   }
   getId(profile) {
-    if (!profile?.team?.id || !profile.user || !profile.user.id) {
+    if (!profile?.team?.id || !profile.user?.id) {
       return null;
     }
     return `team:${profile.team.id};user:${profile.user.id}`;
