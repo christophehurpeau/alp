@@ -18,7 +18,7 @@ export default function InputNameComponent({
       // https://github.com/tamagui/tamagui/issues/1329
       testID="input-name"
       autoComplete="off"
-      accessibilityLabel="Input your name"
+      aria-label="Input your name"
       value={value}
       onChangeText={(newValue) => {
         setValue(newValue);
