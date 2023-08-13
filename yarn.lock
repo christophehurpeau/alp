@@ -4251,14 +4251,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/next-theme@npm:1.46.2":
-  version: 1.46.2
-  resolution: "@tamagui/next-theme@npm:1.46.2"
+"@tamagui/next-theme@npm:1.52.1":
+  version: 1.52.1
+  resolution: "@tamagui/next-theme@npm:1.52.1"
   dependencies:
-    "@tamagui/use-event": 1.46.2
+    "@tamagui/use-event": 1.52.1
   peerDependencies:
     react: "*"
-  checksum: 7555ab64aa0387d7b804e8b3d874ac5b0bef6c56f255530c1952cd0072ff88d64e5e05791db05858772da64ed77dfbaf7fe77ac911bee3d963f14a30b3a1031e
+  checksum: 711d2ca07aa08f738380fdd3c9d6e775b65d17cba14ef752795a168a39b7ebdfd49a4b9734c526974accd1676560844ed05a228531d12e4ef247cae77f849678
   languageName: node
   linkType: hard
 
@@ -4814,6 +4814,15 @@ __metadata:
   peerDependencies:
     react: "*"
   checksum: d3554480bf0ab2fd507615b0a02af392d076b59fa156f6051ddb573f564161b4e761a8698b1e271c1a61151ebd718d029efabc7e40616401dcaa1427cc838c5a
+  languageName: node
+  linkType: hard
+
+"@tamagui/use-event@npm:1.52.1":
+  version: 1.52.1
+  resolution: "@tamagui/use-event@npm:1.52.1"
+  peerDependencies:
+    react: "*"
+  checksum: 6dce834914e8ca62a368c715fc60cde00ccc9e9695f898ba95e6355647aaca74fb521ab0da694cdea3e3c490c607a85dab73057c5a0c743007b0a97cd67b559d
   languageName: node
   linkType: hard
 
@@ -5806,7 +5815,7 @@ __metadata:
     "@tamagui/babel-plugin": 1.46.2
     "@tamagui/core": 1.46.2
     "@tamagui/next-plugin": 1.46.2
-    "@tamagui/next-theme": 1.46.2
+    "@tamagui/next-theme": 1.52.1
     "@tamagui/react-native-media-driver": 1.46.2
     "@tamagui/shorthands": 1.46.2
     "@tamagui/themes": 1.46.2

@@ -50,7 +50,7 @@
   "prettier": "@pob/root/prettier-config",
   "dependencies": {
     "@tamagui/core": "1.46.2",
-    "@tamagui/next-theme": "1.46.2",
+    "@tamagui/next-theme": "1.52.1",
     "@tamagui/react-native-media-driver": "1.46.2",
     "@tamagui/shorthands": "1.46.2",
     "@tamagui/themes": "1.46.2",
