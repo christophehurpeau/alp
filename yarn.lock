@@ -4542,6 +4542,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/shorthands@npm:1.52.1":
+  version: 1.52.1
+  resolution: "@tamagui/shorthands@npm:1.52.1"
+  checksum: 3c23e810edee2d3c99cd16971ca6a4e237e33ec4bf6e7c83ffa64a522ab63bc299c9bfbe22b7e76efcfd42c30ae75a5717be1a1826ca2d1c3a37f917daa40ae4
+  languageName: node
+  linkType: hard
+
 "@tamagui/simple-hash@npm:1.46.2":
   version: 1.46.2
   resolution: "@tamagui/simple-hash@npm:1.46.2"
@@ -5808,7 +5815,7 @@ __metadata:
     "@tamagui/next-plugin": 1.46.2
     "@tamagui/next-theme": 1.46.2
     "@tamagui/react-native-media-driver": 1.46.2
-    "@tamagui/shorthands": 1.46.2
+    "@tamagui/shorthands": 1.52.1
     "@tamagui/themes": 1.46.2
     "@testing-library/react": 14.0.0
     "@types/node": 18.17.1
