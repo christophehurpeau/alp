@@ -51,7 +51,7 @@
   "dependencies": {
     "@tamagui/core": "1.46.2",
     "@tamagui/next-theme": "1.46.2",
-    "@tamagui/react-native-media-driver": "1.46.2",
+    "@tamagui/react-native-media-driver": "1.52.1",
     "@tamagui/shorthands": "1.46.2",
     "@tamagui/themes": "1.46.2",
     "alp-nextjs": "4.0.0",
