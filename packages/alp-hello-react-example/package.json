@@ -74,7 +74,7 @@
     "@tamagui/babel-plugin": "1.46.2",
     "@tamagui/next-plugin": "1.46.2",
     "@testing-library/react": "14.0.0",
-    "@types/node": "18.17.1",
+    "@types/node": "18.18.8",
     "@types/react": "18.2.35",
     "@types/react-native": "0.72.5",
     "react-native-web": "0.19.7",
