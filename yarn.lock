@@ -6010,7 +6010,7 @@ __metadata:
     "@guanghechen/rollup-plugin-copy": 1.8.6
     js-yaml: 4.1.0
   peerDependencies:
-    rollup: ^2.64.0 || ^3.0.0
+    rollup: ^2.64.0 || ^3.0.0 || ^4.0.0
   languageName: unknown
   linkType: soft
 
