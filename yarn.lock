@@ -5242,13 +5242,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa-compress@npm:4.0.3":
-  version: 4.0.3
-  resolution: "@types/koa-compress@npm:4.0.3"
+"@types/koa-compress@npm:4.0.5":
+  version: 4.0.5
+  resolution: "@types/koa-compress@npm:4.0.5"
   dependencies:
     "@types/koa": "*"
     "@types/node": "*"
-  checksum: 6f09e4ad8160204fbee9d0a452b83ba62fec503a2eec60cf41fc67a032971027b6858e0b90c6e05bf1ad3b006f7c7a2d02922db4d159d223ab8d33eeeb108757
+  checksum: 21e2aec1e550a03d55fecd7a6b3f0332f8cc6517e774dc85cd087da91328c10940c70190d6ae1cbc8dcfd5a015a2732a5bc5e82684c98e0fdbcf2948a4cfd378
   languageName: node
   linkType: hard
 
@@ -5963,7 +5963,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.22.9
     "@types/koa": ^2.13.1
-    "@types/koa-compress": 4.0.3
+    "@types/koa-compress": 4.0.5
     "@types/koa-static": 4.0.2
     "@types/minimist": 1.2.2
     "@types/node": ">=18.0.0"
