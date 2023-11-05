@@ -5311,10 +5311,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.17.1, @types/node@npm:>=18.0.0":
-  version: 18.17.1
-  resolution: "@types/node@npm:18.17.1"
-  checksum: 56201bda9a2d05d68602df63b4e67b0545ac8c6d0280bd5fb31701350a978a577a027501fbf49db99bf177f2242ebd1244896bfd35e89042d5bd7dfebff28d4e
+"@types/node@npm:*, @types/node@npm:18.18.8, @types/node@npm:>=18.0.0":
+  version: 18.18.8
+  resolution: "@types/node@npm:18.18.8"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: d6a82bfc28bca8e4e32ffc9526798d1aea62f6993ea3a535cd3f47ac3f725a48efe3f484d68168dd154af0001c89935e4e1d77e7b1809c3824c6382bf99b86f6
   languageName: node
   linkType: hard
 
@@ -5811,7 +5813,7 @@ __metadata:
     "@tamagui/shorthands": 1.46.2
     "@tamagui/themes": 1.46.2
     "@testing-library/react": 14.0.0
-    "@types/node": 18.17.1
+    "@types/node": 18.18.8
     "@types/react": 18.2.35
     "@types/react-native": 0.72.5
     alp-nextjs: 4.0.0
@@ -5852,7 +5854,7 @@ __metadata:
   resolution: "alp-migrations@workspace:packages/alp-migrations"
   dependencies:
     "@babel/core": 7.22.9
-    "@types/node": 18.17.1
+    "@types/node": 18.18.8
     "@types/semver": 7.5.4
     alp-types: 3.1.0
     liwi-mongo: 10.5.0
@@ -15853,6 +15855,13 @@ __metadata:
     has-symbols: ^1.0.3
     which-boxed-primitive: ^1.0.2
   checksum: b7a1cf5862b5e4b5deb091672ffa579aa274f648410009c81cca63fed3b62b610c4f3b773f912ce545bb4e31edc3138975b5bc777fc6e4817dca51affb6380e9
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 3192ef6f3fd5df652f2dc1cd782b49d6ff14dc98e5dced492aa8a8c65425227da5da6aafe22523c67f035a272c599bb89cfe803c1db6311e44bed3042fc25487
   languageName: node
   linkType: hard
 
