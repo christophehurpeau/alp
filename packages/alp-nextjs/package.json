@@ -98,7 +98,7 @@
   "dependencies": {
     "@babel/runtime": "^7.22.6",
     "babel-plugin-discard-module-references": "^1.1.2",
-    "babel-preset-pob-env": "10.1.0",
+    "babel-preset-pob-env": "10.3.0",
     "cookies": "~0.8.0",
     "sort-keys": "^5.0.0"
   },
