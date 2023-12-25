@@ -4556,13 +4556,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa-static@npm:4.0.3":
-  version: 4.0.3
-  resolution: "@types/koa-static@npm:4.0.3"
+"@types/koa-static@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@types/koa-static@npm:4.0.4"
   dependencies:
     "@types/koa": "npm:*"
     "@types/koa-send": "npm:*"
-  checksum: 2acf76dc4f9e649901eafd5e3e5f0fa983e011c3a10f8b4fc62a9fb820e859f58dbb169c27e33a0b7f425e42fec32ebcb9c74131d3d5c375f120f7532e6d2229
+  checksum: 99087a9b6f4214679932008fbed2d4332fca06cd01f2d333439bd1cf0844c313584c8eb6b805360d1c3d6c6c8a475468a5f4f73ecad551c8cc369e290ad41331
   languageName: node
   linkType: hard
 
@@ -5244,7 +5244,7 @@ __metadata:
     "@babel/core": "npm:7.23.6"
     "@types/koa": "npm:^2.13.1"
     "@types/koa-compress": "npm:4.0.6"
-    "@types/koa-static": "npm:4.0.3"
+    "@types/koa-static": "npm:4.0.4"
     "@types/minimist": "npm:1.2.4"
     "@types/node": "npm:>=18.0.0"
     alp-listen: "npm:7.0.0"
