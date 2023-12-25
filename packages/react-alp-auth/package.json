@@ -81,7 +81,7 @@
     "@babel/core": "7.23.6",
     "@babel/preset-env": "7.23.6",
     "@babel/preset-react": "7.23.3",
-    "@types/js-cookie": "3.0.5",
+    "@types/js-cookie": "3.0.6",
     "alp-nextjs": "4.0.0",
     "next": "13.4.12",
     "pob-babel": "38.0.0",
