@@ -1,7 +1,17 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [8.1.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@8.0.1...alp-body-parser@8.1.0) (2023-12-25)
+
+
+### Features
+
+* update dependencies ([ddc8f92](https://github.com/christophehurpeau/alp/commit/ddc8f92cccacf6ed2baabf8555f0b37fe281ce9d))
+
+
+
 
 ## [8.0.1](https://github.com/christophehurpeau/alp/compare/alp-body-parser@8.0.0...alp-body-parser@8.0.1) (2023-07-29)
 

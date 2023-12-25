@@ -1,6 +1,6 @@
 {
   "name": "alp-node-auth",
-  "version": "9.0.1",
+  "version": "9.1.0",
   "description": "authentication with alp",
   "keywords": [
     "alp"
@@ -120,7 +120,7 @@
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.1",
     "@types/simple-oauth2": "^5.0.4",
-    "alp-types": "3.1.0",
+    "alp-types": "3.1.1",
     "cookies": "~0.8.0",
     "jsonwebtoken": "^9.0.0",
     "nightingale-logger": "^15.0.0",
@@ -128,8 +128,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.23.6",
-    "alp-node": "6.0.0",
-    "alp-router": "7.0.0",
+    "alp-node": "6.1.0",
+    "alp-router": "7.1.0",
     "liwi-mongo": "10.5.0",
     "pob-babel": "38.0.0",
     "router-segments": "9.1.0",

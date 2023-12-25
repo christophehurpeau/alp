@@ -1,7 +1,17 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.0](https://github.com/christophehurpeau/alp/compare/react-alp-auth@2.0.1...react-alp-auth@2.1.0) (2023-12-25)
+
+
+### Features
+
+* update dependencies ([ddc8f92](https://github.com/christophehurpeau/alp/commit/ddc8f92cccacf6ed2baabf8555f0b37fe281ce9d))
+
+Version bump for dependency: alp-nextjs
+
 
 ## [2.0.1](https://github.com/christophehurpeau/alp/compare/react-alp-auth@2.0.0...react-alp-auth@2.0.1) (2023-07-29)
 

@@ -1,7 +1,14 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 3.1.1 (2023-12-25)
+
+Note: no notable changes
+
+
+
 
 # [3.1.0](https://github.com/alpjs/alp/compare/alp-types@3.0.0...alp-types@3.1.0) (2022-02-06)
 

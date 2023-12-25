@@ -1,7 +1,21 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [9.1.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@9.0.1...alp-hello-react-example@9.1.0) (2023-12-25)
+
+
+### Features
+
+* **deps:** update dependency react-native-safe-area-context to v4.8.2 ([#492](https://github.com/christophehurpeau/alp/issues/492)) ([be78b7b](https://github.com/christophehurpeau/alp/commit/be78b7bc5d2fab8f9216fd132212f88c315f02bd))
+* update dependencies ([ddc8f92](https://github.com/christophehurpeau/alp/commit/ddc8f92cccacf6ed2baabf8555f0b37fe281ce9d))
+
+Version bump for dependency: alp-nextjs
+Version bump for dependency: react-alp-auth
+Version bump for dependency: react-alp-connection-state
+Version bump for dependency: react-alp-context
+
 
 ## [9.0.1](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@9.0.0...alp-hello-react-example@9.0.1) (2023-07-29)
 

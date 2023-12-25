@@ -1,7 +1,18 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.0](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@2.1.0...alp-rollup-plugin-config@2.2.0) (2023-12-25)
+
+
+### Features
+
+* **deps:** update dependency rollup to v4 ([#481](https://github.com/christophehurpeau/alp/issues/481)) ([f96b4ad](https://github.com/christophehurpeau/alp/commit/f96b4ad926d2332162a9734e942efc857d056d4c))
+* update dependencies ([ddc8f92](https://github.com/christophehurpeau/alp/commit/ddc8f92cccacf6ed2baabf8555f0b37fe281ce9d))
+
+
+
 
 ## [2.1.0](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@2.0.0...alp-rollup-plugin-config@2.1.0) (2023-07-29)
 

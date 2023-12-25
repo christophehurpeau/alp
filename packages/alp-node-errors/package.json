@@ -1,6 +1,6 @@
 {
   "name": "alp-node-errors",
-  "version": "8.0.0",
+  "version": "8.1.0",
   "description": "display errors in alp framework",
   "keywords": [
     "alp"
@@ -58,7 +58,7 @@
     ]
   },
   "dependencies": {
-    "alp-types": "3.1.0",
+    "alp-types": "3.1.1",
     "error-html": "^0.3.5",
     "nightingale-logger": "^15.0.0"
   },

@@ -1,6 +1,6 @@
 {
   "name": "alp-node",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "framework based on koa 2",
   "keywords": [
     "springbokjs",
@@ -81,13 +81,13 @@
   "dependencies": {
     "@types/koa": "^2.13.1",
     "@types/node": ">=18.0.0",
-    "alp-listen": "7.0.0",
-    "alp-node-config": "9.0.0",
-    "alp-node-errors": "8.0.0",
-    "alp-node-language": "7.0.0",
-    "alp-params": "6.0.0",
-    "alp-translate": "8.0.0",
-    "alp-types": "3.1.0",
+    "alp-listen": "7.1.0",
+    "alp-node-config": "9.1.0",
+    "alp-node-errors": "8.1.0",
+    "alp-node-language": "7.1.0",
+    "alp-params": "6.1.0",
+    "alp-translate": "8.1.0",
+    "alp-types": "3.1.1",
     "koa": "^2.13.1",
     "koa-compress": "^5.0.0",
     "koa-static": "^5.0.0",

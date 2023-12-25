@@ -1,6 +1,6 @@
 {
   "name": "alp-router",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "router for alp",
   "keywords": [
     "alp",
@@ -79,7 +79,7 @@
     "router-segments": "^9.1.0"
   },
   "dependencies": {
-    "alp-types": "3.1.0"
+    "alp-types": "3.1.1"
   },
   "devDependencies": {
     "@babel/core": "7.23.6",

@@ -1,6 +1,6 @@
 {
   "name": "react-alp-auth",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "react alp context",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -82,7 +82,7 @@
     "@babel/preset-env": "7.23.6",
     "@babel/preset-react": "7.23.3",
     "@types/js-cookie": "3.0.6",
-    "alp-nextjs": "4.0.0",
+    "alp-nextjs": "4.1.0",
     "next": "13.4.12",
     "pob-babel": "38.0.0",
     "react": "18.2.0",

@@ -1,6 +1,6 @@
 {
   "name": "alp-translate",
-  "version": "8.0.0",
+  "version": "8.1.0",
   "description": "Translation in alp framework",
   "keywords": [
     "alp"
@@ -89,7 +89,7 @@
     ]
   },
   "dependencies": {
-    "alp-types": "3.1.0",
+    "alp-types": "3.1.1",
     "intl-messageformat": "^10.0.0",
     "nightingale-logger": "^15.0.0"
   },

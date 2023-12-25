@@ -1,6 +1,6 @@
 {
   "name": "alp-node-language",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "language context in alp framework",
   "keywords": [
     "alp",
@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "@types/koa": "^2.13.1",
-    "alp-types": "3.1.0",
+    "alp-types": "3.1.1",
     "object-properties": "^8.0.0"
   },
   "devDependencies": {
