@@ -1,6 +1,8 @@
-import type { Context } from 'alp-node';
 import { config } from 'alp-node';
 import type { AuthRoutes } from 'alp-node-auth';
+import type { AlpRouteRef } from 'alp-router';
+// eslint-disable-next-line node/no-extraneous-import
+import type { Context } from 'alp-types';
 import type { Router } from 'router-segments';
 import { createRouterBuilder } from 'router-segments';
 
@@ -10,11 +12,11 @@ export default function createRouter({
   auth,
 }: {
   auth: AuthRoutes;
-}): Router<Locales> {
-  const builder = createRouterBuilder();
+}): Router<Locales, AlpRouteRef> {
+  const builder = createRouterBuilder<Locales, AlpRouteRef>();
 
-  const redirectToHome = (ctx: Context): void => {
-    ctx.redirect(`${config.get<string>('webappUrl')}/auth`);
+  const redirectToHome = (ctx: Context): Promise<void> => {
+    return ctx.redirect(`${config.get<string>('webappUrl')}/auth`);
   };
 
   builder.add('/', redirectToHome);

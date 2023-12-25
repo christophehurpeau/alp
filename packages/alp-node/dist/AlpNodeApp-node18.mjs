@@ -55,7 +55,6 @@ class AlpNodeApp extends Koa {
   servePublic() {
     this.use(serve(this.publicPath)); // static files
   }
-
   catchErrors() {
     this.use(errors);
   }

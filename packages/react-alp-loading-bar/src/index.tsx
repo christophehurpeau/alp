@@ -54,9 +54,9 @@ export default class LoadingBar extends PureComponent<
   LoadingBarProps,
   LoadingBarState
 > {
-  static contextType = ReactAlpContext;
+  static override contextType = ReactAlpContext;
 
-  state = {
+  override state = {
     loading: true,
     hidden: true,
     progress: 1,
@@ -70,7 +70,7 @@ export default class LoadingBar extends PureComponent<
 
   progressTimer?: ReturnType<typeof setTimeout>;
 
-  componentDidMount(): void {
+  override componentDidMount(): void {
     const websocket = this.getWebsocket();
     if (websocket.isConnected()) {
       this.setState((prevState) => ({
@@ -87,7 +87,7 @@ export default class LoadingBar extends PureComponent<
     });
   }
 
-  componentDidUpdate(
+  override componentDidUpdate(
     prevProps: LoadingBarProps,
     prevState: LoadingBarState,
   ): void {
@@ -100,7 +100,7 @@ export default class LoadingBar extends PureComponent<
     }
   }
 
-  componentWillUnmount(): void {
+  override componentWillUnmount(): void {
     if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);
     if (this.resetTimeout) clearTimeout(this.resetTimeout);
     if (this.first20Timeout) clearTimeout(this.first20Timeout);
@@ -146,7 +146,7 @@ export default class LoadingBar extends PureComponent<
     }, 1000);
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const LoadingBarComponent = this.props.LoadingBarComponent;
 
     return (

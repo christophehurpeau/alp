@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import type { IncomingMessage } from 'node:http';
 import type { Context } from 'alp-node';
 import type { NodeApplication } from 'alp-types';

@@ -7,10 +7,5 @@
     "project": {
       "type": "lib"
     }
-  },
-  "react-alp-translate": {
-    "type": {
-      "type": "lib"
-    }
   }
 }

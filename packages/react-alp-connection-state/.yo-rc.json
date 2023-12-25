@@ -7,15 +7,5 @@
     "project": {
       "type": "lib"
     }
-  },
-  "react-alp-translate": {
-    "type": {
-      "type": "lib"
-    }
-  },
-  "react-alp-loading-bar": {
-    "type": {
-      "type": "lib"
-    }
   }
 }

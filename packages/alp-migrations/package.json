@@ -27,6 +27,10 @@
     }
   },
   "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
@@ -53,15 +57,15 @@
   },
   "dependencies": {
     "alp-types": "3.1.0",
-    "nightingale-logger": "^14.1.0",
+    "nightingale-logger": "^15.0.0",
     "semver": "^7.3.5"
   },
   "devDependencies": {
-    "@babel/core": "7.22.9",
+    "@babel/core": "7.23.6",
     "@types/node": "18.18.8",
     "@types/semver": "7.5.4",
     "liwi-mongo": "10.5.0",
-    "pob-babel": "36.2.0",
-    "typescript": "5.1.6"
+    "pob-babel": "38.0.0",
+    "typescript": "5.3.3"
   }
 }

@@ -99,7 +99,7 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     return this.config.loadConfigSync(name);
   }
 
-  createContext<StateT = DefaultState>(
+  override createContext<StateT = DefaultState>(
     req: IncomingMessage,
     res: ServerResponse,
   ): ParameterizedContext<StateT> {
@@ -117,7 +117,7 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
   }
 
   // eslint-disable-next-line @typescript-eslint/class-methods-use-this
-  listen(): never {
+  override listen(): never {
     throw new Error('Use start instead');
   }
 

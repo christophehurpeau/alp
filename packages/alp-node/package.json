@@ -42,13 +42,17 @@
       }
     },
     "./AlpNodeApp": {
-      "types": "./dist/definitions/index.d.ts",
+      "types": "./dist/definitions/AlpNodeApp.d.ts",
       "node": {
         "import": "./dist/AlpNodeApp-node18.mjs"
       }
     }
   },
   "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
@@ -72,12 +76,11 @@
     ]
   },
   "peerDependencies": {
-    "router-segments": "^7.0.0"
+    "router-segments": "^9.1.0"
   },
   "dependencies": {
     "@types/koa": "^2.13.1",
     "@types/node": ">=18.0.0",
-    "@types/node-fetch": "^2.6.4",
     "alp-listen": "7.0.0",
     "alp-node-config": "9.0.0",
     "alp-node-errors": "8.0.0",
@@ -88,14 +91,14 @@
     "koa": "^2.13.1",
     "koa-compress": "^5.0.0",
     "koa-static": "^5.0.0",
-    "nightingale-logger": "^14.1.0"
+    "nightingale-logger": "^15.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.9",
+    "@babel/core": "7.23.6",
     "@types/koa-compress": "4.0.5",
     "@types/koa-static": "4.0.3",
     "@types/minimist": "1.2.4",
-    "pob-babel": "36.2.0",
-    "typescript": "5.1.6"
+    "pob-babel": "38.0.0",
+    "typescript": "5.3.3"
   }
 }

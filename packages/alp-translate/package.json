@@ -48,23 +48,21 @@
         "import": "./dist/index-node18.mjs"
       },
       "browser": {
-        "browser:modern": {
-          "import": "./dist/index-browsermodern.es.js"
-        },
         "import": "./dist/index-browser.es.js"
       }
     },
     "./browser": {
       "types": "./dist/definitions/index.d.ts",
       "browser": {
-        "browser:modern": {
-          "import": "./dist/index-browsermodern.es.js"
-        },
         "import": "./dist/index-browser.es.js"
       }
     }
   },
   "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
@@ -82,10 +80,6 @@
         "version": "18"
       },
       {
-        "target": "browser",
-        "version": "modern"
-      },
-      {
         "target": "browser"
       }
     ],
@@ -97,12 +91,12 @@
   "dependencies": {
     "alp-types": "3.1.0",
     "intl-messageformat": "^10.0.0",
-    "nightingale-logger": "^14.1.0"
+    "nightingale-logger": "^15.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.9",
-    "@babel/preset-env": "7.22.9",
-    "pob-babel": "36.2.0",
-    "typescript": "5.1.6"
+    "@babel/core": "7.23.6",
+    "@babel/preset-env": "7.23.6",
+    "pob-babel": "38.0.0",
+    "typescript": "5.3.3"
   }
 }

@@ -1,7 +1,8 @@
 import type { Context, NodeApplication } from 'alp-types';
 import type { Router, RouteMatch } from 'router-segments';
 
-type ReturnType = (app: NodeApplication) => (ctx: Context) => Promise<void>;
+export type AlpRouteRef = (ctx: Context) => Promise<void> | void;
+type ReturnType = (app: NodeApplication) => AlpRouteRef;
 
 export type UrlGenerator = <P extends Record<string, unknown> | undefined>(
   routeKey: string,
@@ -11,7 +12,7 @@ export type UrlGenerator = <P extends Record<string, unknown> | undefined>(
 declare module 'alp-types' {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   interface NodeApplication {
-    router?: Router;
+    router?: Router<any, AlpRouteRef>;
   }
 
   interface BaseContext {
@@ -24,29 +25,33 @@ declare module 'alp-types' {
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   interface Context {
-    route: RouteMatch<any>;
+    route: RouteMatch<any, AlpRouteRef>;
   }
 }
 
-export default function alpRouter(router: Router): ReturnType {
+export default function alpRouter<Locales extends string>(
+  router: Router<Locales, AlpRouteRef>,
+): ReturnType {
   return (app: NodeApplication) => {
     app.router = router;
 
     app.context.urlGenerator = function <
       P extends Record<string, unknown> | undefined,
     >(this: Context, routeKey: string, params?: P): string {
-      return router.toLocalizedPath(this.language, routeKey, params);
+      return router.toLocalizedPath(this.language as Locales, routeKey, params);
     };
 
     app.context.redirectTo = function <
       P extends Record<string, unknown> | undefined,
     >(this: Context, to: string, params?: P): Promise<void> {
-      return this.redirect(router.toLocalizedPath(this.language, to, params));
+      return this.redirect(
+        router.toLocalizedPath(this.language as Locales, to, params),
+      );
     };
 
-    return (ctx: Context): Promise<void> => {
+    return async (ctx: Context): Promise<void> => {
       // eslint-disable-next-line unicorn/no-array-method-this-argument
-      const routeMatch = router.find(ctx.request.path, ctx.language);
+      const routeMatch = router.find(ctx.request.path, ctx.language as Locales);
 
       if (!routeMatch) {
         ctx.status = 404;
@@ -55,7 +60,7 @@ export default function alpRouter(router: Router): ReturnType {
 
       ctx.route = routeMatch;
 
-      return (routeMatch.ref as (ctx: Context) => Promise<void>)(ctx);
+      await routeMatch.ref(ctx);
     };
   };
 }

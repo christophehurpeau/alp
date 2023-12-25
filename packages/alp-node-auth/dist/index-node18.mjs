@@ -1,8 +1,8 @@
 import { promisify } from 'node:util';
 import jsonwebtoken from 'jsonwebtoken';
 import { Logger } from 'nightingale-logger';
-import 'alp-router';
 import { EventEmitter } from 'node:events';
+import 'alp-router';
 import { randomBytes } from 'node:crypto';
 import Cookies from 'cookies';
 
@@ -125,7 +125,6 @@ class AuthenticationService extends EventEmitter {
           };
           // return strategyInstance.accessToken.create(result);
         }
-
       default:
         throw new Error('Invalid stategy');
     }
@@ -346,7 +345,6 @@ class UserAccountsService extends EventEmitter {
       accountId
       /*emails , user*/
     });
-
     if (!user) {
       user = {};
     }

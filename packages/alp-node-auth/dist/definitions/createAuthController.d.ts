@@ -1,6 +1,5 @@
-/// <reference types="koa" />
-import type { Context } from 'alp-node';
-import 'alp-router';
+import type { AlpRouteRef } from 'alp-router';
+import type { Context } from 'alp-types';
 import type MongoUsersManager from './MongoUsersManager';
 import type { AuthenticationService, AccessResponseHooks } from './services/authentification/AuthenticationService';
 import type { AllowedStrategyKeys, AllowedMapParamsStrategy } from './services/authentification/types';
@@ -13,10 +12,10 @@ export interface CreateAuthControllerParams<StrategyKeys extends AllowedStrategy
     authHooks?: AuthHooks<StrategyKeys>;
 }
 export interface AuthController {
-    login: (ctx: Context) => Promise<void>;
-    addScope: (ctx: Context) => Promise<void>;
-    response: (ctx: Context) => Promise<void>;
-    logout: (ctx: Context) => Promise<void>;
+    login: AlpRouteRef;
+    addScope: AlpRouteRef;
+    response: AlpRouteRef;
+    logout: AlpRouteRef;
 }
 type OptionalRecord<K extends keyof any, T> = {
     [P in K]?: T;

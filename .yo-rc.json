@@ -13,7 +13,6 @@
       "documentation": false,
       "typescript": true,
       "packageNames": [
-        "alp-body-parser",
         "alp-nextjs",
         "alp-rollup-plugin-config",
         "alp-types",
@@ -32,6 +31,7 @@
         "react-alp-loading-bar",
         "react-alp-translate",
         "alp-node",
+        "alp-body-parser",
         "alp-node-auth",
         "alp-hello-node-example"
       ]
@@ -43,7 +43,7 @@
       "type": "lib",
       "packageManager": "yarn",
       "yarnNodeLinker": "node-modules",
-      "supportsNode14": false
+      "disableYarnGitCache": true
     }
   }
 }

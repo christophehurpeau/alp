@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { Platform, StyleSheet, useWindowDimensions, View, Text } from 'react-native';
 import { jsx } from 'react/jsx-runtime';
 
-var defaultTheme = {
+const defaultTheme = {
   container: {
     backgroundColor: 'rgba(247, 25, 0, 0.8)',
     color: '#fff',
@@ -15,22 +15,18 @@ var defaultTheme = {
   },
   backgroundColorConnected: 'rgba(25, 200, 60, 0.8)'
 };
-var useCreateCalcNative = function useCreateCalcNative() {
-  var dimensions = useWindowDimensions();
-  return function (webCalc, createCalc) {
-    return createCalc(dimensions);
-  };
+const useCreateCalcNative = () => {
+  const dimensions = useWindowDimensions();
+  return (webCalc, createCalc) => createCalc(dimensions);
 };
-var useCreateCalcWeb = function useCreateCalcWeb() {
-  return function (webCalc) {
-    return "calc(" + webCalc + ")";
-  };
+const useCreateCalcWeb = () => {
+  return webCalc => `calc(${webCalc})`;
 };
-var useCreateCalc = Platform.OS === 'web' ? useCreateCalcWeb : useCreateCalcNative;
+const useCreateCalc = Platform.OS === 'web' ? useCreateCalcWeb : useCreateCalcNative;
 
 // example: const left = createCalc('50% - 100px', ({ width }) => width / 2 - 100);
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   connectionStateContainer: {
     backgroundColor: defaultTheme.container.backgroundColor,
     position: 'absolute',
@@ -61,25 +57,25 @@ var styles = StyleSheet.create({
     transition: 'background-color .2s'
   }
 });
-function ConnectionState(_ref) {
-  var theme = _ref.theme,
-    forceHidden = _ref.forceHidden,
-    state = _ref.state,
-    children = _ref.children;
-  var unloadingRef = useRef(false);
-  var createCalc = useCreateCalc();
-  var left = createCalc('50% - 100px', function (_ref2) {
-    var width = _ref2.width;
-    return width / 2 - 100;
-  }); // TODO use calc() in web ?
+function ConnectionState({
+  theme,
+  forceHidden,
+  state,
+  children
+}) {
+  const unloadingRef = useRef(false);
+  const createCalc = useCreateCalc();
+  const left = createCalc('50% - 100px', ({
+    width
+  }) => width / 2 - 100); // TODO use calc() in web ?
 
-  useEffect(function () {
+  useEffect(() => {
     if (typeof window === 'undefined') return;
-    var beforeUnloadHandler = function beforeUnloadHandler() {
+    const beforeUnloadHandler = () => {
       unloadingRef.current = true;
     };
     window.addEventListener('beforeunload', beforeUnloadHandler);
-    return function () {
+    return () => {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
     };
   }, []);
@@ -93,7 +89,7 @@ function ConnectionState(_ref) {
       }, state === 'connected' && {
         backgroundColor: (theme || defaultTheme).backgroundColorConnected
       }, {
-        left: left
+        left
       }],
       children: children
     })

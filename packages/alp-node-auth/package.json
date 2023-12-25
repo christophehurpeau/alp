@@ -60,6 +60,10 @@
     }
   },
   "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
@@ -111,7 +115,7 @@
     "alp-node": "^6.0.0",
     "alp-router": "^7.0.0",
     "liwi-mongo": "^10.5.0",
-    "router-segments": "^7.0.0"
+    "router-segments": "^9.1.0"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.1",
@@ -119,16 +123,16 @@
     "alp-types": "3.1.0",
     "cookies": "~0.8.0",
     "jsonwebtoken": "^9.0.0",
-    "nightingale-logger": "^14.1.0",
+    "nightingale-logger": "^15.0.0",
     "simple-oauth2": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.9",
+    "@babel/core": "7.23.6",
     "alp-node": "6.0.0",
     "alp-router": "7.0.0",
     "liwi-mongo": "10.5.0",
-    "pob-babel": "36.2.0",
-    "router-segments": "7.0.0",
-    "typescript": "5.1.6"
+    "pob-babel": "38.0.0",
+    "router-segments": "9.1.0",
+    "typescript": "5.3.3"
   }
 }

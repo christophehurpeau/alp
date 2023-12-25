@@ -1,5 +1,12 @@
 {
   "root": true,
   "extends": ["@pob/eslint-config/root-module"],
-  "ignorePatterns": ["/.next", "/out", "/build", "/.env.local", "/.tamagui"]
+  "ignorePatterns": [
+    "*.d.ts",
+    "/.next",
+    "/out",
+    "/build",
+    "/.env.local",
+    "/.tamagui"
+  ]
 }

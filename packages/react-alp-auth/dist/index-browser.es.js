@@ -1,11 +1,11 @@
 import { getServerCookieValue } from 'alp-nextjs';
 import BrowserCookies from 'js-cookie';
 
-var COOKIE_NAME_STATE = 'loggedInUserState';
-var parseCookie = function parseCookie(stateValue) {
+const COOKIE_NAME_STATE = 'loggedInUserState';
+const parseCookie = stateValue => {
   return stateValue ? JSON.parse(stateValue) : null;
 };
-var browserStateValueParsed = parseCookie(BrowserCookies.get("loggedInUserState"));
+const browserStateValueParsed = parseCookie(BrowserCookies.get("loggedInUserState"));
 function useLoggedInUserStateBrowser() {
   return {
     isLoggedIn: !!browserStateValueParsed,
@@ -13,10 +13,8 @@ function useLoggedInUserStateBrowser() {
     expiresIn: browserStateValueParsed == null ? void 0 : browserStateValueParsed.expiresIn
   };
 }
-var useLoggedInUserState = useLoggedInUserStateBrowser;
-var getServerAuthCookieValue = function getServerAuthCookieValue(ctx) {
-  return getServerCookieValue(ctx, COOKIE_NAME_STATE);
-};
+const useLoggedInUserState = useLoggedInUserStateBrowser;
+const getServerAuthCookieValue = ctx => getServerCookieValue(ctx, COOKIE_NAME_STATE);
 
 export { getServerAuthCookieValue, useLoggedInUserState };
 //# sourceMappingURL=index-browser.es.js.map

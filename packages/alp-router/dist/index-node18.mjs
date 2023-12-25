@@ -7,7 +7,7 @@ function alpRouter(router) {
     app.context.redirectTo = function (to, params) {
       return this.redirect(router.toLocalizedPath(this.language, to, params));
     };
-    return ctx => {
+    return async ctx => {
       // eslint-disable-next-line unicorn/no-array-method-this-argument
       const routeMatch = router.find(ctx.request.path, ctx.language);
       if (!routeMatch) {
@@ -15,7 +15,7 @@ function alpRouter(router) {
         throw new Error(`Route not found: ${ctx.request.path}`);
       }
       ctx.route = routeMatch;
-      return routeMatch.ref(ctx);
+      await routeMatch.ref(ctx);
     };
   };
 }

@@ -93,15 +93,12 @@ export View from './LoginView';
 
 ```js
 import { ReactNode } from 'react';
-import T from 'react-alp-translate';
 import { LoginButtons } from 'react-alp-login';
 import Header from '../components/HeaderComponent';
 
 export default (): ReactNode => (
   <div className="login-view">
-    <T id="title">
-      {(title) => <Helmet title="Login" titleTemplate={`${title} - %s`} />}
-    </T>
+    <Helmet title="Login" titleTemplate={`${title} - %s`} />
     <Header />
     <LoginButtons />
   </div>
@@ -114,7 +111,6 @@ export default (): ReactNode => (
 import { ReactNode } from 'react';
 import Link from 'react-alp-link';
 import User from 'react-alp-user';
-import T from 'react-alp-translate';
 
   <User>
     {user => (
@@ -123,9 +119,7 @@ import T from 'react-alp-translate';
           {user.displayName}
           <ul className="list links">
             <li>
-              <T id="header.logout">{t =>
-                <Link to="logout" target="_self">{t}</Link>
-              }</T>
+              <Link to="logout" target="_self">Logout</Link>
             </li>
           </ul>
         </span>

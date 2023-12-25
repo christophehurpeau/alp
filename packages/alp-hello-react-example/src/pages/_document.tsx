@@ -4,7 +4,7 @@ import type { ReactElement } from 'react';
 import Tamagui from '../tamagui.config';
 
 export default class MyDocument extends NextDocument {
-  static getInitialProps = createDocumentInitialProps(() => (
+  static override getInitialProps = createDocumentInitialProps(() => (
     <style
       dangerouslySetInnerHTML={{
         __html: Tamagui.getCSS({
@@ -18,7 +18,7 @@ export default class MyDocument extends NextDocument {
   ));
 
   // eslint-disable-next-line @typescript-eslint/class-methods-use-this
-  render(): ReactElement {
+  override render(): ReactElement {
     return (
       <Html lang="en">
         <Head />

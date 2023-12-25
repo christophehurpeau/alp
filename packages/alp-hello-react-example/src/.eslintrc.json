@@ -2,14 +2,13 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "packages/alp-hello-react-example/tsconfig.json",
-    "EXPERIMENTAL_useProjectService": true
+    "project": "packages/alp-hello-react-example/tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
   "extends": [
     "@pob/eslint-config-typescript",
     "@pob/eslint-config-typescript/app",
-    "@pob/eslint-config-typescript-react/react-native-web",
+    "@pob/eslint-config-typescript-react",
     "@pob/eslint-config-typescript/allow-unsafe"
   ],
   "settings": {
