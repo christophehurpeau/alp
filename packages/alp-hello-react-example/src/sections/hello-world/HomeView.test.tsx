@@ -3,19 +3,21 @@
  */
 
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 import { TamaguiProvider } from 'tamagui';
 import TamaguiConfig from '../../tamagui.config';
 import { HomeView } from './HomeView';
 
-const Providers: FC<{ children: ReactNode }> = ({ children }) => (
-  <TamaguiProvider config={TamaguiConfig}>
-    <IntlProvider locale="en" defaultLocale="en">
-      {children}
-    </IntlProvider>
-  </TamaguiProvider>
-);
+function Providers({ children }: { children: ReactNode }): ReactNode {
+  return (
+    <TamaguiProvider config={TamaguiConfig}>
+      <IntlProvider locale="en" defaultLocale="en">
+        {children}
+      </IntlProvider>
+    </TamaguiProvider>
+  );
+}
 
 describe('HomeView', () => {
   test('hello without name', () => {

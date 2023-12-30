@@ -21,15 +21,7 @@
   "engines": {
     "node": ">=18.12.0"
   },
-  "browserslist": {
-    "production": [
-      "defaults",
-      "> 0.2%",
-      "not ie < 12",
-      "not safari < 10",
-      "not ios_saf < 10"
-    ]
-  },
+  "sideEffects": false,
   "main": "./dist/index-node18.mjs",
   "types": "./dist/definitions/index.d.ts",
   "module": "./dist/index-browser.es.js",
@@ -50,7 +42,6 @@
     "./preset-babel.cjs": "./preset-babel.cjs",
     "./react-native-web.d.ts": "./react-native-web.d.ts"
   },
-  "sideEffects": false,
   "files": [
     "src",
     "dist",
@@ -68,7 +59,15 @@
     "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-nextjs",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
-  "prettier": "@pob/root/prettier-config",
+  "browserslist": {
+    "production": [
+      "defaults",
+      "> 0.2%",
+      "not ie < 12",
+      "not safari < 10",
+      "not ios_saf < 10"
+    ]
+  },
   "pob": {
     "jsx": true,
     "babelEnvs": [
@@ -90,6 +89,7 @@
       "react-native-web.d.ts"
     ]
   },
+  "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
     "@babel/core": "^7.23.6",
     "next": "^13.4.12",
@@ -97,18 +97,18 @@
     "react-native-web-lite": "^1.46.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.6",
+    "@babel/runtime": "^7.23.7",
     "babel-plugin-discard-module-references": "^1.1.2",
-    "babel-preset-pob-env": "11.0.0",
+    "babel-preset-pob-env": "11.0.1",
     "cookies": "~0.8.0",
     "sort-keys": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
-    "@babel/preset-env": "7.23.6",
+    "@babel/core": "7.23.7",
+    "@babel/preset-env": "7.23.7",
     "@babel/preset-react": "7.23.3",
     "next": "13.4.12",
-    "pob-babel": "38.0.0",
+    "pob-babel": "38.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.3.3"

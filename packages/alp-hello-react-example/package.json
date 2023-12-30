@@ -15,6 +15,13 @@
   "engines": {
     "node": ">=18.12.0"
   },
+  "scripts": {
+    "build": "NODE_ENV=production next build",
+    "lint": "yarn run lint:eslint",
+    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-hello-react-example",
+    "start": "next dev",
+    "start:prod": "next start"
+  },
   "browserslist": {
     "production": [
       "> 0.2%",
@@ -40,13 +47,6 @@
       "iOS >= 13.4"
     ]
   },
-  "scripts": {
-    "build": "NODE_ENV=production next build",
-    "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-hello-react-example",
-    "start": "next dev",
-    "start:prod": "next start"
-  },
   "prettier": "@pob/root/prettier-config",
   "dependencies": {
     "@tamagui/core": "1.46.2",
@@ -55,6 +55,7 @@
     "@tamagui/shorthands": "1.46.2",
     "@tamagui/themes": "1.46.2",
     "alp-nextjs": "4.1.0",
+    "alp-router": "7.1.0",
     "next": "13.4.12",
     "nightingale-app-console": "15.0.0",
     "react": "18.2.0",
@@ -67,10 +68,11 @@
     "react-native-safe-area-context": "4.8.2",
     "react-native-svg": "13.10.0",
     "react-native-web-lite": "1.46.2",
+    "router-segments": "9.1.0",
     "tamagui": "1.46.2"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
+    "@babel/core": "7.23.7",
     "@tamagui/babel-plugin": "1.46.2",
     "@tamagui/next-plugin": "1.46.2",
     "@testing-library/react": "14.0.0",

@@ -31,7 +31,6 @@
     "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-hello-node-example",
     "start": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
-  "prettier": "@pob/root/prettier-config",
   "pob": {
     "babelEnvs": [
       {
@@ -44,19 +43,20 @@
       "index"
     ]
   },
+  "prettier": "@pob/root/prettier-config",
   "dependencies": {
-    "alp-node": "6.0.0",
-    "alp-node-auth": "9.0.1",
-    "alp-router": "7.0.0",
+    "alp-node": "6.1.0",
+    "alp-node-auth": "9.1.0",
+    "alp-router": "7.1.0",
     "liwi-mongo": "10.5.0",
     "nightingale-app-console": "15.0.0",
     "nightingale-web-processor": "15.0.0",
     "router-segments": "9.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
-    "alp-rollup-plugin-config": "2.1.0",
-    "pob-babel": "38.0.0",
+    "@babel/core": "7.23.7",
+    "alp-rollup-plugin-config": "2.2.0",
+    "pob-babel": "38.0.1",
     "typescript": "5.3.3"
   }
 }

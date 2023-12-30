@@ -11,7 +11,6 @@ export default function Counter(): ReactElement {
     <div>
       <p>You clicked {count} times</p>
       <Button
-        type="button"
         onPress={() => {
           counterLogger.info('inc', { count });
           setCount(count + 1);

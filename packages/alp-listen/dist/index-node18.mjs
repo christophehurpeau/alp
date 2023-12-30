@@ -4,7 +4,9 @@ import { createServer as createServer$1 } from 'node:https';
 import { Logger } from 'nightingale-logger';
 
 const logger = new Logger('alp:listen');
-const createServer = (callback, socketPath, tls, dirname = '') => {
+const createServer = (callback, socketPath, tls, dirname = ''
+// eslint-disable-next-line @typescript-eslint/max-params
+) => {
   const createHttpServer = !socketPath && tls ? createServer$1 : createServer$2;
   if (!tls) {
     return createHttpServer(callback);

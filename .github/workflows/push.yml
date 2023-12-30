@@ -66,6 +66,9 @@ jobs:
       - name: Typescript
         run: yarn run tsc
 
+      - name: Eslint
+        run: yarn run lint:eslint
+
   test:
     runs-on: ubuntu-latest
 

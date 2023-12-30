@@ -8,7 +8,6 @@ export default function ClickToThrow(): ReactElement {
   return (
     <div>
       <Button
-        type="button"
         onPress={() => {
           throw new Error('Error on click');
         }}
@@ -16,7 +15,6 @@ export default function ClickToThrow(): ReactElement {
         Click me to throw
       </Button>
       <Button
-        type="button"
         onPress={() => {
           clickToThrowLogger.error(new Error('Error on click'));
         }}

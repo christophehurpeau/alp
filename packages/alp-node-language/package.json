@@ -21,6 +21,7 @@
   "engines": {
     "node": ">=18.12.0"
   },
+  "sideEffects": false,
   "main": "./dist/index-node18.mjs",
   "types": "./dist/definitions/index.d.ts",
   "exports": {
@@ -32,7 +33,6 @@
       }
     }
   },
-  "sideEffects": false,
   "files": [
     "src",
     "dist"
@@ -46,7 +46,6 @@
     "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-node-language",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
-  "prettier": "@pob/root/prettier-config",
   "pob": {
     "babelEnvs": [
       {
@@ -58,14 +57,15 @@
       "index"
     ]
   },
+  "prettier": "@pob/root/prettier-config",
   "dependencies": {
     "@types/koa": "^2.13.1",
     "alp-types": "3.1.1",
     "object-properties": "^8.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
-    "pob-babel": "38.0.0",
+    "@babel/core": "7.23.7",
+    "pob-babel": "38.0.1",
     "typescript": "5.3.3"
   }
 }

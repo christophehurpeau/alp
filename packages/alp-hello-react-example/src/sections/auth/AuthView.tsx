@@ -21,10 +21,7 @@ export function AuthView({
           <Text>Logged In User: {loggedInUserId}</Text>
         </Stack>
 
-        <Button
-          href={`${process.env.NEXT_PUBLIC_API_URL || '/api'}/logout`}
-          variant="solid"
-        >
+        <Button href={`${process.env.NEXT_PUBLIC_API_URL || '/api'}/logout`}>
           <Text>Logout</Text>
         </Button>
       </YStack>

@@ -1,8 +1,8 @@
 import { useThemeSetting } from '@tamagui/next-theme';
-import type { FC } from 'react';
+import type { ReactNode } from 'react';
 import { Button, useDidFinishSSR } from 'tamagui';
 
-export const ToggleTheme: FC = () => {
+export function ToggleTheme(): ReactNode {
   const isVisible = useDidFinishSSR();
   const themeSetting = useThemeSetting();
 
@@ -13,4 +13,4 @@ export const ToggleTheme: FC = () => {
         : `Change theme (currently: ${themeSetting.current || 'none'})`}
     </Button>
   );
-};
+}

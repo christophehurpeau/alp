@@ -6,8 +6,7 @@ export function SlackLoginButton(): ReactElement {
   return (
     <Button
       href={`${process.env.NEXT_PUBLIC_API_URL || '/api'}/login/slack`}
-      variant="solid"
-      startIcon={<SlackIcon size={24} color="#ffffff" />}
+      icon={<SlackIcon size={24} color="#ffffff" />}
     >
       <Text color="text.50">Log in with Slack</Text>
     </Button>

@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === 'production') {
   require('../../build/tamagui.css');
 }
 
+// eslint-disable-next-line react/function-component-definition
 const App: AppType = ({ Component, pageProps }) => {
   const [theme, setTheme] = useRootTheme(); // TODO use getServerCookieValue to prevent blink on refresh.
 

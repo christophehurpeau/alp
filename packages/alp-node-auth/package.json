@@ -17,6 +17,7 @@
   "engines": {
     "node": ">=18.12.0"
   },
+  "sideEffects": false,
   "main": "./dist/index-node18.mjs",
   "types": "./dist/definitions/index.d.ts",
   "typesVersions": {
@@ -59,7 +60,6 @@
       "default": "./strategies/slack.js"
     }
   },
-  "sideEffects": false,
   "files": [
     "src",
     "dist"
@@ -73,7 +73,6 @@
     "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-node-auth",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
-  "prettier": "@pob/root/prettier-config",
   "pob": {
     "babelEnvs": [
       {
@@ -111,6 +110,7 @@
       }
     ]
   },
+  "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
     "alp-node": "^6.0.0",
     "alp-router": "^7.0.0",
@@ -127,11 +127,11 @@
     "simple-oauth2": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
+    "@babel/core": "7.23.7",
     "alp-node": "6.1.0",
     "alp-router": "7.1.0",
     "liwi-mongo": "10.5.0",
-    "pob-babel": "38.0.0",
+    "pob-babel": "38.0.1",
     "router-segments": "9.1.0",
     "typescript": "5.3.3"
   }
