@@ -4650,13 +4650,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:0.72.5":
-  version: 0.72.5
-  resolution: "@types/react-native@npm:0.72.5"
+"@types/react-native@npm:0.72.8":
+  version: 0.72.8
+  resolution: "@types/react-native@npm:0.72.8"
   dependencies:
     "@react-native/virtualized-lists": "npm:^0.72.4"
     "@types/react": "npm:*"
-  checksum: ca76455309f5690334e8d0780ec5a0fd44f261faaf4d0472d0aa7b10ffd7c5b4fe5bd653a8cb49811f695ad431503e25fcc1b6f1244bdecf90acb7a29cef6b6c
+  checksum: 1029e17b4c2de0a56cc5c67a73459e6ee6e8ffd5f779e6a835889ae9141e4453252832ee3b7c5a7d2fad4f7b79dc7d7f3796ed2cd58855157e1e5ac52e501332
   languageName: node
   linkType: hard
 
@@ -5094,7 +5094,7 @@ __metadata:
     "@testing-library/react": "npm:14.0.0"
     "@types/node": "npm:18.19.4"
     "@types/react": "npm:18.2.35"
-    "@types/react-native": "npm:0.72.5"
+    "@types/react-native": "npm:0.72.8"
     alp-nextjs: "npm:4.1.0"
     alp-router: "npm:7.1.0"
     next: "npm:13.4.12"
@@ -11942,7 +11942,7 @@ __metadata:
     "@babel/preset-env": "npm:7.23.7"
     "@babel/preset-react": "npm:7.23.3"
     "@babel/runtime": "npm:^7.23.7"
-    "@types/react-native": "npm:0.72.5"
+    "@types/react-native": "npm:0.72.8"
     pob-babel: "npm:38.0.1"
     react: "npm:18.2.0"
     typescript: "npm:5.3.3"
