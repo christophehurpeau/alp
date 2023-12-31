@@ -3602,6 +3602,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/normalize-css-color@npm:1.79.19":
+  version: 1.79.19
+  resolution: "@tamagui/normalize-css-color@npm:1.79.19"
+  dependencies:
+    "@react-native/normalize-color": "npm:^2.1.0"
+  checksum: 2e92a4f6c8e7c50f1324de495b019ba54ad45918820bc655e9336e78ba1266fff0c142ca46b5b4ead4d095f725a62325f5a69fa0b57b5bba54e1f929c98fc99b
+  languageName: node
+  linkType: hard
+
 "@tamagui/polyfill-dev@npm:1.46.2":
   version: 1.46.2
   resolution: "@tamagui/polyfill-dev@npm:1.46.2"
@@ -3742,12 +3751,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/react-native-use-pressable@npm:1.79.19":
+  version: 1.79.19
+  resolution: "@tamagui/react-native-use-pressable@npm:1.79.19"
+  peerDependencies:
+    react: "*"
+  checksum: ea476d44c84b7cd65541a4a967cc4908bad0e0bbf922254b67cfb772377c69341a60c0230621e327103f19703df52786327aa29fe9b666250ab6168fef8550a5
+  languageName: node
+  linkType: hard
+
 "@tamagui/react-native-use-responder-events@npm:1.46.2":
   version: 1.46.2
   resolution: "@tamagui/react-native-use-responder-events@npm:1.46.2"
   peerDependencies:
     react: "*"
   checksum: 80e63de19d7abf69113d7815fb040d15f552a7875b401c10b14f92e709c3deb9230837c1d04b91a749c6b752429310613d2903a5cd77e3ac876aff60cb964819
+  languageName: node
+  linkType: hard
+
+"@tamagui/react-native-use-responder-events@npm:1.79.19":
+  version: 1.79.19
+  resolution: "@tamagui/react-native-use-responder-events@npm:1.79.19"
+  peerDependencies:
+    react: "*"
+  checksum: 8131fa4b1b314740f335f0179016bb58e31e601aab45dd489d7033d745e89b067d8b159b8388d776af0aa2631a3d2b8dfa51299f1e18a563a86e681e872e1b28
   languageName: node
   linkType: hard
 
@@ -3879,6 +3906,13 @@ __metadata:
   version: 1.46.2
   resolution: "@tamagui/simple-hash@npm:1.46.2"
   checksum: 7443b53f76573d7a77eb5443e6ed492d1a3622d1041fbb249cc9abf8795537dc859b654f71ad4673aaa54193057e6fc374a4ffebe60aec41051eb899407dbebd
+  languageName: node
+  linkType: hard
+
+"@tamagui/simple-hash@npm:1.79.19":
+  version: 1.79.19
+  resolution: "@tamagui/simple-hash@npm:1.79.19"
+  checksum: 80a745c1be3ffe6426273d805dd7f65bbf29bbeee5caa5fff0982c0de83b7720648a14395c070f9c4d151bc86898631d51d44801ec84cbe6eb7ee22c87eb521b
   languageName: node
   linkType: hard
 
@@ -5118,7 +5152,7 @@ __metadata:
     react-native-safe-area-context: "npm:4.8.2"
     react-native-svg: "npm:13.10.0"
     react-native-web: "npm:0.19.7"
-    react-native-web-lite: "npm:1.46.2"
+    react-native-web-lite: "npm:1.79.19"
     router-segments: "npm:9.1.0"
     springbokjs-daemon: "npm:10.1.0"
     tamagui: "npm:1.46.2"
@@ -12126,6 +12160,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-web-internals@npm:1.79.19":
+  version: 1.79.19
+  resolution: "react-native-web-internals@npm:1.79.19"
+  dependencies:
+    "@tamagui/normalize-css-color": "npm:1.79.19"
+    "@tamagui/react-native-use-pressable": "npm:1.79.19"
+    "@tamagui/react-native-use-responder-events": "npm:1.79.19"
+    "@tamagui/simple-hash": "npm:1.79.19"
+    styleq: "npm:^0.1.3"
+  peerDependencies:
+    react: "*"
+  checksum: ab0aa32e1df874197d44d5190f6fd058c976b32c3720f5ee42c8b9161617c0b1cf8c3881a496dc341ce82e27d8a3f5f93555f931d1fed0563258618a21880ca4
+  languageName: node
+  linkType: hard
+
 "react-native-web-lite@npm:1.46.2":
   version: 1.46.2
   resolution: "react-native-web-lite@npm:1.46.2"
@@ -12138,6 +12187,21 @@ __metadata:
     react: "*"
     react-dom: "*"
   checksum: d2d96bfff24e89a7aa54b009544a11a60a4c374f5ae699a978238fbe4be8aad9f27219eb8caf1c3350eb1a5b5e09fed8af15ca2361ac5639a5a25ed1a159dfb3
+  languageName: node
+  linkType: hard
+
+"react-native-web-lite@npm:1.79.19":
+  version: 1.79.19
+  resolution: "react-native-web-lite@npm:1.79.19"
+  dependencies:
+    "@tamagui/normalize-css-color": "npm:1.79.19"
+    invariant: "npm:^2.2.4"
+    react-native-web-internals: "npm:1.79.19"
+    styleq: "npm:^0.1.3"
+  peerDependencies:
+    react: "*"
+    react-dom: "*"
+  checksum: 369615b528b2ce100aaa5806463e14df26f4a672a571492dc6d46400f2705f1de5d4e0ed4f52a65680b07b35a2a53b604b846e75afb9af0c07fbfe3a2a18e350
   languageName: node
   linkType: hard
 
