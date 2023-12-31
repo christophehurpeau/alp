@@ -1172,19 +1172,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-runtime@npm:7.23.6":
-  version: 7.23.6
-  resolution: "@babel/plugin-transform-runtime@npm:7.23.6"
+"@babel/plugin-transform-runtime@npm:7.23.7":
+  version: 7.23.7
+  resolution: "@babel/plugin-transform-runtime@npm:7.23.7"
   dependencies:
     "@babel/helper-module-imports": "npm:^7.22.15"
     "@babel/helper-plugin-utils": "npm:^7.22.5"
-    babel-plugin-polyfill-corejs2: "npm:^0.4.6"
-    babel-plugin-polyfill-corejs3: "npm:^0.8.5"
-    babel-plugin-polyfill-regenerator: "npm:^0.5.3"
+    babel-plugin-polyfill-corejs2: "npm:^0.4.7"
+    babel-plugin-polyfill-corejs3: "npm:^0.8.7"
+    babel-plugin-polyfill-regenerator: "npm:^0.5.4"
     semver: "npm:^6.3.1"
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 54e540ec04f05f664c69db36a78b5db56b0d3e25bbe34d7f11cfe21cc5aad5240661f5ada630c7b2abcae99d229851aafbb6b2218cf285771379e0844a3f24a9
+  checksum: 1e0b21c943e565e6a2a859991059f5b5a8b917689aab9b3beb172babece1843b42f9ae9ff9913f01134fb201fd67ac2831559578949c7287e7c782e6d6740de8
   languageName: node
   linkType: hard
 
@@ -2917,9 +2917,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pob/root@npm:9.0.0":
-  version: 9.0.0
-  resolution: "@pob/root@npm:9.0.0"
+"@pob/root@npm:9.1.0":
+  version: 9.1.0
+  resolution: "@pob/root@npm:9.1.0"
   dependencies:
     "@commitlint/cli": "npm:18.4.3"
     "@pob/pretty-eslint-config": "npm:5.3.1"
@@ -2929,7 +2929,7 @@ __metadata:
     husky: "npm:~8.0.1"
     json5: "npm:^2.2.2"
     lint-staged: "npm:15.2.0"
-    pob-dependencies: "npm:11.0.0"
+    pob-dependencies: "npm:11.0.1"
     prettier: "npm:2.8.8"
     repository-check-dirty: "npm:6.3.1"
     semver: "npm:^7.3.7"
@@ -2943,7 +2943,7 @@ __metadata:
     pretty-eslint-config: ./bin/pretty-eslint-config.js
     pretty-pkg: ./bin/pretty-pkg.js
     repository-check-dirty: ./bin/repository-check-dirty.js
-  checksum: c9a9f5e6b5a205dcaf93edc03094abb40191febe96a90997f31225d4e8e623915b801ea13486cf15caa576f2872847a6cae237e575d64e1a35f785ce71552a8b
+  checksum: c19bc7c1a73939cf6f7f062f02c524fd3bc96ca85a38149efbaa336e786e45928be1badfa33bb5ae063567cd272ce02cb759035f92d03b26c1ad3d75b437c976
   languageName: node
   linkType: hard
 
@@ -5293,7 +5293,7 @@ __metadata:
     "@types/koa": "npm:^2.13.1"
     co-body: "npm:^6.0.0"
     koa: "npm:^2.13.1"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     typescript: "npm:5.3.3"
   peerDependencies:
     alp-node: ^6.0.0
@@ -5312,7 +5312,7 @@ __metadata:
     liwi-mongo: "npm:11.0.0"
     nightingale-app-console: "npm:15.0.0"
     nightingale-web-processor: "npm:15.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     router-segments: "npm:9.1.0"
     typescript: "npm:5.3.3"
   languageName: unknown
@@ -5363,7 +5363,7 @@ __metadata:
     "@babel/core": "npm:7.23.7"
     alp-node-config: "npm:9.1.0"
     nightingale-logger: "npm:^15.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     typescript: "npm:5.3.3"
   languageName: unknown
   linkType: soft
@@ -5378,7 +5378,7 @@ __metadata:
     alp-types: "npm:3.1.1"
     liwi-mongo: "npm:11.0.0"
     nightingale-logger: "npm:^15.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     semver: "npm:^7.3.5"
     typescript: "npm:5.3.3"
   peerDependencies:
@@ -5395,10 +5395,10 @@ __metadata:
     "@babel/preset-react": "npm:7.23.3"
     "@babel/runtime": "npm:^7.23.7"
     babel-plugin-discard-module-references: "npm:^1.1.2"
-    babel-preset-pob-env: "npm:11.0.1"
+    babel-preset-pob-env: "npm:11.0.2"
     cookies: "npm:~0.8.0"
     next: "npm:13.5.6"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     sort-keys: "npm:^5.0.0"
@@ -5425,7 +5425,7 @@ __metadata:
     jsonwebtoken: "npm:^9.0.0"
     liwi-mongo: "npm:11.0.0"
     nightingale-logger: "npm:^15.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     router-segments: "npm:9.1.0"
     simple-oauth2: "npm:^5.0.0"
     typescript: "npm:5.3.3"
@@ -5446,7 +5446,7 @@ __metadata:
     deep-freeze-es6: "npm:^3.0.2"
     minimist-argv: "npm:^1.1.0"
     parse-json-object-as-map: "npm:^1.2.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     stringify-json: "npm:^2.0.0"
     typescript: "npm:5.3.3"
   languageName: unknown
@@ -5460,7 +5460,7 @@ __metadata:
     alp-types: "npm:3.1.1"
     error-html: "npm:^0.3.5"
     nightingale-logger: "npm:^15.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     typescript: "npm:5.3.3"
   languageName: unknown
   linkType: soft
@@ -5473,7 +5473,7 @@ __metadata:
     "@types/koa": "npm:^2.13.1"
     alp-types: "npm:3.1.1"
     object-properties: "npm:^8.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     typescript: "npm:5.3.3"
   languageName: unknown
   linkType: soft
@@ -5499,7 +5499,7 @@ __metadata:
     koa-compress: "npm:^5.0.0"
     koa-static: "npm:^5.0.0"
     nightingale-logger: "npm:^15.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     typescript: "npm:5.3.3"
   peerDependencies:
     router-segments: ^9.1.0
@@ -5516,7 +5516,7 @@ __metadata:
     alp-router: "npm:7.1.0"
     alp-types: "npm:3.1.1"
     object-properties: "npm:^8.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     typescript: "npm:5.3.3"
   peerDependencies:
     router-segments: ^9.1.0
@@ -5541,7 +5541,7 @@ __metadata:
     "@babel/core": "npm:7.23.7"
     "@babel/preset-env": "npm:7.23.7"
     alp-types: "npm:3.1.1"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     router-segments: "npm:9.1.0"
     typescript: "npm:5.3.3"
   peerDependencies:
@@ -5558,7 +5558,7 @@ __metadata:
     alp-types: "npm:3.1.1"
     intl-messageformat: "npm:^10.0.0"
     nightingale-logger: "npm:^15.0.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     typescript: "npm:5.3.3"
   languageName: unknown
   linkType: soft
@@ -5578,14 +5578,14 @@ __metadata:
     "@pob/eslint-config": "npm:53.0.0"
     "@pob/eslint-config-typescript": "npm:53.1.0"
     "@pob/eslint-config-typescript-react": "npm:53.0.0"
-    "@pob/root": "npm:9.0.0"
+    "@pob/root": "npm:9.1.0"
     "@sucrase/jest-plugin": "npm:3.0.0"
     "@types/jest": "npm:29.5.11"
     check-package-dependencies: "npm:7.0.0"
     eslint: "npm:8.56.0"
     jest: "npm:29.7.0"
     jest-environment-jsdom: "npm:29.7.0"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     sucrase: "npm:3.35.0"
     typescript: "npm:5.3.3"
   languageName: unknown
@@ -6036,7 +6036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-polyfill-corejs2@npm:^0.4.6, babel-plugin-polyfill-corejs2@npm:^0.4.7":
+"babel-plugin-polyfill-corejs2@npm:^0.4.7":
   version: 0.4.7
   resolution: "babel-plugin-polyfill-corejs2@npm:0.4.7"
   dependencies:
@@ -6049,7 +6049,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-polyfill-corejs3@npm:^0.8.5, babel-plugin-polyfill-corejs3@npm:^0.8.7":
+"babel-plugin-polyfill-corejs3@npm:^0.8.7":
   version: 0.8.7
   resolution: "babel-plugin-polyfill-corejs3@npm:0.8.7"
   dependencies:
@@ -6061,7 +6061,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-polyfill-regenerator@npm:^0.5.3, babel-plugin-polyfill-regenerator@npm:^0.5.4":
+"babel-plugin-polyfill-regenerator@npm:^0.5.4":
   version: 0.5.4
   resolution: "babel-plugin-polyfill-regenerator@npm:0.5.4"
   dependencies:
@@ -6134,9 +6134,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-preset-pob-env@npm:11.0.1":
-  version: 11.0.1
-  resolution: "babel-preset-pob-env@npm:11.0.1"
+"babel-preset-pob-env@npm:11.0.2":
+  version: 11.0.2
+  resolution: "babel-preset-pob-env@npm:11.0.2"
   dependencies:
     "@babel/plugin-proposal-nullish-coalescing-operator": "npm:^7.18.6"
     "@babel/plugin-proposal-optional-chaining": "npm:^7.21.0"
@@ -6147,7 +6147,7 @@ __metadata:
     babel-preset-optimizations: "npm:^2.0.0"
   peerDependencies:
     "@babel/core": ^7.23.2
-  checksum: dbd4604883ade8ce4e1e00eec64810f902f218cfbdf9de4711cfa60b902a3a0c123a445a611fb449d2460086f52a440976e15b4bb0f569abe2cf25bab6def068
+  checksum: 62037c45f298af5b667e61a1550a311d00c289bdaaca6751faddcd882214dbfe5e87bff0f5a2b9807811452a6f76aee4bbb62dbc0053d778e6f4aed50c917b47
   languageName: node
   linkType: hard
 
@@ -11950,18 +11950,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pob-babel@npm:38.0.1":
-  version: 38.0.1
-  resolution: "pob-babel@npm:38.0.1"
+"pob-babel@npm:38.0.2":
+  version: 38.0.2
+  resolution: "pob-babel@npm:38.0.2"
   dependencies:
     "@babel/core": "npm:^7.23.2"
-    "@babel/plugin-transform-runtime": "npm:7.23.6"
+    "@babel/plugin-transform-runtime": "npm:7.23.7"
     "@pob/rollup": "npm:1.0.1"
     "@rollup/plugin-babel": "npm:6.0.4"
     "@rollup/plugin-json": "npm:6.1.0"
     "@rollup/plugin-node-resolve": "npm:15.2.3"
     "@rollup/plugin-run": "npm:3.0.2"
-    babel-preset-pob-env: "npm:11.0.1"
+    babel-preset-pob-env: "npm:11.0.2"
     rollup: "npm:3.29.4"
     rollup-config-external-dependencies: "npm:^3.0.0"
     semver: "npm:^7.3.7"
@@ -11975,14 +11975,14 @@ __metadata:
   bin:
     pob-babel-clean-out: ./bin/pob-babel-clean-out.js
     rollup: ./bin/rollup.cjs
-  checksum: cff0f972e2ed85a57e1003a54d602b3497ffcc843efb818607a796b7d15f065670cb91eef60cee9fca4b72f10d7c9dea735dd8f6942843f60de58cb067dabfb2
+  checksum: 81419643242ed79e819786d9526518f1ec7ca6eff1ff7392134ecdf2c75427e82cc41ecd32f894e796d9e04bbef698ab5989c99aec71055267491c69c4302945
   languageName: node
   linkType: hard
 
-"pob-dependencies@npm:11.0.0":
-  version: 11.0.0
-  resolution: "pob-dependencies@npm:11.0.0"
-  checksum: 9e96bf8a158c0f4dfc1d7a27568b3e88985b840275839404d8e2bd04dc127fced71d166e987f6a31b7bf8a961a5e8c883731f25aabd42f2ea04d1ff1c63680b5
+"pob-dependencies@npm:11.0.1":
+  version: 11.0.1
+  resolution: "pob-dependencies@npm:11.0.1"
+  checksum: 8341f2e051bd8c0efb1d653fe54509acb6b1a3c5aa549536aa04cd119daaa36f28d1bc35e0a4ce2968511dda491133bc4fd1b2ff94bee7a205fd2901871af2bb
   languageName: node
   linkType: hard
 
@@ -12227,7 +12227,7 @@ __metadata:
     alp-nextjs: "npm:4.1.0"
     js-cookie: "npm:3.0.5"
     next: "npm:13.5.6"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     typescript: "npm:5.3.3"
@@ -12246,7 +12246,7 @@ __metadata:
     "@babel/preset-react": "npm:7.23.3"
     "@babel/runtime": "npm:^7.23.7"
     "@types/react-native": "npm:0.72.8"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     react: "npm:18.2.0"
     typescript: "npm:5.3.3"
   peerDependencies:
@@ -12266,7 +12266,7 @@ __metadata:
     "@babel/preset-env": "npm:7.23.7"
     "@babel/preset-react": "npm:7.23.3"
     alp-types: "npm:3.1.1"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     react: "npm:18.2.0"
     typescript: "npm:5.3.3"
   peerDependencies:
@@ -12283,7 +12283,7 @@ __metadata:
     "@babel/preset-react": "npm:7.23.3"
     "@babel/runtime": "npm:^7.23.7"
     alp-types: "npm:3.1.1"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     react: "npm:18.2.0"
     react-alp-context: "npm:6.1.0"
     typescript: "npm:5.3.3"
@@ -12301,7 +12301,7 @@ __metadata:
     "@babel/preset-react": "npm:7.23.3"
     "@babel/runtime": "npm:^7.23.7"
     alp-types: "npm:3.1.1"
-    pob-babel: "npm:38.0.1"
+    pob-babel: "npm:38.0.2"
     react: "npm:18.2.0"
     react-alp-context: "npm:6.1.0"
     typescript: "npm:5.3.3"

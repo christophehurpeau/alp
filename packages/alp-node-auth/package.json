@@ -131,7 +131,7 @@
     "alp-node": "6.1.0",
     "alp-router": "7.1.0",
     "liwi-mongo": "11.0.0",
-    "pob-babel": "38.0.1",
+    "pob-babel": "38.0.2",
     "router-segments": "9.1.0",
     "typescript": "5.3.3"
   }
