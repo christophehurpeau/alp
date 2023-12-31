@@ -94,7 +94,7 @@
     "@babel/core": "^7.23.6",
     "next": "^13.4.12",
     "react": "^18.0.0",
-    "react-native-web-lite": "^1.46.2"
+    "react-native-web": "^0.19.10"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.7",

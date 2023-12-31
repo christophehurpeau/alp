@@ -17,10 +17,6 @@ export const createNextJsConfig = (overrideConfig) => ({
   ...overrideConfig,
 
   webpack: (config, context) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'react-native$': 'react-native-web-lite',
-    };
     config.resolve.extensions = config.resolve.extensions.flatMap((ext) => [
       `.web${ext}`,
       ext,
