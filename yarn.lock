@@ -5108,7 +5108,7 @@ __metadata:
     react-intl: "npm:6.4.4"
     react-native-safe-area-context: "npm:4.8.2"
     react-native-svg: "npm:13.10.0"
-    react-native-web: "npm:0.19.7"
+    react-native-web: "npm:0.19.10"
     react-native-web-lite: "npm:1.46.2"
     router-segments: "npm:9.1.0"
     springbokjs-daemon: "npm:10.1.0"
@@ -12135,9 +12135,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-web@npm:0.19.7, react-native-web@npm:^0.19.6":
-  version: 0.19.7
-  resolution: "react-native-web@npm:0.19.7"
+"react-native-web@npm:0.19.10, react-native-web@npm:^0.19.6":
+  version: 0.19.10
+  resolution: "react-native-web@npm:0.19.10"
   dependencies:
     "@babel/runtime": "npm:^7.18.6"
     "@react-native/normalize-color": "npm:^2.1.0"
@@ -12150,7 +12150,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: bd39053b55d7451bf8d641652d092d1e748675183b97cd5eccd782600987790592fcea56f11730e75b40b83022459704151eca6286afc0458c7070451773a0a8
+  checksum: 923a13b6d6c23039a0bb36d9c1490bc184c308649198e95ea0fdb62ab35983150126c4b07d716a09d42f37be57d14f2669ca9661e9a3faaf856ed7f7f222120e
   languageName: node
   linkType: hard
 
