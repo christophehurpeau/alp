@@ -56,7 +56,7 @@
     "@tamagui/themes": "1.46.2",
     "alp-nextjs": "4.1.0",
     "alp-router": "7.1.0",
-    "next": "13.4.12",
+    "next": "13.5.1",
     "nightingale-app-console": "15.0.0",
     "react": "18.2.0",
     "react-alp-auth": "2.1.0",
