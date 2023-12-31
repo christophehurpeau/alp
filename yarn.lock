@@ -4827,12 +4827,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.19.4, @types/node@npm:>=18.0.0, @types/node@npm:^18.11.9":
-  version: 18.19.4
-  resolution: "@types/node@npm:18.19.4"
+"@types/node@npm:*, @types/node@npm:20.10.5, @types/node@npm:>=18.0.0":
+  version: 20.10.5
+  resolution: "@types/node@npm:20.10.5"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 4eaf6e1bb588da960c7e5974e8a0112633138b5468f0e48fc959d5585863baca549bc8c5f5f7b751c61dd282b8c2879842220f6eeed33aa54c255e876ec16536
+  checksum: 4a378428d2c9f692b19801a5a3d20dc4c0ad5d4a3d103350f8b401af439941a9aa5efeadc8eb9db13c66c620318bc7f336abfc8934f82fd32c4a689d85068c6f
   languageName: node
   linkType: hard
 
@@ -4840,6 +4840,15 @@ __metadata:
   version: 14.18.30
   resolution: "@types/node@npm:14.18.30"
   checksum: 8d2b4687cd3699fc19d3bc6fc0ad90a68108946a6181836f48edd9c0e29202fc3870a7ee6e68fbc045cdca6d0eb044d14e69c04b119b6cdde975858da453fa4e
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.11.9":
+  version: 18.19.4
+  resolution: "@types/node@npm:18.19.4"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 4eaf6e1bb588da960c7e5974e8a0112633138b5468f0e48fc959d5585863baca549bc8c5f5f7b751c61dd282b8c2879842220f6eeed33aa54c255e876ec16536
   languageName: node
   linkType: hard
 
@@ -5322,7 +5331,7 @@ __metadata:
     "@tamagui/shorthands": "npm:1.79.19"
     "@tamagui/themes": "npm:1.79.19"
     "@testing-library/react": "npm:14.1.2"
-    "@types/node": "npm:18.19.4"
+    "@types/node": "npm:20.10.5"
     "@types/react": "npm:18.2.46"
     "@types/react-native": "npm:0.72.8"
     alp-nextjs: "npm:4.1.0"
@@ -5364,7 +5373,7 @@ __metadata:
   resolution: "alp-migrations@workspace:packages/alp-migrations"
   dependencies:
     "@babel/core": "npm:7.23.7"
-    "@types/node": "npm:18.19.4"
+    "@types/node": "npm:20.10.5"
     "@types/semver": "npm:7.5.6"
     alp-types: "npm:3.1.1"
     liwi-mongo: "npm:10.5.0"
