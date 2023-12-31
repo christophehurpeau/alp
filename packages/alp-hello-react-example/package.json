@@ -49,11 +49,11 @@
   },
   "prettier": "@pob/root/prettier-config",
   "dependencies": {
-    "@tamagui/core": "1.46.2",
-    "@tamagui/next-theme": "1.46.2",
-    "@tamagui/react-native-media-driver": "1.46.2",
-    "@tamagui/shorthands": "1.46.2",
-    "@tamagui/themes": "1.46.2",
+    "@tamagui/core": "1.79.19",
+    "@tamagui/next-theme": "1.79.19",
+    "@tamagui/react-native-media-driver": "1.79.19",
+    "@tamagui/shorthands": "1.79.19",
+    "@tamagui/themes": "1.79.19",
     "alp-nextjs": "4.1.0",
     "alp-router": "7.1.0",
     "next": "13.4.12",
@@ -69,12 +69,12 @@
     "react-native-svg": "13.10.0",
     "react-native-web-lite": "1.46.2",
     "router-segments": "9.1.0",
-    "tamagui": "1.46.2"
+    "tamagui": "1.79.19"
   },
   "devDependencies": {
     "@babel/core": "7.23.7",
-    "@tamagui/babel-plugin": "1.46.2",
-    "@tamagui/next-plugin": "1.46.2",
+    "@tamagui/babel-plugin": "1.79.19",
+    "@tamagui/next-plugin": "1.79.19",
     "@testing-library/react": "14.1.2",
     "@types/node": "18.19.4",
     "@types/react": "18.2.46",
