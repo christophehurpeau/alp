@@ -9,7 +9,7 @@ import config from '../tamagui.config';
 import '@tamagui/core/reset.css';
 
 if (process.env.NODE_ENV === 'production') {
-  // eslint-disable-next-line global-require
+  // eslint-disable-next-line global-require, import/no-unresolved
   require('../../build/tamagui.css');
 }
 
