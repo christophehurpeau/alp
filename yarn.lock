@@ -4243,9 +4243,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:14.0.0":
-  version: 14.0.0
-  resolution: "@testing-library/react@npm:14.0.0"
+"@testing-library/react@npm:14.1.2":
+  version: 14.1.2
+  resolution: "@testing-library/react@npm:14.1.2"
   dependencies:
     "@babel/runtime": "npm:^7.12.5"
     "@testing-library/dom": "npm:^9.0.0"
@@ -4253,7 +4253,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 1f2a4f78d107e741b35671e9c7dd992d5c9f49b48ee24112ccfe636179be72f3c62a65b1405901b59eb6cde996176ebc2c99099e04d9f14575641e46688747f0
+  checksum: 1664990ad9673403ee1d74c1c1b60ec30591d42a3fe1e2175c28cb935cd49bc9a4ba398707f702acc3278c3b0cb492ee57fe66f41ceb040c5da57de98cba5414
   languageName: node
   linkType: hard
 
@@ -5100,7 +5100,7 @@ __metadata:
     "@tamagui/react-native-media-driver": "npm:1.46.2"
     "@tamagui/shorthands": "npm:1.46.2"
     "@tamagui/themes": "npm:1.46.2"
-    "@testing-library/react": "npm:14.0.0"
+    "@testing-library/react": "npm:14.1.2"
     "@types/node": "npm:18.19.4"
     "@types/react": "npm:18.2.46"
     "@types/react-native": "npm:0.72.8"
