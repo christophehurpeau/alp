@@ -48,7 +48,7 @@
     "alp-node": "6.1.0",
     "alp-node-auth": "9.1.0",
     "alp-router": "7.1.0",
-    "liwi-mongo": "10.5.0",
+    "liwi-mongo": "11.0.0",
     "nightingale-app-console": "15.0.0",
     "nightingale-web-processor": "15.0.0",
     "router-segments": "9.1.0"
