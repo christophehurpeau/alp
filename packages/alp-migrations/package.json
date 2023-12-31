@@ -53,7 +53,7 @@
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "liwi-mongo": "^10.5.0"
+    "liwi-mongo": "^10.5.0 || ^11.0.0"
   },
   "dependencies": {
     "alp-types": "3.1.1",
@@ -64,7 +64,7 @@
     "@babel/core": "7.23.7",
     "@types/node": "20.10.5",
     "@types/semver": "7.5.6",
-    "liwi-mongo": "10.5.0",
+    "liwi-mongo": "11.0.0",
     "pob-babel": "38.0.1",
     "typescript": "5.3.3"
   }

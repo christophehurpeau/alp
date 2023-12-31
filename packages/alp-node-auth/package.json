@@ -114,7 +114,7 @@
   "peerDependencies": {
     "alp-node": "^6.0.0",
     "alp-router": "^7.0.0",
-    "liwi-mongo": "^10.5.0",
+    "liwi-mongo": "^10.5.0 || ^11.0.0",
     "router-segments": "^9.1.0"
   },
   "dependencies": {
@@ -130,7 +130,7 @@
     "@babel/core": "7.23.7",
     "alp-node": "6.1.0",
     "alp-router": "7.1.0",
-    "liwi-mongo": "10.5.0",
+    "liwi-mongo": "11.0.0",
     "pob-babel": "38.0.1",
     "router-segments": "9.1.0",
     "typescript": "5.3.3"
