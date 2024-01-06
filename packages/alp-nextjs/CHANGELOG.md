@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/christophehurpeau/alp/compare/alp-nextjs@4.1.0...alp-nextjs@4.1.1) (2024-01-06)
+
+Note: no notable changes
+
+
+
+
 ## [4.1.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@4.0.0...alp-nextjs@4.1.0) (2023-12-25)
 
 

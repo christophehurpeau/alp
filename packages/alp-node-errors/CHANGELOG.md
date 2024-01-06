@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.1](https://github.com/christophehurpeau/alp/compare/alp-node-errors@8.1.0...alp-node-errors@8.1.1) (2024-01-06)
+
+Note: no notable changes
+
+
+
+
 ## [8.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-errors@8.0.0...alp-node-errors@8.1.0) (2023-12-25)
 
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.1](https://github.com/christophehurpeau/alp/compare/alp-listen@7.1.0...alp-listen@7.1.1) (2024-01-06)
+
+Note: no notable changes
+
+Version bump for dependency: alp-node-config
+
+
 ## [7.1.0](https://github.com/christophehurpeau/alp/compare/alp-listen@7.0.0...alp-listen@7.1.0) (2023-12-25)
 
 

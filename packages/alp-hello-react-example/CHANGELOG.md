@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@9.1.0...alp-hello-react-example@9.2.0) (2024-01-06)
+
+
+### Features
+
+* **deps:** update dependency react-icons to v4.12.0 ([#511](https://github.com/christophehurpeau/alp/issues/511)) ([e707066](https://github.com/christophehurpeau/alp/commit/e7070667970d29e5bc144f421bd50d86594f7140))
+* **deps:** update dependency react-intl to v6.5.5 ([#512](https://github.com/christophehurpeau/alp/issues/512)) ([b08c3f4](https://github.com/christophehurpeau/alp/commit/b08c3f4216fc7f88effee840a2986a75a4746c62))
+* **deps:** update dependency react-native-svg to v13.14.0 ([#514](https://github.com/christophehurpeau/alp/issues/514)) ([316bcff](https://github.com/christophehurpeau/alp/commit/316bcff80404c351c4625183d116bcdf69a76f3a))
+
+Version bump for dependency: alp-nextjs
+Version bump for dependency: alp-router
+Version bump for dependency: react-alp-auth
+Version bump for dependency: react-alp-connection-state
+Version bump for dependency: react-alp-context
+
+
 ## [9.1.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@9.0.1...alp-hello-react-example@9.1.0) (2023-12-25)
 
 

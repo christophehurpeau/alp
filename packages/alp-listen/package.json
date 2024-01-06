@@ -1,6 +1,6 @@
 {
   "name": "alp-listen",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "Listen function, using config and logger for alp server",
   "keywords": [
     "alp"
@@ -58,7 +58,7 @@
   },
   "prettier": "@pob/root/prettier-config",
   "dependencies": {
-    "alp-node-config": "9.1.0",
+    "alp-node-config": "9.1.1",
     "nightingale-logger": "^15.0.0"
   },
   "devDependencies": {

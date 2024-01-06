@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.2.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@8.1.0...alp-migrations@8.2.0) (2024-01-06)
+
+
+### Features
+
+* **deps:** update dependency liwi-mongo to v11 ([#465](https://github.com/christophehurpeau/alp/issues/465)) ([f8c4804](https://github.com/christophehurpeau/alp/commit/f8c4804621cf179e4155a18121f5a8d4f144b11e))
+
+
+
+
 ## [8.1.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@8.0.0...alp-migrations@8.1.0) (2023-12-25)
 
 
