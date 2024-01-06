@@ -86,26 +86,32 @@
     ],
     "extraEntries": [
       {
+        "directory": "strategies",
         "name": "strategies/dropbox",
         "types": "strategies/strategies.d.ts"
       },
       {
+        "directory": "strategies",
         "name": "strategies/facebook",
         "types": "strategies/strategies.d.ts"
       },
       {
+        "directory": "strategies",
         "name": "strategies/foursquare",
         "types": "strategies/strategies.d.ts"
       },
       {
+        "directory": "strategies",
         "name": "strategies/github",
         "types": "strategies/strategies.d.ts"
       },
       {
+        "directory": "strategies",
         "name": "strategies/google",
         "types": "strategies/strategies.d.ts"
       },
       {
+        "directory": "strategies",
         "name": "strategies/slack",
         "types": "strategies/strategies.d.ts"
       }
