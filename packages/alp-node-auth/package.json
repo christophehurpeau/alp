@@ -62,7 +62,8 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "strategies"
   ],
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
