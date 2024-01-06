@@ -1,3 +1,6 @@
+import { createRouterBuilder } from 'router-segments';
+
+const createAlpRouterBuilder = () => createRouterBuilder();
 function alpRouter(router) {
   return app => {
     app.router = router;
@@ -20,5 +23,5 @@ function alpRouter(router) {
   };
 }
 
-export { alpRouter as default };
+export { createAlpRouterBuilder, alpRouter as default };
 //# sourceMappingURL=index-browser.es.js.map

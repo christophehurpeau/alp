@@ -1,7 +1,8 @@
 import type { Context, NodeApplication } from 'alp-types';
-import type { Router, RouteMatch } from 'router-segments';
+import type { Router, RouteMatch, RouterBuilder } from 'router-segments';
 export type AlpRouteRef = (ctx: Context) => Promise<void> | void;
 type ReturnType = (app: NodeApplication) => AlpRouteRef;
+export declare const createAlpRouterBuilder: <Locales extends string>() => RouterBuilder<Locales, AlpRouteRef>;
 export type UrlGenerator = <P extends Record<string, unknown> | undefined>(routeKey: string, params?: P) => string;
 declare module 'alp-types' {
     interface NodeApplication {
