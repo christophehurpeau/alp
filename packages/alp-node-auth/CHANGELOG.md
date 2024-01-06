@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.3.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@9.2.0...alp-node-auth@9.3.0) (2024-01-06)
+
+Note: no notable changes
+
+Version bump for dependency: alp-node
+Version bump for dependency: alp-router
+
+
 ## [9.2.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@9.1.0...alp-node-auth@9.2.0) (2024-01-06)
 
 

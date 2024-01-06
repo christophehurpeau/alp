@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.0](https://github.com/christophehurpeau/alp/compare/alp-router@7.1.1...alp-router@7.2.0) (2024-01-06)
+
+
+### Features
+
+* **alp-router:** export createAlpRouterBuilder ([bf51f3d](https://github.com/christophehurpeau/alp/commit/bf51f3d677a4ddd9a12d98f5d9b8a2f6149f5d0d))
+
+
+
+
 ## [7.1.1](https://github.com/christophehurpeau/alp/compare/alp-router@7.1.0...alp-router@7.1.1) (2024-01-06)
 
 Note: no notable changes

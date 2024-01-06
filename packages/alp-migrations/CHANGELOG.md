@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.2.1](https://github.com/christophehurpeau/alp/compare/alp-migrations@8.2.0...alp-migrations@8.2.1) (2024-01-06)
+
+Note: no notable changes
+
+
+
+
 ## [8.2.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@8.1.0...alp-migrations@8.2.0) (2024-01-06)
 
 

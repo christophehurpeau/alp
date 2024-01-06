@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.3.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@9.2.0...alp-hello-react-example@9.3.0) (2024-01-06)
+
+Note: no notable changes
+
+
+
+
 ## [9.2.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@9.1.0...alp-hello-react-example@9.2.0) (2024-01-06)
 
 
