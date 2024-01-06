@@ -53,10 +53,11 @@
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "liwi-mongo": "^11.0.0"
+    "liwi-mongo": "^11.0.0",
+    "router-segments": "^9.1.0"
   },
   "dependencies": {
-    "alp-types": "3.1.1",
+    "alp-node": "6.2.0",
     "nightingale-logger": "^15.0.0",
     "semver": "^7.3.5"
   },
@@ -66,6 +67,7 @@
     "@types/semver": "7.5.6",
     "liwi-mongo": "11.0.0",
     "pob-babel": "38.0.2",
+    "router-segments": "9.1.0",
     "typescript": "5.3.3"
   }
 }

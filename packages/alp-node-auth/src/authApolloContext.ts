@@ -1,5 +1,5 @@
 import type { IncomingMessage } from 'node:http';
-import type { NodeConfig } from 'alp-types';
+import type { NodeConfig } from 'alp-node';
 import { Logger } from 'nightingale-logger';
 import type MongoUsersManager from './MongoUsersManager';
 import type { User } from './types';

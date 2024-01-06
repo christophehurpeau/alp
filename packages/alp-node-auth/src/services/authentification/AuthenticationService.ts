@@ -3,8 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable camelcase, max-lines */
 import { EventEmitter } from 'node:events';
-import 'alp-router';
-import type { Context, NodeConfig } from 'alp-types';
+import type { Context, NodeConfig } from 'alp-node';
 import { Logger } from 'nightingale-logger';
 import type { Strategy as Oauth2Strategy } from '../../../strategies/strategies.d';
 import type { AccountId, User, Account, UserSanitized } from '../../types';
@@ -216,7 +215,7 @@ export class AuthenticationService<
       ...params,
     });
 
-    return ctx.redirect(redirectUri);
+    ctx.redirect(redirectUri);
   }
 
   async accessResponse<StrategyKey extends StrategyKeys>(
@@ -225,28 +224,27 @@ export class AuthenticationService<
     isLoggedIn: boolean,
     hooks: AccessResponseHooks<StrategyKeys, U>,
   ): Promise<U> {
-    if (ctx.query.error) {
-      const error: any = new Error(ctx.query.error);
-      error.status = 403;
-      error.expose = true;
-      throw error;
+    const errorParam = ctx.params.queryParam('error').notEmpty();
+    if (errorParam.isValid()) {
+      ctx.throw(errorParam.value, 403);
     }
 
-    const code = ctx.query.code;
-    const state = ctx.query.state;
-    const cookieName = `auth_${strategy}_${state as string}`;
-    let cookie = ctx.cookies.get(cookieName);
+    const code = ctx.validParams.queryParam('code').notEmpty().value;
+    const state = ctx.validParams.queryParam('state').notEmpty().value;
+
+    const cookieName = `auth_${strategy}_${state}`;
+    const cookie = ctx.cookies.get(cookieName);
     ctx.cookies.set(cookieName, '', { expires: new Date(1) });
     if (!cookie) {
       throw new Error('No cookie for this state');
     }
 
-    cookie = JSON.parse(cookie);
-    if (!cookie?.scope) {
+    const parsedCookie = JSON.parse(cookie);
+    if (!parsedCookie?.scope) {
       throw new Error('Unexpected cookie value');
     }
 
-    if (!cookie.isLoginAccess) {
+    if (!parsedCookie.isLoginAccess) {
       if (!isLoggedIn) {
         throw new Error('You are not connected');
       }
@@ -257,12 +255,12 @@ export class AuthenticationService<
       redirectUri: this.redirectUri(ctx, strategy),
     });
 
-    if (cookie.isLoginAccess) {
+    if (parsedCookie.isLoginAccess) {
       const user = await this.userAccountsService.findOrCreateFromStrategy(
         strategy,
         tokens,
-        cookie.scope,
-        cookie.scopeKey,
+        parsedCookie.scope,
+        parsedCookie.scopeKey,
       );
 
       if (hooks.afterLoginSuccess) {
@@ -277,12 +275,17 @@ export class AuthenticationService<
       loggedInUser,
       strategy,
       tokens,
-      cookie.scope,
-      cookie.scopeKey,
+      parsedCookie.scope,
+      parsedCookie.scopeKey,
     );
 
     if (hooks.afterScopeUpdate) {
-      await hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
+      await hooks.afterScopeUpdate(
+        strategy,
+        parsedCookie.scopeKey,
+        account,
+        user,
+      );
     }
 
     return loggedInUser;

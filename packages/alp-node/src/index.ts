@@ -1,12 +1,18 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import { Config } from 'alp-node-config';
 import { Logger } from 'nightingale-logger';
 import type { AlpNodeAppOptions } from './AlpNodeApp';
 import { AlpNodeApp } from './AlpNodeApp';
+import { Config } from './config';
 
+export type {
+  BaseContext,
+  NodeApplication,
+  NodeConfig,
+  ContextState,
+  ContextSanitizedState,
+} from './types';
 export type { Context } from './AlpNodeApp';
-export { Config } from 'alp-node-config';
 
 const logger = new Logger('alp');
 
@@ -46,3 +52,12 @@ export default class App extends AlpNodeApp {
     });
   }
 }
+
+export { Config } from './config';
+
+export {
+  default as router,
+  createAlpRouterBuilder,
+  type AlpRouteRef,
+  type AlpRouter,
+} from './router';

@@ -13,31 +13,6 @@
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "incremental": true,
-    "composite": true,
-
-    "paths": {
-      "alp-types": ["../../packages/alp-types/lib"],
-      "alp-types/*": ["../../packages/alp-types/lib/*"],
-      "alp-node-config": ["../../packages/alp-node-config/src"],
-      "alp-node-config/*": ["../../packages/alp-node-config/src/*"],
-      "alp-node-errors": ["../../packages/alp-node-errors/src"],
-      "alp-node-errors/*": ["../../packages/alp-node-errors/src/*"],
-      "alp-node-language": ["../../packages/alp-node-language/src"],
-      "alp-node-language/*": ["../../packages/alp-node-language/src/*"],
-      "alp-translate": ["../../packages/alp-translate/src"],
-      "alp-translate/*": ["../../packages/alp-translate/src/*"],
-      "alp-listen": ["../../packages/alp-listen/src"],
-      "alp-listen/*": ["../../packages/alp-listen/src/*"],
-      "alp-params": ["../../packages/alp-params/src"],
-      "alp-params/*": ["../../packages/alp-params/src/*"]
-    }
-  },
-  "references": [
-    { "path": "../../packages/alp-node-config/tsconfig.json" },
-    { "path": "../../packages/alp-node-errors/tsconfig.json" },
-    { "path": "../../packages/alp-node-language/tsconfig.json" },
-    { "path": "../../packages/alp-translate/tsconfig.json" },
-    { "path": "../../packages/alp-listen/tsconfig.json" },
-    { "path": "../../packages/alp-params/tsconfig.json" }
-  ]
+    "composite": true
+  }
 }

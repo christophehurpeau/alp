@@ -1,0 +1,1 @@
+{"version":3,"file":"load.d.ts","sourceRoot":"","sources":["../../../src/translate/load.ts"],"names":[],"mappings":"AAAA,OAAO,wBAAwB,MAAM,oBAAoB,CAAC;AAO1D,MAAM,MAAM,YAAY,GAAG,WAAW,CAAC,MAAM,EAAE,wBAAwB,CAAC,CAAC;AAEzE,MAAM,CAAC,OAAO,UAAU,IAAI,CAC1B,YAAY,EAAE,WAAW,CAAC,MAAM,EAAE,OAAO,CAAC,EAC1C,QAAQ,EAAE,MAAM,GACf,YAAY,CAiBd"}

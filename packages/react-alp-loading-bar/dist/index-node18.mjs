@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-import ReactAlpContext from 'react-alp-context';
 import { jsx } from 'react/jsx-runtime';
 
 const random = () => Math.ceil(Math.random() * 100) / 100;
@@ -16,27 +15,25 @@ const calculatePercent = percent => {
   if (percent < 70) return percent + random() * 10 + 3;else if (percent < 80) return percent + random() + 5;else if (percent < 90) return percent + random() + 1;else if (percent < 95) return percent + 0.1;else return percent;
 };
 class LoadingBar extends PureComponent {
-  static contextType = ReactAlpContext;
   state = {
     loading: true,
     hidden: true,
     progress: 1
   };
   componentDidMount() {
-    const websocket = this.getWebsocket();
-    if (websocket.isConnected()) {
+    if (this.props.websocket.isConnected()) {
       this.setState(prevState => ({
         loading: false,
         progress: 100,
         hidden: prevState.hidden || prevState.progress === 100
       }));
     }
-    websocket.on('connect', () => {
+    this.props.websocket.on('connect', () => {
       this.setState({
         loading: false
       });
     });
-    websocket.on('disconnect', () => {
+    this.props.websocket.on('disconnect', () => {
       this.setState({
         loading: true,
         progress: 1,
@@ -45,6 +42,9 @@ class LoadingBar extends PureComponent {
     });
   }
   componentDidUpdate(prevProps, prevState) {
+    if (this.props.websocket !== prevProps.websocket) {
+      throw new Error('Unsupported at the moment');
+    }
     if (this.state.loading !== prevState.loading) {
       if (this.state.loading) {
         this.showBar();
@@ -58,10 +58,6 @@ class LoadingBar extends PureComponent {
     if (this.resetTimeout) clearTimeout(this.resetTimeout);
     if (this.first20Timeout) clearTimeout(this.first20Timeout);
     if (this.progressTimer) clearInterval(this.progressTimer);
-  }
-  getWebsocket() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
-    return this.context.app.websocket;
   }
   showBar() {
     if (this.fadeOffTimeout) clearTimeout(this.fadeOffTimeout);

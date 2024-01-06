@@ -1,5 +1,5 @@
-import type { AlpRouteRef } from 'alp-router';
-import type { Context } from 'alp-types';
+/// <reference types="koa" />
+import type { AlpRouteRef, Context } from 'alp-node';
 import type MongoUsersManager from './MongoUsersManager';
 import type { AuthenticationService, AccessResponseHooks } from './services/authentification/AuthenticationService';
 import type { AllowedStrategyKeys, AllowedMapParamsStrategy } from './services/authentification/types';

@@ -1,8 +1,7 @@
 /* eslint-disable max-lines */
 import type { IncomingMessage } from 'node:http';
 import { promisify } from 'node:util';
-import type { Context } from 'alp-node';
-import type { ContextState, NodeApplication } from 'alp-types';
+import type { Context, ContextState, NodeApplication } from 'alp-node';
 import jsonwebtoken from 'jsonwebtoken';
 import { Logger } from 'nightingale-logger';
 import type MongoUsersManager from './MongoUsersManager';
@@ -35,7 +34,7 @@ export { STATUSES } from './services/user/UserAccountsService';
 
 export * from './types';
 
-declare module 'alp-types' {
+declare module 'alp-node' {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   interface ContextState {
     loggedInUserId:

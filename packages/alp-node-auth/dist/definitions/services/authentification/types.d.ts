@@ -1,4 +1,5 @@
-import type { GoogleParams, SlackParams } from 'alp-types';
+export type GoogleParams = 'access_type' | 'include_granted_scopes' | 'login_hint' | 'prompt';
+export type SlackParams = 'client_id' | 'team';
 export type AllowedStrategyKeys = 'google' | 'slack';
 export interface AllowedMapParamsStrategy {
     google: GoogleParams;

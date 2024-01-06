@@ -4,6 +4,7 @@ interface LoadingBarProps {
     LoadingBarComponent: React.ComponentType<{
         progress: number;
     }>;
+    websocket: WebsocketInterface;
 }
 interface LoadingBarState {
     loading: boolean;
@@ -15,7 +16,6 @@ interface WebsocketInterface {
     on: (event: 'connect' | 'disconnect', callback: () => unknown) => void;
 }
 export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBarState> {
-    static contextType: import("react").Context<import("../../alp-types/lib").Context>;
     state: {
         loading: boolean;
         hidden: boolean;
@@ -28,7 +28,6 @@ export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBa
     componentDidMount(): void;
     componentDidUpdate(prevProps: LoadingBarProps, prevState: LoadingBarState): void;
     componentWillUnmount(): void;
-    getWebsocket(): WebsocketInterface;
     private showBar;
     private hideBar;
     render(): ReactElement;

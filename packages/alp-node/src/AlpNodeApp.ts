@@ -1,26 +1,34 @@
 import type { IncomingMessage, Server, ServerResponse } from 'node:http';
 import path from 'node:path';
 import { deprecate } from 'node:util';
-import _listen from 'alp-listen';
-import type { Config } from 'alp-node-config';
-import _config from 'alp-node-config';
-import errors from 'alp-node-errors';
-import language from 'alp-node-language';
-import params from 'alp-params';
-import translate from 'alp-translate';
+import Koa from 'koa';
+import type { ParameterizedContext, DefaultState } from 'koa';
+import compress from 'koa-compress';
+import serve from 'koa-static';
+import { Logger } from 'nightingale-logger';
+import type { Router } from 'router-segments';
+import type { Config } from './config';
+import _config from './config';
+import errors from './errors';
+import type { AlpLanguageContext } from './language';
+import language from './language';
+import _listen from './listen';
+import type { AlpParamsContext, AlpParamsRequest } from './params';
+import params from './params';
+import type {
+  AlpRouteRef,
+  RouterContext as AlpRouterContext,
+  UrlGenerator,
+} from './router';
+import type { TranslateBaseContext, TranslateContext } from './translate';
+import translate from './translate';
 import type {
   NodeApplication,
   NodeConfig,
   Context as AlpContext,
   ContextState,
   ContextSanitizedState,
-  ContextRequest,
-} from 'alp-types';
-import Koa from 'koa';
-import type { ParameterizedContext, DefaultState, BaseRequest } from 'koa';
-import compress from 'koa-compress';
-import serve from 'koa-static';
-import { Logger } from 'nightingale-logger';
+} from './types';
 
 const logger = new Logger('alp');
 
@@ -35,12 +43,23 @@ export interface AlpNodeAppOptions {
 declare module 'koa' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-shadow
   interface DefaultState extends ContextState {}
+
+  interface DefaultContext
+    extends AlpContext,
+      AlpParamsContext,
+      AlpRouterContext,
+      AlpLanguageContext,
+      TranslateContext {}
+
+  interface BaseContext extends AlpContext, TranslateBaseContext {
+    urlGenerator: UrlGenerator;
+    redirectTo: <P extends Record<string, unknown>>(
+      to: string,
+      params?: P,
+    ) => void;
+  }
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultContext extends AlpContext {}
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface BaseContext extends AlpContext {}
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-shadow
-  interface BaseRequest extends ContextRequest {}
+  interface BaseRequest extends AlpParamsRequest {}
 }
 
 export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
@@ -52,9 +71,9 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
 
   config: Config & NodeConfig;
 
-  declare request: BaseRequest & ContextRequest;
-
   _server?: Server;
+
+  router?: Router<any, AlpRouteRef>;
 
   /**
    * @param {Object} [options]
@@ -147,3 +166,5 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
 }
 
 export type { Context } from 'koa';
+
+export { type NodeApplication } from './types';

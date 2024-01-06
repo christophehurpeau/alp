@@ -1,5 +1,4 @@
-import type { AlpRouteRef } from 'alp-router';
-import type { Context } from 'alp-types';
+import type { AlpRouteRef, Context } from 'alp-node';
 import type MongoUsersManager from './MongoUsersManager';
 import type {
   AuthenticationService,
@@ -74,7 +73,7 @@ export function createAuthController<
      */
     async addScope(ctx: Context): Promise<void> {
       if (!ctx.state.loggedInUser) {
-        await ctx.redirectTo(homeRouterKey);
+        ctx.redirectTo(homeRouterKey);
         return;
       }
 
@@ -101,12 +100,12 @@ export function createAuthController<
       );
       const keyPath = usersManager.store.keyPath;
       await ctx.setLoggedIn(loggedInUser[keyPath], loggedInUser);
-      await ctx.redirectTo(homeRouterKey);
+      ctx.redirectTo(homeRouterKey);
     },
 
     async logout(ctx: Context): Promise<void> {
       ctx.logout();
-      await ctx.redirectTo(homeRouterKey);
+      ctx.redirectTo(homeRouterKey);
     },
   };
 }

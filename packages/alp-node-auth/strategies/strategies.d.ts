@@ -1,5 +1,10 @@
-import { Config, SlackParams } from 'alp-types';
 import { ClientCredentials, AuthorizationCode } from 'simple-oauth2';
+export type GoogleParams =
+  | 'access_type'
+  | 'include_granted_scopes'
+  | 'login_hint'
+  | 'prompt';
+export type SlackParams = 'client_id' | 'team';
 
 export interface Strategy<Params = SlackParams> {
   type: 'oauth2';

@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-process-exit */
-import type { NodeApplication, NodeConfig } from 'alp-types';
+import type AlpNodeApp from 'alp-node';
 import { Logger } from 'nightingale-logger';
 import semver from 'semver';
 import type MigrationsManager from './Manager';
@@ -11,9 +11,9 @@ const logger = new Logger('alp:migrations');
 export { default as MigrationsManager } from './Manager';
 
 export interface Options {
-  app: NodeApplication;
+  app: AlpNodeApp;
   migrationsManager: MigrationsManager;
-  config?: NodeConfig;
+  config?: AlpNodeApp['config'];
   dirname?: string;
 }
 

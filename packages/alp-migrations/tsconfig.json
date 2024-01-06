@@ -16,8 +16,9 @@
     "composite": true,
 
     "paths": {
-      "alp-types": ["../../packages/alp-types/lib"],
-      "alp-types/*": ["../../packages/alp-types/lib/*"]
+      "alp-node": ["../../packages/alp-node/src"],
+      "alp-node/*": ["../../packages/alp-node/src/*"]
     }
-  }
+  },
+  "references": [{ "path": "../../packages/alp-node/tsconfig.json" }]
 }

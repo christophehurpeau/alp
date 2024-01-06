@@ -14,26 +14,16 @@
       "typescript": true,
       "packageNames": [
         "alp-nextjs",
-        "alp-rollup-plugin-config",
-        "alp-types",
-        "react-alp-connection-state",
-        "alp-migrations",
-        "alp-node-config",
-        "alp-node-errors",
-        "alp-node-language",
-        "alp-router",
-        "alp-translate",
-        "react-alp-auth",
-        "react-alp-context",
-        "alp-hello-react-example",
-        "alp-listen",
-        "alp-params",
-        "react-alp-loading-bar",
-        "react-alp-translate",
         "alp-node",
+        "alp-rollup-plugin-config",
+        "react-alp-connection-state",
+        "react-alp-loading-bar",
         "alp-body-parser",
+        "alp-migrations",
         "alp-node-auth",
-        "alp-hello-node-example"
+        "react-alp-auth",
+        "alp-hello-node-example",
+        "alp-hello-react-example"
       ]
     },
     "renovate": {

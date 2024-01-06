@@ -21,7 +21,7 @@
     "clean:build": "yarn workspaces foreach --parallel -A run clean:build",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
     "lint": "yarn run lint:prettier && yarn run lint:eslint",
-    "lint:eslint": "NODE_OPTIONS=--max_old_space_size=4096 eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet .",
+    "lint:eslint": "eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet .",
     "lint:prettier": "pob-root-prettier --check .",
     "lint:prettier:fix": "pob-root-prettier --write .",
     "postinstall": "pob-root-postinstall",

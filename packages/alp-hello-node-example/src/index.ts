@@ -1,15 +1,14 @@
-import Alp from 'alp-node';
+import Alp, { router } from 'alp-node';
 import authInit, { UserAccountSlackService } from 'alp-node-auth';
 import slackStrategy from 'alp-node-auth/strategies/slack';
-import router from 'alp-router';
 import { appLogger, addConfig } from 'nightingale-app-console';
 import webProcessor from 'nightingale-web-processor';
 import createRouter from './createRouter';
 import type { User } from './db/user';
 import { usersManager } from './db/user';
 
-declare module 'alp-types' {
-  interface Context {
+declare module 'alp-node' {
+  interface BaseContext {
     logger: typeof appLogger;
   }
 }

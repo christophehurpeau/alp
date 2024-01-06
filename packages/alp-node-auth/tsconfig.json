@@ -16,16 +16,9 @@
     "composite": true,
 
     "paths": {
-      "alp-types": ["../../packages/alp-types/lib"],
-      "alp-types/*": ["../../packages/alp-types/lib/*"],
-      "alp-router": ["../../packages/alp-router/src"],
-      "alp-router/*": ["../../packages/alp-router/src/*"],
       "alp-node": ["../../packages/alp-node/src"],
       "alp-node/*": ["../../packages/alp-node/src/*"]
     }
   },
-  "references": [
-    { "path": "../../packages/alp-router/tsconfig.json" },
-    { "path": "../../packages/alp-node/tsconfig.json" }
-  ]
+  "references": [{ "path": "../../packages/alp-node/tsconfig.json" }]
 }

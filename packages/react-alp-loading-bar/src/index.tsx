@@ -1,6 +1,5 @@
 import type { ReactElement } from 'react';
 import { PureComponent } from 'react';
-import ReactAlpContext from 'react-alp-context';
 
 /*
 Example with antd:
@@ -37,6 +36,7 @@ const calculatePercent = (percent: number): number => {
 
 interface LoadingBarProps {
   LoadingBarComponent: React.ComponentType<{ progress: number }>;
+  websocket: WebsocketInterface;
 }
 
 interface LoadingBarState {
@@ -54,8 +54,6 @@ export default class LoadingBar extends PureComponent<
   LoadingBarProps,
   LoadingBarState
 > {
-  static override contextType = ReactAlpContext;
-
   override state = {
     loading: true,
     hidden: true,
@@ -71,18 +69,17 @@ export default class LoadingBar extends PureComponent<
   progressTimer?: ReturnType<typeof setTimeout>;
 
   override componentDidMount(): void {
-    const websocket = this.getWebsocket();
-    if (websocket.isConnected()) {
+    if (this.props.websocket.isConnected()) {
       this.setState((prevState) => ({
         loading: false,
         progress: 100,
         hidden: prevState.hidden || prevState.progress === 100,
       }));
     }
-    websocket.on('connect', () => {
+    this.props.websocket.on('connect', () => {
       this.setState({ loading: false });
     });
-    websocket.on('disconnect', () => {
+    this.props.websocket.on('disconnect', () => {
       this.setState({ loading: true, progress: 1, hidden: false });
     });
   }
@@ -91,6 +88,9 @@ export default class LoadingBar extends PureComponent<
     prevProps: LoadingBarProps,
     prevState: LoadingBarState,
   ): void {
+    if (this.props.websocket !== prevProps.websocket) {
+      throw new Error('Unsupported at the moment');
+    }
     if (this.state.loading !== prevState.loading) {
       if (this.state.loading) {
         this.showBar();
@@ -105,11 +105,6 @@ export default class LoadingBar extends PureComponent<
     if (this.resetTimeout) clearTimeout(this.resetTimeout);
     if (this.first20Timeout) clearTimeout(this.first20Timeout);
     if (this.progressTimer) clearInterval(this.progressTimer);
-  }
-
-  getWebsocket(): WebsocketInterface {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
-    return (this.context as any).app.websocket;
   }
 
   private showBar(): void {

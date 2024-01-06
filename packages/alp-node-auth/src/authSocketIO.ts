@@ -1,4 +1,4 @@
-import type { NodeApplication } from 'alp-types';
+import type { NodeApplication } from 'alp-node';
 import { Logger } from 'nightingale-logger';
 import type MongoUsersManager from './MongoUsersManager';
 import type { User } from './types';

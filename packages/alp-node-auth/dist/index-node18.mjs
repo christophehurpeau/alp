@@ -2,7 +2,6 @@ import { promisify } from 'node:util';
 import jsonwebtoken from 'jsonwebtoken';
 import { Logger } from 'nightingale-logger';
 import { EventEmitter } from 'node:events';
-import 'alp-router';
 import { randomBytes } from 'node:crypto';
 import Cookies from 'cookies';
 
@@ -26,7 +25,7 @@ function createAuthController({
      */
     async addScope(ctx) {
       if (!ctx.state.loggedInUser) {
-        await ctx.redirectTo(homeRouterKey);
+        ctx.redirectTo(homeRouterKey);
         return;
       }
       const strategy = ctx.namedParam('strategy') || defaultStrategy;
@@ -46,11 +45,11 @@ function createAuthController({
       });
       const keyPath = usersManager.store.keyPath;
       await ctx.setLoggedIn(loggedInUser[keyPath], loggedInUser);
-      await ctx.redirectTo(homeRouterKey);
+      ctx.redirectTo(homeRouterKey);
     },
     async logout(ctx) {
       ctx.logout();
-      await ctx.redirectTo(homeRouterKey);
+      ctx.redirectTo(homeRouterKey);
     }
   };
 }
@@ -200,30 +199,28 @@ class AuthenticationService extends EventEmitter {
       access_type: refreshToken ? 'offline' : 'online',
       ...params
     });
-    return ctx.redirect(redirectUri);
+    ctx.redirect(redirectUri);
   }
   async accessResponse(ctx, strategy, isLoggedIn, hooks) {
-    if (ctx.query.error) {
-      const error = new Error(ctx.query.error);
-      error.status = 403;
-      error.expose = true;
-      throw error;
+    const errorParam = ctx.params.queryParam('error').notEmpty();
+    if (errorParam.isValid()) {
+      ctx.throw(errorParam.value, 403);
     }
-    const code = ctx.query.code;
-    const state = ctx.query.state;
+    const code = ctx.validParams.queryParam('code').notEmpty().value;
+    const state = ctx.validParams.queryParam('state').notEmpty().value;
     const cookieName = `auth_${strategy}_${state}`;
-    let cookie = ctx.cookies.get(cookieName);
+    const cookie = ctx.cookies.get(cookieName);
     ctx.cookies.set(cookieName, '', {
       expires: new Date(1)
     });
     if (!cookie) {
       throw new Error('No cookie for this state');
     }
-    cookie = JSON.parse(cookie);
-    if (!cookie?.scope) {
+    const parsedCookie = JSON.parse(cookie);
+    if (!parsedCookie?.scope) {
       throw new Error('Unexpected cookie value');
     }
-    if (!cookie.isLoginAccess) {
+    if (!parsedCookie.isLoginAccess) {
       if (!isLoggedIn) {
         throw new Error('You are not connected');
       }
@@ -232,8 +229,8 @@ class AuthenticationService extends EventEmitter {
       code,
       redirectUri: this.redirectUri(ctx, strategy)
     });
-    if (cookie.isLoginAccess) {
-      const user = await this.userAccountsService.findOrCreateFromStrategy(strategy, tokens, cookie.scope, cookie.scopeKey);
+    if (parsedCookie.isLoginAccess) {
+      const user = await this.userAccountsService.findOrCreateFromStrategy(strategy, tokens, parsedCookie.scope, parsedCookie.scopeKey);
       if (hooks.afterLoginSuccess) {
         await hooks.afterLoginSuccess(strategy, user);
       }
@@ -243,9 +240,9 @@ class AuthenticationService extends EventEmitter {
     const {
       account,
       user
-    } = await this.userAccountsService.update(loggedInUser, strategy, tokens, cookie.scope, cookie.scopeKey);
+    } = await this.userAccountsService.update(loggedInUser, strategy, tokens, parsedCookie.scope, parsedCookie.scopeKey);
     if (hooks.afterScopeUpdate) {
-      await hooks.afterScopeUpdate(strategy, cookie.scopeKey, account, user);
+      await hooks.afterScopeUpdate(strategy, parsedCookie.scopeKey, account, user);
     }
     return loggedInUser;
   }

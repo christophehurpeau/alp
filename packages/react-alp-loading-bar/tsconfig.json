@@ -15,14 +15,6 @@
     "incremental": true,
     "composite": true,
 
-    "jsx": "react-jsx" /* 'react-jsx' is used with react/jsx-runtime (react >=17 || >= 16.14.0 | >= 15.7.0) */,
-
-    "paths": {
-      "alp-types": ["../../packages/alp-types/lib"],
-      "alp-types/*": ["../../packages/alp-types/lib/*"],
-      "react-alp-context": ["../../packages/react-alp-context/src"],
-      "react-alp-context/*": ["../../packages/react-alp-context/src/*"]
-    }
-  },
-  "references": [{ "path": "../../packages/react-alp-context/tsconfig.json" }]
+    "jsx": "react-jsx" /* 'react-jsx' is used with react/jsx-runtime (react >=17 || >= 16.14.0 | >= 15.7.0) */
+  }
 }

@@ -15,22 +15,19 @@
     "resolveJsonModule": true,
 
     "paths": {
+      "alp-node": ["../../packages/alp-node/src"],
+      "alp-node/*": ["../../packages/alp-node/src/*"],
       "alp-rollup-plugin-config": [
         "../../packages/alp-rollup-plugin-config/lib"
       ],
       "alp-rollup-plugin-config/*": [
         "../../packages/alp-rollup-plugin-config/lib/*"
       ],
-      "alp-router": ["../../packages/alp-router/src"],
-      "alp-router/*": ["../../packages/alp-router/src/*"],
-      "alp-node": ["../../packages/alp-node/src"],
-      "alp-node/*": ["../../packages/alp-node/src/*"],
       "alp-node-auth": ["../../packages/alp-node-auth/src"],
       "alp-node-auth/*": ["../../packages/alp-node-auth/src/*"]
     }
   },
   "references": [
-    { "path": "../../packages/alp-router/tsconfig.json" },
     { "path": "../../packages/alp-node/tsconfig.json" },
     { "path": "../../packages/alp-node-auth/tsconfig.json" }
   ]

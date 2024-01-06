@@ -1,10 +1,7 @@
-import { config } from 'alp-node';
+import type { AlpRouteRef } from 'alp-node';
+import { config, createAlpRouterBuilder } from 'alp-node';
 import type { AuthRoutes } from 'alp-node-auth';
-import type { AlpRouteRef } from 'alp-router';
-// eslint-disable-next-line node/no-extraneous-import
-import type { Context } from 'alp-types';
 import type { Router } from 'router-segments';
-import { createRouterBuilder } from 'router-segments';
 
 type Locales = 'en' | 'fr';
 
@@ -13,10 +10,10 @@ export default function createRouter({
 }: {
   auth: AuthRoutes;
 }): Router<Locales, AlpRouteRef> {
-  const builder = createRouterBuilder<Locales, AlpRouteRef>();
+  const builder = createAlpRouterBuilder<Locales>();
 
-  const redirectToHome = (ctx: Context): Promise<void> => {
-    return ctx.redirect(`${config.get<string>('webappUrl')}/auth`);
+  const redirectToHome: AlpRouteRef = (ctx) => {
+    ctx.redirect(`${config.get<string>('webappUrl')}/auth`);
   };
 
   builder.add('/', redirectToHome);

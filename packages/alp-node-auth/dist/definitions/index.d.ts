@@ -1,7 +1,6 @@
 /// <reference types="node" />
 import type { IncomingMessage } from 'node:http';
-import type { Context } from 'alp-node';
-import type { NodeApplication } from 'alp-types';
+import type { Context, NodeApplication } from 'alp-node';
 import type MongoUsersManager from './MongoUsersManager';
 import type { AuthController as AuthControllerType, AuthHooks } from './createAuthController';
 import type { AuthRoutes as AuthRoutesType } from './createRoutes';
@@ -16,7 +15,7 @@ export { authSocketIO } from './authSocketIO';
 export { createAuthApolloContext } from './authApolloContext';
 export { STATUSES } from './services/user/UserAccountsService';
 export * from './types';
-declare module 'alp-types' {
+declare module 'alp-node' {
     interface ContextState {
         loggedInUserId: NonNullable<ContextState['loggedInUser']>['_id'] | null | undefined;
         loggedInUser: User | null | undefined;
