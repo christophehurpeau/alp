@@ -1,6 +1,6 @@
 {
   "name": "alp-migrations",
-  "version": "8.2.1",
+  "version": "9.0.0",
   "description": "migrations scripts in alp",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -57,7 +57,7 @@
     "router-segments": "^9.1.0"
   },
   "dependencies": {
-    "alp-node": "6.2.0",
+    "alp-node": "7.0.0",
     "nightingale-logger": "^15.0.0",
     "semver": "^7.3.5"
   },

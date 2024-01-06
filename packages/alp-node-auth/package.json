@@ -1,6 +1,6 @@
 {
   "name": "alp-node-auth",
-  "version": "9.3.0",
+  "version": "10.0.0",
   "description": "authentication with alp",
   "keywords": [
     "alp"
@@ -119,7 +119,7 @@
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "alp-node": "^6.1.1",
+    "alp-node": "^7.0.0",
     "liwi-mongo": "^11.0.0",
     "router-segments": "^9.1.0"
   },
@@ -133,7 +133,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.23.7",
-    "alp-node": "6.2.0",
+    "alp-node": "7.0.0",
     "liwi-mongo": "11.0.0",
     "pob-babel": "38.0.2",
     "router-segments": "9.1.0",

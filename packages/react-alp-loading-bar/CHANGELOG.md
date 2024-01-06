@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-loading-bar@6.1.1...react-alp-loading-bar@7.0.0) (2024-01-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* merge to alp-node to improve maintenability, remove alp-types
+
+### Features
+
+* merge to alp-node to improve maintenability, remove alp-types ([ead9a2f](https://github.com/christophehurpeau/alp/commit/ead9a2fd1bcbedce0be29ea0e444c5cead99c64d))
+
+
+
+
 ## [6.1.1](https://github.com/christophehurpeau/alp/compare/react-alp-loading-bar@6.1.0...react-alp-loading-bar@6.1.1) (2024-01-06)
 
 Note: no notable changes
