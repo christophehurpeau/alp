@@ -93,7 +93,7 @@
     "parse-json-object-as-map": "^1.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.7",
+    "@babel/core": "7.23.9",
     "@types/koa-compress": "4.0.6",
     "@types/koa-static": "4.0.4",
     "@types/minimist": "1.2.5",
