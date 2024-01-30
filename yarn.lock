@@ -5357,7 +5357,7 @@ __metadata:
     react-icons: "npm:4.12.0"
     react-intl: "npm:6.5.5"
     react-native-safe-area-context: "npm:4.8.2"
-    react-native-svg: "npm:13.14.0"
+    react-native-svg: "npm:14.1.0"
     react-native-web: "npm:0.19.10"
     router-segments: "npm:9.1.0"
     springbokjs-daemon: "npm:10.1.0"
@@ -12258,16 +12258,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-svg@npm:13.14.0":
-  version: 13.14.0
-  resolution: "react-native-svg@npm:13.14.0"
+"react-native-svg@npm:14.1.0":
+  version: 14.1.0
+  resolution: "react-native-svg@npm:14.1.0"
   dependencies:
     css-select: "npm:^5.1.0"
     css-tree: "npm:^1.1.3"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10/4a1cf9d1afad66ddfc98895eb691ca14c40ac8be16a629fc39db8550c20523e171f3deb232932e2e53b865821a2a8f831101d44b90a71f07feaaf16413721f46
+  checksum: 10/2322cba59542ae552c25d222b6311024ea17daf2431c5ed9029d3682e61d2f8bc5428f496b237e81a6d1c6bdf29abeab0ed005cfbb48420f34e1cdffdc40823b
   languageName: node
   linkType: hard
 
