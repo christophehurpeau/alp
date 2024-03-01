@@ -64,7 +64,7 @@
   "devDependencies": {
     "@babel/core": "7.23.9",
     "@types/node": "20.11.24",
-    "@types/semver": "7.5.6",
+    "@types/semver": "7.5.8",
     "liwi-mongo": "11.0.0",
     "pob-babel": "38.0.2",
     "router-segments": "9.1.0",
