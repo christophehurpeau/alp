@@ -2247,17 +2247,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@guanghechen/rollup-plugin-copy@npm:1.8.6":
-  version: 1.8.6
-  resolution: "@guanghechen/rollup-plugin-copy@npm:1.8.6"
+"@guanghechen/rollup-plugin-copy@npm:1.9.8":
+  version: 1.9.8
+  resolution: "@guanghechen/rollup-plugin-copy@npm:1.9.8"
   dependencies:
     chalk: "npm:^4.1.2"
-    fs-extra: "npm:^10.0.0"
+    chokidar: "npm:^3.5.3"
+    dir-glob: "npm:^3.0.1"
+    fs-extra: "npm:^10.1.0"
     globby: "npm:^11.0.4"
     is-plain-object: "npm:^5.0.0"
+    micromatch: "npm:^4.0.5"
   peerDependencies:
     rollup: ^2.64.0
-  checksum: 10/24eb3b7ce29b8cd3750b6ad76d1f6abe07dae817723823c0fdd2911abfc536eaa60a66e341a2021c7f6b501ee82e99ef40c7bdb3e78842759e7360301b58f78e
+  checksum: 10/c43bf2028d8cbeb26bfc36f2fe115c5de5c63e760ec650185ec05f70c8b4710015e66273c00442dc2ccdc8ee4537f57ab6a47ef040700a567db4cd0701ff0857
   languageName: node
   linkType: hard
 
@@ -5466,7 +5469,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config"
   dependencies:
-    "@guanghechen/rollup-plugin-copy": "npm:1.8.6"
+    "@guanghechen/rollup-plugin-copy": "npm:1.9.8"
     js-yaml: "npm:4.1.0"
   peerDependencies:
     rollup: ^2.64.0 || ^3.0.0 || ^4.0.0
@@ -6337,7 +6340,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.5.2":
+"chokidar@npm:^3.5.2, chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
   dependencies:
@@ -8323,14 +8326,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "fs-extra@npm:10.0.0"
+"fs-extra@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "fs-extra@npm:10.1.0"
   dependencies:
     graceful-fs: "npm:^4.2.0"
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
-  checksum: 10/c333973ece06655bf9a4566c65e648d64d7ab3a36e52011b05263e8f4664d2cc85cf9d98ddd4672857105561d759ef63828cf49428c78470a788a3751094a1a4
+  checksum: 10/05ce2c3b59049bcb7b52001acd000e44b3c4af4ec1f8839f383ef41ec0048e3cfa7fd8a637b1bddfefad319145db89be91f4b7c1db2908205d38bf91e7d1d3b7
   languageName: node
   linkType: hard
 
@@ -10769,7 +10772,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:4.0.5, micromatch@npm:^4.0.4":
+"micromatch@npm:4.0.5, micromatch@npm:^4.0.4, micromatch@npm:^4.0.5":
   version: 4.0.5
   resolution: "micromatch@npm:4.0.5"
   dependencies:
