@@ -5354,7 +5354,7 @@ __metadata:
     react-alp-auth: "npm:2.1.1"
     react-alp-connection-state: "npm:8.1.1"
     react-dom: "npm:18.2.0"
-    react-icons: "npm:4.12.0"
+    react-icons: "npm:5.0.1"
     react-intl: "npm:6.6.2"
     react-native-safe-area-context: "npm:4.9.0"
     react-native-svg: "npm:13.14.0"
@@ -12194,12 +12194,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-icons@npm:4.12.0":
-  version: 4.12.0
-  resolution: "react-icons@npm:4.12.0"
+"react-icons@npm:5.0.1":
+  version: 5.0.1
+  resolution: "react-icons@npm:5.0.1"
   peerDependencies:
     react: "*"
-  checksum: 10/5cc20509ca0b182f1e7bf42c271846c48f688c8922e2439f48728805adc93ba18476a13588cbe91ee43a2d03b2787e0dc0b5cc4b9c4e4ae3426f4464b3c1b734
+  checksum: 10/c4458c643ae32a793ddebc5fa1235c7ec051be1b131205510e8199d15a4c89221a501f95a71fa21c2da93e8dd225290e2e24bb80abd3fb85801e43009e692098
   languageName: node
   linkType: hard
 
