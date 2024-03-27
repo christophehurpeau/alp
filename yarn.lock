@@ -5356,7 +5356,7 @@ __metadata:
     react-dom: "npm:18.2.0"
     react-icons: "npm:4.12.0"
     react-intl: "npm:6.5.5"
-    react-native-safe-area-context: "npm:4.8.2"
+    react-native-safe-area-context: "npm:4.9.0"
     react-native-svg: "npm:13.14.0"
     react-native-web: "npm:0.19.10"
     router-segments: "npm:9.1.0"
@@ -12248,13 +12248,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-safe-area-context@npm:4.8.2":
-  version: 4.8.2
-  resolution: "react-native-safe-area-context@npm:4.8.2"
+"react-native-safe-area-context@npm:4.9.0":
+  version: 4.9.0
+  resolution: "react-native-safe-area-context@npm:4.9.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10/ea01a7e3bceec23273a7b2807816b917fae48030431c1d966ee912c5ef12b131620c10b909f2604a2f296fc84ab1a3bdd9e536701401bdca6452441e2a825b60
+  checksum: 10/ea95a915fac03bf116edfba24978f3722ed2bcf159c4425d3f52176a0eef84523d442aca9b203f34544c89a30c7d442c01fea25c5ea5f848614186c9a358d37f
   languageName: node
   linkType: hard
 
