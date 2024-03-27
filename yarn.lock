@@ -5388,7 +5388,7 @@ __metadata:
     "@babel/preset-react": "npm:7.23.3"
     "@babel/runtime": "npm:^7.23.7"
     babel-plugin-discard-module-references: "npm:^1.1.2"
-    babel-preset-pob-env: "npm:11.0.2"
+    babel-preset-pob-env: "npm:11.0.3"
     cookies: "npm:~0.8.0"
     next: "npm:13.5.6"
     pob-babel: "npm:38.0.2"
@@ -6056,6 +6056,23 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.23.2
   checksum: 10/62037c45f298af5b667e61a1550a311d00c289bdaaca6751faddcd882214dbfe5e87bff0f5a2b9807811452a6f76aee4bbb62dbc0053d778e6f4aed50c917b47
+  languageName: node
+  linkType: hard
+
+"babel-preset-pob-env@npm:11.0.3":
+  version: 11.0.3
+  resolution: "babel-preset-pob-env@npm:11.0.3"
+  dependencies:
+    "@babel/plugin-proposal-nullish-coalescing-operator": "npm:^7.18.6"
+    "@babel/plugin-proposal-optional-chaining": "npm:^7.21.0"
+    "@babel/plugin-transform-modules-commonjs": "npm:^7.23.0"
+    "@babel/preset-typescript": "npm:^7.23.2"
+    babel-plugin-discard-module-references: "npm:^1.1.2"
+    babel-plugin-fix-class-properties-uninitialized: "npm:7.2.1"
+    babel-preset-optimizations: "npm:^2.0.0"
+  peerDependencies:
+    "@babel/core": ^7.23.2
+  checksum: 10/08423ce21cfddbf74b9dd962f452dc4970ceb7e07258164c5bbbcfeea86497c7e178a848126187e5829ad4b45087a16d57b2133e73dcfb69cecd27f523201a51
   languageName: node
   linkType: hard
 
