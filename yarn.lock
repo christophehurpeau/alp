@@ -5404,7 +5404,7 @@ __metadata:
     "@babel/runtime": "npm:^7.23.7"
     babel-plugin-discard-module-references: "npm:^1.1.2"
     babel-preset-pob-env: "npm:11.0.2"
-    cookies: "npm:~0.8.0"
+    cookies: "npm:~0.9.0"
     next: "npm:13.5.6"
     pob-babel: "npm:38.0.2"
     react: "npm:18.2.0"
@@ -5427,7 +5427,7 @@ __metadata:
     "@types/jsonwebtoken": "npm:^9.0.1"
     "@types/simple-oauth2": "npm:^5.0.4"
     alp-node: "npm:7.0.0"
-    cookies: "npm:~0.8.0"
+    cookies: "npm:~0.9.0"
     jsonwebtoken: "npm:^9.0.0"
     liwi-mongo: "npm:11.0.0"
     nightingale-logger: "npm:^15.0.0"
@@ -6707,6 +6707,16 @@ __metadata:
     depd: "npm:~2.0.0"
     keygrip: "npm:~1.1.0"
   checksum: 10/5da4d72ba81c2740511751ac8ea9506e10e2366b9ad3360333581e4667fd8d063d02c5be0bef16177de3e366b8128ed2b72921e2952c79cbca084d177e529bba
+  languageName: node
+  linkType: hard
+
+"cookies@npm:~0.9.0":
+  version: 0.9.1
+  resolution: "cookies@npm:0.9.1"
+  dependencies:
+    depd: "npm:~2.0.0"
+    keygrip: "npm:~1.1.0"
+  checksum: 10/4816461a38d907b20f3fb7a2bc4741fe580e7a195f3e248ef7025cb3be56a07638a0f4e72553a5f535554ca30172c8a3245c63ac72c9737cec034e9a47773392
   languageName: node
   linkType: hard
 
