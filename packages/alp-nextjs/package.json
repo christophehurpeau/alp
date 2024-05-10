@@ -92,7 +92,7 @@
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
     "@babel/core": "^7.23.6",
-    "next": "^13.4.12",
+    "next": "^14.1.1",
     "react": "^18.0.0",
     "react-native-web": "^0.19.10"
   },
