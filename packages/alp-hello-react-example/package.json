@@ -69,7 +69,7 @@
     "tamagui": "1.79.19"
   },
   "devDependencies": {
-    "@babel/core": "7.24.3",
+    "@babel/core": "7.24.5",
     "@tamagui/babel-plugin": "1.79.19",
     "@tamagui/next-plugin": "1.79.19",
     "@testing-library/react": "14.2.2",
