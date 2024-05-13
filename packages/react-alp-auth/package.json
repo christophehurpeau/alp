@@ -78,8 +78,8 @@
     "js-cookie": "3.0.5"
   },
   "devDependencies": {
-    "@babel/core": "7.24.3",
-    "@babel/preset-env": "7.24.3",
+    "@babel/core": "7.24.5",
+    "@babel/preset-env": "7.24.5",
     "@babel/preset-react": "7.24.1",
     "@types/js-cookie": "3.0.6",
     "alp-nextjs": "4.1.1",
