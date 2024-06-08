@@ -1,5 +1,5 @@
-import type { AlpNodeApp } from '../AlpNodeApp';
-import { ParamValueFromContext } from './ParamValueFromContext';
+import type { AlpNodeApp } from "../AlpNodeApp";
+import { ParamValueFromContext } from "./ParamValueFromContext";
 export interface AlpParamsContext {
     params: ParamValueFromContext;
     validParams: ParamValueFromContext;

@@ -10,7 +10,7 @@ export interface TokensObject {
     expireDate: Date | null;
     idToken: string;
 }
-export interface AccountService<ScopeKeys extends 'login'> {
+export interface AccountService<ScopeKeys extends "login"> {
     scopeKeyToScope: Record<ScopeKeys, string>;
     providerKey: string;
     getProfile: (tokens: TokensObject) => Promise<any>;

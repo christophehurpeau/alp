@@ -1,44 +1,42 @@
-/* eslint-disable max-lines */
-import type { IncomingMessage } from 'node:http';
-import { promisify } from 'node:util';
-import type { Context, ContextState, NodeApplication } from 'alp-node';
-import jsonwebtoken from 'jsonwebtoken';
-import { Logger } from 'nightingale-logger';
-import type MongoUsersManager from './MongoUsersManager';
+import type { IncomingMessage } from "node:http";
+import { promisify } from "node:util";
+import type { Context, ContextState, NodeApplication } from "alp-node";
+import jsonwebtoken from "jsonwebtoken";
+import { Logger } from "nightingale-logger";
+import type MongoUsersManager from "./MongoUsersManager";
 import type {
   AuthController as AuthControllerType,
   AuthHooks,
-} from './createAuthController';
-import { createAuthController } from './createAuthController';
-import type { AuthRoutes as AuthRoutesType } from './createRoutes';
-import { createRoutes } from './createRoutes';
-import type { Strategies } from './services/authentification/AuthenticationService';
-import { AuthenticationService } from './services/authentification/AuthenticationService';
-import type { AllowedStrategyKeys } from './services/authentification/types';
-import UserAccountsService from './services/user/UserAccountsService';
-import type { AccountService } from './services/user/types';
-import type { User, UserSanitized } from './types';
+} from "./createAuthController";
+import { createAuthController } from "./createAuthController";
+import type { AuthRoutes as AuthRoutesType } from "./createRoutes";
+import { createRoutes } from "./createRoutes";
+import type { Strategies } from "./services/authentification/AuthenticationService";
+import { AuthenticationService } from "./services/authentification/AuthenticationService";
+import type { AllowedStrategyKeys } from "./services/authentification/types";
+import UserAccountsService from "./services/user/UserAccountsService";
+import type { AccountService } from "./services/user/types";
+import type { User, UserSanitized } from "./types";
 import {
   getTokenFromRequest,
   COOKIE_NAME_TOKEN,
   COOKIE_NAME_STATE,
-} from './utils/cookies';
-import { createFindLoggedInUser } from './utils/createFindLoggedInUser';
+} from "./utils/cookies";
+import { createFindLoggedInUser } from "./utils/createFindLoggedInUser";
 
-export { default as MongoUsersManager } from './MongoUsersManager';
-export { default as UserAccountGoogleService } from './services/user/UserAccountGoogleService';
-export { default as UserAccountSlackService } from './services/user/UserAccountSlackService';
-export { authSocketIO } from './authSocketIO';
-export { createAuthApolloContext } from './authApolloContext';
-export { STATUSES } from './services/user/UserAccountsService';
+export { default as MongoUsersManager } from "./MongoUsersManager";
+export { default as UserAccountGoogleService } from "./services/user/UserAccountGoogleService";
+export { default as UserAccountSlackService } from "./services/user/UserAccountSlackService";
+export { authSocketIO } from "./authSocketIO";
+export { createAuthApolloContext } from "./authApolloContext";
+export { STATUSES } from "./services/user/UserAccountsService";
 
-export * from './types';
+export * from "./types";
 
-declare module 'alp-node' {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
+declare module "alp-node" {
   interface ContextState {
     loggedInUserId:
-      | NonNullable<ContextState['loggedInUser']>['_id']
+      | NonNullable<ContextState["loggedInUser"]>["_id"]
       | null
       | undefined;
     loggedInUser: User | null | undefined;
@@ -46,7 +44,7 @@ declare module 'alp-node' {
 
   interface ContextSanitizedState {
     loggedInUserId:
-      | NonNullable<ContextSanitizedState['loggedInUser']>['_id']
+      | NonNullable<ContextSanitizedState["loggedInUser"]>["_id"]
       | null
       | undefined;
     loggedInUser: UserSanitized | null | undefined;
@@ -54,23 +52,23 @@ declare module 'alp-node' {
 
   interface BaseContext {
     setLoggedIn: (
-      loggedInUserId: NonNullable<ContextState['loggedInUserId']>,
-      loggedInUser: NonNullable<ContextState['loggedInUser']>,
+      loggedInUserId: NonNullable<ContextState["loggedInUserId"]>,
+      loggedInUser: NonNullable<ContextState["loggedInUser"]>,
     ) => Promise<void>;
     logout: () => void;
   }
 }
 
-const logger = new Logger('alp:auth');
+const logger = new Logger("alp:auth");
 
 const signPromisified: any = promisify(jsonwebtoken.sign);
 
 export type AuthController = AuthControllerType;
 export type AuthRoutes = AuthRoutesType;
-export { AuthenticationService } from './services/authentification/AuthenticationService';
+export { AuthenticationService } from "./services/authentification/AuthenticationService";
 
 export default function init<
-  StrategyKeys extends AllowedStrategyKeys = 'google',
+  StrategyKeys extends AllowedStrategyKeys = "google",
   U extends User = User,
   USanitized extends UserSanitized = UserSanitized,
 >({
@@ -113,12 +111,12 @@ export default function init<
 
     app.context.setLoggedIn = async function (
       this: Context,
-      loggedInUserId: NonNullable<ContextState['loggedInUser']>['_id'],
-      loggedInUser: NonNullable<ContextState['loggedInUser']>,
+      loggedInUserId: NonNullable<ContextState["loggedInUser"]>["_id"],
+      loggedInUser: NonNullable<ContextState["loggedInUser"]>,
     ): Promise<void> {
-      logger.debug('setLoggedIn', { loggedInUser });
+      logger.debug("setLoggedIn", { loggedInUser });
       if (!loggedInUserId) {
-        throw new Error('Illegal value for setLoggedIn');
+        throw new Error("Illegal value for setLoggedIn");
       }
 
       this.state.loggedInUserId = loggedInUserId;
@@ -127,12 +125,12 @@ export default function init<
       const token = await signPromisified(
         { loggedInUserId, time: Date.now() },
         this.config
-          .get<Map<string, unknown>>('authentication')
-          .get('secretKey'),
+          .get<Map<string, unknown>>("authentication")
+          .get("secretKey"),
         {
-          algorithm: 'HS512',
-          audience: jwtAudience || this.request.headers['user-agent'],
-          expiresIn: '30 days',
+          algorithm: "HS512",
+          audience: jwtAudience || this.request.headers["user-agent"],
+          expiresIn: "30 days",
         },
       );
 
@@ -145,7 +143,7 @@ export default function init<
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.cookies.set(COOKIE_NAME_TOKEN, token, {
         httpOnly: true,
-        secure: this.config.get('allowHttps'),
+        secure: this.config.get("allowHttps"),
       });
 
       this.cookies.set(
@@ -153,7 +151,7 @@ export default function init<
         JSON.stringify({ loggedInUserId, expiresIn: calcExpiresTime() }),
         {
           httpOnly: false,
-          secure: this.config.get('allowHttps'),
+          secure: this.config.get("allowHttps"),
         },
       );
     };
@@ -161,14 +159,14 @@ export default function init<
     app.context.logout = function (this: Context): void {
       delete this.state.loggedInUserId;
       delete this.state.loggedInUser;
-      this.cookies.set(COOKIE_NAME_TOKEN, '', { expires: new Date(1) });
-      this.cookies.set(COOKIE_NAME_STATE, '', { expires: new Date(1) });
+      this.cookies.set(COOKIE_NAME_TOKEN, "", { expires: new Date(1) });
+      this.cookies.set(COOKIE_NAME_STATE, "", { expires: new Date(1) });
     };
 
     const findLoggedInUser = createFindLoggedInUser(
       app.config
-        .get<Map<string, unknown>>('authentication')
-        .get('secretKey') as string,
+        .get<Map<string, unknown>>("authentication")
+        .get("secretKey") as string,
       usersManager,
       logger,
     );
@@ -180,7 +178,7 @@ export default function init<
       ): ReturnType<typeof findLoggedInUser> => {
         const token = getTokenFromRequest(req);
         return findLoggedInUser(
-          jwtAudience || req.headers['user-agent'],
+          jwtAudience || req.headers["user-agent"],
           token,
         );
       },
@@ -190,11 +188,11 @@ export default function init<
         next: () => Promise<T> | T,
       ): Promise<T> => {
         const token = ctx.cookies.get(COOKIE_NAME_TOKEN);
-        const userAgent = ctx.request.headers['user-agent'];
-        logger.debug('middleware', { token });
+        const userAgent = ctx.request.headers["user-agent"];
+        logger.debug("middleware", { token });
 
         const setState = (
-          loggedInUserId: U['_id'] | null | undefined,
+          loggedInUserId: U["_id"] | null | undefined,
           loggedInUser: U | null | undefined,
         ): void => {
           ctx.state.loggedInUserId = loggedInUserId;
@@ -208,12 +206,12 @@ export default function init<
           jwtAudience || userAgent,
           token,
         );
-        logger.debug('middleware', { loggedInUserId });
+        logger.debug("middleware", { loggedInUserId });
 
         if (loggedInUserId == null || loggedInUser == null) {
           if (token) {
-            ctx.cookies.set(COOKIE_NAME_TOKEN, '', { expires: new Date(1) });
-            ctx.cookies.set(COOKIE_NAME_STATE, '', { expires: new Date(1) });
+            ctx.cookies.set(COOKIE_NAME_TOKEN, "", { expires: new Date(1) });
+            ctx.cookies.set(COOKIE_NAME_STATE, "", { expires: new Date(1) });
           }
           setState(null, null);
           return next();

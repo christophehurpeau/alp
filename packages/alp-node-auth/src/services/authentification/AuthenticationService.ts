@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable camelcase, max-lines */
-import { EventEmitter } from 'node:events';
-import type { Context, NodeConfig } from 'alp-node';
-import { Logger } from 'nightingale-logger';
-import type { Strategy as Oauth2Strategy } from '../../../strategies/strategies.d';
-import type { AccountId, User, Account, UserSanitized } from '../../types';
-import { randomHex } from '../../utils/generators';
-import type UserAccountsService from '../user/UserAccountsService';
-import type { AllowedStrategyKeys, Tokens } from './types';
+/* eslint-disable camelcase */
+import { EventEmitter } from "node:events";
+import type { Context, NodeConfig } from "alp-node";
+import { Logger } from "nightingale-logger";
+import type { Strategy as Oauth2Strategy } from "../../../strategies/strategies.d";
+import type { AccountId, User, Account, UserSanitized } from "../../types";
+import { randomHex } from "../../utils/generators";
+import type UserAccountsService from "../user/UserAccountsService";
+import type { AllowedStrategyKeys, Tokens } from "./types";
 
-const logger = new Logger('alp:auth:authentication');
+const logger = new Logger("alp:auth:authentication");
 
 export interface GenerateAuthUrlOptions {
   accessType?: string;
@@ -72,13 +72,13 @@ export class AuthenticationService<
   }
 
   generateAuthUrl<T extends StrategyKeys>(strategy: T, params: any): string {
-    logger.debug('generateAuthUrl', { strategy, params });
+    logger.debug("generateAuthUrl", { strategy, params });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
-      case 'oauth2':
+      case "oauth2":
         return strategyInstance.oauth2.authorizationCode.authorizeURL(params);
       default:
-        throw new Error('Invalid strategy');
+        throw new Error("Invalid strategy");
     }
   }
 
@@ -86,10 +86,10 @@ export class AuthenticationService<
     strategy: StrategyKeys,
     options: GetTokensOptions,
   ): Promise<Tokens> {
-    logger.debug('getTokens', { strategy, options });
+    logger.debug("getTokens", { strategy, options });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
-      case 'oauth2': {
+      case "oauth2": {
         const result = await strategyInstance.oauth2.authorizationCode.getToken(
           {
             code: options.code,
@@ -116,7 +116,7 @@ export class AuthenticationService<
       }
 
       default:
-        throw new Error('Invalid stategy');
+        throw new Error("Invalid stategy");
     }
   }
 
@@ -124,13 +124,13 @@ export class AuthenticationService<
     strategy: StrategyKeys,
     tokensParam: { refreshToken: string },
   ): Promise<Tokens> {
-    logger.debug('refreshToken', { strategy });
+    logger.debug("refreshToken", { strategy });
     if (!tokensParam.refreshToken) {
-      throw new Error('Missing refresh token');
+      throw new Error("Missing refresh token");
     }
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
-      case 'oauth2': {
+      case "oauth2": {
         const token = strategyInstance.oauth2.clientCredentials.createToken({
           refresh_token: tokensParam.refreshToken,
         });
@@ -151,15 +151,15 @@ export class AuthenticationService<
       }
 
       default:
-        throw new Error('Invalid stategy');
+        throw new Error("Invalid stategy");
     }
   }
 
   redirectUri(ctx: Context, strategy: string): string {
-    const host = `http${this.config.get('allowHttps') ? 's' : ''}://${
+    const host = `http${this.config.get("allowHttps") ? "s" : ""}://${
       ctx.request.host
     }`;
-    return `${host}${ctx.urlGenerator('authResponse', {
+    return `${host}${ctx.urlGenerator("authResponse", {
       strategy,
     })}`;
   }
@@ -180,18 +180,18 @@ export class AuthenticationService<
     },
     params?: any,
   ): Promise<void> {
-    logger.debug('redirectAuthUrl', { strategy, scopeKey, refreshToken });
+    logger.debug("redirectAuthUrl", { strategy, scopeKey, refreshToken });
     const state = await randomHex(8);
-    const isLoginAccess = !scopeKey || scopeKey === 'login';
+    const isLoginAccess = !scopeKey || scopeKey === "login";
     const scope = this.userAccountsService.getScope(
       strategy,
-      scopeKey || 'login',
+      scopeKey || "login",
       user,
       accountId,
     );
 
     if (!scope) {
-      throw new Error('Invalid empty scope');
+      throw new Error("Invalid empty scope");
     }
 
     ctx.cookies.set(
@@ -204,14 +204,14 @@ export class AuthenticationService<
       {
         maxAge: 10 * 60 * 1000,
         httpOnly: true,
-        secure: this.config.get('allowHttps'),
+        secure: this.config.get("allowHttps"),
       },
     );
     const redirectUri = this.generateAuthUrl(strategy, {
       redirect_uri: this.redirectUri(ctx, strategy),
       scope,
       state,
-      access_type: refreshToken ? 'offline' : 'online',
+      access_type: refreshToken ? "offline" : "online",
       ...params,
     });
 
@@ -224,29 +224,29 @@ export class AuthenticationService<
     isLoggedIn: boolean,
     hooks: AccessResponseHooks<StrategyKeys, U>,
   ): Promise<U> {
-    const errorParam = ctx.params.queryParam('error').notEmpty();
+    const errorParam = ctx.params.queryParam("error").notEmpty();
     if (errorParam.isValid()) {
       ctx.throw(errorParam.value, 403);
     }
 
-    const code = ctx.validParams.queryParam('code').notEmpty().value;
-    const state = ctx.validParams.queryParam('state').notEmpty().value;
+    const code = ctx.validParams.queryParam("code").notEmpty().value;
+    const state = ctx.validParams.queryParam("state").notEmpty().value;
 
     const cookieName = `auth_${strategy}_${state}`;
     const cookie = ctx.cookies.get(cookieName);
-    ctx.cookies.set(cookieName, '', { expires: new Date(1) });
+    ctx.cookies.set(cookieName, "", { expires: new Date(1) });
     if (!cookie) {
-      throw new Error('No cookie for this state');
+      throw new Error("No cookie for this state");
     }
 
     const parsedCookie = JSON.parse(cookie);
     if (!parsedCookie?.scope) {
-      throw new Error('Unexpected cookie value');
+      throw new Error("Unexpected cookie value");
     }
 
     if (!parsedCookie.isLoginAccess) {
       if (!isLoggedIn) {
-        throw new Error('You are not connected');
+        throw new Error("You are not connected");
       }
     }
 

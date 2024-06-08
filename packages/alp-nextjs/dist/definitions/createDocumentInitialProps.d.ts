@@ -1,5 +1,5 @@
-import type NextDocument from 'next/document';
-import type { ReactElement } from 'react';
+import type NextDocument from "next/document";
+import type { ReactElement } from "react";
 /**
  *
  * @example
@@ -11,5 +11,5 @@ import type { ReactElement } from 'react';
  * }
  * ```
  */
-export declare function createDocumentInitialProps(getMoreStyles?: () => ReactElement | ReactElement[]): (typeof NextDocument)['getInitialProps'];
+export declare function createDocumentInitialProps(getMoreStyles?: () => ReactElement | ReactElement[]): (typeof NextDocument)["getInitialProps"];
 //# sourceMappingURL=createDocumentInitialProps.d.ts.map

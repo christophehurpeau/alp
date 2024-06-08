@@ -1,23 +1,23 @@
-import { createCheckPackageWithWorkspaces } from 'check-package-dependencies';
+import { createCheckPackageWithWorkspaces } from "check-package-dependencies";
 
 await createCheckPackageWithWorkspaces({
-  isLibrary: (pkg) => !pkg.name.endsWith('-example'),
+  isLibrary: (pkg) => !pkg.name.endsWith("-example"),
 })
   .checkRecommended({
     onlyWarnsForInMonorepoPackagesDependencies: {
-      'alp-migrations': {
-        '*': {
-          duplicateDirectDependency: ['semver', 'nightingale-logger'],
+      "alp-migrations": {
+        "*": {
+          duplicateDirectDependency: ["semver", "nightingale-logger"],
         },
       },
-      'alp-node-auth': {
-        '*': {
-          duplicateDirectDependency: ['nightingale-logger'],
+      "alp-node-auth": {
+        "*": {
+          duplicateDirectDependency: ["nightingale-logger"],
         },
       },
-      'alp-hello-react-example': {
-        '*': {
-          missingPeerDependency: ['react-native'],
+      "alp-hello-react-example": {
+        "*": {
+          missingPeerDependency: ["react-native"],
         },
       },
     },

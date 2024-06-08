@@ -1,5 +1,6 @@
-import type { ReactElement } from 'react';
-import { PureComponent } from 'react';
+/* eslint-disable react/destructuring-assignment */
+import type { ReactElement } from "react";
+import { PureComponent } from "react";
 
 /*
 Example with antd:
@@ -47,7 +48,7 @@ interface LoadingBarState {
 
 interface WebsocketInterface {
   isConnected: () => boolean;
-  on: (event: 'connect' | 'disconnect', callback: () => unknown) => void;
+  on: (event: "connect" | "disconnect", callback: () => unknown) => void;
 }
 
 export default class LoadingBar extends PureComponent<
@@ -76,10 +77,10 @@ export default class LoadingBar extends PureComponent<
         hidden: prevState.hidden || prevState.progress === 100,
       }));
     }
-    this.props.websocket.on('connect', () => {
+    this.props.websocket.on("connect", () => {
       this.setState({ loading: false });
     });
-    this.props.websocket.on('disconnect', () => {
+    this.props.websocket.on("disconnect", () => {
       this.setState({ loading: true, progress: 1, hidden: false });
     });
   }
@@ -89,7 +90,7 @@ export default class LoadingBar extends PureComponent<
     prevState: LoadingBarState,
   ): void {
     if (this.props.websocket !== prevProps.websocket) {
-      throw new Error('Unsupported at the moment');
+      throw new Error("Unsupported at the moment");
     }
     if (this.state.loading !== prevState.loading) {
       if (this.state.loading) {
@@ -148,12 +149,12 @@ export default class LoadingBar extends PureComponent<
       <div
         hidden={this.state.hidden}
         style={{
-          position: 'fixed',
+          position: "fixed",
           top: 0,
           left: 0,
           right: 0,
           zIndex: 4,
-          pointerEvents: 'none',
+          pointerEvents: "none",
         }}
       >
         <LoadingBarComponent progress={this.state.progress} />

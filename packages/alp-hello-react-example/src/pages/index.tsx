@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import type { ReactElement } from 'react';
-import { HomeView } from 'sections/hello-world/HomeView';
+import type { ReactElement } from "react";
+import { HomeView } from "sections/hello-world/HomeView";
 
 export default function HomePage(): ReactElement {
   return <HomeView />;

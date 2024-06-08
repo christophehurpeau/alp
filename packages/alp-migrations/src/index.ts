@@ -1,19 +1,19 @@
 /* eslint-disable unicorn/no-process-exit */
-import type AlpNodeApp from 'alp-node';
-import { Logger } from 'nightingale-logger';
-import semver from 'semver';
-import type MigrationsManager from './Manager';
-import type { CallbackParam } from './readRecursiveDirectory';
-import readRecursiveDirectory from './readRecursiveDirectory';
+import type AlpNodeApp from "alp-node";
+import { Logger } from "nightingale-logger";
+import semver from "semver";
+import type MigrationsManager from "./Manager";
+import type { CallbackParam } from "./readRecursiveDirectory";
+import readRecursiveDirectory from "./readRecursiveDirectory";
 
-const logger = new Logger('alp:migrations');
+const logger = new Logger("alp:migrations");
 
-export { default as MigrationsManager } from './Manager';
+export { default as MigrationsManager } from "./Manager";
 
 export interface Options {
   app: AlpNodeApp;
   migrationsManager: MigrationsManager;
-  config?: AlpNodeApp['config'];
+  config?: AlpNodeApp["config"];
   dirname?: string;
 }
 
@@ -24,22 +24,23 @@ export default async function migrate({
   dirname = `${app.dirname}/migrations`,
 }: Options): Promise<void> {
   const unhandledRejectionHandler = (reason: unknown): void => {
-    logger.error('unhandledRejection', { err: reason });
+    logger.error("unhandledRejection", { err: reason });
+    // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   };
-  process.on('unhandledRejection', unhandledRejectionHandler);
+  process.on("unhandledRejection", unhandledRejectionHandler);
 
   const packageVersion = config.packageConfig.version as string;
   const currentVersion = await migrationsManager.findLastVersion();
 
   let migrations: { version: string; fileName: string }[] = [];
 
-  logger.info('migrate', { packageVersion, currentVersion });
+  logger.info("migrate", { packageVersion, currentVersion });
 
   await readRecursiveDirectory(dirname, (res: CallbackParam) => {
     const fileName = res.path.slice(dirname.length + 1);
 
-    if (!fileName.endsWith('.js')) {
+    if (!fileName.endsWith(".js")) {
       return;
     }
 
@@ -82,8 +83,9 @@ export default async function migrate({
     }
   } catch (error: any) {
     logger.error(error as Error);
+    // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   }
 
-  process.removeListener('unhandledRejection', unhandledRejectionHandler);
+  process.removeListener("unhandledRejection", unhandledRejectionHandler);
 }

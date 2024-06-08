@@ -1,7 +1,7 @@
-import type NextDocument from 'next/document';
-import type { ReactElement } from 'react';
+import type NextDocument from "next/document";
+import type { ReactElement } from "react";
 // eslint-disable-next-line import/no-unresolved
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 /**
  *
@@ -17,7 +17,7 @@ import { StyleSheet } from 'react-native';
 
 export function createDocumentInitialProps(
   getMoreStyles?: () => ReactElement | ReactElement[],
-): (typeof NextDocument)['getInitialProps'] {
+): (typeof NextDocument)["getInitialProps"] {
   return async (ctx) => {
     const page = await ctx.renderPage();
 

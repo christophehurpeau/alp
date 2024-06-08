@@ -1,4 +1,4 @@
-import ParamValueValidator from './ParamValueValidator';
+import ParamValueValidator from "./ParamValueValidator";
 
 export default class ParamValueModelValidator<
   T,

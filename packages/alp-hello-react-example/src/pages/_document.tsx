@@ -1,7 +1,7 @@
-import { createDocumentInitialProps } from 'alp-nextjs';
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
-import type { ReactElement } from 'react';
-import Tamagui from '../tamagui.config';
+import { createDocumentInitialProps } from "alp-nextjs";
+import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import type { ReactElement } from "react";
+import Tamagui from "../tamagui.config";
 
 export default class MyDocument extends NextDocument {
   static override getInitialProps = createDocumentInitialProps(() => (
@@ -11,13 +11,12 @@ export default class MyDocument extends NextDocument {
           // if you are using "outputCSS" option, you should use this "exclude"
           // if not, then you can leave the option out
           exclude:
-            process.env.NODE_ENV === 'production' ? 'design-system' : null,
+            process.env.NODE_ENV === "production" ? "design-system" : null,
         }),
       }}
     />
   ));
 
-  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   override render(): ReactElement {
     return (
       <Html lang="en">

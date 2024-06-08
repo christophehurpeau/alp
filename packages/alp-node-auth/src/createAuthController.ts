@@ -1,14 +1,14 @@
-import type { AlpRouteRef, Context } from 'alp-node';
-import type MongoUsersManager from './MongoUsersManager';
+import type { AlpRouteRef, Context } from "alp-node";
+import type MongoUsersManager from "./MongoUsersManager";
 import type {
   AuthenticationService,
   AccessResponseHooks,
-} from './services/authentification/AuthenticationService';
+} from "./services/authentification/AuthenticationService";
 import type {
   AllowedStrategyKeys,
   AllowedMapParamsStrategy,
-} from './services/authentification/types';
-import type { User, UserSanitized } from './types';
+} from "./services/authentification/types";
+import type { User, UserSanitized } from "./types";
 
 export interface CreateAuthControllerParams<
   StrategyKeys extends AllowedStrategyKeys,
@@ -51,15 +51,15 @@ export function createAuthController<
 >({
   usersManager,
   authenticationService,
-  homeRouterKey = '/',
+  homeRouterKey = "/",
   defaultStrategy,
   authHooks = {},
 }: CreateAuthControllerParams<StrategyKeys, U, USanitized>): AuthController {
   return {
     async login(ctx: Context): Promise<void> {
-      const strategy: StrategyKeys = (ctx.namedParam('strategy') ||
+      const strategy: StrategyKeys = (ctx.namedParam("strategy") ||
         defaultStrategy) as StrategyKeys;
-      if (!strategy) throw new Error('Strategy missing');
+      if (!strategy) throw new Error("Strategy missing");
       const params =
         (authHooks.paramsForLogin &&
           (await authHooks.paramsForLogin(strategy, ctx))) ||
@@ -77,16 +77,16 @@ export function createAuthController<
         return;
       }
 
-      const strategy: StrategyKeys = (ctx.namedParam('strategy') ||
+      const strategy: StrategyKeys = (ctx.namedParam("strategy") ||
         defaultStrategy) as StrategyKeys;
-      if (!strategy) throw new Error('Strategy missing');
-      const scopeKey = ctx.namedParam('scopeKey');
-      if (!scopeKey) throw new Error('Scope missing');
+      if (!strategy) throw new Error("Strategy missing");
+      const scopeKey = ctx.namedParam("scopeKey");
+      if (!scopeKey) throw new Error("Scope missing");
       await authenticationService.redirectAuthUrl(ctx, strategy, { scopeKey });
     },
 
     async response(ctx: Context): Promise<void> {
-      const strategy: StrategyKeys = ctx.namedParam('strategy') as StrategyKeys;
+      const strategy: StrategyKeys = ctx.namedParam("strategy") as StrategyKeys;
       ctx.assert(strategy);
 
       const loggedInUser = await authenticationService.accessResponse(
@@ -103,6 +103,7 @@ export function createAuthController<
       ctx.redirectTo(homeRouterKey);
     },
 
+    // eslint-disable-next-line @typescript-eslint/require-await -- keep async in case i later need await in this method
     async logout(ctx: Context): Promise<void> {
       ctx.logout();
       ctx.redirectTo(homeRouterKey);

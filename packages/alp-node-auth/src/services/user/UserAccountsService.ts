@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-shadow */
-import { EventEmitter } from 'node:events';
-import { Logger } from 'nightingale-logger';
-import type MongoUsersManager from '../../MongoUsersManager';
-import type { AccountId, User, Account, UserSanitized } from '../../types';
-import type { AllowedStrategyKeys } from '../authentification/types';
-import type { AccountService, TokensObject } from './types';
+import { EventEmitter } from "node:events";
+import { Logger } from "nightingale-logger";
+import type MongoUsersManager from "../../MongoUsersManager";
+import type { AccountId, User, Account, UserSanitized } from "../../types";
+import type { AllowedStrategyKeys } from "../authentification/types";
+import type { AccountService, TokensObject } from "./types";
 
-const logger = new Logger('alp:auth:userAccounts');
+const logger = new Logger("alp:auth:userAccounts");
 
 export const STATUSES = {
-  VALIDATED: 'validated',
-  DELETED: 'deleted',
+  VALIDATED: "validated",
+  DELETED: "deleted",
 };
 
 export default class UserAccountsService<
@@ -38,10 +37,10 @@ export default class UserAccountsService<
     user?: U,
     accountId?: AccountId,
   ): string {
-    logger.debug('getScope', { strategy, userId: user?._id });
+    logger.debug("getScope", { strategy, userId: user?._id });
     const service = this.strategyToService[strategy];
     if (!service) {
-      throw new Error('Strategy not supported');
+      throw new Error("Strategy not supported");
     }
 
     const newScope = service.scopeKeyToScope[scopeKey];
@@ -54,9 +53,9 @@ export default class UserAccountsService<
     );
 
     if (!account) {
-      throw new Error('Could not found associated account');
+      throw new Error("Could not found associated account");
     }
-    return service.getScope(account.scope, newScope).join(' ');
+    return service.getScope(account.scope, newScope).join(" ");
   }
 
   async update(
@@ -65,7 +64,7 @@ export default class UserAccountsService<
     tokens: TokensObject,
     scope: string,
     subservice: string,
-  ): Promise<{ user: U; account: U['accounts'][number] }> {
+  ): Promise<{ user: U; account: U["accounts"][number] }> {
     const service = this.strategyToService[strategy];
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
@@ -76,9 +75,9 @@ export default class UserAccountsService<
     if (!account) {
       // TODO check if already exists in other user => merge
       // TODO else add a new account in this user
-      throw new Error('Could not found associated account');
+      throw new Error("Could not found associated account");
     }
-    account.status = 'valid';
+    account.status = "valid";
     account.accessToken = tokens.accessToken;
     if (tokens.refreshToken) {
       account.refreshToken = tokens.refreshToken;
@@ -103,11 +102,11 @@ export default class UserAccountsService<
     subservice: string,
   ): Promise<U> {
     const service = this.strategyToService[strategy];
-    if (!service) throw new Error('Strategy not supported');
+    if (!service) throw new Error("Strategy not supported");
 
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
-    if (!accountId) throw new Error('Invalid profile: no id found');
+    if (!accountId) throw new Error("Invalid profile: no id found");
 
     const emails = service.getEmails(profile);
 
@@ -118,7 +117,7 @@ export default class UserAccountsService<
         emails,
       });
 
-    logger.info(!user ? 'create user' : 'existing user', {
+    logger.info(!user ? "create user" : "existing user", {
       userId: user?._id,
       accountId,
       /*emails , user*/
@@ -143,12 +142,11 @@ export default class UserAccountsService<
 
     if (!account) {
       account = { provider: strategy, accountId };
-      // @ts-expect-error well...
-      user.accounts.push(account);
+      user.accounts.push(account as Account);
     }
 
     account.name = service.getAccountName(profile);
-    account.status = 'valid';
+    account.status = "valid";
     account.profile = profile;
     account.accessToken = tokens.accessToken;
     if (tokens.refreshToken) {
@@ -176,7 +174,7 @@ export default class UserAccountsService<
       // eslint-disable-next-line unicorn/no-array-reduce
       ...user.emails.reduce(
         (domains: Set<string>, email: string) =>
-          domains.add(email.split('@', 2)[1]),
+          domains.add(email.split("@", 2)[1]),
         new Set<string>(),
       ),
     ];

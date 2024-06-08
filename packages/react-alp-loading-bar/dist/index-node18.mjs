@@ -1,6 +1,8 @@
 import { PureComponent } from 'react';
 import { jsx } from 'react/jsx-runtime';
 
+/* eslint-disable react/destructuring-assignment */
+
 const random = () => Math.ceil(Math.random() * 100) / 100;
 
 /**
@@ -28,12 +30,12 @@ class LoadingBar extends PureComponent {
         hidden: prevState.hidden || prevState.progress === 100
       }));
     }
-    this.props.websocket.on('connect', () => {
+    this.props.websocket.on("connect", () => {
       this.setState({
         loading: false
       });
     });
-    this.props.websocket.on('disconnect', () => {
+    this.props.websocket.on("disconnect", () => {
       this.setState({
         loading: true,
         progress: 1,
@@ -43,7 +45,7 @@ class LoadingBar extends PureComponent {
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.websocket !== prevProps.websocket) {
-      throw new Error('Unsupported at the moment');
+      throw new Error("Unsupported at the moment");
     }
     if (this.state.loading !== prevState.loading) {
       if (this.state.loading) {
@@ -96,12 +98,12 @@ class LoadingBar extends PureComponent {
     return /*#__PURE__*/jsx("div", {
       hidden: this.state.hidden,
       style: {
-        position: 'fixed',
+        position: "fixed",
         top: 0,
         left: 0,
         right: 0,
         zIndex: 4,
-        pointerEvents: 'none'
+        pointerEvents: "none"
       },
       children: /*#__PURE__*/jsx(LoadingBarComponent, {
         progress: this.state.progress

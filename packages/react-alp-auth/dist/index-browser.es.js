@@ -1,7 +1,7 @@
 import { getServerCookieValue } from 'alp-nextjs';
 import BrowserCookies from 'js-cookie';
 
-const COOKIE_NAME_STATE = 'loggedInUserState';
+const COOKIE_NAME_STATE = "loggedInUserState";
 const parseCookie = stateValue => {
   return stateValue ? JSON.parse(stateValue) : null;
 };

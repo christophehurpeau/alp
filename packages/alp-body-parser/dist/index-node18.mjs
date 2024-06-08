@@ -4,7 +4,7 @@ import parse from 'co-body';
 
 const assertBodyNotParsed = ctx => {
   if (ctx.request.body) {
-    throw new Error('Request is already parsed');
+    throw new Error("Request is already parsed");
   }
 };
 function alpBodyParser(app) {

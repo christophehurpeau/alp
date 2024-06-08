@@ -1,9 +1,9 @@
-import { POB_TARGET } from 'pob-babel';
-import type { GetServerSidePropsContext } from 'alp-nextjs';
-import { getServerCookieValue } from 'alp-nextjs';
-import BrowserCookies from 'js-cookie';
+import { POB_TARGET } from "pob-babel";
+import type { GetServerSidePropsContext } from "alp-nextjs";
+import { getServerCookieValue } from "alp-nextjs";
+import BrowserCookies from "js-cookie";
 
-const COOKIE_NAME_STATE = 'loggedInUserState';
+const COOKIE_NAME_STATE = "loggedInUserState";
 
 interface AuthStateValue {
   loggedInUserId: string;
@@ -51,7 +51,7 @@ function useLoggedInUserStateServer(
 }
 
 export const useLoggedInUserState =
-  POB_TARGET === 'node'
+  POB_TARGET === "node"
     ? useLoggedInUserStateServer
     : useLoggedInUserStateBrowser;
 

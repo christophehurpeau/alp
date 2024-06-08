@@ -1,8 +1,8 @@
-import { defineLazyProperty } from 'object-properties';
-import type { AlpNodeApp, Context } from '../AlpNodeApp';
-import ParamValid from './ParamValid';
-import { ParamValidationResult } from './ParamValidationResult';
-import { ParamValueFromContext } from './ParamValueFromContext';
+import { defineLazyProperty } from "object-properties";
+import type { AlpNodeApp, Context } from "../AlpNodeApp";
+import ParamValid from "./ParamValid";
+import { ParamValidationResult } from "./ParamValidationResult";
+import { ParamValueFromContext } from "./ParamValueFromContext";
 
 export interface AlpParamsContext {
   params: ParamValueFromContext;
@@ -42,15 +42,15 @@ export default function alpParams(app: AlpNodeApp): void {
 
   defineLazyProperty(
     app.request,
-    'searchParams',
-    function (this: Context['request']): URLSearchParams {
+    "searchParams",
+    function (this: Context["request"]): URLSearchParams {
       return new URLSearchParams(this.search);
     },
   );
 
   defineLazyProperty(
     app.context,
-    'params',
+    "params",
     function (this: Context): ParamValueFromContext {
       return new ParamValueFromContext(this, new ParamValidationResult());
     },
@@ -58,7 +58,7 @@ export default function alpParams(app: AlpNodeApp): void {
 
   defineLazyProperty(
     app.context,
-    'validParams',
+    "validParams",
     function (this: Context): ParamValueFromContext {
       return new ParamValueFromContext(this, new ParamValid(this));
     },

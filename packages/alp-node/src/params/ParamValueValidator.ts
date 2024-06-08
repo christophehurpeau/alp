@@ -1,4 +1,4 @@
-import type { ParamValidationResult } from './ParamValidationResult';
+import type { ParamValidationResult } from "./ParamValidationResult";
 
 export default class ParamValueValidator<T> {
   readonly validationResult: ParamValidationResult;

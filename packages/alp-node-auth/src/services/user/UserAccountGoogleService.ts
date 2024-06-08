@@ -1,24 +1,24 @@
-/* eslint-disable @typescript-eslint/class-methods-use-this */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import type { Tokens } from '../authentification/types';
-import type { AccountService, FullName } from './types';
+import type { Tokens } from "../authentification/types";
+import type { AccountService, FullName } from "./types";
 
-export default class UserAccountGoogleService<ScopeKeys extends 'login'>
+export default class UserAccountGoogleService<ScopeKeys extends "login">
   implements AccountService<ScopeKeys>
 {
   scopeKeyToScope: Record<ScopeKeys, string>;
 
-  constructor(scopeKeyToScope: Record<Exclude<'login', ScopeKeys>, string>) {
+  constructor(scopeKeyToScope: Record<Exclude<"login", ScopeKeys>, string>) {
     this.scopeKeyToScope = {
       ...scopeKeyToScope,
-      login: 'openid profile email',
+      login: "openid profile email",
     };
   }
 
-  providerKey = 'google';
+  providerKey = "google";
 
   getProfile(tokens: Tokens): Promise<any> {
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return fetch(
       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`,
     ).then((response) => response.json());
@@ -59,8 +59,8 @@ export default class UserAccountGoogleService<ScopeKeys extends 'login'>
 
   getScope(oldScope: string[] | undefined, newScope: string): string[] {
     return !oldScope
-      ? newScope.split(' ')
-      : [...oldScope, ...newScope.split(' ')].filter(
+      ? newScope.split(" ")
+      : [...oldScope, ...newScope.split(" ")].filter(
           (item, i, ar) => ar.indexOf(item) === i,
         );
   }

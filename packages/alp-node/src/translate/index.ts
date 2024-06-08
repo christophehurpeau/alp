@@ -1,9 +1,9 @@
-import { Logger } from 'nightingale-logger';
-import type { AlpNodeApp, Context } from '../AlpNodeApp';
-import type { Translations } from './load';
-import load from './load';
+import { Logger } from "nightingale-logger";
+import type { AlpNodeApp, Context } from "../AlpNodeApp";
+import type { Translations } from "./load";
+import load from "./load";
 
-const logger = new Logger('alp:translate');
+const logger = new Logger("alp:translate");
 
 type Args = Record<string, any>;
 
@@ -17,7 +17,7 @@ export interface TranslateContext {
 export default function alpTranslate(
   dirname: string,
 ): (app: AlpNodeApp) => void {
-  dirname = dirname.replace(/\/*$/, '/');
+  dirname = dirname.replace(/\/*$/, "/");
   return (app: AlpNodeApp) => {
     const appTranslations = new Map<string, Translations>();
 
@@ -25,7 +25,7 @@ export default function alpTranslate(
       t(this: Context, id: string, args: Args): string {
         const msg = appTranslations.get(this.language)!.get(id);
         if (!msg) {
-          logger.warn('invalid msg', { language: this.language, id });
+          logger.warn("invalid msg", { language: this.language, id });
           return id;
         }
 
@@ -35,7 +35,7 @@ export default function alpTranslate(
 
     const config = app.config;
 
-    config.get<string[]>('availableLanguages').forEach((language) => {
+    config.get<string[]>("availableLanguages").forEach((language) => {
       const translations = app.loadConfigSync(dirname + language);
       appTranslations.set(language, load(translations, language));
     });

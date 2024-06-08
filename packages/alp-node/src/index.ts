@@ -1,9 +1,9 @@
-import { existsSync, readFileSync } from 'node:fs';
-import path from 'node:path';
-import { Logger } from 'nightingale-logger';
-import type { AlpNodeAppOptions } from './AlpNodeApp';
-import { AlpNodeApp } from './AlpNodeApp';
-import { Config } from './config';
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { Logger } from "nightingale-logger";
+import type { AlpNodeAppOptions } from "./AlpNodeApp";
+import { AlpNodeApp } from "./AlpNodeApp";
+import { Config } from "./config";
 
 export type {
   BaseContext,
@@ -11,23 +11,23 @@ export type {
   NodeConfig,
   ContextState,
   ContextSanitizedState,
-} from './types';
-export type { Context } from './AlpNodeApp';
+} from "./types";
+export type { Context } from "./AlpNodeApp";
 
-const logger = new Logger('alp');
+const logger = new Logger("alp");
 
-export const appDirname = path.resolve('build');
+export const appDirname = path.resolve("build");
 
-const packagePath = path.resolve('package.json');
+const packagePath = path.resolve("package.json");
 if (!packagePath) {
   throw new Error(`Could not find package.json: "${String(packagePath)}"`);
 }
 export const packageDirname = path.dirname(packagePath);
 
-logger.debug('init', { appDirname, packageDirname });
+logger.debug("init", { appDirname, packageDirname });
 
 export const packageConfig: Record<string, unknown> = JSON.parse(
-  readFileSync(packagePath, 'utf8'),
+  readFileSync(packagePath, "utf8"),
 ) as Record<string, unknown>;
 
 const buildedConfigPath = `${appDirname}/build/config/`;
@@ -39,7 +39,7 @@ export const config = new Config(configPath).loadSync({ packageConfig });
 
 export type AppOptions = Omit<
   AlpNodeAppOptions,
-  'appDirname' | 'config' | 'packageDirname'
+  "appDirname" | "config" | "packageDirname"
 >;
 
 export default class App extends AlpNodeApp {
@@ -53,11 +53,11 @@ export default class App extends AlpNodeApp {
   }
 }
 
-export { Config } from './config';
+export { Config } from "./config";
 
 export {
   default as router,
   createAlpRouterBuilder,
   type AlpRouteRef,
   type AlpRouter,
-} from './router';
+} from "./router";

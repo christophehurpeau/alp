@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-import { NextThemeProvider, useRootTheme } from '@tamagui/next-theme';
-import type { AppType } from 'next/app';
-import NextScript from 'next/script';
-import { IntlProvider } from 'react-intl';
-import { TamaguiProvider } from 'tamagui';
-import config from '../tamagui.config';
+import { NextThemeProvider, useRootTheme } from "@tamagui/next-theme";
+import type { AppType } from "next/app";
+import NextScript from "next/script";
+import { IntlProvider } from "react-intl";
+import { TamaguiProvider } from "tamagui";
+import config from "../tamagui.config";
 
-import '@tamagui/core/reset.css';
+import "@tamagui/core/reset.css";
 
-if (process.env.NODE_ENV === 'production') {
-  // eslint-disable-next-line global-require, import/no-unresolved
-  require('../../build/tamagui.css');
+if (process.env.NODE_ENV === "production") {
+  // eslint-disable-next-line import/no-unresolved
+  require("../../build/tamagui.css");
 }
 
 // eslint-disable-next-line react/function-component-definition

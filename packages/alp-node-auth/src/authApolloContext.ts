@@ -1,12 +1,12 @@
-import type { IncomingMessage } from 'node:http';
-import type { NodeConfig } from 'alp-node';
-import { Logger } from 'nightingale-logger';
-import type MongoUsersManager from './MongoUsersManager';
-import type { User } from './types';
-import { getTokenFromRequest, COOKIE_NAME_TOKEN } from './utils/cookies';
-import { createFindLoggedInUser } from './utils/createFindLoggedInUser';
+import type { IncomingMessage } from "node:http";
+import type { NodeConfig } from "alp-node";
+import { Logger } from "nightingale-logger";
+import type MongoUsersManager from "./MongoUsersManager";
+import type { User } from "./types";
+import { getTokenFromRequest, COOKIE_NAME_TOKEN } from "./utils/cookies";
+import { createFindLoggedInUser } from "./utils/createFindLoggedInUser";
 
-const logger = new Logger('alp:auth');
+const logger = new Logger("alp:auth");
 
 const getTokenFromReq = (
   req: IncomingMessage & { cookies?: Record<string, string> },
@@ -24,7 +24,7 @@ export const createAuthApolloContext = <U extends User = User>(
   usersManager: MongoUsersManager<U>,
 ): any => {
   const findLoggedInUser = createFindLoggedInUser(
-    config.get<Map<string, string>>('authentication').get('secretKey')!,
+    config.get<Map<string, string>>("authentication").get("secretKey")!,
     usersManager,
     logger,
   );
@@ -43,7 +43,7 @@ export const createAuthApolloContext = <U extends User = User>(
 
     const [, loggedInUser] = await findLoggedInUser(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      req.headers['user-agent'],
+      req.headers["user-agent"],
       token,
     );
 

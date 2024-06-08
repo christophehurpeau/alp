@@ -1,8 +1,8 @@
-import parse from 'co-body';
+import parse from "co-body";
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import Application, { Context } from 'koa';
+import Application, { Context } from "koa";
 
-declare module 'koa' {
+declare module "koa" {
   interface Request {
     body: any;
   }
@@ -16,7 +16,7 @@ declare module 'koa' {
 
 const assertBodyNotParsed = (ctx: Context): void => {
   if (ctx.request.body) {
-    throw new Error('Request is already parsed');
+    throw new Error("Request is already parsed");
   }
 };
 

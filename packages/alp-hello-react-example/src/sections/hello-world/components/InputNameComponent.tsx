@@ -1,6 +1,6 @@
-import type { ReactElement } from 'react';
-import { useState } from 'react';
-import { Input } from 'tamagui';
+import type { ReactElement } from "react";
+import { useState } from "react";
+import { Input } from "tamagui";
 
 interface InputNameComponentProps {
   value: string | undefined;

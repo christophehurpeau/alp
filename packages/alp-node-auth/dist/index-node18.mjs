@@ -8,14 +8,14 @@ import Cookies from 'cookies';
 function createAuthController({
   usersManager,
   authenticationService,
-  homeRouterKey = '/',
+  homeRouterKey = "/",
   defaultStrategy,
   authHooks = {}
 }) {
   return {
     async login(ctx) {
-      const strategy = ctx.namedParam('strategy') || defaultStrategy;
-      if (!strategy) throw new Error('Strategy missing');
+      const strategy = ctx.namedParam("strategy") || defaultStrategy;
+      if (!strategy) throw new Error("Strategy missing");
       const params = authHooks.paramsForLogin && (await authHooks.paramsForLogin(strategy, ctx)) || {};
       await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
     },
@@ -28,16 +28,16 @@ function createAuthController({
         ctx.redirectTo(homeRouterKey);
         return;
       }
-      const strategy = ctx.namedParam('strategy') || defaultStrategy;
-      if (!strategy) throw new Error('Strategy missing');
-      const scopeKey = ctx.namedParam('scopeKey');
-      if (!scopeKey) throw new Error('Scope missing');
+      const strategy = ctx.namedParam("strategy") || defaultStrategy;
+      if (!strategy) throw new Error("Strategy missing");
+      const scopeKey = ctx.namedParam("scopeKey");
+      if (!scopeKey) throw new Error("Scope missing");
       await authenticationService.redirectAuthUrl(ctx, strategy, {
         scopeKey
       });
     },
     async response(ctx) {
-      const strategy = ctx.namedParam('strategy');
+      const strategy = ctx.namedParam("strategy");
       ctx.assert(strategy);
       const loggedInUser = await authenticationService.accessResponse(ctx, strategy, !!ctx.state.loggedInUser, {
         afterLoginSuccess: authHooks.afterLoginSuccess,
@@ -47,6 +47,7 @@ function createAuthController({
       await ctx.setLoggedIn(loggedInUser[keyPath], loggedInUser);
       ctx.redirectTo(homeRouterKey);
     },
+    // eslint-disable-next-line @typescript-eslint/require-await -- keep async in case i later need await in this method
     async logout(ctx) {
       ctx.logout();
       ctx.redirectTo(homeRouterKey);
@@ -55,25 +56,25 @@ function createAuthController({
 }
 
 const createRoutes = controller => ({
-  login: ['/login/:strategy?', segment => {
-    segment.add('/response', controller.response, 'authResponse');
-    segment.defaultRoute(controller.login, 'login');
+  login: ["/login/:strategy?", segment => {
+    segment.add("/response", controller.response, "authResponse");
+    segment.defaultRoute(controller.login, "login");
   }],
-  addScope: ['/add-scope/:strategy/:scopeKey', controller.addScope],
-  logout: ['/logout', controller.logout]
+  addScope: ["/add-scope/:strategy/:scopeKey", controller.addScope],
+  logout: ["/logout", controller.logout]
 });
 
 const randomBytesPromisified = promisify(randomBytes);
 async function randomHex(size) {
   const buffer = await randomBytesPromisified(size);
-  return buffer.toString('hex');
+  return buffer.toString("hex");
 }
 
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable camelcase, max-lines */
-const logger$4 = new Logger('alp:auth:authentication');
+/* eslint-disable camelcase */
+const logger$4 = new Logger("alp:auth:authentication");
 class AuthenticationService extends EventEmitter {
   constructor(config, strategies, userAccountsService) {
     super();
@@ -82,26 +83,26 @@ class AuthenticationService extends EventEmitter {
     this.userAccountsService = userAccountsService;
   }
   generateAuthUrl(strategy, params) {
-    logger$4.debug('generateAuthUrl', {
+    logger$4.debug("generateAuthUrl", {
       strategy,
       params
     });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
-      case 'oauth2':
+      case "oauth2":
         return strategyInstance.oauth2.authorizationCode.authorizeURL(params);
       default:
-        throw new Error('Invalid strategy');
+        throw new Error("Invalid strategy");
     }
   }
   async getTokens(strategy, options) {
-    logger$4.debug('getTokens', {
+    logger$4.debug("getTokens", {
       strategy,
       options
     });
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
-      case 'oauth2':
+      case "oauth2":
         {
           const result = await strategyInstance.oauth2.authorizationCode.getToken({
             code: options.code,
@@ -125,19 +126,19 @@ class AuthenticationService extends EventEmitter {
           // return strategyInstance.accessToken.create(result);
         }
       default:
-        throw new Error('Invalid stategy');
+        throw new Error("Invalid stategy");
     }
   }
   async refreshToken(strategy, tokensParam) {
-    logger$4.debug('refreshToken', {
+    logger$4.debug("refreshToken", {
       strategy
     });
     if (!tokensParam.refreshToken) {
-      throw new Error('Missing refresh token');
+      throw new Error("Missing refresh token");
     }
     const strategyInstance = this.strategies[strategy];
     switch (strategyInstance.type) {
-      case 'oauth2':
+      case "oauth2":
         {
           const token = strategyInstance.oauth2.clientCredentials.createToken({
             refresh_token: tokensParam.refreshToken
@@ -158,12 +159,12 @@ class AuthenticationService extends EventEmitter {
           };
         }
       default:
-        throw new Error('Invalid stategy');
+        throw new Error("Invalid stategy");
     }
   }
   redirectUri(ctx, strategy) {
-    const host = `http${this.config.get('allowHttps') ? 's' : ''}://${ctx.request.host}`;
-    return `${host}${ctx.urlGenerator('authResponse', {
+    const host = `http${this.config.get("allowHttps") ? "s" : ""}://${ctx.request.host}`;
+    return `${host}${ctx.urlGenerator("authResponse", {
       strategy
     })}`;
   }
@@ -173,56 +174,56 @@ class AuthenticationService extends EventEmitter {
     user,
     accountId
   }, params) {
-    logger$4.debug('redirectAuthUrl', {
+    logger$4.debug("redirectAuthUrl", {
       strategy,
       scopeKey,
       refreshToken
     });
     const state = await randomHex(8);
-    const scope = this.userAccountsService.getScope(strategy, scopeKey || 'login', user, accountId);
+    const scope = this.userAccountsService.getScope(strategy, scopeKey || "login", user, accountId);
     if (!scope) {
-      throw new Error('Invalid empty scope');
+      throw new Error("Invalid empty scope");
     }
     ctx.cookies.set(`auth_${strategy}_${state}`, JSON.stringify({
       scopeKey,
       scope,
-      isLoginAccess: !scopeKey || scopeKey === 'login'
+      isLoginAccess: !scopeKey || scopeKey === "login"
     }), {
       maxAge: 600000,
       httpOnly: true,
-      secure: this.config.get('allowHttps')
+      secure: this.config.get("allowHttps")
     });
     const redirectUri = this.generateAuthUrl(strategy, {
       redirect_uri: this.redirectUri(ctx, strategy),
       scope,
       state,
-      access_type: refreshToken ? 'offline' : 'online',
+      access_type: refreshToken ? "offline" : "online",
       ...params
     });
     ctx.redirect(redirectUri);
   }
   async accessResponse(ctx, strategy, isLoggedIn, hooks) {
-    const errorParam = ctx.params.queryParam('error').notEmpty();
+    const errorParam = ctx.params.queryParam("error").notEmpty();
     if (errorParam.isValid()) {
       ctx.throw(errorParam.value, 403);
     }
-    const code = ctx.validParams.queryParam('code').notEmpty().value;
-    const state = ctx.validParams.queryParam('state').notEmpty().value;
+    const code = ctx.validParams.queryParam("code").notEmpty().value;
+    const state = ctx.validParams.queryParam("state").notEmpty().value;
     const cookieName = `auth_${strategy}_${state}`;
     const cookie = ctx.cookies.get(cookieName);
-    ctx.cookies.set(cookieName, '', {
+    ctx.cookies.set(cookieName, "", {
       expires: new Date(1)
     });
     if (!cookie) {
-      throw new Error('No cookie for this state');
+      throw new Error("No cookie for this state");
     }
     const parsedCookie = JSON.parse(cookie);
     if (!parsedCookie?.scope) {
-      throw new Error('Unexpected cookie value');
+      throw new Error("Unexpected cookie value");
     }
     if (!parsedCookie.isLoginAccess) {
       if (!isLoggedIn) {
-        throw new Error('You are not connected');
+        throw new Error("You are not connected");
       }
     }
     const tokens = await this.getTokens(strategy, {
@@ -265,11 +266,10 @@ class AuthenticationService extends EventEmitter {
   }
 }
 
-/* eslint-disable @typescript-eslint/no-shadow */
-const logger$3 = new Logger('alp:auth:userAccounts');
+const logger$3 = new Logger("alp:auth:userAccounts");
 const STATUSES = {
-  VALIDATED: 'validated',
-  DELETED: 'deleted'
+  VALIDATED: "validated",
+  DELETED: "deleted"
 };
 class UserAccountsService extends EventEmitter {
   constructor(usersManager, strategyToService) {
@@ -278,13 +278,13 @@ class UserAccountsService extends EventEmitter {
     this.strategyToService = strategyToService;
   }
   getScope(strategy, scopeKey, user, accountId) {
-    logger$3.debug('getScope', {
+    logger$3.debug("getScope", {
       strategy,
       userId: user?._id
     });
     const service = this.strategyToService[strategy];
     if (!service) {
-      throw new Error('Strategy not supported');
+      throw new Error("Strategy not supported");
     }
     const newScope = service.scopeKeyToScope[scopeKey];
     if (!user || !accountId) {
@@ -292,9 +292,9 @@ class UserAccountsService extends EventEmitter {
     }
     const account = user.accounts.find(account => account.provider === strategy && account.accountId === accountId);
     if (!account) {
-      throw new Error('Could not found associated account');
+      throw new Error("Could not found associated account");
     }
-    return service.getScope(account.scope, newScope).join(' ');
+    return service.getScope(account.scope, newScope).join(" ");
   }
   async update(user, strategy, tokens, scope, subservice) {
     const service = this.strategyToService[strategy];
@@ -304,9 +304,9 @@ class UserAccountsService extends EventEmitter {
     if (!account) {
       // TODO check if already exists in other user => merge
       // TODO else add a new account in this user
-      throw new Error('Could not found associated account');
+      throw new Error("Could not found associated account");
     }
-    account.status = 'valid';
+    account.status = "valid";
     account.accessToken = tokens.accessToken;
     if (tokens.refreshToken) {
       account.refreshToken = tokens.refreshToken;
@@ -327,17 +327,17 @@ class UserAccountsService extends EventEmitter {
   }
   async findOrCreateFromStrategy(strategy, tokens, scope, subservice) {
     const service = this.strategyToService[strategy];
-    if (!service) throw new Error('Strategy not supported');
+    if (!service) throw new Error("Strategy not supported");
     const profile = await service.getProfile(tokens);
     const accountId = service.getId(profile);
-    if (!accountId) throw new Error('Invalid profile: no id found');
+    if (!accountId) throw new Error("Invalid profile: no id found");
     const emails = service.getEmails(profile);
     let user = await this.usersManager.findOneByAccountOrEmails({
       provider: service.providerKey,
       accountId,
       emails
     });
-    logger$3.info(!user ? 'create user' : 'existing user', {
+    logger$3.info(!user ? "create user" : "existing user", {
       userId: user?._id,
       accountId
       /*emails , user*/
@@ -357,11 +357,10 @@ class UserAccountsService extends EventEmitter {
         provider: strategy,
         accountId
       };
-      // @ts-expect-error well...
       user.accounts.push(account);
     }
     account.name = service.getAccountName(profile);
-    account.status = 'valid';
+    account.status = "valid";
     account.profile = profile;
     account.accessToken = tokens.accessToken;
     if (tokens.refreshToken) {
@@ -384,7 +383,7 @@ class UserAccountsService extends EventEmitter {
     });
     user.emailDomains = [
     // eslint-disable-next-line unicorn/no-array-reduce
-    ...user.emails.reduce((domains, email) => domains.add(email.split('@', 2)[1]), new Set())];
+    ...user.emails.reduce((domains, email) => domains.add(email.split("@", 2)[1]), new Set())];
     const keyPath = this.usersManager.store.keyPath;
     if (user[keyPath]) {
       await this.usersManager.replaceOne(user);
@@ -399,10 +398,10 @@ class UserAccountsService extends EventEmitter {
   }
 }
 
-const COOKIE_NAME_TOKEN = 'loggedInUserToken';
-const COOKIE_NAME_STATE = 'loggedInUserState';
+const COOKIE_NAME_TOKEN = "loggedInUserToken";
+const COOKIE_NAME_STATE = "loggedInUserState";
 const getTokenFromRequest = (req, options) => {
-  if (req.headers.authorization?.startsWith('Bearer ')) {
+  if (req.headers.authorization?.startsWith("Bearer ")) {
     return req.headers.authorization.slice(7);
   }
 
@@ -417,7 +416,7 @@ const getTokenFromRequest = (req, options) => {
 const verifyPromisified = promisify(jsonwebtoken.verify);
 const createDecodeJWT = secretKey => async (token, jwtAudience) => {
   const result = await verifyPromisified(token, secretKey, {
-    algorithms: ['HS512'],
+    algorithms: ["HS512"],
     audience: jwtAudience
   });
   return result?.loggedInUserId;
@@ -430,7 +429,7 @@ const createFindLoggedInUser = (secretKey, usersManager, logger) => {
     try {
       loggedInUserId = await decodeJwt(token, jwtAudience);
     } catch (error) {
-      logger.debug('failed to verify authentification', {
+      logger.debug("failed to verify authentification", {
         err: error
       });
     }
@@ -468,8 +467,8 @@ class MongoUsersManager {
     provider
   }) {
     let query = {
-      'accounts.provider': provider,
-      'accounts.accountId': accountId
+      "accounts.provider": provider,
+      "accounts.accountId": accountId
     };
     if (emails && emails.length > 0) {
       query = {
@@ -487,7 +486,7 @@ class MongoUsersManager {
   updateAccount(user, account) {
     const accountIndex = user.accounts.indexOf(account);
     if (accountIndex === -1) {
-      throw new Error('Invalid account');
+      throw new Error("Invalid account");
     }
     return this.store.partialUpdateOne(user, {
       $set: {
@@ -495,8 +494,6 @@ class MongoUsersManager {
       }
     });
   }
-
-  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   sanitizeBaseUser(user) {
     return {
       _id: user._id,
@@ -518,7 +515,6 @@ class MongoUsersManager {
   }
 }
 
-/* eslint-disable @typescript-eslint/class-methods-use-this */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
@@ -526,11 +522,12 @@ class UserAccountGoogleService {
   constructor(scopeKeyToScope) {
     this.scopeKeyToScope = {
       ...scopeKeyToScope,
-      login: 'openid profile email'
+      login: "openid profile email"
     };
   }
-  providerKey = 'google';
+  providerKey = "google";
   getProfile(tokens) {
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`).then(response => response.json());
   }
   getId(profile) {
@@ -559,11 +556,10 @@ class UserAccountGoogleService {
     return this.getScope(undefined, newScope);
   }
   getScope(oldScope, newScope) {
-    return !oldScope ? newScope.split(' ') : [...oldScope, ...newScope.split(' ')].filter((item, i, ar) => ar.indexOf(item) === i);
+    return !oldScope ? newScope.split(" ") : [...oldScope, ...newScope.split(" ")].filter((item, i, ar) => ar.indexOf(item) === i);
   }
 }
 
-/* eslint-disable @typescript-eslint/class-methods-use-this */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 // https://api.slack.com/methods/users.identity
@@ -572,11 +568,12 @@ class UserAccountSlackService {
   constructor(scopeKeyToScope) {
     this.scopeKeyToScope = {
       ...scopeKeyToScope,
-      login: 'identity.basic identity.email identity.avatar'
+      login: "identity.basic identity.email identity.avatar"
     };
   }
-  providerKey = 'google';
+  providerKey = "google";
   getProfile(tokens) {
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return fetch(`https://slack.com/api/users.identity?token=${tokens.accessToken}`).then(response => response.json());
   }
   getId(profile) {
@@ -601,13 +598,13 @@ class UserAccountSlackService {
     return this.getScope(undefined, newScope);
   }
   getScope(oldScope, newScope) {
-    return !oldScope ? newScope.split(' ') : [...oldScope, ...newScope.split(' ')].filter((item, i, ar) => ar.indexOf(item) === i);
+    return !oldScope ? newScope.split(" ") : [...oldScope, ...newScope.split(" ")].filter((item, i, ar) => ar.indexOf(item) === i);
   }
 }
 
-const logger$2 = new Logger('alp:auth');
+const logger$2 = new Logger("alp:auth");
 const authSocketIO = (app, usersManager, io, jwtAudience) => {
-  const findLoggedInUser = createFindLoggedInUser(app.config.get('authentication').get('secretKey'), usersManager, logger$2);
+  const findLoggedInUser = createFindLoggedInUser(app.config.get("authentication").get("secretKey"), usersManager, logger$2);
   const users = new Map();
   io.users = users;
   io.use(async (socket, next) => {
@@ -617,16 +614,16 @@ const authSocketIO = (app, usersManager, io, jwtAudience) => {
     if (!token) return next();
     const [loggedInUserId, loggedInUser] = await findLoggedInUser(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    jwtAudience || handshakeData.headers['user-agent'], token);
+    jwtAudience || handshakeData.headers["user-agent"], token);
     if (!loggedInUserId || !loggedInUser) return next();
     socket.user = loggedInUser;
     users.set(socket.client.id, loggedInUser);
-    socket.on('disconnected', () => users.delete(socket.client.id));
+    socket.on("disconnected", () => users.delete(socket.client.id));
     await next();
   });
 };
 
-const logger$1 = new Logger('alp:auth');
+const logger$1 = new Logger("alp:auth");
 const getTokenFromReq = req => {
   if (req.cookies) return req.cookies[COOKIE_NAME_TOKEN];
   return getTokenFromRequest(req);
@@ -637,7 +634,7 @@ const getTokenFromReq = req => {
  * @internal
  */
 const createAuthApolloContext = (config, usersManager) => {
-  const findLoggedInUser = createFindLoggedInUser(config.get('authentication').get('secretKey'), usersManager, logger$1);
+  const findLoggedInUser = createFindLoggedInUser(config.get("authentication").get("secretKey"), usersManager, logger$1);
   return async ({
     req,
     connection
@@ -656,16 +653,14 @@ const createAuthApolloContext = (config, usersManager) => {
     };
     const [, loggedInUser] = await findLoggedInUser(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    req.headers['user-agent'], token);
+    req.headers["user-agent"], token);
     return {
       user: loggedInUser
     };
   };
 };
 
-/* eslint-disable max-lines */
-
-const logger = new Logger('alp:auth');
+const logger = new Logger("alp:auth");
 const signPromisified = promisify(jsonwebtoken.sign);
 function init({
   homeRouterKey,
@@ -688,26 +683,26 @@ function init({
       authHooks
     });
     app.context.setLoggedIn = async function (loggedInUserId, loggedInUser) {
-      logger.debug('setLoggedIn', {
+      logger.debug("setLoggedIn", {
         loggedInUser
       });
       if (!loggedInUserId) {
-        throw new Error('Illegal value for setLoggedIn');
+        throw new Error("Illegal value for setLoggedIn");
       }
       this.state.loggedInUserId = loggedInUserId;
       this.state.loggedInUser = loggedInUser;
       const token = await signPromisified({
         loggedInUserId,
         time: Date.now()
-      }, this.config.get('authentication').get('secretKey'), {
-        algorithm: 'HS512',
-        audience: jwtAudience || this.request.headers['user-agent'],
-        expiresIn: '30 days'
+      }, this.config.get("authentication").get("secretKey"), {
+        algorithm: "HS512",
+        audience: jwtAudience || this.request.headers["user-agent"],
+        expiresIn: "30 days"
       });
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.cookies.set(COOKIE_NAME_TOKEN, token, {
         httpOnly: true,
-        secure: this.config.get('allowHttps')
+        secure: this.config.get("allowHttps")
       });
       this.cookies.set(COOKIE_NAME_STATE, JSON.stringify({
         loggedInUserId,
@@ -718,31 +713,31 @@ function init({
         })()
       }), {
         httpOnly: false,
-        secure: this.config.get('allowHttps')
+        secure: this.config.get("allowHttps")
       });
     };
     app.context.logout = function () {
       delete this.state.loggedInUserId;
       delete this.state.loggedInUser;
-      this.cookies.set(COOKIE_NAME_TOKEN, '', {
+      this.cookies.set(COOKIE_NAME_TOKEN, "", {
         expires: new Date(1)
       });
-      this.cookies.set(COOKIE_NAME_STATE, '', {
+      this.cookies.set(COOKIE_NAME_STATE, "", {
         expires: new Date(1)
       });
     };
-    const findLoggedInUser = createFindLoggedInUser(app.config.get('authentication').get('secretKey'), usersManager, logger);
+    const findLoggedInUser = createFindLoggedInUser(app.config.get("authentication").get("secretKey"), usersManager, logger);
     return {
       routes: createRoutes(controller),
       findLoggedInUserFromRequest: req => {
         const token = getTokenFromRequest(req);
-        return findLoggedInUser(jwtAudience || req.headers['user-agent'], token);
+        return findLoggedInUser(jwtAudience || req.headers["user-agent"], token);
       },
       findLoggedInUser,
       middleware: async (ctx, next) => {
         const token = ctx.cookies.get(COOKIE_NAME_TOKEN);
-        const userAgent = ctx.request.headers['user-agent'];
-        logger.debug('middleware', {
+        const userAgent = ctx.request.headers["user-agent"];
+        logger.debug("middleware", {
           token
         });
         const setState = (loggedInUserId, loggedInUser) => {
@@ -752,15 +747,15 @@ function init({
           ctx.sanitizedState.loggedInUser = loggedInUser && usersManager.sanitize(loggedInUser);
         };
         const [loggedInUserId, loggedInUser] = await findLoggedInUser(jwtAudience || userAgent, token);
-        logger.debug('middleware', {
+        logger.debug("middleware", {
           loggedInUserId
         });
         if (loggedInUserId == null || loggedInUser == null) {
           if (token) {
-            ctx.cookies.set(COOKIE_NAME_TOKEN, '', {
+            ctx.cookies.set(COOKIE_NAME_TOKEN, "", {
               expires: new Date(1)
             });
-            ctx.cookies.set(COOKIE_NAME_STATE, '', {
+            ctx.cookies.set(COOKIE_NAME_STATE, "", {
               expires: new Date(1)
             });
           }

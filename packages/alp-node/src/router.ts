@@ -3,9 +3,9 @@ import type {
   LocaleType,
   RouterBuilder,
   RouteMatch,
-} from 'router-segments';
-import { createRouterBuilder } from 'router-segments';
-import type { AlpNodeApp, Context } from './AlpNodeApp';
+} from "router-segments";
+import { createRouterBuilder } from "router-segments";
+import type { AlpNodeApp, Context } from "./AlpNodeApp";
 
 export type AlpRouter<Locales extends LocaleType> = Router<
   Locales,

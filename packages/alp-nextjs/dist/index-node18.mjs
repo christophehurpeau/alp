@@ -25,7 +25,7 @@ function createDocumentInitialProps(getMoreStyles) {
 
 const getServerCookieValue = (ctx, cookieName) => {
   if (!ctx.req || !ctx.res) {
-    throw new Error('Missing ctx.req or ctx.res. Make sure getInitialProps is set.');
+    throw new Error("Missing ctx.req or ctx.res. Make sure getInitialProps is set.");
   }
   const cookies = new Cookies(ctx.req, ctx.res);
   return cookies.get(cookieName) || null;

@@ -1,4 +1,4 @@
-import type { AlpNodeApp } from './AlpNodeApp';
+import type { AlpNodeApp } from "./AlpNodeApp";
 export interface AlpLanguageContext {
     readonly firstAcceptedLanguage: string;
     readonly language: string;

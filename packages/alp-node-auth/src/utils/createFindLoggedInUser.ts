@@ -1,14 +1,14 @@
-import { promisify } from 'node:util';
+import { promisify } from "node:util";
 import type {
   GetPublicKeyOrSecret,
   Secret,
   VerifyCallback,
   VerifyOptions,
-} from 'jsonwebtoken';
-import jsonwebtoken from 'jsonwebtoken';
-import type { Logger } from 'nightingale-logger';
-import type MongoUsersManager from '../MongoUsersManager';
-import type { User, UserSanitized } from '../types';
+} from "jsonwebtoken";
+import jsonwebtoken from "jsonwebtoken";
+import type { Logger } from "nightingale-logger";
+import type MongoUsersManager from "../MongoUsersManager";
+import type { User, UserSanitized } from "../types";
 
 type Verify = (
   token: string,
@@ -28,7 +28,7 @@ const createDecodeJWT =
   (secretKey: string) =>
   async (token: string, jwtAudience: string): Promise<string | undefined> => {
     const result = await verifyPromisified(token, secretKey, {
-      algorithms: ['HS512'],
+      algorithms: ["HS512"],
       audience: jwtAudience,
     });
     return (result as any)?.loggedInUserId as string | undefined;
@@ -37,7 +37,7 @@ const createDecodeJWT =
 export type FindLoggedInUser<U extends User> = (
   jwtAudience?: string,
   token?: string,
-) => Promise<[U['_id'] | null | undefined, U | null | undefined]>;
+) => Promise<[U["_id"] | null | undefined, U | null | undefined]>;
 
 export const createFindLoggedInUser = <
   U extends User,
@@ -56,7 +56,7 @@ export const createFindLoggedInUser = <
     try {
       loggedInUserId = await decodeJwt(token, jwtAudience);
     } catch (error: unknown) {
-      logger.debug('failed to verify authentification', { err: error });
+      logger.debug("failed to verify authentification", { err: error });
     }
 
     if (loggedInUserId == null) return [null, null];

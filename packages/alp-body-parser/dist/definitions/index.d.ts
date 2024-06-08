@@ -1,5 +1,5 @@
-import Application from 'koa';
-declare module 'koa' {
+import Application from "koa";
+declare module "koa" {
     interface Request {
         body: any;
     }

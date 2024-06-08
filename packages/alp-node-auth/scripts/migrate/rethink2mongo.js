@@ -1,4 +1,4 @@
-'use strict';
+// "use strict";
 
 // const { MongoStore } = require('liwi-mongo');
 // const { RethinkStore } = require('liwi-rethinkdb');

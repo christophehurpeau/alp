@@ -1,9 +1,9 @@
-import type { AlpRouteRef } from 'alp-node';
-import { config, createAlpRouterBuilder } from 'alp-node';
-import type { AuthRoutes } from 'alp-node-auth';
-import type { Router } from 'router-segments';
+import type { AlpRouteRef } from "alp-node";
+import { config, createAlpRouterBuilder } from "alp-node";
+import type { AuthRoutes } from "alp-node-auth";
+import type { Router } from "router-segments";
 
-type Locales = 'en' | 'fr';
+type Locales = "en" | "fr";
 
 export default function createRouter({
   auth,
@@ -13,10 +13,10 @@ export default function createRouter({
   const builder = createAlpRouterBuilder<Locales>();
 
   const redirectToHome: AlpRouteRef = (ctx) => {
-    ctx.redirect(`${config.get<string>('webappUrl')}/auth`);
+    ctx.redirect(`${config.get<string>("webappUrl")}/auth`);
   };
 
-  builder.add('/', redirectToHome);
+  builder.add("/", redirectToHome);
 
   // builder.addSegment('/api', (apiSegment) => {
   //   const authSegment = apiSegment;

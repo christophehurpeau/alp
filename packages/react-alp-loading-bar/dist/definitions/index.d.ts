@@ -1,5 +1,5 @@
-import type { ReactElement } from 'react';
-import { PureComponent } from 'react';
+import type { ReactElement } from "react";
+import { PureComponent } from "react";
 interface LoadingBarProps {
     LoadingBarComponent: React.ComponentType<{
         progress: number;
@@ -13,7 +13,7 @@ interface LoadingBarState {
 }
 interface WebsocketInterface {
     isConnected: () => boolean;
-    on: (event: 'connect' | 'disconnect', callback: () => unknown) => void;
+    on: (event: "connect" | "disconnect", callback: () => unknown) => void;
 }
 export default class LoadingBar extends PureComponent<LoadingBarProps, LoadingBarState> {
     state: {

@@ -1,7 +1,7 @@
-import type { ReactElement } from 'react';
-import { useLoggedInUserState } from 'react-alp-auth';
-import { Button, Text, YStack, Stack } from 'tamagui';
-import { SlackLoginButton } from './components/SlackTeamInstallButton';
+import type { ReactElement } from "react";
+import { useLoggedInUserState } from "react-alp-auth";
+import { Button, Text, YStack, Stack } from "tamagui";
+import { SlackLoginButton } from "./components/SlackTeamInstallButton";
 
 interface AuthViewProps {
   serverAuthCookieValue?: string | null;
@@ -21,7 +21,7 @@ export function AuthView({
           <Text>Logged In User: {loggedInUserId}</Text>
         </Stack>
 
-        <Button href={`${process.env.NEXT_PUBLIC_API_URL || '/api'}/logout`}>
+        <Button href={`${process.env.NEXT_PUBLIC_API_URL || "/api"}/logout`}>
           <Text>Logout</Text>
         </Button>
       </YStack>

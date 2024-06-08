@@ -41,7 +41,7 @@ export interface BrowserApplicationInCreation extends ApplicationInCreation {
 export interface NodeApplication extends Application, NodeApplicationInCreation {
     config: NodeConfig;
     dirname: string;
-    on: (event: 'close', callback: () => void) => void;
+    on: (event: "close", callback: () => void) => void;
     existsConfigSync: (name: string) => boolean;
     loadConfigSync: (name: string) => RawConfig;
 }

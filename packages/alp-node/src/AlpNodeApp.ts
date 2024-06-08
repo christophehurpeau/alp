@@ -1,36 +1,36 @@
-import type { IncomingMessage, Server, ServerResponse } from 'node:http';
-import path from 'node:path';
-import { deprecate } from 'node:util';
-import Koa from 'koa';
-import type { ParameterizedContext, DefaultState } from 'koa';
-import compress from 'koa-compress';
-import serve from 'koa-static';
-import { Logger } from 'nightingale-logger';
-import type { Router } from 'router-segments';
-import type { Config } from './config';
-import _config from './config';
-import errors from './errors';
-import type { AlpLanguageContext } from './language';
-import language from './language';
-import _listen from './listen';
-import type { AlpParamsContext, AlpParamsRequest } from './params';
-import params from './params';
+import type { IncomingMessage, Server, ServerResponse } from "node:http";
+import path from "node:path";
+import { deprecate } from "node:util";
+import Koa from "koa";
+import type { ParameterizedContext, DefaultState } from "koa";
+import compress from "koa-compress";
+import serve from "koa-static";
+import { Logger } from "nightingale-logger";
+import type { Router } from "router-segments";
+import type { Config } from "./config";
+import _config from "./config";
+import errors from "./errors";
+import type { AlpLanguageContext } from "./language";
+import language from "./language";
+import _listen from "./listen";
+import type { AlpParamsContext, AlpParamsRequest } from "./params";
+import params from "./params";
 import type {
   AlpRouteRef,
   RouterContext as AlpRouterContext,
   UrlGenerator,
-} from './router';
-import type { TranslateBaseContext, TranslateContext } from './translate';
-import translate from './translate';
+} from "./router";
+import type { TranslateBaseContext, TranslateContext } from "./translate";
+import translate from "./translate";
 import type {
   NodeApplication,
   NodeConfig,
   Context as AlpContext,
   ContextState,
   ContextSanitizedState,
-} from './types';
+} from "./types";
 
-const logger = new Logger('alp');
+const logger = new Logger("alp");
 
 export interface AlpNodeAppOptions {
   appDirname: string;
@@ -40,8 +40,8 @@ export interface AlpNodeAppOptions {
   publicPath?: string;
 }
 
-declare module 'koa' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-shadow
+declare module "koa" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultState extends ContextState {}
 
   interface DefaultContext
@@ -91,8 +91,8 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
 
     this.dirname = path.normalize(appDirname);
 
-    Object.defineProperty(this, 'packageDirname', {
-      get: deprecate(() => packageDirname, 'packageDirname'),
+    Object.defineProperty(this, "packageDirname", {
+      get: deprecate(() => packageDirname, "packageDirname"),
       configurable: false,
       enumerable: false,
     });
@@ -105,16 +105,16 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
 
     params(this);
     language(this);
-    translate('locales')(this);
+    translate("locales")(this);
 
     this.use(compress());
   }
 
-  existsConfigSync(name: string): ReturnType<Config['existsConfigSync']> {
+  existsConfigSync(name: string): ReturnType<Config["existsConfigSync"]> {
     return this.config.existsConfigSync(name);
   }
 
-  loadConfigSync(name: string): ReturnType<Config['loadConfigSync']> {
+  loadConfigSync(name: string): ReturnType<Config["loadConfigSync"]> {
     return this.config.loadConfigSync(name);
   }
 
@@ -123,6 +123,7 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     res: ServerResponse,
   ): ParameterizedContext<StateT> {
     const ctx = super.createContext<StateT>(req, res);
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     ctx.sanitizedState = {} as ContextSanitizedState;
     return ctx;
   }
@@ -135,9 +136,8 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     this.use(errors);
   }
 
-  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   override listen(): never {
-    throw new Error('Use start instead');
+    throw new Error("Use start instead");
   }
 
   /**
@@ -146,7 +146,7 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
   close(): void {
     if (this._server) {
       this._server.close();
-      this.emit('close');
+      this.emit("close");
     }
   }
 
@@ -155,16 +155,16 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     try {
       const server = await _listen(this.config, this.callback(), this.certPath);
       this._server = server;
-      logger.success('started');
-      if (process.send) process.send('ready');
+      logger.success("started");
+      if (process.send) process.send("ready");
       return server;
     } catch (error: unknown) {
-      logger.error('start fail', { err: error });
+      logger.error("start fail", { err: error });
       throw error;
     }
   }
 }
 
-export type { Context } from 'koa';
+export type { Context } from "koa";
 
-export { type NodeApplication } from './types';
+export { type NodeApplication } from "./types";

@@ -1,25 +1,25 @@
-/* eslint-disable @typescript-eslint/class-methods-use-this */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import type { Tokens } from '../authentification/types';
-import type { AccountService, FullName } from './types';
+import type { Tokens } from "../authentification/types";
+import type { AccountService, FullName } from "./types";
 
 // https://api.slack.com/methods/users.identity
 
-export default class UserAccountSlackService<ScopeKeys extends 'login'>
+export default class UserAccountSlackService<ScopeKeys extends "login">
   implements AccountService<ScopeKeys>
 {
   scopeKeyToScope: Record<ScopeKeys, string>;
 
-  constructor(scopeKeyToScope: Record<Exclude<'login', ScopeKeys>, string>) {
+  constructor(scopeKeyToScope: Record<Exclude<"login", ScopeKeys>, string>) {
     this.scopeKeyToScope = {
       ...scopeKeyToScope,
-      login: 'identity.basic identity.email identity.avatar',
+      login: "identity.basic identity.email identity.avatar",
     };
   }
 
-  providerKey = 'google';
+  providerKey = "google";
 
   getProfile(tokens: Tokens): Promise<any> {
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return fetch(
       `https://slack.com/api/users.identity?token=${tokens.accessToken}`,
     ).then((response) => response.json());
@@ -56,8 +56,8 @@ export default class UserAccountSlackService<ScopeKeys extends 'login'>
 
   getScope(oldScope: string[] | undefined, newScope: string): string[] {
     return !oldScope
-      ? newScope.split(' ')
-      : [...oldScope, ...newScope.split(' ')].filter(
+      ? newScope.split(" ")
+      : [...oldScope, ...newScope.split(" ")].filter(
           (item, i, ar) => ar.indexOf(item) === i,
         );
   }

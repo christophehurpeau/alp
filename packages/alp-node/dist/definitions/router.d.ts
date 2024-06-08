@@ -1,6 +1,6 @@
 /// <reference types="koa" />
-import type { Router, LocaleType, RouterBuilder, RouteMatch } from 'router-segments';
-import type { AlpNodeApp, Context } from './AlpNodeApp';
+import type { Router, LocaleType, RouterBuilder, RouteMatch } from "router-segments";
+import type { AlpNodeApp, Context } from "./AlpNodeApp";
 export type AlpRouter<Locales extends LocaleType> = Router<Locales, AlpRouteRef>;
 export type AlpRouteRef = (ctx: Context) => Promise<void> | void;
 type ReturnType = (app: AlpNodeApp) => AlpRouteRef;

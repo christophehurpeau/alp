@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from "react";
 declare const defaultTheme: {
     container: {
         backgroundColor: string;
@@ -13,7 +13,7 @@ declare const defaultTheme: {
     backgroundColorConnected: string;
 };
 export type ConnectionStateTheme = typeof defaultTheme;
-export type State = 'connected' | 'connecting' | 'disconnected' | null;
+export type State = "connected" | "connecting" | "disconnected" | null;
 export interface ConnectionStateProps {
     theme?: ConnectionStateTheme;
     forceHidden?: boolean;

@@ -1,5 +1,5 @@
-import type { MongoInsertType, MongoStore, Update } from 'liwi-mongo';
-import type { User, Account, UserSanitized } from './types';
+import type { MongoInsertType, MongoStore, Update } from "liwi-mongo";
+import type { User, Account, UserSanitized } from "./types";
 
 export default class MongoUsersManager<
   U extends User = User,
@@ -42,8 +42,8 @@ export default class MongoUsersManager<
     provider: string;
   }): Promise<U | undefined> {
     let query: any = {
-      'accounts.provider': provider,
-      'accounts.accountId': accountId,
+      "accounts.provider": provider,
+      "accounts.accountId": accountId,
     };
 
     if (emails && emails.length > 0) {
@@ -64,7 +64,7 @@ export default class MongoUsersManager<
   updateAccount(user: U, account: Account): Promise<U> {
     const accountIndex = user.accounts.indexOf(account);
     if (accountIndex === -1) {
-      throw new Error('Invalid account');
+      throw new Error("Invalid account");
     }
 
     return this.store.partialUpdateOne(user, {
@@ -74,7 +74,6 @@ export default class MongoUsersManager<
     } as Update<U>);
   }
 
-  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   sanitizeBaseUser(user: U): UserSanitized {
     return {
       _id: user._id,

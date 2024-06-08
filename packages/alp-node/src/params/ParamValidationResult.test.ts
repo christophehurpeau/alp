@@ -1,4 +1,4 @@
-import { ParamValidationResult } from './ParamValidationResult';
+import { ParamValidationResult } from "./ParamValidationResult";
 
 // const createContextMock = (): Context &
 //   Record<
@@ -20,20 +20,20 @@ import { ParamValidationResult } from './ParamValidationResult';
 //     >;
 // };
 
-test('on init is valid', () => {
+test("on init is valid", () => {
   const paramValidator = new ParamValidationResult();
   expect(paramValidator.getErrors()).toBe(undefined);
   expect(paramValidator.hasErrors()).toBe(false);
   expect(paramValidator.isValid()).toBe(true);
 });
 
-test('has error', () => {
+test("has error", () => {
   const paramValidator = new ParamValidationResult();
-  paramValidator._error('slug', 'notEmpty', '');
+  paramValidator._error("slug", "notEmpty", "");
   expect(paramValidator.hasErrors()).toBe(true);
   expect(paramValidator.isValid()).toBe(false);
   expect(paramValidator.getErrors()).toEqual({
-    slug: { error: 'notEmpty', value: '' },
+    slug: { error: "notEmpty", value: "" },
   });
 });
 

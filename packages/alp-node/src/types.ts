@@ -56,7 +56,7 @@ export interface NodeApplication
     NodeApplicationInCreation {
   config: NodeConfig;
   dirname: string;
-  on: (event: 'close', callback: () => void) => void;
+  on: (event: "close", callback: () => void) => void;
   existsConfigSync: (name: string) => boolean;
   loadConfigSync: (name: string) => RawConfig;
 }

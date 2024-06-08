@@ -1,7 +1,7 @@
-import type { ReactElement } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { Text, Stack } from 'tamagui';
-import InputName from './InputNameComponent';
+import type { ReactElement } from "react";
+import { FormattedMessage } from "react-intl";
+import { Text, Stack } from "tamagui";
+import InputName from "./InputNameComponent";
 
 interface HelloComponentProps {
   name: string | undefined;
@@ -19,7 +19,7 @@ export default function HelloComponent({
           <FormattedMessage
             id="HelloComponent.text"
             defaultMessage="Hello {name}!"
-            values={{ name: name || 'World' }}
+            values={{ name: name || "World" }}
           />
         </Text>
         <InputName value={name} onChange={onChangeName} />

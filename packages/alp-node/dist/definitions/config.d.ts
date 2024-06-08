@@ -1,4 +1,4 @@
-import type { NodeApplication, NodeConfig, PackageConfig } from './types';
+import type { NodeApplication, NodeConfig, PackageConfig } from "./types";
 export interface ConfigOptions {
     argv?: string[];
     packageConfig?: PackageConfig;

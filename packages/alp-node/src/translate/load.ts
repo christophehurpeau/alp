@@ -1,4 +1,4 @@
-import IntlMessageFormatDefault from 'intl-messageformat';
+import IntlMessageFormatDefault from "intl-messageformat";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const IntlMessageFormat: typeof IntlMessageFormatDefault =
@@ -15,7 +15,7 @@ export default function load(
 
   (function loadMap(map, prefix) {
     map.forEach((value: any, key) => {
-      if (typeof value === 'object') {
+      if (typeof value === "object") {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         loadMap(value, `${prefix}${key}.`);
         return;
@@ -24,7 +24,7 @@ export default function load(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
     });
-  })(translations, '');
+  })(translations, "");
 
   return result;
 }

@@ -1,6 +1,6 @@
-import type { Context } from '../AlpNodeApp';
-import type { ParamValidationResult } from './ParamValidationResult';
-import ParamValueStringValidator from './ParamValueStringValidator';
+import type { Context } from "../AlpNodeApp";
+import type { ParamValidationResult } from "./ParamValidationResult";
+import ParamValueStringValidator from "./ParamValueStringValidator";
 
 export class ParamValueFromContext {
   readonly validationResult: ParamValidationResult;

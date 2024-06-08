@@ -1,13 +1,13 @@
-import { withTamagui } from '@tamagui/next-plugin';
-import { createNextJsConfig } from 'alp-nextjs/createNextJsConfig';
+import { withTamagui } from "@tamagui/next-plugin";
+import { createNextJsConfig } from "alp-nextjs/createNextJsConfig";
 
 const nextConfig = withTamagui({
-  config: './src/tamagui.config.ts',
-  components: ['tamagui'],
+  config: "./src/tamagui.config.ts",
+  components: ["tamagui"],
   // build-time generate CSS styles for better performance
   // we recommend only using this for production so you get reloading during dev mode
   outputCSS:
-    process.env.NODE_ENV === 'production' ? './build/tamagui.css' : null,
+    process.env.NODE_ENV === "production" ? "./build/tamagui.css" : null,
 })(
   createNextJsConfig({
     reactStrictMode: true,
@@ -16,8 +16,8 @@ const nextConfig = withTamagui({
     },
     transpilePackages: [
       // requires react-native-web
-      'alp-nextjs',
-      'react-alp-connection-state',
+      "alp-nextjs",
+      "react-alp-connection-state",
     ],
   }),
 );

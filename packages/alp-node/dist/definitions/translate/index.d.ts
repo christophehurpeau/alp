@@ -1,4 +1,4 @@
-import type { AlpNodeApp } from '../AlpNodeApp';
+import type { AlpNodeApp } from "../AlpNodeApp";
 type Args = Record<string, any>;
 export interface TranslateBaseContext {
     t: (id: string, args: Args) => string;

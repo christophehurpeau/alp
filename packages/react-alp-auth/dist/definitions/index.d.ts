@@ -1,4 +1,4 @@
-import type { GetServerSidePropsContext } from 'alp-nextjs';
+import type { GetServerSidePropsContext } from "alp-nextjs";
 interface LoggedInUserState {
     isLoggedIn: boolean;
     loggedInUserId: string | undefined;

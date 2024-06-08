@@ -1,14 +1,14 @@
 /// <reference types="node" />
-import type { IncomingMessage, Server, ServerResponse } from 'node:http';
-import Koa from 'koa';
-import type { ParameterizedContext, DefaultState } from 'koa';
-import type { Router } from 'router-segments';
-import type { Config } from './config';
-import type { AlpLanguageContext } from './language';
-import type { AlpParamsContext, AlpParamsRequest } from './params';
-import type { AlpRouteRef, RouterContext as AlpRouterContext, UrlGenerator } from './router';
-import type { TranslateBaseContext, TranslateContext } from './translate';
-import type { NodeApplication, NodeConfig, Context as AlpContext, ContextState } from './types';
+import type { IncomingMessage, Server, ServerResponse } from "node:http";
+import Koa from "koa";
+import type { ParameterizedContext, DefaultState } from "koa";
+import type { Router } from "router-segments";
+import type { Config } from "./config";
+import type { AlpLanguageContext } from "./language";
+import type { AlpParamsContext, AlpParamsRequest } from "./params";
+import type { AlpRouteRef, RouterContext as AlpRouterContext, UrlGenerator } from "./router";
+import type { TranslateBaseContext, TranslateContext } from "./translate";
+import type { NodeApplication, NodeConfig, Context as AlpContext, ContextState } from "./types";
 export interface AlpNodeAppOptions {
     appDirname: string;
     packageDirname: string;
@@ -16,7 +16,7 @@ export interface AlpNodeAppOptions {
     certPath?: string;
     publicPath?: string;
 }
-declare module 'koa' {
+declare module "koa" {
     interface DefaultState extends ContextState {
     }
     interface DefaultContext extends AlpContext, AlpParamsContext, AlpRouterContext, AlpLanguageContext, TranslateContext {
@@ -41,8 +41,8 @@ export declare class AlpNodeApp extends Koa<ContextState> implements NodeApplica
      * @param {string} [options.publicPath] directory of public files
      */
     constructor({ appDirname, packageDirname, config, certPath, publicPath, }: AlpNodeAppOptions);
-    existsConfigSync(name: string): ReturnType<Config['existsConfigSync']>;
-    loadConfigSync(name: string): ReturnType<Config['loadConfigSync']>;
+    existsConfigSync(name: string): ReturnType<Config["existsConfigSync"]>;
+    loadConfigSync(name: string): ReturnType<Config["loadConfigSync"]>;
     createContext<StateT = DefaultState>(req: IncomingMessage, res: ServerResponse): ParameterizedContext<StateT>;
     servePublic(): void;
     catchErrors(): void;
@@ -53,6 +53,6 @@ export declare class AlpNodeApp extends Koa<ContextState> implements NodeApplica
     close(): void;
     start(fn: () => Promise<void> | void): Promise<Server>;
 }
-export type { Context } from 'koa';
-export { type NodeApplication } from './types';
+export type { Context } from "koa";
+export { type NodeApplication } from "./types";
 //# sourceMappingURL=AlpNodeApp.d.ts.map

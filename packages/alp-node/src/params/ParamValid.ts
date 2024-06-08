@@ -1,5 +1,5 @@
-import type { Context } from '../AlpNodeApp';
-import { ParamValidationResult } from './ParamValidationResult';
+import type { Context } from "../AlpNodeApp";
+import { ParamValidationResult } from "./ParamValidationResult";
 
 export default class ParamValid extends ParamValidationResult {
   context: Context;
@@ -10,6 +10,6 @@ export default class ParamValid extends ParamValidationResult {
   }
 
   override _error(): void {
-    this.context.throw(400, 'Invalid params', { validator: this });
+    this.context.throw(400, "Invalid params", { validator: this });
   }
 }

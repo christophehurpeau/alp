@@ -36,7 +36,7 @@ class MigrationsManager {
 
 /* eslint-disable unicorn/no-process-exit */
 
-const logger = new Logger('alp:migrations');
+const logger = new Logger("alp:migrations");
 async function migrate({
   app,
   migrationsManager,
@@ -44,22 +44,23 @@ async function migrate({
   dirname = `${app.dirname}/migrations`
 }) {
   const unhandledRejectionHandler = reason => {
-    logger.error('unhandledRejection', {
+    logger.error("unhandledRejection", {
       err: reason
     });
+    // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   };
-  process.on('unhandledRejection', unhandledRejectionHandler);
+  process.on("unhandledRejection", unhandledRejectionHandler);
   const packageVersion = config.packageConfig.version;
   const currentVersion = await migrationsManager.findLastVersion();
   let migrations = [];
-  logger.info('migrate', {
+  logger.info("migrate", {
     packageVersion,
     currentVersion
   });
   await readRecursiveDirectory(dirname, res => {
     const fileName = res.path.slice(dirname.length + 1);
-    if (!fileName.endsWith('.js')) {
+    if (!fileName.endsWith(".js")) {
       return;
     }
     const versionExecResult = /([\d.]+)(_.*|\.js)$/.exec(fileName);
@@ -93,9 +94,10 @@ async function migrate({
     }
   } catch (error) {
     logger.error(error);
+    // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   }
-  process.removeListener('unhandledRejection', unhandledRejectionHandler);
+  process.removeListener("unhandledRejection", unhandledRejectionHandler);
 }
 
 export { MigrationsManager, migrate as default };

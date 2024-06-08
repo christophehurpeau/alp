@@ -1,1 +1,1 @@
-process.env.TAMAGUI_TARGET = 'web';
+process.env.TAMAGUI_TARGET = "web";

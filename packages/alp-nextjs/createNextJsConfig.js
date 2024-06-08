@@ -1,4 +1,4 @@
-import { createRequire } from 'node:module';
+import { createRequire } from "node:module";
 
 /**
  * @param {import('next').NextConfig} overrideConfig
@@ -24,24 +24,24 @@ export const createNextJsConfig = (overrideConfig) => ({
 
     const analyseServer =
       context.isServer &&
-      (process.env.BUNDLE_ANALYZE === 'server' ||
-        process.env.BUNDLE_ANALYZE === 'both');
+      (process.env.BUNDLE_ANALYZE === "server" ||
+        process.env.BUNDLE_ANALYZE === "both");
     const analyseClient =
       !context.isServer &&
-      (process.env.BUNDLE_ANALYZE === 'browser' ||
-        process.env.BUNDLE_ANALYZE === 'both');
+      (process.env.BUNDLE_ANALYZE === "browser" ||
+        process.env.BUNDLE_ANALYZE === "both");
     if (analyseServer || analyseClient) {
       const require = createRequire(import.meta.url);
 
       // eslint-disable-next-line import/no-extraneous-dependencies
-      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+      const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
       config.plugins.push(
         new BundleAnalyzerPlugin({
-          analyzerMode: 'static', // 'server'
+          analyzerMode: "static", // 'server'
           analyzerPort: context.isServer ? 8888 : 8889,
           openAnalyzer: true,
           reportFilename: `./bundles/${
-            context.isServer ? 'server' : 'browser'
+            context.isServer ? "server" : "browser"
           }.html`,
         }),
       );
@@ -62,5 +62,5 @@ export const createNextJsConfig = (overrideConfig) => ({
 export const createNextJsStaticExportConfig = (overrideConfig) =>
   createNextJsConfig({
     ...overrideConfig,
-    output: 'export',
+    output: "export",
   });

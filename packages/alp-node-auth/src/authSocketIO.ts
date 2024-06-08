@@ -1,11 +1,11 @@
-import type { NodeApplication } from 'alp-node';
-import { Logger } from 'nightingale-logger';
-import type MongoUsersManager from './MongoUsersManager';
-import type { User } from './types';
-import { getTokenFromRequest } from './utils/cookies';
-import { createFindLoggedInUser } from './utils/createFindLoggedInUser';
+import type { NodeApplication } from "alp-node";
+import { Logger } from "nightingale-logger";
+import type MongoUsersManager from "./MongoUsersManager";
+import type { User } from "./types";
+import { getTokenFromRequest } from "./utils/cookies";
+import { createFindLoggedInUser } from "./utils/createFindLoggedInUser";
 
-const logger = new Logger('alp:auth');
+const logger = new Logger("alp:auth");
 
 export const authSocketIO = <U extends User = User>(
   app: NodeApplication,
@@ -15,7 +15,7 @@ export const authSocketIO = <U extends User = User>(
   jwtAudience?: string,
 ): void => {
   const findLoggedInUser = createFindLoggedInUser(
-    app.config.get<Map<string, string>>('authentication').get('secretKey')!,
+    app.config.get<Map<string, string>>("authentication").get("secretKey")!,
     usersManager,
     logger,
   );
@@ -32,7 +32,7 @@ export const authSocketIO = <U extends User = User>(
 
     const [loggedInUserId, loggedInUser] = await findLoggedInUser(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      jwtAudience || handshakeData.headers['user-agent'],
+      jwtAudience || handshakeData.headers["user-agent"],
       token,
     );
 
@@ -41,7 +41,7 @@ export const authSocketIO = <U extends User = User>(
     socket.user = loggedInUser;
     users.set(socket.client.id, loggedInUser);
 
-    socket.on('disconnected', () => users.delete(socket.client.id));
+    socket.on("disconnected", () => users.delete(socket.client.id));
 
     await next();
   });
