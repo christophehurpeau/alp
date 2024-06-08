@@ -76,7 +76,7 @@
     "@types/node": "20.11.30",
     "@types/react": "18.2.73",
     "@types/react-native": "0.72.8",
-    "react-native-web": "0.19.10",
+    "react-native-web": "0.19.12",
     "springbokjs-daemon": "10.1.0",
     "typescript": "5.4.5",
     "webpack-bundle-analyzer": "4.10.1"
