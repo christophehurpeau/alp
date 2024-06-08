@@ -79,6 +79,6 @@
     "react-native-web": "0.19.10",
     "springbokjs-daemon": "10.1.0",
     "typescript": "5.4.5",
-    "webpack-bundle-analyzer": "4.10.1"
+    "webpack-bundle-analyzer": "4.10.2"
   }
 }
