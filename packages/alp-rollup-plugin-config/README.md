@@ -24,12 +24,12 @@ npm install --save alp-rollup-plugin-config
 > rollup.config.js
 
 ```js
-import config from 'alp-rollup-plugin-config';
+import config from "alp-rollup-plugin-config";
 
 export default {
   plugins: [
     config({
-      targets: [{ src: 'config/*', dest: 'dist/config' }],
+      targets: [{ src: "config/*", dest: "dist/config" }],
     }),
   ],
 };

@@ -22,9 +22,9 @@ npm install --save alp-body-parser
 ## Usage
 
 ```js
-import Koa from 'koa';
-import { config } from 'alp-node';
-import bodyParser from 'alp-body-parser';
+import Koa from "koa";
+import { config } from "alp-node";
+import bodyParser from "alp-body-parser";
 
 const app = new Koa();
 config(`${__dirname}/config`, { packageConfig })(app);

@@ -22,7 +22,7 @@ npm install --save alp-node
 ## Usage
 
 ```js
-import Alp from 'alp-node';
+import Alp from "alp-node";
 
 const app = new Alp();
 app.servePublic();

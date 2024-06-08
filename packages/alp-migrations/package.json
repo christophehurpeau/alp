@@ -41,14 +41,15 @@
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "pob": {
-    "babelEnvs": [
+    "bundler": "rollup-babel",
+    "entries": [
+      "index"
+    ],
+    "envs": [
       {
         "target": "node",
         "version": "18"
       }
-    ],
-    "entries": [
-      "index"
     ]
   },
   "prettier": "@pob/root/prettier-config",
@@ -66,8 +67,8 @@
     "@types/node": "20.11.30",
     "@types/semver": "7.5.8",
     "liwi-mongo": "11.0.0",
-    "pob-babel": "38.0.2",
+    "pob-babel": "40.0.0",
     "router-segments": "9.1.0",
-    "typescript": "5.3.3"
+    "typescript": "5.4.5"
   }
 }

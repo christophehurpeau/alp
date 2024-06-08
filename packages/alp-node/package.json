@@ -63,15 +63,16 @@
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "pob": {
-    "babelEnvs": [
+    "bundler": "rollup-babel",
+    "entries": [
+      "index",
+      "AlpNodeApp"
+    ],
+    "envs": [
       {
         "target": "node",
         "version": "18"
       }
-    ],
-    "entries": [
-      "index",
-      "AlpNodeApp"
     ]
   },
   "prettier": "@pob/root/prettier-config",
@@ -97,7 +98,7 @@
     "@types/koa-compress": "4.0.6",
     "@types/koa-static": "4.0.4",
     "@types/minimist": "1.2.5",
-    "pob-babel": "38.0.2",
-    "typescript": "5.3.3"
+    "pob-babel": "40.0.0",
+    "typescript": "5.4.5"
   }
 }

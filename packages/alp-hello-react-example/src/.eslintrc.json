@@ -2,12 +2,12 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "EXPERIMENTAL_useProjectService": true,
     "project": "packages/alp-hello-react-example/tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
   "extends": [
     "@pob/eslint-config-typescript",
+    "@pob/eslint-config-typescript/node",
     "@pob/eslint-config-typescript/app",
     "@pob/eslint-config-typescript-react",
     "@pob/eslint-config-typescript/allow-unsafe"
@@ -22,7 +22,11 @@
   "ignorePatterns": ["*.d.ts"],
   "overrides": [
     {
-      "files": ["**/*.test.{ts,tsx}", "__tests__/**/*.{ts,tsx}"],
+      "files": [
+        "**/*.test.{ts,tsx}",
+        "__tests__/**/*.{ts,tsx}",
+        "**/__mocks__/**/*.{ts,tsx}"
+      ],
       "extends": ["@pob/eslint-config-typescript/test"],
       "env": {
         "jest": true

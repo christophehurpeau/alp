@@ -26,7 +26,7 @@ http://alpjs.github.io/alp-migrations/docs
 ## Usage
 
 ```js
-import alpMigrations from 'alp-migrations';
+import alpMigrations from "alp-migrations";
 
 console.log(alpMigrations);
 ```

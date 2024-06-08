@@ -55,7 +55,11 @@
     ]
   },
   "pob": {
-    "babelEnvs": [
+    "bundler": "rollup-babel",
+    "entries": [
+      "index"
+    ],
+    "envs": [
       {
         "target": "node",
         "version": "18"
@@ -64,9 +68,6 @@
         "target": "browser"
       }
     ],
-    "entries": [
-      "index"
-    ],
     "jsx": true
   },
   "prettier": "@pob/root/prettier-config",
@@ -74,14 +75,14 @@
     "react": "^18.1.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.7"
+    "@babel/runtime": "^7.24.5"
   },
   "devDependencies": {
     "@babel/core": "7.24.5",
     "@babel/preset-env": "7.24.5",
     "@babel/preset-react": "7.24.1",
-    "pob-babel": "38.0.2",
+    "pob-babel": "40.0.0",
     "react": "18.2.0",
-    "typescript": "5.3.3"
+    "typescript": "5.4.5"
   }
 }

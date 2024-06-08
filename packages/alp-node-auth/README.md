@@ -39,10 +39,10 @@ server:
 > models/user/usersManager.server.js
 
 ```js
-import MongoStore from '../../db/mongo';
-import { UsersManager } from 'alp-node-auth';
+import MongoStore from "../../db/mongo";
+import { UsersManager } from "alp-node-auth";
 
-export default new UsersManager(new MongoStore('users'));
+export default new UsersManager(new MongoStore("users"));
 ```
 
 > index.server.js
@@ -71,11 +71,11 @@ app.use(authMiddleware);
 > routerBuilder.js
 
 ```js
-import { routes as authRoutes } from 'alp-node-auth';
+import { routes as authRoutes } from "alp-node-auth";
 
 export default function buildRouter(builder) {
   builder
-    .add('home', '/', 'home.index')
+    .add("home", "/", "home.index")
     .add(...authRoutes.login)
     .add(...authRoutes.logout)
     .addDefaultRoutes();
@@ -85,8 +85,8 @@ export default function buildRouter(builder) {
 > modules/auth/login/index.js
 
 ```js
-export const identifier = 'login';
-export View from './LoginView';
+export const identifier = "login";
+export View from "./LoginView";
 ```
 
 > modules/auth/login/LoginView.js

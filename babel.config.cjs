@@ -1,18 +1,18 @@
-'use strict';
+"use strict";
 
 module.exports = function babelConfig(api) {
-  const isTest = api.env('test');
+  const isTest = api.env("test");
 
   if (!isTest) return {};
 
   return {
-    only: ['packages/*/src', 'packages/*/lib', 'config'],
+    only: ["packages/*/src", "packages/*/lib", "config"],
     presets: [
-      ['pob-babel/preset.js', { modules: false }],
+      ["pob-babel/preset.js", { modules: false }],
       [
-        '@babel/preset-react',
+        "@babel/preset-react",
         {
-          runtime: 'automatic',
+          runtime: "automatic",
           development: false,
           useBuiltIns: true,
           useSpread: true,

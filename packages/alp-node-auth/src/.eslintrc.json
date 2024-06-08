@@ -2,7 +2,6 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "EXPERIMENTAL_useProjectService": true,
     "project": "packages/alp-node-auth/tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
@@ -20,7 +19,7 @@
   },
   "overrides": [
     {
-      "files": ["**/*.test.ts", "__tests__/**/*.ts"],
+      "files": ["**/*.test.ts", "__tests__/**/*.ts", "**/__mocks__/**/*.ts"],
       "extends": ["@pob/eslint-config-typescript/test"],
       "env": {
         "jest": true

@@ -69,8 +69,11 @@
     ]
   },
   "pob": {
-    "jsx": true,
-    "babelEnvs": [
+    "bundler": "rollup-babel",
+    "entries": [
+      "index"
+    ],
+    "envs": [
       {
         "target": "node",
         "version": "18"
@@ -79,15 +82,13 @@
         "target": "browser"
       }
     ],
-    "entries": [
-      "index"
-    ],
     "extraEntries": [
       "server",
       "createNextJsConfig",
       "preset-babel.cjs",
       "react-native-web.d.ts"
-    ]
+    ],
+    "jsx": true
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
@@ -97,9 +98,9 @@
     "react-native-web": "^0.19.10"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.7",
+    "@babel/runtime": "^7.24.5",
     "babel-plugin-discard-module-references": "^1.1.2",
-    "babel-preset-pob-env": "11.0.2",
+    "babel-preset-pob-env": "12.0.0",
     "cookies": "~0.8.0",
     "sort-keys": "^5.0.0"
   },
@@ -108,9 +109,9 @@
     "@babel/preset-env": "7.24.5",
     "@babel/preset-react": "7.24.1",
     "next": "14.1.1",
-    "pob-babel": "38.0.2",
+    "pob-babel": "40.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.3.3"
+    "typescript": "5.4.5"
   }
 }

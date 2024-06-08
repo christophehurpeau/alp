@@ -44,6 +44,6 @@ export default function init<StrategyKeys extends AllowedStrategyKeys = 'google'
     routes: AuthRoutesType;
     findLoggedInUserFromRequest: (req: IncomingMessage) => Promise<[U["_id"] | null | undefined, U | null | undefined]>;
     findLoggedInUser: import("./utils/createFindLoggedInUser").FindLoggedInUser<U>;
-    middleware: <T>(ctx: Context, next: () => T | Promise<T>) => Promise<T>;
+    middleware: <T>(ctx: Context, next: () => Promise<T> | T) => Promise<T>;
 };
 //# sourceMappingURL=index.d.ts.map
