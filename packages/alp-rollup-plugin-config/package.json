@@ -34,7 +34,7 @@
   "pob": {},
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "rollup": "^2.64.0 || ^3.0.0 || ^4.0.0"
+    "rollup": "^4.22.4 ^4.22.4 ^4.22.4"
   },
   "dependencies": {
     "@guanghechen/rollup-plugin-copy": "1.8.6",
