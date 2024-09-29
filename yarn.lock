@@ -3117,6 +3117,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native/normalize-colors@npm:^0.74.1":
+  version: 0.74.84
+  resolution: "@react-native/normalize-colors@npm:0.74.84"
+  checksum: 10c0/9046b848db5ba0001cb4817faebba18366c5fc7c86a72836685867868e0019d40477d0dd6a7cdddf305a2156b5bda0b569116d2446d873e6e0d79c3c85a6517e
+  languageName: node
+  linkType: hard
+
 "@react-native/virtualized-lists@npm:^0.72.4":
   version: 0.72.6
   resolution: "@react-native/virtualized-lists@npm:0.72.6"
@@ -5589,7 +5596,7 @@ __metadata:
     react-intl: "npm:6.7.0"
     react-native-safe-area-context: "npm:4.9.0"
     react-native-svg: "npm:13.14.0"
-    react-native-web: "npm:0.19.10"
+    react-native-web: "npm:0.19.12"
     router-segments: "npm:9.1.0"
     springbokjs-daemon: "npm:10.1.0"
     tamagui: "npm:1.79.19"
@@ -12776,12 +12783,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-web@npm:0.19.10, react-native-web@npm:^0.19.9":
-  version: 0.19.10
-  resolution: "react-native-web@npm:0.19.10"
+"react-native-web@npm:0.19.12, react-native-web@npm:^0.19.9":
+  version: 0.19.12
+  resolution: "react-native-web@npm:0.19.12"
   dependencies:
     "@babel/runtime": "npm:^7.18.6"
-    "@react-native/normalize-color": "npm:^2.1.0"
+    "@react-native/normalize-colors": "npm:^0.74.1"
     fbjs: "npm:^3.0.4"
     inline-style-prefixer: "npm:^6.0.1"
     memoize-one: "npm:^6.0.0"
@@ -12791,7 +12798,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10c0/119e3cbebf8a615281a3c7aa2094536d5f6d9d0b08ff410db87971fef948c5982f9bb4717573cff393d9d038e1b619b7931ed1e56f532462af7a288a551dddc9
+  checksum: 10c0/90f4221cebd834d550c477b00e5f972f8e3afbbea6708f8346fc394a38c8589a5d87d5e8be37a0ac421cc5e8a898cd94e0a6e6b2db982d3164e011f7ac9581da
   languageName: node
   linkType: hard
 
