@@ -108,7 +108,7 @@
     "@babel/core": "7.24.5",
     "@babel/preset-env": "7.24.5",
     "@babel/preset-react": "7.24.1",
-    "next": "14.1.1",
+    "next": "14.2.10",
     "pob-babel": "40.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
