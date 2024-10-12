@@ -84,7 +84,7 @@
     "@babel/preset-react": "7.24.1",
     "@types/js-cookie": "3.0.6",
     "alp-nextjs": "4.1.1",
-    "next": "14.2.10",
+    "next": "14.2.15",
     "pob-babel": "40.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
