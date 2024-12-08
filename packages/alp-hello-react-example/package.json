@@ -55,7 +55,7 @@
     "@tamagui/shorthands": "1.79.19",
     "@tamagui/themes": "1.79.19",
     "alp-nextjs": "4.1.1",
-    "next": "14.2.10",
+    "next": "14.2.20",
     "nightingale-app-console": "15.0.0",
     "react": "18.2.0",
     "react-alp-auth": "2.1.1",
