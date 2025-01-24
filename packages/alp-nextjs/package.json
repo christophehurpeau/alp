@@ -105,9 +105,9 @@
     "sort-keys": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.24.5",
-    "@babel/preset-env": "7.24.5",
-    "@babel/preset-react": "7.24.1",
+    "@babel/core": "7.26.7",
+    "@babel/preset-env": "7.26.7",
+    "@babel/preset-react": "7.26.3",
     "next": "14.2.15",
     "pob-babel": "40.0.0",
     "react": "18.2.0",
