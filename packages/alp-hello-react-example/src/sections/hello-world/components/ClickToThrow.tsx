@@ -1,10 +1,10 @@
 import { appLogger } from "nightingale-app-console";
-import type { ReactElement } from "react";
+import type { ReactNode } from "react";
 import { Button } from "tamagui";
 
 const clickToThrowLogger = appLogger.child("counter");
 
-export default function ClickToThrow(): ReactElement {
+export default function ClickToThrow(): ReactNode {
   return (
     <div>
       <Button

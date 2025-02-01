@@ -1,7 +1,7 @@
 import Alp, { router } from "alp-node";
 import authInit, { UserAccountSlackService } from "alp-node-auth";
 import slackStrategy from "alp-node-auth/strategies/slack";
-import { appLogger, addConfig } from "nightingale-app-console";
+import { addConfig, appLogger } from "nightingale-app-console";
 import webProcessor from "nightingale-web-processor";
 import createRouter from "./createRouter";
 import type { User } from "./db/user";

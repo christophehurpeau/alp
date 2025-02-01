@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { appLogger } from "nightingale-app-console";
 import { useState } from "react";
-import type { ReactElement } from "react";
-import { useIntl, defineMessages } from "react-intl";
+import type { ReactNode } from "react";
+import { defineMessages, useIntl } from "react-intl";
 import { Stack, YStack } from "tamagui";
 import ClickToThrow from "./components/ClickToThrow";
 import Counter from "./components/Counter";
@@ -11,7 +11,7 @@ import { ToggleTheme } from "./components/ToggleTheme";
 
 const logger = appLogger.child("HomePage");
 
-function HelloWorld(): ReactElement {
+function HelloWorld(): ReactNode {
   return <div>Hello World !</div>;
 }
 
@@ -22,7 +22,7 @@ const messages = defineMessages({
   },
 });
 
-export function HomeView(): ReactElement {
+export function HomeView(): ReactNode {
   const [name, setName] = useState((): string | undefined => {
     return "";
   });
@@ -53,7 +53,7 @@ export function HomeView(): ReactElement {
           {intl.formatMessage(messages.title, { name: name || "World" })}
         </title>
       </Head>
-      <YStack space>
+      <YStack gap={1}>
         <ToggleTheme />
         <HelloWorld />
         <Hello name={name} onChangeName={handleChangeName} />

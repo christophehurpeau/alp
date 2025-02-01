@@ -12,7 +12,7 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=22.11.0"
   },
   "main": "./build/index-node.mjs",
   "exports": {
@@ -29,7 +29,7 @@
     "clean": "yarn clean:build",
     "clean:build": "pob-babel-clean-out build",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-hello-node-example",
+    "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-hello-node-example",
     "start": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "pob": {
@@ -40,7 +40,7 @@
     "envs": [
       {
         "target": "node",
-        "version": "20",
+        "version": "22",
         "omitVersionInFileName": true
       }
     ]
@@ -55,9 +55,9 @@
     "router-segments": "9.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.24.5",
+    "@babel/core": "7.26.7",
     "alp-rollup-plugin-config": "2.2.1",
-    "pob-babel": "40.0.0",
-    "typescript": "5.4.5"
+    "pob-babel": "43.0.0",
+    "typescript": "5.7.3"
   }
 }

@@ -1,11 +1,11 @@
 import { appLogger } from "nightingale-app-console";
-import type { ReactElement } from "react";
+import type { ReactNode } from "react";
 import { useState } from "react";
 import { Button } from "tamagui";
 
 const counterLogger = appLogger.child("counter");
 
-export default function Counter(): ReactElement {
+export default function Counter(): ReactNode {
   const [count, setCount] = useState(0);
   return (
     <div>

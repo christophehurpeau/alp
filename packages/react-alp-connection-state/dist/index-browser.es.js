@@ -70,7 +70,7 @@ function ConnectionState({
   }) => width / 2 - 100); // TODO use calc() in web ?
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof globalThis === "undefined") return;
     const beforeUnloadHandler = () => {
       unloadingRef.current = true;
     };
@@ -80,7 +80,7 @@ function ConnectionState({
     };
   }, []);
   return /*#__PURE__*/jsx(View, {
-    style: [styles.connectionStateContainer, (forceHidden || !state || state === "connected") && styles.hide, theme == null ? void 0 : theme.container, state === "connected" && {
+    style: [styles.connectionStateContainer, (forceHidden || !state || state === "connected") && styles.hide, theme == null ? undefined : theme.container, state === "connected" && {
       backgroundColor: (theme || defaultTheme).backgroundColorConnected
     }],
     children: !state ? null : /*#__PURE__*/jsx(Text, {

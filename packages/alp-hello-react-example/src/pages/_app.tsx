@@ -9,7 +9,7 @@ import config from "../tamagui.config";
 import "@tamagui/core/reset.css";
 
 if (process.env.NODE_ENV === "production") {
-  // eslint-disable-next-line import/no-unresolved
+  // eslint-disable-next-line import/no-unresolved, unicorn/prefer-module
   require("../../build/tamagui.css");
 }
 
@@ -32,7 +32,6 @@ const App: AppType = ({ Component, pageProps }) => {
       <TamaguiProvider
         // because we do our custom getCSS() above, we disableInjectCSS here
         disableInjectCSS
-        disableRootThemeClass
         config={config}
         defaultTheme={theme}
       >

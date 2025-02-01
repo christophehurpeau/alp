@@ -1,9 +1,7 @@
-/// <reference types="node" />
-/// <reference types="koa" />
 import { EventEmitter } from "node:events";
 import type { Context, NodeConfig } from "alp-node";
 import type { Strategy as Oauth2Strategy } from "../../../strategies/strategies.d";
-import type { AccountId, User, Account, UserSanitized } from "../../types";
+import type { Account, AccountId, User, UserSanitized } from "../../types";
 import type UserAccountsService from "../user/UserAccountsService";
 import type { AllowedStrategyKeys, Tokens } from "./types";
 export interface GenerateAuthUrlOptions {

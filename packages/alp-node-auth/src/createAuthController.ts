@@ -1,12 +1,12 @@
 import type { AlpRouteRef, Context } from "alp-node";
 import type MongoUsersManager from "./MongoUsersManager";
 import type {
-  AuthenticationService,
   AccessResponseHooks,
+  AuthenticationService,
 } from "./services/authentification/AuthenticationService";
 import type {
-  AllowedStrategyKeys,
   AllowedMapParamsStrategy,
+  AllowedStrategyKeys,
 } from "./services/authentification/types";
 import type { User, UserSanitized } from "./types";
 
@@ -29,7 +29,7 @@ export interface AuthController {
   logout: AlpRouteRef;
 }
 
-type OptionalRecord<K extends keyof any, T> = { [P in K]?: T };
+type OptionalRecord<K extends keyof any, T> = Partial<Record<K, T>>;
 
 export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys>
   extends AccessResponseHooks<StrategyKeys> {

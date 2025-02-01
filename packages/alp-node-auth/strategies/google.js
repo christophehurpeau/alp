@@ -1,4 +1,4 @@
-import { ClientCredentials, AuthorizationCode } from "simple-oauth2";
+import { AuthorizationCode, ClientCredentials } from "simple-oauth2";
 
 export default function googleStrategy(config) {
   const options = {

@@ -1,6 +1,6 @@
-import { chmodSync, unlinkSync, readFileSync } from "node:fs";
+import { chmodSync, readFileSync, unlinkSync } from "node:fs";
 import { createServer as createServerHttp } from "node:http";
-import type { Server, IncomingMessage, ServerResponse } from "node:http";
+import type { IncomingMessage, Server, ServerResponse } from "node:http";
 import { createServer as createServerHttps } from "node:https";
 import { Logger } from "nightingale-logger";
 import type { Config } from "./config";

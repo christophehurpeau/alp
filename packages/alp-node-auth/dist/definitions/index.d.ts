@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import type { IncomingMessage } from "node:http";
 import type { Context, NodeApplication } from "alp-node";
 import type MongoUsersManager from "./MongoUsersManager";
@@ -14,7 +13,7 @@ export { default as UserAccountSlackService } from "./services/user/UserAccountS
 export { authSocketIO } from "./authSocketIO";
 export { createAuthApolloContext } from "./authApolloContext";
 export { STATUSES } from "./services/user/UserAccountsService";
-export * from "./types";
+export type * from "./types";
 declare module "alp-node" {
     interface ContextState {
         loggedInUserId: NonNullable<ContextState["loggedInUser"]>["_id"] | null | undefined;
@@ -42,7 +41,7 @@ export default function init<StrategyKeys extends AllowedStrategyKeys = "google"
     jwtAudience?: string;
 }): (app: NodeApplication) => {
     routes: AuthRoutesType;
-    findLoggedInUserFromRequest: (req: IncomingMessage) => Promise<[U["_id"] | null | undefined, U | null | undefined]>;
+    findLoggedInUserFromRequest: (req: IncomingMessage) => ReturnType<import("./utils/createFindLoggedInUser").FindLoggedInUser<U>>;
     findLoggedInUser: import("./utils/createFindLoggedInUser").FindLoggedInUser<U>;
     middleware: <T>(ctx: Context, next: () => Promise<T> | T) => Promise<T>;
 };

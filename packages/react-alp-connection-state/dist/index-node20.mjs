@@ -1,8 +1,6 @@
-'use strict';
-
-const react = require('react');
-const reactNative = require('react-native');
-const jsxRuntime = require('react/jsx-runtime');
+import { useRef, useEffect } from 'react';
+import { Platform, StyleSheet, useWindowDimensions, View, Text } from 'react-native';
+import { jsx } from 'react/jsx-runtime';
 
 const defaultTheme = {
   container: {
@@ -18,17 +16,17 @@ const defaultTheme = {
   backgroundColorConnected: "rgba(25, 200, 60, 0.8)"
 };
 const useCreateCalcNative = () => {
-  const dimensions = reactNative.useWindowDimensions();
+  const dimensions = useWindowDimensions();
   return (webCalc, createCalc) => createCalc(dimensions);
 };
 const useCreateCalcWeb = () => {
   return webCalc => `calc(${webCalc})`;
 };
-const useCreateCalc = reactNative.Platform.OS === "web" ? useCreateCalcWeb : useCreateCalcNative;
+const useCreateCalc = Platform.OS === "web" ? useCreateCalcWeb : useCreateCalcNative;
 
 // example: const left = createCalc('50% - 100px', ({ width }) => width / 2 - 100);
 
-const styles = reactNative.StyleSheet.create({
+const styles = StyleSheet.create({
   connectionStateContainer: {
     backgroundColor: defaultTheme.container.backgroundColor,
     position: "absolute",
@@ -65,14 +63,14 @@ function ConnectionState({
   state,
   children
 }) {
-  const unloadingRef = react.useRef(false);
+  const unloadingRef = useRef(false);
   const createCalc = useCreateCalc();
   const left = createCalc("50% - 100px", ({
     width
   }) => width / 2 - 100); // TODO use calc() in web ?
 
-  react.useEffect(() => {
-    if (typeof window === "undefined") return;
+  useEffect(() => {
+    if (typeof globalThis === "undefined") return;
     const beforeUnloadHandler = () => {
       unloadingRef.current = true;
     };
@@ -81,11 +79,11 @@ function ConnectionState({
       window.removeEventListener("beforeunload", beforeUnloadHandler);
     };
   }, []);
-  return /*#__PURE__*/jsxRuntime.jsx(reactNative.View, {
+  return /*#__PURE__*/jsx(View, {
     style: [styles.connectionStateContainer, (forceHidden || !state || state === "connected") && styles.hide, theme?.container, state === "connected" && {
       backgroundColor: (theme || defaultTheme).backgroundColorConnected
     }],
-    children: !state ? null : /*#__PURE__*/jsxRuntime.jsx(reactNative.Text, {
+    children: !state ? null : /*#__PURE__*/jsx(Text, {
       style: [styles.connectionStateText, theme && {
         backgroundColor: theme.container.backgroundColor
       }, state === "connected" && {
@@ -98,5 +96,5 @@ function ConnectionState({
   });
 }
 
-exports.ConnectionState = ConnectionState;
-//# sourceMappingURL=index-node18.cjs.map
+export { ConnectionState };
+//# sourceMappingURL=index-node20.mjs.map

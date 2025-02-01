@@ -2,10 +2,10 @@ import type { ReactElement, ReactNode } from "react";
 import { useEffect, useRef } from "react";
 import type { DimensionValue, ScaledSize } from "react-native";
 import {
-  View,
-  Text,
-  StyleSheet,
   Platform,
+  StyleSheet,
+  Text,
+  View,
   useWindowDimensions,
   // eslint-disable-next-line import/no-unresolved -- react-native-web or react-native
 } from "react-native";
@@ -95,7 +95,7 @@ export function ConnectionState({
   const left = createCalc("50% - 100px", ({ width }) => width / 2 - 100); // TODO use calc() in web ?
 
   useEffect((): (() => void) | undefined => {
-    if (typeof window === "undefined") return;
+    if (typeof globalThis === "undefined") return;
 
     const beforeUnloadHandler = (): void => {
       unloadingRef.current = true;

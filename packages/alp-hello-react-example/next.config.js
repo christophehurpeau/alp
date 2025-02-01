@@ -8,6 +8,7 @@ const nextConfig = withTamagui({
   // we recommend only using this for production so you get reloading during dev mode
   outputCSS:
     process.env.NODE_ENV === "production" ? "./build/tamagui.css" : null,
+  disableExtraction: process.env.NODE_ENV !== "production",
 })(
   createNextJsConfig({
     reactStrictMode: true,

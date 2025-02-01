@@ -1,26 +1,99 @@
+import { existsSync, readFileSync, unlinkSync, chmodSync } from 'node:fs';
 import path from 'node:path';
+import { Logger } from 'nightingale-logger';
 import { deprecate } from 'node:util';
 import Koa from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
-import { Logger } from 'nightingale-logger';
-import { unlinkSync, chmodSync, readFileSync } from 'node:fs';
-import 'deep-freeze-es6';
+import deepFreeze from 'deep-freeze-es6';
 import minimist from 'minimist';
-import 'parse-json-object-as-map';
+import parseJSON from 'parse-json-object-as-map';
 import { STATUS_CODES, createServer as createServer$2 } from 'node:http';
 import ErrorHtmlRenderer from 'error-html';
 import { defineLazyProperty } from 'object-properties';
 import { createServer as createServer$1 } from 'node:https';
 import IntlMessageFormatDefault from 'intl-messageformat';
+import { createRouterBuilder } from 'router-segments';
 
-minimist(process.argv.slice(2));
+const argv = minimist(process.argv.slice(2));
+function _existsConfigSync(dirname, name) {
+  return existsSync(`${dirname}${name}.json`);
+}
+function _loadConfigSync(dirname, name) {
+  const content = readFileSync(`${dirname}${name}.json`, "utf8");
+  return parseJSON(content);
+}
+class Config {
+  constructor(dirname, options) {
+    this._map = new Map();
+    this._dirname = dirname.replace(/\/*$/, "/");
+    if (options) {
+      this.loadSync(options);
+    }
+  }
+  loadSync(options = {}) {
+    const env = process.env.CONFIG_ENV || process.env.NODE_ENV || "development";
+    const {
+      argv: argvOverrides = [],
+      packageConfig,
+      version
+    } = options;
+    this.packageConfig = packageConfig;
+    const config = this.loadConfigSync("common");
+    for (const [key, value] of this.loadConfigSync(env)) {
+      config.set(key, value);
+    }
+    if (this.existsConfigSync("local")) {
+      for (const [key, value] of this.loadConfigSync("local")) {
+        config.set(key, value);
+      }
+    }
+    if (config.has("version")) {
+      throw new Error('Cannot have "version", in config.');
+    }
+    config.set("version", String(version || argv.version || packageConfig?.version));
+    const socketPath = argv.socket || argv["socket-path"] || argv.socketPath;
+    if (socketPath) {
+      config.set("socketPath", socketPath);
+    } else if (argv.port) {
+      config.set("port", argv.port);
+      config.delete("socketPath");
+    } else if (process.env.PORT) {
+      config.set("port", Number(process.env.PORT));
+      config.delete("socketPath");
+    }
+    argvOverrides.forEach(key => {
+      const splitted = key.split(".");
+      const value = splitted.length > 0 &&
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return,unicorn/no-array-reduce
+      splitted.reduce((config, partialKey) => config[partialKey], argv);
+      if (value !== undefined) {
+        const last = splitted.pop();
+        const map = splitted.length === 0 ? config :
+        // eslint-disable-next-line unicorn/no-array-reduce
+        splitted.reduce((config, partialKey) => config.get(partialKey), config);
+        map.set(last, value);
+      }
+    });
+    this._map = deepFreeze(config);
+    return this;
+  }
+  get(key) {
+    return this._map.get(key);
+  }
+  existsConfigSync(name) {
+    return _existsConfigSync(this._dirname, name);
+  }
+  loadConfigSync(name) {
+    return _loadConfigSync(this._dirname, name);
+  }
+}
 function getConfig(app, config) {
   return config;
 }
 
 /* eslint-disable complexity */
-const logger$3 = new Logger("alp:errors");
+const logger$4 = new Logger("alp:errors");
 const errorHtmlRenderer = new ErrorHtmlRenderer({
   appPath: `${process.cwd()}/`
 });
@@ -34,7 +107,7 @@ async function alpNodeErrors(ctx, next) {
     if (typeof error === "string") error = new Error(error);
     ctx.status = error.status || 500;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    logger$3.error(error);
+    logger$4.error(error);
     switch (ctx.request.accepts("html", "text", "json")) {
       case "json":
         ctx.type = "application/json";
@@ -59,6 +132,7 @@ async function alpNodeErrors(ctx, next) {
         }
         break;
       case "text":
+      case false:
       default:
         ctx.type = "text/plain";
         if (process.env.NODE_ENV !== "production" || error.expose) {
@@ -77,15 +151,15 @@ function alpLanguage(app) {
   if (!availableLanguages) {
     throw new Error('Missing config "availableLanguages"');
   }
-  defineLazyProperty(app.context, "language", function () {
+  defineLazyProperty(app.context, "language", function language() {
     return this.acceptsLanguages(availableLanguages) || availableLanguages[0];
   });
-  defineLazyProperty(app.context, "firstAcceptedLanguage", function () {
+  defineLazyProperty(app.context, "firstAcceptedLanguage", function firstAcceptedLanguage() {
     return this.acceptsLanguages()[0] || availableLanguages[0];
   });
 }
 
-const logger$2 = new Logger("alp:listen");
+const logger$3 = new Logger("alp:listen");
 const createServer = (callback, socketPath, tls, dirname = ""
 // eslint-disable-next-line @typescript-eslint/max-params
 ) => {
@@ -105,7 +179,7 @@ function alpListen(config, callback, dirname) {
     const port = config.get("port");
     const hostname = config.get("hostname");
     const tls = config.get("tls");
-    logger$2.info("Creating server", socketPath ? {
+    logger$3.info("Creating server", socketPath ? {
       socketPath
     } : {
       port
@@ -119,14 +193,14 @@ function alpListen(config, callback, dirname) {
         if (socketPath) {
           chmodSync(socketPath, "777");
         }
-        logger$2.info("Server listening", {
+        logger$3.info("Server listening", {
           socketPath
         });
         resolve(server);
       });
     } else {
       server.listen(port, hostname, () => {
-        logger$2.info("Server listening", {
+        logger$3.info("Server listening", {
           port
         });
         resolve(server);
@@ -243,13 +317,13 @@ function alpParams(app) {
       return this.body[name];
     }
   });
-  defineLazyProperty(app.request, "searchParams", function () {
+  defineLazyProperty(app.request, "searchParams", function searchParams() {
     return new URLSearchParams(this.search);
   });
-  defineLazyProperty(app.context, "params", function () {
+  defineLazyProperty(app.context, "params", function params() {
     return new ParamValueFromContext(this, new ParamValidationResult());
   });
-  defineLazyProperty(app.context, "validParams", function () {
+  defineLazyProperty(app.context, "validParams", function validParams() {
     return new ParamValueFromContext(this, new ParamValid(this));
   });
 }
@@ -275,7 +349,7 @@ function load(translations, language) {
   return result;
 }
 
-const logger$1 = new Logger("alp:translate");
+const logger$2 = new Logger("alp:translate");
 function alpTranslate(dirname) {
   dirname = dirname.replace(/\/*$/, "/");
   return app => {
@@ -284,7 +358,7 @@ function alpTranslate(dirname) {
       t(id, args) {
         const msg = appTranslations.get(this.language).get(id);
         if (!msg) {
-          logger$1.warn("invalid msg", {
+          logger$2.warn("invalid msg", {
             language: this.language,
             id
           });
@@ -302,7 +376,7 @@ function alpTranslate(dirname) {
   };
 }
 
-const logger = new Logger("alp");
+const logger$1 = new Logger("alp");
 class AlpNodeApp extends Koa {
   /**
    * @param {Object} [options]
@@ -368,11 +442,11 @@ class AlpNodeApp extends Koa {
     try {
       const server = await alpListen(this.config, this.callback(), this.certPath);
       this._server = server;
-      logger.success("started");
+      logger$1.success("started");
       if (process.send) process.send("ready");
       return server;
     } catch (error) {
-      logger.error("start fail", {
+      logger$1.error("start fail", {
         err: error
       });
       throw error;
@@ -380,5 +454,56 @@ class AlpNodeApp extends Koa {
   }
 }
 
-export { AlpNodeApp };
-//# sourceMappingURL=AlpNodeApp-node18.mjs.map
+const createAlpRouterBuilder = () => createRouterBuilder();
+function alpRouter(router) {
+  return app => {
+    app.router = router;
+    app.context.urlGenerator = function urlGenerator(routeKey, params) {
+      return router.toLocalizedPath(this.language, routeKey, params);
+    };
+    app.context.redirectTo = function redirectTo(to, params) {
+      this.redirect(router.toLocalizedPath(this.language, to, params));
+    };
+    return async ctx => {
+      // eslint-disable-next-line unicorn/no-array-method-this-argument
+      const routeMatch = router.find(ctx.request.path, ctx.language);
+      if (!routeMatch) {
+        ctx.status = 404;
+        throw new Error(`Route not found: ${ctx.request.path}`);
+      }
+      ctx.route = routeMatch;
+      await routeMatch.ref(ctx);
+    };
+  };
+}
+
+const logger = new Logger("alp");
+const appDirname = path.resolve("build");
+const packagePath = path.resolve("package.json");
+if (!packagePath) {
+  throw new Error(`Could not find package.json: "${String(packagePath)}"`);
+}
+const packageDirname = path.dirname(packagePath);
+logger.debug("init", {
+  appDirname,
+  packageDirname
+});
+const packageConfig = JSON.parse(readFileSync(packagePath, "utf8"));
+const buildedConfigPath = `${appDirname}/build/config/`;
+const configPath = existsSync(buildedConfigPath) ? buildedConfigPath : `${appDirname}/config/`;
+const config = new Config(configPath).loadSync({
+  packageConfig
+});
+class App extends AlpNodeApp {
+  constructor(options) {
+    super({
+      ...options,
+      appDirname,
+      packageDirname,
+      config
+    });
+  }
+}
+
+export { Config, appDirname, config, createAlpRouterBuilder, App as default, packageConfig, packageDirname, alpRouter as router };
+//# sourceMappingURL=index-node20.mjs.map

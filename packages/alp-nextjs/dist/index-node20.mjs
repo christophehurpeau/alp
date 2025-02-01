@@ -32,4 +32,4 @@ const getServerCookieValue = (ctx, cookieName) => {
 };
 
 export { createDocumentInitialProps, getServerCookieValue };
-//# sourceMappingURL=index-node18.mjs.map
+//# sourceMappingURL=index-node20.mjs.map

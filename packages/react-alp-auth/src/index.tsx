@@ -1,7 +1,7 @@
-import { POB_TARGET } from "pob-babel";
 import type { GetServerSidePropsContext } from "alp-nextjs";
 import { getServerCookieValue } from "alp-nextjs";
 import BrowserCookies from "js-cookie";
+import { POB_TARGET } from "pob-babel";
 
 const COOKIE_NAME_STATE = "loggedInUserState";
 

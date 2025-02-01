@@ -43,7 +43,7 @@ export default function alpParams(app: AlpNodeApp): void {
   defineLazyProperty(
     app.request,
     "searchParams",
-    function (this: Context["request"]): URLSearchParams {
+    function searchParams(this: Context["request"]): URLSearchParams {
       return new URLSearchParams(this.search);
     },
   );
@@ -51,7 +51,7 @@ export default function alpParams(app: AlpNodeApp): void {
   defineLazyProperty(
     app.context,
     "params",
-    function (this: Context): ParamValueFromContext {
+    function params(this: Context): ParamValueFromContext {
       return new ParamValueFromContext(this, new ParamValidationResult());
     },
   );
@@ -59,7 +59,7 @@ export default function alpParams(app: AlpNodeApp): void {
   defineLazyProperty(
     app.context,
     "validParams",
-    function (this: Context): ParamValueFromContext {
+    function validParams(this: Context): ParamValueFromContext {
       return new ParamValueFromContext(this, new ParamValid(this));
     },
   );

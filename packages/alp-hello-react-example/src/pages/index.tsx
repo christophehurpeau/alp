@@ -1,8 +1,8 @@
 "use client";
 
-import type { ReactElement } from "react";
-import { HomeView } from "sections/hello-world/HomeView";
+import type { ReactNode } from "react";
+import { HomeView } from "../sections/hello-world/HomeView";
 
-export default function HomePage(): ReactElement {
+export default function HomePage(): ReactNode {
   return <HomeView />;
 }

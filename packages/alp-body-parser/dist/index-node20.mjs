@@ -8,19 +8,19 @@ const assertBodyNotParsed = ctx => {
   }
 };
 function alpBodyParser(app) {
-  app.context.parseBody = async function () {
+  app.context.parseBody = async function parseBody() {
     assertBodyNotParsed(this);
     const body = await parse.form(this);
     this.request.body = body;
     return body;
   };
-  app.context.parseBodyJson = async function () {
+  app.context.parseBodyJson = async function parseBodyJson() {
     assertBodyNotParsed(this);
     const body = await parse.json(this);
     this.request.body = body;
     return body;
   };
-  app.context.parseBodyText = async function () {
+  app.context.parseBodyText = async function parseBodyText() {
     assertBodyNotParsed(this);
     const body = await parse.text(this);
     this.request.body = body;
@@ -29,4 +29,4 @@ function alpBodyParser(app) {
 }
 
 export { alpBodyParser as default };
-//# sourceMappingURL=index-node18.mjs.map
+//# sourceMappingURL=index-node20.mjs.map

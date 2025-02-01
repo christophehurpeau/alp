@@ -1,14 +1,13 @@
-/// <reference types="node" />
 import type { IncomingMessage, Server, ServerResponse } from "node:http";
 import Koa from "koa";
-import type { ParameterizedContext, DefaultState } from "koa";
+import type { DefaultState, ParameterizedContext } from "koa";
 import type { Router } from "router-segments";
 import type { Config } from "./config";
 import type { AlpLanguageContext } from "./language";
 import type { AlpParamsContext, AlpParamsRequest } from "./params";
 import type { AlpRouteRef, RouterContext as AlpRouterContext, UrlGenerator } from "./router";
 import type { TranslateBaseContext, TranslateContext } from "./translate";
-import type { NodeApplication, NodeConfig, Context as AlpContext, ContextState } from "./types";
+import type { Context as AlpContext, ContextState, NodeApplication, NodeConfig } from "./types";
 export interface AlpNodeAppOptions {
     appDirname: string;
     packageDirname: string;

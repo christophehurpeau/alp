@@ -53,6 +53,7 @@ export default async function alpNodeErrors(
         break;
 
       case "text":
+      case false:
       default:
         ctx.type = "text/plain";
         if (

@@ -4,6 +4,9 @@ import { themes, tokens } from "@tamagui/themes";
 import { createFont, createTamagui } from "tamagui";
 
 export default createTamagui({
+  settings: {
+    disableRootThemeClass: true,
+  },
   allowedStyleValues: "strict-web",
   themes,
   tokens,

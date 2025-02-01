@@ -2,7 +2,7 @@ import type { IncomingMessage, Server, ServerResponse } from "node:http";
 import path from "node:path";
 import { deprecate } from "node:util";
 import Koa from "koa";
-import type { ParameterizedContext, DefaultState } from "koa";
+import type { DefaultState, ParameterizedContext } from "koa";
 import compress from "koa-compress";
 import serve from "koa-static";
 import { Logger } from "nightingale-logger";
@@ -23,11 +23,11 @@ import type {
 import type { TranslateBaseContext, TranslateContext } from "./translate";
 import translate from "./translate";
 import type {
+  Context as AlpContext,
+  ContextSanitizedState,
+  ContextState,
   NodeApplication,
   NodeConfig,
-  Context as AlpContext,
-  ContextState,
-  ContextSanitizedState,
 } from "./types";
 
 const logger = new Logger("alp");
@@ -41,7 +41,7 @@ export interface AlpNodeAppOptions {
 }
 
 declare module "koa" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface DefaultState extends ContextState {}
 
   interface DefaultContext
@@ -58,7 +58,7 @@ declare module "koa" {
       params?: P,
     ) => void;
   }
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface BaseRequest extends AlpParamsRequest {}
 }
 

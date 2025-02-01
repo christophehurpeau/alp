@@ -1,7 +1,6 @@
-/// <reference types="node" />
 import { EventEmitter } from "node:events";
 import type MongoUsersManager from "../../MongoUsersManager";
-import type { AccountId, User, Account, UserSanitized } from "../../types";
+import type { Account, AccountId, User, UserSanitized } from "../../types";
 import type { AllowedStrategyKeys } from "../authentification/types";
 import type { AccountService, TokensObject } from "./types";
 export declare const STATUSES: {

@@ -1,6 +1,6 @@
-import type { ReactElement } from "react";
+import type { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
-import { Text, Stack } from "tamagui";
+import { Stack, Text } from "tamagui";
 import InputName from "./InputNameComponent";
 
 interface HelloComponentProps {
@@ -11,7 +11,7 @@ interface HelloComponentProps {
 export default function HelloComponent({
   name,
   onChangeName,
-}: HelloComponentProps): ReactElement {
+}: HelloComponentProps): ReactNode {
   return (
     <Stack alignItems="center" paddingTop="10%">
       <Stack width="60%">

@@ -682,7 +682,7 @@ function init({
       defaultStrategy,
       authHooks
     });
-    app.context.setLoggedIn = async function (loggedInUserId, loggedInUser) {
+    app.context.setLoggedIn = async function setLoggedIn(loggedInUserId, loggedInUser) {
       logger.debug("setLoggedIn", {
         loggedInUser
       });
@@ -716,7 +716,7 @@ function init({
         secure: this.config.get("allowHttps")
       });
     };
-    app.context.logout = function () {
+    app.context.logout = function logout() {
       delete this.state.loggedInUserId;
       delete this.state.loggedInUser;
       this.cookies.set(COOKIE_NAME_TOKEN, "", {
@@ -770,4 +770,4 @@ function init({
 }
 
 export { AuthenticationService, MongoUsersManager, STATUSES, UserAccountGoogleService, UserAccountSlackService, authSocketIO, createAuthApolloContext, init as default };
-//# sourceMappingURL=index-node18.mjs.map
+//# sourceMappingURL=index-node20.mjs.map

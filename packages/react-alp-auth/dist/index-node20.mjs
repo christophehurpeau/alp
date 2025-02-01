@@ -25,4 +25,4 @@ const useLoggedInUserState = useLoggedInUserStateServer;
 const getServerAuthCookieValue = ctx => getServerCookieValue(ctx, COOKIE_NAME_STATE);
 
 export { getServerAuthCookieValue, useLoggedInUserState };
-//# sourceMappingURL=index-node18.mjs.map
+//# sourceMappingURL=index-node20.mjs.map

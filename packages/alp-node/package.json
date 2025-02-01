@@ -22,10 +22,10 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=20.9.0"
   },
   "sideEffects": false,
-  "main": "./dist/index-node18.mjs",
+  "main": "./dist/index-node20.mjs",
   "types": "./dist/definitions/index.d.ts",
   "typesVersions": {
     ">=3.1": {
@@ -39,13 +39,13 @@
     ".": {
       "types": "./dist/definitions/index.d.ts",
       "node": {
-        "import": "./dist/index-node18.mjs"
+        "import": "./dist/index-node20.mjs"
       }
     },
     "./AlpNodeApp": {
       "types": "./dist/definitions/AlpNodeApp.d.ts",
       "node": {
-        "import": "./dist/AlpNodeApp-node18.mjs"
+        "import": "./dist/AlpNodeApp-node20.mjs"
       }
     }
   },
@@ -59,7 +59,7 @@
     "clean": "yarn clean:build",
     "clean:build": "pob-babel-clean-out dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-node",
+    "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-node",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "pob": {
@@ -71,7 +71,7 @@
     "envs": [
       {
         "target": "node",
-        "version": "18"
+        "version": "20"
       }
     ]
   },
@@ -81,7 +81,7 @@
   },
   "dependencies": {
     "@types/koa": "^2.13.1",
-    "@types/node": ">=18.0.0",
+    "@types/node": ">=20.0.0",
     "deep-freeze-es6": "^3.0.2",
     "error-html": "^0.3.5",
     "intl-messageformat": "^10.0.0",
@@ -94,11 +94,11 @@
     "parse-json-object-as-map": "^1.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.24.5",
+    "@babel/core": "7.26.7",
     "@types/koa-compress": "4.0.6",
     "@types/koa-static": "4.0.4",
     "@types/minimist": "1.2.5",
-    "pob-babel": "40.0.0",
-    "typescript": "5.4.5"
+    "pob-babel": "43.0.0",
+    "typescript": "5.7.3"
   }
 }

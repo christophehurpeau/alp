@@ -1,7 +1,7 @@
 import type { GetServerSideProps } from "next";
-import type { ReactElement } from "react";
+import type { ReactNode } from "react";
 import { getServerAuthCookieValue } from "react-alp-auth";
-import { AuthView } from "sections/auth/AuthView";
+import { AuthView } from "../sections/auth/AuthView";
 
 interface AuthPageProps {
   serverAuthCookieValue: string | null;
@@ -9,7 +9,7 @@ interface AuthPageProps {
 
 export default function AuthPage({
   serverAuthCookieValue,
-}: AuthPageProps): ReactElement {
+}: AuthPageProps): ReactNode {
   return <AuthView serverAuthCookieValue={serverAuthCookieValue} />;
 }
 

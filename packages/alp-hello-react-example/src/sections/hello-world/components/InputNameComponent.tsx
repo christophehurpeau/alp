@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type { ReactNode } from "react";
 import { useState } from "react";
 import { Input } from "tamagui";
 
@@ -10,7 +10,7 @@ interface InputNameComponentProps {
 export default function InputNameComponent({
   value: initialValue,
   onChange,
-}: InputNameComponentProps): ReactElement {
+}: InputNameComponentProps): ReactNode {
   const [value, setValue] = useState(initialValue);
 
   return (

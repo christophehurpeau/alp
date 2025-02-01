@@ -7,7 +7,7 @@ async function readRecursiveDirectory(directory, callback) {
   await Promise.all(files.map(async file => {
     const path = `${directory}/${file}`;
     const stat$1 = await stat(path);
-    if (stat$1?.isDirectory()) {
+    if (stat$1.isDirectory()) {
       await readRecursiveDirectory(path, callback);
       return;
     }
@@ -47,7 +47,6 @@ async function migrate({
     logger.error("unhandledRejection", {
       err: reason
     });
-    // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   };
   process.on("unhandledRejection", unhandledRejectionHandler);
@@ -63,7 +62,7 @@ async function migrate({
     if (!fileName.endsWith(".js")) {
       return;
     }
-    const versionExecResult = /([\d.]+)(_.*|\.js)$/.exec(fileName);
+    const versionExecResult = /([\d.]+)(?:_.*|\.js)$/.exec(fileName);
     if (!versionExecResult?.[1]) {
       return;
     }
@@ -94,11 +93,10 @@ async function migrate({
     }
   } catch (error) {
     logger.error(error);
-    // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   }
   process.removeListener("unhandledRejection", unhandledRejectionHandler);
 }
 
 export { MigrationsManager, migrate as default };
-//# sourceMappingURL=index-node18.mjs.map
+//# sourceMappingURL=index-node20.mjs.map
