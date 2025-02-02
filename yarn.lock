@@ -2131,17 +2131,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@guanghechen/rollup-plugin-copy@npm:1.8.6":
-  version: 1.8.6
-  resolution: "@guanghechen/rollup-plugin-copy@npm:1.8.6"
+"@guanghechen/rollup-plugin-copy@npm:1.9.8":
+  version: 1.9.8
+  resolution: "@guanghechen/rollup-plugin-copy@npm:1.9.8"
   dependencies:
     chalk: "npm:^4.1.2"
-    fs-extra: "npm:^10.0.0"
+    chokidar: "npm:^3.5.3"
+    dir-glob: "npm:^3.0.1"
+    fs-extra: "npm:^10.1.0"
     globby: "npm:^11.0.4"
     is-plain-object: "npm:^5.0.0"
+    micromatch: "npm:^4.0.5"
   peerDependencies:
     rollup: ^2.64.0
-  checksum: 10c0/a22ef83dd82fde324bfb9ef1bb1591a89c42e3b18cc961266a93695beabe15d5c46536aad299b3d511cd74ba588fa3e0e4763566aa28a3058fb941c7150f2958
+  checksum: 10c0/1e5b323c9eccb81c23b405432fe0943906831a56fdeb7e26cf41f9e9b9bcc27a30e68b3012ecf213a995f78e339a9a40892587cab61d84ff3d5056cadafd7a46
   languageName: node
   linkType: hard
 
@@ -5452,7 +5455,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config"
   dependencies:
-    "@guanghechen/rollup-plugin-copy": "npm:1.8.6"
+    "@guanghechen/rollup-plugin-copy": "npm:1.9.8"
     js-yaml: "npm:4.1.0"
   peerDependencies:
     rollup: ^2.64.0 || ^3.0.0 || ^4.0.0
@@ -6338,9 +6341,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.5.2":
-  version: 3.5.3
-  resolution: "chokidar@npm:3.5.3"
+"chokidar@npm:^3.5.2, chokidar@npm:^3.5.3":
+  version: 3.6.0
+  resolution: "chokidar@npm:3.6.0"
   dependencies:
     anymatch: "npm:~3.1.2"
     braces: "npm:~3.0.2"
@@ -6353,7 +6356,7 @@ __metadata:
   dependenciesMeta:
     fsevents:
       optional: true
-  checksum: 10c0/1076953093e0707c882a92c66c0f56ba6187831aa51bb4de878c1fec59ae611a3bf02898f190efec8e77a086b8df61c2b2a3ea324642a0558bdf8ee6c5dc9ca1
+  checksum: 10c0/8361dcd013f2ddbe260eacb1f3cb2f2c6f2b0ad118708a343a5ed8158941a39cb8fb1d272e0f389712e74ee90ce8ba864eece9e0e62b9705cb468a2f6d917462
   languageName: node
   linkType: hard
 
@@ -8634,14 +8637,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "fs-extra@npm:10.0.0"
+"fs-extra@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "fs-extra@npm:10.1.0"
   dependencies:
     graceful-fs: "npm:^4.2.0"
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
-  checksum: 10c0/85802f3d9e49d197744a8372f0d78d5a1faa3df73f4c5375d6366a4b9f745197d3da1f095841443d50f29a9f81cdc01363eb6d17bef2ba70c268559368211040
+  checksum: 10c0/5f579466e7109719d162a9249abbeffe7f426eb133ea486e020b89bc6d67a741134076bf439983f2eb79276ceaf6bd7b7c1e43c3fd67fe889863e69072fb0a5e
   languageName: node
   linkType: hard
 
@@ -11295,7 +11298,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.4, micromatch@npm:^4.0.8":
+"micromatch@npm:^4.0.4, micromatch@npm:^4.0.5, micromatch@npm:^4.0.8":
   version: 4.0.8
   resolution: "micromatch@npm:4.0.8"
   dependencies:
@@ -14727,11 +14730,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
   version: 5.7.3
-  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
+  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/6fd7e0ed3bf23a81246878c613423730c40e8bdbfec4c6e4d7bf1b847cbb39076e56ad5f50aa9d7ebd89877999abaee216002d3f2818885e41c907caaa192cc4
+  checksum: 10c0/3b56d6afa03d9f6172d0b9cdb10e6b1efc9abc1608efd7a3d2f38773d5d8cfb9bbc68dfb72f0a7de5e8db04fc847f4e4baeddcd5ad9c9feda072234f0d788896
   languageName: node
   linkType: hard
 
