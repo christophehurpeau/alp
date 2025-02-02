@@ -5383,7 +5383,7 @@ __metadata:
     "@babel/runtime": "npm:^7.26.7"
     babel-plugin-discard-module-references: "npm:^1.1.2"
     babel-preset-pob-env: "npm:15.0.0"
-    cookies: "npm:~0.8.0"
+    cookies: "npm:~0.9.0"
     next: "npm:14.2.15"
     pob-babel: "npm:43.0.0"
     react: "npm:18.2.0"
@@ -5406,7 +5406,7 @@ __metadata:
     "@types/jsonwebtoken": "npm:^9.0.1"
     "@types/simple-oauth2": "npm:^5.0.4"
     alp-node: "npm:7.0.0"
-    cookies: "npm:~0.8.0"
+    cookies: "npm:~0.9.0"
     jsonwebtoken: "npm:^9.0.0"
     liwi-mongo: "npm:11.0.0"
     nightingale-logger: "npm:^15.0.0"
@@ -6776,6 +6776,16 @@ __metadata:
     depd: "npm:~2.0.0"
     keygrip: "npm:~1.1.0"
   checksum: 10c0/0af32f30d1ece0596efc05782c66b9d61659e20c6cc5b695452abf5ceb51883ef43c5c73d86badd7d028a0da7d39f864c95f33640aef04f97fad70f35986bea3
+  languageName: node
+  linkType: hard
+
+"cookies@npm:~0.9.0":
+  version: 0.9.1
+  resolution: "cookies@npm:0.9.1"
+  dependencies:
+    depd: "npm:~2.0.0"
+    keygrip: "npm:~1.1.0"
+  checksum: 10c0/3ffa1c0e992b62ee119adae4dd2ddd4a89166fa5434cd9bd9ff84ec4d2f14dfe2318a601280abfe32a4f64f884ec9345fb1912e488b002d188d2efa0d3919ba3
   languageName: node
   linkType: hard
 
@@ -14727,11 +14737,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
   version: 5.7.3
-  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
+  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/6fd7e0ed3bf23a81246878c613423730c40e8bdbfec4c6e4d7bf1b847cbb39076e56ad5f50aa9d7ebd89877999abaee216002d3f2818885e41c907caaa192cc4
+  checksum: 10c0/3b56d6afa03d9f6172d0b9cdb10e6b1efc9abc1608efd7a3d2f38773d5d8cfb9bbc68dfb72f0a7de5e8db04fc847f4e4baeddcd5ad9c9feda072234f0d788896
   languageName: node
   linkType: hard
 
