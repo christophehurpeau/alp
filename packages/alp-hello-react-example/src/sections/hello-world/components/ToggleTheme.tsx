@@ -1,16 +1,22 @@
+// @ts-expect-error -- types are missing
 import { useThemeSetting } from "@tamagui/next-theme";
+import { useDidFinishSSR } from "@tamagui/use-did-finish-ssr";
+import { Button } from "alouette";
 import type { ReactNode } from "react";
-import { Button, useDidFinishSSR } from "tamagui";
 
 export function ToggleTheme(): ReactNode {
   const isVisible = useDidFinishSSR();
   const themeSetting = useThemeSetting();
 
   return (
-    <Button onPress={!isVisible ? undefined : themeSetting.toggle}>
-      {!isVisible
-        ? "Loading..."
-        : `Change theme (currently: ${themeSetting.current || "none"})`}
-    </Button>
+    <Button
+      text={
+        !isVisible
+          ? "Loading..."
+          : // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            `Change theme (currently: ${themeSetting.current || "none"})`
+      }
+      onPress={!isVisible ? undefined : themeSetting.toggle}
+    />
   );
 }

@@ -1,6 +1,6 @@
+import { Stack, Typography } from "alouette";
 import type { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
-import { Stack, Text } from "tamagui";
 import InputName from "./InputNameComponent";
 
 interface HelloComponentProps {
@@ -15,13 +15,13 @@ export default function HelloComponent({
   return (
     <Stack alignItems="center" paddingTop="10%">
       <Stack width="60%">
-        <Text fontSize="$6" data-testid="hello-text">
+        <Typography size="lg" data-testid="hello-text">
           <FormattedMessage
             id="HelloComponent.text"
             defaultMessage="Hello {name}!"
             values={{ name: name || "World" }}
           />
-        </Text>
+        </Typography>
         <InputName value={name} onChange={onChangeName} />
       </Stack>
     </Stack>

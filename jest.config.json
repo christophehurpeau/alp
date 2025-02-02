@@ -1,6 +1,9 @@
 {
   "cacheDirectory": "./node_modules/.cache/jest",
   "testEnvironment": "node",
+  "testEnvironmentOptions": {
+    "customExportConditions": ["node", "web", "require"]
+  },
   "testMatch": [
     "<rootDir>/packages/*/@(src|lib)/**/__tests__/**/*.(ts|js|cjs|mjs)?(x)",
     "<rootDir>/packages/*/@(src|lib)/**/*.test.(ts|js|cjs|mjs)?(x)"
@@ -11,9 +14,10 @@
     "react-native-safe-area-context$": "react-native-safe-area-context/jest/mock.tsx"
   },
   "transformIgnorePatterns": [
-    "node_modules/(?!(react-native.*|@react-native.*|expo.*|@expo(nent)?/.*|react-navigation.*|@react-navigation/.*|@?tamagui)/).*"
+    "node_modules/(?!(react-native.*|@react-native.*|expo.*|@expo(nent)?/.*|react-navigation.*|@react-navigation/.*|@?tamagui|alouette)/).*"
   ],
   "setupFiles": ["<rootDir>/config/jest/setEnvVariables.js"],
+  "setupFilesAfterEnv": ["<rootDir>/config/jest/setupFilesAfterEnv.js"],
   "resolver": "./config/jest/resolver.cjs",
   "transform": {
     "(node_modules|__mocks__)/.*\\.jsx?$": [

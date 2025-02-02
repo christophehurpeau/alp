@@ -1,6 +1,6 @@
+import { InputText } from "alouette";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import { Input } from "tamagui";
 
 interface InputNameComponentProps {
   value: string | undefined;
@@ -14,7 +14,7 @@ export default function InputNameComponent({
   const [value, setValue] = useState(initialValue);
 
   return (
-    <Input
+    <InputText
       // https://github.com/tamagui/tamagui/issues/1329
       testID="input-name"
       autoComplete="off"
