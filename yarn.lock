@@ -6779,6 +6779,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cookies@npm:~0.9.0":
+  version: 0.9.1
+  resolution: "cookies@npm:0.9.1"
+  dependencies:
+    depd: "npm:~2.0.0"
+    keygrip: "npm:~1.1.0"
+  checksum: 10c0/3ffa1c0e992b62ee119adae4dd2ddd4a89166fa5434cd9bd9ff84ec4d2f14dfe2318a601280abfe32a4f64f884ec9345fb1912e488b002d188d2efa0d3919ba3
+  languageName: node
+  linkType: hard
+
 "core-js-compat@npm:^3.38.0, core-js-compat@npm:^3.38.1":
   version: 3.40.0
   resolution: "core-js-compat@npm:3.40.0"
@@ -10823,14 +10833,14 @@ __metadata:
   linkType: hard
 
 "koa@npm:^2.13.1":
-  version: 2.13.4
-  resolution: "koa@npm:2.13.4"
+  version: 2.16.0
+  resolution: "koa@npm:2.16.0"
   dependencies:
     accepts: "npm:^1.3.5"
     cache-content-type: "npm:^1.0.0"
     content-disposition: "npm:~0.5.2"
     content-type: "npm:^1.0.4"
-    cookies: "npm:~0.8.0"
+    cookies: "npm:~0.9.0"
     debug: "npm:^4.3.2"
     delegates: "npm:^1.0.0"
     depd: "npm:^2.0.0"
@@ -10849,7 +10859,7 @@ __metadata:
     statuses: "npm:^1.5.0"
     type-is: "npm:^1.6.16"
     vary: "npm:^1.1.2"
-  checksum: 10c0/6c9428421402f4c4eeb137fca8c2685d386af4d01792f3c54d12186c5cc75fd8e2f90e944609c365bdd801cd67ae442e88785ac3552456348c2dcb5b5ecda395
+  checksum: 10c0/7416042e6b47b6eaf7131e57fa1857ca3e695ddff4088bf228c85d4ba1c4dc9510ab4aaaff5466bcc5df5e81370532edd15939095c796226a95f068306c8436e
   languageName: node
   linkType: hard
 
@@ -14727,11 +14737,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
   version: 5.7.3
-  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
+  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/6fd7e0ed3bf23a81246878c613423730c40e8bdbfec4c6e4d7bf1b847cbb39076e56ad5f50aa9d7ebd89877999abaee216002d3f2818885e41c907caaa192cc4
+  checksum: 10c0/3b56d6afa03d9f6172d0b9cdb10e6b1efc9abc1608efd7a3d2f38773d5d8cfb9bbc68dfb72f0a7de5e8db04fc847f4e4baeddcd5ad9c9feda072234f0d788896
   languageName: node
   linkType: hard
 
