@@ -67,7 +67,7 @@
     "@types/node": "20.11.30",
     "@types/semver": "7.5.8",
     "liwi-mongo": "11.0.0",
-    "pob-babel": "43.0.0",
+    "pob-babel": "43.7.0",
     "router-segments": "9.1.0",
     "typescript": "5.7.3"
   }

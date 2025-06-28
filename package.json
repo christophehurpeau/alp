@@ -52,7 +52,7 @@
     "eslint": "9.19.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
-    "pob-babel": "43.0.0",
+    "pob-babel": "43.7.0",
     "sucrase": "3.35.0",
     "typescript": "5.7.3"
   }
