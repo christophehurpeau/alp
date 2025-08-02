@@ -205,7 +205,7 @@ class AuthenticationService extends EventEmitter {
   async accessResponse(ctx, strategy, isLoggedIn, hooks) {
     const errorParam = ctx.params.queryParam("error").notEmpty();
     if (errorParam.isValid()) {
-      ctx.throw(errorParam.value, 403);
+      ctx.throw(403, errorParam.value);
     }
     const code = ctx.validParams.queryParam("code").notEmpty().value;
     const state = ctx.validParams.queryParam("state").notEmpty().value;

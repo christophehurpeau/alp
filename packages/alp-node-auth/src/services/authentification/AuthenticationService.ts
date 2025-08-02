@@ -226,7 +226,7 @@ export class AuthenticationService<
   ): Promise<U> {
     const errorParam = ctx.params.queryParam("error").notEmpty();
     if (errorParam.isValid()) {
-      ctx.throw(errorParam.value, 403);
+      ctx.throw(403, errorParam.value);
     }
 
     const code = ctx.validParams.queryParam("code").notEmpty().value;

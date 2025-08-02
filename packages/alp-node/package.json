@@ -80,12 +80,12 @@
     "router-segments": "^9.1.0"
   },
   "dependencies": {
-    "@types/koa": "^2.15.0",
+    "@types/koa": "^3.0.0",
     "@types/node": ">=20.0.0",
     "deep-freeze-es6": "^4.0.1",
     "error-html": "^0.3.5",
     "intl-messageformat": "^10.0.0",
-    "koa": "^2.16.1",
+    "koa": "^3.0.1",
     "koa-compress": "^5.1.1",
     "koa-static": "^5.0.0",
     "minimist": "^1.2.8",
