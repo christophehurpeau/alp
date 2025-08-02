@@ -49,7 +49,7 @@
   "dependencies": {
     "alp-node": "7.0.0",
     "alp-node-auth": "10.0.0",
-    "liwi-mongo": "11.0.0",
+    "liwi-mongo": "12.0.0",
     "nightingale-app-console": "15.0.0",
     "nightingale-web-processor": "15.0.0",
     "router-segments": "9.1.0"

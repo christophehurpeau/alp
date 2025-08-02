@@ -121,7 +121,7 @@
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
     "alp-node": "^7.0.0",
-    "liwi-mongo": "^11.0.0",
+    "liwi-mongo": "^12.0.0",
     "router-segments": "^9.1.0"
   },
   "dependencies": {
@@ -135,7 +135,7 @@
   "devDependencies": {
     "@babel/core": "7.28.0",
     "alp-node": "7.0.0",
-    "liwi-mongo": "11.0.0",
+    "liwi-mongo": "12.0.0",
     "pob-babel": "43.7.0",
     "router-segments": "9.1.0",
     "typescript": "5.8.3"
