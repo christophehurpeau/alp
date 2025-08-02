@@ -77,7 +77,7 @@
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "router-segments": "^9.1.0"
+    "router-segments": "^11.0.0"
   },
   "dependencies": {
     "@types/koa": "^3.0.0",
