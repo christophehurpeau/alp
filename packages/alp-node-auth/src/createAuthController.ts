@@ -57,7 +57,7 @@ export function createAuthController<
 }: CreateAuthControllerParams<StrategyKeys, U, USanitized>): AuthController {
   return {
     async login(ctx: Context): Promise<void> {
-      const strategy: StrategyKeys = (ctx.namedParam("strategy") ||
+      const strategy: StrategyKeys = (ctx.namedRouteParam("strategy") ||
         defaultStrategy) as StrategyKeys;
       if (!strategy) throw new Error("Strategy missing");
       const params =
@@ -77,16 +77,18 @@ export function createAuthController<
         return;
       }
 
-      const strategy: StrategyKeys = (ctx.namedParam("strategy") ||
+      const strategy: StrategyKeys = (ctx.namedRouteParam("strategy") ||
         defaultStrategy) as StrategyKeys;
       if (!strategy) throw new Error("Strategy missing");
-      const scopeKey = ctx.namedParam("scopeKey");
+      const scopeKey = ctx.namedRouteParam("scopeKey");
       if (!scopeKey) throw new Error("Scope missing");
       await authenticationService.redirectAuthUrl(ctx, strategy, { scopeKey });
     },
 
     async response(ctx: Context): Promise<void> {
-      const strategy: StrategyKeys = ctx.namedParam("strategy") as StrategyKeys;
+      const strategy: StrategyKeys = ctx.namedRouteParam(
+        "strategy",
+      ) as StrategyKeys;
       ctx.assert(strategy);
 
       const loggedInUser = await authenticationService.accessResponse(

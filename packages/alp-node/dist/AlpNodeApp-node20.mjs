@@ -201,10 +201,10 @@ class ParamValueFromContext {
     this.context = context;
   }
   namedParam(name) {
-    return new ParamValueStringValidator(this.validationResult, name, this.context.namedParam(name));
+    return new ParamValueStringValidator(this.validationResult, name, this.context.namedRouteParam(name));
   }
   otherParam(position) {
-    return new ParamValueStringValidator(this.validationResult, String(position), this.context.otherParam(position));
+    return new ParamValueStringValidator(this.validationResult, String(position), this.context.otherRouteParam(position));
   }
   queryParam(name) {
     return new ParamValueStringValidator(this.validationResult, name, this.context.queryParam(name));

@@ -16,7 +16,7 @@ export class ParamValueFromContext {
     return new ParamValueStringValidator(
       this.validationResult,
       name,
-      this.context.namedParam(name),
+      this.context.namedRouteParam(name),
     );
   }
 
@@ -24,7 +24,7 @@ export class ParamValueFromContext {
     return new ParamValueStringValidator(
       this.validationResult,
       String(position),
-      this.context.otherParam(position),
+      this.context.otherRouteParam(position),
     );
   }
 

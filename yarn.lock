@@ -6004,7 +6004,7 @@ __metadata:
     koa-static: "npm:^5.0.0"
     minimist: "npm:^1.2.8"
     nightingale-logger: "npm:^15.0.0"
-    object-properties: "npm:^8.1.0"
+    object-properties: "npm:^9.0.1"
     pob-babel: "npm:43.7.0"
     typescript: "npm:5.8.3"
   peerDependencies:
@@ -13299,10 +13299,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-properties@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "object-properties@npm:8.1.0"
-  checksum: 10c0/b54d69139e4a46be143fb1f34ce2956cd9ac0a4e2b000afbaca77f2b416dbfa70178a901a2d5724f4fefc9f361673c53bfe7af47c1c295fd272969685fdb7346
+"object-properties@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "object-properties@npm:9.0.1"
+  checksum: 10c0/17be171df496666316c3d3d5193402b19ce8127bcfe044da1d2351a6412fc10b173120dfc0947676460ecba9a0096b9d3e7b4f8d41fb9f0522d234e7c7d93b3f
   languageName: node
   linkType: hard
 

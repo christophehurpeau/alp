@@ -14,7 +14,7 @@ function createAuthController({
 }) {
   return {
     async login(ctx) {
-      const strategy = ctx.namedParam("strategy") || defaultStrategy;
+      const strategy = ctx.namedRouteParam("strategy") || defaultStrategy;
       if (!strategy) throw new Error("Strategy missing");
       const params = authHooks.paramsForLogin && (await authHooks.paramsForLogin(strategy, ctx)) || {};
       await authenticationService.redirectAuthUrl(ctx, strategy, {}, params);
@@ -28,16 +28,16 @@ function createAuthController({
         ctx.redirectTo(homeRouterKey);
         return;
       }
-      const strategy = ctx.namedParam("strategy") || defaultStrategy;
+      const strategy = ctx.namedRouteParam("strategy") || defaultStrategy;
       if (!strategy) throw new Error("Strategy missing");
-      const scopeKey = ctx.namedParam("scopeKey");
+      const scopeKey = ctx.namedRouteParam("scopeKey");
       if (!scopeKey) throw new Error("Scope missing");
       await authenticationService.redirectAuthUrl(ctx, strategy, {
         scopeKey
       });
     },
     async response(ctx) {
-      const strategy = ctx.namedParam("strategy");
+      const strategy = ctx.namedRouteParam("strategy");
       ctx.assert(strategy);
       const loggedInUser = await authenticationService.accessResponse(ctx, strategy, !!ctx.state.loggedInUser, {
         afterLoginSuccess: authHooks.afterLoginSuccess,
