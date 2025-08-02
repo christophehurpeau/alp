@@ -1,5 +1,4 @@
 import path from 'node:path';
-import { deprecate } from 'node:util';
 import Koa from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
@@ -307,11 +306,6 @@ class AlpNodeApp extends Koa {
   }) {
     super();
     this.dirname = path.normalize(appDirname);
-    Object.defineProperty(this, "packageDirname", {
-      get: deprecate(() => packageDirname, "packageDirname"),
-      configurable: false,
-      enumerable: false
-    });
     this.certPath = certPath || `${packageDirname}/config/cert`;
     this.publicPath = publicPath || `${packageDirname}/public/`;
     this.config = config;

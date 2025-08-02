@@ -5,7 +5,6 @@ import type {
   ServerResponse,
 } from "node:http";
 import path from "node:path";
-import { deprecate } from "node:util";
 import Koa from "koa";
 import type { DefaultState, ParameterizedContext } from "koa";
 import compress from "koa-compress";
@@ -94,13 +93,6 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     super();
 
     this.dirname = path.normalize(appDirname);
-
-    Object.defineProperty(this, "packageDirname", {
-      get: deprecate(() => packageDirname, "packageDirname"),
-      configurable: false,
-      enumerable: false,
-    });
-
     this.certPath = certPath || `${packageDirname}/config/cert`;
     this.publicPath = publicPath || `${packageDirname}/public/`;
 
