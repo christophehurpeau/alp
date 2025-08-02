@@ -116,6 +116,18 @@
       }
     },
     {
+      "label": "start:hello-node",
+      "problemMatcher": [],
+      "type": "npm",
+      "script": "start:hello-node",
+      "group": "build",
+      "presentation": {
+        "panel": "dedicated",
+        "group": "build",
+        "clear": true
+      }
+    },
+    {
       "label": "test",
       "problemMatcher": [],
       "type": "npm",
