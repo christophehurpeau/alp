@@ -1,6 +1,6 @@
 import type { IncomingMessage, Server, ServerResponse } from "node:http";
 import Koa from "koa";
-import type { DefaultState, ParameterizedContext } from "koa";
+import type { DefaultContext, DefaultState, ParameterizedContext } from "koa";
 import type { Router } from "router-segments";
 import type { Config } from "./config";
 import type { AlpLanguageContext } from "./language";
@@ -27,7 +27,7 @@ declare module "koa" {
     interface BaseRequest extends AlpParamsRequest {
     }
 }
-export declare class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
+export declare class AlpNodeApp extends Koa<DefaultState, DefaultContext> implements NodeApplication {
     dirname: string;
     certPath: string;
     publicPath: string;

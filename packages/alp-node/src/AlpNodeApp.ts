@@ -6,7 +6,7 @@ import type {
 } from "node:http";
 import path from "node:path";
 import Koa from "koa";
-import type { DefaultState, ParameterizedContext } from "koa";
+import type { DefaultContext, DefaultState, ParameterizedContext } from "koa";
 import compress from "koa-compress";
 import serve from "koa-static";
 import { Logger } from "nightingale-logger";
@@ -65,7 +65,10 @@ declare module "koa" {
   interface BaseRequest extends AlpParamsRequest {}
 }
 
-export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
+export class AlpNodeApp
+  extends Koa<DefaultState, DefaultContext>
+  implements NodeApplication
+{
   dirname: string;
 
   certPath: string;
