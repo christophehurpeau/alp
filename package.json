@@ -49,7 +49,7 @@
     "@sucrase/jest-plugin": "3.0.0",
     "@types/jest": "30.0.0",
     "check-package-dependencies": "10.4.0",
-    "eslint": "9.30.0",
+    "eslint": "9.32.0",
     "jest": "30.0.5",
     "jest-environment-jsdom": "29.7.0",
     "pob-babel": "43.7.0",
