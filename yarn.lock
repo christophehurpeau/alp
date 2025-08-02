@@ -5908,7 +5908,7 @@ __metadata:
     react-native: "npm:0.80.2"
     react-native-safe-area-context: "npm:4.9.0"
     react-native-svg: "npm:13.14.0"
-    react-native-web: "npm:0.20.0"
+    react-native-web: "npm:0.21.0"
     springbokjs-daemon: "npm:10.1.0"
     typescript: "npm:5.8.3"
     webpack: "npm:5.97.1"
@@ -5957,7 +5957,7 @@ __metadata:
     "@babel/core": ^7.28.0
     next: ^15.3.5
     react: ^19.0.0
-    react-native-web: ^0.20.0
+    react-native-web: ^0.20.0 || ^0.21.0
   languageName: unknown
   linkType: soft
 
@@ -14208,7 +14208,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-web@npm:0.20.0, react-native-web@npm:^0.20.0":
+"react-native-web@npm:0.21.0":
+  version: 0.21.0
+  resolution: "react-native-web@npm:0.21.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.18.6"
+    "@react-native/normalize-colors": "npm:^0.74.1"
+    fbjs: "npm:^3.0.4"
+    inline-style-prefixer: "npm:^7.0.1"
+    memoize-one: "npm:^6.0.0"
+    nullthrows: "npm:^1.1.1"
+    postcss-value-parser: "npm:^4.2.0"
+    styleq: "npm:^0.1.3"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10c0/942f8696281927dfc2970b08939fce62d1dec9486e41ce913f659f132a7fa35d704e18b48d79df9407d17ff51a4986c872c79852616e522f11fa6f41286b6510
+  languageName: node
+  linkType: hard
+
+"react-native-web@npm:^0.20.0":
   version: 0.20.0
   resolution: "react-native-web@npm:0.20.0"
   dependencies:
