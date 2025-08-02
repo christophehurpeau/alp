@@ -4881,12 +4881,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsonwebtoken@npm:^9.0.1":
-  version: 9.0.1
-  resolution: "@types/jsonwebtoken@npm:9.0.1"
+"@types/jsonwebtoken@npm:^9.0.10":
+  version: 9.0.10
+  resolution: "@types/jsonwebtoken@npm:9.0.10"
   dependencies:
+    "@types/ms": "npm:*"
     "@types/node": "npm:*"
-  checksum: 10c0/e603f206c91dac01f23096c6d2aaba014ab60357fc270afef4c68449c335643d76dc1c21cc6464c89d0fb8f7e471d14a03a4ffb13b62d7133c97f61e75d2fcdd
+  checksum: 10c0/0688ac8fb75f809201cb7e18a12b9d80ce539cb9dd27e1b01e11807cb1a337059e899b8ee3abc3f2c9417f02e363a3069d9eab9ef9724b1da1f0e10713514f94
   languageName: node
   linkType: hard
 
@@ -4965,6 +4966,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ms@npm:*":
+  version: 2.1.0
+  resolution: "@types/ms@npm:2.1.0"
+  checksum: 10c0/5ce692ffe1549e1b827d99ef8ff71187457e0eb44adbae38fdf7b9a74bae8d20642ee963c14516db1d35fa2652e65f47680fdf679dcbde52bbfadd021f497225
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:20.19.9, @types/node@npm:>=18.0.0, @types/node@npm:>=20.0.0":
   version: 20.19.9
   resolution: "@types/node@npm:20.19.9"
@@ -5035,10 +5043,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/simple-oauth2@npm:^5.0.4":
-  version: 5.0.4
-  resolution: "@types/simple-oauth2@npm:5.0.4"
-  checksum: 10c0/fbf09c64e1cf98784f1d167d3eea4f3b981219e16759ad1cd1756df742ce17fe15ad2b48f7554529b41c8634b88f2b5bba9707c9fd2667e9144ec536b9946d05
+"@types/simple-oauth2@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "@types/simple-oauth2@npm:5.0.7"
+  checksum: 10c0/1cfb87b1ee4b58b30e4f9753271ea73282e707553b9b3360755064e4c7b1e96a01cabc5e83d13841369595ea7e451d3d576bea02340b4f17f9e930f54c08a15e
   languageName: node
   linkType: hard
 
@@ -5935,7 +5943,7 @@ __metadata:
     pob-babel: "npm:43.7.0"
     react: "npm:19.1.1"
     react-dom: "npm:19.1.1"
-    sort-keys: "npm:^5.0.0"
+    sort-keys: "npm:^5.1.0"
     typescript: "npm:5.8.3"
   peerDependencies:
     "@babel/core": ^7.28.0
@@ -5950,8 +5958,8 @@ __metadata:
   resolution: "alp-node-auth@workspace:packages/alp-node-auth"
   dependencies:
     "@babel/core": "npm:7.28.0"
-    "@types/jsonwebtoken": "npm:^9.0.1"
-    "@types/simple-oauth2": "npm:^5.0.4"
+    "@types/jsonwebtoken": "npm:^9.0.10"
+    "@types/simple-oauth2": "npm:^5.0.7"
     alp-node: "npm:7.0.0"
     cookies: "npm:~0.9.1"
     jsonwebtoken: "npm:^9.0.2"
@@ -15248,12 +15256,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sort-keys@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "sort-keys@npm:5.0.0"
+"sort-keys@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "sort-keys@npm:5.1.0"
   dependencies:
     is-plain-obj: "npm:^4.0.0"
-  checksum: 10c0/9f7abc51e184ef27327cb2e6da729c84d1c0223bdfc714b5065df3ff167f8e1bbdfaec6bbd41d87a308d9e79eba93c90534d034f5790b305dfbecf0701f3ee55
+  checksum: 10c0/fdb7aeb02368ad91b2ea947b59f3c95d80f8c71bbcb5741ebd55852994f54a129af3b3663b280951566fe5897de056428810dbb58c61db831e588c0ac110f2b0
   languageName: node
   linkType: hard
 

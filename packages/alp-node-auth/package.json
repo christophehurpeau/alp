@@ -125,8 +125,8 @@
     "router-segments": "^11.0.0"
   },
   "dependencies": {
-    "@types/jsonwebtoken": "^9.0.1",
-    "@types/simple-oauth2": "^5.0.4",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/simple-oauth2": "^5.0.7",
     "cookies": "~0.9.1",
     "jsonwebtoken": "^9.0.2",
     "nightingale-logger": "^15.0.0",
