@@ -6,7 +6,6 @@ const defaultTheme = {
   container: {
     backgroundColor: "rgba(247, 25, 0, 0.8)",
     color: "#fff",
-    textShadowColor: "#111",
     textShadowOffset: {
       width: 0,
       height: -1
@@ -39,6 +38,7 @@ const styles = StyleSheet.create({
     textShadowRadius: defaultTheme.container.textShadowRadius,
     boxShadow: "0 2px 3px 0 rgba(0, 0, 0, 0.15), 0 2px 5px 0 rgba(0, 0, 0, 0.2)",
     zIndex: 9,
+    // @ts-expect-error -- transition is not a valid style
     transition: "top .8s, background-color .2s"
   },
   hide: {

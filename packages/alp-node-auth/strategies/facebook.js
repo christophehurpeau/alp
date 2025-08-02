@@ -3,8 +3,8 @@ import { AuthorizationCode, ClientCredentials } from "simple-oauth2";
 export default function facebookStrategy(config) {
   const options = {
     client: {
-      id: config.get("facebook").get("clientId"),
-      secret: config.get("facebook").get("clientSecret"),
+      id: config.get("facebook").clientId,
+      secret: config.get("facebook").clientSecret,
     },
     auth: {
       tokenHost: "https://www.facebook.com",

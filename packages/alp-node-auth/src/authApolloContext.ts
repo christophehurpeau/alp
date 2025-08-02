@@ -24,7 +24,7 @@ export const createAuthApolloContext = <U extends User = User>(
   usersManager: MongoUsersManager<U>,
 ): any => {
   const findLoggedInUser = createFindLoggedInUser(
-    config.get<Map<string, string>>("authentication").get("secretKey")!,
+    config.get<{ secretKey: string }>("authentication").secretKey,
     usersManager,
     logger,
   );

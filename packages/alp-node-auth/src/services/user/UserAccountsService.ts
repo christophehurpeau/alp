@@ -43,7 +43,7 @@ export default class UserAccountsService<
       throw new Error("Strategy not supported");
     }
 
-    const newScope = service.scopeKeyToScope[scopeKey];
+    const newScope = service.scopeKeyToScope[scopeKey]!;
     if (!user || !accountId) {
       return newScope;
     }
@@ -174,7 +174,7 @@ export default class UserAccountsService<
       // eslint-disable-next-line unicorn/no-array-reduce
       ...user.emails.reduce(
         (domains: Set<string>, email: string) =>
-          domains.add(email.split("@", 2)[1]),
+          domains.add(email.split("@", 2)[1]!),
         new Set<string>(),
       ),
     ];

@@ -9,8 +9,8 @@ const browserStateValueParsed = parseCookie(BrowserCookies.get("loggedInUserStat
 function useLoggedInUserStateBrowser() {
   return {
     isLoggedIn: !!browserStateValueParsed,
-    loggedInUserId: browserStateValueParsed == null ? undefined : browserStateValueParsed.loggedInUserId,
-    expiresIn: browserStateValueParsed == null ? undefined : browserStateValueParsed.expiresIn
+    loggedInUserId: browserStateValueParsed?.loggedInUserId,
+    expiresIn: browserStateValueParsed?.expiresIn
   };
 }
 const useLoggedInUserState = useLoggedInUserStateBrowser;

@@ -1,13 +1,12 @@
-import { Button } from "alouette";
+import { InternalLinkButton } from "alouette";
+import { SlackLogoFillIcon } from "alouette-icons/phosphor-icons";
 import type { ReactNode } from "react";
-import { AiFillSlackCircle as SlackIcon } from "react-icons/ai";
 
 export function SlackLoginButton(): ReactNode {
   return (
-    <Button
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
+    <InternalLinkButton
       href={`${process.env.NEXT_PUBLIC_API_URL || "/api"}/login/slack`}
-      icon={<SlackIcon size={24} color="#ffffff" />}
+      icon={<SlackLogoFillIcon />}
       text="Log in with Slack"
     />
   );

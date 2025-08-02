@@ -12,9 +12,6 @@ const nextConfig = withTamagui({
 })(
   createNextJsConfig({
     reactStrictMode: true,
-    experimental: {
-      esmExternals: true,
-    },
     transpilePackages: [
       // requires react-native-web
       "alp-nextjs",

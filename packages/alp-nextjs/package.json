@@ -19,7 +19,7 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=20.11.0"
   },
   "sideEffects": false,
   "main": "./dist/index-node20.mjs",
@@ -92,26 +92,26 @@
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "@babel/core": "^7.23.6",
-    "next": "^14.2.10 ^14.2.10",
-    "react": "^18.0.0",
-    "react-native-web": "^0.19.10"
+    "@babel/core": "^7.28.0",
+    "next": "^15.3.5",
+    "react": "^19.0.0",
+    "react-native-web": "^0.20.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.7",
+    "@babel/runtime": "^7.27.6",
     "babel-plugin-discard-module-references": "^1.1.2",
-    "babel-preset-pob-env": "15.0.0",
-    "cookies": "~0.8.0",
+    "babel-preset-pob-env": "15.3.0",
+    "cookies": "~0.9.1",
     "sort-keys": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.26.7",
-    "@babel/preset-env": "7.26.7",
-    "@babel/preset-react": "7.26.3",
-    "next": "14.2.15",
-    "pob-babel": "43.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.7.3"
+    "@babel/core": "7.28.0",
+    "@babel/preset-env": "7.28.0",
+    "@babel/preset-react": "7.27.1",
+    "next": "15.3.5",
+    "pob-babel": "43.7.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "typescript": "5.8.3"
   }
 }

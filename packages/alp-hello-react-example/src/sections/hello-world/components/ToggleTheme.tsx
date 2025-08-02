@@ -1,4 +1,3 @@
-// @ts-expect-error -- types are missing
 import { useThemeSetting } from "@tamagui/next-theme";
 import { useDidFinishSSR } from "@tamagui/use-did-finish-ssr";
 import { Button } from "alouette";
@@ -13,8 +12,7 @@ export function ToggleTheme(): ReactNode {
       text={
         !isVisible
           ? "Loading..."
-          : // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            `Change theme (currently: ${themeSetting.current || "none"})`
+          : `Change theme (currently: ${themeSetting.current || "none"})`
       }
       onPress={!isVisible ? undefined : themeSetting.toggle}
     />

@@ -7,7 +7,6 @@ import {
   Text,
   View,
   useWindowDimensions,
-  // eslint-disable-next-line import/no-unresolved -- react-native-web or react-native
 } from "react-native";
 
 const defaultTheme = {
@@ -64,6 +63,7 @@ const styles = StyleSheet.create({
     textShadowRadius: defaultTheme.container.textShadowRadius,
     boxShadow: zDepth1,
     zIndex: 9,
+    // @ts-expect-error -- transition is not a valid style
     transition: "top .8s, background-color .2s",
   },
   hide: {

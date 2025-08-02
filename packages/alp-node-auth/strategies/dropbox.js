@@ -3,8 +3,8 @@ import { AuthorizationCode, ClientCredentials } from "simple-oauth2";
 export default function dropboxStrategy(config) {
   const options = {
     client: {
-      id: config.get("dropbox").get("clientId"),
-      secret: config.get("dropbox").get("clientSecret"),
+      id: config.get("dropbox").clientId,
+      secret: config.get("dropbox").clientSecret,
     },
     auth: {
       tokenHost: "https://www.dropbox.com",

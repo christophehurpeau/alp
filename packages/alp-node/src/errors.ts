@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { STATUS_CODES } from "node:http";
 import ErrorHtmlRenderer from "error-html";
 import { Logger } from "nightingale-logger";

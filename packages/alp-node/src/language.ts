@@ -17,7 +17,11 @@ export default function alpLanguage(app: AlpNodeApp): void {
     app.context,
     "language",
     function language(this: Context): string {
-      return this.acceptsLanguages(availableLanguages) || availableLanguages[0];
+      return (
+        this.acceptsLanguages(availableLanguages) ||
+        availableLanguages[0] ||
+        "en"
+      );
     },
   );
 
@@ -25,7 +29,7 @@ export default function alpLanguage(app: AlpNodeApp): void {
     app.context,
     "firstAcceptedLanguage",
     function firstAcceptedLanguage(this: Context): string {
-      return this.acceptsLanguages()[0] || availableLanguages[0];
+      return this.acceptsLanguages()[0] || availableLanguages[0] || "en";
     },
   );
 }

@@ -604,7 +604,7 @@ class UserAccountSlackService {
 
 const logger$2 = new Logger("alp:auth");
 const authSocketIO = (app, usersManager, io, jwtAudience) => {
-  const findLoggedInUser = createFindLoggedInUser(app.config.get("authentication").get("secretKey"), usersManager, logger$2);
+  const findLoggedInUser = createFindLoggedInUser(app.config.get("authentication").secretKey, usersManager, logger$2);
   const users = new Map();
   io.users = users;
   io.use(async (socket, next) => {
@@ -634,7 +634,7 @@ const getTokenFromReq = req => {
  * @internal
  */
 const createAuthApolloContext = (config, usersManager) => {
-  const findLoggedInUser = createFindLoggedInUser(config.get("authentication").get("secretKey"), usersManager, logger$1);
+  const findLoggedInUser = createFindLoggedInUser(config.get("authentication").secretKey, usersManager, logger$1);
   return async ({
     req,
     connection
@@ -699,7 +699,6 @@ function init({
         audience: jwtAudience || this.request.headers["user-agent"],
         expiresIn: "30 days"
       });
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.cookies.set(COOKIE_NAME_TOKEN, token, {
         httpOnly: true,
         secure: this.config.get("allowHttps")
@@ -726,7 +725,7 @@ function init({
         expires: new Date(1)
       });
     };
-    const findLoggedInUser = createFindLoggedInUser(app.config.get("authentication").get("secretKey"), usersManager, logger);
+    const findLoggedInUser = createFindLoggedInUser(app.config.get("authentication").secretKey, usersManager, logger);
     return {
       routes: createRoutes(controller),
       findLoggedInUserFromRequest: req => {

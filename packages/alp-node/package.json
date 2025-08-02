@@ -22,7 +22,7 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=20.11.0"
   },
   "sideEffects": false,
   "main": "./dist/index-node20.mjs",
@@ -80,25 +80,24 @@
     "router-segments": "^9.1.0"
   },
   "dependencies": {
-    "@types/koa": "^2.13.1",
+    "@types/koa": "^2.15.0",
     "@types/node": ">=20.0.0",
-    "deep-freeze-es6": "^3.0.2",
+    "deep-freeze-es6": "^4.0.1",
     "error-html": "^0.3.5",
     "intl-messageformat": "^10.0.0",
-    "koa": "^2.13.1",
-    "koa-compress": "^5.0.0",
+    "koa": "^2.16.1",
+    "koa-compress": "^5.1.1",
     "koa-static": "^5.0.0",
     "minimist": "^1.2.8",
     "nightingale-logger": "^15.0.0",
-    "object-properties": "^8.1.0",
-    "parse-json-object-as-map": "^1.2.0"
+    "object-properties": "^8.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.26.7",
+    "@babel/core": "7.28.0",
     "@types/koa-compress": "4.0.6",
     "@types/koa-static": "4.0.4",
     "@types/minimist": "1.2.5",
-    "pob-babel": "43.0.0",
-    "typescript": "5.7.3"
+    "pob-babel": "43.7.0",
+    "typescript": "5.8.3"
   }
 }

@@ -15,7 +15,7 @@ export default function HelloComponent({
   return (
     <Stack alignItems="center" paddingTop="10%">
       <Stack width="60%">
-        <Typography size="lg" data-testid="hello-text">
+        <Typography size="$lg" data-testid="hello-text">
           <FormattedMessage
             id="HelloComponent.text"
             defaultMessage="Hello {name}!"

@@ -1,8 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import deepFreeze from "deep-freeze-es6";
 import minimist from "minimist";
-import parseJSON from "parse-json-object-as-map";
-import type { NodeApplication, NodeConfig, PackageConfig } from "./types";
+import type { NodeConfig, PackageConfig } from "./types";
 
 const argv = minimist(process.argv.slice(2));
 
@@ -10,9 +9,12 @@ function _existsConfigSync(dirname: string, name: string): boolean {
   return existsSync(`${dirname}${name}.json`);
 }
 
-function _loadConfigSync(dirname: string, name: string): Map<string, unknown> {
+function _loadConfigSync(
+  dirname: string,
+  name: string,
+): Record<string, unknown> {
   const content = readFileSync(`${dirname}${name}.json`, "utf8");
-  return parseJSON(content) as Map<string, unknown>;
+  return JSON.parse(content) as Record<string, unknown>;
 }
 
 export interface ConfigOptions {
@@ -24,12 +26,12 @@ export interface ConfigOptions {
 export class Config {
   packageConfig?: PackageConfig;
 
-  private _map: Map<string, unknown>;
+  private _record: Record<string, unknown>;
 
   private readonly _dirname: string;
 
   constructor(dirname: string, options?: ConfigOptions) {
-    this._map = new Map<string, unknown>();
+    this._record = {};
     this._dirname = dirname.replace(/\/*$/, "/");
     if (options) {
       this.loadSync(options);
@@ -41,37 +43,38 @@ export class Config {
     const { argv: argvOverrides = [], packageConfig, version } = options;
     this.packageConfig = packageConfig;
 
-    const config = this.loadConfigSync("common") as Map<string, unknown>;
-    for (const [key, value] of this.loadConfigSync(env)) {
-      config.set(key, value);
+    const config = _loadConfigSync(this._dirname, "common");
+    for (const [key, value] of Object.entries(
+      _loadConfigSync(this._dirname, env),
+    )) {
+      config[key] = value;
     }
 
     if (this.existsConfigSync("local")) {
-      for (const [key, value] of this.loadConfigSync("local")) {
-        config.set(key, value);
+      for (const [key, value] of Object.entries(
+        _loadConfigSync(this._dirname, "local"),
+      )) {
+        config[key] = value;
       }
     }
 
-    if (config.has("version")) {
+    if (config.version) {
       throw new Error('Cannot have "version", in config.');
     }
 
-    config.set(
-      "version",
-      String(version || argv.version || packageConfig?.version),
-    );
+    config.version = String(version || argv.version || packageConfig?.version);
 
     const socketPath: string | undefined = (argv.socket ||
       argv["socket-path"] ||
       argv.socketPath) as string | undefined;
     if (socketPath) {
-      config.set("socketPath", socketPath);
+      config.socketPath = socketPath;
     } else if (argv.port) {
-      config.set("port", argv.port);
-      config.delete("socketPath");
+      config.port = argv.port;
+      delete config.socketPath;
     } else if (process.env.PORT) {
-      config.set("port", Number(process.env.PORT));
-      config.delete("socketPath");
+      config.port = Number(process.env.PORT);
+      delete config.socketPath;
     }
 
     argvOverrides.forEach((key) => {
@@ -82,39 +85,32 @@ export class Config {
         splitted.reduce((config, partialKey) => config[partialKey], argv);
       if (value !== undefined) {
         const last = splitted.pop()!;
-        const map =
+        const v =
           splitted.length === 0
             ? config
             : // eslint-disable-next-line unicorn/no-array-reduce
               splitted.reduce(
                 (config, partialKey) =>
-                  config.get(partialKey) as Map<string, unknown>,
+                  config[partialKey] as Record<string, unknown>,
                 config,
               );
-        map.set(last, value);
+        v[last] = value;
       }
     });
 
-    this._map = deepFreeze(config);
-    return this as Config & NodeConfig;
+    this._record = deepFreeze(config);
+    return this as unknown as Config & NodeConfig;
   }
 
-  get<T>(key: string): T {
-    return this._map.get(key) as T;
+  get<T>(key: string): Readonly<T> {
+    return this._record[key] as T;
   }
 
   existsConfigSync(name: string): boolean {
     return _existsConfigSync(this._dirname, name);
   }
 
-  loadConfigSync(name: string): ReadonlyMap<string, unknown> {
+  loadConfigSync(name: string): Readonly<Record<string, unknown>> {
     return _loadConfigSync(this._dirname, name);
   }
-}
-
-export default function getConfig(
-  app: NodeApplication,
-  config: Config & NodeConfig,
-): Config & NodeConfig {
-  return config;
 }

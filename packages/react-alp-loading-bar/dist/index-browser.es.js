@@ -17,14 +17,11 @@ const calculatePercent = percent => {
   if (percent < 70) return percent + random() * 10 + 3;else if (percent < 80) return percent + random() + 5;else if (percent < 90) return percent + random() + 1;else if (percent < 95) return percent + 0.1;else return percent;
 };
 class LoadingBar extends PureComponent {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      loading: true,
-      hidden: true,
-      progress: 1
-    };
-  }
+  state = {
+    loading: true,
+    hidden: true,
+    progress: 1
+  };
   componentDidMount() {
     if (this.props.websocket.isConnected()) {
       this.setState(prevState => ({

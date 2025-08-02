@@ -13,7 +13,7 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=20.11.0"
   },
   "sideEffects": false,
   "main": "./dist/index-node20.mjs",
@@ -72,17 +72,17 @@
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "react": "^18.1.0"
+    "react": "^19.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.7"
+    "@babel/runtime": "^7.27.6"
   },
   "devDependencies": {
-    "@babel/core": "7.26.7",
-    "@babel/preset-env": "7.26.7",
-    "@babel/preset-react": "7.26.3",
-    "pob-babel": "43.0.0",
-    "react": "18.2.0",
-    "typescript": "5.7.3"
+    "@babel/core": "7.28.0",
+    "@babel/preset-env": "7.28.0",
+    "@babel/preset-react": "7.27.1",
+    "pob-babel": "43.7.0",
+    "react": "19.1.0",
+    "typescript": "5.8.3"
   }
 }

@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-// @ts-expect-error -- types are missing
+
+import type { ColorScheme } from "@tamagui/core";
 import { NextThemeProvider, useRootTheme } from "@tamagui/next-theme";
 import { useDidFinishSSR } from "@tamagui/use-did-finish-ssr";
 import { AlouetteProvider, Stack } from "alouette";
 import type { AppType } from "next/app";
 import NextScript from "next/script";
 import { IntlProvider } from "react-intl";
-import { useColorScheme } from "react-native";
 import config from "../tamagui.config";
 import "@tamagui/core/reset.css";
 
@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
 // eslint-disable-next-line react/function-component-definition
 const App: AppType = ({ Component, pageProps }) => {
   const [theme, setTheme] = useRootTheme(); // TODO use getServerCookieValue to prevent blink on refresh.
-  const colorScheme = useColorScheme();
+
   const didFinishSSR = useDidFinishSSR();
 
   // memo to avoid re-render on theme change
@@ -26,10 +26,12 @@ const App: AppType = ({ Component, pageProps }) => {
   //   return <Component {...pageProps} />;
   // }, [pageProps]);
 
-  const themeName = theme === "system" ? colorScheme || "light" : theme;
-
   return (
-    <NextThemeProvider onChangeTheme={setTheme as any}>
+    <NextThemeProvider
+      onChangeTheme={(name) => {
+        setTheme(name as ColorScheme);
+      }}
+    >
       {/* https://tamagui.dev/docs/guides/next-js#mount-animations */}
       <NextScript id="tamagui-animations-mount">
         document.documentElement.classList.add('t_unmounted')
@@ -39,7 +41,7 @@ const App: AppType = ({ Component, pageProps }) => {
         // because we do our custom getCSS() above, we disableInjectCSS here
         disableInjectCSS
         tamaguiConfig={config}
-        defaultTheme={didFinishSSR ? themeName : "light"}
+        defaultTheme={didFinishSSR ? theme : "light"}
       >
         <Stack
           backgroundColor={didFinishSSR ? "$backgroundColor" : undefined}

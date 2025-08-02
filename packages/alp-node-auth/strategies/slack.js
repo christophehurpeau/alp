@@ -3,8 +3,8 @@ import { AuthorizationCode, ClientCredentials } from "simple-oauth2";
 export default function slackStrategy(config) {
   const options = {
     client: {
-      id: config.get("slack").get("clientId"),
-      secret: config.get("slack").get("clientSecret"),
+      id: config.get("slack").clientId,
+      secret: config.get("slack").clientSecret,
     },
     auth: {
       tokenHost: "https://slack.com",

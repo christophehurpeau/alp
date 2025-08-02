@@ -3,8 +3,8 @@ import { AuthorizationCode, ClientCredentials } from "simple-oauth2";
 export default function foursquareStrategy(config) {
   const options = {
     client: {
-      id: config.get("foursquare").get("clientId"),
-      secret: config.get("foursquare").get("clientSecret"),
+      id: config.get("foursquare").clientId,
+      secret: config.get("foursquare").clientSecret,
     },
     auth: {
       tokenHost: "https://foursquare.com",

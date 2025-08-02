@@ -140,7 +140,6 @@ export default function init<
         return date.getTime();
       };
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.cookies.set(COOKIE_NAME_TOKEN, token, {
         httpOnly: true,
         secure: this.config.get("allowHttps"),
@@ -164,9 +163,7 @@ export default function init<
     };
 
     const findLoggedInUser = createFindLoggedInUser(
-      app.config
-        .get<Map<string, unknown>>("authentication")
-        .get("secretKey") as string,
+      app.config.get<{ secretKey: string }>("authentication").secretKey,
       usersManager,
       logger,
     );

@@ -15,11 +15,6 @@ await createCheckPackageWithWorkspaces({
           duplicateDirectDependency: ["nightingale-logger"],
         },
       },
-      "alp-hello-react-example": {
-        "*": {
-          missingPeerDependency: ["react-native"],
-        },
-      },
     },
   })
   .run();

@@ -1,98 +1,19 @@
-import { existsSync, readFileSync, unlinkSync, chmodSync } from 'node:fs';
+import { unlinkSync, chmodSync, readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { Logger } from 'nightingale-logger';
 import { deprecate } from 'node:util';
 import Koa from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
-import deepFreeze from 'deep-freeze-es6';
-import minimist from 'minimist';
-import parseJSON from 'parse-json-object-as-map';
 import { STATUS_CODES, createServer as createServer$2 } from 'node:http';
 import ErrorHtmlRenderer from 'error-html';
 import { defineLazyProperty } from 'object-properties';
 import { createServer as createServer$1 } from 'node:https';
 import IntlMessageFormatDefault from 'intl-messageformat';
+import deepFreeze from 'deep-freeze-es6';
+import minimist from 'minimist';
 import { createRouterBuilder } from 'router-segments';
 
-const argv = minimist(process.argv.slice(2));
-function _existsConfigSync(dirname, name) {
-  return existsSync(`${dirname}${name}.json`);
-}
-function _loadConfigSync(dirname, name) {
-  const content = readFileSync(`${dirname}${name}.json`, "utf8");
-  return parseJSON(content);
-}
-class Config {
-  constructor(dirname, options) {
-    this._map = new Map();
-    this._dirname = dirname.replace(/\/*$/, "/");
-    if (options) {
-      this.loadSync(options);
-    }
-  }
-  loadSync(options = {}) {
-    const env = process.env.CONFIG_ENV || process.env.NODE_ENV || "development";
-    const {
-      argv: argvOverrides = [],
-      packageConfig,
-      version
-    } = options;
-    this.packageConfig = packageConfig;
-    const config = this.loadConfigSync("common");
-    for (const [key, value] of this.loadConfigSync(env)) {
-      config.set(key, value);
-    }
-    if (this.existsConfigSync("local")) {
-      for (const [key, value] of this.loadConfigSync("local")) {
-        config.set(key, value);
-      }
-    }
-    if (config.has("version")) {
-      throw new Error('Cannot have "version", in config.');
-    }
-    config.set("version", String(version || argv.version || packageConfig?.version));
-    const socketPath = argv.socket || argv["socket-path"] || argv.socketPath;
-    if (socketPath) {
-      config.set("socketPath", socketPath);
-    } else if (argv.port) {
-      config.set("port", argv.port);
-      config.delete("socketPath");
-    } else if (process.env.PORT) {
-      config.set("port", Number(process.env.PORT));
-      config.delete("socketPath");
-    }
-    argvOverrides.forEach(key => {
-      const splitted = key.split(".");
-      const value = splitted.length > 0 &&
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return,unicorn/no-array-reduce
-      splitted.reduce((config, partialKey) => config[partialKey], argv);
-      if (value !== undefined) {
-        const last = splitted.pop();
-        const map = splitted.length === 0 ? config :
-        // eslint-disable-next-line unicorn/no-array-reduce
-        splitted.reduce((config, partialKey) => config.get(partialKey), config);
-        map.set(last, value);
-      }
-    });
-    this._map = deepFreeze(config);
-    return this;
-  }
-  get(key) {
-    return this._map.get(key);
-  }
-  existsConfigSync(name) {
-    return _existsConfigSync(this._dirname, name);
-  }
-  loadConfigSync(name) {
-    return _loadConfigSync(this._dirname, name);
-  }
-}
-function getConfig(app, config) {
-  return config;
-}
-
-/* eslint-disable complexity */
 const logger$4 = new Logger("alp:errors");
 const errorHtmlRenderer = new ErrorHtmlRenderer({
   appPath: `${process.cwd()}/`
@@ -152,10 +73,10 @@ function alpLanguage(app) {
     throw new Error('Missing config "availableLanguages"');
   }
   defineLazyProperty(app.context, "language", function language() {
-    return this.acceptsLanguages(availableLanguages) || availableLanguages[0];
+    return this.acceptsLanguages(availableLanguages) || availableLanguages[0] || "en";
   });
   defineLazyProperty(app.context, "firstAcceptedLanguage", function firstAcceptedLanguage() {
-    return this.acceptsLanguages()[0] || availableLanguages[0];
+    return this.acceptsLanguages()[0] || availableLanguages[0] || "en";
   });
 }
 
@@ -333,17 +254,14 @@ const IntlMessageFormat =
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 IntlMessageFormatDefault.default || IntlMessageFormatDefault;
 function load(translations, language) {
-  const result = new Map();
-  (function loadMap(map, prefix) {
-    map.forEach((value, key) => {
-      if (typeof value === "object") {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const result = {};
+  (function loadMap(record, prefix) {
+    Object.entries(record).forEach(([key, value]) => {
+      if (typeof value === "object" && value !== null) {
         loadMap(value, `${prefix}${key}.`);
         return;
       }
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
+      result[`${prefix}${key}`] = new IntlMessageFormat(value, language);
     });
   })(translations, "");
   return result;
@@ -356,7 +274,7 @@ function alpTranslate(dirname) {
     const appTranslations = new Map();
     Object.assign(app.context, {
       t(id, args) {
-        const msg = appTranslations.get(this.language).get(id);
+        const msg = appTranslations.get(this.language)?.[id];
         if (!msg) {
           logger$2.warn("invalid msg", {
             language: this.language,
@@ -399,7 +317,7 @@ class AlpNodeApp extends Koa {
     });
     this.certPath = certPath || `${packageDirname}/config/cert`;
     this.publicPath = publicPath || `${packageDirname}/public/`;
-    this.config = getConfig(this, config);
+    this.config = config;
     this.context.config = this.config;
     alpParams(this);
     alpLanguage(this);
@@ -440,7 +358,7 @@ class AlpNodeApp extends Koa {
   async start(fn) {
     await fn();
     try {
-      const server = await alpListen(this.config, this.callback(), this.certPath);
+      const server = await alpListen(this.config, () => this.callback(), this.certPath);
       this._server = server;
       logger$1.success("started");
       if (process.send) process.send("ready");
@@ -451,6 +369,80 @@ class AlpNodeApp extends Koa {
       });
       throw error;
     }
+  }
+}
+
+const argv = minimist(process.argv.slice(2));
+function _existsConfigSync(dirname, name) {
+  return existsSync(`${dirname}${name}.json`);
+}
+function _loadConfigSync(dirname, name) {
+  const content = readFileSync(`${dirname}${name}.json`, "utf8");
+  return JSON.parse(content);
+}
+class Config {
+  constructor(dirname, options) {
+    this._record = {};
+    this._dirname = dirname.replace(/\/*$/, "/");
+    if (options) {
+      this.loadSync(options);
+    }
+  }
+  loadSync(options = {}) {
+    const env = process.env.CONFIG_ENV || process.env.NODE_ENV || "development";
+    const {
+      argv: argvOverrides = [],
+      packageConfig,
+      version
+    } = options;
+    this.packageConfig = packageConfig;
+    const config = _loadConfigSync(this._dirname, "common");
+    for (const [key, value] of Object.entries(_loadConfigSync(this._dirname, env))) {
+      config[key] = value;
+    }
+    if (this.existsConfigSync("local")) {
+      for (const [key, value] of Object.entries(_loadConfigSync(this._dirname, "local"))) {
+        config[key] = value;
+      }
+    }
+    if (config.version) {
+      throw new Error('Cannot have "version", in config.');
+    }
+    config.version = String(version || argv.version || packageConfig?.version);
+    const socketPath = argv.socket || argv["socket-path"] || argv.socketPath;
+    if (socketPath) {
+      config.socketPath = socketPath;
+    } else if (argv.port) {
+      config.port = argv.port;
+      delete config.socketPath;
+    } else if (process.env.PORT) {
+      config.port = Number(process.env.PORT);
+      delete config.socketPath;
+    }
+    argvOverrides.forEach(key => {
+      const splitted = key.split(".");
+      const value = splitted.length > 0 &&
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return,unicorn/no-array-reduce
+      splitted.reduce((config, partialKey) => config[partialKey], argv);
+      if (value !== undefined) {
+        const last = splitted.pop();
+        const v = splitted.length === 0 ? config :
+        // eslint-disable-next-line unicorn/no-array-reduce
+        splitted.reduce((config, partialKey) => config[partialKey], config);
+        v[last] = value;
+      }
+    });
+    this._record = deepFreeze(config);
+    return this;
+  }
+  get(key) {
+    return this._record[key];
+  }
+  existsConfigSync(name) {
+    return _existsConfigSync(this._dirname, name);
+  }
+  loadConfigSync(name) {
+    return _loadConfigSync(this._dirname, name);
   }
 }
 

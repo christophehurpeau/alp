@@ -1,6 +1,6 @@
 import type NextDocument from "next/document";
 import type { ReactElement } from "react";
-// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { StyleSheet } from "react-native";
 
 /**

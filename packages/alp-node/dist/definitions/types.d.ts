@@ -1,10 +1,10 @@
-type RawConfig = ReadonlyMap<string, any>;
+type RawRecordConfig = Readonly<Record<string, unknown>>;
 export interface Config {
     get: <T>(key: string) => T;
 }
 export type PackageConfig = Record<string, any>;
 export interface NodeConfig extends Config {
-    loadConfigSync: (name: string) => RawConfig;
+    loadConfigSync: (name: string) => RawRecordConfig;
     readonly packageConfig: PackageConfig;
 }
 export interface ContextState {
@@ -30,12 +30,12 @@ export interface Application extends ApplicationInCreation {
     config: Config;
 }
 export interface NodeApplicationInCreation extends ApplicationInCreation {
-    loadConfigSync: (name: string) => RawConfig;
+    loadConfigSync: (name: string) => RawRecordConfig;
 }
 export interface BrowserApplicationInCreation extends ApplicationInCreation {
     appVersion: string;
     existsConfig: (name: string) => Promise<boolean> | boolean;
-    loadConfig: (name: string) => Promise<RawConfig>;
+    loadConfig: (name: string) => Promise<RawRecordConfig>;
     createContext: () => Context;
 }
 export interface NodeApplication extends Application, NodeApplicationInCreation {
@@ -43,7 +43,7 @@ export interface NodeApplication extends Application, NodeApplicationInCreation 
     dirname: string;
     on: (event: "close", callback: () => void) => void;
     existsConfigSync: (name: string) => boolean;
-    loadConfigSync: (name: string) => RawConfig;
+    loadConfigSync: (name: string) => RawRecordConfig;
 }
 export interface HtmlError extends Error {
     status: number;

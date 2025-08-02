@@ -8,20 +8,19 @@ import serve from "koa-static";
 import { Logger } from "nightingale-logger";
 import type { Router } from "router-segments";
 import type { Config } from "./config";
-import _config from "./config";
 import errors from "./errors";
 import type { AlpLanguageContext } from "./language";
 import language from "./language";
 import _listen from "./listen";
-import type { AlpParamsContext, AlpParamsRequest } from "./params";
-import params from "./params";
+import type { AlpParamsContext, AlpParamsRequest } from "./params/index";
+import params from "./params/index";
 import type {
   AlpRouteRef,
   RouterContext as AlpRouterContext,
   UrlGenerator,
 } from "./router";
-import type { TranslateBaseContext, TranslateContext } from "./translate";
-import translate from "./translate";
+import type { TranslateBaseContext, TranslateContext } from "./translate/index";
+import translate from "./translate/index";
 import type {
   Context as AlpContext,
   ContextSanitizedState,
@@ -100,7 +99,7 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     this.certPath = certPath || `${packageDirname}/config/cert`;
     this.publicPath = publicPath || `${packageDirname}/public/`;
 
-    this.config = _config(this, config);
+    this.config = config;
     this.context.config = this.config;
 
     params(this);
@@ -153,7 +152,11 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
   async start(fn: () => Promise<void> | void): Promise<Server> {
     await fn();
     try {
-      const server = await _listen(this.config, this.callback(), this.certPath);
+      const server = await _listen(
+        this.config,
+        () => this.callback(),
+        this.certPath,
+      );
       this._server = server;
       logger.success("started");
       if (process.send) process.send("ready");

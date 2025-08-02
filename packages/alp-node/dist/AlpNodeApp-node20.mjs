@@ -4,22 +4,13 @@ import Koa from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
 import { Logger } from 'nightingale-logger';
-import { unlinkSync, chmodSync, readFileSync } from 'node:fs';
-import 'deep-freeze-es6';
-import minimist from 'minimist';
-import 'parse-json-object-as-map';
 import { STATUS_CODES, createServer as createServer$2 } from 'node:http';
 import ErrorHtmlRenderer from 'error-html';
 import { defineLazyProperty } from 'object-properties';
+import { unlinkSync, chmodSync, readFileSync } from 'node:fs';
 import { createServer as createServer$1 } from 'node:https';
 import IntlMessageFormatDefault from 'intl-messageformat';
 
-minimist(process.argv.slice(2));
-function getConfig(app, config) {
-  return config;
-}
-
-/* eslint-disable complexity */
 const logger$3 = new Logger("alp:errors");
 const errorHtmlRenderer = new ErrorHtmlRenderer({
   appPath: `${process.cwd()}/`
@@ -79,10 +70,10 @@ function alpLanguage(app) {
     throw new Error('Missing config "availableLanguages"');
   }
   defineLazyProperty(app.context, "language", function language() {
-    return this.acceptsLanguages(availableLanguages) || availableLanguages[0];
+    return this.acceptsLanguages(availableLanguages) || availableLanguages[0] || "en";
   });
   defineLazyProperty(app.context, "firstAcceptedLanguage", function firstAcceptedLanguage() {
-    return this.acceptsLanguages()[0] || availableLanguages[0];
+    return this.acceptsLanguages()[0] || availableLanguages[0] || "en";
   });
 }
 
@@ -260,17 +251,14 @@ const IntlMessageFormat =
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 IntlMessageFormatDefault.default || IntlMessageFormatDefault;
 function load(translations, language) {
-  const result = new Map();
-  (function loadMap(map, prefix) {
-    map.forEach((value, key) => {
-      if (typeof value === "object") {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const result = {};
+  (function loadMap(record, prefix) {
+    Object.entries(record).forEach(([key, value]) => {
+      if (typeof value === "object" && value !== null) {
         loadMap(value, `${prefix}${key}.`);
         return;
       }
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
+      result[`${prefix}${key}`] = new IntlMessageFormat(value, language);
     });
   })(translations, "");
   return result;
@@ -283,7 +271,7 @@ function alpTranslate(dirname) {
     const appTranslations = new Map();
     Object.assign(app.context, {
       t(id, args) {
-        const msg = appTranslations.get(this.language).get(id);
+        const msg = appTranslations.get(this.language)?.[id];
         if (!msg) {
           logger$1.warn("invalid msg", {
             language: this.language,
@@ -326,7 +314,7 @@ class AlpNodeApp extends Koa {
     });
     this.certPath = certPath || `${packageDirname}/config/cert`;
     this.publicPath = publicPath || `${packageDirname}/public/`;
-    this.config = getConfig(this, config);
+    this.config = config;
     this.context.config = this.config;
     alpParams(this);
     alpLanguage(this);
@@ -367,7 +355,7 @@ class AlpNodeApp extends Koa {
   async start(fn) {
     await fn();
     try {
-      const server = await alpListen(this.config, this.callback(), this.certPath);
+      const server = await alpListen(this.config, () => this.callback(), this.certPath);
       this._server = server;
       logger.success("started");
       if (process.send) process.send("ready");

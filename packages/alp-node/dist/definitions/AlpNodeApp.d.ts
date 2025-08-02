@@ -4,9 +4,9 @@ import type { DefaultState, ParameterizedContext } from "koa";
 import type { Router } from "router-segments";
 import type { Config } from "./config";
 import type { AlpLanguageContext } from "./language";
-import type { AlpParamsContext, AlpParamsRequest } from "./params";
+import type { AlpParamsContext, AlpParamsRequest } from "./params/index";
 import type { AlpRouteRef, RouterContext as AlpRouterContext, UrlGenerator } from "./router";
-import type { TranslateBaseContext, TranslateContext } from "./translate";
+import type { TranslateBaseContext, TranslateContext } from "./translate/index";
 import type { Context as AlpContext, ContextState, NodeApplication, NodeConfig } from "./types";
 export interface AlpNodeAppOptions {
     appDirname: string;
