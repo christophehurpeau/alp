@@ -69,7 +69,7 @@
     "@babel/core": "7.28.0",
     "@svgr/webpack": "8.1.0",
     "@tamagui/next-plugin": "1.132.15",
-    "@testing-library/dom": "10.4.0",
+    "@testing-library/dom": "10.4.1",
     "@testing-library/react": "16.3.0",
     "@types/node": "20.11.30",
     "@types/react": "19.1.8",
