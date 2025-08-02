@@ -4981,12 +4981,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.11.30, @types/node@npm:>=18.0.0, @types/node@npm:>=20.0.0":
-  version: 20.11.30
-  resolution: "@types/node@npm:20.11.30"
+"@types/node@npm:*, @types/node@npm:20.19.9, @types/node@npm:>=18.0.0, @types/node@npm:>=20.0.0":
+  version: 20.19.9
+  resolution: "@types/node@npm:20.19.9"
   dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 10c0/867cfaf969c6d8850d8d7304e7ab739898a50ecb1395b61ff2335644f5f48d7a46fbc4a14cee967aed65ec134b61a746edae70d1f32f11321ccf29165e3bc4e6
+    undici-types: "npm:~6.21.0"
+  checksum: 10c0/c6738131f1698258a5ac1e0185e4fc56977f7f566cd0ee11167f93f2339478470257bd82c5e1908a936a204e0ad7996d741356a1a07c04997a236161ea23a874
   languageName: node
   linkType: hard
 
@@ -5893,7 +5893,7 @@ __metadata:
     "@tamagui/use-did-finish-ssr": "npm:1.132.15"
     "@testing-library/dom": "npm:10.4.0"
     "@testing-library/react": "npm:16.3.0"
-    "@types/node": "npm:20.11.30"
+    "@types/node": "npm:20.19.9"
     "@types/react": "npm:19.1.8"
     alouette: "npm:11.3.0"
     alouette-icons: "npm:5.1.0"
@@ -5921,7 +5921,7 @@ __metadata:
   resolution: "alp-migrations@workspace:packages/alp-migrations"
   dependencies:
     "@babel/core": "npm:7.28.0"
-    "@types/node": "npm:20.11.30"
+    "@types/node": "npm:20.19.9"
     "@types/semver": "npm:7.5.8"
     alp-node: "npm:7.0.0"
     liwi-mongo: "npm:12.0.0"
@@ -16199,10 +16199,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~5.26.4":
-  version: 5.26.5
-  resolution: "undici-types@npm:5.26.5"
-  checksum: 10c0/bb673d7876c2d411b6eb6c560e0c571eef4a01c1c19925175d16e3a30c4c428181fb8d7ae802a261f283e4166a0ac435e2f505743aa9e45d893f9a3df017b501
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 10c0/c01ed51829b10aa72fc3ce64b747f8e74ae9b60eafa19a7b46ef624403508a54c526ffab06a14a26b3120d055e1104d7abe7c9017e83ced038ea5cf52f8d5e04
   languageName: node
   linkType: hard
 
