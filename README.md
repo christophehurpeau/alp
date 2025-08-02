@@ -1,12 +1,8 @@
-<h3 align="center">
-  alp
-</h3>
-
-<p align="center">
+<h1 align="center">
   personal exploration and framework for node and browser
-</p>
+</h1>
 
-<h1>Packages</h1>
+<h3>📦 Packages</h3>
 
 This repository is a monorepo that we manage using [Yarn Workspaces](https://yarnpkg.com/features/workspaces).
 

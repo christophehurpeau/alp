@@ -13,17 +13,17 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=20.11.0"
   },
   "sideEffects": false,
-  "main": "./dist/index-node18.mjs",
+  "main": "./dist/index-node20.mjs",
   "types": "./dist/definitions/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/definitions/index.d.ts",
       "node": {
-        "import": "./dist/index-node18.mjs"
+        "import": "./dist/index-node20.mjs"
       }
     }
   },
@@ -37,7 +37,7 @@
     "clean": "yarn clean:build",
     "clean:build": "pob-babel-clean-out dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-migrations",
+    "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-migrations",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "pob": {
@@ -48,14 +48,14 @@
     "envs": [
       {
         "target": "node",
-        "version": "18"
+        "version": "20"
       }
     ]
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "liwi-mongo": "^11.0.0",
-    "router-segments": "^9.1.0"
+    "liwi-mongo": "^12.0.0",
+    "router-segments": "^11.0.0"
   },
   "dependencies": {
     "alp-node": "7.0.0",
@@ -63,12 +63,12 @@
     "semver": "^7.3.5"
   },
   "devDependencies": {
-    "@babel/core": "7.24.5",
-    "@types/node": "20.11.30",
+    "@babel/core": "7.28.0",
+    "@types/node": "20.19.9",
     "@types/semver": "7.5.8",
-    "liwi-mongo": "11.0.0",
-    "pob-babel": "40.0.0",
-    "router-segments": "9.1.0",
-    "typescript": "5.4.5"
+    "liwi-mongo": "12.0.0",
+    "pob-babel": "43.7.0",
+    "router-segments": "11.0.0",
+    "typescript": "5.8.3"
   }
 }

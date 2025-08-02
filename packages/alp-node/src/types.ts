@@ -1,4 +1,4 @@
-type RawConfig = ReadonlyMap<string, any>;
+type RawRecordConfig = Readonly<Record<string, unknown>>;
 
 export interface Config {
   get: <T>(key: string) => T;
@@ -7,14 +7,14 @@ export interface Config {
 export type PackageConfig = Record<string, any>;
 
 export interface NodeConfig extends Config {
-  loadConfigSync: (name: string) => RawConfig;
+  loadConfigSync: (name: string) => RawRecordConfig;
   readonly packageConfig: PackageConfig;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface ContextState {}
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface ContextSanitizedState {}
 
 export interface BaseContext {
@@ -41,13 +41,13 @@ export interface Application extends ApplicationInCreation {
 }
 
 export interface NodeApplicationInCreation extends ApplicationInCreation {
-  loadConfigSync: (name: string) => RawConfig;
+  loadConfigSync: (name: string) => RawRecordConfig;
 }
 
 export interface BrowserApplicationInCreation extends ApplicationInCreation {
   appVersion: string;
   existsConfig: (name: string) => Promise<boolean> | boolean;
-  loadConfig: (name: string) => Promise<RawConfig>;
+  loadConfig: (name: string) => Promise<RawRecordConfig>;
   createContext: () => Context;
 }
 
@@ -58,7 +58,7 @@ export interface NodeApplication
   dirname: string;
   on: (event: "close", callback: () => void) => void;
   existsConfigSync: (name: string) => boolean;
-  loadConfigSync: (name: string) => RawConfig;
+  loadConfigSync: (name: string) => RawRecordConfig;
 }
 
 export interface HtmlError extends Error {

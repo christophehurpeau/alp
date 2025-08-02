@@ -1,5 +1,5 @@
 import type { MongoInsertType, MongoStore, Update } from "liwi-mongo";
-import type { User, Account, UserSanitized } from "./types";
+import type { Account, User, UserSanitized } from "./types";
 
 export default class MongoUsersManager<
   U extends User = User,

@@ -26,7 +26,6 @@ xdescribe("test hello server", () => {
     });
 
     // dont wait for daemonNext as next does not support process.send('ready')
-    // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
     daemon.start().catch(console.error);
     await new Promise((resolve) => {
       setTimeout(resolve, 1000);

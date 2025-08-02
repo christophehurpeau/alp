@@ -1,16 +1,16 @@
-<h3 align="center">
+<h1 align="center">
   alp-node-auth
-</h3>
+</h1>
 
 <p align="center">
   authentication with alp
 </p>
 
 <p align="center">
-  <a href="https://npmjs.org/package/alp-node-auth"><img src="https://img.shields.io/npm/v/alp-node-auth.svg?style=flat-square"></a>
-  <a href="https://npmjs.org/package/alp-node-auth"><img src="https://img.shields.io/npm/dw/alp-node-auth.svg?style=flat-square"></a>
-  <a href="https://npmjs.org/package/alp-node-auth"><img src="https://img.shields.io/node/v/alp-node-auth.svg?style=flat-square"></a>
-  <a href="https://npmjs.org/package/alp-node-auth"><img src="https://img.shields.io/npm/types/alp-node-auth.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/alp-node-auth"><img src="https://img.shields.io/npm/v/alp-node-auth.svg?style=flat-square" alt="npm version"></a>
+  <a href="https://npmjs.org/package/alp-node-auth"><img src="https://img.shields.io/npm/dw/alp-node-auth.svg?style=flat-square" alt="npm downloads"></a>
+  <a href="https://npmjs.org/package/alp-node-auth"><img src="https://img.shields.io/node/v/alp-node-auth.svg?style=flat-square" alt="node version"></a>
+  <a href="https://npmjs.org/package/alp-node-auth"><img src="https://img.shields.io/npm/types/alp-node-auth.svg?style=flat-square" alt="types"></a>
 </p>
 
 ## Install

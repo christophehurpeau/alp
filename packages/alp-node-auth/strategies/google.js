@@ -1,10 +1,10 @@
-import { ClientCredentials, AuthorizationCode } from "simple-oauth2";
+import { AuthorizationCode, ClientCredentials } from "simple-oauth2";
 
 export default function googleStrategy(config) {
   const options = {
     client: {
-      id: config.get("google").get("clientId"),
-      secret: config.get("google").get("clientSecret"),
+      id: config.get("google").clientId,
+      secret: config.get("google").clientSecret,
     },
     auth: {
       tokenHost: "https://accounts.google.com",

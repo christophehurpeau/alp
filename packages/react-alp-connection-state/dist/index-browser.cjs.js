@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+
 const react = require('react');
 const reactNative = require('react-native');
 const jsxRuntime = require('react/jsx-runtime');
@@ -8,7 +10,6 @@ const defaultTheme = {
   container: {
     backgroundColor: "rgba(247, 25, 0, 0.8)",
     color: "#fff",
-    textShadowColor: "#111",
     textShadowOffset: {
       width: 0,
       height: -1
@@ -41,6 +42,7 @@ const styles = reactNative.StyleSheet.create({
     textShadowRadius: defaultTheme.container.textShadowRadius,
     boxShadow: "0 2px 3px 0 rgba(0, 0, 0, 0.15), 0 2px 5px 0 rgba(0, 0, 0, 0.2)",
     zIndex: 9,
+    // @ts-expect-error -- transition is not a valid style
     transition: "top .8s, background-color .2s"
   },
   hide: {
@@ -72,7 +74,7 @@ function ConnectionState({
   }) => width / 2 - 100); // TODO use calc() in web ?
 
   react.useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof globalThis === "undefined") return;
     const beforeUnloadHandler = () => {
       unloadingRef.current = true;
     };
@@ -82,7 +84,7 @@ function ConnectionState({
     };
   }, []);
   return /*#__PURE__*/jsxRuntime.jsx(reactNative.View, {
-    style: [styles.connectionStateContainer, (forceHidden || !state || state === "connected") && styles.hide, theme == null ? void 0 : theme.container, state === "connected" && {
+    style: [styles.connectionStateContainer, (forceHidden || !state || state === "connected") && styles.hide, theme?.container, state === "connected" && {
       backgroundColor: (theme || defaultTheme).backgroundColorConnected
     }],
     children: !state ? null : /*#__PURE__*/jsxRuntime.jsx(reactNative.Text, {

@@ -1,9 +1,9 @@
+import { Stack, Typography, VStack } from "alouette";
 import Head from "next/head";
 import { appLogger } from "nightingale-app-console";
 import { useState } from "react";
-import type { ReactElement } from "react";
-import { useIntl, defineMessages } from "react-intl";
-import { Stack, YStack } from "tamagui";
+import type { ReactNode } from "react";
+import { defineMessages, useIntl } from "react-intl";
 import ClickToThrow from "./components/ClickToThrow";
 import Counter from "./components/Counter";
 import Hello from "./components/HelloComponent";
@@ -11,8 +11,8 @@ import { ToggleTheme } from "./components/ToggleTheme";
 
 const logger = appLogger.child("HomePage");
 
-function HelloWorld(): ReactElement {
-  return <div>Hello World !</div>;
+function HelloWorld(): ReactNode {
+  return <Typography>Hello World !</Typography>;
 }
 
 const messages = defineMessages({
@@ -22,7 +22,7 @@ const messages = defineMessages({
   },
 });
 
-export function HomeView(): ReactElement {
+export function HomeView(): ReactNode {
   const [name, setName] = useState((): string | undefined => {
     return "";
   });
@@ -47,19 +47,19 @@ export function HomeView(): ReactElement {
 
   const intl = useIntl();
   return (
-    <Stack padding="$4" $md={{ padding: "$8" }}>
+    <Stack padding="$4" $medium={{ padding: "$8" }}>
       <Head>
         <title>
           {intl.formatMessage(messages.title, { name: name || "World" })}
         </title>
       </Head>
-      <YStack space>
+      <VStack gap={1}>
         <ToggleTheme />
         <HelloWorld />
         <Hello name={name} onChangeName={handleChangeName} />
         <Counter />
         <ClickToThrow />
-      </YStack>
+      </VStack>
 
       <div>
         <a href="/auth">Auth</a>

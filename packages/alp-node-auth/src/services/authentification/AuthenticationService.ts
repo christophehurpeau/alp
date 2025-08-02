@@ -6,7 +6,7 @@ import { EventEmitter } from "node:events";
 import type { Context, NodeConfig } from "alp-node";
 import { Logger } from "nightingale-logger";
 import type { Strategy as Oauth2Strategy } from "../../../strategies/strategies.d";
-import type { AccountId, User, Account, UserSanitized } from "../../types";
+import type { Account, AccountId, User, UserSanitized } from "../../types";
 import { randomHex } from "../../utils/generators";
 import type UserAccountsService from "../user/UserAccountsService";
 import type { AllowedStrategyKeys, Tokens } from "./types";
@@ -226,7 +226,7 @@ export class AuthenticationService<
   ): Promise<U> {
     const errorParam = ctx.params.queryParam("error").notEmpty();
     if (errorParam.isValid()) {
-      ctx.throw(errorParam.value, 403);
+      ctx.throw(403, errorParam.value);
     }
 
     const code = ctx.validParams.queryParam("code").notEmpty().value;

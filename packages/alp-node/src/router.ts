@@ -1,8 +1,8 @@
 import type {
-  Router,
   LocaleType,
-  RouterBuilder,
   RouteMatch,
+  Router,
+  RouterBuilder,
 } from "router-segments";
 import { createRouterBuilder } from "router-segments";
 import type { AlpNodeApp, Context } from "./AlpNodeApp";
@@ -33,13 +33,13 @@ export default function alpRouter<Locales extends string>(
   return (app: AlpNodeApp) => {
     app.router = router;
 
-    app.context.urlGenerator = function <
+    app.context.urlGenerator = function urlGenerator<
       P extends Record<string, unknown> | undefined,
     >(this: Context, routeKey: string, params?: P): string {
       return router.toLocalizedPath(this.language as Locales, routeKey, params);
     };
 
-    app.context.redirectTo = function <
+    app.context.redirectTo = function redirectTo<
       P extends Record<string, unknown> | undefined,
     >(this: Context, to: string, params?: P): void {
       this.redirect(

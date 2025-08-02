@@ -1,5 +1,5 @@
 import { createDocumentInitialProps } from "alp-nextjs";
-import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import NextDocument, { Head, Html, Main, NextScript } from "next/document";
 import type { ReactElement } from "react";
 import Tamagui from "../tamagui.config";
 
@@ -20,7 +20,10 @@ export default class MyDocument extends NextDocument {
   override render(): ReactElement {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <meta id="theme-color" name="theme-color" />
+          <meta name="color-scheme" content="light dark" />
+        </Head>
         <body>
           <Main />
           <NextScript />

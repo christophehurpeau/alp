@@ -23,7 +23,7 @@ export default function alpTranslate(
 
     Object.assign(app.context, {
       t(this: Context, id: string, args: Args): string {
-        const msg = appTranslations.get(this.language)!.get(id);
+        const msg = appTranslations.get(this.language)?.[id];
         if (!msg) {
           logger.warn("invalid msg", { language: this.language, id });
           return id;

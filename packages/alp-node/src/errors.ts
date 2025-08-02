@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { STATUS_CODES } from "node:http";
 import ErrorHtmlRenderer from "error-html";
 import { Logger } from "nightingale-logger";
@@ -53,6 +52,7 @@ export default async function alpNodeErrors(
         break;
 
       case "text":
+      case false:
       default:
         ctx.type = "text/plain";
         if (

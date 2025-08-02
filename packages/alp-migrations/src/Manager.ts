@@ -1,4 +1,4 @@
-import type { MongoStore, MongoInsertType, MongoBaseModel } from "liwi-mongo";
+import type { MongoBaseModel, MongoInsertType, MongoStore } from "liwi-mongo";
 
 export interface Migration extends MongoBaseModel {
   version: string;

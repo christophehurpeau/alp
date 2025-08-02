@@ -1,5 +1,5 @@
 import type { Stats } from "node:fs";
-import { readdir, stat as fsStat } from "node:fs/promises";
+import { stat as fsStat, readdir } from "node:fs/promises";
 
 export interface CallbackParam {
   filename: string;
@@ -19,7 +19,7 @@ export default async function readRecursiveDirectory(
       const path = `${directory}/${file}`;
       const stat = await fsStat(path);
 
-      if (stat?.isDirectory()) {
+      if (stat.isDirectory()) {
         await readRecursiveDirectory(path, callback);
         return;
       }

@@ -5,24 +5,25 @@ const IntlMessageFormat: typeof IntlMessageFormatDefault =
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   (IntlMessageFormatDefault as any).default || IntlMessageFormatDefault;
 
-export type Translations = ReadonlyMap<string, IntlMessageFormatDefault>;
+export type Translations = Readonly<Record<string, IntlMessageFormatDefault>>;
 
 export default function load(
-  translations: ReadonlyMap<string, unknown>,
+  translations: Readonly<Record<string, unknown>>,
   language: string,
 ): Translations {
-  const result = new Map();
+  const result: Record<string, IntlMessageFormatDefault> = {};
 
-  (function loadMap(map, prefix) {
-    map.forEach((value: any, key) => {
-      if (typeof value === "object") {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        loadMap(value, `${prefix}${key}.`);
+  (function loadMap(record: Record<string, unknown>, prefix: string) {
+    Object.entries(record).forEach(([key, value]) => {
+      if (typeof value === "object" && value !== null) {
+        loadMap(value as Record<string, unknown>, `${prefix}${key}.`);
         return;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      result.set(`${prefix}${key}`, new IntlMessageFormat(value, language));
+      result[`${prefix}${key}`] = new IntlMessageFormat(
+        value as string,
+        language,
+      );
     });
   })(translations, "");
 

@@ -3,8 +3,12 @@ import { ParamValueFromContext } from "./ParamValueFromContext";
 export interface AlpParamsContext {
     params: ParamValueFromContext;
     validParams: ParamValueFromContext;
-    namedParam: (name: string) => string | undefined;
-    otherParam: (position: number) => string | undefined;
+    namedRouteParam: (name: string) => string | undefined;
+    otherRouteParam: (position: number) => string | undefined;
+    /** @deprecated use namedRouteParam */
+    namedParam: never;
+    /** @deprecated use otherRouteParam */
+    otherParam: never;
     queryParam: (name: string) => string | undefined;
     bodyParam: <T>(name: string) => T | undefined;
 }

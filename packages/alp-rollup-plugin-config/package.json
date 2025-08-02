@@ -13,7 +13,7 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=20.11.0"
   },
   "sideEffects": false,
   "main": "./lib/index.cjs",
@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-rollup-plugin-config"
+    "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-rollup-plugin-config"
   },
   "pob": {},
   "prettier": "@pob/root/prettier-config",

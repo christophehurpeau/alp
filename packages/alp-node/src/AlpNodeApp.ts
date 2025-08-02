@@ -1,33 +1,36 @@
-import type { IncomingMessage, Server, ServerResponse } from "node:http";
+import type {
+  IncomingMessage,
+  RequestListener,
+  Server,
+  ServerResponse,
+} from "node:http";
 import path from "node:path";
-import { deprecate } from "node:util";
 import Koa from "koa";
-import type { ParameterizedContext, DefaultState } from "koa";
+import type { DefaultState, ParameterizedContext } from "koa";
 import compress from "koa-compress";
 import serve from "koa-static";
 import { Logger } from "nightingale-logger";
 import type { Router } from "router-segments";
 import type { Config } from "./config";
-import _config from "./config";
 import errors from "./errors";
 import type { AlpLanguageContext } from "./language";
 import language from "./language";
 import _listen from "./listen";
-import type { AlpParamsContext, AlpParamsRequest } from "./params";
-import params from "./params";
+import type { AlpParamsContext, AlpParamsRequest } from "./params/index";
+import params from "./params/index";
 import type {
   AlpRouteRef,
   RouterContext as AlpRouterContext,
   UrlGenerator,
 } from "./router";
-import type { TranslateBaseContext, TranslateContext } from "./translate";
-import translate from "./translate";
+import type { TranslateBaseContext, TranslateContext } from "./translate/index";
+import translate from "./translate/index";
 import type {
+  Context as AlpContext,
+  ContextSanitizedState,
+  ContextState,
   NodeApplication,
   NodeConfig,
-  Context as AlpContext,
-  ContextState,
-  ContextSanitizedState,
 } from "./types";
 
 const logger = new Logger("alp");
@@ -41,7 +44,7 @@ export interface AlpNodeAppOptions {
 }
 
 declare module "koa" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface DefaultState extends ContextState {}
 
   interface DefaultContext
@@ -58,7 +61,7 @@ declare module "koa" {
       params?: P,
     ) => void;
   }
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface BaseRequest extends AlpParamsRequest {}
 }
 
@@ -90,17 +93,10 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     super();
 
     this.dirname = path.normalize(appDirname);
-
-    Object.defineProperty(this, "packageDirname", {
-      get: deprecate(() => packageDirname, "packageDirname"),
-      configurable: false,
-      enumerable: false,
-    });
-
     this.certPath = certPath || `${packageDirname}/config/cert`;
     this.publicPath = publicPath || `${packageDirname}/public/`;
 
-    this.config = _config(this, config);
+    this.config = config;
     this.context.config = this.config;
 
     params(this);
@@ -153,7 +149,11 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
   async start(fn: () => Promise<void> | void): Promise<Server> {
     await fn();
     try {
-      const server = await _listen(this.config, this.callback(), this.certPath);
+      const server = await _listen(
+        this.config,
+        this.callback() as RequestListener,
+        this.certPath,
+      );
       this._server = server;
       logger.success("started");
       if (process.send) process.send("ready");

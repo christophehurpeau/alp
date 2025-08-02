@@ -13,10 +13,10 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=20.11.0"
   },
   "sideEffects": false,
-  "main": "./dist/index-node18.mjs",
+  "main": "./dist/index-node20.mjs",
   "types": "./dist/definitions/index.d.ts",
   "module": "./dist/index-browser.es.js",
   "browser": "./dist/index-browser.es.js",
@@ -25,7 +25,7 @@
     ".": {
       "types": "./dist/definitions/index.d.ts",
       "node": {
-        "import": "./dist/index-node18.mjs"
+        "import": "./dist/index-node20.mjs"
       },
       "browser": {
         "import": "./dist/index-browser.es.js"
@@ -42,7 +42,7 @@
     "clean": "yarn clean:build",
     "clean:build": "pob-babel-clean-out dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/react-alp-auth",
+    "lint:eslint": "yarn ../.. run eslint --quiet packages/react-alp-auth",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "browserslist": {
@@ -62,7 +62,7 @@
     "envs": [
       {
         "target": "node",
-        "version": "18"
+        "version": "20"
       },
       {
         "target": "browser"
@@ -73,21 +73,21 @@
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
     "alp-nextjs": "^4.0.0",
-    "react": "^18.1.0"
+    "react": "^19.0.0"
   },
   "dependencies": {
     "js-cookie": "3.0.5"
   },
   "devDependencies": {
-    "@babel/core": "7.24.5",
-    "@babel/preset-env": "7.24.5",
-    "@babel/preset-react": "7.24.1",
+    "@babel/core": "7.28.0",
+    "@babel/preset-env": "7.28.0",
+    "@babel/preset-react": "7.27.1",
     "@types/js-cookie": "3.0.6",
     "alp-nextjs": "4.1.1",
-    "next": "14.2.10",
-    "pob-babel": "40.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.4.5"
+    "next": "15.3.5",
+    "pob-babel": "43.7.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "typescript": "5.8.3"
   }
 }

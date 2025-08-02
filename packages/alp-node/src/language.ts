@@ -13,15 +13,23 @@ export default function alpLanguage(app: AlpNodeApp): void {
     throw new Error('Missing config "availableLanguages"');
   }
 
-  defineLazyProperty(app.context, "language", function (this: Context): string {
-    return this.acceptsLanguages(availableLanguages) || availableLanguages[0];
-  });
+  defineLazyProperty(
+    app.context,
+    "language",
+    function language(this: Context): string {
+      return (
+        this.acceptsLanguages(availableLanguages) ||
+        availableLanguages[0] ||
+        "en"
+      );
+    },
+  );
 
   defineLazyProperty(
     app.context,
     "firstAcceptedLanguage",
-    function (this: Context): string {
-      return this.acceptsLanguages()[0] || availableLanguages[0];
+    function firstAcceptedLanguage(this: Context): string {
+      return this.acceptsLanguages()[0] || availableLanguages[0] || "en";
     },
   );
 }

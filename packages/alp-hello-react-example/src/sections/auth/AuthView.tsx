@@ -1,36 +1,36 @@
-import type { ReactElement } from "react";
+import { Button, Stack, Typography, VStack } from "alouette";
+import type { ReactNode } from "react";
 import { useLoggedInUserState } from "react-alp-auth";
-import { Button, Text, YStack, Stack } from "tamagui";
 import { SlackLoginButton } from "./components/SlackTeamInstallButton";
 
 interface AuthViewProps {
   serverAuthCookieValue?: string | null;
 }
 
-export function AuthView({
-  serverAuthCookieValue,
-}: AuthViewProps): ReactElement {
+export function AuthView({ serverAuthCookieValue }: AuthViewProps): ReactNode {
   const { isLoggedIn, loggedInUserId } = useLoggedInUserState(
     serverAuthCookieValue || undefined,
   );
 
   if (isLoggedIn) {
     return (
-      <YStack space="md">
+      <VStack gap="$4">
         <Stack padding="$4">
-          <Text>Logged In User: {loggedInUserId}</Text>
+          <Typography>Logged In User: {loggedInUserId}</Typography>
         </Stack>
 
-        <Button href={`${process.env.NEXT_PUBLIC_API_URL || "/api"}/logout`}>
-          <Text>Logout</Text>
-        </Button>
-      </YStack>
+        <Button
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          href={`${process.env.NEXT_PUBLIC_API_URL || "/api"}/logout`}
+          text="Logout"
+        />
+      </VStack>
     );
   }
 
   return (
-    <YStack space="md">
+    <VStack gap="$4">
       <SlackLoginButton />
-    </YStack>
+    </VStack>
   );
 }

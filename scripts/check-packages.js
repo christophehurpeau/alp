@@ -7,17 +7,7 @@ await createCheckPackageWithWorkspaces({
     onlyWarnsForInMonorepoPackagesDependencies: {
       "alp-migrations": {
         "*": {
-          duplicateDirectDependency: ["semver", "nightingale-logger"],
-        },
-      },
-      "alp-node-auth": {
-        "*": {
-          duplicateDirectDependency: ["nightingale-logger"],
-        },
-      },
-      "alp-hello-react-example": {
-        "*": {
-          missingPeerDependency: ["react-native"],
+          duplicateDirectDependency: ["semver"],
         },
       },
     },

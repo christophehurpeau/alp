@@ -15,10 +15,10 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=20.11.0"
   },
   "sideEffects": false,
-  "main": "./dist/index-node18.mjs",
+  "main": "./dist/index-node20.mjs",
   "types": "./dist/definitions/index.d.ts",
   "typesVersions": {
     ">=3.1": {
@@ -32,7 +32,7 @@
     ".": {
       "types": "./dist/definitions/index.d.ts",
       "node": {
-        "import": "./dist/index-node18.mjs"
+        "import": "./dist/index-node20.mjs"
       }
     },
     "./strategies/dropbox": {
@@ -71,7 +71,7 @@
     "clean": "yarn clean:build",
     "clean:build": "pob-babel-clean-out dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet packages/alp-node-auth",
+    "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-node-auth",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "pob": {
@@ -82,7 +82,7 @@
     "envs": [
       {
         "target": "node",
-        "version": "18"
+        "version": "20"
       }
     ],
     "extraEntries": [
@@ -121,23 +121,23 @@
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
     "alp-node": "^7.0.0",
-    "liwi-mongo": "^11.0.0",
-    "router-segments": "^9.1.0"
+    "liwi-mongo": "^12.0.0",
+    "router-segments": "^11.0.0"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.1",
     "@types/simple-oauth2": "^5.0.4",
-    "cookies": "~0.8.0",
-    "jsonwebtoken": "^9.0.0",
+    "cookies": "~0.9.1",
+    "jsonwebtoken": "^9.0.2",
     "nightingale-logger": "^15.0.0",
     "simple-oauth2": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.24.5",
+    "@babel/core": "7.28.0",
     "alp-node": "7.0.0",
-    "liwi-mongo": "11.0.0",
-    "pob-babel": "40.0.0",
-    "router-segments": "9.1.0",
-    "typescript": "5.4.5"
+    "liwi-mongo": "12.0.0",
+    "pob-babel": "43.7.0",
+    "router-segments": "11.0.0",
+    "typescript": "5.8.3"
   }
 }

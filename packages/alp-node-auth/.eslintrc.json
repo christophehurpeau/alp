@@ -1,9 +1,0 @@
-{
-  "root": true,
-  "extends": ["@pob/eslint-config/root-module"],
-  "ignorePatterns": ["*.d.ts", "/dist"],
-  "rules": {
-    "prefer-destructuring": "off",
-    "prefer-class-properties/prefer-class-properties": "off"
-  }
-}

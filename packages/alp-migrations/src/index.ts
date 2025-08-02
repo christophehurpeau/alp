@@ -25,7 +25,7 @@ export default async function migrate({
 }: Options): Promise<void> {
   const unhandledRejectionHandler = (reason: unknown): void => {
     logger.error("unhandledRejection", { err: reason });
-    // eslint-disable-next-line n/no-process-exit
+
     process.exit(1);
   };
   process.on("unhandledRejection", unhandledRejectionHandler);
@@ -44,7 +44,7 @@ export default async function migrate({
       return;
     }
 
-    const versionExecResult = /([\d.]+)(_.*|\.js)$/.exec(fileName);
+    const versionExecResult = /([\d.]+)(?:_.*|\.js)$/.exec(fileName);
 
     if (!versionExecResult?.[1]) {
       return;
@@ -83,7 +83,6 @@ export default async function migrate({
     }
   } catch (error: any) {
     logger.error(error as Error);
-    // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   }
 

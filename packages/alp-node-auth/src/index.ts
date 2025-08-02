@@ -18,9 +18,9 @@ import UserAccountsService from "./services/user/UserAccountsService";
 import type { AccountService } from "./services/user/types";
 import type { User, UserSanitized } from "./types";
 import {
-  getTokenFromRequest,
-  COOKIE_NAME_TOKEN,
   COOKIE_NAME_STATE,
+  COOKIE_NAME_TOKEN,
+  getTokenFromRequest,
 } from "./utils/cookies";
 import { createFindLoggedInUser } from "./utils/createFindLoggedInUser";
 
@@ -31,7 +31,7 @@ export { authSocketIO } from "./authSocketIO";
 export { createAuthApolloContext } from "./authApolloContext";
 export { STATUSES } from "./services/user/UserAccountsService";
 
-export * from "./types";
+export type * from "./types";
 
 declare module "alp-node" {
   interface ContextState {
@@ -109,7 +109,7 @@ export default function init<
       authHooks,
     });
 
-    app.context.setLoggedIn = async function (
+    app.context.setLoggedIn = async function setLoggedIn(
       this: Context,
       loggedInUserId: NonNullable<ContextState["loggedInUser"]>["_id"],
       loggedInUser: NonNullable<ContextState["loggedInUser"]>,
@@ -140,7 +140,6 @@ export default function init<
         return date.getTime();
       };
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.cookies.set(COOKIE_NAME_TOKEN, token, {
         httpOnly: true,
         secure: this.config.get("allowHttps"),
@@ -156,7 +155,7 @@ export default function init<
       );
     };
 
-    app.context.logout = function (this: Context): void {
+    app.context.logout = function logout(this: Context): void {
       delete this.state.loggedInUserId;
       delete this.state.loggedInUser;
       this.cookies.set(COOKIE_NAME_TOKEN, "", { expires: new Date(1) });
@@ -164,9 +163,7 @@ export default function init<
     };
 
     const findLoggedInUser = createFindLoggedInUser(
-      app.config
-        .get<Map<string, unknown>>("authentication")
-        .get("secretKey") as string,
+      app.config.get<{ secretKey: string }>("authentication").secretKey,
       usersManager,
       logger,
     );

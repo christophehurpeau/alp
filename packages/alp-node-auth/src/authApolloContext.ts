@@ -3,7 +3,7 @@ import type { NodeConfig } from "alp-node";
 import { Logger } from "nightingale-logger";
 import type MongoUsersManager from "./MongoUsersManager";
 import type { User } from "./types";
-import { getTokenFromRequest, COOKIE_NAME_TOKEN } from "./utils/cookies";
+import { COOKIE_NAME_TOKEN, getTokenFromRequest } from "./utils/cookies";
 import { createFindLoggedInUser } from "./utils/createFindLoggedInUser";
 
 const logger = new Logger("alp:auth");
@@ -24,7 +24,7 @@ export const createAuthApolloContext = <U extends User = User>(
   usersManager: MongoUsersManager<U>,
 ): any => {
   const findLoggedInUser = createFindLoggedInUser(
-    config.get<Map<string, string>>("authentication").get("secretKey")!,
+    config.get<{ secretKey: string }>("authentication").secretKey,
     usersManager,
     logger,
   );

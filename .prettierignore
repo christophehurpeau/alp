@@ -1,5 +1,7 @@
 CHANGELOG.md
+/.yarnrc.yml
 /.yarn/**/*
+/packages/*/.tamagui
 /packages/*/dist
 /packages/*/build
 /packages/*/.next

@@ -1,10 +1,10 @@
-import { ClientCredentials, AuthorizationCode } from "simple-oauth2";
+import { AuthorizationCode, ClientCredentials } from "simple-oauth2";
 
 export default function githubStrategy(config) {
   const options = {
     client: {
-      id: config.get("github").get("clientId"),
-      secret: config.get("github").get("clientSecret"),
+      id: config.get("github").clientId,
+      secret: config.get("github").clientSecret,
     },
     auth: {
       tokenHost: "https://github.com",
