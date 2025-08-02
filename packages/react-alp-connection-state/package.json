@@ -91,7 +91,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6"
+    "@babel/runtime": "^7.28.2"
   },
   "devDependencies": {
     "@babel/core": "7.28.0",

@@ -98,7 +98,7 @@
     "react-native-web": "^0.20.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6",
+    "@babel/runtime": "^7.28.2",
     "babel-plugin-discard-module-references": "^1.1.2",
     "babel-preset-pob-env": "15.3.0",
     "cookies": "~0.9.1",
