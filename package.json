@@ -48,7 +48,7 @@
     "@pob/root": "18.2.0",
     "@sucrase/jest-plugin": "3.0.0",
     "@types/jest": "30.0.0",
-    "check-package-dependencies": "10.3.0",
+    "check-package-dependencies": "10.4.0",
     "eslint": "9.30.0",
     "jest": "30.0.3",
     "jest-environment-jsdom": "29.7.0",
