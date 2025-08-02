@@ -355,7 +355,7 @@ class AlpNodeApp extends Koa {
   async start(fn) {
     await fn();
     try {
-      const server = await alpListen(this.config, () => this.callback(), this.certPath);
+      const server = await alpListen(this.config, this.callback(), this.certPath);
       this._server = server;
       logger.success("started");
       if (process.send) process.send("ready");

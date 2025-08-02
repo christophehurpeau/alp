@@ -1,4 +1,9 @@
-import type { IncomingMessage, Server, ServerResponse } from "node:http";
+import type {
+  IncomingMessage,
+  RequestListener,
+  Server,
+  ServerResponse,
+} from "node:http";
 import path from "node:path";
 import { deprecate } from "node:util";
 import Koa from "koa";
@@ -154,7 +159,7 @@ export class AlpNodeApp extends Koa<ContextState> implements NodeApplication {
     try {
       const server = await _listen(
         this.config,
-        () => this.callback(),
+        this.callback() as RequestListener,
         this.certPath,
       );
       this._server = server;
