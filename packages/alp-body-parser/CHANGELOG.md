@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@9.0.0...alp-body-parser@10.0.0) (2025-08-02)
+
+### ⚠ BREAKING CHANGES
+
+* update dependencies and drop node 20
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa
+* update koa
+
+### Features
+
+* update dependencies and drop node 20 ([fc5b322](https://github.com/christophehurpeau/alp/commit/fc5b322e076e9a3c7c4a235d16734b89fd85e211))
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa ([5ae7723](https://github.com/christophehurpeau/alp/commit/5ae77238cafc573fe72c5eb63b103802b8b2e537))
+* update koa ([e678114](https://github.com/christophehurpeau/alp/commit/e67811429d951287de715c3dffdbee7b798f3358))
+
+Version bump for dependency: alp-node
+
+
 ## [9.0.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@8.1.1...alp-body-parser@9.0.0) (2024-01-06)
 
 

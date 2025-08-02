@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@7.0.0...alp-node@8.0.0) (2025-08-02)
+
+### ⚠ BREAKING CHANGES
+
+* update dependencies and drop node 20
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa
+* remove deprecated packageDirname
+* namedRouteParam and otherRouteParam
+* update koa
+* update router-segments
+
+### Features
+
+* remove deprecated packageDirname ([82f6f16](https://github.com/christophehurpeau/alp/commit/82f6f163d40bdfe40df181a1d009072cd1eb3c82))
+* update dependencies and drop node 20 ([fc5b322](https://github.com/christophehurpeau/alp/commit/fc5b322e076e9a3c7c4a235d16734b89fd85e211))
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa ([5ae7723](https://github.com/christophehurpeau/alp/commit/5ae77238cafc573fe72c5eb63b103802b8b2e537))
+* update koa ([e678114](https://github.com/christophehurpeau/alp/commit/e67811429d951287de715c3dffdbee7b798f3358))
+* update router-segments ([07ff52b](https://github.com/christophehurpeau/alp/commit/07ff52b3f851204256509056d0a4b25e1f630e5b))
+
+### Bug Fixes
+
+* namedRouteParam and otherRouteParam ([73e9e2a](https://github.com/christophehurpeau/alp/commit/73e9e2aaf00fe956628efd1380f8e44329562c41))
+* properly call callback ([89cedd4](https://github.com/christophehurpeau/alp/commit/89cedd44a2edb99e9fcc050172f9ac75e1747e20))
+
 ## [7.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@6.2.0...alp-node@7.0.0) (2024-01-06)
 
 

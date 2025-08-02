@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@10.0.0...alp-node-auth@11.0.0) (2025-08-02)
+
+### ⚠ BREAKING CHANGES
+
+* update dependencies and drop node 20
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa
+* namedRouteParam and otherRouteParam
+* update koa
+* update liwi-mongo
+* update router-segments
+
+### Features
+
+* update dependencies and drop node 20 ([fc5b322](https://github.com/christophehurpeau/alp/commit/fc5b322e076e9a3c7c4a235d16734b89fd85e211))
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa ([5ae7723](https://github.com/christophehurpeau/alp/commit/5ae77238cafc573fe72c5eb63b103802b8b2e537))
+* update koa ([e678114](https://github.com/christophehurpeau/alp/commit/e67811429d951287de715c3dffdbee7b798f3358))
+* update liwi-mongo ([55e04ba](https://github.com/christophehurpeau/alp/commit/55e04baac1ccc46b83880dd03076b0ab0d705ae2))
+* update router-segments ([07ff52b](https://github.com/christophehurpeau/alp/commit/07ff52b3f851204256509056d0a4b25e1f630e5b))
+
+### Bug Fixes
+
+* namedRouteParam and otherRouteParam ([73e9e2a](https://github.com/christophehurpeau/alp/commit/73e9e2aaf00fe956628efd1380f8e44329562c41))
+
+Version bump for dependency: alp-node
+Version bump for dependency: alp-node
+
+
 ## [10.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@9.3.0...alp-node-auth@10.0.0) (2024-01-06)
 
 

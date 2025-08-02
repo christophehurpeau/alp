@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-loading-bar@7.0.0...react-alp-loading-bar@8.0.0) (2025-08-02)
+
+### ⚠ BREAKING CHANGES
+
+* update dependencies and drop node 20
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa
+
+### Features
+
+* update babel ([a4bf455](https://github.com/christophehurpeau/alp/commit/a4bf455c715134973c56693b7425aa05de5b10f9))
+* update dependencies and drop node 20 ([fc5b322](https://github.com/christophehurpeau/alp/commit/fc5b322e076e9a3c7c4a235d16734b89fd85e211))
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa ([5ae7723](https://github.com/christophehurpeau/alp/commit/5ae77238cafc573fe72c5eb63b103802b8b2e537))
+
+### Bug Fixes
+
+* **deps:** update react monorepo ([#611](https://github.com/christophehurpeau/alp/issues/611)) ([b9ece4d](https://github.com/christophehurpeau/alp/commit/b9ece4dc070bcd49fa6c4a40534162d10087405b))
+
 ## [7.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-loading-bar@6.1.1...react-alp-loading-bar@7.0.0) (2024-01-06)
 
 

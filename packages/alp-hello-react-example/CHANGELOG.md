@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@10.0.0...alp-hello-react-example@11.0.0) (2025-08-02)
+
+### ⚠ BREAKING CHANGES
+
+* update dependencies and drop node 20
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa
+* update router-segments
+
+### Features
+
+* **deps:** update dependency react-intl to v6.6.2 ([#535](https://github.com/christophehurpeau/alp/issues/535)) ([661ea33](https://github.com/christophehurpeau/alp/commit/661ea3323ca08c26d9241a658e5e3176d0ccbc1c))
+* **deps:** update dependency react-intl to v6.7.0 ([#581](https://github.com/christophehurpeau/alp/issues/581)) ([2585a96](https://github.com/christophehurpeau/alp/commit/2585a966b7d8c72c570d9daceacfb63cb4427c20))
+* **deps:** update dependency react-native-safe-area-context to v4.9.0 ([#556](https://github.com/christophehurpeau/alp/issues/556)) ([0227c40](https://github.com/christophehurpeau/alp/commit/0227c40d504034d11b1f0d103420c238568f54a6))
+* update dependencies and drop node 20 ([fc5b322](https://github.com/christophehurpeau/alp/commit/fc5b322e076e9a3c7c4a235d16734b89fd85e211))
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa ([5ae7723](https://github.com/christophehurpeau/alp/commit/5ae77238cafc573fe72c5eb63b103802b8b2e537))
+* update router-segments ([07ff52b](https://github.com/christophehurpeau/alp/commit/07ff52b3f851204256509056d0a4b25e1f630e5b))
+
+### Bug Fixes
+
+* **deps:** update dependency next to v14.2.15 [security] ([#597](https://github.com/christophehurpeau/alp/issues/597)) ([d9bb380](https://github.com/christophehurpeau/alp/commit/d9bb380aeb4240f8463c95506af085640a4d2214))
+* **deps:** update react monorepo ([#611](https://github.com/christophehurpeau/alp/issues/611)) ([b9ece4d](https://github.com/christophehurpeau/alp/commit/b9ece4dc070bcd49fa6c4a40534162d10087405b))
+* update tamagui ([c6a00df](https://github.com/christophehurpeau/alp/commit/c6a00dfb64777321c264ae197318c46b5a035300))
+
+Version bump for dependency: alp-nextjs
+Version bump for dependency: react-alp-auth
+Version bump for dependency: react-alp-connection-state
+
+
 ## [10.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@9.3.0...alp-hello-react-example@10.0.0) (2024-01-06)
 
 

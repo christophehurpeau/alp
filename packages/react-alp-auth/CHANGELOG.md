@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-auth@2.1.1...react-alp-auth@3.0.0) (2025-08-02)
+
+### ⚠ BREAKING CHANGES
+
+* update dependencies and drop node 20
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa
+
+### Features
+
+* update dependencies and drop node 20 ([fc5b322](https://github.com/christophehurpeau/alp/commit/fc5b322e076e9a3c7c4a235d16734b89fd85e211))
+* update dev dependencies, replace parse-json-object-as-map with native JSON.parse, update koa ([5ae7723](https://github.com/christophehurpeau/alp/commit/5ae77238cafc573fe72c5eb63b103802b8b2e537))
+
+### Bug Fixes
+
+* **deps:** update dependency next to v14.2.15 [security] ([#597](https://github.com/christophehurpeau/alp/issues/597)) ([d9bb380](https://github.com/christophehurpeau/alp/commit/d9bb380aeb4240f8463c95506af085640a4d2214))
+* **deps:** update react monorepo ([#611](https://github.com/christophehurpeau/alp/issues/611)) ([b9ece4d](https://github.com/christophehurpeau/alp/commit/b9ece4dc070bcd49fa6c4a40534162d10087405b))
+
+Version bump for dependency: alp-nextjs
+Version bump for dependency: alp-nextjs
+
+
 ## [2.1.1](https://github.com/christophehurpeau/alp/compare/react-alp-auth@2.1.0...react-alp-auth@2.1.1) (2024-01-06)
 
 Note: no notable changes

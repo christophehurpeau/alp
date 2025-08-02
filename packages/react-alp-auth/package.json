@@ -1,6 +1,6 @@
 {
   "name": "react-alp-auth",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "react alp context",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -72,7 +72,7 @@
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "alp-nextjs": "^4.0.0",
+    "alp-nextjs": "^5.0.0",
     "react": "^19.0.0"
   },
   "dependencies": {
@@ -83,7 +83,7 @@
     "@babel/preset-env": "7.28.0",
     "@babel/preset-react": "7.27.1",
     "@types/js-cookie": "3.0.6",
-    "alp-nextjs": "4.1.1",
+    "alp-nextjs": "5.0.0",
     "next": "15.3.5",
     "pob-babel": "43.7.0",
     "react": "19.1.1",
