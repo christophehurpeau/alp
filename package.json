@@ -51,7 +51,7 @@
     "check-package-dependencies": "10.4.0",
     "eslint": "9.32.0",
     "jest": "30.0.5",
-    "jest-environment-jsdom": "29.7.0",
+    "jest-environment-jsdom": "30.0.5",
     "pob-babel": "43.7.0",
     "sucrase": "3.35.0",
     "typescript": "5.8.3"
