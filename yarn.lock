@@ -5737,7 +5737,7 @@ __metadata:
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-native: "npm:0.80.2"
-    react-native-safe-area-context: "npm:4.9.0"
+    react-native-safe-area-context: "npm:5.6.0"
     react-native-svg: "npm:13.14.0"
     react-native-web: "npm:0.20.0"
     springbokjs-daemon: "npm:10.1.0"
@@ -13946,13 +13946,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-safe-area-context@npm:4.9.0":
-  version: 4.9.0
-  resolution: "react-native-safe-area-context@npm:4.9.0"
+"react-native-safe-area-context@npm:5.6.0":
+  version: 5.6.0
+  resolution: "react-native-safe-area-context@npm:5.6.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/27bb6b759d4d36f39e4a4a2d7e4d65f2e4e95175fc9ffeac63249680da54fd4cd0a4da064314d9ce579182200327967447da17cf8ea31badbaa4087de3302f42
+  checksum: 10c0/17877475217e3b9fc75afcd28bfa287cc996e4eb8cfc698f825670596d3e93d38d28aabc32a038f5167932412c6ef632a749b1c5fe49e15bd863326643740108
   languageName: node
   linkType: hard
 
