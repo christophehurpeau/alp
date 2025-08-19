@@ -71,7 +71,7 @@
     "@tamagui/next-plugin": "1.132.15",
     "@testing-library/dom": "10.4.1",
     "@testing-library/react": "16.3.0",
-    "@types/node": "20.19.9",
+    "@types/node": "22.17.2",
     "@types/react": "19.1.9",
     "react-native": "0.80.2",
     "react-native-web": "0.20.0",
