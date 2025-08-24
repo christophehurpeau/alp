@@ -83,7 +83,7 @@
     "@pob/rollup-esbuild": "6.7.0",
     "@types/js-cookie": "3.0.6",
     "alp-nextjs": "5.0.0",
-    "next": "15.3.5",
+    "next": "15.5.0",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "typescript": "5.8.3"
