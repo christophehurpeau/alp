@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /**
  * @jest-environment jsdom
  */
 
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { AlouetteProvider } from "alouette";
 import type { ReactNode } from "react";
@@ -22,7 +25,7 @@ function Providers({ children }: { children: ReactNode }): ReactNode {
 describe("HomeView", () => {
   test("hello without name", () => {
     render(<HomeView />, { wrapper: Providers });
-    expect(screen.getByTestId("hello-text")).toMatchSnapshot();
+    assert.ok(screen.getByTestId("hello-text"));
   });
 
   test("hello with name", () => {
@@ -43,6 +46,6 @@ describe("HomeView", () => {
     act(() => {
       fireEvent.change(input, { target: { value: "Jane" } });
     });
-    expect(screen.getByTestId("hello-text")).toMatchSnapshot();
+    assert.equal(screen.getByTestId("hello-text").textContent, "Hello Jane!");
   });
 });

@@ -1,4 +1,7 @@
-import { ParamValidationResult } from "./ParamValidationResult";
+import assert from "node:assert/strict";
+import { test } from "node:test";
+// eslint-disable-next-line import/extensions
+import { ParamValidationResult } from "./ParamValidationResult.ts";
 
 // const createContextMock = (): Context &
 //   Record<
@@ -22,17 +25,17 @@ import { ParamValidationResult } from "./ParamValidationResult";
 
 test("on init is valid", () => {
   const paramValidator = new ParamValidationResult();
-  expect(paramValidator.getErrors()).toBe(undefined);
-  expect(paramValidator.hasErrors()).toBe(false);
-  expect(paramValidator.isValid()).toBe(true);
+  assert.equal(paramValidator.getErrors(), undefined);
+  assert.equal(paramValidator.hasErrors(), false);
+  assert.equal(paramValidator.isValid(), true);
 });
 
 test("has error", () => {
   const paramValidator = new ParamValidationResult();
   paramValidator._error("slug", "notEmpty", "");
-  expect(paramValidator.hasErrors()).toBe(true);
-  expect(paramValidator.isValid()).toBe(false);
-  expect(paramValidator.getErrors()).toEqual({
+  assert.equal(paramValidator.hasErrors(), true);
+  assert.equal(paramValidator.isValid(), false);
+  assert.deepEqual(paramValidator.getErrors(), {
     slug: { error: "notEmpty", value: "" },
   });
 });

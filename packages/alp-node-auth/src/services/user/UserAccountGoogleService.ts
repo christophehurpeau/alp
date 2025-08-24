@@ -18,7 +18,6 @@ export default class UserAccountGoogleService<ScopeKeys extends "login">
   providerKey = "google";
 
   getProfile(tokens: Tokens): Promise<any> {
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return fetch(
       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokens.accessToken}`,
     ).then((response) => response.json());

@@ -13,13 +13,19 @@
   "homepage": "https://github.com/christophehurpeau/alp",
   "type": "module",
   "engines": {
-    "node": ">=20.11.0"
+    "node": ">=22.18.0"
   },
   "sideEffects": false,
   "main": "./lib/index.cjs",
+  "types": "./lib/index.d.ts",
   "exports": {
-    ".": "./lib/index.js",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./lib/index.d.ts",
+      "node": {
+        "import": "./lib/index.cjs"
+      }
+    }
   },
   "publishConfig": {
     "access": "public"
@@ -28,10 +34,14 @@
     "lib"
   ],
   "scripts": {
+    "build": "yarn run build:definitions",
+    "build:definitions": "tsc --lib esnext --noEmit --skipLibCheck ./lib/index.d.ts",
     "lint": "yarn run lint:eslint",
     "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-rollup-plugin-config"
   },
-  "pob": {},
+  "pob": {
+    "bundler": false
+  },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
     "rollup": "^2.64.0 || ^3.0.0 || ^4.0.0"
@@ -39,5 +49,8 @@
   "dependencies": {
     "@guanghechen/rollup-plugin-copy": "1.8.6",
     "js-yaml": "4.1.0"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
   }
 }

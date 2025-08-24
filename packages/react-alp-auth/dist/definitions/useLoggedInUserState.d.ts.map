@@ -1,0 +1,1 @@
+{"version":3,"file":"useLoggedInUserState.d.ts","sourceRoot":"","sources":["../../src/useLoggedInUserState.ts"],"names":[],"mappings":"AAIA,MAAM,WAAW,iBAAiB;IAChC,UAAU,EAAE,OAAO,CAAC;IACpB,cAAc,EAAE,MAAM,GAAG,SAAS,CAAC;IACnC,SAAS,EAAE,MAAM,GAAG,SAAS,CAAC;CAC/B;AAMD,wBAAgB,oBAAoB,CAClC,iBAAiB,CAAC,EAAE,MAAM,GAAG,IAAI,GAChC,iBAAiB,CAMnB"}

@@ -19,7 +19,6 @@ export default class UserAccountSlackService<ScopeKeys extends "login">
   providerKey = "google";
 
   getProfile(tokens: Tokens): Promise<any> {
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return fetch(
       `https://slack.com/api/users.identity?token=${tokens.accessToken}`,
     ).then((response) => response.json());

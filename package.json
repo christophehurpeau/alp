@@ -9,7 +9,7 @@
   "type": "module",
   "packageManager": "yarn@4.9.2",
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=22.18.0"
   },
   "workspaces": [
     "packages/*"
@@ -27,11 +27,11 @@
     "postinstall": "pob-root-postinstall",
     "start:hello-node": "yarn --cwd packages/alp-hello-node-example start",
     "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
-    "test": "TZ=UTC NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:coverage": "TZ=UTC NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=json --coverageReporters=text",
-    "test:coverage:json": "TZ=UTC NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=json",
+    "test": "TZ=UTC node  --test packages/*/src/**/*.test.ts",
+    "test:coverage": "TZ=UTC npx c8 --all --src ./src node  --test packages/*/src/**/*.test.ts",
+    "test:coverage:json": "TZ=UTC npx c8 --reporter=json --all --src ./src node  --test packages/*/src/**/*.test.ts",
     "test:coverage:lcov": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=lcov",
-    "test:watch": "TZ=UTC NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "test:watch": "TZ=UTC node  --test packages/*/src/**/*.test.ts",
     "tsc": "tsc -b",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
@@ -42,18 +42,14 @@
   },
   "prettier": "@pob/root/prettier-config",
   "devDependencies": {
-    "@babel/core": "7.28.0",
     "@pob/commitlint-config": "9.2.0",
+    "@pob/eslint-config": "61.1.0",
     "@pob/eslint-config-typescript-react": "61.1.0",
-    "@pob/root": "18.2.0",
-    "@sucrase/jest-plugin": "3.0.0",
-    "@types/jest": "30.0.0",
+    "@pob/rollup-esbuild": "6.7.0",
+    "@pob/root": "18.3.0",
     "check-package-dependencies": "10.4.0",
     "eslint": "9.32.0",
-    "jest": "30.0.5",
     "jest-environment-jsdom": "29.7.0",
-    "pob-babel": "43.7.0",
-    "sucrase": "3.35.0",
     "typescript": "5.8.3"
   }
 }
