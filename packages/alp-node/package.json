@@ -91,7 +91,7 @@
     "koa-compress": "^5.1.1",
     "koa-static": "^5.0.0",
     "minimist": "^1.2.8",
-    "nightingale-logger": "^15.0.0",
+    "nightingale-logger": "^16.0.0",
     "object-properties": "^9.0.1"
   },
   "devDependencies": {
