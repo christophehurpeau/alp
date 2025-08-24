@@ -49,7 +49,6 @@
     "@pob/root": "18.3.0",
     "check-package-dependencies": "10.4.0",
     "eslint": "9.32.0",
-    "jest-environment-jsdom": "29.7.0",
     "typescript": "5.8.3"
   }
 }
