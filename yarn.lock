@@ -2857,12 +2857,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pob/commitlint-config@npm:9.2.0":
-  version: 9.2.0
-  resolution: "@pob/commitlint-config@npm:9.2.0"
+"@pob/commitlint-config@npm:10.0.0":
+  version: 10.0.0
+  resolution: "@pob/commitlint-config@npm:10.0.0"
   dependencies:
     "@commitlint/config-conventional": "npm:^19.8.1"
-  checksum: 10c0/2743e5751930dd2fa9cdfefaf72ea4f554884183e42425297c6bd8d6fd3ec267cb93532f761552c924c5c35eaef46140decac06e295e7a44515d021f991f4381
+  checksum: 10c0/dca920f180de557d52c02ab92c8407f3755d469512cb2ba5ad778f0dc5ed1f2de14937bdbc45ae0ce56688cf22bef3284e249534a61f0101a6fc7f8cb479dcbf
   languageName: node
   linkType: hard
 
@@ -2946,11 +2946,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pob/rollup-esbuild@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@pob/rollup-esbuild@npm:6.7.0"
+"@pob/rollup-esbuild@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@pob/rollup-esbuild@npm:7.0.0"
   dependencies:
-    "@pob/rollup": "npm:6.3.0"
+    "@pob/rollup": "npm:7.0.0"
     "@rollup/plugin-node-resolve": "npm:16.0.1"
     "@rollup/plugin-replace": "npm:6.0.2"
     "@rollup/plugin-run": "npm:3.1.0"
@@ -2967,25 +2967,25 @@ __metadata:
   bin:
     pob-esbuild-clean-out: ./bin/pob-esbuild-clean-out.js
     rollup: ./bin/rollup.cjs
-  checksum: 10c0/deef9aca8cee351f854ec75c2d83d7bab3f3075d06b387eb8b996c8a1ae925d0f5675d5e9665efd035690e5ad0ca68f8536a75c46c777d73deb638ebff2e4dea
+  checksum: 10c0/b290ec434f91cc61c3610d468cde7b72ca767bb421f20cb67929c969304614bf73e26440560f5e579beb0669d4b7fccd868545329ba5425c3dc53d2070d1da76
   languageName: node
   linkType: hard
 
-"@pob/rollup@npm:6.3.0":
-  version: 6.3.0
-  resolution: "@pob/rollup@npm:6.3.0"
+"@pob/rollup@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@pob/rollup@npm:7.0.0"
   dependencies:
     rollup: "npm:4.44.1"
   bin:
     pob-rollup-clean-out: ./bin/pob-rollup-clean-out.js
     rollup: ./bin/rollup.cjs
-  checksum: 10c0/2a6c6cdc24bec1f5448445eb30d4023009af1d0b8c8802d6ace748298cc5a5629d1395a5bf512ca8102c3568c27453bb2543f73902f1851dfacd0e49680d17ec
+  checksum: 10c0/9d259fee5564326614f397ea456407e11ca401e32e5336fadeac9093a08a25419b3084631c5fc4b91294d0b525dd38ff9b3fc128c9e0275175239b8d4d7ea7e2
   languageName: node
   linkType: hard
 
-"@pob/root@npm:19.0.0":
-  version: 19.0.0
-  resolution: "@pob/root@npm:19.0.0"
+"@pob/root@npm:19.1.0":
+  version: 19.1.0
+  resolution: "@pob/root@npm:19.1.0"
   dependencies:
     "@commitlint/cli": "npm:19.8.1"
     "@pob/pretty-pkg": "npm:13.0.0"
@@ -2994,12 +2994,12 @@ __metadata:
     husky: "npm:~9.1.7"
     json5: "npm:^2.2.3"
     lint-staged: "npm:16.1.5"
-    pob-dependencies: "npm:20.0.0"
+    pob-dependencies: "npm:20.1.0"
     prettier: "npm:3.6.2"
     repository-check-dirty: "npm:11.0.0"
     semver: "npm:^7.3.7"
     which-pm-runs: "npm:1.1.0"
-    yarn-version: "npm:8.0.0"
+    yarn-version: "npm:8.1.0"
   bin:
     commitlint: ./bin/commitlint.js
     pob-root-lint-staged: ./bin/pob-root-lint-staged.js
@@ -3009,7 +3009,7 @@ __metadata:
     pretty-pkg: ./bin/pretty-pkg.js
     repository-check-dirty: ./bin/repository-check-dirty.js
     yarn-version: ./bin/yarn-version.js
-  checksum: 10c0/1e454fb12d1b73b3cad88e5a429ace296531a910b1a3d40ca63fdfa1275a63e335729ef78ad1b8b0fe7acf1b00bab346ccde91c870903c8c07f3bc2c3b3920ab
+  checksum: 10c0/4012fb46e6ad3379d77a5659f36143da4e2a26b6733aab355a712d5a206f1d2464a4650668b90399ad0ac3ff9318bc607d2dd9973de1d34f211d5d288dca3997
   languageName: node
   linkType: hard
 
@@ -5127,7 +5127,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-body-parser@workspace:packages/alp-body-parser"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     "@types/co-body": "npm:^6.1.3"
     "@types/koa": "npm:^3.0.0"
     co-body: "npm:^6.2.0"
@@ -5142,7 +5142,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-hello-node-example@workspace:packages/alp-hello-node-example"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     alp-node: "npm:8.0.0"
     alp-node-auth: "npm:11.0.0"
     alp-rollup-plugin-config: "npm:3.0.0"
@@ -5191,7 +5191,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-migrations@workspace:packages/alp-migrations"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     "@types/node": "npm:24.3.0"
     "@types/semver": "npm:7.7.0"
     alp-node: "npm:8.0.0"
@@ -5210,7 +5210,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-nextjs@workspace:packages/alp-nextjs"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     cookies: "npm:~0.9.1"
     next: "npm:15.5.0"
     react: "npm:19.1.1"
@@ -5227,7 +5227,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-node-auth@workspace:packages/alp-node-auth"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     "@types/jsonwebtoken": "npm:^9.0.10"
     "@types/simple-oauth2": "npm:^5.0.7"
     alp-node: "npm:8.0.0"
@@ -5249,7 +5249,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp-node@workspace:packages/alp-node"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     "@types/koa": "npm:^3.0.0"
     "@types/koa-compress": "npm:4.0.6"
     "@types/koa-static": "npm:4.0.4"
@@ -5286,11 +5286,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alp@workspace:."
   dependencies:
-    "@pob/commitlint-config": "npm:9.2.0"
+    "@pob/commitlint-config": "npm:10.0.0"
     "@pob/eslint-config": "npm:61.1.0"
     "@pob/eslint-config-typescript-react": "npm:61.1.0"
-    "@pob/rollup-esbuild": "npm:6.7.0"
-    "@pob/root": "npm:19.0.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
+    "@pob/root": "npm:19.1.0"
     check-package-dependencies: "npm:10.4.1"
     eslint: "npm:9.34.0"
     typescript: "npm:5.9.2"
@@ -11808,10 +11808,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pob-dependencies@npm:20.0.0":
-  version: 20.0.0
-  resolution: "pob-dependencies@npm:20.0.0"
-  checksum: 10c0/2e6cb7b1bd75a6d0498204535f11b4eac3c7a34d40d16a0faafb101160a74cc8443219588e25f19010b88dff761fcfcc1f555a2f8f1fbef4977a0ae26401bb0d
+"pob-dependencies@npm:20.1.0":
+  version: 20.1.0
+  resolution: "pob-dependencies@npm:20.1.0"
+  checksum: 10c0/2317c3256becc6101ef983052b645e3d35039db58f74f0eb5abfa5dfc7fff422778d98ecf52a7294353dd8732efd77106cc773a4fd370b63e7d676fbba3402f4
   languageName: node
   linkType: hard
 
@@ -12068,7 +12068,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-auth@workspace:packages/react-alp-auth"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     "@types/js-cookie": "npm:3.0.6"
     alp-nextjs: "npm:5.0.0"
     js-cookie: "npm:3.0.5"
@@ -12086,7 +12086,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-connection-state@workspace:packages/react-alp-connection-state"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     react: "npm:19.1.1"
     typescript: "npm:5.9.2"
   peerDependencies:
@@ -12102,7 +12102,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-alp-loading-bar@workspace:packages/react-alp-loading-bar"
   dependencies:
-    "@pob/rollup-esbuild": "npm:6.7.0"
+    "@pob/rollup-esbuild": "npm:7.0.0"
     react: "npm:19.1.1"
     typescript: "npm:5.9.2"
   peerDependencies:
@@ -14602,9 +14602,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yarn-version@npm:8.0.0":
-  version: 8.0.0
-  resolution: "yarn-version@npm:8.0.0"
+"yarn-version@npm:8.1.0":
+  version: 8.1.0
+  resolution: "yarn-version@npm:8.1.0"
   dependencies:
     "@conventional-changelog/git-client": "npm:1.0.1"
     "@npmcli/map-workspaces": "npm:4.0.2"
@@ -14621,7 +14621,7 @@ __metadata:
     semver: "npm:7.7.2"
   bin:
     yarn-version: ./dist/index-node.mjs
-  checksum: 10c0/d91150af61d356168827835516e71195108e66c1cff11a012af09dc86d1d5b1dfcd1f23d11e4ba608f485741bad599e25c5817f7cd281cd950350795c571926a
+  checksum: 10c0/b90d7f5530381934a90876ecb737717fc0a0ebeab975e352bc5f187dec3139e38df7d9ff97e121aba598502a7e6fde4438739d6778e6013c888609cf9f258cee
   languageName: node
   linkType: hard
 
