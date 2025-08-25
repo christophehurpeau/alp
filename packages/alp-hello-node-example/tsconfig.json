@@ -16,6 +16,12 @@
     "paths": {
       "alp-node": ["../../packages/alp-node/src"],
       "alp-node/*": ["../../packages/alp-node/src/*"],
+      "alp-rollup-plugin-config": [
+        "../../packages/alp-rollup-plugin-config/lib"
+      ],
+      "alp-rollup-plugin-config/*": [
+        "../../packages/alp-rollup-plugin-config/lib/*"
+      ],
       "alp-node-auth": ["../../packages/alp-node-auth/src"],
       "alp-node-auth/*": ["../../packages/alp-node-auth/src/*"]
     }

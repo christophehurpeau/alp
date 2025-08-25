@@ -76,7 +76,7 @@
     "react": "^19.0.0"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "6.7.0",
+    "@pob/rollup-esbuild": "7.0.0",
     "react": "19.1.1",
     "typescript": "5.9.2"
   }
