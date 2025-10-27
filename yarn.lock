@@ -4347,13 +4347,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa-compress@npm:4.0.6":
-  version: 4.0.6
-  resolution: "@types/koa-compress@npm:4.0.6"
+"@types/koa-compress@npm:4.0.7":
+  version: 4.0.7
+  resolution: "@types/koa-compress@npm:4.0.7"
   dependencies:
     "@types/koa": "npm:*"
     "@types/node": "npm:*"
-  checksum: 10c0/d701a94d9512f612de7177ede82c42985c5a15f9eda91069a9d2b9aad5681a39bddef38d5a038900afdaf888385674a4a83d4bd3ed4938220450e9612f6195ad
+  checksum: 10c0/6ebc4125ec63a2c2d309c60294b99cfc419cd9523b6a96debb816d805bc751b6668c15624474f468873563e30e3aa494bd0560593a6c7296c20ca2db51d6df05
   languageName: node
   linkType: hard
 
@@ -5251,7 +5251,7 @@ __metadata:
   dependencies:
     "@pob/rollup-esbuild": "npm:6.7.0"
     "@types/koa": "npm:^3.0.0"
-    "@types/koa-compress": "npm:4.0.6"
+    "@types/koa-compress": "npm:4.0.7"
     "@types/koa-static": "npm:4.0.4"
     "@types/minimist": "npm:1.2.5"
     "@types/node": "npm:>=22.0.0"
