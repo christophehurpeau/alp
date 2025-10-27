@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@8.0.0...alp-node@9.0.0) (2025-10-27)
+
+### ⚠ BREAKING CHANGES
+
+* drop node 20 and build using esbuild
+
+### Features
+
+* drop node 20 and build using esbuild ([812c4c1](https://github.com/christophehurpeau/alp/commit/812c4c1b0ad19984e389af4382a8d1e60643e4f1))
+* update nightingale packages to version 16 across multiple packages ([2f59b01](https://github.com/christophehurpeau/alp/commit/2f59b01c9c407da7c59c608a12d716058fff9c70))
+
+### Bug Fixes
+
+* clarify typings ([862b7e2](https://github.com/christophehurpeau/alp/commit/862b7e2ffe2dca85535c33bfd8a2d858c066fcbc))
+
 ## [8.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@7.0.0...alp-node@8.0.0) (2025-08-02)
 
 ### ⚠ BREAKING CHANGES

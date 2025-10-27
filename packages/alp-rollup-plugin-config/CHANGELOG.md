@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@3.0.0...alp-rollup-plugin-config@4.0.0) (2025-10-27)
+
+### ⚠ BREAKING CHANGES
+
+* drop node 20 and build using esbuild
+
+### Features
+
+* drop node 20 and build using esbuild ([812c4c1](https://github.com/christophehurpeau/alp/commit/812c4c1b0ad19984e389af4382a8d1e60643e4f1))
+
 ## [3.0.0](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@2.2.1...alp-rollup-plugin-config@3.0.0) (2025-08-02)
 
 ### ⚠ BREAKING CHANGES

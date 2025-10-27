@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@11.0.0...alp-hello-react-example@12.0.0) (2025-10-27)
+
+### ⚠ BREAKING CHANGES
+
+* drop node 20 and build using esbuild
+
+### Features
+
+* drop node 20 and build using esbuild ([812c4c1](https://github.com/christophehurpeau/alp/commit/812c4c1b0ad19984e389af4382a8d1e60643e4f1))
+* update nightingale packages to version 16 across multiple packages ([2f59b01](https://github.com/christophehurpeau/alp/commit/2f59b01c9c407da7c59c608a12d716058fff9c70))
+
+Version bump for dependency: alp-nextjs
+Version bump for dependency: react-alp-auth
+Version bump for dependency: react-alp-connection-state
+
+
 ## [11.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-react-example@10.0.0...alp-hello-react-example@11.0.0) (2025-08-02)
 
 ### ⚠ BREAKING CHANGES

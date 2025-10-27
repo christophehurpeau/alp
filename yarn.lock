@@ -5134,7 +5134,7 @@ __metadata:
     koa: "npm:^3.0.1"
     typescript: "npm:5.9.2"
   peerDependencies:
-    alp-node: ^8.0.0
+    alp-node: ^9.0.0
   languageName: unknown
   linkType: soft
 
@@ -5143,9 +5143,9 @@ __metadata:
   resolution: "alp-hello-node-example@workspace:packages/alp-hello-node-example"
   dependencies:
     "@pob/rollup-esbuild": "npm:6.7.0"
-    alp-node: "npm:8.0.0"
-    alp-node-auth: "npm:11.0.0"
-    alp-rollup-plugin-config: "npm:3.0.0"
+    alp-node: "npm:9.0.0"
+    alp-node-auth: "npm:12.0.0"
+    alp-rollup-plugin-config: "npm:4.0.0"
     liwi-mongo: "npm:12.0.0"
     nightingale-app-console: "npm:16.2.0"
     nightingale-web-processor: "npm:16.0.0"
@@ -5169,12 +5169,12 @@ __metadata:
     "@types/react": "npm:19.1.11"
     alouette: "npm:11.3.0"
     alouette-icons: "npm:5.1.0"
-    alp-nextjs: "npm:5.0.0"
+    alp-nextjs: "npm:6.0.0"
     next: "npm:15.5.0"
     nightingale-app-console: "npm:16.2.0"
     react: "npm:19.1.1"
-    react-alp-auth: "npm:3.0.0"
-    react-alp-connection-state: "npm:9.0.0"
+    react-alp-auth: "npm:4.0.0"
+    react-alp-connection-state: "npm:10.0.0"
     react-dom: "npm:19.1.1"
     react-intl: "npm:7.1.11"
     react-native: "npm:0.80.2"
@@ -5194,7 +5194,7 @@ __metadata:
     "@pob/rollup-esbuild": "npm:6.7.0"
     "@types/node": "npm:24.3.0"
     "@types/semver": "npm:7.7.0"
-    alp-node: "npm:8.0.0"
+    alp-node: "npm:9.0.0"
     liwi-mongo: "npm:12.0.0"
     nightingale-logger: "npm:^16.0.0"
     router-segments: "npm:11.0.0"
@@ -5206,7 +5206,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-nextjs@npm:5.0.0, alp-nextjs@workspace:packages/alp-nextjs":
+"alp-nextjs@npm:6.0.0, alp-nextjs@workspace:packages/alp-nextjs":
   version: 0.0.0-use.local
   resolution: "alp-nextjs@workspace:packages/alp-nextjs"
   dependencies:
@@ -5223,14 +5223,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-node-auth@npm:11.0.0, alp-node-auth@workspace:packages/alp-node-auth":
+"alp-node-auth@npm:12.0.0, alp-node-auth@workspace:packages/alp-node-auth":
   version: 0.0.0-use.local
   resolution: "alp-node-auth@workspace:packages/alp-node-auth"
   dependencies:
     "@pob/rollup-esbuild": "npm:6.7.0"
     "@types/jsonwebtoken": "npm:^9.0.10"
     "@types/simple-oauth2": "npm:^5.0.7"
-    alp-node: "npm:8.0.0"
+    alp-node: "npm:9.0.0"
     cookies: "npm:~0.9.1"
     jsonwebtoken: "npm:^9.0.2"
     liwi-mongo: "npm:12.0.0"
@@ -5239,13 +5239,13 @@ __metadata:
     simple-oauth2: "npm:^5.0.0"
     typescript: "npm:5.9.2"
   peerDependencies:
-    alp-node: ^8.0.0
+    alp-node: ^9.0.0
     liwi-mongo: ^12.0.0
     router-segments: ^11.0.0
   languageName: unknown
   linkType: soft
 
-"alp-node@npm:8.0.0, alp-node@workspace:packages/alp-node":
+"alp-node@npm:9.0.0, alp-node@workspace:packages/alp-node":
   version: 0.0.0-use.local
   resolution: "alp-node@workspace:packages/alp-node"
   dependencies:
@@ -5270,7 +5270,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-rollup-plugin-config@npm:3.0.0, alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config":
+"alp-rollup-plugin-config@npm:4.0.0, alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config":
   version: 0.0.0-use.local
   resolution: "alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config"
   dependencies:
@@ -12064,25 +12064,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-alp-auth@npm:3.0.0, react-alp-auth@workspace:packages/react-alp-auth":
+"react-alp-auth@npm:4.0.0, react-alp-auth@workspace:packages/react-alp-auth":
   version: 0.0.0-use.local
   resolution: "react-alp-auth@workspace:packages/react-alp-auth"
   dependencies:
     "@pob/rollup-esbuild": "npm:6.7.0"
     "@types/js-cookie": "npm:3.0.6"
-    alp-nextjs: "npm:5.0.0"
+    alp-nextjs: "npm:6.0.0"
     js-cookie: "npm:3.0.5"
     next: "npm:15.5.0"
     react: "npm:19.1.1"
     react-dom: "npm:19.1.1"
     typescript: "npm:5.9.2"
   peerDependencies:
-    alp-nextjs: ^5.0.0
+    alp-nextjs: ^6.0.0
     react: ^19.0.0
   languageName: unknown
   linkType: soft
 
-"react-alp-connection-state@npm:9.0.0, react-alp-connection-state@workspace:packages/react-alp-connection-state":
+"react-alp-connection-state@npm:10.0.0, react-alp-connection-state@workspace:packages/react-alp-connection-state":
   version: 0.0.0-use.local
   resolution: "react-alp-connection-state@workspace:packages/react-alp-connection-state"
   dependencies:

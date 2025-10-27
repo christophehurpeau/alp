@@ -1,6 +1,6 @@
 {
   "name": "alp-body-parser",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "body parser in alp framework",
   "keywords": [
     "alp",
@@ -62,7 +62,7 @@
   },
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
-    "alp-node": "^8.0.0"
+    "alp-node": "^9.0.0"
   },
   "dependencies": {
     "@types/co-body": "^6.1.3",

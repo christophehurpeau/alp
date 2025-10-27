@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@9.0.0...react-alp-connection-state@10.0.0) (2025-10-27)
+
+### ⚠ BREAKING CHANGES
+
+* drop node 20 and build using esbuild
+
+### Features
+
+* drop node 20 and build using esbuild ([812c4c1](https://github.com/christophehurpeau/alp/commit/812c4c1b0ad19984e389af4382a8d1e60643e4f1))
+
 ## [9.0.0](https://github.com/christophehurpeau/alp/compare/react-alp-connection-state@8.1.1...react-alp-connection-state@9.0.0) (2025-08-02)
 
 ### ⚠ BREAKING CHANGES

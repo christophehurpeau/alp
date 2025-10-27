@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@5.0.0...alp-nextjs@6.0.0) (2025-10-27)
+
+### ⚠ BREAKING CHANGES
+
+* drop node 20 and build using esbuild
+
+### Features
+
+* drop node 20 and build using esbuild ([812c4c1](https://github.com/christophehurpeau/alp/commit/812c4c1b0ad19984e389af4382a8d1e60643e4f1))
+
 ## [5.0.0](https://github.com/christophehurpeau/alp/compare/alp-nextjs@4.1.1...alp-nextjs@5.0.0) (2025-08-02)
 
 ### ⚠ BREAKING CHANGES
