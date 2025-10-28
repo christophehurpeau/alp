@@ -5101,6 +5101,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"alouette-icons@npm:5.1.2":
+  version: 5.1.2
+  resolution: "alouette-icons@npm:5.1.2"
+  dependencies:
+    "@phosphor-icons/core": "npm:2.1.1"
+  peerDependencies:
+    react: ^19.0.0
+    react-native: "*"
+    react-native-svg: "*"
+  checksum: 10c0/b545ce1a515ed5fbd12a74f15d16d7ac41d53c013d3c4be3caa4ac5fc623c9ce040ee0e64e3110540baf9853f3a264d054c6557ca1ea23bccdc9e0e8dad85381
+  languageName: node
+  linkType: hard
+
 "alouette@npm:11.3.0":
   version: 11.3.0
   resolution: "alouette@npm:11.3.0"
@@ -5168,7 +5181,7 @@ __metadata:
     "@types/node": "npm:24.3.0"
     "@types/react": "npm:19.1.11"
     alouette: "npm:11.3.0"
-    alouette-icons: "npm:5.1.0"
+    alouette-icons: "npm:5.1.2"
     alp-nextjs: "npm:6.0.0"
     next: "npm:15.5.0"
     nightingale-app-console: "npm:16.2.0"
