@@ -5132,7 +5132,7 @@ __metadata:
     "@types/koa": "npm:^3.0.0"
     co-body: "npm:^6.2.0"
     koa: "npm:^3.0.1"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     alp-node: ^9.0.0
   languageName: unknown
@@ -5150,7 +5150,7 @@ __metadata:
     nightingale-app-console: "npm:16.2.0"
     nightingale-web-processor: "npm:16.0.0"
     router-segments: "npm:11.0.0"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
 
@@ -5181,7 +5181,7 @@ __metadata:
     react-native-svg: "npm:13.14.0"
     react-native-web: "npm:0.20.0"
     springbokjs-daemon: "npm:10.1.0"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
     webpack: "npm:5.101.3"
     webpack-bundle-analyzer: "npm:4.10.2"
   languageName: unknown
@@ -5199,7 +5199,7 @@ __metadata:
     nightingale-logger: "npm:^16.0.0"
     router-segments: "npm:11.0.0"
     semver: "npm:^7.3.5"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     liwi-mongo: ^12.0.0
     router-segments: ^11.0.0
@@ -5215,7 +5215,7 @@ __metadata:
     next: "npm:15.5.0"
     react: "npm:19.1.1"
     react-dom: "npm:19.1.1"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     next: ^15.3.5
     react: ^19.0.0
@@ -5237,7 +5237,7 @@ __metadata:
     nightingale-logger: "npm:^16.0.0"
     router-segments: "npm:11.0.0"
     simple-oauth2: "npm:^5.0.0"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     alp-node: ^9.0.0
     liwi-mongo: ^12.0.0
@@ -5264,7 +5264,7 @@ __metadata:
     minimist: "npm:^1.2.8"
     nightingale-logger: "npm:^16.0.0"
     object-properties: "npm:^9.0.1"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     router-segments: ^11.0.0
   languageName: unknown
@@ -5276,7 +5276,7 @@ __metadata:
   dependencies:
     "@guanghechen/rollup-plugin-copy": "npm:1.8.6"
     js-yaml: "npm:4.1.0"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     rollup: ^2.64.0 || ^3.0.0 || ^4.0.0
   languageName: unknown
@@ -5293,7 +5293,7 @@ __metadata:
     "@pob/root": "npm:18.3.0"
     check-package-dependencies: "npm:10.4.1"
     eslint: "npm:9.34.0"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
 
@@ -12075,7 +12075,7 @@ __metadata:
     next: "npm:15.5.0"
     react: "npm:19.1.1"
     react-dom: "npm:19.1.1"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     alp-nextjs: ^6.0.0
     react: ^19.0.0
@@ -12088,7 +12088,7 @@ __metadata:
   dependencies:
     "@pob/rollup-esbuild": "npm:6.7.0"
     react: "npm:19.1.1"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     react: ^19.0.0
     react-native: "*"
@@ -12104,7 +12104,7 @@ __metadata:
   dependencies:
     "@pob/rollup-esbuild": "npm:6.7.0"
     react: "npm:19.1.1"
-    typescript: "npm:5.9.2"
+    typescript: "npm:5.9.3"
   peerDependencies:
     react: ^19.0.0
   languageName: unknown
@@ -13992,23 +13992,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.9.2":
-  version: 5.9.2
-  resolution: "typescript@npm:5.9.2"
+"typescript@npm:5.9.3":
+  version: 5.9.3
+  resolution: "typescript@npm:5.9.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/cd635d50f02d6cf98ed42de2f76289701c1ec587a363369255f01ed15aaf22be0813226bff3c53e99d971f9b540e0b3cc7583dbe05faded49b1b0bed2f638a18
+  checksum: 10c0/6bd7552ce39f97e711db5aa048f6f9995b53f1c52f7d8667c1abdc1700c68a76a308f579cd309ce6b53646deb4e9a1be7c813a93baaf0a28ccd536a30270e1c5
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>":
-  version: 5.9.2
-  resolution: "typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"
+"typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>":
+  version: 5.9.3
+  resolution: "typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/34d2a8e23eb8e0d1875072064d5e1d9c102e0bdce56a10a25c0b917b8aa9001a9cf5c225df12497e99da107dc379360bc138163c66b55b95f5b105b50578067e
+  checksum: 10c0/ad09fdf7a756814dce65bc60c1657b40d44451346858eea230e10f2e95a289d9183b6e32e5c11e95acc0ccc214b4f36289dcad4bf1886b0adb84d711d336a430
   languageName: node
   linkType: hard
 
