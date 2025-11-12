@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@9.0.1...alp-node@10.0.0) (2025-11-12)
+
+### ⚠ BREAKING CHANGES
+
+* update router-segments
+
+### Features
+
+* update router-segments
+
 ## [9.0.1](https://github.com/christophehurpeau/alp/compare/alp-node@9.0.0...alp-node@9.0.1) (2025-11-12)
 
 Note: no notable changes

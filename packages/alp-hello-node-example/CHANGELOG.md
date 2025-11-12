@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-node-example@12.0.1...alp-hello-node-example@13.0.0) (2025-11-12)
+
+### ⚠ BREAKING CHANGES
+
+* update router-segments
+
+### Features
+
+* update router-segments
+
+Version bump for dependency: alp-node
+Version bump for dependency: alp-node-auth
+
+
 ## [12.0.1](https://github.com/christophehurpeau/alp/compare/alp-hello-node-example@12.0.0...alp-hello-node-example@12.0.1) (2025-11-12)
 
 Version bump for dependency: alp-node

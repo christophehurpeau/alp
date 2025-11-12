@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/christophehurpeau/alp/compare/react-alp-auth@4.0.1...react-alp-auth@4.0.2) (2025-11-12)
+
+Version bump for dependency: alp-nextjs
+
+
 ## [4.0.1](https://github.com/christophehurpeau/alp/compare/react-alp-auth@4.0.0...react-alp-auth@4.0.1) (2025-11-12)
 
 Version bump for dependency: alp-nextjs
