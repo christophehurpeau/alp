@@ -1,6 +1,6 @@
 {
   "name": "react-alp-auth",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "react alp context",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
@@ -82,7 +82,7 @@
   "devDependencies": {
     "@pob/rollup-esbuild": "6.7.0",
     "@types/js-cookie": "3.0.6",
-    "alp-nextjs": "6.0.0",
+    "alp-nextjs": "6.0.1",
     "next": "15.5.0",
     "react": "19.1.1",
     "react-dom": "19.1.1",

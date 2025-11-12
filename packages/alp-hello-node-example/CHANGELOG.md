@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1](https://github.com/christophehurpeau/alp/compare/alp-hello-node-example@12.0.0...alp-hello-node-example@12.0.1) (2025-11-12)
+
+Version bump for dependency: alp-node
+Version bump for dependency: alp-node-auth
+Version bump for dependency: alp-rollup-plugin-config
+
+
 ## [12.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-node-example@11.0.0...alp-hello-node-example@12.0.0) (2025-10-27)
 
 ### ⚠ BREAKING CHANGES
