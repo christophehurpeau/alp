@@ -101,7 +101,7 @@
     "cookies": "~0.9.1"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "6.7.0",
+    "@pob/rollup-esbuild": "7.3.2",
     "next": "15.5.0",
     "react": "19.1.1",
     "react-dom": "19.1.1",

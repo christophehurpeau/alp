@@ -57,7 +57,7 @@ export default async function migrate({
     migrations.push({ version, fileName });
   });
 
-  migrations = migrations.sort((a, b) =>
+  migrations = migrations.toSorted((a, b) =>
     semver.gt(a.version, b.version) ? 1 : -1,
   );
 

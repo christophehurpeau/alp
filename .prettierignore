@@ -4,6 +4,7 @@ CHANGELOG.md
 /packages/*/.tamagui
 /packages/*/dist
 /packages/*/build
+/packages/*/data
 /packages/*/.next
 /packages/*/out
 /packages/*/.env.local

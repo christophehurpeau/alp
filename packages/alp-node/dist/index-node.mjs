@@ -227,10 +227,6 @@ function alpParams(app) {
       const namedParams = this.route.namedParams;
       return namedParams?.get(name);
     },
-    otherRouteParam(position) {
-      const otherParams = this.route.otherParams;
-      return otherParams?.[position - 1];
-    },
     queryParam(name) {
       const searchParams = this.request.searchParams;
       return searchParams.get(name) ?? void 0;

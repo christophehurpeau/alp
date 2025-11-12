@@ -20,7 +20,9 @@ export const appDirname = path.resolve("build");
 
 const packagePath = path.resolve("package.json");
 if (!packagePath) {
-  throw new Error(`Could not find package.json: "${String(packagePath)}"`);
+  throw new Error(
+    `Could not find package.json: "${String(packagePath as unknown)}"`,
+  );
 }
 export const packageDirname = path.dirname(packagePath);
 
