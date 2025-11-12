@@ -11,7 +11,7 @@ import config from "../tamagui.config";
 import "@tamagui/core/reset.css";
 
 if (process.env.NODE_ENV === "production") {
-  // eslint-disable-next-line import/no-unresolved, unicorn/prefer-module
+  // eslint-disable-next-line import/no-unresolved
   require("../../build/tamagui.css");
 }
 

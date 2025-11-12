@@ -64,7 +64,7 @@ async function migrate({
     if (currentVersion && semver.lte(version, currentVersion)) return;
     migrations.push({ version, fileName });
   });
-  migrations = migrations.sort(
+  migrations = migrations.toSorted(
     (a, b) => semver.gt(a.version, b.version) ? 1 : -1
   );
   try {
