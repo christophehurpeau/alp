@@ -28,11 +28,6 @@ export default function alpParams(app: AlpNodeApp): void {
       return namedParams?.get(name);
     },
 
-    otherRouteParam(this: Context, position: number): string | undefined {
-      const otherParams = this.route.otherParams;
-      return otherParams?.[position - 1];
-    },
-
     queryParam(this: Context, name: string): string | undefined {
       const searchParams = this.request.searchParams;
       return searchParams.get(name) ?? undefined;

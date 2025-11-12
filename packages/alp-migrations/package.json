@@ -57,7 +57,7 @@
   "prettier": "@pob/root/prettier-config",
   "peerDependencies": {
     "liwi-mongo": "^12.0.0",
-    "router-segments": "^11.0.0"
+    "router-segments": "^11.0.0 || ^12.0.0"
   },
   "dependencies": {
     "alp-node": "9.0.1",
@@ -69,7 +69,7 @@
     "@types/node": "24.3.0",
     "@types/semver": "7.7.1",
     "liwi-mongo": "12.0.0",
-    "router-segments": "11.0.0",
+    "router-segments": "12.0.0",
     "typescript": "5.9.3"
   }
 }

@@ -124,7 +124,12 @@
   "peerDependencies": {
     "alp-node": "^9.0.0",
     "liwi-mongo": "^12.0.0",
-    "router-segments": "^11.0.0"
+    "router-segments": "^11.0.0 || ^12.0.0"
+  },
+  "peerDependenciesMeta": {
+    "router-segments": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.10",
@@ -138,7 +143,7 @@
     "@pob/rollup-esbuild": "6.7.0",
     "alp-node": "9.0.1",
     "liwi-mongo": "12.0.0",
-    "router-segments": "11.0.0",
+    "router-segments": "12.0.0",
     "typescript": "5.9.3"
   }
 }
