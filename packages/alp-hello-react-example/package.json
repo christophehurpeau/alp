@@ -53,7 +53,7 @@
     "@tamagui/next-theme": "1.132.15",
     "@tamagui/use-did-finish-ssr": "1.132.15",
     "alouette": "11.3.0",
-    "alouette-icons": "5.1.0",
+    "alouette-icons": "5.1.2",
     "alp-nextjs": "6.0.2",
     "next": "15.5.0",
     "nightingale-app-console": "16.2.0",
