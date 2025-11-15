@@ -95,7 +95,7 @@
   "peerDependencies": {
     "next": "^15.3.5",
     "react": "^19.0.0",
-    "react-native-web": "^0.20.0"
+    "react-native-web": "^0.21.2"
   },
   "dependencies": {
     "cookies": "~0.9.1"
