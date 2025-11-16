@@ -62,7 +62,7 @@
     "react-alp-connection-state": "10.0.2",
     "react-dom": "19.1.1",
     "react-intl": "7.1.11",
-    "react-native-svg": "13.14.0"
+    "react-native-svg": "15.15.0"
   },
   "devDependencies": {
     "@svgr/webpack": "8.1.0",
