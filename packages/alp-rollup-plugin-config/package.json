@@ -1,6 +1,6 @@
 {
   "name": "alp-rollup-plugin-config",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "transform yaml config using rollup copy plugin and yaml transform",
   "keywords": [],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",

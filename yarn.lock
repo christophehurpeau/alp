@@ -5020,7 +5020,7 @@ __metadata:
     "@pob/rollup-esbuild": "npm:7.3.2"
     alp-node: "npm:10.0.0"
     alp-node-auth: "npm:13.0.0"
-    alp-rollup-plugin-config: "npm:4.0.1"
+    alp-rollup-plugin-config: "npm:4.0.2"
     liwi-mongo: "npm:12.0.0"
     nightingale-app-console: "npm:16.2.0"
     nightingale-web-processor: "npm:16.0.0"
@@ -5152,7 +5152,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alp-rollup-plugin-config@npm:4.0.1, alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config":
+"alp-rollup-plugin-config@npm:4.0.2, alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config":
   version: 0.0.0-use.local
   resolution: "alp-rollup-plugin-config@workspace:packages/alp-rollup-plugin-config"
   dependencies:

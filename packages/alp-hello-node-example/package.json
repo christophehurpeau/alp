@@ -1,7 +1,7 @@
 {
   "name": "alp-hello-node-example",
   "private": true,
-  "version": "13.0.0",
+  "version": "13.0.1",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
   "license": "MIT",
   "repository": {
@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "7.3.2",
-    "alp-rollup-plugin-config": "4.0.1",
+    "alp-rollup-plugin-config": "4.0.2",
     "typescript": "5.9.3"
   }
 }
