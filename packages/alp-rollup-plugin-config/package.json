@@ -47,7 +47,7 @@
     "rollup": "^2.64.0 || ^3.0.0 || ^4.0.0"
   },
   "dependencies": {
-    "@guanghechen/rollup-plugin-copy": "1.8.6",
+    "@guanghechen/rollup-plugin-copy": "1.9.8",
     "js-yaml": "4.1.1"
   },
   "devDependencies": {
