@@ -5073,7 +5073,7 @@ __metadata:
     liwi-mongo: "npm:12.0.0"
     nightingale-logger: "npm:^16.0.0"
     router-segments: "npm:12.0.0"
-    semver: "npm:^7.3.5"
+    semver: "npm:^7.7.3"
     typescript: "npm:5.9.3"
   peerDependencies:
     liwi-mongo: ^12.0.0
