@@ -61,7 +61,7 @@
     "react-alp-auth": "4.0.2",
     "react-alp-connection-state": "10.0.2",
     "react-dom": "19.1.1",
-    "react-intl": "7.1.11",
+    "react-intl": "7.1.14",
     "react-native-svg": "13.14.0"
   },
   "devDependencies": {
