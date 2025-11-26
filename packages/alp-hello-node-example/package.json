@@ -56,7 +56,7 @@
     "router-segments": "12.0.0"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "7.3.2",
+    "@pob/rollup-esbuild": "7.4.1",
     "alp-rollup-plugin-config": "4.0.2",
     "typescript": "5.9.3"
   }

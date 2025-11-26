@@ -80,7 +80,7 @@
     "js-cookie": "3.0.5"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "7.3.2",
+    "@pob/rollup-esbuild": "7.4.1",
     "@types/js-cookie": "3.0.6",
     "alp-nextjs": "6.0.2",
     "next": "15.5.0",
