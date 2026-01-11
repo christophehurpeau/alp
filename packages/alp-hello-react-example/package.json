@@ -72,7 +72,7 @@
     "@types/node": "24.10.1",
     "@types/react": "19.1.11",
     "react-native": "0.80.2",
-    "react-native-web": "0.20.0",
+    "react-native-web": "0.21.2",
     "springbokjs-daemon": "10.1.0",
     "typescript": "5.9.3",
     "webpack": "5.101.3",
