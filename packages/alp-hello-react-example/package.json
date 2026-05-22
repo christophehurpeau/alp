@@ -68,7 +68,7 @@
     "@svgr/webpack": "8.1.0",
     "@tamagui/next-plugin": "1.132.15",
     "@testing-library/dom": "10.4.1",
-    "@testing-library/react": "16.3.0",
+    "@testing-library/react": "16.3.2",
     "@types/node": "24.10.1",
     "@types/react": "19.1.11",
     "react-native": "0.80.2",
