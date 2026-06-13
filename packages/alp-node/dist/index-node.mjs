@@ -368,6 +368,7 @@ class AlpNodeApp extends Koa {
     try {
       const server = await alpListen(
         this.config,
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         this.callback(),
         this.certPath
       );
@@ -491,7 +492,7 @@ const appDirname = path.resolve("build");
 const packagePath = path.resolve("package.json");
 if (!packagePath) {
   throw new Error(
-    `Could not find package.json: "${String(packagePath)}"`
+    `Could not find package.json: "${packagePath}"`
   );
 }
 const packageDirname = path.dirname(packagePath);

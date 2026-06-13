@@ -1,4 +1,5 @@
 import type { AlpRouteRef } from "alp-node";
+// eslint-disable-next-line import-x/no-unresolved
 import { config, createAlpRouterBuilder } from "alp-node";
 import type { AuthRoutes } from "alp-node-auth";
 import type { Router } from "router-segments";

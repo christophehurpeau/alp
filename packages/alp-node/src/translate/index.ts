@@ -1,3 +1,4 @@
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type { AlpNodeApp, Context } from "../AlpNodeApp";
 import type { Translations } from "./load";

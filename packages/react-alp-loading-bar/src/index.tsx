@@ -1,5 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
-import type { ReactElement } from "react";
+import type { ComponentType, ReactElement } from "react";
 import { PureComponent } from "react";
 
 /*
@@ -36,7 +36,7 @@ const calculatePercent = (percent: number): number => {
 };
 
 interface LoadingBarProps {
-  LoadingBarComponent: React.ComponentType<{ progress: number }>;
+  LoadingBarComponent: ComponentType<{ progress: number }>;
   websocket: WebsocketInterface;
 }
 

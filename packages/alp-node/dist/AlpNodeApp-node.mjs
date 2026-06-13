@@ -365,6 +365,7 @@ class AlpNodeApp extends Koa {
     try {
       const server = await alpListen(
         this.config,
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         this.callback(),
         this.certPath
       );

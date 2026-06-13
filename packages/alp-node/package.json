@@ -3,27 +3,28 @@
   "version": "10.0.0",
   "description": "framework based on koa 2",
   "keywords": [
-    "springbokjs",
     "alp",
     "framework",
     "koa",
-    "node5"
+    "node5",
+    "springbokjs"
   ],
-  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "homepage": "https://github.com/christophehurpeau/alp",
+  "bugs": {
+    "url": "https://github.com/christophehurpeau/alp/issues"
+  },
   "license": "ISC",
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "repository": {
     "type": "git",
     "url": "https://github.com/christophehurpeau/alp.git",
     "directory": "packages/alp-node"
   },
-  "homepage": "https://github.com/christophehurpeau/alp",
-  "bugs": {
-    "url": "https://github.com/alpjs/alp-node/issues"
-  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "type": "module",
-  "engines": {
-    "node": ">=22.18.0"
-  },
   "sideEffects": false,
   "main": "./dist/index-node.mjs",
   "types": "./dist/definitions/index.d.ts",
@@ -49,18 +50,46 @@
       }
     }
   },
-  "files": [
-    "src",
-    "dist"
-  ],
   "scripts": {
-    "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
+    "build": "yarn run clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
     "clean": "yarn clean:build",
     "clean:build": "pob-esbuild-clean-out dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-node",
+    "lint:eslint": "yarn '../..' run eslint --quiet 'packages/alp-node'",
+    "tsc": "tsc",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
+  },
+  "dependencies": {
+    "@types/koa": "^3.0.0",
+    "@types/node": ">=22.0.0",
+    "deep-freeze-es6": "^4.0.1",
+    "error-html": "^0.3.5",
+    "intl-messageformat": "^10.0.0",
+    "koa": "^3.1.2",
+    "koa-compress": "^5.1.1",
+    "koa-static": "^5.0.0",
+    "minimist": "^1.2.8",
+    "nightingale-logger": "^18.2.0",
+    "object-properties": "^9.0.1"
+  },
+  "devDependencies": {
+    "@pob/rollup-esbuild": "9.1.1",
+    "@types/koa-compress": "4.0.7",
+    "@types/koa-static": "4.0.4",
+    "@types/minimist": "1.2.5",
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "router-segments": "^11.0.0 || ^12.0.0"
+  },
+  "peerDependenciesMeta": {
+    "router-segments": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=22.18.0"
   },
   "pob": {
     "bundler": "rollup-esbuild",
@@ -76,34 +105,5 @@
       }
     ],
     "typescript": true
-  },
-  "prettier": "@pob/root/prettier-config",
-  "peerDependencies": {
-    "router-segments": "^11.0.0 || ^12.0.0"
-  },
-  "peerDependenciesMeta": {
-    "router-segments": {
-      "optional": true
-    }
-  },
-  "dependencies": {
-    "@types/koa": "^3.0.0",
-    "@types/node": ">=24.10.1",
-    "deep-freeze-es6": "^4.0.1",
-    "error-html": "^0.3.5",
-    "intl-messageformat": "^10.0.0",
-    "koa": "^3.1.2",
-    "koa-compress": "^5.1.1",
-    "koa-static": "^5.0.0",
-    "minimist": "^1.2.8",
-    "nightingale-logger": "^16.0.0",
-    "object-properties": "^9.0.1"
-  },
-  "devDependencies": {
-    "@pob/rollup-esbuild": "7.4.2",
-    "@types/koa-compress": "4.0.7",
-    "@types/koa-static": "4.0.4",
-    "@types/minimist": "1.2.5",
-    "typescript": "5.9.3"
   }
 }

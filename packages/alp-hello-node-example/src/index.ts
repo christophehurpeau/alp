@@ -1,7 +1,11 @@
+// eslint-disable-next-line import-x/no-unresolved
 import Alp, { router } from "alp-node";
+// eslint-disable-next-line import-x/no-unresolved
 import authInit, { UserAccountSlackService } from "alp-node-auth";
 import slackStrategy from "alp-node-auth/strategies/slack";
+// eslint-disable-next-line import-x/no-unresolved
 import { addConfig, appLogger } from "nightingale-app-console";
+// eslint-disable-next-line import-x/no-unresolved
 import webProcessor from "nightingale-web-processor";
 import createRouter from "./createRouter";
 import type { User } from "./db/user";

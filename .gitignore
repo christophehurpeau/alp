@@ -20,7 +20,7 @@ yarn-error.log*
 /coverage
 
 # Typescript
-tsbuildinfo
+*.tsbuildinfo
 
 #*
 *$

@@ -5,18 +5,23 @@
   "keywords": [
     "alp"
   ],
-  "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
+  "homepage": "https://github.com/christophehurpeau/alp",
+  "bugs": {
+    "url": "https://github.com/christophehurpeau/alp/issues"
+  },
   "license": "ISC",
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
   "repository": {
     "type": "git",
     "url": "https://github.com/christophehurpeau/alp.git",
     "directory": "packages/alp-node-auth"
   },
-  "homepage": "https://github.com/christophehurpeau/alp",
+  "files": [
+    "src",
+    "dist",
+    "strategies"
+  ],
   "type": "module",
-  "engines": {
-    "node": ">=22.18.0"
-  },
   "sideEffects": false,
   "main": "./dist/index-node.mjs",
   "types": "./dist/definitions/index.d.ts",
@@ -60,19 +65,44 @@
       "default": "./strategies/slack.js"
     }
   },
-  "files": [
-    "src",
-    "dist",
-    "strategies"
-  ],
   "scripts": {
-    "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
+    "build": "yarn run clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
     "clean": "yarn clean:build",
     "clean:build": "pob-esbuild-clean-out dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-node-auth",
+    "lint:eslint": "yarn '../..' run eslint --quiet 'packages/alp-node-auth'",
+    "tsc": "tsc",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/simple-oauth2": "^5.0.7",
+    "cookies": "~0.9.1",
+    "jsonwebtoken": "^9.0.3",
+    "nightingale-logger": "^18.2.0",
+    "simple-oauth2": "^5.0.0"
+  },
+  "devDependencies": {
+    "@pob/rollup-esbuild": "9.1.1",
+    "@types/node": "24.10.1",
+    "alp-node": "10.0.0",
+    "liwi-mongo": "12.0.0",
+    "router-segments": "12.0.0",
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "alp-node": "^10.0.0",
+    "liwi-mongo": "^12.0.0",
+    "router-segments": "^11.0.0 || ^12.0.0"
+  },
+  "peerDependenciesMeta": {
+    "router-segments": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=22.18.0"
   },
   "pob": {
     "bundler": "rollup-esbuild",
@@ -119,32 +149,5 @@
       }
     ],
     "typescript": true
-  },
-  "prettier": "@pob/root/prettier-config",
-  "peerDependencies": {
-    "alp-node": "^10.0.0",
-    "liwi-mongo": "^12.0.0",
-    "router-segments": "^11.0.0 || ^12.0.0"
-  },
-  "peerDependenciesMeta": {
-    "router-segments": {
-      "optional": true
-    }
-  },
-  "dependencies": {
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/simple-oauth2": "^5.0.7",
-    "cookies": "~0.9.1",
-    "jsonwebtoken": "^9.0.3",
-    "nightingale-logger": "^16.0.0",
-    "simple-oauth2": "^5.0.0"
-  },
-  "devDependencies": {
-    "@pob/rollup-esbuild": "7.4.2",
-    "@types/node": "24.10.1",
-    "alp-node": "10.0.0",
-    "liwi-mongo": "12.0.0",
-    "router-segments": "12.0.0",
-    "typescript": "5.9.3"
   }
 }

@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/no-process-exit */
 import type AlpNodeApp from "alp-node";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import semver from "semver";
 import type MigrationsManager from "./Manager";

@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type { AlpNodeAppOptions } from "./AlpNodeApp";
 import { AlpNodeApp } from "./AlpNodeApp";
@@ -20,9 +21,7 @@ export const appDirname = path.resolve("build");
 
 const packagePath = path.resolve("package.json");
 if (!packagePath) {
-  throw new Error(
-    `Could not find package.json: "${String(packagePath as unknown)}"`,
-  );
+  throw new Error(`Could not find package.json: "${packagePath}"`);
 }
 export const packageDirname = path.dirname(packagePath);
 

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import-x/no-unresolved
 import { defineLazyProperty } from "object-properties";
 import type { AlpNodeApp, Context } from "../AlpNodeApp";
 import ParamValid from "./ParamValid";

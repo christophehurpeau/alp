@@ -2,6 +2,7 @@ import { chmodSync, readFileSync, unlinkSync } from "node:fs";
 import { createServer as createServerHttp } from "node:http";
 import type { IncomingMessage, Server, ServerResponse } from "node:http";
 import { createServer as createServerHttps } from "node:https";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type { Config } from "./config";
 

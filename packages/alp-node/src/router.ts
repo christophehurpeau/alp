@@ -4,6 +4,7 @@ import type {
   Router,
   RouterBuilder,
 } from "router-segments";
+// eslint-disable-next-line import-x/no-unresolved
 import { createRouterBuilder } from "router-segments";
 import type { AlpNodeApp, Context } from "./AlpNodeApp";
 

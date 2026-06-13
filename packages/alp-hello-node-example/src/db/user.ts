@@ -1,3 +1,4 @@
+// eslint-disable-next-line import-x/no-unresolved
 import { MongoUsersManager } from "alp-node-auth";
 import type { User as BasicUser } from "alp-node-auth";
 import { createMongoStore } from "./mongo";

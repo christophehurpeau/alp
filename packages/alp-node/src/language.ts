@@ -1,4 +1,5 @@
 import type { Context } from "koa";
+// eslint-disable-next-line import-x/no-unresolved
 import { defineLazyProperty } from "object-properties";
 import type { AlpNodeApp } from "./AlpNodeApp";
 

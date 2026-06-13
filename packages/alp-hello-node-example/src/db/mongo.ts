@@ -1,5 +1,7 @@
+// eslint-disable-next-line import-x/no-unresolved
 import { config } from "alp-node";
 import type { MongoBaseModel } from "liwi-mongo";
+// eslint-disable-next-line import-x/no-unresolved
 import { MongoConnection, MongoStore } from "liwi-mongo";
 
 export const mongoConnection: MongoConnection = new MongoConnection(

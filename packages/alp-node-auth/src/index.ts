@@ -2,6 +2,7 @@ import type { IncomingMessage } from "node:http";
 import { promisify } from "node:util";
 import type { Context, ContextState, NodeApplication } from "alp-node";
 import jsonwebtoken from "jsonwebtoken";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type MongoUsersManager from "./MongoUsersManager";
 import type {

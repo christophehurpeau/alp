@@ -4,6 +4,7 @@
 /* eslint-disable camelcase */
 import { EventEmitter } from "node:events";
 import type { Context, NodeConfig } from "alp-node";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type { Strategy as Oauth2Strategy } from "../../../strategies/strategies.d";
 import type { Account, AccountId, User, UserSanitized } from "../../types";

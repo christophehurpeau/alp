@@ -1,7 +1,7 @@
-import type { ReactElement } from "react";
+import type { ComponentType, ReactElement } from "react";
 import { PureComponent } from "react";
 interface LoadingBarProps {
-    LoadingBarComponent: React.ComponentType<{
+    LoadingBarComponent: ComponentType<{
         progress: number;
     }>;
     websocket: WebsocketInterface;

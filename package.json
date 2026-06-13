@@ -2,51 +2,54 @@
   "name": "alp",
   "private": true,
   "description": "personal exploration and framework for node and browser",
-  "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
-  "license": "ISC",
-  "repository": "https://github.com/christophehurpeau/alp.git",
   "homepage": "https://github.com/christophehurpeau/alp",
-  "type": "module",
-  "packageManager": "yarn@4.16.0",
-  "engines": {
-    "node": ">=22.18.0"
+  "bugs": {
+    "url": "https://github.com/christophehurpeau/alp/issues"
   },
+  "license": "ISC",
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (https://christophe.hurpeau.com)",
+  "repository": "https://github.com/christophehurpeau/alp.git",
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "scripts": {
-    "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
+    "build": "yarn run clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -b",
     "checks": "node scripts/check-packages.js",
-    "clean:build": "yarn workspaces foreach --parallel -A run clean:build",
+    "clean:build": "yarn workspaces foreach --parallel -Av run clean:build",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check .",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
-    "lint": "yarn run lint:prettier && yarn run lint:eslint",
+    "lint": "yarn run format && yarn run lint:eslint",
     "lint:eslint": "eslint --quiet .",
     "lint:prettier": "pob-root-prettier --check .",
     "lint:prettier:fix": "pob-root-prettier --write .",
     "postinstall": "pob-root-postinstall",
     "start:hello-node": "yarn --cwd packages/alp-hello-node-example start",
-    "start:hello-react": "yarn --cwd packages/alp-hello-react-example start",
-    "test": "TZ=UTC node  --test packages/*/src/**/*.test.ts",
-    "test:coverage": "TZ=UTC npx c8 --all --src ./src node  --test packages/*/src/**/*.test.ts",
-    "test:coverage:json": "TZ=UTC npx c8 --reporter=json --all --src ./src node  --test packages/*/src/**/*.test.ts",
-    "test:watch": "TZ=UTC node  --test packages/*/src/**/*.test.ts",
+    "test": "TZ=UTC node --test packages/*/src/**/*.test.ts",
+    "test:coverage": "TZ=UTC npx c8 --all --src ./src node --test packages/*/src/**/*.test.ts",
+    "test:coverage:json": "TZ=UTC npx c8 --reporter=json --all --src ./src node --test packages/*/src/**/*.test.ts",
+    "test:watch": "TZ=UTC node --test packages/*/src/**/*.test.ts",
     "tsc": "tsc -b",
-    "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
+    "watch": "yarn run clean:build && rollup --config rollup.config.mjs --watch"
+  },
+  "devDependencies": {
+    "@pob/eslint-config": "65.5.0",
+    "@pob/eslint-config-typescript-react": "65.5.0",
+    "@pob/rollup-esbuild": "9.1.1",
+    "@pob/root": "24.3.0",
+    "check-package-dependencies": "11.1.1",
+    "eslint": "10.4.0",
+    "typescript": "6.0.3"
   },
   "commitlint": {
     "extends": [
       "@pob/root/commitlint-config"
     ]
   },
-  "prettier": "@pob/root/prettier-config",
-  "devDependencies": {
-    "@pob/eslint-config": "62.0.0",
-    "@pob/eslint-config-typescript-react": "62.0.0",
-    "@pob/rollup-esbuild": "7.4.2",
-    "@pob/root": "19.7.1",
-    "check-package-dependencies": "10.5.0",
-    "eslint": "9.39.4",
-    "typescript": "5.9.3"
-  }
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "packageManager": "yarn@4.16.0"
 }

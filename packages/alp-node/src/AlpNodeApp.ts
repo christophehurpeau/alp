@@ -1,14 +1,10 @@
-import type {
-  IncomingMessage,
-  RequestListener,
-  Server,
-  ServerResponse,
-} from "node:http";
+import type { IncomingMessage, Server, ServerResponse } from "node:http";
 import path from "node:path";
 import Koa from "koa";
 import type { DefaultContext, DefaultState, ParameterizedContext } from "koa";
 import compress from "koa-compress";
 import serve from "koa-static";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type { Router } from "router-segments";
 import type { Config } from "./config";
@@ -27,7 +23,6 @@ import type { TranslateBaseContext, TranslateContext } from "./translate/index";
 import translate from "./translate/index";
 import type {
   Context as AlpContext,
-  ContextSanitizedState,
   ContextState,
   NodeApplication,
   NodeConfig,
@@ -48,7 +43,8 @@ declare module "koa" {
   interface DefaultState extends ContextState {}
 
   interface DefaultContext
-    extends AlpContext,
+    extends
+      AlpContext,
       AlpParamsContext,
       AlpRouterContext,
       AlpLanguageContext,
@@ -122,8 +118,7 @@ export class AlpNodeApp
     res: ServerResponse,
   ): ParameterizedContext<StateT> {
     const ctx = super.createContext<StateT>(req, res);
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    ctx.sanitizedState = {} as ContextSanitizedState;
+    ctx.sanitizedState = {};
     return ctx;
   }
 
@@ -154,7 +149,8 @@ export class AlpNodeApp
     try {
       const server = await _listen(
         this.config,
-        this.callback() as RequestListener,
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        this.callback(),
         this.certPath,
       );
       this._server = server;

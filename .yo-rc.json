@@ -14,7 +14,6 @@
       "documentation": false,
       "typescript": true,
       "packageNames": [
-        "alp-nextjs",
         "alp-node",
         "alp-rollup-plugin-config",
         "react-alp-connection-state",
@@ -22,9 +21,7 @@
         "alp-body-parser",
         "alp-migrations",
         "alp-node-auth",
-        "react-alp-auth",
-        "alp-hello-node-example",
-        "alp-hello-react-example"
+        "alp-hello-node-example"
       ]
     },
     "renovate": {

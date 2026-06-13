@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import-x/extensions
 import { ParamValidationResult } from "./ParamValidationResult.ts";
 
 // const createContextMock = (): Context &

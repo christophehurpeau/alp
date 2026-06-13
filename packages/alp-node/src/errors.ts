@@ -1,5 +1,6 @@
 import { STATUS_CODES } from "node:http";
 import ErrorHtmlRenderer from "error-html";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type { Context } from "./AlpNodeApp";
 import type { HtmlError } from "./types";

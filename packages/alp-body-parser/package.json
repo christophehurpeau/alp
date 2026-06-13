@@ -6,21 +6,22 @@
     "alp",
     "body-parser"
   ],
-  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "homepage": "https://github.com/christophehurpeau/alp",
+  "bugs": {
+    "url": "https://github.com/christophehurpeau/alp/issues"
+  },
   "license": "ISC",
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "repository": {
     "type": "git",
     "url": "https://github.com/christophehurpeau/alp.git",
     "directory": "packages/alp-body-parser"
   },
-  "homepage": "https://github.com/christophehurpeau/alp",
-  "bugs": {
-    "url": "https://github.com/alpjs/alp-body-parser/issues"
-  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "type": "module",
-  "engines": {
-    "node": ">=22.18.0"
-  },
   "sideEffects": false,
   "main": "./dist/index-node.mjs",
   "types": "./dist/definitions/index.d.ts",
@@ -33,18 +34,31 @@
       }
     }
   },
-  "files": [
-    "src",
-    "dist"
-  ],
   "scripts": {
-    "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
+    "build": "yarn run clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
     "clean": "yarn clean:build",
     "clean:build": "pob-esbuild-clean-out dist",
     "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn ../.. run eslint --quiet packages/alp-body-parser",
+    "lint:eslint": "yarn '../..' run eslint --quiet 'packages/alp-body-parser'",
+    "tsc": "tsc",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
+  },
+  "dependencies": {
+    "@types/co-body": "^6.1.3",
+    "@types/koa": "^3.0.0",
+    "co-body": "^6.2.0",
+    "koa": "^3.1.2"
+  },
+  "devDependencies": {
+    "@pob/rollup-esbuild": "9.1.1",
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "alp-node": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   },
   "pob": {
     "bundler": "rollup-esbuild",
@@ -59,19 +73,5 @@
       }
     ],
     "typescript": true
-  },
-  "prettier": "@pob/root/prettier-config",
-  "peerDependencies": {
-    "alp-node": "^10.0.0"
-  },
-  "dependencies": {
-    "@types/co-body": "^6.1.3",
-    "@types/koa": "^3.0.0",
-    "co-body": "^6.2.0",
-    "koa": "^3.1.2"
-  },
-  "devDependencies": {
-    "@pob/rollup-esbuild": "7.4.2",
-    "typescript": "5.9.3"
   }
 }

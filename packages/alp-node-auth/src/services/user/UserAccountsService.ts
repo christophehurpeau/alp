@@ -1,4 +1,5 @@
 import { EventEmitter } from "node:events";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type MongoUsersManager from "../../MongoUsersManager";
 import type { Account, AccountId, User, UserSanitized } from "../../types";

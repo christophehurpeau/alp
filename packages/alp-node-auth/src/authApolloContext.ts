@@ -1,5 +1,6 @@
 import type { IncomingMessage } from "node:http";
 import type { NodeConfig } from "alp-node";
+// eslint-disable-next-line import-x/no-unresolved
 import { Logger } from "nightingale-logger";
 import type MongoUsersManager from "./MongoUsersManager";
 import type { User } from "./types";

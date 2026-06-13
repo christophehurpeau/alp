@@ -11,14 +11,15 @@ const calculatePercent = (percent) => {
   else return percent;
 };
 class LoadingBar extends PureComponent {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      loading: true,
-      hidden: true,
-      progress: 1
-    };
-  }
+  state = {
+    loading: true,
+    hidden: true,
+    progress: 1
+  };
+  fadeOffTimeout;
+  resetTimeout;
+  first20Timeout;
+  progressTimer;
   componentDidMount() {
     if (this.props.websocket.isConnected()) {
       this.setState((prevState) => ({
