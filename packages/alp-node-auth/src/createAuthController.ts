@@ -31,8 +31,9 @@ export interface AuthController {
 
 type OptionalRecord<K extends keyof any, T> = Partial<Record<K, T>>;
 
-export interface AuthHooks<StrategyKeys extends AllowedStrategyKeys>
-  extends AccessResponseHooks<StrategyKeys> {
+export interface AuthHooks<
+  StrategyKeys extends AllowedStrategyKeys,
+> extends AccessResponseHooks<StrategyKeys> {
   paramsForLogin?: <StrategyKey extends StrategyKeys>(
     strategy: StrategyKey,
     ctx: Context,

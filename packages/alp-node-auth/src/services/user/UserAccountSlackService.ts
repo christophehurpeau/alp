@@ -4,9 +4,9 @@ import type { AccountService, FullName } from "./types";
 
 // https://api.slack.com/methods/users.identity
 
-export default class UserAccountSlackService<ScopeKeys extends "login">
-  implements AccountService<ScopeKeys>
-{
+export default class UserAccountSlackService<
+  ScopeKeys extends "login",
+> implements AccountService<ScopeKeys> {
   scopeKeyToScope: Record<ScopeKeys, string>;
 
   constructor(scopeKeyToScope: Record<Exclude<"login", ScopeKeys>, string>) {

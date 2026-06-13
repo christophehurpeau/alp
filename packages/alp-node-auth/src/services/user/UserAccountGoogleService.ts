@@ -3,9 +3,9 @@
 import type { Tokens } from "../authentification/types";
 import type { AccountService, FullName } from "./types";
 
-export default class UserAccountGoogleService<ScopeKeys extends "login">
-  implements AccountService<ScopeKeys>
-{
+export default class UserAccountGoogleService<
+  ScopeKeys extends "login",
+> implements AccountService<ScopeKeys> {
   scopeKeyToScope: Record<ScopeKeys, string>;
 
   constructor(scopeKeyToScope: Record<Exclude<"login", ScopeKeys>, string>) {
