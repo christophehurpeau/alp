@@ -2519,7 +2519,7 @@ __metadata:
     "@types/koa-static": "npm:4.0.4"
     "@types/minimist": "npm:1.2.5"
     "@types/node": "npm:>=22.0.0"
-    deep-freeze-es6: "npm:^4.0.1"
+    deep-freeze-es6: "npm:^5.0.0"
     error-html: "npm:^0.3.5"
     intl-messageformat: "npm:^10.0.0"
     koa: "npm:^3.1.2"
@@ -3470,10 +3470,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deep-freeze-es6@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "deep-freeze-es6@npm:4.0.1"
-  checksum: 10c0/ce9907d73bd88bed31352be78c65dbba12399fe3a1281417b158936bfbc8a77017b84f6e907678adc4c30d29f8655cedefc4f6f4de6d9424d82d9e805ed8ddd8
+"deep-freeze-es6@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "deep-freeze-es6@npm:5.0.0"
+  checksum: 10c0/f33c02b802ca8e2b47d47e3e9e6d11f4ffee221a6f71bbc985ef437ec0e671debd567c1b8f7d4759f668e6baa46567a3f9b4ef018bb94a25b0de7e1bd7ca38c6
   languageName: node
   linkType: hard
 
