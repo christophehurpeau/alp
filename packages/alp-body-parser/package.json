@@ -46,9 +46,9 @@
   },
   "dependencies": {
     "@types/co-body": "^6.1.3",
-    "@types/koa": "^3.0.0",
+    "@types/koa": "^3.0.3",
     "co-body": "^6.2.0",
-    "koa": "^3.1.2"
+    "koa": "^3.2.1"
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "9.1.1",
