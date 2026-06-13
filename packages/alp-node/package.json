@@ -65,7 +65,7 @@
     "@types/node": ">=22.0.0",
     "deep-freeze-es6": "^4.0.1",
     "error-html": "^0.3.5",
-    "intl-messageformat": "^10.0.0",
+    "intl-messageformat": "^10.7.18",
     "koa": "^3.2.1",
     "koa-compress": "^5.2.1",
     "koa-static": "^5.0.0",
