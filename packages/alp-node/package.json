@@ -61,12 +61,12 @@
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "dependencies": {
-    "@types/koa": "^3.0.0",
+    "@types/koa": "^3.0.3",
     "@types/node": ">=22.0.0",
     "deep-freeze-es6": "^4.0.1",
     "error-html": "^0.3.5",
     "intl-messageformat": "^10.0.0",
-    "koa": "^3.1.2",
+    "koa": "^3.2.1",
     "koa-compress": "^5.2.1",
     "koa-static": "^5.0.0",
     "minimist": "^1.2.8",
