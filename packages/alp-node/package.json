@@ -71,7 +71,7 @@
     "koa-static": "^5.0.0",
     "minimist": "^1.2.8",
     "nightingale-logger": "^18.2.0",
-    "object-properties": "^9.0.1"
+    "object-properties": "^10.0.0"
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "9.1.1",
