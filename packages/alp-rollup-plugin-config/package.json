@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@guanghechen/rollup-plugin-copy": "1.8.6",
-    "js-yaml": "4.2.0"
+    "js-yaml": "4.3.0"
   },
   "devDependencies": {
     "typescript": "6.0.3"
