@@ -87,13 +87,13 @@
     "@pob/rollup-esbuild": "9.1.1",
     "@types/node": "24.10.1",
     "alp-node": "10.1.0",
-    "liwi-mongo": "12.0.0",
+    "liwi-mongo": "13.0.1",
     "router-segments": "12.0.0",
     "typescript": "6.0.3"
   },
   "peerDependencies": {
     "alp-node": "^10.0.0",
-    "liwi-mongo": "^12.0.0",
+    "liwi-mongo": "^13.0.1",
     "router-segments": "^11.0.0 || ^12.0.0"
   },
   "peerDependenciesMeta": {
