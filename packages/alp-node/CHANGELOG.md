@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.0](https://github.com/christophehurpeau/alp/compare/alp-node@10.0.0...alp-node@10.1.0) (2026-07-01)
+
+### Features
+
+* **deps:** update dependency deep-freeze-es6 to v5 ([#701](https://github.com/christophehurpeau/alp/issues/701))
+* **deps:** update dependency koa to ^3.2.1 ([#696](https://github.com/christophehurpeau/alp/issues/696))
+* **deps:** update dependency koa-compress to ^5.2.1 ([#698](https://github.com/christophehurpeau/alp/issues/698))
+* **deps:** update dependency object-properties to v10 ([#702](https://github.com/christophehurpeau/alp/issues/702))
+
+### Bug Fixes
+
+* **deps:** update dependency @types/node to >=24.10.1 ([#642](https://github.com/christophehurpeau/alp/issues/642))
+* **deps:** update formatjs monorepo to ^10.7.18 ([#644](https://github.com/christophehurpeau/alp/issues/644))
+
 ## [10.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@9.0.1...alp-node@10.0.0) (2025-11-12)
 
 ### ⚠ BREAKING CHANGES

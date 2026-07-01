@@ -1,6 +1,6 @@
 {
   "name": "alp-hello-node-example",
-  "version": "13.0.1",
+  "version": "13.1.0",
   "private": true,
   "homepage": "https://github.com/christophehurpeau/alp",
   "license": "MIT",
@@ -34,8 +34,8 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "alp-node": "10.0.0",
-    "alp-node-auth": "13.0.0",
+    "alp-node": "10.1.0",
+    "alp-node-auth": "13.1.0",
     "liwi-mongo": "12.0.0",
     "nightingale-app-console": "16.2.0",
     "nightingale-web-processor": "16.0.0",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "9.1.1",
-    "alp-rollup-plugin-config": "4.0.2",
+    "alp-rollup-plugin-config": "4.1.0",
     "typescript": "6.0.3"
   },
   "engines": {

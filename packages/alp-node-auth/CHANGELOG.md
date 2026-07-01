@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@13.0.0...alp-node-auth@13.1.0) (2026-07-01)
+
+### Features
+
+* **deps:** update dependency simple-oauth2 to ^5.1.0 ([#699](https://github.com/christophehurpeau/alp/issues/699))
+
+### Bug Fixes
+
+* **deps:** update dependency jsonwebtoken to ^9.0.3 ([#682](https://github.com/christophehurpeau/alp/issues/682))
+* user newer path-to-regexp syntax
+
+Version bump for dependency: alp-node
+
+
 ## [13.0.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@12.0.1...alp-node-auth@13.0.0) (2025-11-12)
 
 ### ⚠ BREAKING CHANGES

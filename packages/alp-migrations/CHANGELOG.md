@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@12.0.0...alp-migrations@12.1.0) (2026-07-01)
+
+### Bug Fixes
+
+* **deps:** update dependency semver to ^7.7.3 ([#643](https://github.com/christophehurpeau/alp/issues/643))
+* **deps:** update dependency semver to ^7.8.5 ([#693](https://github.com/christophehurpeau/alp/issues/693))
+
+Version bump for dependency: alp-node
+
+
 ## [12.0.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@11.0.1...alp-migrations@12.0.0) (2025-11-12)
 
 ### ⚠ BREAKING CHANGES

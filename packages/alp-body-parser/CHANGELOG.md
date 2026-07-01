@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@12.0.0...alp-body-parser@12.1.0) (2026-07-01)
+
+### Features
+
+* **deps:** update dependency koa to ^3.2.1 ([#696](https://github.com/christophehurpeau/alp/issues/696))
+
 ## [12.0.0](https://github.com/christophehurpeau/alp/compare/alp-body-parser@11.0.1...alp-body-parser@12.0.0) (2025-11-12)
 
 Version bump for dependency: alp-node

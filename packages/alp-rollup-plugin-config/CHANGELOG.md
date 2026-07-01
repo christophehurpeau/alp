@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.0](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@4.0.2...alp-rollup-plugin-config@4.1.0) (2026-07-01)
+
+### Features
+
+* **deps:** update dependency js-yaml to v4.2.0 ([#695](https://github.com/christophehurpeau/alp/issues/695))
+* **deps:** update dependency js-yaml to v4.3.0 ([#706](https://github.com/christophehurpeau/alp/issues/706))
+
 ## [4.0.2](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@4.0.1...alp-rollup-plugin-config@4.0.2) (2025-11-18)
 
 ### Bug Fixes

@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.3](https://github.com/christophehurpeau/alp/compare/react-alp-loading-bar@9.0.2...react-alp-loading-bar@9.0.3) (2026-07-01)
+
+Note: no notable changes
+
+
 ## [9.0.2](https://github.com/christophehurpeau/alp/compare/react-alp-loading-bar@9.0.1...react-alp-loading-bar@9.0.2) (2025-11-12)
 
 Note: no notable changes

@@ -1,6 +1,6 @@
 {
   "name": "alp-migrations",
-  "version": "12.0.0",
+  "version": "12.1.0",
   "description": "migrations scripts in alp",
   "keywords": [],
   "homepage": "https://github.com/christophehurpeau/alp",
@@ -42,7 +42,7 @@
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "dependencies": {
-    "alp-node": "10.0.0",
+    "alp-node": "10.1.0",
     "nightingale-logger": "^18.2.0",
     "semver": "^7.8.5"
   },
