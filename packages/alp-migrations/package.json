@@ -44,7 +44,7 @@
   "dependencies": {
     "alp-node": "10.0.0",
     "nightingale-logger": "^18.2.0",
-    "semver": "^7.7.3"
+    "semver": "^7.8.5"
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "9.1.1",
