@@ -62,7 +62,7 @@ function createAuthController({
 
 const createRoutes = (controller) => ({
   login: [
-    "/login/:strategy?",
+    "/login{/:strategy}",
     (segment) => {
       segment.add("/response", controller.response, "authResponse");
       segment.defaultRoute(controller.login, "login");
