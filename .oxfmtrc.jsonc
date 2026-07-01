@@ -5,13 +5,9 @@
   "ignorePatterns": [
     "/.yarnrc.yml",
     "/.yarn/**/*",
-    "/packages/*/.tamagui",
     "/packages/*/dist",
     "/packages/*/build",
     "/packages/*/data",
-    "/packages/*/.next",
-    "/packages/*/out",
-    "/packages/*/.env.local",
     "CHANGELOG.md",
   ],
 }

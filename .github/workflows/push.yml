@@ -4,91 +4,53 @@ permissions:
 on: [push]
 
 jobs:
-  checks:
+  build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [22.x, 24.x]
+
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Enable Corepack
         run: corepack enable
 
-      - uses: actions/setup-node@v6
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: ${{ matrix.node-version }}
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install Dependencies
         run: yarn install --immutable
 
       - name: Checks
         run: yarn run checks
-
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
-
-      - name: Install Dependencies
-        run: yarn install --immutable
+        if: startsWith(matrix.node-version, '24.')
 
       - name: Build
         run: yarn run build
-
-      - name: Check nothing was forgotten before commit
-        run: yarn repository-check-dirty
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
-
-      - name: Install Dependencies
-        run: yarn install --immutable
+        if: startsWith(matrix.node-version, '24.')
 
       - name: Format
         run: yarn run format:check
+        if: startsWith(matrix.node-version, '24.')
 
       - name: Typescript
         run: yarn run tsc
+        if: startsWith(matrix.node-version, '24.')
 
       - name: Eslint
         run: yarn run lint:eslint
+        if: startsWith(matrix.node-version, '24.')
 
-  test:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [22, 24]
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install Dependencies
-        run: yarn install --immutable
+      - name: Check nothing was forgotten before commit
+        if: startsWith(matrix.node-version, '24.')
+        run: yarn repository-check-dirty
 
       - name: Test
         run: yarn run test
+        env:
+          CI: true
