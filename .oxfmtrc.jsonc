@@ -3,8 +3,6 @@
   "printWidth": 80,
   "sortPackageJson": { "sortScripts": true },
   "ignorePatterns": [
-    "/.yarnrc.yml",
-    "/.yarn/**/*",
     "/packages/*/dist",
     "/packages/*/build",
     "/packages/*/data",
