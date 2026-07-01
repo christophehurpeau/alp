@@ -48,11 +48,11 @@
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "9.1.1",
-    "react": "19.1.1",
+    "react": "19.2.7",
     "typescript": "6.0.3"
   },
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": "^19.2.7"
   },
   "browserslist": {
     "production": [
