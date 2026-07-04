@@ -6,7 +6,6 @@ import checkPackage from "check-package-dependencies/eslint-plugin";
 const configs = pobTypescriptReactConfig(import.meta.url).configs;
 
 export default [
-  checkPackage.configs["recommended-library"],
   ...configs.node,
   ...configs.allowUnsafeAsWarn,
   ...applyTs({
@@ -14,4 +13,7 @@ export default [
     files: ["packages/react-*/src"],
     configs: configs.node,
   }),
+
+  // must be last to win on "package.json"
+  checkPackage.configs["recommended-library"],
 ];
