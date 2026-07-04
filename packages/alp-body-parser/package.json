@@ -55,7 +55,7 @@
     "typescript": "6.0.3"
   },
   "peerDependencies": {
-    "alp-node": "^10.0.0"
+    "alp-node": "workspace:^"
   },
   "engines": {
     "node": ">=22.18.0"

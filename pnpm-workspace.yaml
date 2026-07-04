@@ -11,6 +11,11 @@ minimumReleaseAgeExclude:
   - alouette-icons
   - nightingale
   - nightingale-logger
+  - alp-node-auth@13.1.0
+  - alp-node@10.1.0
+  - alp-rollup-plugin-config@4.1.0
+  - router-segments@12.2.1
+  - check-package-dependencies
 packages:
   - packages/*
 savePrefix: ^

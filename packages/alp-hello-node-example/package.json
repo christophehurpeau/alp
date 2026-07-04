@@ -34,16 +34,16 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "alp-node": "10.1.0",
-    "alp-node-auth": "13.1.0",
-    "liwi-mongo": "12.0.0",
-    "nightingale-app-console": "16.2.0",
-    "nightingale-web-processor": "16.0.0",
-    "router-segments": "12.0.0"
+    "alp-node": "workspace:*",
+    "alp-node-auth": "workspace:*",
+    "liwi-mongo": "13.0.1",
+    "nightingale-app-console": "18.2.0",
+    "nightingale-web-processor": "18.2.0",
+    "router-segments": "12.2.1"
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "9.1.1",
-    "alp-rollup-plugin-config": "4.1.0",
+    "alp-rollup-plugin-config": "workspace:*",
     "typescript": "6.0.3"
   },
   "engines": {
