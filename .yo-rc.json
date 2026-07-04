@@ -16,7 +16,6 @@
       "packageNames": [
         "alp-node",
         "alp-rollup-plugin-config",
-        "react-alp-connection-state",
         "react-alp-loading-bar",
         "alp-body-parser",
         "alp-migrations",
