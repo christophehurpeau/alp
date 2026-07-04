@@ -1,7 +1,7 @@
 {
   "name": "alp-rollup-plugin-config",
   "version": "4.1.0",
-  "description": "transform yaml config using rollup copy plugin and yaml transform",
+  "description": "rollup plugin to transform yaml config files to json",
   "keywords": [],
   "homepage": "https://github.com/christophehurpeau/alp",
   "bugs": {
@@ -40,7 +40,6 @@
     "lint:eslint": "yarn '../..' run eslint --quiet 'packages/alp-rollup-plugin-config'"
   },
   "dependencies": {
-    "@guanghechen/rollup-plugin-copy": "1.8.6",
     "js-yaml": "4.3.0"
   },
   "devDependencies": {

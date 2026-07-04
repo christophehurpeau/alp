@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  transform yaml config using rollup copy plugin and yaml transform
+  rollup plugin to transform yaml config files to json
 </p>
 
 <p align="center">
