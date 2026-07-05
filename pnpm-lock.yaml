@@ -18,8 +18,8 @@ importers:
         specifier: 9.1.2
         version: 9.1.2(rollup@4.60.4)(typescript@6.0.3)
       '@pob/root':
-        specifier: 24.4.1
-        version: 24.4.1
+        specifier: 24.5.0
+        version: 24.5.0
       check-package-dependencies:
         specifier: 11.4.3
         version: 11.4.3(eslint@10.6.0)
@@ -726,13 +726,13 @@ packages:
     engines: {node: '>=22.18.0'}
     hasBin: true
 
-  '@pob/root@24.4.1':
-    resolution: {integrity: sha512-2tg88nDBvV+9DLxnTBqriIK/ijzO3idyY71bTvHcdicrSbsEYe1906vcdcDuAh39UjPeY+PELn+oGYDcO/Wuuw==}
+  '@pob/root@24.5.0':
+    resolution: {integrity: sha512-mxqrHK2VwszrdQ4aKf4SAb8WO3wZ7F2kfoKC1jHthMlupkaPGsUudsR11mktyjyjXQTNyEqQtUcjzpoIJaYf7Q==}
     engines: {node: '>=22.18.0'}
     hasBin: true
 
-  '@pob/version@4.2.0':
-    resolution: {integrity: sha512-e+mZuyCRHjQdOwr2X4mMyN2t4jaBRVoEqsYMpYIHgV45DEiqR9HZPIIzePFFnYfyxO0dDEGuNZ2sO/y8uTwxzQ==}
+  '@pob/version@4.3.0':
+    resolution: {integrity: sha512-sEp+vatZcDzpg+EJoKOVu0V2v53fPNZ651iCSxgnYPocOstfm1SfXSbDt+rsaSr2IWPeL/wvUXGVetmPSDG9fQ==}
     engines: {node: '>=24.14.1'}
     hasBin: true
 
@@ -3319,12 +3319,12 @@ snapshots:
     dependencies:
       rollup: 4.60.4
 
-  '@pob/root@24.4.1':
+  '@pob/root@24.5.0':
     dependencies:
       '@commitlint/format': 21.0.1
       '@commitlint/lint': 21.0.2
       '@commitlint/types': 21.0.1
-      '@pob/version': 4.2.0
+      '@pob/version': 4.3.0
       conventional-changelog-conventionalcommits: 9.3.1
       conventional-changelog-writer: 8.4.0
       conventional-commits-parser: 6.4.0
@@ -3337,7 +3337,7 @@ snapshots:
       - svelte
       - vite-plus
 
-  '@pob/version@4.2.0':
+  '@pob/version@4.3.0':
     dependencies:
       commander: 14.0.3
       conventional-changelog-conventionalcommits: 9.3.1
