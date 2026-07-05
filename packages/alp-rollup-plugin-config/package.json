@@ -15,18 +15,19 @@
     "directory": "packages/alp-rollup-plugin-config"
   },
   "files": [
-    "lib"
+    "src",
+    "dist"
   ],
   "type": "module",
   "sideEffects": false,
-  "main": "./lib/index.cjs",
-  "types": "./lib/index.d.ts",
+  "main": "./dist/index-node.mjs",
+  "types": "./dist/definitions/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./lib/index.d.ts",
+      "types": "./dist/definitions/index.d.ts",
       "node": {
-        "import": "./lib/index.cjs"
+        "import": "./dist/index-node.mjs"
       }
     }
   },
@@ -34,15 +35,18 @@
     "access": "public"
   },
   "scripts": {
-    "build": "yarn run build:definitions",
-    "build:definitions": "tsc --lib esnext --noEmit --skipLibCheck ./lib/index.d.ts",
-    "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn '../..' run eslint --quiet 'packages/alp-rollup-plugin-config'"
+    "build": "pnpm run clean:build && rollup --config rollup.config.mjs && pnpm run build:definitions",
+    "build:definitions": "tsc -p tsconfig.json",
+    "clean:build": "pob-esbuild-clean-out dist",
+    "lint": "pnpm run lint:eslint",
+    "lint:eslint": "pnpm run --dir '../..' eslint --quiet 'packages/alp-rollup-plugin-config'",
+    "tsc": "tsc"
   },
   "dependencies": {
-    "js-yaml": "4.3.0"
+    "js-yaml": "^5.2.1"
   },
   "devDependencies": {
+    "@pob/rollup-esbuild": "9.1.1",
     "typescript": "6.0.3"
   },
   "peerDependencies": {
@@ -52,6 +56,17 @@
     "node": ">=22.18.0"
   },
   "pob": {
-    "bundler": false
+    "bundler": "rollup-esbuild",
+    "entries": [
+      "index"
+    ],
+    "envs": [
+      {
+        "target": "node",
+        "version": "22",
+        "omitVersionInFileName": true
+      }
+    ],
+    "typescript": true
   }
 }

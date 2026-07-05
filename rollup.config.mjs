@@ -3,6 +3,7 @@ import configs4 from "./packages/alp-body-parser/rollup.config.mjs";
 import configs5 from "./packages/alp-migrations/rollup.config.mjs";
 import configs6 from "./packages/alp-node-auth/rollup.config.mjs";
 import configs7 from "./packages/alp-hello-node-example/rollup.config.mjs";
+import configs8 from "./packages/alp-rollup-plugin-config/rollup.config.mjs";
 
 export default [
   ...configs1,
@@ -10,4 +11,5 @@ export default [
   ...configs5,
   ...configs6,
   ...configs7,
+  ...configs8,
 ];

@@ -1,17 +1,30 @@
-"use strict";
+import { glob, mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { load } from "js-yaml";
+import type { Plugin } from "rollup";
 
-const { glob, mkdir, readFile, writeFile } = require("node:fs/promises");
-const path = require("node:path");
-const { load } = require("js-yaml");
+interface TargetOptions {
+  src: string;
+  dest?: string;
+}
 
-const buildDestPath = (srcPath, dest) => {
+interface PluginOptions {
+  targets: TargetOptions[];
+}
+
+interface FileToConvert {
+  srcPath: string;
+  destPath: string;
+}
+
+const buildDestPath = (srcPath: string, dest: string): string => {
   const { dir, name } = path.parse(srcPath);
   const [, ...restSegments] = dir.split(path.sep);
   return path.join(dest, ...restSegments, `${name}.json`);
 };
 
-module.exports = (options) => {
-  let files = [];
+export default function alpRollupPluginConfig(options: PluginOptions): Plugin {
+  let files: FileToConvert[] = [];
 
   return {
     name: "alp-config",
@@ -36,4 +49,4 @@ module.exports = (options) => {
       );
     },
   };
-};
+}
