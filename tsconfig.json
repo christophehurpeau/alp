@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "packages/alp-node/tsconfig.json" },
+    { "path": "packages/alp-rollup-plugin-config/tsconfig.json" },
     { "path": "packages/alp-body-parser/tsconfig.json" },
     { "path": "packages/alp-migrations/tsconfig.json" },
     { "path": "packages/alp-node-auth/tsconfig.json" },

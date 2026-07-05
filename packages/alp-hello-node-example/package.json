@@ -25,12 +25,12 @@
     }
   },
   "scripts": {
-    "build": "yarn run clean:build && rollup --config rollup.config.mjs",
-    "clean": "yarn run clean:build",
+    "build": "pnpm run clean:build && rollup --config rollup.config.mjs",
+    "clean": "pnpm run clean:build",
     "clean:build": "pob-esbuild-clean-out build",
-    "lint": "yarn run lint:eslint",
-    "lint:eslint": "yarn '../..' run eslint --quiet 'packages/alp-hello-node-example'",
-    "start": "yarn run clean:build && rollup --config rollup.config.mjs --watch",
+    "lint": "pnpm run lint:eslint",
+    "lint:eslint": "pnpm run --dir '../..' eslint --quiet 'packages/alp-hello-node-example'",
+    "start": "pnpm run clean:build && rollup --config rollup.config.mjs --watch",
     "tsc": "tsc"
   },
   "dependencies": {
@@ -42,7 +42,7 @@
     "router-segments": "12.2.1"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "9.1.1",
+    "@pob/rollup-esbuild": "9.1.2",
     "alp-rollup-plugin-config": "workspace:*",
     "rollup": "4.60.4",
     "typescript": "6.0.3"

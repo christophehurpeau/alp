@@ -17,10 +17,10 @@
       "alp-node": ["../../packages/alp-node/src"],
       "alp-node/*": ["../../packages/alp-node/src/*"],
       "alp-rollup-plugin-config": [
-        "../../packages/alp-rollup-plugin-config/lib"
+        "../../packages/alp-rollup-plugin-config/src"
       ],
       "alp-rollup-plugin-config/*": [
-        "../../packages/alp-rollup-plugin-config/lib/*"
+        "../../packages/alp-rollup-plugin-config/src/*"
       ],
       "alp-node-auth": ["../../packages/alp-node-auth/src"],
       "alp-node-auth/*": ["../../packages/alp-node-auth/src/*"]
@@ -28,6 +28,7 @@
   },
   "references": [
     { "path": "../../packages/alp-node/tsconfig.json" },
+    { "path": "../../packages/alp-rollup-plugin-config/tsconfig.json" },
     { "path": "../../packages/alp-node-auth/tsconfig.json" }
   ]
 }
