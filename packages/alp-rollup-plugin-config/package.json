@@ -40,7 +40,7 @@
     "lint:eslint": "yarn '../..' run eslint --quiet 'packages/alp-rollup-plugin-config'"
   },
   "dependencies": {
-    "js-yaml": "4.3.0"
+    "js-yaml": "5.2.1"
   },
   "devDependencies": {
     "typescript": "6.0.3"
