@@ -228,18 +228,6 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
 
-  packages/react-alp-loading-bar:
-    devDependencies:
-      '@pob/rollup-esbuild':
-        specifier: 9.1.1
-        version: 9.1.1(rollup@4.60.4)(typescript@6.0.3)
-      react:
-        specifier: 19.1.1
-        version: 19.1.1
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-
 packages:
 
   '@babel/helper-validator-identifier@7.29.7':
@@ -2515,10 +2503,6 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-
-  react@19.1.1:
-    resolution: {integrity: sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==}
-    engines: {node: '>=0.10.0'}
 
   refa@0.12.1:
     resolution: {integrity: sha512-J8rn6v4DBb2nnFqkqwy6/NnTYMcgLA+sLr0iIO41qpv0n+ngb7ksag2tMRl0inb1bbO/esUwzW1vbJi7K0sI0g==}
@@ -5256,8 +5240,6 @@ snapshots:
       unpipe: 1.0.0
 
   react-is@16.13.1: {}
-
-  react@19.1.1: {}
 
   refa@0.12.1:
     dependencies:
