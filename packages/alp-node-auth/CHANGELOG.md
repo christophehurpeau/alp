@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.1](https://github.com/christophehurpeau/alp/compare/alp-node-auth@13.1.0...alp-node-auth@13.1.1) (2026-07-05)
+
+Version bump for dependency: alp-node
+Version bump for dependency: alp-node
+
+
 ## [13.1.0](https://github.com/christophehurpeau/alp/compare/alp-node-auth@13.0.0...alp-node-auth@13.1.0) (2026-07-01)
 
 ### Features

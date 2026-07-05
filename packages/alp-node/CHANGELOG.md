@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.1](https://github.com/christophehurpeau/alp/compare/alp-node@10.1.0...alp-node@10.1.1) (2026-07-05)
+
+### Bug Fixes
+
+* **deps:** update dependency koa-compress to ^5.2.2 ([#705](https://github.com/christophehurpeau/alp/issues/705))
+
 ## [10.1.0](https://github.com/christophehurpeau/alp/compare/alp-node@10.0.0...alp-node@10.1.0) (2026-07-01)
 
 ### Features

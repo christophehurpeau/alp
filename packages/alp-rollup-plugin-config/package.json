@@ -1,6 +1,6 @@
 {
   "name": "alp-rollup-plugin-config",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "rollup plugin to transform yaml config files to json",
   "keywords": [],
   "homepage": "https://github.com/christophehurpeau/alp",

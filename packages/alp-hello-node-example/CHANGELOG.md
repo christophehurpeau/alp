@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.1](https://github.com/christophehurpeau/alp/compare/alp-hello-node-example@13.1.0...alp-hello-node-example@13.1.1) (2026-07-05)
+
+### Bug Fixes
+
+* **alp-hello-node-example:** fix MongoConfig
+
+Version bump for dependency: alp-node
+Version bump for dependency: alp-node-auth
+Version bump for dependency: alp-rollup-plugin-config
+
+
 ## [13.1.0](https://github.com/christophehurpeau/alp/compare/alp-hello-node-example@13.0.1...alp-hello-node-example@13.1.0) (2026-07-01)
 
 Version bump for dependency: alp-node

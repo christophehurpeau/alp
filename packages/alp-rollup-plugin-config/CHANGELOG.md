@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@4.1.0...alp-rollup-plugin-config@4.1.1) (2026-07-05)
+
+Note: no notable changes
+
+
 ## [4.1.0](https://github.com/christophehurpeau/alp/compare/alp-rollup-plugin-config@4.0.2...alp-rollup-plugin-config@4.1.0) (2026-07-01)
 
 ### Features
