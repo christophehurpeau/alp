@@ -48,6 +48,9 @@ async function migrate({
   };
   process.on("unhandledRejection", unhandledRejectionHandler);
   const packageVersion = config.packageConfig.version;
+  if (!packageVersion) {
+    throw new Error("Package version is missing in package.json");
+  }
   const currentVersion = await migrationsManager.findLastVersion();
   let migrations = [];
   logger.info("migrate", { packageVersion, currentVersion });
