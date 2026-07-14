@@ -16,6 +16,7 @@ minimumReleaseAgeExclude:
   - alp-rollup-plugin-config@4.1.0
   - router-segments@12.2.1
   - check-package-dependencies
+  - error-html@0.4.1
 packages:
   - packages/*
 savePrefix: ^

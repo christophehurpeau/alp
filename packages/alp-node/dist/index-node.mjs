@@ -5,7 +5,7 @@ import Koa from 'koa';
 import compress from 'koa-compress';
 import serve from 'koa-static';
 import { STATUS_CODES, createServer as createServer$2 } from 'node:http';
-import ErrorHtmlRenderer from 'error-html';
+import { createErrorHtmlRenderer } from 'error-html';
 import { defineLazyProperty } from 'object-properties';
 import { createServer as createServer$1 } from 'node:https';
 import IntlMessageFormatDefault from 'intl-messageformat';
@@ -13,15 +13,20 @@ import minimist from 'minimist';
 import { createRouterBuilder } from 'router-segments';
 
 const logger$4 = new Logger("alp:errors");
-const errorHtmlRenderer = new ErrorHtmlRenderer({
+const errorHtmlRenderer = createErrorHtmlRenderer({
   appPath: `${process.cwd()}/`
 });
+const castToError = (error) => {
+  if (!error) return new Error("Unknown error");
+  if (typeof error === "string") return new Error(error);
+  if (error instanceof Error) return error;
+  return new Error("Unknown error");
+};
 async function alpNodeErrors(ctx, next) {
   try {
     await next();
-  } catch (error) {
-    if (!error) error = new Error("Unknown error");
-    if (typeof error === "string") error = new Error(error);
+  } catch (unknownError) {
+    const error = castToError(unknownError);
     ctx.status = error.status || 500;
     logger$4.error(error);
     switch (ctx.request.accepts("html", "text", "json")) {
