@@ -36,7 +36,7 @@ export default function alpTranslate(
 
     const config = app.config;
 
-    config.get<string[]>("availableLanguages").forEach((language) => {
+    config.get("availableLanguages").forEach((language) => {
       const translations = app.loadConfigSync(dirname + language);
       appTranslations.set(language, load(translations, language));
     });

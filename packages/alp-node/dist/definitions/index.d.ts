@@ -1,11 +1,12 @@
 import type { AlpNodeAppOptions } from "./AlpNodeApp";
 import { AlpNodeApp } from "./AlpNodeApp";
 import { Config } from "./config";
-export type { BaseContext, NodeApplication, NodeConfig, ContextState, ContextSanitizedState, } from "./types";
+import type { PackageConfig } from "./types";
+export type { BaseContext, ConfigValues, NodeApplication, NodeConfig, ContextState, ContextSanitizedState, PackageConfig, } from "./types";
 export type { Context } from "./AlpNodeApp";
 export declare const appDirname: string;
 export declare const packageDirname: string;
-export declare const packageConfig: Record<string, unknown>;
+export declare const packageConfig: PackageConfig;
 export declare const config: Config & import("./types").NodeConfig;
 export type AppOptions = Omit<AlpNodeAppOptions, "appDirname" | "config" | "packageDirname">;
 export default class App extends AlpNodeApp {

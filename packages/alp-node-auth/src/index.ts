@@ -17,7 +17,7 @@ import { AuthenticationService } from "./services/authentification/Authenticatio
 import type { AllowedStrategyKeys } from "./services/authentification/types";
 import UserAccountsService from "./services/user/UserAccountsService";
 import type { AccountService } from "./services/user/types";
-import type { User, UserSanitized } from "./types";
+import type { OAuth2StrategyConfig, User, UserSanitized } from "./types";
 import {
   COOKIE_NAME_STATE,
   COOKIE_NAME_TOKEN,
@@ -35,6 +35,17 @@ export { STATUSES } from "./services/user/UserAccountsService";
 export type * from "./types";
 
 declare module "alp-node" {
+  interface ConfigValues {
+    authentication: { secretKey: string };
+    allowHttps?: boolean;
+    dropbox?: OAuth2StrategyConfig;
+    facebook?: OAuth2StrategyConfig;
+    foursquare?: OAuth2StrategyConfig;
+    github?: OAuth2StrategyConfig;
+    google?: OAuth2StrategyConfig;
+    slack?: OAuth2StrategyConfig;
+  }
+
   interface ContextState {
     loggedInUserId:
       | NonNullable<ContextState["loggedInUser"]>["_id"]
@@ -125,9 +136,7 @@ export default function init<
 
       const token = await signPromisified(
         { loggedInUserId, time: Date.now() },
-        this.config
-          .get<Map<string, unknown>>("authentication")
-          .get("secretKey"),
+        this.config.get("authentication").secretKey,
         {
           algorithm: "HS512",
           audience: jwtAudience || this.request.headers["user-agent"],
@@ -164,7 +173,7 @@ export default function init<
     };
 
     const findLoggedInUser = createFindLoggedInUser(
-      app.config.get<{ secretKey: string }>("authentication").secretKey,
+      app.config.get("authentication").secretKey,
       usersManager,
       logger,
     );

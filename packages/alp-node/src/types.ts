@@ -1,10 +1,23 @@
 type RawRecordConfig = Readonly<Record<string, unknown>>;
 
-export interface Config {
-  get: <T>(key: string) => T;
+export interface ConfigValues {
+  version: string;
+  port?: number;
+  socketPath?: string;
+  hostname?: string;
+  tls?: boolean;
+  availableLanguages: string[];
 }
 
-export type PackageConfig = Record<string, any>;
+export interface Config {
+  get: <Key extends keyof ConfigValues>(key: Key) => ConfigValues[Key];
+}
+
+export interface PackageConfig {
+  name?: string;
+  version?: string;
+  [key: string]: unknown;
+}
 
 export interface NodeConfig extends Config {
   loadConfigSync: (name: string) => RawRecordConfig;

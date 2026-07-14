@@ -3,6 +3,7 @@ import Alp, { router } from "alp-node";
 // eslint-disable-next-line import-x/no-unresolved
 import authInit, { UserAccountSlackService } from "alp-node-auth";
 import slackStrategy from "alp-node-auth/strategies/slack";
+import type { MongoConfig } from "liwi-mongo";
 // eslint-disable-next-line import-x/no-unresolved
 import { addConfig, appLogger } from "nightingale-app-console";
 // eslint-disable-next-line import-x/no-unresolved
@@ -12,6 +13,11 @@ import type { User } from "./db/user";
 import { usersManager } from "./db/user";
 
 declare module "alp-node" {
+  interface ConfigValues {
+    webappUrl: string;
+    db: { mongodb: MongoConfig };
+  }
+
   interface BaseContext {
     logger: typeof appLogger;
   }

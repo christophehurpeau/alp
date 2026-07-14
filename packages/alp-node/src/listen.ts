@@ -38,10 +38,10 @@ export default function alpListen(
   dirname?: string,
 ): Promise<Server> {
   return new Promise((resolve) => {
-    const socketPath = config.get<string>("socketPath");
-    const port = config.get<number>("port");
-    const hostname = config.get<string>("hostname");
-    const tls = config.get<boolean>("tls");
+    const socketPath = config.get("socketPath");
+    const port = config.get("port");
+    const hostname = config.get("hostname");
+    const tls = config.get("tls");
 
     logger.info("Creating server", socketPath ? { socketPath } : { port });
     const server = createServer(callback, socketPath, tls, dirname);

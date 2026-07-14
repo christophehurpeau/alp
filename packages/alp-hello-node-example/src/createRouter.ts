@@ -14,7 +14,7 @@ export default function createRouter({
   const builder = createAlpRouterBuilder<Locales>();
 
   const redirectToHome: AlpRouteRef = (ctx) => {
-    ctx.redirect(`${config.get<string>("webappUrl")}/auth`);
+    ctx.redirect(`${config.get("webappUrl")}/auth`);
   };
 
   builder.add("/", redirectToHome);

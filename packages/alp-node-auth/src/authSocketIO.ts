@@ -16,7 +16,7 @@ export const authSocketIO = <U extends User = User>(
   jwtAudience?: string,
 ): void => {
   const findLoggedInUser = createFindLoggedInUser(
-    app.config.get<{ secretKey: string }>("authentication").secretKey,
+    app.config.get("authentication").secretKey,
     usersManager,
     logger,
   );

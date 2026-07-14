@@ -1,11 +1,11 @@
 // eslint-disable-next-line import-x/no-unresolved
 import { config } from "alp-node";
-import type { MongoBaseModel, MongoConfig } from "liwi-mongo";
+import type { MongoBaseModel } from "liwi-mongo";
 // eslint-disable-next-line import-x/no-unresolved
 import { MongoConnection, MongoStore } from "liwi-mongo";
 
 export const mongoConnection: MongoConnection = new MongoConnection(
-  config.get<Record<"mongodb", MongoConfig>>("db").mongodb,
+  config.get("db").mongodb,
 );
 
 export const createMongoStore = <Model extends MongoBaseModel>(

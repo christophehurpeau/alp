@@ -1,4 +1,5 @@
-import type { NodeConfig, PackageConfig } from "./types";
+import type { ConfigValues, NodeConfig, PackageConfig } from "./types";
+type ConfigRecord = Record<string, unknown>;
 export interface ConfigOptions {
     argv?: string[];
     packageConfig?: PackageConfig;
@@ -10,8 +11,9 @@ export declare class Config {
     private readonly _dirname;
     constructor(dirname: string, options?: ConfigOptions);
     loadSync(options?: ConfigOptions): Config & NodeConfig;
-    get<T>(key: string): Readonly<T>;
+    get<Key extends keyof ConfigValues>(key: Key): ConfigValues[Key];
     existsConfigSync(name: string): boolean;
-    loadConfigSync(name: string): Readonly<Record<string, unknown>>;
+    loadConfigSync(name: string): Readonly<ConfigRecord>;
 }
+export {};
 //# sourceMappingURL=config.d.ts.map

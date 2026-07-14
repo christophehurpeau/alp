@@ -704,7 +704,7 @@ function init({
       this.state.loggedInUser = loggedInUser;
       const token = await signPromisified(
         { loggedInUserId, time: Date.now() },
-        this.config.get("authentication").get("secretKey"),
+        this.config.get("authentication").secretKey,
         {
           algorithm: "HS512",
           audience: jwtAudience || this.request.headers["user-agent"],

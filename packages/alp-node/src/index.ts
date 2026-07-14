@@ -5,13 +5,16 @@ import { Logger } from "nightingale-logger";
 import type { AlpNodeAppOptions } from "./AlpNodeApp";
 import { AlpNodeApp } from "./AlpNodeApp";
 import { Config } from "./config";
+import type { PackageConfig } from "./types";
 
 export type {
   BaseContext,
+  ConfigValues,
   NodeApplication,
   NodeConfig,
   ContextState,
   ContextSanitizedState,
+  PackageConfig,
 } from "./types";
 export type { Context } from "./AlpNodeApp";
 
@@ -27,9 +30,9 @@ export const packageDirname = path.dirname(packagePath);
 
 logger.debug("init", { appDirname, packageDirname });
 
-export const packageConfig: Record<string, unknown> = JSON.parse(
+export const packageConfig: PackageConfig = JSON.parse(
   readFileSync(packagePath, "utf8"),
-) as Record<string, unknown>;
+) as PackageConfig;
 
 const buildedConfigPath = `${appDirname}/build/config/`;
 const configPath = existsSync(buildedConfigPath)

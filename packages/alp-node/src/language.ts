@@ -9,10 +9,7 @@ export interface AlpLanguageContext {
 }
 export default function alpLanguage(app: AlpNodeApp): void {
   const config = app.context.config;
-  const availableLanguages: string[] = config.get("availableLanguages");
-  if (!availableLanguages) {
-    throw new Error('Missing config "availableLanguages"');
-  }
+  const availableLanguages = config.get("availableLanguages");
 
   defineLazyProperty(
     app.context,

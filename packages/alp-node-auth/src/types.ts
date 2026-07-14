@@ -7,6 +7,11 @@ export interface UserName {
 
 export type AccountId = string;
 
+export interface OAuth2StrategyConfig {
+  clientId: string;
+  clientSecret: string;
+}
+
 export interface Account {
   accessToken: string;
   accountId: AccountId;

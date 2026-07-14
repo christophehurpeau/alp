@@ -1,3 +1,4 @@
+import type { Config } from "alp-node";
 import { ClientCredentials, AuthorizationCode } from "simple-oauth2";
 export type GoogleParams =
   | "access_type"

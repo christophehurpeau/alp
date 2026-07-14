@@ -58,9 +58,6 @@ async function alpNodeErrors(ctx, next) {
 function alpLanguage(app) {
   const config = app.context.config;
   const availableLanguages = config.get("availableLanguages");
-  if (!availableLanguages) {
-    throw new Error('Missing config "availableLanguages"');
-  }
   defineLazyProperty(
     app.context,
     "language",

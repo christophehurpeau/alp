@@ -1,20 +1,19 @@
 import { existsSync, readFileSync } from "node:fs";
 import deepFreeze from "deep-freeze-es6";
 import minimist from "minimist";
-import type { NodeConfig, PackageConfig } from "./types";
+import type { ConfigValues, NodeConfig, PackageConfig } from "./types";
 
 const argv = minimist(process.argv.slice(2));
+
+type ConfigRecord = Record<string, unknown>;
 
 function _existsConfigSync(dirname: string, name: string): boolean {
   return existsSync(`${dirname}${name}.json`);
 }
 
-function _loadConfigSync(
-  dirname: string,
-  name: string,
-): Record<string, unknown> {
+function _loadConfigSync(dirname: string, name: string): ConfigRecord {
   const content = readFileSync(`${dirname}${name}.json`, "utf8");
-  return JSON.parse(content) as Record<string, unknown>;
+  return JSON.parse(content) as ConfigRecord;
 }
 
 export interface ConfigOptions {
@@ -26,7 +25,7 @@ export interface ConfigOptions {
 export class Config {
   packageConfig?: PackageConfig;
 
-  private _record: Record<string, unknown>;
+  private _record: ConfigRecord;
 
   private readonly _dirname: string;
 
@@ -90,8 +89,7 @@ export class Config {
             ? config
             : // eslint-disable-next-line unicorn/no-array-reduce
               splitted.reduce(
-                (config, partialKey) =>
-                  config[partialKey] as Record<string, unknown>,
+                (config, partialKey) => config[partialKey] as ConfigRecord,
                 config,
               );
         v[last] = value;
@@ -102,15 +100,15 @@ export class Config {
     return this as unknown as Config & NodeConfig;
   }
 
-  get<T>(key: string): Readonly<T> {
-    return this._record[key] as T;
+  get<Key extends keyof ConfigValues>(key: Key): ConfigValues[Key] {
+    return this._record[key] as ConfigValues[Key];
   }
 
   existsConfigSync(name: string): boolean {
     return _existsConfigSync(this._dirname, name);
   }
 
-  loadConfigSync(name: string): Readonly<Record<string, unknown>> {
+  loadConfigSync(name: string): Readonly<ConfigRecord> {
     return _loadConfigSync(this._dirname, name);
   }
 }
