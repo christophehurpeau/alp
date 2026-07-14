@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.0](https://github.com/christophehurpeau/alp/compare/alp-hello-node-example@13.1.1...alp-hello-node-example@14.0.0) (2026-07-14)
+
+### ⚠ BREAKING CHANGES
+
+* safer config using typescript
+
+### Features
+
+* **deps:** update dependency liwi-mongo to v13.1.0 ([#713](https://github.com/christophehurpeau/alp/issues/713))
+* safer config using typescript
+
+Version bump for dependency: alp-node
+Version bump for dependency: alp-node-auth
+
+
 ## [13.1.1](https://github.com/christophehurpeau/alp/compare/alp-hello-node-example@13.1.0...alp-hello-node-example@13.1.1) (2026-07-05)
 
 ### Bug Fixes

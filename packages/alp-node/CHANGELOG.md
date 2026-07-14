@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.0](https://github.com/christophehurpeau/alp/compare/alp-node@10.1.1...alp-node@11.0.0) (2026-07-14)
+
+### ⚠ BREAKING CHANGES
+
+* safer config using typescript
+
+### Features
+
+* safer config using typescript
+* update error-html dependency to version 0.4.1 and refactor error handling
+
 ## [10.1.1](https://github.com/christophehurpeau/alp/compare/alp-node@10.1.0...alp-node@10.1.1) (2026-07-05)
 
 ### Bug Fixes

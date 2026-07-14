@@ -1,6 +1,6 @@
 {
   "name": "alp-hello-node-example",
-  "version": "13.1.1",
+  "version": "14.0.0",
   "private": true,
   "homepage": "https://github.com/christophehurpeau/alp",
   "license": "MIT",

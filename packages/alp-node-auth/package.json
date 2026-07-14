@@ -1,6 +1,6 @@
 {
   "name": "alp-node-auth",
-  "version": "13.1.1",
+  "version": "14.0.0",
   "description": "authentication with alp",
   "keywords": [
     "alp"

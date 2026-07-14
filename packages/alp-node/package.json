@@ -1,6 +1,6 @@
 {
   "name": "alp-node",
-  "version": "10.1.1",
+  "version": "11.0.0",
   "description": "framework based on koa 2",
   "keywords": [
     "alp",

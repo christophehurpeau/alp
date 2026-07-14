@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.0](https://github.com/christophehurpeau/alp/compare/alp-migrations@12.1.1...alp-migrations@13.0.0) (2026-07-14)
+
+### Features
+
+* **deps:** update dependency liwi-mongo to v13.1.0 ([#713](https://github.com/christophehurpeau/alp/issues/713))
+
+### Bug Fixes
+
+* validate package version in migration function
+
+Version bump for dependency: alp-node
+
+
 ## [12.1.1](https://github.com/christophehurpeau/alp/compare/alp-migrations@12.1.0...alp-migrations@12.1.1) (2026-07-05)
 
 Version bump for dependency: alp-node
