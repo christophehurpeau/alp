@@ -128,9 +128,6 @@ importers:
       '@types/node':
         specifier: '>=22.0.0'
         version: 24.10.1
-      deep-freeze-es6:
-        specifier: ^5.0.0
-        version: 5.0.0
       error-html:
         specifier: ^0.3.5
         version: 0.3.5
@@ -1490,10 +1487,6 @@ packages:
 
   deep-equal@1.0.1:
     resolution: {integrity: sha512-bHtC0iYvWhyaTzvV3CZgPeZQqCOBGyGsVV7v4eevpdkLHfiSrXUdBG+qAuSz4RI70sszvjQ1QSZ98An1yNwpSw==}
-
-  deep-freeze-es6@5.0.0:
-    resolution: {integrity: sha512-ovTuOE+wULT/D4E9RyRAEc2T4siqbhkw1Ak7OzfnfrI8wemiZzbvuAzIt6g0ciLggySPgMLJD91NyDoaI2WJnA==}
-    engines: {node: '>=22.18.0'}
 
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -4034,8 +4027,6 @@ snapshots:
   decimal.js@10.6.0: {}
 
   deep-equal@1.0.1: {}
-
-  deep-freeze-es6@5.0.0: {}
 
   deep-is@0.1.4: {}
 

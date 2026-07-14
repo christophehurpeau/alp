@@ -9,7 +9,6 @@ import ErrorHtmlRenderer from 'error-html';
 import { defineLazyProperty } from 'object-properties';
 import { createServer as createServer$1 } from 'node:https';
 import IntlMessageFormatDefault from 'intl-messageformat';
-import deepFreeze from 'deep-freeze-es6';
 import minimist from 'minimist';
 import { createRouterBuilder } from 'router-segments';
 
@@ -446,7 +445,7 @@ class Config {
         v[last] = value;
       }
     });
-    this._record = deepFreeze(config);
+    this._record = Object.freeze(config);
     return this;
   }
   get(key) {

@@ -1,5 +1,4 @@
 import { existsSync, readFileSync } from "node:fs";
-import deepFreeze from "deep-freeze-es6";
 import minimist from "minimist";
 import type { ConfigValues, NodeConfig, PackageConfig } from "./types";
 
@@ -96,7 +95,7 @@ export class Config {
       }
     });
 
-    this._record = deepFreeze(config);
+    this._record = Object.freeze(config);
     return this as unknown as Config & NodeConfig;
   }
 
