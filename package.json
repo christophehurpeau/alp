@@ -39,7 +39,7 @@
     "@pob/rollup-esbuild": "9.1.2",
     "@pob/root": "24.5.0",
     "check-package-dependencies": "11.4.3",
-    "eslint": "10.6.0",
+    "eslint": "10.7.0",
     "typescript": "6.0.3"
   },
   "commitlint": {
