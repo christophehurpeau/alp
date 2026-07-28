@@ -84,7 +84,7 @@
     "simple-oauth2": "^5.1.0"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "9.1.2",
+    "@pob/rollup-esbuild": "9.2.0",
     "@types/node": "24.10.1",
     "alp-node": "workspace:*",
     "liwi-mongo": "13.1.0",
