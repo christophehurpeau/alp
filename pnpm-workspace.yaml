@@ -17,6 +17,8 @@ minimumReleaseAgeExclude:
   - router-segments@12.2.1
   - check-package-dependencies
   - error-html@0.4.1
+  # Renovate security update: js-yaml@5.2.2
+  - js-yaml@5.2.2
 packages:
   - packages/*
 savePrefix: ^
