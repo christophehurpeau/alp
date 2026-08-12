@@ -18,8 +18,8 @@ importers:
         specifier: 9.2.0
         version: 9.2.0(rollup@4.60.4)(typescript@6.0.3)
       '@pob/root':
-        specifier: 24.5.0
-        version: 24.5.0
+        specifier: 24.7.0
+        version: 24.7.0
       check-package-dependencies:
         specifier: 11.4.3
         version: 11.4.3(eslint@10.7.0)
@@ -723,13 +723,13 @@ packages:
     engines: {node: '>=22.18.0'}
     hasBin: true
 
-  '@pob/root@24.5.0':
-    resolution: {integrity: sha512-mxqrHK2VwszrdQ4aKf4SAb8WO3wZ7F2kfoKC1jHthMlupkaPGsUudsR11mktyjyjXQTNyEqQtUcjzpoIJaYf7Q==}
+  '@pob/root@24.7.0':
+    resolution: {integrity: sha512-LlTZCT16tKTIjXOg2O6XXzE4Pem6v93WtXxk4TWYLCtI21Hz0+UajhhzWQA/+bsP/NM95gJBxSlKc1Bh03muBw==}
     engines: {node: '>=22.18.0'}
     hasBin: true
 
-  '@pob/version@4.3.0':
-    resolution: {integrity: sha512-sEp+vatZcDzpg+EJoKOVu0V2v53fPNZ651iCSxgnYPocOstfm1SfXSbDt+rsaSr2IWPeL/wvUXGVetmPSDG9fQ==}
+  '@pob/version@4.3.2':
+    resolution: {integrity: sha512-Cx8kEDA+4JJgFUl/3QVsIOySFDO8htwvByYkk3ch4uXFK35EDcHpCexMqBfG4sdIaifLkWPcl85ZTVim1SFAlQ==}
     engines: {node: '>=24.14.1'}
     hasBin: true
 
@@ -2459,16 +2459,16 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
-  picomatch@4.0.4:
-    resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
+  picomatch@4.0.5:
+    resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
     engines: {node: '>=12'}
 
   pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
 
-  pob-dependencies@24.2.0:
-    resolution: {integrity: sha512-WTWb5KVnmbWq4S+QtbVsk7QO4v7qsVFeXY2YYbXpjGaxAU84TZivrznCXTJHt5tbk6+TOH7+ONO8TiHzAKv4rw==}
+  pob-dependencies@24.4.0:
+    resolution: {integrity: sha512-3T5xMjsMTQOzUTWpHvMyJh5iwL+zMdNBVf51CaczfW+OPFso6BxZKi605AVxaeYVKTK7bphFkb2uETxOaOLcQQ==}
     engines: {node: '>=22.18.0'}
 
   possible-typed-array-names@1.1.0:
@@ -3299,25 +3299,26 @@ snapshots:
     dependencies:
       rollup: 4.60.4
 
-  '@pob/root@24.5.0':
+  '@pob/root@24.7.0':
     dependencies:
       '@commitlint/format': 21.0.1
       '@commitlint/lint': 21.0.2
       '@commitlint/types': 21.0.1
-      '@pob/version': 4.3.0
+      '@pob/version': 4.3.2
       conventional-changelog-conventionalcommits: 9.3.1
       conventional-changelog-writer: 8.4.0
       conventional-commits-parser: 6.4.0
       json5: 2.2.3
       lint-staged: 17.0.8
       oxfmt: 0.54.0
-      pob-dependencies: 24.2.0
+      picomatch: 4.0.5
+      pob-dependencies: 24.4.0
       semver: 7.8.5
     transitivePeerDependencies:
       - svelte
       - vite-plus
 
-  '@pob/version@4.3.0':
+  '@pob/version@4.3.2':
     dependencies:
       commander: 14.0.3
       conventional-changelog-conventionalcommits: 9.3.1
@@ -3354,7 +3355,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
-      picomatch: 4.0.4
+      picomatch: 4.0.5
     optionalDependencies:
       rollup: 4.60.4
 
@@ -4453,9 +4454,9 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
-  fdir@6.5.0(picomatch@4.0.4):
+  fdir@6.5.0(picomatch@4.0.5):
     optionalDependencies:
-      picomatch: 4.0.4
+      picomatch: 4.0.5
 
   file-entry-cache@8.0.0:
     dependencies:
@@ -4905,7 +4906,7 @@ snapshots:
   lint-staged@17.0.8:
     dependencies:
       listr2: 10.2.2
-      picomatch: 4.0.4
+      picomatch: 4.0.5
       string-argv: 0.3.2
       tinyexec: 1.2.4
     optionalDependencies:
@@ -5182,11 +5183,11 @@ snapshots:
 
   picocolors@1.1.1: {}
 
-  picomatch@4.0.4: {}
+  picomatch@4.0.5: {}
 
   pluralize@8.0.0: {}
 
-  pob-dependencies@24.2.0: {}
+  pob-dependencies@24.4.0: {}
 
   possible-typed-array-names@1.1.0: {}
 
@@ -5541,8 +5542,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.5)
+      picomatch: 4.0.5
 
   tinypool@2.1.0: {}
 
@@ -5558,7 +5559,7 @@ snapshots:
 
   ts-declaration-location@1.0.7(typescript@6.0.3):
     dependencies:
-      picomatch: 4.0.4
+      picomatch: 4.0.5
       typescript: 6.0.3
 
   tslib@2.8.1: {}
@@ -5647,7 +5648,7 @@ snapshots:
   unplugin-utils@0.2.5:
     dependencies:
       pathe: 2.0.3
-      picomatch: 4.0.4
+      picomatch: 4.0.5
 
   unrs-resolver@1.12.2:
     dependencies:
