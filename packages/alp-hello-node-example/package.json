@@ -36,7 +36,7 @@
   "dependencies": {
     "alp-node": "workspace:*",
     "alp-node-auth": "workspace:*",
-    "liwi-mongo": "13.1.0",
+    "liwi-mongo": "13.1.1",
     "nightingale-app-console": "18.2.0",
     "nightingale-web-processor": "18.2.0",
     "router-segments": "12.2.1"
