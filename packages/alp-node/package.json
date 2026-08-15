@@ -73,11 +73,12 @@
     "object-properties": "^10.0.0"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "9.2.0",
+    "@pob/rollup-esbuild": "10.0.0",
     "@types/koa-compress": "4.0.7",
     "@types/koa-static": "4.0.4",
     "@types/minimist": "1.2.5",
-    "typescript": "6.0.3"
+    "@typescript/native": "npm:typescript@7.0.2",
+    "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "peerDependencies": {
     "router-segments": "^11.0.0 || ^12.0.0"

@@ -1,9 +1,8 @@
 import pobTypescriptReactConfig, {
   applyTs,
 } from "@pob/eslint-config-typescript-react";
-import checkPackage from "check-package-dependencies/eslint-plugin";
 
-const configs = pobTypescriptReactConfig(import.meta.url).configs;
+const configs = pobTypescriptReactConfig.configs;
 
 export default [
   ...configs.node,
@@ -13,7 +12,4 @@ export default [
     files: ["packages/react-*/src"],
     configs: configs.node,
   }),
-
-  // must be last to win on "package.json"
-  checkPackage.configs["recommended-library"],
 ];

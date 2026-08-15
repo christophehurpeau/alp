@@ -50,7 +50,7 @@ declare module "koa" {
       AlpLanguageContext,
       TranslateContext {}
 
-  interface BaseContext extends AlpContext, TranslateBaseContext {
+  interface BaseContext extends TranslateBaseContext {
     urlGenerator: UrlGenerator;
     redirectTo: <P extends Record<string, unknown>>(
       to: string,

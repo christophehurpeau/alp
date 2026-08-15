@@ -20,7 +20,7 @@ declare module "koa" {
     }
     interface DefaultContext extends AlpContext, AlpParamsContext, AlpRouterContext, AlpLanguageContext, TranslateContext {
     }
-    interface BaseContext extends AlpContext, TranslateBaseContext {
+    interface BaseContext extends TranslateBaseContext {
         urlGenerator: UrlGenerator;
         redirectTo: <P extends Record<string, unknown>>(to: string, params?: P) => void;
     }

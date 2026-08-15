@@ -2,23 +2,16 @@ allowBuilds:
   esbuild: true
   unrs-resolver: true
 dedupePeerDependents: true
-nodeLinker: hoisted
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - "@pob/*"
   - pob-dependencies
+  - check-package-dependencies
   - alouette
   - alouette-icons
   - nightingale
   - nightingale-logger
-  - alp-node-auth@13.1.0
-  - alp-node@10.1.0
-  - alp-rollup-plugin-config@4.1.0
-  - router-segments@12.2.1
-  - check-package-dependencies
-  - error-html@0.4.1
-  # Renovate security update: js-yaml@5.2.2
-  - js-yaml@5.2.2
+nodeLinker: hoisted
 packages:
   - packages/*
 savePrefix: ^
