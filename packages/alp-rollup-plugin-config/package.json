@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "9.2.0",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "peerDependencies": {
     "rollup": "^2.64.0 || ^3.0.0 || ^4.0.0"

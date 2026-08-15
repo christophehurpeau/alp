@@ -40,7 +40,7 @@
     "@pob/root": "24.5.0",
     "check-package-dependencies": "11.4.3",
     "eslint": "10.8.1",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "commitlint": {
     "extends": [

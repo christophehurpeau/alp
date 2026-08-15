@@ -52,7 +52,7 @@
     "@types/semver": "7.8.0",
     "liwi-mongo": "13.1.1",
     "router-segments": "12.2.1",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "peerDependencies": {
     "liwi-mongo": "^12.0.0 || ^13.0.0",

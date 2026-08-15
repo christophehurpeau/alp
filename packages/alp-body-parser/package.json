@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "9.2.0",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "peerDependencies": {
     "alp-node": "workspace:^"
