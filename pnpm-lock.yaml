@@ -21,8 +21,8 @@ importers:
         specifier: 24.5.0
         version: 24.5.0
       check-package-dependencies:
-        specifier: 11.4.3
-        version: 11.4.3(eslint@10.8.1)
+        specifier: 11.7.0
+        version: 11.7.0(eslint@10.8.1)
       eslint:
         specifier: 10.8.1
         version: 10.8.1
@@ -1347,8 +1347,8 @@ packages:
   change-case@5.4.4:
     resolution: {integrity: sha512-HRQyTk2/YPEkt9TnUPbOpr64Uw3KOicFWPVBb+xiHvd6eBx/qPr9xqfBFDT8P2vWsvvz4jbEkfDe71W3VyNu2w==}
 
-  check-package-dependencies@11.4.3:
-    resolution: {integrity: sha512-fDyXPgn69MaHDS65uXCEky+yZk+KvKteXXSWCaPkRM403YIbSxhVcc2XHrFBx3+l2i21BN33L+bsZr+2uupTvg==}
+  check-package-dependencies@11.7.0:
+    resolution: {integrity: sha512-+bOgnnBLg9RzLjRF2eOD/S0h4sG5wuunWON9T+wrBYNuQqvRK7N2cnx06maH9MdhojReLHm6HW6jZUr/YliDNQ==}
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
@@ -3885,7 +3885,7 @@ snapshots:
 
   change-case@5.4.4: {}
 
-  check-package-dependencies@11.4.3(eslint@10.8.1):
+  check-package-dependencies@11.7.0(eslint@10.8.1):
     dependencies:
       '@eslint/plugin-kit': 0.7.2
       jsonc-parser: 3.3.1
