@@ -64,8 +64,8 @@ importers:
         specifier: workspace:*
         version: link:../alp-node-auth
       liwi-mongo:
-        specifier: 13.1.0
-        version: 13.1.0
+        specifier: 13.1.1
+        version: 13.1.1
       nightingale-app-console:
         specifier: 18.2.0
         version: 18.2.0
@@ -111,8 +111,8 @@ importers:
         specifier: 7.8.0
         version: 7.8.0
       liwi-mongo:
-        specifier: 13.1.0
-        version: 13.1.0
+        specifier: 13.1.1
+        version: 13.1.1
       router-segments:
         specifier: 12.2.1
         version: 12.2.1
@@ -203,8 +203,8 @@ importers:
         specifier: workspace:*
         version: link:../alp-node
       liwi-mongo:
-        specifier: 13.1.0
-        version: 13.1.0
+        specifier: 13.1.1
+        version: 13.1.1
       router-segments:
         specifier: 12.2.1
         version: 12.2.1
@@ -2177,16 +2177,16 @@ packages:
     resolution: {integrity: sha512-JtNtbZj8q5BnDMR7trpwvwk3RIrANtIVzEUm8w7amp6xelLgyuq+4WZoTH913XaQAoH/cNdYhaNzBPA2U3xbDw==}
     engines: {node: '>=22.13.0'}
 
-  liwi-mongo@13.1.0:
-    resolution: {integrity: sha512-45C8fY4kF6dfyE0zRBKT5sB8wb9pWRCaUx5ivxv0//Kk6UJux6Ga3oHoMXkNHdU2QLOvPaYeIQULKxAlcxhAzw==}
+  liwi-mongo@13.1.1:
+    resolution: {integrity: sha512-+HBrzMcBUxipphLzkthMBq8I3k0UBpEBpaxOrVNQFrBMx4Qt8veMnRlR1ECqFu1z8RQWfZAsGMTcjg+J0oT17g==}
     engines: {node: '>=22.18.0'}
 
-  liwi-store@13.1.0:
-    resolution: {integrity: sha512-lrmCwarrWhlkRoyFAag2by//zGQZ6rcZzhJ3PNHiBi3fPpKfHHdxyo0NJTcIOd1o7CCMZGYwapCJ+sYF/T5nng==}
+  liwi-store@13.1.1:
+    resolution: {integrity: sha512-TqweWIPS7UyBbT+1hEQZ+L2mPjyfAlWO97SPt8zP8v3uo/Oyn46NutURERwwqYChCGC+SD1LYPJAXJ4lVkmUAg==}
     engines: {node: '>=22.18.0'}
 
-  liwi-subscribe-store@13.1.0:
-    resolution: {integrity: sha512-feUN2LPgdUe0OKw/MxgCpDGvGku+axxNWeMoBr2SxwtgH5hi9v5n+Z5kxk0CjQ5NQlZdNsmt2q8rWb60E92t8w==}
+  liwi-subscribe-store@13.1.1:
+    resolution: {integrity: sha512-NRm7kkihzp/KJrmom77I0ZmchsPNd+3/wmKrSYtMtKlCDSjnpgLVcuA5DLqbXfj15fNJFhUKXI9maS5DQ3i1sQ==}
     engines: {node: '>=22.18.0'}
 
   locate-path@6.0.0:
@@ -4919,10 +4919,10 @@ snapshots:
       rfdc: 1.4.1
       wrap-ansi: 10.0.0
 
-  liwi-mongo@13.1.0:
+  liwi-mongo@13.1.1:
     dependencies:
-      liwi-store: 13.1.0
-      liwi-subscribe-store: 13.1.0
+      liwi-store: 13.1.1
+      liwi-subscribe-store: 13.1.1
       mingo: 6.2.7
       mongodb: 7.4.0
       nightingale-logger: 18.2.0
@@ -4935,11 +4935,11 @@ snapshots:
       - snappy
       - socks
 
-  liwi-store@13.1.0: {}
+  liwi-store@13.1.1: {}
 
-  liwi-subscribe-store@13.1.0:
+  liwi-subscribe-store@13.1.1:
     dependencies:
-      liwi-store: 13.1.0
+      liwi-store: 13.1.1
 
   locate-path@6.0.0:
     dependencies:
