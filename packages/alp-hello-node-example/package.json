@@ -45,7 +45,7 @@
     "@pob/rollup-esbuild": "10.0.0",
     "@typescript/native": "npm:typescript@7.0.2",
     "alp-rollup-plugin-config": "workspace:*",
-    "rollup": "4.60.4",
+    "rollup": "4.63.2",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "engines": {
