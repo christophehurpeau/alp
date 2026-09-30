@@ -43,7 +43,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "js-yaml": "^5.2.3"
+    "js-yaml": "^5.4.1"
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "10.0.0",
