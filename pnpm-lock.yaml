@@ -16,7 +16,7 @@ importers:
         version: 67.4.0(@typescript-eslint/utils@8.67.0(@typescript/typescript6@6.0.2)(eslint@10.8.1))(@typescript/typescript6@6.0.2)(eslint@10.8.1)
       '@pob/rollup-esbuild':
         specifier: 10.0.0
-        version: 10.0.0(@typescript/typescript6@6.0.2)
+        version: 10.0.0(@typescript/typescript6@6.0.2)(rollup@4.60.4)
       '@pob/root':
         specifier: 27.5.0
         version: 27.5.0
@@ -50,7 +50,7 @@ importers:
     devDependencies:
       '@pob/rollup-esbuild':
         specifier: 10.0.0
-        version: 10.0.0(@typescript/typescript6@6.0.2)
+        version: 10.0.0(@typescript/typescript6@6.0.2)(rollup@4.60.4)
       '@typescript/native':
         specifier: npm:typescript@7.0.2
         version: typescript@7.0.2
@@ -81,7 +81,7 @@ importers:
     devDependencies:
       '@pob/rollup-esbuild':
         specifier: 10.0.0
-        version: 10.0.0(@typescript/typescript6@6.0.2)
+        version: 10.0.0(@typescript/typescript6@6.0.2)(rollup@4.60.4)
       '@typescript/native':
         specifier: npm:typescript@7.0.2
         version: typescript@7.0.2
@@ -109,7 +109,7 @@ importers:
     devDependencies:
       '@pob/rollup-esbuild':
         specifier: 10.0.0
-        version: 10.0.0(@typescript/typescript6@6.0.2)
+        version: 10.0.0(@typescript/typescript6@6.0.2)(rollup@4.60.4)
       '@types/node':
         specifier: 24.10.1
         version: 24.10.1
@@ -167,7 +167,7 @@ importers:
     devDependencies:
       '@pob/rollup-esbuild':
         specifier: 10.0.0
-        version: 10.0.0(@typescript/typescript6@6.0.2)
+        version: 10.0.0(@typescript/typescript6@6.0.2)(rollup@4.60.4)
       '@types/koa-compress':
         specifier: 4.0.7
         version: 4.0.7
@@ -207,7 +207,7 @@ importers:
     devDependencies:
       '@pob/rollup-esbuild':
         specifier: 10.0.0
-        version: 10.0.0(@typescript/typescript6@6.0.2)
+        version: 10.0.0(@typescript/typescript6@6.0.2)(rollup@4.60.4)
       '@types/node':
         specifier: 24.10.1
         version: 24.10.1
@@ -238,7 +238,7 @@ importers:
     devDependencies:
       '@pob/rollup-esbuild':
         specifier: 10.0.0
-        version: 10.0.0(@typescript/typescript6@6.0.2)
+        version: 10.0.0(@typescript/typescript6@6.0.2)(rollup@4.60.4)
       '@typescript/native':
         specifier: npm:typescript@7.0.2
         version: typescript@7.0.2
@@ -727,7 +727,11 @@ packages:
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
+      rollup: 4.60.4
       typescript: ^4.0.3 || ^5.0.0 || ^6.0.0 || ^7.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
 
   '@pob/rollup@8.1.2':
     resolution: {integrity: sha512-0lZ54n98PFs0DBuhGtyUSj/dtgmELadnEHOlkz09nK3jL9pw6gdSO8Jz5Lk0Z3COceRN+hlklf1ByK76O//a0A==}
@@ -2225,8 +2229,8 @@ packages:
     resolution: {integrity: sha512-H0dkQoCa3b2VEeKQBOxFph+JAbcrQdE7KC0UkqwpLmv2EC4P41QXP+rqo9wYodACiG5/WM5s9oDApTU8utwj9g==}
     engines: {node: '>= 0.4'}
 
-  joi@17.13.4:
-    resolution: {integrity: sha512-1RuuER6kmt8K8I3nIWvPZKi5RQCb568ZPyY4Pwjlua+yo+63ZTmIwxLZH0heBmiKN4uxjvCiarDrjaeH84xicQ==}
+  joi@17.13.8:
+    resolution: {integrity: sha512-iPKOGmiRw1jxf/JOPwxmCcUQAOdF359mdzYiP2DJ+TMX0YK2zjK3D+zYOaGjpumWxOFF/l2xVWjRVK5bGSLdEw==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -3376,17 +3380,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@pob/rollup-esbuild@10.0.0(@typescript/typescript6@6.0.2)':
+  '@pob/rollup-esbuild@10.0.0(@typescript/typescript6@6.0.2)(rollup@4.60.4)':
     dependencies:
       '@pob/rollup': 8.1.2
       '@rollup/plugin-node-resolve': 16.0.3(rollup@4.60.4)
       '@rollup/plugin-replace': 6.0.3(rollup@4.60.4)
       '@rollup/plugin-run': 3.1.0(rollup@4.60.4)
       esbuild: 0.28.1
-      rollup: 4.60.4
       rollup-config-external-dependencies: 3.0.1
       rollup-plugin-esbuild: 6.2.1(esbuild@0.28.1)(rollup@4.60.4)
       typescript: '@typescript/typescript6@6.0.2'
+    optionalDependencies:
+      rollup: 4.60.4
     transitivePeerDependencies:
       - supports-color
 
@@ -4982,7 +4987,7 @@ snapshots:
       has-symbols: 1.1.0
       set-function-name: 2.0.2
 
-  joi@17.13.4:
+  joi@17.13.8:
     dependencies:
       '@hapi/hoek': 9.3.0
       '@hapi/topo': 5.1.0
@@ -5604,7 +5609,7 @@ snapshots:
       '@hapi/hoek': 11.0.7
       '@hapi/wreck': 18.1.2
       debug: 4.4.3
-      joi: 17.13.4
+      joi: 17.13.8
     transitivePeerDependencies:
       - supports-color
 
