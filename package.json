@@ -14,9 +14,9 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "pnpm run clean:build && rollup --config rollup.config.mjs && pnpm run build:definitions",
+    "build": "pnpm --filter alp-rollup-plugin-config run build && pnpm run clean:build && rollup --config rollup.config.mjs && pnpm run build:definitions",
     "build:definitions": "tsc -b",
-    "clean:build": "pnpm -r --parallel run clean:build",
+    "clean:build": "pnpm -r --parallel --filter '!alp-rollup-plugin-config' run clean:build",
     "format": "oxfmt",
     "format:check": "oxfmt --check .",
     "lint": "pnpm run format && pnpm run lint:oxlint && pnpm run lint:eslint",
