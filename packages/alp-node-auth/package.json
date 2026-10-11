@@ -70,8 +70,9 @@
     "build:definitions": "tsc -p tsconfig.json",
     "clean": "yarn clean:build",
     "clean:build": "pob-esbuild-clean-out dist",
-    "lint": "pnpm run lint:eslint",
-    "lint:eslint": "pnpm run --dir '../..' eslint --quiet 'packages/alp-node-auth'",
+    "lint": "pnpm run lint:oxlint && pnpm run lint:eslint",
+    "lint:eslint": "pnpm --dir '../..' exec eslint --quiet 'packages/alp-node-auth'",
+    "lint:oxlint": "pnpm --dir '../..' exec oxlint --quiet 'packages/alp-node-auth'",
     "tsc": "tsc",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
@@ -84,7 +85,7 @@
     "simple-oauth2": "^5.1.0"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "10.0.0",
+    "@pob/rollup-esbuild": "10.2.0",
     "@types/node": "24.10.1",
     "@typescript/native": "npm:typescript@7.0.2",
     "alp-node": "workspace:*",

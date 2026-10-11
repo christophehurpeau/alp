@@ -14,26 +14,27 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "pnpm --filter alp-rollup-plugin-config run build && pnpm run clean:build && rollup --config rollup.config.mjs && pnpm run build:definitions",
+    "build": "pnpm run clean:build && rollup --config rollup.config.mjs && pnpm run build:definitions",
     "build:definitions": "tsc -b",
-    "clean:build": "pnpm -r --parallel --filter '!alp-rollup-plugin-config' run clean:build",
+    "clean:build": "pnpm -r --parallel run clean:build",
     "format": "oxfmt",
     "format:check": "oxfmt --check .",
-    "lint": "pnpm run format && pnpm run lint:eslint",
+    "lint": "pnpm run format && pnpm run lint:oxlint && pnpm run lint:eslint",
     "lint:eslint": "eslint --quiet .",
+    "lint:oxlint": "oxlint --quiet",
     "prepare": "pob-root-postinstall",
     "start:hello-node": "yarn --cwd packages/alp-hello-node-example start",
     "test": "TZ=UTC node --test 'packages/*/src/**/*.test.ts'",
     "test:coverage": "TZ=UTC node --test --experimental-test-coverage --test-coverage-include=\"src/**/*.ts\" 'packages/*/src/**/*.test.ts'",
-    "test:coverage:generate": "mkdir -p docs && TZ=UTC node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=docs/coverage.lcov --test-coverage-include=\"src/**/*.ts\" 'packages/*/src/**/*.test.ts'",
+    "test:coverage:generate": "mkdir -p generated-docs && TZ=UTC node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=generated-docs/coverage.lcov --test-coverage-include=\"src/**/*.ts\" 'packages/*/src/**/*.test.ts'",
     "test:watch": "TZ=UTC node --test 'packages/*/src/**/*.test.ts'",
     "tsc": "tsc -b",
     "watch": "pnpm run clean:build && rollup --config rollup.config.mjs --watch"
   },
   "devDependencies": {
-    "@pob/eslint-config": "67.4.0",
-    "@pob/eslint-config-typescript-react": "67.4.0",
-    "@pob/rollup-esbuild": "10.0.0",
+    "@pob/eslint-config": "67.12.0",
+    "@pob/eslint-config-typescript-react": "67.12.0",
+    "@pob/rollup-esbuild": "10.2.0",
     "@pob/root": "27.15.0",
     "@typescript/native": "npm:typescript@7.0.2",
     "eslint": "10.8.1",
@@ -44,8 +45,15 @@
       "@pob/root/commitlint-config"
     ]
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.0.0",
+      "onFail": "ignore"
+    }
+  },
   "engines": {
     "node": ">=22.18.0",
-    "pnpm": ">= 11.0.0"
+    "pnpm": ">= 12.0.0"
   }
 }
