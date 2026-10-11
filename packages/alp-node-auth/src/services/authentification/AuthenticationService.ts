@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable camelcase */
+/* oxlint-disable eslint-js/camelcase */
 import { EventEmitter } from "node:events";
 import type { Context, NodeConfig } from "alp-node";
 // eslint-disable-next-line import-x/no-unresolved

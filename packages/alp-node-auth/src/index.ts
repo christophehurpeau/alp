@@ -79,6 +79,7 @@ export type AuthController = AuthControllerType;
 export type AuthRoutes = AuthRoutesType;
 export { AuthenticationService } from "./services/authentification/AuthenticationService";
 
+// oxlint-disable-next-line typescript/explicit-module-boundary-types -- the returned app plugin's type is inferred
 export default function init<
   StrategyKeys extends AllowedStrategyKeys = "google",
   U extends User = User,
@@ -100,7 +101,6 @@ export default function init<
   authHooks?: AuthHooks<StrategyKeys>;
   jwtAudience?: string;
 }) {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   return (app: NodeApplication) => {
     const userAccountsService = new UserAccountsService(
       usersManager,
