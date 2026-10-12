@@ -47,7 +47,7 @@
     "semver": "^7.8.5"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "10.0.0",
+    "@pob/rollup-esbuild": "10.2.0",
     "@types/node": "24.10.1",
     "@types/semver": "7.8.0",
     "@typescript/native": "npm:typescript@7.0.2",
