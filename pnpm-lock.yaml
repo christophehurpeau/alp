@@ -230,8 +230,8 @@ importers:
   packages/alp-rollup-plugin-config:
     dependencies:
       js-yaml:
-        specifier: ^5.2.3
-        version: 5.4.1
+        specifier: ^5.5.0
+        version: 5.5.0
       rollup:
         specifier: ^2.64.0 || ^3.0.0 || ^4.0.0
         version: 4.60.4
@@ -742,7 +742,11 @@ packages:
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
+      rollup: 4.60.4
       typescript: ^4.0.3 || ^5.0.0 || ^6.0.0 || ^7.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
 
   '@pob/rollup@8.3.0':
     resolution: {integrity: sha512-EkIcxwnlrsYgDIJnDN8rW3m8Mp+oPaXCky+dNy/n0TP2rbVy37E5PP7FMh15/t3nSwQDpVn3EQev9k+vdUMGmw==}
@@ -1434,8 +1438,8 @@ packages:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
     engines: {node: '>=12'}
 
-  argparse@2.0.1:
-    resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
+  argparse@3.0.3:
+    resolution: {integrity: sha512-Sn98ftV3KfsO8xfLPHG6oT8y+b0yvbrLgZjgPDXsharNY15tTAjqIsIju4S32nl6/iEUNNE4v+yL2Zhm8ooP3w==}
 
   aria-query@5.3.2:
     resolution: {integrity: sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==}
@@ -2257,8 +2261,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@5.4.1:
-    resolution: {integrity: sha512-28R/k+NAjeuf7+CKlTxWZVExJGwVVLwY06DgEnOMz2gEpfNkDcD7QvyiVPT0xy0XXhU8vHsd4Ot42OOPdJG7dQ==}
+  js-yaml@5.5.0:
+    resolution: {integrity: sha512-paNr4LFIFPjeeSmwNYdrb8FafLLG/Cr2Af3GjbsHJ5CxIjH4r0c2emlmRdAtpPAieP1gRVzk6buBbVP5gBMGAg==}
     hasBin: true
 
   jsdoc-type-pratt-parser@7.2.0:
@@ -4050,7 +4054,7 @@ snapshots:
 
   ansi-styles@6.2.3: {}
 
-  argparse@2.0.1: {}
+  argparse@3.0.3: {}
 
   aria-query@5.3.2: {}
 
@@ -5056,9 +5060,9 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@5.4.1:
+  js-yaml@5.5.0:
     dependencies:
-      argparse: 2.0.1
+      argparse: 3.0.3
 
   jsdoc-type-pratt-parser@7.2.0: {}
 
