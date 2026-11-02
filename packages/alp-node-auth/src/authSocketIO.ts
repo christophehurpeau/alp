@@ -11,7 +11,7 @@ const logger = new Logger("alp:auth");
 export const authSocketIO = <U extends User = User>(
   app: NodeApplication,
   usersManager: MongoUsersManager<U>,
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  // oxlint-disable-next-line typescript/explicit-module-boundary-types
   io: any,
   jwtAudience?: string,
 ): void => {
@@ -26,13 +26,13 @@ export const authSocketIO = <U extends User = User>(
 
   io.use(async (socket: any, next: any) => {
     const handshakeData = socket.request;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    // oxlint-disable-next-line typescript/no-unsafe-argument
     const token = getTokenFromRequest(handshakeData);
 
     if (!token) return next();
 
     const [loggedInUserId, loggedInUser] = await findLoggedInUser(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      // oxlint-disable-next-line typescript/no-unsafe-argument
       jwtAudience || handshakeData.headers["user-agent"],
       token,
     );

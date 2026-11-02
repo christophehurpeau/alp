@@ -1,5 +1,5 @@
 import parse from "co-body";
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+// oxlint-disable-next-line typescript/consistent-type-imports
 import Application, { Context } from "koa";
 
 declare module "koa" {

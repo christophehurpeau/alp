@@ -39,7 +39,7 @@ export interface AlpNodeAppOptions {
 }
 
 declare module "koa" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  // oxlint-disable-next-line typescript/no-empty-object-type
   interface DefaultState extends ContextState {}
 
   interface DefaultContext
@@ -57,7 +57,7 @@ declare module "koa" {
       params?: P,
     ) => void;
   }
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  // oxlint-disable-next-line typescript/no-empty-object-type
   interface BaseRequest extends AlpParamsRequest {}
 }
 
@@ -149,7 +149,7 @@ export class AlpNodeApp
     try {
       const server = await _listen(
         this.config,
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        // oxlint-disable-next-line typescript/no-misused-promises
         this.callback(),
         this.certPath,
       );

@@ -49,7 +49,7 @@ export default function alpRouter<Locales extends string>(
     };
 
     return async (ctx: Context): Promise<void> => {
-      // eslint-disable-next-line unicorn/no-array-method-this-argument
+      // oxlint-disable-next-line unicorn/no-array-method-this-argument
       const routeMatch = router.find(ctx.request.path, ctx.language as Locales);
 
       if (!routeMatch) {

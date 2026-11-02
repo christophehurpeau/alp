@@ -1,8 +1,8 @@
 import IntlMessageFormatDefault from "intl-messageformat";
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// oxlint-disable-next-line typescript/no-unsafe-assignment
 const IntlMessageFormat: typeof IntlMessageFormatDefault =
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  // oxlint-disable-next-line typescript/no-unsafe-member-access
   (IntlMessageFormatDefault as any).default || IntlMessageFormatDefault;
 
 export type Translations = Readonly<Record<string, IntlMessageFormatDefault>>;

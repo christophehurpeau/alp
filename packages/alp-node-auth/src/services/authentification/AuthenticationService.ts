@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable camelcase */
+/* oxlint-disable typescript/no-unsafe-argument */
+/* oxlint-disable typescript/explicit-module-boundary-types */
+/* oxlint-disable typescript/no-unsafe-assignment */
+/* oxlint-disable eslint-js/camelcase */
 import { EventEmitter } from "node:events";
 import type { Context, NodeConfig } from "alp-node";
 // eslint-disable-next-line import-x/no-unresolved
@@ -53,7 +53,7 @@ export class AuthenticationService<
   StrategyKeys extends AllowedStrategyKeys,
   U extends User = User,
   USanitized extends UserSanitized = UserSanitized,
-  // eslint-disable-next-line unicorn/prefer-event-target
+  // oxlint-disable-next-line unicorn/prefer-event-target
 > extends EventEmitter {
   config: NodeConfig;
 

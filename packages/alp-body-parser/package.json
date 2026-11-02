@@ -36,12 +36,14 @@
   },
   "scripts": {
     "build": "pnpm run clean:build && rollup --config rollup.config.mjs && pnpm run build:definitions",
-    "build:definitions": "tsc -p tsconfig.json",
+    "build:definitions": "tsrs -p tsconfig.json",
     "clean": "yarn clean:build",
     "clean:build": "pob-esbuild-clean-out dist",
-    "lint": "pnpm run lint:eslint",
-    "lint:eslint": "pnpm run --dir '../..' eslint --quiet 'packages/alp-body-parser'",
-    "tsc": "tsc",
+    "lint": "pnpm run lint:oxlint && pnpm run lint:eslint",
+    "lint:eslint": "pnpm --dir '../..' exec eslint --quiet 'packages/alp-body-parser'",
+    "lint:oxlint": "pnpm --dir '../..' exec oxlint --quiet 'packages/alp-body-parser'",
+    "tsc": "tsrs",
+    "tsc:go": "tsc",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "dependencies": {
@@ -51,8 +53,9 @@
     "koa": "^3.2.1"
   },
   "devDependencies": {
-    "@pob/rollup-esbuild": "10.2.0",
+    "@pob/rollup-esbuild": "11.1.0",
     "@typescript/native": "npm:typescript@7.0.2",
+    "tsrs": "0.18.0-ts7.1.0-dev.20260929",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "peerDependencies": {
