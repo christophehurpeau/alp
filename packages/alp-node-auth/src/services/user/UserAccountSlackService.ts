@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* oxlint-disable typescript/explicit-module-boundary-types */
 import type { Tokens } from "../authentification/types";
 import type { AccountService, FullName } from "./types";
 

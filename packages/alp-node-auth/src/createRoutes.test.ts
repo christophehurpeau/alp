@@ -2,9 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 // eslint-disable-next-line import-x/no-unresolved
 import { createRouterBuilder } from "router-segments";
-// eslint-disable-next-line import-x/extensions
 import type { AuthController } from "./createAuthController.ts";
-// eslint-disable-next-line import-x/extensions
+// oxlint-disable-next-line import/extensions
 import { createRoutes } from "./createRoutes.ts";
 
 const createControllerMock = (): AuthController => ({

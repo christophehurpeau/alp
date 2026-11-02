@@ -35,7 +35,7 @@ export default function alpParams(app: AlpNodeApp): void {
     },
 
     bodyParam<T>(this: Context, name: string): T | undefined {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+      // oxlint-disable-next-line typescript/no-unsafe-return, typescript/no-unsafe-member-access
       return (this.body as any)[name];
     },
   });

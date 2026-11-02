@@ -3,7 +3,7 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, test } from "node:test";
-// eslint-disable-next-line import-x/extensions
+// oxlint-disable-next-line import/extensions
 import alpRollupPluginConfig from "./index.ts";
 
 let dir: string;

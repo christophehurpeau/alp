@@ -37,13 +37,13 @@ export const createAuthApolloContext = <U extends User = User>(
 
     if (!req) return null;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    // oxlint-disable-next-line typescript/no-unsafe-argument
     const token = getTokenFromReq(req);
 
     if (!token) return { user: undefined };
 
     const [, loggedInUser] = await findLoggedInUser(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      // oxlint-disable-next-line typescript/no-unsafe-argument
       req.headers["user-agent"],
       token,
     );

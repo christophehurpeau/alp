@@ -79,14 +79,14 @@ export class Config {
       const splitted = key.split(".");
       const value =
         splitted.length > 0 &&
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,unicorn/no-array-reduce
+        // oxlint-disable-next-line typescript/no-unsafe-return, unicorn/no-array-reduce
         splitted.reduce((config, partialKey) => config[partialKey], argv);
       if (value !== undefined) {
         const last = splitted.pop()!;
         const v =
           splitted.length === 0
             ? config
-            : // eslint-disable-next-line unicorn/no-array-reduce
+            : // oxlint-disable-next-line unicorn/no-array-reduce
               splitted.reduce(
                 (config, partialKey) => config[partialKey] as ConfigRecord,
                 config,

@@ -57,7 +57,7 @@ export default class MongoUsersManager<
       };
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    // oxlint-disable-next-line typescript/no-unsafe-argument
     return this.store.findOne(query);
   }
 

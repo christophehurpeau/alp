@@ -17,7 +17,7 @@ export default class UserAccountsService<
   StrategyKeys extends AllowedStrategyKeys,
   U extends User = User,
   USanitized extends UserSanitized = UserSanitized,
-  // eslint-disable-next-line unicorn/prefer-event-target
+  // oxlint-disable-next-line unicorn/prefer-event-target
 > extends EventEmitter {
   private readonly strategyToService: Record<StrategyKeys, AccountService<any>>;
 
@@ -172,7 +172,7 @@ export default class UserAccountsService<
     });
 
     user.emailDomains = [
-      // eslint-disable-next-line unicorn/no-array-reduce
+      // oxlint-disable-next-line unicorn/no-array-reduce
       ...user.emails.reduce(
         (domains: Set<string>, email: string) =>
           domains.add(email.split("@", 2)[1]!),

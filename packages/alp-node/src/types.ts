@@ -24,10 +24,10 @@ export interface NodeConfig extends Config {
   readonly packageConfig: PackageConfig;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+// oxlint-disable-next-line typescript/no-empty-object-type
 export interface ContextState {}
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+// oxlint-disable-next-line typescript/no-empty-object-type
 export interface ContextSanitizedState {}
 
 export interface BaseContext {

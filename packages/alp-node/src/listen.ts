@@ -15,7 +15,6 @@ const createServer = (
   socketPath?: string,
   tls?: boolean,
   dirname = "",
-  // eslint-disable-next-line @typescript-eslint/max-params
 ): Server => {
   const createHttpServer =
     !socketPath && tls ? createServerHttps : createServerHttp;

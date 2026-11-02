@@ -41,7 +41,7 @@ export interface AuthHooks<
     | OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>
     | Promise<OptionalRecord<AllowedMapParamsStrategy[StrategyKey], any>>
     | Promise<void>
-    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+    // oxlint-disable-next-line typescript/no-invalid-void-type
     | void;
 }
 
@@ -106,7 +106,7 @@ export function createAuthController<
       ctx.redirectTo(homeRouterKey);
     },
 
-    // eslint-disable-next-line @typescript-eslint/require-await -- keep async in case i later need await in this method
+    // oxlint-disable-next-line typescript/require-await -- keep async in case i later need await in this method
     async logout(ctx: Context): Promise<void> {
       ctx.logout();
       ctx.redirectTo(homeRouterKey);

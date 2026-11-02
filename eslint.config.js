@@ -6,7 +6,6 @@ const configs = pobTypescriptReactConfig.configs;
 
 export default [
   ...configs.node,
-  ...configs.allowUnsafeAsWarn,
   ...applyTs({
     mode: "directory",
     files: ["packages/react-*/src"],

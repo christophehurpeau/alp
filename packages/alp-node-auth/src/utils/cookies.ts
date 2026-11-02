@@ -13,7 +13,7 @@ export const getTokenFromRequest = (
     return req.headers.authorization.slice("Bearer ".length);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  // oxlint-disable-next-line typescript/no-unsafe-argument
   const cookies = new Cookies(req, null as unknown as any, {
     ...options,
     secure: true,
