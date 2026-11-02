@@ -14,9 +14,9 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "pnpm --filter alp-rollup-plugin-config run build && pnpm run clean:build && rollup --config rollup.config.mjs && pnpm run build:definitions",
+    "build": "pnpm --filter \"alp-rollup-plugin-config\" run build && pnpm run clean:build && rollup --config rollup.config.mjs && pnpm run build:definitions",
     "build:definitions": "tsrs -b",
-    "clean:build": "pnpm -r --parallel --filter '!alp-rollup-plugin-config' run clean:build",
+    "clean:build": "pnpm -r --parallel --filter \"!alp-rollup-plugin-config\" run clean:build",
     "format": "oxfmt",
     "format:check": "oxfmt --check .",
     "lint": "pnpm run format && pnpm run lint:oxlint && pnpm run lint:eslint",
@@ -30,7 +30,7 @@
     "test:watch": "TZ=UTC node --test 'packages/*/src/**/*.test.ts'",
     "tsc": "tsrs -b",
     "tsc:go": "tsc -b",
-    "watch": "pnpm run clean:build && rollup --config rollup.config.mjs --watch"
+    "watch": "pnpm --filter \"alp-rollup-plugin-config\" run build && pnpm run clean:build && rollup --config rollup.config.mjs --watch"
   },
   "devDependencies": {
     "@pob/eslint-config": "68.0.0",
