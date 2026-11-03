@@ -62,7 +62,7 @@
     "alp-node": "workspace:^"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": "^22.18.0 || >=24.14.1"
   },
   "pob": {
     "bundler": "rollup-esbuild",

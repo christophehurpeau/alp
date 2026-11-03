@@ -25,18 +25,18 @@
     "prepare": "pob-root-postinstall",
     "start:hello-node": "yarn --cwd packages/alp-hello-node-example start",
     "test": "TZ=UTC node --test 'packages/*/src/**/*.test.ts'",
-    "test:coverage": "TZ=UTC node --test --experimental-test-coverage --test-coverage-include=\"src/**/*.ts\" 'packages/*/src/**/*.test.ts'",
-    "test:coverage:generate": "mkdir -p generated-docs && TZ=UTC node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=generated-docs/coverage.lcov --test-coverage-include=\"src/**/*.ts\" 'packages/*/src/**/*.test.ts'",
+    "test:coverage": "TZ=UTC node --test --experimental-test-coverage --test-coverage-include=\"packages/*/src/**/*.ts\" 'packages/*/src/**/*.test.ts'",
+    "test:coverage:generate": "mkdir -p generated-docs && TZ=UTC node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=generated-docs/coverage.lcov --test-coverage-include=\"packages/*/src/**/*.ts\" 'packages/*/src/**/*.test.ts'",
     "test:watch": "TZ=UTC node --test 'packages/*/src/**/*.test.ts'",
     "tsc": "tsrs -b",
     "tsc:go": "tsc -b",
     "watch": "pnpm --filter \"alp-rollup-plugin-config\" run build && pnpm run clean:build && rollup --config rollup.config.mjs --watch"
   },
   "devDependencies": {
-    "@pob/eslint-config": "68.0.0",
-    "@pob/eslint-config-typescript-react": "68.0.0",
+    "@pob/eslint-config": "68.3.0",
+    "@pob/eslint-config-typescript-react": "68.4.0",
     "@pob/rollup-esbuild": "11.3.0",
-    "@pob/root": "28.2.2",
+    "@pob/root": "28.6.1",
     "@typescript/native": "npm:typescript@7.0.2",
     "eslint": "10.14.0",
     "tsrs": "0.18.0-ts7.1.0-dev.20260929",
@@ -55,7 +55,7 @@
     }
   },
   "engines": {
-    "node": ">=22.18.0",
+    "node": "^22.18.0 || >=24.14.1",
     "pnpm": ">= 12.0.0"
   }
 }
