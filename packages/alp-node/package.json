@@ -80,7 +80,7 @@
     "@types/koa-static": "4.0.4",
     "@types/minimist": "1.2.5",
     "@typescript/native": "npm:typescript@7.0.2",
-    "tsrs": "0.18.0-ts7.1.0-dev.20260929",
+    "tsrs": "0.20.1-ts7.1.0-beta",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "peerDependencies": {
@@ -92,7 +92,7 @@
     }
   },
   "engines": {
-    "node": "^22.18.0 || >=24.14.1"
+    "node": "^22.23.4 || ^24.22.1 || >=26.13.0"
   },
   "pob": {
     "bundler": "rollup-esbuild",
