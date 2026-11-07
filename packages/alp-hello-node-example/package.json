@@ -41,7 +41,7 @@
     "liwi-mongo": "13.4.0",
     "nightingale-app-console": "18.2.0",
     "nightingale-web-processor": "18.2.0",
-    "router-segments": "12.2.1"
+    "router-segments": "12.2.2"
   },
   "devDependencies": {
     "@pob/rollup-esbuild": "11.4.0",

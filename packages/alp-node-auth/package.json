@@ -91,7 +91,7 @@
     "@typescript/native": "npm:typescript@7.0.2",
     "alp-node": "workspace:*",
     "liwi-mongo": "13.4.0",
-    "router-segments": "12.2.1",
+    "router-segments": "12.2.2",
     "tsrs": "0.18.0-ts7.1.0-dev.20260929",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   },
