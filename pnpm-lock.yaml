@@ -73,8 +73,8 @@ importers:
         specifier: workspace:*
         version: link:../alp-node-auth
       liwi-mongo:
-        specifier: 13.4.0
-        version: 13.4.0
+        specifier: 15.2.0
+        version: 15.2.0
       nightingale-app-console:
         specifier: 18.2.0
         version: 18.2.0
@@ -129,8 +129,8 @@ importers:
         specifier: npm:typescript@7.0.2
         version: typescript@7.0.2
       liwi-mongo:
-        specifier: 13.4.0
-        version: 13.4.0
+        specifier: 15.2.0
+        version: 15.2.0
       router-segments:
         specifier: 12.2.2
         version: 12.2.2
@@ -233,8 +233,8 @@ importers:
         specifier: workspace:*
         version: link:../alp-node
       liwi-mongo:
-        specifier: 13.4.0
-        version: 13.4.0
+        specifier: 15.2.0
+        version: 15.2.0
       router-segments:
         specifier: 12.2.2
         version: 12.2.2
@@ -2263,16 +2263,16 @@ packages:
     engines: {node: '>=22.22.1'}
     hasBin: true
 
-  liwi-mongo@13.4.0:
-    resolution: {integrity: sha512-xz7newpsOg5RBy30zhny77+2svxTDCRGwIhZEjRcO4b5eU55EccEVe8CjVd5S0zuDsF1OWnp1u/lkiU+lGsGKg==}
+  liwi-mongo@15.2.0:
+    resolution: {integrity: sha512-fhrGS4NbXd4/Rdkmme4Uikf/RlUuh/Lt9Q+3mtDA4iC2MVD88Dh5VZSWTjHgBUNKT2PHsFdfJmoo6oIk9v+Xjg==}
     engines: {node: '>=22.18.0'}
 
-  liwi-store@13.4.0:
-    resolution: {integrity: sha512-zLc63GQiq6qmnDT8ggfduSG0vn32g/MmNpsgo6xqJNulUJnP85LT+hyfzTOvFLufmQl86qViXdU+pBgI9JEf2w==}
+  liwi-store@15.1.0:
+    resolution: {integrity: sha512-cFyJd8OO+zvHJNx52Nap7D8BPS1JjRiQWlXRRCqoJeL4hWqHQl/tLw6JnvXQhCdNypU97CJ4m2b4U0sEgiu8QQ==}
     engines: {node: '>=22.18.0'}
 
-  liwi-subscribe-store@13.4.0:
-    resolution: {integrity: sha512-HGUWcKeFDwlWRYsfLl3EnwDJBLdTGuDGCD0EVdNKRbxsGGoFMy+taFRrjOFxkH2jXYWxKR7p8fGdlRI0NTW1TQ==}
+  liwi-subscribe-store@15.1.0:
+    resolution: {integrity: sha512-61/wGxIGLWWCw8WUk3tR6jwQNO9jb6lXYRqWUgW3uq1KrYYon7SSbqb4K1Vpm0Y4BcUm7o6Ia81KNELnOFRWdQ==}
     engines: {node: '>=22.18.0'}
 
   locate-path@6.0.0:
@@ -2400,8 +2400,8 @@ packages:
     resolution: {integrity: sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A==}
     engines: {node: '>=18'}
 
-  mingo@6.2.7:
-    resolution: {integrity: sha512-r+yKmrZ+6SjwGxSot+/3S8sP9+LCxWNueR6xppMx7BzV60OegjbeklWAf/UveyQi8PDW8g/mwrQSHZVY/5jBJQ==}
+  mingo@7.2.7:
+    resolution: {integrity: sha512-4IRY2mkJlAv/RmnLrXJyP01T6JW9tmD8NmOC7ANgTUW6B1AU8enDySHWREdMvY2yBv0xuQ1hzA1d4fEHYgDoXw==}
 
   minimatch@10.2.6:
     resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
@@ -4629,11 +4629,11 @@ snapshots:
     optionalDependencies:
       yaml: 2.9.1
 
-  liwi-mongo@13.4.0:
+  liwi-mongo@15.2.0:
     dependencies:
-      liwi-store: 13.4.0
-      liwi-subscribe-store: 13.4.0
-      mingo: 6.2.7
+      liwi-store: 15.1.0
+      liwi-subscribe-store: 15.1.0
+      mingo: 7.2.7
       mongodb: 7.8.0
       nightingale-logger: 18.2.0
     transitivePeerDependencies:
@@ -4645,11 +4645,11 @@ snapshots:
       - snappy
       - socks
 
-  liwi-store@13.4.0: {}
+  liwi-store@15.1.0: {}
 
-  liwi-subscribe-store@13.4.0:
+  liwi-subscribe-store@15.1.0:
     dependencies:
-      liwi-store: 13.4.0
+      liwi-store: 15.1.0
 
   locate-path@6.0.0:
     dependencies:
@@ -4827,7 +4827,7 @@ snapshots:
     dependencies:
       mime-db: 1.54.0
 
-  mingo@6.2.7: {}
+  mingo@7.2.7: {}
 
   minimatch@10.2.6:
     dependencies:
